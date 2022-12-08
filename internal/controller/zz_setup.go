@@ -19,6 +19,27 @@ import (
 	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/roleassignment"
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/user"
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
+	eip "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/eip"
+	eipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/eipassociate"
+	endpoint "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/endpoint"
+	endpointapproval "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/endpointapproval"
+	endpointservice "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/endpointservice"
+	flowlogv1 "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/flowlogv1"
+	network "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/network"
+	networkport "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networkport"
+	networksubnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networksubnet"
+	peering "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peering"
+	peeringaccepter "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peeringaccepter"
+	route "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/route"
+	router "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/router"
+	routerinterface "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routerinterface"
+	routetable "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routetable"
+	securitygroup "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/securitygroup"
+	securitygrouprule "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/securitygrouprule"
+	subnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/subnet"
+	vip "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vip"
+	vipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vipassociate"
+	vpc "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vpc"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -35,6 +56,27 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		roleassignment.Setup,
 		user.Setup,
 		providerconfig.Setup,
+		eip.Setup,
+		eipassociate.Setup,
+		endpoint.Setup,
+		endpointapproval.Setup,
+		endpointservice.Setup,
+		flowlogv1.Setup,
+		network.Setup,
+		networkport.Setup,
+		networksubnet.Setup,
+		peering.Setup,
+		peeringaccepter.Setup,
+		route.Setup,
+		router.Setup,
+		routerinterface.Setup,
+		routetable.Setup,
+		securitygroup.Setup,
+		securitygrouprule.Setup,
+		subnet.Setup,
+		vip.Setup,
+		vipassociate.Setup,
+		vpc.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

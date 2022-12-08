@@ -9,6 +9,8 @@ import (
 	_ "embed"
 
 	"github.com/gaetanars/provider-flexibleengine/config/identity"
+	"github.com/gaetanars/provider-flexibleengine/config/vpc"
+
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
 
@@ -33,6 +35,7 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
+		vpc.Configure,
 		identity.Configure,
 	} {
 		configure(pc)
