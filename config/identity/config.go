@@ -11,6 +11,9 @@ func Configure(p *config.Provider) {
 		r.References["group"] = config.Reference{
 			Type: "Group",
 		}
+		r.References["users"] = config.Reference{
+			Type: "User",
+		}
 		r.Kind = "GroupMembership"
 	})
 	p.AddResourceConfigurator("flexibleengine_identity_group_v3", func(r *config.Resource) {

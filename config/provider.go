@@ -8,6 +8,7 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/gaetanars/provider-flexibleengine/config/compute"
 	"github.com/gaetanars/provider-flexibleengine/config/identity"
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
@@ -34,6 +35,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		identity.Configure,
+		compute.Configure,
 	} {
 		configure(pc)
 	}
