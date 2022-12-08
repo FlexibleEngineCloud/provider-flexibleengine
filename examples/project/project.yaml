@@ -1,0 +1,9 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Project
+metadata:
+  name: test
+spec:
+  forProvider:
+    name: "eu-west-0_TestProject"
+  providerConfigRef:
+    name: default
