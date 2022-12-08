@@ -1,0 +1,10 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/user
+  labels:
+    testing.upbound.io/example-name: example_user
+  name: example-user
+spec:
+  forProvider: {}

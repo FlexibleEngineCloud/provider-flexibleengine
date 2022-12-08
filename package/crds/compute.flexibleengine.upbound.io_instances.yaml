@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: groupmemberships.identity.flexibleengine.upbound.io
+  name: instances.compute.flexibleengine.upbound.io
 spec:
-  group: identity.flexibleengine.upbound.io
+  group: compute.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: GroupMembership
-    listKind: GroupMembershipList
-    plural: groupmemberships
-    singular: groupmembership
+    kind: Instance
+    listKind: InstanceList
+    plural: instances
+    singular: instance
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: GroupMembership is the Schema for the GroupMemberships API. <no
-          value>
+        description: Instance is the Schema for the Instances API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: GroupMembershipSpec defines the desired state of GroupMembership
+            description: InstanceSpec defines the desired state of Instance
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,10 +63,55 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  group:
+                  adminPass:
                     type: string
-                  groupRef:
-                    description: Reference to a Group to populate group.
+                  autoRecovery:
+                    type: boolean
+                  availabilityZone:
+                    type: string
+                  blockDevice:
+                    items:
+                      properties:
+                        bootIndex:
+                          type: number
+                        deleteOnTermination:
+                          type: boolean
+                        destinationType:
+                          type: string
+                        deviceName:
+                          type: string
+                        deviceType:
+                          type: string
+                        diskBus:
+                          type: string
+                        guestFormat:
+                          type: string
+                        sourceType:
+                          type: string
+                        uuid:
+                          type: string
+                        volumeSize:
+                          type: number
+                        volumeType:
+                          type: string
+                      required:
+                      - sourceType
+                      type: object
+                    type: array
+                  configDrive:
+                    type: boolean
+                  flavorId:
+                    type: string
+                  flavorName:
+                    type: string
+                  imageId:
+                    type: string
+                  imageName:
+                    type: string
+                  keyPair:
+                    type: string
+                  keyPairRef:
+                    description: Reference to a KeyPair to populate keyPair.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -100,8 +144,8 @@ spec:
                     required:
                     - name
                     type: object
-                  groupSelector:
-                    description: Selector for a Group to populate group.
+                  keyPairSelector:
+                    description: Selector for a KeyPair to populate keyPair.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -139,86 +183,84 @@ spec:
                             type: string
                         type: object
                     type: object
-                  users:
+                  metadata:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  name:
+                    type: string
+                  network:
+                    items:
+                      properties:
+                        accessNetwork:
+                          type: boolean
+                        fixedIpV4:
+                          type: string
+                        fixedIpV6:
+                          type: string
+                        name:
+                          type: string
+                        port:
+                          type: string
+                        uuid:
+                          type: string
+                      type: object
+                    type: array
+                  personality:
+                    items:
+                      properties:
+                        content:
+                          type: string
+                        file:
+                          type: string
+                      required:
+                      - content
+                      - file
+                      type: object
+                    type: array
+                  region:
+                    type: string
+                  schedulerHints:
+                    items:
+                      properties:
+                        buildNearHostIp:
+                          type: string
+                        dehId:
+                          type: string
+                        differentHost:
+                          items:
+                            type: string
+                          type: array
+                        group:
+                          type: string
+                        query:
+                          items:
+                            type: string
+                          type: array
+                        sameHost:
+                          items:
+                            type: string
+                          type: array
+                        targetCell:
+                          type: string
+                        tenancy:
+                          type: string
+                      type: object
+                    type: array
+                  securityGroups:
                     items:
                       type: string
                     type: array
-                  usersRefs:
-                    description: References to User to populate users.
-                    items:
-                      description: A Reference to a named object.
-                      properties:
-                        name:
-                          description: Name of the referenced object.
-                          type: string
-                        policy:
-                          description: Policies for referencing.
-                          properties:
-                            resolution:
-                              default: Required
-                              description: Resolution specifies whether resolution
-                                of this reference is required. The default is 'Required',
-                                which means the reconcile will fail if the reference
-                                cannot be resolved. 'Optional' means this reference
-                                will be a no-op if it cannot be resolved.
-                              enum:
-                              - Required
-                              - Optional
-                              type: string
-                            resolve:
-                              description: Resolve specifies when this reference should
-                                be resolved. The default is 'IfNotPresent', which
-                                will attempt to resolve the reference only when the
-                                corresponding field is not present. Use 'Always' to
-                                resolve the reference on every reconcile.
-                              enum:
-                              - Always
-                              - IfNotPresent
-                              type: string
-                          type: object
-                      required:
-                      - name
-                      type: object
-                    type: array
-                  usersSelector:
-                    description: Selector for a list of User to populate users.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
+                  stopBeforeDestroy:
+                    type: boolean
+                  tags:
+                    additionalProperties:
+                      type: string
                     type: object
+                  userData:
+                    type: string
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -392,12 +434,48 @@ spec:
             - forProvider
             type: object
           status:
-            description: GroupMembershipStatus defines the observed state of GroupMembership.
+            description: InstanceStatus defines the observed state of Instance.
             properties:
               atProvider:
                 properties:
+                  accessIpV4:
+                    type: string
+                  accessIpV6:
+                    type: string
+                  allMetadata:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  floatingIp:
+                    type: string
                   id:
                     type: string
+                  network:
+                    items:
+                      properties:
+                        mac:
+                          type: string
+                      type: object
+                    type: array
+                  status:
+                    type: string
+                  systemDiskId:
+                    type: string
+                  volumeAttached:
+                    items:
+                      properties:
+                        bootIndex:
+                          type: number
+                        pciAddress:
+                          type: string
+                        size:
+                          type: number
+                        type:
+                          type: string
+                        uuid:
+                          type: string
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

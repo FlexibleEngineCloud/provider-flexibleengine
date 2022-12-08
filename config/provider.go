@@ -8,6 +8,7 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/gaetanars/provider-flexibleengine/config/compute"
 	"github.com/gaetanars/provider-flexibleengine/config/identity"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 
@@ -37,6 +38,7 @@ func GetProvider() *ujconfig.Provider {
 		// add custom config functions
 		vpc.Configure,
 		identity.Configure,
+		compute.Configure,
 	} {
 		configure(pc)
 	}

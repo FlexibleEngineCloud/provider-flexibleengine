@@ -61,8 +61,17 @@ type ProviderConversionParameters struct {
 	// +kubebuilder:validation:Required
 	ConversionRules []ProviderConversionConversionRulesParameters `json:"conversionRules" tf:"conversion_rules,omitempty"`
 
-	// +kubebuilder:validation:Required
-	ProviderID *string `json:"providerId" tf:"provider_id,omitempty"`
+	// +crossplane:generate:reference:type=Provider
+	// +kubebuilder:validation:Optional
+	ProviderID *string `json:"providerId,omitempty" tf:"provider_id,omitempty"`
+
+	// Reference to a Provider to populate providerId.
+	// +kubebuilder:validation:Optional
+	ProviderIDRef *v1.Reference `json:"providerIdRef,omitempty" tf:"-"`
+
+	// Selector for a Provider to populate providerId.
+	// +kubebuilder:validation:Optional
+	ProviderIDSelector *v1.Selector `json:"providerIdSelector,omitempty" tf:"-"`
 }
 
 // ProviderConversionSpec defines the desired state of ProviderConversion

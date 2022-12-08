@@ -1,0 +1,30 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Provider
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/provider
+  labels:
+    testing.upbound.io/example-name: example_provider
+  name: example-provider
+spec:
+  forProvider:
+    protocol: saml
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: ProviderConversion
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/providerconversion
+  labels:
+    testing.upbound.io/example-name: example_providerconversion
+  name: example-providerconversion
+spec:
+  forProvider:
+    providerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_provider
+    conversionRules:
+    - local:
+      - username: Tom
+      remote:
+      - attribute: Tom
