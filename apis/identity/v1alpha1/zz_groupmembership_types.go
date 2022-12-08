@@ -31,8 +31,17 @@ type GroupMembershipParameters struct {
 	// +kubebuilder:validation:Optional
 	GroupSelector *v1.Selector `json:"groupSelector,omitempty" tf:"-"`
 
-	// +kubebuilder:validation:Required
-	Users []*string `json:"users" tf:"users,omitempty"`
+	// +crossplane:generate:reference:type=User
+	// +kubebuilder:validation:Optional
+	Users []*string `json:"users,omitempty" tf:"users,omitempty"`
+
+	// References to User to populate users.
+	// +kubebuilder:validation:Optional
+	UsersRefs []v1.Reference `json:"usersRefs,omitempty" tf:"-"`
+
+	// Selector for a list of User to populate users.
+	// +kubebuilder:validation:Optional
+	UsersSelector *v1.Selector `json:"usersSelector,omitempty" tf:"-"`
 }
 
 // GroupMembershipSpec defines the desired state of GroupMembership

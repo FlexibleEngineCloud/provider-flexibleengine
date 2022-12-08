@@ -1,0 +1,35 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/role
+  labels:
+    testing.upbound.io/example-name: example_role
+  name: example-role
+spec:
+  forProvider:
+    name: example-role
+    description: crossplane-example-role
+    type: AX
+    policy: |
+      {
+        "Version": "1.1",
+        "Statement": [
+          {
+            "Action": [
+              "obs:bucket:GetBucketAcl"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+              "obs:*:*:bucket:*"
+            ],
+            "Condition": {
+              "StringStartWith": {
+                "g:ProjectName": [
+                  "eu-west-0"
+                ]
+              }
+            }
+          }
+        ]
+      }
