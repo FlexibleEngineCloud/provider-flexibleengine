@@ -14,6 +14,7 @@ import (
 	v1alpha1identity "github.com/gaetanars/provider-flexibleengine/apis/identity/v1alpha1"
 	v1alpha1apis "github.com/gaetanars/provider-flexibleengine/apis/v1alpha1"
 	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/v1beta1"
+	v1alpha1vpc "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1"
 )
 
 func init() {
@@ -23,6 +24,7 @@ func init() {
 		v1alpha1identity.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1vpc.SchemeBuilder.AddToScheme,
 	)
 }
 
