@@ -22,13 +22,24 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Imported using name
 	"flexibleengine_identity_provider": config.NameAsIdentifier,
 	// Imported using provider_id
-	"flexibleengine_identity_provider_conversion": config.IdentifierFromProvider,
+	"flexibleengine_identity_provider_conversion": TemplatedStringAsIdentifierWithNoName("{{.parameters.provider_id}}"),
 	// No import documented
 	"flexibleengine_identity_role_assignment_v3": config.IdentifierFromProvider,
 	// Imported using the ID
 	"flexibleengine_identity_role_v3": config.IdentifierFromProvider,
 	// Imported using the ID
 	"flexibleengine_identity_user_v3": config.IdentifierFromProvider,
+}
+
+// TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
+// without the name initializer. This allows it to be used in cases where the ID
+// is constructed with parameters and a provider-defined value, meaning no
+// user-defined input. Since the external name is not user-defined, the name
+// initializer has to be disabled.
+func TemplatedStringAsIdentifierWithNoName(tmpl string) config.ExternalName {
+	e := config.TemplatedStringAsIdentifier("", tmpl)
+	e.DisableNameInitializer = true
+	return e
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

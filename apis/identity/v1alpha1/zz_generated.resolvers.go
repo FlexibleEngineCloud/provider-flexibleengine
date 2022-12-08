@@ -55,6 +55,32 @@ func (mg *GroupMembership) ResolveReferences(ctx context.Context, c client.Reade
 	return nil
 }
 
+// ResolveReferences of this ProviderConversion.
+func (mg *ProviderConversion) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProviderID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.ProviderIDRef,
+		Selector:     mg.Spec.ForProvider.ProviderIDSelector,
+		To: reference.To{
+			List:    &ProviderList{},
+			Managed: &Provider{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ProviderID")
+	}
+	mg.Spec.ForProvider.ProviderID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ProviderIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this RoleAssignment.
 func (mg *RoleAssignment) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)

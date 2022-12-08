@@ -1,0 +1,11 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Provider
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/provider
+  labels:
+    testing.upbound.io/example-name: example_provider
+  name: example-provider
+spec:
+  forProvider:
+    protocol: saml
