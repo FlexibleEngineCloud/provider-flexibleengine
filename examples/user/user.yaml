@@ -1,0 +1,9 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: User
+metadata:
+  name: superuser
+spec:
+  forProvider:
+    name: "super.user"
+  providerConfigRef:
+    name: default

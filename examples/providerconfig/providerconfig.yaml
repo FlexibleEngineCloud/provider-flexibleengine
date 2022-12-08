@@ -1,8 +1,10 @@
-apiVersion: template.upbound.io/v1beta1
+apiVersion: flexibleengine.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default
 spec:
+  region: eu-west-0
+  domainName: OCB0005571
   credentials:
     source: Secret
     secretRef:

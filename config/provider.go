@@ -8,14 +8,13 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/gaetanars/provider-flexibleengine/config/identity"
 	ujconfig "github.com/upbound/upjet/pkg/config"
-
-	"github.com/upbound/upjet-provider-template/config/null"
 )
 
 const (
-	resourcePrefix = "template"
-	modulePath     = "github.com/upbound/upjet-provider-template"
+	resourcePrefix = "flexibleengine"
+	modulePath     = "github.com/gaetanars/provider-flexibleengine"
 )
 
 //go:embed schema.json
@@ -34,7 +33,7 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
-		null.Configure,
+		identity.Configure,
 	} {
 		configure(pc)
 	}

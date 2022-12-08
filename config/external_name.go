@@ -9,8 +9,26 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": config.IdentifierFromProvider,
+	// identity
+
+	// Imported using the ID
+	"flexibleengine_identity_agency_v3": config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_identity_group_membership_v3": config.IdentifierFromProvider,
+	// Imported using the ID
+	"flexibleengine_identity_group_v3": config.IdentifierFromProvider,
+	// Imported using the ID
+	"flexibleengine_identity_project_v3": config.IdentifierFromProvider,
+	// Imported using name
+	"flexibleengine_identity_provider": config.NameAsIdentifier,
+	// Imported using provider_id
+	"flexibleengine_identity_provider_conversion": config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_identity_role_assignment_v3": config.IdentifierFromProvider,
+	// Imported using the ID
+	"flexibleengine_identity_role_v3": config.IdentifierFromProvider,
+	// Imported using the ID
+	"flexibleengine_identity_user_v3": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

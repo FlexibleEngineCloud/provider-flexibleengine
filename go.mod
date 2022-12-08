@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/gaetanars/provider-flexibleengine
 
 go 1.19
 
