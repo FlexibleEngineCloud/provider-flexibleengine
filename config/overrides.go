@@ -14,7 +14,7 @@ const (
 
 // Generate Type
 func GenerateType(Module, Type string) string {
-	// github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPC"
+	// github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC"
 
 	return fmt.Sprintf("%s/apis/%s/%s.%s", ModulePath, Module, Version, Type)
 }
