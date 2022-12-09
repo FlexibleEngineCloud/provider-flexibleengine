@@ -35,7 +35,7 @@ func RemoveVersion(Name string) []string {
 	rg := regexp.MustCompile(`_v[0-9]+`)
 	y := rg.ReplaceAllString(Name, "")
 
-	return strings.Split(strings.TrimPrefix(y, fmt.Sprintf("%s_", resourcePrefix)), "_")
+	return strings.Split(strings.TrimPrefix(y, fmt.Sprintf("%s_", ResourcePrefix)), "_")
 
 }
 

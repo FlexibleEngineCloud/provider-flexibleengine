@@ -14,8 +14,8 @@ import (
 )
 
 const (
-	resourcePrefix = "flexibleengine"
-	modulePath     = "github.com/gaetanars/provider-flexibleengine"
+	ResourcePrefix = "flexibleengine"
+	ModulePath     = "github.com/gaetanars/provider-flexibleengine"
 )
 
 //go:embed schema.json
@@ -26,13 +26,13 @@ var providerMetadata string
 
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
-	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
+	pc := ujconfig.NewProvider([]byte(providerSchema), ResourcePrefix, ModulePath, []byte(providerMetadata),
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
 			defaultVersion(),
-			KnownReferencers(),
 			GroupKindOverrides(),
+			KnownReferencers(),
 			KindOverrides(),
 			// KindRemoveVersion END
 			KindRemoveVersion(),
