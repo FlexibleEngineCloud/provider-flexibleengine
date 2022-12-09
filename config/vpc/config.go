@@ -43,6 +43,11 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_vpc_route", func(r *config.Resource) {
 		r.Kind = "Route"
 
+		// vpc_id is the ID of the VPC
+		r.References["vpc_id"] = config.Reference{
+			Type: "Vpc",
+		}
+
 		// route_table_id is the ID of the Route Table
 		r.References["route_table_id"] = config.Reference{
 			Type: "RouteTable",
@@ -53,19 +58,36 @@ func Configure(p *config.Provider) {
 	// flexibleengine_vpc_peering_connection_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_peering_v2
 	p.AddResourceConfigurator("flexibleengine_vpc_peering_connection_v2", func(r *config.Resource) {
-		r.Kind = "Peering"
+		r.Kind = "PeeringConnection"
 
 		// vpc_id is the ID of the VPC
 		r.References["vpc_id"] = config.Reference{
 			Type: "Vpc",
 		}
 
+		// peer_vpc_id is the ID of the peer VPC
+		r.References["peer_vpc_id"] = config.Reference{
+			Type: "Vpc",
+		}
+
+		// TODO nexthop
+		/*
+			nexthop (Required, String) - Specifies the next hop.
+				If the route type is ecs, the value is an ECS instance ID in the VPC.
+				If the route type is eni, the value is the extension NIC of an ECS in the VPC.
+				If the route type is vip, the value is a virtual IP address.
+				If the route type is nat, the value is a VPN gateway ID.
+				If the route type is peering, the value is a VPC peering connection ID.
+				If the route type is vpn, the value is a VPN gateway ID.
+				If the route type is dc, the value is a Direct Connect gateway ID.
+		*/
+
 	})
 
 	// flexibleengine_vpc_peering_connection_accepter_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_peering_accepter_v2
 	p.AddResourceConfigurator("flexibleengine_vpc_peering_connection_accepter_v2", func(r *config.Resource) {
-		r.Kind = "PeeringAccepter"
+		r.Kind = "PeeringConnectionAccepter"
 
 		// vpc_id is the ID of the VPC
 		r.References["vpc_id"] = config.Reference{
@@ -73,8 +95,8 @@ func Configure(p *config.Provider) {
 		}
 
 		// peering_id is the ID of the VPC Peering Connection
-		r.References["peering_id"] = config.Reference{
-			Type: "Peering",
+		r.References["vpc_peering_connection_id"] = config.Reference{
+			Type: "PeeringConnection",
 		}
 
 	})

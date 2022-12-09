@@ -901,18 +901,18 @@ func (tr *FlowLogV1) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this PeeringAccepter
-func (mg *PeeringAccepter) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this PeeringConnectionAccepter
+func (mg *PeeringConnectionAccepter) GetTerraformResourceType() string {
 	return "flexibleengine_vpc_peering_connection_accepter_v2"
 }
 
-// GetConnectionDetailsMapping for this PeeringAccepter
-func (tr *PeeringAccepter) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this PeeringConnectionAccepter
+func (tr *PeeringConnectionAccepter) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this PeeringAccepter
-func (tr *PeeringAccepter) GetObservation() (map[string]any, error) {
+// GetObservation of this PeeringConnectionAccepter
+func (tr *PeeringConnectionAccepter) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -921,8 +921,8 @@ func (tr *PeeringAccepter) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this PeeringAccepter
-func (tr *PeeringAccepter) SetObservation(obs map[string]any) error {
+// SetObservation for this PeeringConnectionAccepter
+func (tr *PeeringConnectionAccepter) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -930,16 +930,16 @@ func (tr *PeeringAccepter) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this PeeringAccepter
-func (tr *PeeringAccepter) GetID() string {
+// GetID returns ID of underlying Terraform resource of this PeeringConnectionAccepter
+func (tr *PeeringConnectionAccepter) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this PeeringAccepter
-func (tr *PeeringAccepter) GetParameters() (map[string]any, error) {
+// GetParameters of this PeeringConnectionAccepter
+func (tr *PeeringConnectionAccepter) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -948,8 +948,8 @@ func (tr *PeeringAccepter) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this PeeringAccepter
-func (tr *PeeringAccepter) SetParameters(params map[string]any) error {
+// SetParameters for this PeeringConnectionAccepter
+func (tr *PeeringConnectionAccepter) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -957,10 +957,10 @@ func (tr *PeeringAccepter) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this PeeringAccepter using its observed tfState.
+// LateInitialize this PeeringConnectionAccepter using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *PeeringAccepter) LateInitialize(attrs []byte) (bool, error) {
-	params := &PeeringAccepterParameters{}
+func (tr *PeeringConnectionAccepter) LateInitialize(attrs []byte) (bool, error) {
+	params := &PeeringConnectionAccepterParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -971,22 +971,22 @@ func (tr *PeeringAccepter) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *PeeringAccepter) GetTerraformSchemaVersion() int {
+func (tr *PeeringConnectionAccepter) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Peering
-func (mg *Peering) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this PeeringConnection
+func (mg *PeeringConnection) GetTerraformResourceType() string {
 	return "flexibleengine_vpc_peering_connection_v2"
 }
 
-// GetConnectionDetailsMapping for this Peering
-func (tr *Peering) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this PeeringConnection
+func (tr *PeeringConnection) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Peering
-func (tr *Peering) GetObservation() (map[string]any, error) {
+// GetObservation of this PeeringConnection
+func (tr *PeeringConnection) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -995,8 +995,8 @@ func (tr *Peering) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Peering
-func (tr *Peering) SetObservation(obs map[string]any) error {
+// SetObservation for this PeeringConnection
+func (tr *PeeringConnection) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -1004,16 +1004,16 @@ func (tr *Peering) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Peering
-func (tr *Peering) GetID() string {
+// GetID returns ID of underlying Terraform resource of this PeeringConnection
+func (tr *PeeringConnection) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Peering
-func (tr *Peering) GetParameters() (map[string]any, error) {
+// GetParameters of this PeeringConnection
+func (tr *PeeringConnection) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -1022,8 +1022,8 @@ func (tr *Peering) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Peering
-func (tr *Peering) SetParameters(params map[string]any) error {
+// SetParameters for this PeeringConnection
+func (tr *PeeringConnection) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -1031,10 +1031,10 @@ func (tr *Peering) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Peering using its observed tfState.
+// LateInitialize this PeeringConnection using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Peering) LateInitialize(attrs []byte) (bool, error) {
-	params := &PeeringParameters{}
+func (tr *PeeringConnection) LateInitialize(attrs []byte) (bool, error) {
+	params := &PeeringConnectionParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -1045,7 +1045,7 @@ func (tr *Peering) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Peering) GetTerraformSchemaVersion() int {
+func (tr *PeeringConnection) GetTerraformSchemaVersion() int {
 	return 0
 }
 
