@@ -9,6 +9,12 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/floatingipassociate"
+	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/instance"
+	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/interfaceattach"
+	keypair "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/keypair"
+	servergroup "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/servergroup"
+	volumeattach "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/volumeattach"
 	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/agency"
 	group "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/group"
 	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/groupmembership"
@@ -46,6 +52,12 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		floatingipassociate.Setup,
+		instance.Setup,
+		interfaceattach.Setup,
+		keypair.Setup,
+		servergroup.Setup,
+		volumeattach.Setup,
 		agency.Setup,
 		group.Setup,
 		groupmembership.Setup,

@@ -1,0 +1,10 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/project
+  labels:
+    testing.upbound.io/example-name: eu-west-0_example_project
+  name: eu-west-0_example-project
+spec:
+  forProvider: {}

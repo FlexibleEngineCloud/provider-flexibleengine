@@ -1,0 +1,94 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/role
+  labels:
+    testing.upbound.io/example-name: example_role
+  name: example-role
+spec:
+  forProvider:
+    name: example-role
+    description: crossplane-example-role
+    type: AX
+    policy: |
+      {
+        "Version": "1.1",
+        "Statement": [
+          {
+            "Action": [
+              "obs:bucket:GetBucketAcl"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+              "obs:*:*:bucket:*"
+            ],
+            "Condition": {
+              "StringStartWith": {
+                "g:ProjectName": [
+                  "eu-west-0"
+                ]
+              }
+            }
+          }
+        ]
+      }
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: example_group
+  name: example-group
+spec:
+  forProvider: 
+    name: example-group
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/user
+  labels:
+    testing.upbound.io/example-name: example_user
+  name: example-user
+spec:
+  forProvider:
+    name: example-user
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: GroupMembership
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/groupmembership
+  labels:
+    testing.upbound.io/example-name: example_groupmembership
+  name: example-groupmembership
+spec:
+  forProvider:
+    groupSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_group
+    usersSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_user
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: RoleAssignment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/roleassignment
+  labels:
+    testing.upbound.io/example-name: example_roleassignment
+  name: example-roleassignment
+spec:
+  forProvider:
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_group
+    roleIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_role
+    domainId: domainId

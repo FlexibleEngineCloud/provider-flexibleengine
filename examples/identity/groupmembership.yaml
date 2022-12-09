@@ -1,0 +1,40 @@
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: example_group
+  name: example-group
+spec:
+  forProvider: 
+    name: example-group
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/user
+  labels:
+    testing.upbound.io/example-name: example_user
+  name: example-user
+spec:
+  forProvider:
+    name: example-user
+---
+apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+kind: GroupMembership
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1beta1/groupmembership
+  labels:
+    testing.upbound.io/example-name: example_groupmembership
+  name: example-groupmembership
+spec:
+  forProvider:
+    groupSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_group
+    usersSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_user

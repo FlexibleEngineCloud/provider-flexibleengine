@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: groupmemberships.identity.flexibleengine.upbound.io
+  name: floatingipassociates.compute.flexibleengine.upbound.io
 spec:
-  group: identity.flexibleengine.upbound.io
+  group: compute.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: GroupMembership
-    listKind: GroupMembershipList
-    plural: groupmemberships
-    singular: groupmembership
+    kind: FloatingIpAssociate
+    listKind: FloatingIpAssociateList
+    plural: floatingipassociates
+    singular: floatingipassociate
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: GroupMembership is the Schema for the GroupMemberships API. <no
-          value>
+        description: FloatingIpAssociate is the Schema for the FloatingIpAssociates
+          API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: GroupMembershipSpec defines the desired state of GroupMembership
+            description: FloatingIpAssociateSpec defines the desired state of FloatingIpAssociate
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,10 +64,14 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  group:
+                  fixedIp:
                     type: string
-                  groupRef:
-                    description: Reference to a Group to populate group.
+                  floatingIp:
+                    type: string
+                  instanceId:
+                    type: string
+                  instanceIdRef:
+                    description: Reference to a Instance to populate instanceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -100,8 +104,8 @@ spec:
                     required:
                     - name
                     type: object
-                  groupSelector:
-                    description: Selector for a Group to populate group.
+                  instanceIdSelector:
+                    description: Selector for a Instance to populate instanceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -139,86 +143,10 @@ spec:
                             type: string
                         type: object
                     type: object
-                  users:
-                    items:
-                      type: string
-                    type: array
-                  usersRefs:
-                    description: References to User to populate users.
-                    items:
-                      description: A Reference to a named object.
-                      properties:
-                        name:
-                          description: Name of the referenced object.
-                          type: string
-                        policy:
-                          description: Policies for referencing.
-                          properties:
-                            resolution:
-                              default: Required
-                              description: Resolution specifies whether resolution
-                                of this reference is required. The default is 'Required',
-                                which means the reconcile will fail if the reference
-                                cannot be resolved. 'Optional' means this reference
-                                will be a no-op if it cannot be resolved.
-                              enum:
-                              - Required
-                              - Optional
-                              type: string
-                            resolve:
-                              description: Resolve specifies when this reference should
-                                be resolved. The default is 'IfNotPresent', which
-                                will attempt to resolve the reference only when the
-                                corresponding field is not present. Use 'Always' to
-                                resolve the reference on every reconcile.
-                              enum:
-                              - Always
-                              - IfNotPresent
-                              type: string
-                          type: object
-                      required:
-                      - name
-                      type: object
-                    type: array
-                  usersSelector:
-                    description: Selector for a list of User to populate users.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  region:
+                    type: string
+                required:
+                - floatingIp
                 type: object
               providerConfigRef:
                 default:
@@ -392,7 +320,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: GroupMembershipStatus defines the observed state of GroupMembership.
+            description: FloatingIpAssociateStatus defines the observed state of FloatingIpAssociate.
             properties:
               atProvider:
                 properties:

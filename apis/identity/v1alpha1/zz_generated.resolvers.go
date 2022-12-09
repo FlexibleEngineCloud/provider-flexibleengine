@@ -17,6 +17,7 @@ func (mg *GroupMembership) ResolveReferences(ctx context.Context, c client.Reade
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
@@ -34,6 +35,48 @@ func (mg *GroupMembership) ResolveReferences(ctx context.Context, c client.Reade
 	}
 	mg.Spec.ForProvider.Group = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.GroupRef = rsp.ResolvedReference
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Users),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.UsersRefs,
+		Selector:      mg.Spec.ForProvider.UsersSelector,
+		To: reference.To{
+			List:    &UserList{},
+			Managed: &User{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Users")
+	}
+	mg.Spec.ForProvider.Users = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.UsersRefs = mrsp.ResolvedReferences
+
+	return nil
+}
+
+// ResolveReferences of this ProviderConversion.
+func (mg *ProviderConversion) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProviderID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.ProviderIDRef,
+		Selector:     mg.Spec.ForProvider.ProviderIDSelector,
+		To: reference.To{
+			List:    &ProviderList{},
+			Managed: &Provider{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ProviderID")
+	}
+	mg.Spec.ForProvider.ProviderID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ProviderIDRef = rsp.ResolvedReference
 
 	return nil
 }
