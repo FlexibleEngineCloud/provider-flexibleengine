@@ -8,6 +8,14 @@
 import os
 
 
+print('# Resources')
+# Count number of resources implemented and not implemented
+countImplemented = 0
+countNotImplemented = 0
+
+linesImplementedPrint = []
+linesNotImplementedPrint = []
+
 for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/resources'):
     for file in files:
         if file.endswith('.md'):
@@ -22,11 +30,21 @@ for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/
                                 # if line containe the resource name
                                 if l.find(line[2:-1]) != -1:
                                     found = True
-                                    print(
+                                    countImplemented += 1
+                                    linesImplementedPrint.append(
                                         '* [x] [' + line[2:-1] + '](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/' + file[0:-3] + ')')
                                     break
 
                         if found == False:
-                            print(
+                            countNotImplemented += 1
+                            linesNotImplementedPrint.append(
                                 '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/' + file[0:-3] + ')')
                         break
+
+print('## Implemented (' + str(countImplemented) + ')')
+for line in linesImplementedPrint:
+    print(line)
+
+print('## Not implemented (' + str(countNotImplemented) + ')')
+for line in linesNotImplementedPrint:
+    print(line)
