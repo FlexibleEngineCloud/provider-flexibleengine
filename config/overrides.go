@@ -54,7 +54,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				}
 			case "tenant_id":
 				r.References[k] = config.Reference{
-					Type: GenerateType("iam", "Project"),
+					Type: tools.GenerateType("iam", "Project"),
 				}
 			}
 		}
