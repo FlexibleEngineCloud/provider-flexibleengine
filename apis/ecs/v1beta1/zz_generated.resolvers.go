@@ -9,7 +9,8 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1"
-	v1beta11 "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1"
+	v1beta11 "github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1"
+	v1beta12 "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -64,6 +65,22 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ImageID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.ImageIDRef,
+		Selector:     mg.Spec.ForProvider.ImageIDSelector,
+		To: reference.To{
+			List:    &v1beta11.ImageList{},
+			Managed: &v1beta11.Image{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ImageID")
+	}
+	mg.Spec.ForProvider.ImageID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ImageIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KeyPair),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.KeyPairRef,
@@ -86,8 +103,8 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 			Reference:    mg.Spec.ForProvider.Network[i3].PortRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].PortSelector,
 			To: reference.To{
-				List:    &v1beta11.PortList{},
-				Managed: &v1beta11.Port{},
+				List:    &v1beta12.PortList{},
+				Managed: &v1beta12.Port{},
 			},
 		})
 		if err != nil {
@@ -104,8 +121,8 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 			Reference:    mg.Spec.ForProvider.Network[i3].UUIDRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].UUIDSelector,
 			To: reference.To{
-				List:    &v1beta11.NetworkList{},
-				Managed: &v1beta11.Network{},
+				List:    &v1beta12.NetworkList{},
+				Managed: &v1beta12.Network{},
 			},
 		})
 		if err != nil {
@@ -113,6 +130,24 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 		}
 		mg.Spec.ForProvider.Network[i3].UUID = reference.ToPtrValue(rsp.ResolvedValue)
 		mg.Spec.ForProvider.Network[i3].UUIDRef = rsp.ResolvedReference
+
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.SchedulerHints); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SchedulerHints[i3].Group),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.SchedulerHints[i3].GroupRef,
+			Selector:     mg.Spec.ForProvider.SchedulerHints[i3].GroupSelector,
+			To: reference.To{
+				List:    &ServerGroupList{},
+				Managed: &ServerGroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.SchedulerHints[i3].Group")
+		}
+		mg.Spec.ForProvider.SchedulerHints[i3].Group = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.SchedulerHints[i3].GroupRef = rsp.ResolvedReference
 
 	}
 
@@ -148,8 +183,8 @@ func (mg *InterfaceAttach) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
-			List:    &v1beta11.NetworkList{},
-			Managed: &v1beta11.Network{},
+			List:    &v1beta12.NetworkList{},
+			Managed: &v1beta12.Network{},
 		},
 	})
 	if err != nil {
@@ -164,8 +199,8 @@ func (mg *InterfaceAttach) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &v1beta11.PortList{},
-			Managed: &v1beta11.Port{},
+			List:    &v1beta12.PortList{},
+			Managed: &v1beta12.Port{},
 		},
 	})
 	if err != nil {

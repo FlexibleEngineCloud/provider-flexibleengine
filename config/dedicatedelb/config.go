@@ -1,6 +1,9 @@
 package dedicatedelb
 
-import "github.com/upbound/upjet/pkg/config"
+import (
+	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
+	"github.com/upbound/upjet/pkg/config"
+)
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
@@ -29,13 +32,13 @@ func Configure(p *config.Provider) {
 			Type: "LoadBalancer",
 		}
 		r.References["ipv4_subnet_id"] = config.Reference{
-			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet",
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 		r.References["ipv6_network_id"] = config.Reference{
-			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network",
+			Type: tools.GenerateType("vpc", "Network"),
 		}
 		r.References["ipv4_eip_id"] = config.Reference{
-			Type: "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP",
+			Type: tools.GenerateType("eip", "EIP"),
 		}
 	})
 	p.AddResourceConfigurator("flexibleengine_lb_member_v3", func(r *config.Resource) {

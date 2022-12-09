@@ -81,6 +81,8 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_identity_role_assignment_v3":  ReplaceGroupWords("iam", 1), // Group: iam, Kind: RoleAssignment
 	"flexibleengine_identity_role_v3":             ReplaceGroupWords("iam", 1), // Group: iam, Kind: Role
 	"flexibleengine_identity_user_v3":             ReplaceGroupWords("iam", 1), // Group: iam, Kind: User
+	// IMS
+	"flexibleengine_images_image_v2": ReplaceGroupWords("ims", 1), // Group: ims, Kind: Image
 	// ECS
 	"flexibleengine_compute_floatingip_associate_v2": ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: FloatingipAssociate (! Rewrite in KingMap)
 	"flexibleengine_compute_instance_v2":             ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Instance

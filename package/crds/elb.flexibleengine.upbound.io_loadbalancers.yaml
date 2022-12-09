@@ -264,7 +264,8 @@ spec:
                       that are shared).  Changing this creates a new loadbalancer.
                     type: string
                   vipSubnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate vipSubnetId.
+                    description: Reference to a NetworkingSubnet in vpc to populate
+                      vipSubnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -298,7 +299,8 @@ spec:
                     - name
                     type: object
                   vipSubnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate vipSubnetId.
+                    description: Selector for a NetworkingSubnet in vpc to populate
+                      vipSubnetId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

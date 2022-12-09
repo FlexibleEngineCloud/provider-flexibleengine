@@ -445,6 +445,16 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ImageIDRef != nil {
+		in, out := &in.ImageIDRef, &out.ImageIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ImageIDSelector != nil {
+		in, out := &in.ImageIDSelector, &out.ImageIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ImageName != nil {
 		in, out := &in.ImageName, &out.ImageName
 		*out = new(string)
@@ -1087,6 +1097,16 @@ func (in *SchedulerHintsParameters) DeepCopyInto(out *SchedulerHintsParameters) 
 		in, out := &in.Group, &out.Group
 		*out = new(string)
 		**out = **in
+	}
+	if in.GroupRef != nil {
+		in, out := &in.GroupRef, &out.GroupRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.GroupSelector != nil {
+		in, out := &in.GroupSelector, &out.GroupSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Query != nil {
 		in, out := &in.Query, &out.Query

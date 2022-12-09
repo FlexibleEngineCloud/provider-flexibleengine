@@ -1,0 +1,17 @@
+apiVersion: ims.flexibleengine.upbound.io/v1beta1
+kind: Image
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ims/v1beta1/image
+  labels:
+    testing.upbound.io/example-name: rancheros
+  name: rancheros
+spec:
+  forProvider:
+    containerFormat: bare
+    diskFormat: qcow2
+    imageSourceUrl: https://releases.rancher.com/os/latest/rancheros-openstack.img
+    name: RancherOS
+
+---
+

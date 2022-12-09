@@ -234,8 +234,8 @@ func (mg *LoadBalancer) ResolveReferences(ctx context.Context, c client.Reader) 
 		Reference:    mg.Spec.ForProvider.VipSubnetIDRef,
 		Selector:     mg.Spec.ForProvider.VipSubnetIDSelector,
 		To: reference.To{
-			List:    &v1beta11.VPCSubnetList{},
-			Managed: &v1beta11.VPCSubnet{},
+			List:    &v1beta11.NetworkingSubnetList{},
+			Managed: &v1beta11.NetworkingSubnet{},
 		},
 	})
 	if err != nil {

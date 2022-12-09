@@ -53,6 +53,14 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_identity_user_v3": config.IdentifierFromProvider,
 
 	/*
+		> Image Management Service (IMS)
+	*/
+
+	// flexibleengine_images_image_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/images_image_v2
+	"flexibleengine_images_image_v2": config.IdentifierFromProvider,
+
+	/*
 		> Virtual Private Cloud (VPC)
 	*/
 

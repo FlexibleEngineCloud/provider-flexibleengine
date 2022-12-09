@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: images.ims.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: ims.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: Image
+    listKind: ImageList
+    plural: images
+    singular: image
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'Image is the Schema for the Images API. ""page_title: "flexibleengine_images_image_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: ImageSpec defines the desired state of Image
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,170 +63,67 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  containerFormat:
+                    description: The container format. Must be one of "ami", "ari",
+                      "aki", "bare", "ovf".
                     type: string
+                  diskFormat:
+                    description: The disk format. Must be one of "ami", "ari", "aki",
+                      "vhd", "vmdk", "raw", "qcow2", "vdi", "iso".
+                    type: string
+                  imageCachePath:
+                    description: This is the directory where the images will be downloaded.
+                      Images will be stored with a filename corresponding to the url's
+                      md5 hash. Defaults to "$HOME/
+                    type: string
+                  imageSourceUrl:
+                    description: This is the url of the raw image that will be downloaded
+                      in the image_cache_path before being uploaded to Glance. Glance
+                      is able to download image from internet but the gophercloud
+                      library does not yet provide a way to do so. Conflicts with
+                      local_file_path.
+                    type: string
+                  localFilePath:
+                    description: This is the filepath of the raw image file that will
+                      be uploaded to Glance. Conflicts with image_source_url.
+                    type: string
+                  minDiskGb:
+                    description: Amount of disk space (in GB) required to boot image.
+                      Defaults to 0.
+                    type: number
+                  minRamMb:
+                    description: Amount of ram (in MB) required to boot image. Defauts
+                      to 0.
+                    type: number
                   name:
-                    description: A unique name for the vip.
+                    description: The name of the image.
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
+                  protected:
+                    description: If true, image will not be deletable. Defaults to
+                      false.
+                    type: boolean
+                  region:
+                    description: The region in which to obtain the V2 Glance client.
+                      A Glance client is needed to create an Image that can be used
+                      with a compute instance. If omitted, the region argument of
+                      the provider is used. Changing this creates a new Image.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  tags:
+                    description: The tags of the image. It must be a list of strings.
+                      At this time, it is not possible to delete all tags of an image.
+                    items:
+                      type: string
+                    type: array
+                  visibility:
+                    description: The visibility of the image. Must be one of "public",
+                      "private", "community", or "shared". The ability to set the
+                      visibility depends upon the configuration of the FlexibleEngine
+                      cloud.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                required:
+                - containerFormat
+                - diskFormat
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -400,21 +297,48 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: ImageStatus defines the observed state of Image.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
+                  checksum:
+                    description: The checksum of the data associated with the image.
+                    type: string
+                  createdAt:
+                    description: The date the image was created.
+                    type: string
+                  file:
+                    description: the trailing path after the glance endpoint that
+                      represent the location of the image or the path to retrieve
+                      it.
                     type: string
                   id:
-                    description: The ID of the vip.
+                    description: A unique ID assigned by Glance.
                     type: string
+                  metadata:
+                    additionalProperties:
+                      type: string
+                    description: The metadata associated with the image. Image metadata
+                      allow for meaningfully define the image properties and tags.
+                      See http://docs.openstack.org/developer/glance/metadefs-concepts.html.
+                    type: object
+                  owner:
+                    description: The id of the flexibleengine user who owns the image.
+                    type: string
+                  schema:
+                    description: The path to the JSON-schema that represent the image
+                      or image
+                    type: string
+                  sizeBytes:
+                    description: The size in bytes of the data associated with the
+                      image.
+                    type: number
                   status:
-                    description: The status of vip.
+                    description: The status of the image. It can be "queued", "active"
+                      or "saving".
                     type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
+                  updatedAt:
+                    description: The date the image was last updated.
                     type: string
                 type: object
               conditions:

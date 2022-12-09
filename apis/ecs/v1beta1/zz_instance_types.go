@@ -147,8 +147,17 @@ type InstanceParameters struct {
 
 	// The image ID of
 	// the desired image for the server. Changing this creates a new server.
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1.Image
 	// +kubebuilder:validation:Optional
 	ImageID *string `json:"imageId,omitempty" tf:"image_id,omitempty"`
+
+	// Reference to a Image in ims to populate imageId.
+	// +kubebuilder:validation:Optional
+	ImageIDRef *v1.Reference `json:"imageIdRef,omitempty" tf:"-"`
+
+	// Selector for a Image in ims to populate imageId.
+	// +kubebuilder:validation:Optional
+	ImageIDSelector *v1.Selector `json:"imageIdSelector,omitempty" tf:"-"`
 
 	// The name of the
 	// desired image for the server. Changing this creates a new server.
@@ -306,8 +315,17 @@ type SchedulerHintsParameters struct {
 	DifferentHost []*string `json:"differentHost,omitempty" tf:"different_host,omitempty"`
 
 	// Specifies the anti-affinity group ID. The instance will be placed into that group.
+	// +crossplane:generate:reference:type=ServerGroup
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
+
+	// Reference to a ServerGroup to populate group.
+	// +kubebuilder:validation:Optional
+	GroupRef *v1.Reference `json:"groupRef,omitempty" tf:"-"`
+
+	// Selector for a ServerGroup to populate group.
+	// +kubebuilder:validation:Optional
+	GroupSelector *v1.Selector `json:"groupSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Query []*string `json:"query,omitempty" tf:"query,omitempty"`

@@ -41,6 +41,7 @@ import (
 	role "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/role"
 	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/roleassignment"
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
+	image "github.com/gaetanars/provider-flexibleengine/internal/controller/ims/image"
 	obsbucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucket"
 	obsbucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketobject"
 	obsbucketreplication "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
@@ -105,6 +106,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		role.Setup,
 		roleassignment.Setup,
 		user.Setup,
+		image.Setup,
 		obsbucket.Setup,
 		obsbucketobject.Setup,
 		obsbucketreplication.Setup,

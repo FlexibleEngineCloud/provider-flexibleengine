@@ -64,7 +64,6 @@ func Configure(p *config.Provider) {
 	// flexibleengine_vpc_flow_log_v1
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_flow_log_v1
 	// p.AddResourceConfigurator("flexibleengine_vpc_flow_log_v1", func(r *config.Resource) {
-	// 	r.Kind = "FlowLog"
 
 	// 	// TODO Check if this is correct
 	// 	r.References["ressource_id"] = config.Reference{
