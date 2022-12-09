@@ -10,6 +10,7 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/elb"
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
 	"github.com/gaetanars/provider-flexibleengine/config/ims"
+	"github.com/gaetanars/provider-flexibleengine/config/kms"
 	"github.com/gaetanars/provider-flexibleengine/config/oss"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
@@ -48,6 +49,7 @@ func GetProvider() *ujconfig.Provider {
 		eip.Configure,
 		iam.Configure,
 		ims.Configure,
+		kms.Configure,
 		vpc.Configure,
 		vpcep.Configure,
 		oss.Configure,

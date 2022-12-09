@@ -723,6 +723,16 @@ func (in *OBSBucketParameters) DeepCopyInto(out *OBSBucketParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.KMSKeyIDRef != nil {
+		in, out := &in.KMSKeyIDRef, &out.KMSKeyIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KMSKeyIDSelector != nil {
+		in, out := &in.KMSKeyIDSelector, &out.KMSKeyIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.LifecycleRule != nil {
 		in, out := &in.LifecycleRule, &out.LifecycleRule
 		*out = make([]LifecycleRuleParameters, len(*in))

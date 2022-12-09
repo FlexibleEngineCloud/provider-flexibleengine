@@ -9,6 +9,12 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	addon "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/addon"
+	cluster "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/cluster"
+	namespace "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/namespace"
+	node "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/node"
+	nodepool "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/nodepool"
+	pvc "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/pvc"
 	certificate "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/certificate"
 	ipgroup "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/ipgroup"
 	listener "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/listener"
@@ -42,6 +48,7 @@ import (
 	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/roleassignment"
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
 	image "github.com/gaetanars/provider-flexibleengine/internal/controller/ims/image"
+	key "github.com/gaetanars/provider-flexibleengine/internal/controller/kms/key"
 	obsbucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucket"
 	obsbucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketobject"
 	obsbucketreplication "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
@@ -74,6 +81,12 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		addon.Setup,
+		cluster.Setup,
+		namespace.Setup,
+		node.Setup,
+		nodepool.Setup,
+		pvc.Setup,
 		certificate.Setup,
 		ipgroup.Setup,
 		listener.Setup,
@@ -107,6 +120,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		roleassignment.Setup,
 		user.Setup,
 		image.Setup,
+		key.Setup,
 		obsbucket.Setup,
 		obsbucketobject.Setup,
 		obsbucketreplication.Setup,

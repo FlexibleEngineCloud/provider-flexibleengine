@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: obsbuckets.oss.flexibleengine.upbound.io
+  name: clusters.cce.flexibleengine.upbound.io
 spec:
-  group: oss.flexibleengine.upbound.io
+  group: cce.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: OBSBucket
-    listKind: OBSBucketList
-    plural: obsbuckets
-    singular: obsbucket
+    kind: Cluster
+    listKind: ClusterList
+    plural: clusters
+    singular: cluster
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'OBSBucket is the Schema for the OBSBuckets API. ""page_title:
-          "flexibleengine_obs_bucket"'
+        description: 'Cluster is the Schema for the Clusters API. ""page_title: "flexibleengine_cce_cluster_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: OBSBucketSpec defines the desired state of OBSBucket
+            description: ClusterSpec defines the desired state of Cluster
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,386 +63,253 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  acl:
-                    description: 'Specifies the ACL policy for a bucket. The predefined
-                      common policies are as follows: "private", "public-read", "public-read-write"
-                      and "log-delivery-write". Defaults to private.'
-                    type: string
-                  bucket:
-                    description: 'Specifies the name of the bucket. Changing this
-                      parameter will create a new resource. A bucket must be named
-                      according to the globally applied DNS naming regulations as
-                      follows:'
-                    type: string
-                  bucketRef:
-                    description: Reference to a S3Bucket in oss to populate bucket.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
+                  annotations:
+                    additionalProperties:
+                      type: string
+                    description: Cluster annotation, key/value pair format. Changing
+                      this parameter will create a new cluster resource.
                     type: object
-                  bucketSelector:
-                    description: Selector for a S3Bucket in oss to populate bucket.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
+                  authenticatingProxyCa:
+                    description: CA root certificate provided in the authenticating_proxy
+                      mode. The CA root certificate is encoded to the Base64 format.
+                      Changing this parameter will create a new cluster resource.
+                    type: string
+                  authenticationMode:
+                    description: Authentication mode of the cluster, possible values
+                      are x509 and rbac. Defaults to rbac. Changing this parameter
+                      will create a new cluster resource.
+                    type: string
+                  billingMode:
+                    description: Charging mode of the cluster, which is 0 (on demand).
+                      Changing this parameter will create a new cluster resource.
+                    type: number
+                  clusterType:
+                    description: Cluster Type, possible values are VirtualMachine
+                      and BareMetal. Changing this parameter will create a new cluster
+                      resource.
+                    type: string
+                  clusterVersion:
+                    description: For the cluster version, possible values are listed
+                      on the CCE Cluster Version Release Notes. If this parameter
+                      is not set, the latest available version will be used.
+                    type: string
+                  containerNetworkCidr:
+                    description: Container network segment. Changing this parameter
+                      will create a new cluster resource.
+                    type: string
+                  containerNetworkType:
+                    description: 'Container network parameters. Possible values:'
+                    type: string
+                  description:
+                    description: Cluster description.
+                    type: string
+                  eip:
+                    description: EIP address of the cluster.
+                    type: string
+                  extendParam:
+                    additionalProperties:
+                      type: string
+                    description: Extended parameter. Changing this parameter will
+                      create a new cluster resource.
                     type: object
-                  corsRule:
-                    description: A rule of Cross-Origin Resource Sharing (documented
-                      below).
+                  flavorId:
+                    description: Cluster specifications. Changing this parameter will
+                      create a new cluster resource.
+                    type: string
+                  highwaySubnetId:
+                    description: The ID of the high speed network used to create bare
+                      metal nodes. Changing this parameter will create a new cluster
+                      resource.
+                    type: string
+                  kubeProxyMode:
+                    description: 'Service forwarding mode. Two modes are available:'
+                    type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    description: Cluster tag, key/value pair format. Changing this
+                      parameter will create a new cluster resource.
+                    type: object
+                  masters:
+                    description: Advanced configuration of master nodes. Changing
+                      this creates a new cluster.
                     items:
                       properties:
-                        allowedHeaders:
-                          description: origin requests. Only CORS requests matching
-                            the allowed header are valid.
-                          items:
-                            type: string
-                          type: array
-                        allowedMethods:
-                          description: Specifies the acceptable operation type of
-                            buckets and objects. The methods include GET, PUT, POST,
-                            DELETE or HEAD.
-                          items:
-                            type: string
-                          type: array
-                        allowedOrigins:
-                          description: Requests from this origin can access the bucket.
-                            Multiple matching rules are allowed. One rule occupies
-                            one line, and allows one wildcard character (*) at most.
-                          items:
-                            type: string
-                          type: array
-                        exposeHeaders:
-                          description: Specifies the exposed header in CORS responses,
-                            providing additional information for clients.
-                          items:
-                            type: string
-                          type: array
-                        maxAgeSeconds:
-                          description: Specifies the duration that your browser can
-                            cache CORS responses, expressed in seconds. The default
-                            value is 100.
-                          type: number
-                      required:
-                      - allowedMethods
-                      - allowedOrigins
+                        availabilityZone:
+                          description: Specifies the availability zone of the master
+                            node. Changing this creates a new cluster.
+                          type: string
                       type: object
                     type: array
-                  encryption:
-                    description: Whether enable default server-side encryption of
-                      the bucket in SSE-KMS mode.
-                    type: boolean
-                  forceDestroy:
-                    description: A boolean that indicates all objects should be deleted
-                      from the bucket so that the bucket can be destroyed without
-                      error. Default to false.
-                    type: boolean
-                  kmsKeyId:
-                    description: Specifies the ID of a kms key. If omitted, the default
-                      master key will be used.
+                  name:
+                    description: Cluster name. Changing this parameter will create
+                      a new cluster resource.
                     type: string
-                  kmsKeyIdRef:
-                    description: Reference to a Key in kms to populate kmsKeyId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  kmsKeyIdSelector:
-                    description: Selector for a Key in kms to populate kmsKeyId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  lifecycleRule:
-                    description: A configuration of object lifecycle management (documented
-                      below).
-                    items:
-                      properties:
-                        enabled:
-                          description: Specifies lifecycle rule status.
-                          type: boolean
-                        expiration:
-                          description: Specifies a period when objects that have been
-                            last updated are automatically deleted. (documented below).
-                          items:
-                            properties:
-                              days:
-                                description: Specifies the number of days when objects
-                                  that have been last updated are automatically deleted.
-                                  The expiration time must be greater than the transition
-                                  times.
-                                type: number
-                            required:
-                            - days
-                            type: object
-                          type: array
-                        name:
-                          description: Unique identifier for lifecycle rules. The
-                            Rule Name contains a maximum of 255 characters.
-                          type: string
-                        noncurrentVersionExpiration:
-                          description: Specifies a period when noncurrent object versions
-                            are automatically deleted. (documented below).
-                          items:
-                            properties:
-                              days:
-                                description: Specifies the number of days when objects
-                                  that have been last updated are automatically deleted.
-                                  The expiration time must be greater than the transition
-                                  times.
-                                type: number
-                            required:
-                            - days
-                            type: object
-                          type: array
-                        noncurrentVersionTransition:
-                          description: Specifies a period when noncurrent object versions
-                            are automatically transitioned to STANDARD_IA or GLACIER
-                            storage class (documented below).
-                          items:
-                            properties:
-                              days:
-                                description: Specifies the number of days when objects
-                                  that have been last updated are automatically deleted.
-                                  The expiration time must be greater than the transition
-                                  times.
-                                type: number
-                              storageClass:
-                                description: 'Specifies the storage class of the bucket.
-                                  OBS provides three storage classes: "STANDARD",
-                                  "STANDARD_IA" (Infrequent Access) and "GLACIER"
-                                  (Archive). Defaults to STANDARD.'
-                                type: string
-                            required:
-                            - days
-                            - storageClass
-                            type: object
-                          type: array
-                        prefix:
-                          description: 'Object key prefix identifying one or more
-                            objects to which the rule applies. If omitted, all objects
-                            in the bucket will be managed by the lifecycle rule. The
-                            prefix cannot start or end with a slash (/), cannot have
-                            consecutive slashes (/), and cannot contain the following
-                            special characters: :*?"<>|.'
-                          type: string
-                        transition:
-                          description: Specifies a period when objects that have been
-                            last updated are automatically transitioned to STANDARD_IA
-                            or GLACIER storage class (documented below).
-                          items:
-                            properties:
-                              days:
-                                description: Specifies the number of days when objects
-                                  that have been last updated are automatically deleted.
-                                  The expiration time must be greater than the transition
-                                  times.
-                                type: number
-                              storageClass:
-                                description: 'Specifies the storage class of the bucket.
-                                  OBS provides three storage classes: "STANDARD",
-                                  "STANDARD_IA" (Infrequent Access) and "GLACIER"
-                                  (Archive). Defaults to STANDARD.'
-                                type: string
-                            required:
-                            - days
-                            - storageClass
-                            type: object
-                          type: array
-                      required:
-                      - enabled
-                      - name
-                      type: object
-                    type: array
-                  logging:
-                    description: A settings of bucket logging (documented below).
-                    items:
-                      properties:
-                        targetBucket:
-                          description: The name of the bucket that will receive the
-                            log objects. The acl policy of the target bucket should
-                            be log-delivery-write.
-                          type: string
-                        targetPrefix:
-                          description: To specify a key prefix for log objects.
-                          type: string
-                      required:
-                      - targetBucket
-                      type: object
-                    type: array
-                  multiAz:
-                    description: Whether enable the multi-AZ mode for the bucket.
-                      When the multi-AZ mode is enabled, data in the bucket is duplicated
-                      and stored in multiple AZs. Changing this creates a new bucket.
-                    type: boolean
                   region:
-                    description: If specified, the region this bucket should reside
-                      in. Otherwise, the region used by the provider. Changing this
-                      creates a new bucket.
                     type: string
-                  storageClass:
-                    description: 'Specifies the storage class of the bucket. OBS provides
-                      three storage classes: "STANDARD", "STANDARD_IA" (Infrequent
-                      Access) and "GLACIER" (Archive). Defaults to STANDARD.'
+                  serviceNetworkCidr:
+                    description: Service network segment. Changing this parameter
+                      will create a new cluster resource.
                     type: string
-                  versioning:
-                    description: Whether enable versioning. Once you version-enable
-                      a bucket, it can never return to an unversioned state. You can,
-                      however, suspend versioning on that bucket.
-                    type: boolean
-                  website:
-                    description: A website object (documented below).
-                    items:
-                      properties:
-                        errorDocument:
-                          description: Specifies the error page returned when an error
-                            occurs during static website access. Only HTML, JPG, PNG,
-                            BMP, and WEBP files under the root directory are supported.
+                  subnetId:
+                    description: The NETWORK ID of the subnet used to create the node.
+                      Changing this parameter will create a new cluster resource.
+                    type: string
+                  subnetIdRef:
+                    description: Reference to a VPCSubnet in vpc to populate subnetId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  subnetIdSelector:
+                    description: Selector for a VPCSubnet in vpc to populate subnetId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
                           type: string
-                        indexDocument:
-                          description: Specifies the default homepage of the static
-                            website, only HTML web pages are supported. OBS only allows
-                            files such as index.html in the root directory of a bucket
-                            to function as the default homepage. That is to say, do
-                            not set the default homepage with a multi-level directory
-                            structure (for example, /page/index.html).
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  vpcId:
+                    description: The ID of the VPC used to create the node. Changing
+                      this parameter will create a new cluster resource.
+                    type: string
+                  vpcIdRef:
+                    description: Reference to a VPC in vpc to populate vpcId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  vpcIdSelector:
+                    description: Selector for a VPC in vpc to populate vpcId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
                           type: string
-                        redirectAllRequestsTo:
-                          description: A hostname to redirect all website requests
-                            for this bucket to. Hostname can optionally be prefixed
-                            with a protocol (http:// or https://) to use when redirecting
-                            requests. The default is the protocol that is used in
-                            the original request.
-                          type: string
-                        routingRules:
-                          description: 'A JSON or XML format containing routing rules
-                            describing redirect behavior and when redirects are applied.
-                            Each rule contains a Condition and a Redirect as shown
-                            in the following table:'
-                          type: string
-                      type: object
-                    type: array
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                required:
+                - clusterType
+                - containerNetworkType
+                - flavorId
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -617,15 +483,56 @@ spec:
             - forProvider
             type: object
           status:
-            description: OBSBucketStatus defines the observed state of OBSBucket.
+            description: ClusterStatus defines the observed state of Cluster.
             properties:
               atProvider:
                 properties:
-                  bucketDomainName:
-                    description: The bucket domain name. Will be of format bucketname.oss.region.prod-cloud-ocb.orange-business.com.
+                  certificateClusters:
+                    items:
+                      properties:
+                        certificateAuthorityData:
+                          description: The certificate data.
+                          type: string
+                        name:
+                          description: The cluster name.
+                          type: string
+                        server:
+                          description: The server IP address.
+                          type: string
+                      type: object
+                    type: array
+                  certificateUsers:
+                    items:
+                      properties:
+                        clientCertificateData:
+                          description: The client certificate data.
+                          type: string
+                        clientKeyData:
+                          description: The client key data.
+                          type: string
+                        name:
+                          description: The user name.
+                          type: string
+                      type: object
+                    type: array
+                  externalApigEndpoint:
+                    description: The endpoint of the cluster to be accessed through
+                      API Gateway.
+                    type: string
+                  externalEndpoint:
+                    description: The external network address.
                     type: string
                   id:
-                    description: The name of the bucket.
+                    description: Id of the cluster resource.
+                    type: string
+                  internalEndpoint:
+                    description: The internal network address.
+                    type: string
+                  securityGroupId:
+                    description: Security group ID of the cluster.
+                    type: string
+                  status:
+                    description: Cluster status information.
                     type: string
                 type: object
               conditions:

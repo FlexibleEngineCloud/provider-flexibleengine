@@ -11,7 +11,17 @@ import (
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
+	/*
+		> Cloud Container Engine (CCE)
+	*/
+	"flexibleengine_cce_addon_v3":     TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+	"flexibleengine_cce_cluster_v3":   config.IdentifierFromProvider,
+	"flexibleengine_cce_namespace":    TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.name }}"),
+	"flexibleengine_cce_node_pool_v3": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+	"flexibleengine_cce_pvc":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.namespace }}/{{ .parameters.name }}"),
 
+	// No import documented
+	"flexibleengine_cce_node_v3": config.IdentifierFromProvider,
 	/*
 		> Elastic Cloud Server (ECS)
 	*/
@@ -59,6 +69,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_images_image_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/images_image_v2
 	"flexibleengine_images_image_v2": config.IdentifierFromProvider,
+
+	/*
+		> Key Management Service (KMS)
+	*/
+	"flexibleengine_kms_key_v1": config.IdentifierFromProvider,
 
 	/*
 		> Virtual Private Cloud (VPC)
