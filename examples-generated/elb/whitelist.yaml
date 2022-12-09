@@ -1,0 +1,18 @@
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Whitelist
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/whitelist
+  labels:
+    testing.upbound.io/example-name: whitelist_1
+  name: whitelist-1
+spec:
+  forProvider:
+    enableWhitelist: true
+    listenerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    whitelist: 192.168.11.1,192.168.0.1/24,192.168.201.18/8
+
+---
+

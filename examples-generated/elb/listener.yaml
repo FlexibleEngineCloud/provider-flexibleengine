@@ -1,0 +1,20 @@
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Listener
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: listener_1
+  name: listener-1
+spec:
+  forProvider:
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    protocol: HTTP
+    protocolPort: 8080
+    tags:
+      key: value
+
+---
+

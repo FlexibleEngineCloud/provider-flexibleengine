@@ -177,6 +177,24 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_lb_pool_v3": config.IdentifierFromProvider,
 
 	/*
+		> Elastic Load Balance (ELB)
+	*/
+
+	"flexibleengine_lb_l7policy_v2": config.IdentifierFromProvider,
+	"flexibleengine_lb_l7rule_v2":   config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_lb_listener_v2":     config.IdentifierFromProvider,
+	"flexibleengine_lb_loadbalancer_v2": config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_lb_member_v2": config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_lb_monitor_v2": config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_lb_pool_v2": config.IdentifierFromProvider,
+	// No import documented
+	"flexibleengine_lb_whitelist_v2": config.IdentifierFromProvider,
+
+	/*
 		> VPC Endpoint (VPCEP)
 	*/
 
