@@ -35,7 +35,7 @@ func Configure(p *config.Provider) {
 			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network",
 		}
 		r.References["ipv4_eip_id"] = config.Reference{
-			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.EIP",
+			Type: "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP",
 		}
 	})
 	p.AddResourceConfigurator("flexibleengine_lb_member_v3", func(r *config.Resource) {

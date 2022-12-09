@@ -120,6 +120,14 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_lb_member_v3":                    ReplaceGroupWords("dedicatedelb", 1),
 	"flexibleengine_lb_monitor_v3":                   ReplaceGroupWords("dedicatedelb", 1),
 	"flexibleengine_lb_pool_v3":                      ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_lb_l7policy_v2":                  ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_l7rule_v2":                    ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_listener_v2":                  ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_loadbalancer_v2":              ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_member_v2":                    ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_monitor_v2":                   ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_pool_v2":                      ReplaceGroupWords("elb", 1),
+	"flexibleengine_lb_whitelist_v2":                 ReplaceGroupWords("elb", 1),
 }
 
 // KindMap contains kind string overrides.
@@ -131,4 +139,7 @@ var KindMap = map[string]string{
 	"flexibleengine_networking_secgroup_rule_v2":     "SecGroupRule",
 	"flexibleengine_lb_loadbalancer_v3":              "LoadBalancer",
 	"flexibleengine_elb_ipgroup":                     "IPGroup",
+	"flexibleengine_lb_loadbalancer_v2":              "LoadBalancer",
+	"flexibleengine_lb_l7policy_v2":                  "L7Policy",
+	"flexibleengine_lb_l7rule_v2":                    "L7Rule",
 }

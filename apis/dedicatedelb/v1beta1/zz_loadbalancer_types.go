@@ -74,15 +74,15 @@ type LoadBalancerParameters struct {
 	IPv4Address *string `json:"ipv4Address,omitempty" tf:"ipv4_address,omitempty"`
 
 	// The ID of the EIP. Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	IPv4EIPID *string `json:"ipv4EipId,omitempty" tf:"ipv4_eip_id,omitempty"`
 
-	// Reference to a EIP in vpc to populate ipv4EipId.
+	// Reference to a EIP in eip to populate ipv4EipId.
 	// +kubebuilder:validation:Optional
 	IPv4EIPIDRef *v1.Reference `json:"ipv4EipIdRef,omitempty" tf:"-"`
 
-	// Selector for a EIP in vpc to populate ipv4EipId.
+	// Selector for a EIP in eip to populate ipv4EipId.
 	// +kubebuilder:validation:Optional
 	IPv4EIPIDSelector *v1.Selector `json:"ipv4EipIdSelector,omitempty" tf:"-"`
 

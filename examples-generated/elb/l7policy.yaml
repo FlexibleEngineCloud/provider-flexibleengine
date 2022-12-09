@@ -1,0 +1,78 @@
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: L7Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/l7policy
+  labels:
+    testing.upbound.io/example-name: l7policy_1
+  name: l7policy-1
+spec:
+  forProvider:
+    action: REDIRECT_TO_POOL
+    description: test l7 policy
+    listenerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: listener_1
+    name: test
+    position: 1
+    redirectPoolIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: pool_1
+
+---
+
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Listener
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/l7policy
+  labels:
+    testing.upbound.io/example-name: listener_1
+  name: listener-1
+spec:
+  forProvider:
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: loadbalancer_1
+    name: listener_1
+    protocol: HTTP
+    protocolPort: 8080
+
+---
+
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/l7policy
+  labels:
+    testing.upbound.io/example-name: loadbalancer_1
+  name: loadbalancer-1
+spec:
+  forProvider:
+    name: loadbalancer_1
+    vipSubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Pool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/l7policy
+  labels:
+    testing.upbound.io/example-name: pool_1
+  name: pool-1
+spec:
+  forProvider:
+    lbMethod: ROUND_ROBIN
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: loadbalancer_1
+    name: pool_1
+    protocol: HTTP
+
+---
+

@@ -7,6 +7,7 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/dedicatedelb"
 	"github.com/gaetanars/provider-flexibleengine/config/ecs"
 	"github.com/gaetanars/provider-flexibleengine/config/eip"
+	"github.com/gaetanars/provider-flexibleengine/config/elb"
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
@@ -42,6 +43,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		dedicatedelb.Configure,
+		elb.Configure,
 		ecs.Configure,
 		eip.Configure,
 		iam.Configure,

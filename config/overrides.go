@@ -52,6 +52,10 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				r.References[k] = config.Reference{
 					Type: tools.GenerateType("vpc", "Port"),
 				}
+			case "tenant_id":
+				r.References[k] = config.Reference{
+					Type: GenerateType("iam", "Project"),
+				}
 			}
 		}
 	}

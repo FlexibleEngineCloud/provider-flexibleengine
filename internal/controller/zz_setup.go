@@ -24,6 +24,14 @@ import (
 	volumeattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/volumeattach"
 	eip "github.com/gaetanars/provider-flexibleengine/internal/controller/eip/eip"
 	eipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/eip/eipassociate"
+	l7policy "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/l7policy"
+	l7rule "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/l7rule"
+	listenerelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/listener"
+	loadbalancerelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/loadbalancer"
+	memberelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/member"
+	monitorelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/monitor"
+	poolelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/pool"
+	whitelist "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/whitelist"
 	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/agency"
 	group "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/group"
 	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/groupmembership"
@@ -74,6 +82,14 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		volumeattach.Setup,
 		eip.Setup,
 		eipassociate.Setup,
+		l7policy.Setup,
+		l7rule.Setup,
+		listenerelb.Setup,
+		loadbalancerelb.Setup,
+		memberelb.Setup,
+		monitorelb.Setup,
+		poolelb.Setup,
+		whitelist.Setup,
 		agency.Setup,
 		group.Setup,
 		groupmembership.Setup,
