@@ -11,7 +11,7 @@ import "github.com/upbound/upjet/pkg/config"
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
-		> COMPUTE Modules
+		> Elastic Cloud Server (ECS)
 	*/
 
 	// Imported with the following format : {floating_ip}/{instance_id}/{fixed_ip}
@@ -28,7 +28,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
 
 	/*
-		> IDENTITY Modules
+		> Identity and Access Management (IAM)
 	*/
 
 	// Imported using the ID
@@ -51,7 +51,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_identity_user_v3": config.IdentifierFromProvider,
 
 	/*
-		> VPC Modules
+		> Virtual Private Cloud (VPC)
 	*/
 
 	// flexibleengine_vpc_v1 - Imported using the ID
