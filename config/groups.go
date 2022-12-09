@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 
@@ -30,20 +29,7 @@ func KindOverrides() config.ResourceOption {
 	}
 }
 
-func RemoveVersion(name string) []string {
-	// Replace string with regex
-
-	rg := regexp.MustCompile(`_v[0-9]+`)
-	y := rg.ReplaceAllString(name, "")
-
-	return strings.Split(strings.TrimPrefix(y, fmt.Sprintf("%s_", tools.ResourcePrefix)), "_")
-
-}
-
-func RemoveGroup(name []string) string {
-	return strings.Join(name[1:], "_")
-}
-
+// KindRemoveVersion removes the version from the kind of the resource.
 func KindRemoveVersion() config.ResourceOption {
 	return func(r *config.Resource) {
 		matchedName, _ := regexp.MatchString(`_v[0-9]+`, r.Name)
@@ -51,7 +37,7 @@ func KindRemoveVersion() config.ResourceOption {
 
 		if (r.Kind == "" && matchedName) || matchedKind {
 
-			r.Kind = name.NewFromSnake(RemoveGroup(RemoveVersion(r.Name))).Camel
+			r.Kind = name.NewFromSnake(tools.RemoveGroup(tools.RemoveVersion(r.Name))).Camel
 
 		}
 	}
@@ -66,7 +52,7 @@ type GroupKindCalculator func(resource string) (string, string)
 func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 	return func(resource string) (string, string) {
 		// words := strings.Split(strings.TrimPrefix(resource, "flexibleengine_"), "_")
-		words := RemoveVersion(resource)
+		words := tools.RemoveVersion(resource)
 		snakeKind := strings.Join(words[count:], "_")
 		return group, name.NewFromSnake(snakeKind).Camel
 	}
@@ -85,49 +71,62 @@ func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 // ? "flexibleengine_vpc_subnet_v1": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: Subnet
 // ? "flexibleengine_networking_subnet_v2": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: NetWorkingSubnet
 var GroupMap = map[string]GroupKindCalculator{
-	"flexibleengine_identity_agency_v3":              ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_group_membership_v3":    ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_group_v3":               ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_project_v3":             ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_provider":               ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_provider_conversion":    ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_role_assignment_v3":     ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_role_v3":                ReplaceGroupWords("iam", 1),
-	"flexibleengine_identity_user_v3":                ReplaceGroupWords("iam", 1),
-	"flexibleengine_compute_floatingip_associate_v2": ReplaceGroupWords("ecs", 1),
-	"flexibleengine_compute_instance_v2":             ReplaceGroupWords("ecs", 1),
-	"flexibleengine_compute_interface_attach_v2":     ReplaceGroupWords("ecs", 1),
-	"flexibleengine_compute_keypair_v2":              ReplaceGroupWords("ecs", 1),
-	"flexibleengine_compute_servergroup_v2":          ReplaceGroupWords("ecs", 1),
-	"flexibleengine_compute_volume_attach_v2":        ReplaceGroupWords("ecs", 1),
-	"flexibleengine_vpc_v1":                          ReplaceGroupWords("vpc", 0),
-	"flexibleengine_vpc_subnet_v1":                   ReplaceGroupWords("vpc", 0),
-	"flexibleengine_networking_network_v2":           ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_port_v2":              ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_router_interface_v2":  ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_router_v2":            ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_secgroup_rule_v2":     ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_secgroup_v2":          ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_subnet_v2":            ReplaceGroupWords("vpc", 0),
-	"flexibleengine_networking_vip_associate_v2":     ReplaceGroupWords("vpc", 1),
-	"flexibleengine_networking_vip_v2":               ReplaceGroupWords("vpc", 1),
-	"flexibleengine_vpc_eip":                         ReplaceGroupWords("eip", 1),
-	"flexibleengine_vpc_eip_associate":               ReplaceGroupWords("eip", 1),
-	"flexibleengine_elb_certificate":                 ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_elb_ipgroup":                     ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_lb_listener_v3":                  ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_lb_loadbalancer_v3":              ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_lb_member_v3":                    ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_lb_monitor_v3":                   ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_lb_pool_v3":                      ReplaceGroupWords("dedicatedelb", 1),
-	"flexibleengine_lb_l7policy_v2":                  ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_l7rule_v2":                    ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_listener_v2":                  ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_loadbalancer_v2":              ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_member_v2":                    ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_monitor_v2":                   ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_pool_v2":                      ReplaceGroupWords("elb", 1),
-	"flexibleengine_lb_whitelist_v2":                 ReplaceGroupWords("elb", 1),
+	// IAM
+	"flexibleengine_identity_agency_v3":           ReplaceGroupWords("iam", 1), // Group: iam, Kind: Agency
+	"flexibleengine_identity_group_membership_v3": ReplaceGroupWords("iam", 1), // Group: iam, Kind: GroupMembership
+	"flexibleengine_identity_group_v3":            ReplaceGroupWords("iam", 1), // Group: iam, Kind: Group
+	"flexibleengine_identity_project_v3":          ReplaceGroupWords("iam", 1), // Group: iam, Kind: Project
+	"flexibleengine_identity_provider":            ReplaceGroupWords("iam", 1), // Group: iam, Kind: Provider
+	"flexibleengine_identity_provider_conversion": ReplaceGroupWords("iam", 1), // Group: iam, Kind: ProviderConversion
+	"flexibleengine_identity_role_assignment_v3":  ReplaceGroupWords("iam", 1), // Group: iam, Kind: RoleAssignment
+	"flexibleengine_identity_role_v3":             ReplaceGroupWords("iam", 1), // Group: iam, Kind: Role
+	"flexibleengine_identity_user_v3":             ReplaceGroupWords("iam", 1), // Group: iam, Kind: User
+	// ECS
+	"flexibleengine_compute_floatingip_associate_v2": ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: FloatingipAssociate (! Rewrite in KingMap)
+	"flexibleengine_compute_instance_v2":             ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Instance
+	"flexibleengine_compute_interface_attach_v2":     ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: InterfaceAttach
+	"flexibleengine_compute_keypair_v2":              ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Keypair (! Rewrite in KingMap)
+	"flexibleengine_compute_servergroup_v2":          ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Servergroup (! Rewrite in KingMap)
+	"flexibleengine_compute_volume_attach_v2":        ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: VolumeAttach
+	// VPC
+	"flexibleengine_vpc_v1":                         ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPC
+	"flexibleengine_vpc_subnet_v1":                  ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPCSubnet
+	"flexibleengine_networking_network_v2":          ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Network
+	"flexibleengine_networking_port_v2":             ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Port
+	"flexibleengine_networking_router_interface_v2": ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: RouterInterface
+	"flexibleengine_networking_router_v2":           ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Router
+	"flexibleengine_networking_secgroup_rule_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroupRule
+	"flexibleengine_networking_secgroup_v2":         ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroup
+	"flexibleengine_networking_subnet_v2":           ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: NetworkingSubnet
+	"flexibleengine_networking_vip_associate_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VipAssociate
+	"flexibleengine_networking_vip_v2":              ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Vip
+	// EIP
+	"flexibleengine_vpc_eip":           ReplaceGroupWords("eip", 1), // Group: eip, Kind: EIP
+	"flexibleengine_vpc_eip_associate": ReplaceGroupWords("eip", 1), // Group: eip, Kind: Associate
+	// Dedicated ELB
+	"flexibleengine_elb_certificate":    ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Certificate
+	"flexibleengine_elb_ipgroup":        ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Ipgroup (! Rewrite in KingMap)
+	"flexibleengine_lb_listener_v3":     ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Listener
+	"flexibleengine_lb_loadbalancer_v3": ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Loadbalancer (! Rewrite in KingMap)
+	"flexibleengine_lb_member_v3":       ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Member
+	"flexibleengine_lb_monitor_v3":      ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Monitor
+	"flexibleengine_lb_pool_v3":         ReplaceGroupWords("dedicatedelb", 1), // Group: dedicatedelb, Kind: Pool
+	// ELB
+	"flexibleengine_lb_l7policy_v2":     ReplaceGroupWords("elb", 1), // Group: elb, Kind: L7policy (! Rewrite in KingMap)
+	"flexibleengine_lb_l7rule_v2":       ReplaceGroupWords("elb", 1), // Group: elb, Kind: L7rule (! Rewrite in KingMap)
+	"flexibleengine_lb_listener_v2":     ReplaceGroupWords("elb", 1), // Group: elb, Kind: Listener
+	"flexibleengine_lb_loadbalancer_v2": ReplaceGroupWords("elb", 1), // Group: elb, Kind: Loadbalancer (! Rewrite in KingMap)
+	"flexibleengine_lb_member_v2":       ReplaceGroupWords("elb", 1), // Group: elb, Kind: Member
+	"flexibleengine_lb_monitor_v2":      ReplaceGroupWords("elb", 1), // Group: elb, Kind: Monitor
+	"flexibleengine_lb_pool_v2":         ReplaceGroupWords("elb", 1), // Group: elb, Kind: Pool
+	"flexibleengine_lb_whitelist_v2":    ReplaceGroupWords("elb", 1), // Group: elb, Kind: Whitelist
+	// OSS
+	"flexibleengine_obs_bucket":             ReplaceGroupWords("oss", 0), // Group: oss, Kind: OBSBucket
+	"flexibleengine_obs_bucket_object":      ReplaceGroupWords("oss", 0), // Group: oss, Kind: OBSBucketObject
+	"flexibleengine_obs_bucket_replication": ReplaceGroupWords("oss", 0), // Group: oss, Kind: OBSBucketReplication
+	"flexibleengine_s3_bucket":              ReplaceGroupWords("oss", 0), // Group: oss, Kind: S3Bucket
+	"flexibleengine_s3_bucket_object":       ReplaceGroupWords("oss", 0), // Group: oss, Kind: S3Object
+	"flexibleengine_s3_bucket_policy":       ReplaceGroupWords("oss", 0), // Group: oss, Kind: S3BucketPolicy
 }
 
 // KindMap contains kind string overrides.
@@ -142,4 +141,7 @@ var KindMap = map[string]string{
 	"flexibleengine_lb_loadbalancer_v2":              "LoadBalancer",
 	"flexibleengine_lb_l7policy_v2":                  "L7Policy",
 	"flexibleengine_lb_l7rule_v2":                    "L7Rule",
+	"flexibleengine_obs_bucket":                      "OBSBucket",
+	"flexibleengine_obs_bucket_object":               "OBSBucketObject",
+	"flexibleengine_obs_bucket_replication":          "OBSBucketReplication",
 }

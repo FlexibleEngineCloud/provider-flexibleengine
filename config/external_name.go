@@ -209,6 +209,34 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_vpcep_approval - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpcep_approval
 	"flexibleengine_vpcep_approval": config.IdentifierFromProvider,
+
+	/*
+		> Object Storage Service (OSS)
+	*/
+
+	// flexibleengine_obs_bucket - Imported using the Name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket
+	"flexibleengine_obs_bucket": config.NameAsIdentifier,
+
+	// flexibleengine_obs_bucket_object - Imported using ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket_object
+	"flexibleengine_obs_bucket_object": config.IdentifierFromProvider,
+
+	// flexibleengine_obs_bucket_replication - Imported using the Name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket_replication
+	"flexibleengine_obs_bucket_replication": config.NameAsIdentifier,
+
+	// flexibleengine_s3_bucket - Imported using the Name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket
+	"flexibleengine_s3_bucket": config.NameAsIdentifier,
+
+	// flexibleengine_s3_bucket_object - Imported using ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_object
+	"flexibleengine_s3_bucket_object": config.IdentifierFromProvider,
+
+	// flexibleengine_s3_bucket_policy - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_policy
+	"flexibleengine_s3_bucket_policy": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

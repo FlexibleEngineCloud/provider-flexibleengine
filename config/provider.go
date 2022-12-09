@@ -9,14 +9,13 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/eip"
 	"github.com/gaetanars/provider-flexibleengine/config/elb"
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
+	"github.com/gaetanars/provider-flexibleengine/config/oss"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
 	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
-
-const ()
 
 var (
 	//go:embed schema.json
@@ -36,7 +35,7 @@ func GetProvider() *ujconfig.Provider {
 			GroupKindOverrides(),
 			KnownReferencers(),
 			KindOverrides(),
-			// KindRemoveVersion END
+			// KindRemoveVersion Always at the end
 			KindRemoveVersion(),
 		))
 
@@ -49,6 +48,7 @@ func GetProvider() *ujconfig.Provider {
 		iam.Configure,
 		vpc.Configure,
 		vpcep.Configure,
+		oss.Configure,
 	} {
 		configure(pc)
 	}

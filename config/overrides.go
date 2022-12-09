@@ -1,6 +1,8 @@
 package config
 
 import (
+	"strings"
+
 	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -55,6 +57,16 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			case "tenant_id":
 				r.References[k] = config.Reference{
 					Type: tools.GenerateType("iam", "Project"),
+				}
+			case "bucket":
+				if strings.Contains(r.Kind, "OBS") {
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("oss", "OBSBucket"),
+					}
+				} else {
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("oss", "S3Bucket"),
+					}
 				}
 			}
 		}

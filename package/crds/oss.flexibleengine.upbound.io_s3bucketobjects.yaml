@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: s3bucketobjects.oss.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: oss.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: S3BucketObject
+    listKind: S3BucketObjectList
+    plural: s3bucketobjects
+    singular: s3bucketobject
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'S3BucketObject is the Schema for the S3BucketObjects API. ""page_title:
+          "flexibleengine_s3_bucket_object"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: S3BucketObjectSpec defines the desired state of S3BucketObject
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +64,14 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  acl:
+                    description: The canned ACL to apply. Defaults to "private".
                     type: string
-                  name:
-                    description: A unique name for the vip.
+                  bucket:
+                    description: The name of the bucket to put the file in.
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
-                    type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  bucketRef:
+                    description: Reference to a S3Bucket in oss to populate bucket.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -109,8 +104,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  bucketSelector:
+                    description: Selector for a S3Bucket in oss to populate bucket.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -148,83 +143,52 @@ spec:
                             type: string
                         type: object
                     type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  cacheControl:
+                    description: Specifies caching behavior along the request/reply
+                      chain Read w3c cache_control for further details.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  content:
+                    description: The literal content being uploaded to the bucket.
+                    type: string
+                  contentDisposition:
+                    description: Specifies presentational information for the object.
+                      Read wc3 content_disposition for further information.
+                    type: string
+                  contentEncoding:
+                    description: Specifies what content encodings have been applied
+                      to the object and thus what decoding mechanisms must be applied
+                      to obtain the media-type referenced by the Content-Type header
+                      field. Read w3c content encoding for further information.
+                    type: string
+                  contentLanguage:
+                    description: The language the content is in e.g. en-US or en-GB.
+                    type: string
+                  contentType:
+                    description: A standard MIME type describing the format of the
+                      object data, e.g. application/octet-stream. All Valid MIME Types
+                      are valid for this input.
+                    type: string
+                  etag:
+                    description: Used to trigger updates. The only meaningful value
+                      is ${md5(file("path/to/file"))}. This attribute is not compatible
+                      with kms_key_id.
+                    type: string
+                  key:
+                    description: The name of the object once it is in the bucket.
+                    type: string
+                  serverSideEncryption:
+                    description: Specifies server-side encryption of the object in
+                      S3. Valid values are "AES256" and "aws:kms".
+                    type: string
+                  source:
+                    description: The path to the source file being uploaded to the
+                      bucket.
+                    type: string
+                  websiteRedirect:
+                    description: Specifies a target URL for website redirect.
+                    type: string
+                required:
+                - key
                 type: object
               providerConfigRef:
                 default:
@@ -398,21 +362,16 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: S3BucketObjectStatus defines the observed state of S3BucketObject.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
-                    type: string
                   id:
-                    description: The ID of the vip.
+                    description: the key of the resource supplied above
                     type: string
-                  status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
+                  versionId:
+                    description: A unique version ID value for the object, if bucket
+                      versioning is enabled.
                     type: string
                 type: object
               conditions:

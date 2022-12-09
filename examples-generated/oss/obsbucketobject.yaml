@@ -1,0 +1,19 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucketobject
+  labels:
+    testing.upbound.io/example-name: object
+  name: object
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    content: some object content
+    contentType: application/xml
+    key: new_key_from_content
+
+---
+

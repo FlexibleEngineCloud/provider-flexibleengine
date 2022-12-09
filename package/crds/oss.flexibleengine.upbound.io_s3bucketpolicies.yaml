@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: s3bucketpolicies.oss.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: oss.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: S3BucketPolicy
+    listKind: S3BucketPolicyList
+    plural: s3bucketpolicies
+    singular: s3bucketpolicy
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'S3BucketPolicy is the Schema for the S3BucketPolicys API. ""page_title:
+          "flexibleengine_s3_bucket_policy"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: S3BucketPolicySpec defines the desired state of S3BucketPolicy
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +64,11 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  bucket:
+                    description: The name of the bucket to which to apply the policy.
                     type: string
-                  name:
-                    description: A unique name for the vip.
-                    type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
-                    type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  bucketRef:
+                    description: Reference to a S3Bucket in oss to populate bucket.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -109,8 +101,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  bucketSelector:
+                    description: Selector for a S3Bucket in oss to populate bucket.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -148,83 +140,11 @@ spec:
                             type: string
                         type: object
                     type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  policy:
+                    description: The text of the policy.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                required:
+                - policy
                 type: object
               providerConfigRef:
                 default:
@@ -398,21 +318,11 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: S3BucketPolicyStatus defines the observed state of S3BucketPolicy.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
-                    type: string
                   id:
-                    description: The ID of the vip.
-                    type: string
-                  status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
                     type: string
                 type: object
               conditions:

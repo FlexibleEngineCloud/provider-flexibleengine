@@ -41,6 +41,12 @@ import (
 	role "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/role"
 	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/roleassignment"
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
+	obsbucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucket"
+	obsbucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketobject"
+	obsbucketreplication "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
+	s3bucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucket"
+	s3bucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketobject"
+	s3bucketpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketpolicy"
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
 	flowlog "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/flowlog"
 	network "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/network"
@@ -99,6 +105,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		role.Setup,
 		roleassignment.Setup,
 		user.Setup,
+		obsbucket.Setup,
+		obsbucketobject.Setup,
+		obsbucketreplication.Setup,
+		s3bucket.Setup,
+		s3bucketobject.Setup,
+		s3bucketpolicy.Setup,
 		providerconfig.Setup,
 		flowlog.Setup,
 		network.Setup,
