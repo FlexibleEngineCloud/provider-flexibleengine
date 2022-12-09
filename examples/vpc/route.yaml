@@ -1,79 +1,87 @@
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
-kind: Vpc
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vpc
-  labels:
-    testing.upbound.io/example-name: example-vpc
-  name: example-vpc
-spec:
-  forProvider:
-    name: "example-vpc"
-    cidr: "10.2.3.0/24"
 
----
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
-kind: Vpc
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vpc
-  labels:
-    testing.upbound.io/example-name: example-vpc-2
-  name: example-vpc-2
-spec:
-  forProvider:
-    name: "example-vpc-2"
-    cidr: "10.2.4.0/24"
 
---- 
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
-kind: Subnet
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/subnet
-  labels:
-    testing.upbound.io/example-name: example-subnet
-  name: example-subnet
-spec:
-  forProvider:
-    vpcIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example-vpc
-    name: "example-subnet"
-    cidr: "10.2.3.0/28"
-    gatewayIp: "10.2.3.1"
----
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
-kind: PeeringConnection
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/peering
-  labels:
-    testing.upbound.io/example-name: example-peering
-  name: example-peering
-spec:
-  forProvider:
-    vpcIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example-vpc
-    peerVpcIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example-vpc-2
-    name: "example-peering"
----
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
-kind: Route
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/route
-  labels:
-    testing.upbound.io/example-name: example-route
-  name: example-route
-spec:
-  forProvider:
-    vpcIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example-vpc
-    destination: "10.2.4.0/24"
-    type: "peering"
+
+# For this moment we are not able to create a route because route create requires nexthop information.
+# Nexthop is a multiple type field and it is not supported by crossplane yet.
+
+# ---
+
+# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# kind: Vpc
+# metadata:
+#   annotations:
+#     meta.upbound.io/example-id: vpc/v1beta1/vpc
+#   labels:
+#     testing.upbound.io/example-name: example-vpc
+#   name: example-vpc
+# spec:
+#   forProvider:
+#     name: "example-vpc"
+#     cidr: "10.2.3.0/24"
+
+# ---
+# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# kind: Vpc
+# metadata:
+#   annotations:
+#     meta.upbound.io/example-id: vpc/v1beta1/vpc
+#   labels:
+#     testing.upbound.io/example-name: example-vpc-2
+#   name: example-vpc-2
+# spec:
+#   forProvider:
+#     name: "example-vpc-2"
+#     cidr: "10.2.4.0/24"
+
+# --- 
+# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# kind: Subnet
+# metadata:
+#   annotations:
+#     meta.upbound.io/example-id: vpc/v1beta1/subnet
+#   labels:
+#     testing.upbound.io/example-name: example-subnet
+#   name: example-subnet
+# spec:
+#   forProvider:
+#     vpcIdSelector:
+#       matchLabels:
+#         testing.upbound.io/example-name: example-vpc
+#     name: "example-subnet"
+#     cidr: "10.2.3.0/28"
+#     gatewayIp: "10.2.3.1"
+# ---
+# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# kind: PeeringConnection
+# metadata:
+#   annotations:
+#     meta.upbound.io/example-id: vpc/v1beta1/peering
+#   labels:
+#     testing.upbound.io/example-name: example-peering
+#   name: example-peering
+# spec:
+#   forProvider:
+#     vpcIdSelector:
+#       matchLabels:
+#         testing.upbound.io/example-name: example-vpc
+#     peerVpcIdSelector:
+#       matchLabels:
+#         testing.upbound.io/example-name: example-vpc-2
+#     name: "example-peering"
+# ---
+# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# kind: Route
+# metadata:
+#   annotations:
+#     meta.upbound.io/example-id: vpc/v1beta1/route
+#   labels:
+#     testing.upbound.io/example-name: example-route
+#   name: example-route
+# spec:
+#   forProvider:
+#     vpcIdSelector:
+#       matchLabels:
+#         testing.upbound.io/example-name: example-vpc
+#     destination: "10.2.4.0/24"
+#     type: "peering"
     

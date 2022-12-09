@@ -10,7 +10,7 @@ import "github.com/upbound/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 
-  /*
+	/*
 		> COMPUTE Modules
 	*/
 
@@ -27,10 +27,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Imported with the following format : {instance_id}/{volume_id}
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
 
-  /*
+	/*
 		> IDENTITY Modules
 	*/
-  
+
 	// Imported using the ID
 	"flexibleengine_identity_agency_v3": config.IdentifierFromProvider,
 	// No import documented
@@ -130,6 +130,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_vip_v2
 	"flexibleengine_networking_vip_v2": config.IdentifierFromProvider,
 
+	/*
+		> Elastic IP (EIP)
+	*/
+
 	// flexibleengine_vpc_eip - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_eip
 	"flexibleengine_vpc_eip": config.IdentifierFromProvider,
@@ -137,6 +141,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_vpc_eip_associate - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_eip_associate
 	"flexibleengine_vpc_eip_associate": config.IdentifierFromProvider,
+
+	/*
+		> VPC Endpoint (VPCEP)
+	*/
 
 	// flexibleengine_vpcep_service - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpcep_service
