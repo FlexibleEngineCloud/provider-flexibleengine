@@ -1,5 +1,5 @@
 apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
-kind: Vpc
+kind: VPC
 metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/vpc

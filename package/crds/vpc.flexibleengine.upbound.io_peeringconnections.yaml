@@ -71,7 +71,7 @@ spec:
                   peerVpcId:
                     type: string
                   peerVpcIdRef:
-                    description: Reference to a Vpc to populate peerVpcId.
+                    description: Reference to a VPC to populate peerVpcId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -105,7 +105,7 @@ spec:
                     - name
                     type: object
                   peerVpcIdSelector:
-                    description: Selector for a Vpc to populate peerVpcId.
+                    description: Selector for a VPC to populate peerVpcId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -148,7 +148,7 @@ spec:
                   vpcId:
                     type: string
                   vpcIdRef:
-                    description: Reference to a Vpc in vpc to populate vpcId.
+                    description: Reference to a VPC in vpc to populate vpcId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -182,7 +182,7 @@ spec:
                     - name
                     type: object
                   vpcIdSelector:
-                    description: Selector for a Vpc in vpc to populate vpcId.
+                    description: Selector for a VPC in vpc to populate vpcId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

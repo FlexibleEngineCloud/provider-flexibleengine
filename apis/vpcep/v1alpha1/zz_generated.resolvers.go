@@ -84,8 +84,8 @@ func (mg *Endpoint) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.VpcList{},
-			Managed: &v1alpha1.Vpc{},
+			List:    &v1alpha1.VPCList{},
+			Managed: &v1alpha1.VPC{},
 		},
 	})
 	if err != nil {
@@ -110,8 +110,8 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.NetworkPortList{},
-			Managed: &v1alpha1.NetworkPort{},
+			List:    &v1alpha1.PortList{},
+			Managed: &v1alpha1.Port{},
 		},
 	})
 	if err != nil {
@@ -126,8 +126,8 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.VpcList{},
-			Managed: &v1alpha1.Vpc{},
+			List:    &v1alpha1.VPCList{},
+			Managed: &v1alpha1.VPC{},
 		},
 	})
 	if err != nil {

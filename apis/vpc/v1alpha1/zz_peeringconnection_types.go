@@ -27,30 +27,30 @@ type PeeringConnectionParameters struct {
 	// +kubebuilder:validation:Optional
 	PeerTenantID *string `json:"peerTenantId,omitempty" tf:"peer_tenant_id,omitempty"`
 
-	// +crossplane:generate:reference:type=Vpc
+	// +crossplane:generate:reference:type=VPC
 	// +kubebuilder:validation:Optional
 	PeerVPCID *string `json:"peerVpcId,omitempty" tf:"peer_vpc_id,omitempty"`
 
-	// Reference to a Vpc to populate peerVpcId.
+	// Reference to a VPC to populate peerVpcId.
 	// +kubebuilder:validation:Optional
 	PeerVPCIDRef *v1.Reference `json:"peerVpcIdRef,omitempty" tf:"-"`
 
-	// Selector for a Vpc to populate peerVpcId.
+	// Selector for a VPC to populate peerVpcId.
 	// +kubebuilder:validation:Optional
 	PeerVPCIDSelector *v1.Selector `json:"peerVpcIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Vpc
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
-	// Reference to a Vpc in vpc to populate vpcId.
+	// Reference to a VPC in vpc to populate vpcId.
 	// +kubebuilder:validation:Optional
 	VPCIDRef *v1.Reference `json:"vpcIdRef,omitempty" tf:"-"`
 
-	// Selector for a Vpc in vpc to populate vpcId.
+	// Selector for a VPC in vpc to populate vpcId.
 	// +kubebuilder:validation:Optional
 	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }

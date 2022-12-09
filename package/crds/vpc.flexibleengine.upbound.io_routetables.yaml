@@ -91,7 +91,7 @@ spec:
                       type: string
                     type: array
                   subnetsRefs:
-                    description: References to Subnet to populate subnets.
+                    description: References to VPCSubnet to populate subnets.
                     items:
                       description: A Reference to a named object.
                       properties:
@@ -128,7 +128,7 @@ spec:
                       type: object
                     type: array
                   subnetsSelector:
-                    description: Selector for a list of Subnet to populate subnets.
+                    description: Selector for a list of VPCSubnet to populate subnets.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -169,7 +169,7 @@ spec:
                   vpcId:
                     type: string
                   vpcIdRef:
-                    description: Reference to a Vpc in vpc to populate vpcId.
+                    description: Reference to a VPC in vpc to populate vpcId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -203,7 +203,7 @@ spec:
                     - name
                     type: object
                   vpcIdSelector:
-                    description: Selector for a Vpc in vpc to populate vpcId.
+                    description: Selector for a VPC in vpc to populate vpcId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

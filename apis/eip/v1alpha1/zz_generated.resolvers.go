@@ -42,8 +42,8 @@ func (mg *EIPAssociate) ResolveReferences(ctx context.Context, c client.Reader) 
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.NetworkPortList{},
-			Managed: &v1alpha1.NetworkPort{},
+			List:    &v1alpha1.PortList{},
+			Managed: &v1alpha1.Port{},
 		},
 	})
 	if err != nil {

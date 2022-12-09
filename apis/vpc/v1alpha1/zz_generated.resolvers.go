@@ -51,8 +51,8 @@ func (mg *PeeringConnection) ResolveReferences(ctx context.Context, c client.Rea
 		Reference:    mg.Spec.ForProvider.PeerVPCIDRef,
 		Selector:     mg.Spec.ForProvider.PeerVPCIDSelector,
 		To: reference.To{
-			List:    &VpcList{},
-			Managed: &Vpc{},
+			List:    &VPCList{},
+			Managed: &VPC{},
 		},
 	})
 	if err != nil {
@@ -67,8 +67,8 @@ func (mg *PeeringConnection) ResolveReferences(ctx context.Context, c client.Rea
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &VpcList{},
-			Managed: &Vpc{},
+			List:    &VPCList{},
+			Managed: &VPC{},
 		},
 	})
 	if err != nil {
@@ -161,8 +161,8 @@ func (mg *Route) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &VpcList{},
-			Managed: &Vpc{},
+			List:    &VPCList{},
+			Managed: &VPC{},
 		},
 	})
 	if err != nil {
@@ -188,8 +188,8 @@ func (mg *RouteTable) ResolveReferences(ctx context.Context, c client.Reader) er
 		References:    mg.Spec.ForProvider.SubnetsRefs,
 		Selector:      mg.Spec.ForProvider.SubnetsSelector,
 		To: reference.To{
-			List:    &SubnetList{},
-			Managed: &Subnet{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -204,8 +204,8 @@ func (mg *RouteTable) ResolveReferences(ctx context.Context, c client.Reader) er
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &VpcList{},
-			Managed: &Vpc{},
+			List:    &VPCList{},
+			Managed: &VPC{},
 		},
 	})
 	if err != nil {
@@ -230,8 +230,8 @@ func (mg *RouterInterface) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &NetworkPortList{},
-			Managed: &NetworkPort{},
+			List:    &PortList{},
+			Managed: &Port{},
 		},
 	})
 	if err != nil {
@@ -262,8 +262,8 @@ func (mg *RouterInterface) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &SubnetList{},
-			Managed: &Subnet{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -330,8 +330,8 @@ func (mg *VPCSubnet) ResolveReferences(ctx context.Context, c client.Reader) err
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &VpcList{},
-			Managed: &Vpc{},
+			List:    &VPCList{},
+			Managed: &VPC{},
 		},
 	})
 	if err != nil {
@@ -372,8 +372,8 @@ func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &SubnetList{},
-			Managed: &Subnet{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {

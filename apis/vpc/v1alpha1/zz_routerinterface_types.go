@@ -19,15 +19,15 @@ type RouterInterfaceObservation struct {
 
 type RouterInterfaceParameters struct {
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.NetworkPort
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
-	// Reference to a NetworkPort in vpc to populate portId.
+	// Reference to a Port in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDRef *v1.Reference `json:"portIdRef,omitempty" tf:"-"`
 
-	// Selector for a NetworkPort in vpc to populate portId.
+	// Selector for a Port in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
@@ -46,15 +46,15 @@ type RouterInterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	RouterIDSelector *v1.Selector `json:"routerIdSelector,omitempty" tf:"-"`
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Subnet
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a Subnet in vpc to populate subnetId.
+	// Reference to a VPCSubnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a Subnet in vpc to populate subnetId.
+	// Selector for a VPCSubnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }

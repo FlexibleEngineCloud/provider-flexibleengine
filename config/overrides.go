@@ -18,7 +18,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			//vpc_id is a reference to a Vpc resource
 			case "vpc_id":
 				r.References["vpc_id"] = config.Reference{
-					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Vpc",
+					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPC",
 				}
 				// router_id is a reference to a Router resource
 			case "router_id":
@@ -33,7 +33,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 					}
 				} else {
 					r.References["subnet_id"] = config.Reference{
-						Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Subnet",
+						Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPCSubnet",
 					}
 				}
 				// network_id is a reference to a Network resource
@@ -49,7 +49,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				// port_id is a reference to a NetworkPort resource
 			case "port_id":
 				r.References["port_id"] = config.Reference{
-					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.NetworkPort",
+					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Port",
 				}
 			}
 		}

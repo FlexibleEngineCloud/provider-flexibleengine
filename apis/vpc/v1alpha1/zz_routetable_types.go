@@ -31,27 +31,27 @@ type RouteTableParameters struct {
 	// +kubebuilder:validation:Optional
 	Route []RouteTableRouteParameters `json:"route,omitempty" tf:"route,omitempty"`
 
-	// +crossplane:generate:reference:type=Subnet
+	// +crossplane:generate:reference:type=VPCSubnet
 	// +kubebuilder:validation:Optional
 	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
 
-	// References to Subnet to populate subnets.
+	// References to VPCSubnet to populate subnets.
 	// +kubebuilder:validation:Optional
 	SubnetsRefs []v1.Reference `json:"subnetsRefs,omitempty" tf:"-"`
 
-	// Selector for a list of Subnet to populate subnets.
+	// Selector for a list of VPCSubnet to populate subnets.
 	// +kubebuilder:validation:Optional
 	SubnetsSelector *v1.Selector `json:"subnetsSelector,omitempty" tf:"-"`
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Vpc
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
-	// Reference to a Vpc in vpc to populate vpcId.
+	// Reference to a VPC in vpc to populate vpcId.
 	// +kubebuilder:validation:Optional
 	VPCIDRef *v1.Reference `json:"vpcIdRef,omitempty" tf:"-"`
 
-	// Selector for a Vpc in vpc to populate vpcId.
+	// Selector for a VPC in vpc to populate vpcId.
 	// +kubebuilder:validation:Optional
 	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
