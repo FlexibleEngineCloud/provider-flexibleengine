@@ -34,8 +34,8 @@ import (
 	network "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/network"
 	networkport "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networkport"
 	networksubnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networksubnet"
-	peering "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peering"
-	peeringaccepter "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peeringaccepter"
+	peeringconnection "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peeringconnection"
+	peeringconnectionaccepter "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peeringconnectionaccepter"
 	route "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/route"
 	router "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/router"
 	routerinterface "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routerinterface"
@@ -77,8 +77,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		network.Setup,
 		networkport.Setup,
 		networksubnet.Setup,
-		peering.Setup,
-		peeringaccepter.Setup,
+		peeringconnection.Setup,
+		peeringconnectionaccepter.Setup,
 		route.Setup,
 		router.Setup,
 		routerinterface.Setup,

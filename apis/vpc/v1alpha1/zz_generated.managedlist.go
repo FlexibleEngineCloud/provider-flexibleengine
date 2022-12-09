@@ -88,8 +88,8 @@ func (l *NetworkSubnetList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this PeeringAccepterList.
-func (l *PeeringAccepterList) GetItems() []resource.Managed {
+// GetItems of this PeeringConnectionAccepterList.
+func (l *PeeringConnectionAccepterList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -97,8 +97,8 @@ func (l *PeeringAccepterList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this PeeringList.
-func (l *PeeringList) GetItems() []resource.Managed {
+// GetItems of this PeeringConnectionList.
+func (l *PeeringConnectionList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

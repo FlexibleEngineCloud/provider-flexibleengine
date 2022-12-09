@@ -43,20 +43,42 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_vpc_route", func(r *config.Resource) {
 		r.Kind = "Route"
 
+		// vpc_id is the ID of the VPC
+		r.References["vpc_id"] = config.Reference{
+			Type: "Vpc",
+		}
+
 		// route_table_id is the ID of the Route Table
 		r.References["route_table_id"] = config.Reference{
 			Type: "RouteTable",
 		}
+
+		// TODO nexthop
+		/*
+			nexthop (Required, String) - Specifies the next hop.
+				If the route type is ecs, the value is an ECS instance ID in the VPC.
+				If the route type is eni, the value is the extension NIC of an ECS in the VPC.
+				If the route type is vip, the value is a virtual IP address.
+				If the route type is nat, the value is a VPN gateway ID.
+				If the route type is peering, the value is a VPC peering connection ID.
+				If the route type is vpn, the value is a VPN gateway ID.
+				If the route type is dc, the value is a Direct Connect gateway ID.
+		*/
 
 	})
 
 	// flexibleengine_vpc_peering_connection_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_peering_v2
 	p.AddResourceConfigurator("flexibleengine_vpc_peering_connection_v2", func(r *config.Resource) {
-		r.Kind = "Peering"
+		r.Kind = "PeeringConnection"
 
 		// vpc_id is the ID of the VPC
 		r.References["vpc_id"] = config.Reference{
+			Type: "Vpc",
+		}
+
+		// peer_vpc_id is the ID of the peer VPC
+		r.References["peer_vpc_id"] = config.Reference{
 			Type: "Vpc",
 		}
 
@@ -65,7 +87,7 @@ func Configure(p *config.Provider) {
 	// flexibleengine_vpc_peering_connection_accepter_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_peering_accepter_v2
 	p.AddResourceConfigurator("flexibleengine_vpc_peering_connection_accepter_v2", func(r *config.Resource) {
-		r.Kind = "PeeringAccepter"
+		r.Kind = "PeeringConnectionAccepter"
 
 		// vpc_id is the ID of the VPC
 		r.References["vpc_id"] = config.Reference{
@@ -73,8 +95,8 @@ func Configure(p *config.Provider) {
 		}
 
 		// peering_id is the ID of the VPC Peering Connection
-		r.References["peering_id"] = config.Reference{
-			Type: "Peering",
+		r.References["vpc_peering_connection_id"] = config.Reference{
+			Type: "PeeringConnection",
 		}
 
 	})
@@ -183,12 +205,11 @@ func Configure(p *config.Provider) {
 	// flexibleengine_networking_vip_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_vip_v2
 	p.AddResourceConfigurator("flexibleengine_networking_vip_v2", func(r *config.Resource) {
-		r.ShortGroup = "vpc"
 		r.Kind = "Vip"
 
 		// network_id is the ID of the network to which this subnet will be attached.
 		r.References["network_id"] = config.Reference{
-			Type: "Network",
+			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Network",
 		}
 
 		// subnet_id is the ID of the subnet to which this VIP will be attached.
@@ -200,7 +221,6 @@ func Configure(p *config.Provider) {
 	// flexibleengine_networking_vip_associate_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_vip_associate_v2
 	p.AddResourceConfigurator("flexibleengine_networking_vip_associate_v2", func(r *config.Resource) {
-		r.ShortGroup = "vpc"
 		r.Kind = "VipAssociate"
 
 		// vip_id is the ID of the VIP to associate.
@@ -212,85 +232,6 @@ func Configure(p *config.Provider) {
 		r.References["port_ids"] = config.Reference{
 			Type: "NetworkPort",
 		}
-	})
-
-	// flexibleengine_vpc_eip
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_eip
-	// * This resource not required configuration
-
-	// flexibleengine_vpc_eip_associate
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_eip_associate
-	p.AddResourceConfigurator("flexibleengine_vpc_eip_associate", func(r *config.Resource) {
-		r.Kind = "EIPAssociate"
-
-		// eip_id is the ID of the EIP to associate.
-		r.References["network_id"] = config.Reference{
-			Type: "Network",
-		}
-
-		// port_id is the ID of the port to associate.
-		r.References["port_id"] = config.Reference{
-			Type: "NetworkPort",
-		}
-	})
-
-	// flexibleengine_vpcep_service
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpcep_service
-	p.AddResourceConfigurator("flexibleengine_vpcep_service", func(r *config.Resource) {
-		r.ShortGroup = "vpc"
-		r.Kind = "EndpointService"
-
-		// vpc_id is the ID of the VPC to which this endpoint service will be attached.
-		r.References["vpc_id"] = config.Reference{
-			Type: "Vpc",
-		}
-
-		// port_id is the ID of the port to associate.
-		r.References["port_id"] = config.Reference{
-			Type: "NetworkPort",
-		}
-
-	})
-
-	// flexibleengine_vpcep_endpoint
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpcep_endpoint
-	p.AddResourceConfigurator("flexibleengine_vpcep_endpoint", func(r *config.Resource) {
-		r.ShortGroup = "vpc"
-		r.Kind = "Endpoint"
-
-		// vpc_id is the ID of the VPC to which this endpoint will be attached.
-		r.References["vpc_id"] = config.Reference{
-			Type: "Vpc",
-		}
-
-		// network_id is the ID of the network to which this endpoint will be attached.
-		r.References["network_id"] = config.Reference{
-			Type: "Network",
-		}
-
-		// service_id is the ID of the service to which this endpoint will be attached.
-		r.References["service_id"] = config.Reference{
-			Type: "EndpointService",
-		}
-
-	})
-
-	// flexibleengine_vpcep_approval
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpcep_approval
-	p.AddResourceConfigurator("flexibleengine_vpcep_approval", func(r *config.Resource) {
-		r.ShortGroup = "vpc"
-		r.Kind = "EndpointApproval"
-
-		// endpoint_id is the ID of the endpoint to which this approval will be attached.
-		r.References["endpoint_id"] = config.Reference{
-			Type: "EndPoint",
-		}
-
-		// service_id is the ID of the service to which this approval will be attached.
-		r.References["service_id"] = config.Reference{
-			Type: "EndpointService",
-		}
-
 	})
 
 }
