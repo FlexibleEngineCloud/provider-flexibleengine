@@ -1,7 +1,3 @@
-/*
-Copyright 2021 Upbound Inc.
-*/
-
 package config
 
 import (
@@ -43,6 +39,9 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
+		ecs.Configure,
+		eip.Configure,
+		iam.Configure,
 		vpc.Configure,
 		vpcep.Configure,
 		eip.Configure,
