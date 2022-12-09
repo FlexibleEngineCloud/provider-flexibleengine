@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # In python get all .md files in this direcotry (.work/FlexibleEngineCloud/flexibleengine/docs/resources) and extract title for each file
 # Then generate a list of resources in markdown format
 # Check if title is already implemented in config/external_name.go
@@ -11,7 +13,7 @@ for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/
         if file.endswith('.md'):
             with open('.work/FlexibleEngineCloud/flexibleengine/docs/resources/'+file) as f:
                 for line in f:
-                    if line.startswith('# flexibleengine_'):
+                    if line.startswith('# flexibleengine'):
                         # Define var found to check if resource is already implemented
                         found = False
                         with open('config/external_name.go') as x:
