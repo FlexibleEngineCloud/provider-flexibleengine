@@ -1,8 +1,6 @@
 package config
 
 import (
-	"strings"
-
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -55,14 +53,5 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				}
 			}
 		}
-	}
-}
-
-// RemoveVersion removes the version field from the ressource name
-func RemoveVersion() config.ResourceOption { //nolint:gocyclo
-	return func(r *config.Resource) {
-		// if Kind contains version, remove it (Version pattern: _v[0-9]+)
-		// ex: "Vpc_v1" -> "Vpc"
-		r.Kind = strings.ReplaceAll(r.Kind, "_v[0-9]+", "")
 	}
 }

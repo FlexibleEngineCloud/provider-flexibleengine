@@ -169,7 +169,7 @@ spec:
                   vpcId:
                     type: string
                   vpcIdRef:
-                    description: Reference to a Vpc to populate vpcId.
+                    description: Reference to a Vpc in vpc to populate vpcId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -203,7 +203,7 @@ spec:
                     - name
                     type: object
                   vpcIdSelector:
-                    description: Selector for a Vpc to populate vpcId.
+                    description: Selector for a Vpc in vpc to populate vpcId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

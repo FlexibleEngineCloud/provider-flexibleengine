@@ -4,9 +4,9 @@ import "github.com/upbound/upjet/pkg/config"
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
-	p.AddResourceConfigurator("flexibleengine_identity_agency_v3", func(r *config.Resource) {
-		r.Kind = "Agency"
-	})
+	// p.AddResourceConfigurator("flexibleengine_identity_agency_v3", func(r *config.Resource) {
+	// 	r.Kind = "Agency"
+	// })
 	p.AddResourceConfigurator("flexibleengine_identity_group_membership_v3", func(r *config.Resource) {
 		r.References["group"] = config.Reference{
 			Type: "Group",

@@ -9,8 +9,10 @@ import (
 	_ "embed"
 
 	"github.com/gaetanars/provider-flexibleengine/config/ecs"
+	"github.com/gaetanars/provider-flexibleengine/config/eip"
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
+	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
@@ -32,15 +34,18 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
-			RemoveVersion(),
 			KnownReferencers(),
 			GroupKindOverrides(),
 			KindOverrides(),
+			// KindRemoveVersion END
+			KindRemoveVersion(),
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		vpc.Configure,
+		vpcep.Configure,
+		eip.Configure,
 		iam.Configure,
 		ecs.Configure,
 	} {

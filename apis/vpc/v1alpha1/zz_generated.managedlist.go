@@ -7,53 +7,8 @@ package v1alpha1
 
 import resource "github.com/crossplane/crossplane-runtime/pkg/resource"
 
-// GetItems of this EIPAssociateList.
-func (l *EIPAssociateList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this EIPList.
-func (l *EIPList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this EndpointApprovalList.
-func (l *EndpointApprovalList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this EndpointList.
-func (l *EndpointList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this EndpointServiceList.
-func (l *EndpointServiceList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this FlowLogV1List.
-func (l *FlowLogV1List) GetItems() []resource.Managed {
+// GetItems of this FlowLogList.
+func (l *FlowLogList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -70,17 +25,8 @@ func (l *NetworkList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this NetworkPortList.
-func (l *NetworkPortList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this NetworkSubnetList.
-func (l *NetworkSubnetList) GetItems() []resource.Managed {
+// GetItems of this NetworkingSubnetList.
+func (l *NetworkingSubnetList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -99,6 +45,15 @@ func (l *PeeringConnectionAccepterList) GetItems() []resource.Managed {
 
 // GetItems of this PeeringConnectionList.
 func (l *PeeringConnectionList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this PortList.
+func (l *PortList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -142,6 +97,15 @@ func (l *RouterList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this SecgroupRuleList.
+func (l *SecgroupRuleList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this SecurityGroupList.
 func (l *SecurityGroupList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -151,8 +115,8 @@ func (l *SecurityGroupList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this SecurityGroupRuleList.
-func (l *SecurityGroupRuleList) GetItems() []resource.Managed {
+// GetItems of this VPCList.
+func (l *VPCList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -160,8 +124,8 @@ func (l *SecurityGroupRuleList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this SubnetList.
-func (l *SubnetList) GetItems() []resource.Managed {
+// GetItems of this VPCSubnetList.
+func (l *VPCSubnetList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -180,15 +144,6 @@ func (l *VipAssociateList) GetItems() []resource.Managed {
 
 // GetItems of this VipList.
 func (l *VipList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this VpcList.
-func (l *VpcList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

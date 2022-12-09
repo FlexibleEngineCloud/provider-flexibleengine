@@ -23,29 +23,11 @@ type VipAssociateObservation struct {
 
 type VipAssociateParameters struct {
 
-	// +crossplane:generate:reference:type=NetworkPort
-	// +kubebuilder:validation:Optional
-	PortIds []*string `json:"portIds,omitempty" tf:"port_ids,omitempty"`
+	// +kubebuilder:validation:Required
+	PortIds []*string `json:"portIds" tf:"port_ids,omitempty"`
 
-	// References to NetworkPort to populate portIds.
-	// +kubebuilder:validation:Optional
-	PortIdsRefs []v1.Reference `json:"portIdsRefs,omitempty" tf:"-"`
-
-	// Selector for a list of NetworkPort to populate portIds.
-	// +kubebuilder:validation:Optional
-	PortIdsSelector *v1.Selector `json:"portIdsSelector,omitempty" tf:"-"`
-
-	// +crossplane:generate:reference:type=Vip
-	// +kubebuilder:validation:Optional
-	VipID *string `json:"vipId,omitempty" tf:"vip_id,omitempty"`
-
-	// Reference to a Vip to populate vipId.
-	// +kubebuilder:validation:Optional
-	VipIDRef *v1.Reference `json:"vipIdRef,omitempty" tf:"-"`
-
-	// Selector for a Vip to populate vipId.
-	// +kubebuilder:validation:Optional
-	VipIDSelector *v1.Selector `json:"vipIdSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	VipID *string `json:"vipId" tf:"vip_id,omitempty"`
 }
 
 // VipAssociateSpec defines the desired state of VipAssociate

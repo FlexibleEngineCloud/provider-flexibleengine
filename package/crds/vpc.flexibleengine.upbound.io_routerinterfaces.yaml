@@ -67,7 +67,7 @@ spec:
                   portId:
                     type: string
                   portIdRef:
-                    description: Reference to a NetworkPort to populate portId.
+                    description: Reference to a NetworkPort in vpc to populate portId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -101,7 +101,7 @@ spec:
                     - name
                     type: object
                   portIdSelector:
-                    description: Selector for a NetworkPort to populate portId.
+                    description: Selector for a NetworkPort in vpc to populate portId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -144,7 +144,7 @@ spec:
                   routerId:
                     type: string
                   routerIdRef:
-                    description: Reference to a Router to populate routerId.
+                    description: Reference to a Router in vpc to populate routerId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -178,7 +178,7 @@ spec:
                     - name
                     type: object
                   routerIdSelector:
-                    description: Selector for a Router to populate routerId.
+                    description: Selector for a Router in vpc to populate routerId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -219,7 +219,7 @@ spec:
                   subnetId:
                     type: string
                   subnetIdRef:
-                    description: Reference to a Subnet to populate subnetId.
+                    description: Reference to a Subnet in vpc to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -253,7 +253,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a Subnet to populate subnetId.
+                    description: Selector for a Subnet in vpc to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

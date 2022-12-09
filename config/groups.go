@@ -1,9 +1,12 @@
 package config
 
 import (
+	"fmt"
+	"regexp"
 	"strings"
 
 	"github.com/upbound/upjet/pkg/config"
+
 	"github.com/upbound/upjet/pkg/types/name"
 )
 
@@ -26,6 +29,33 @@ func KindOverrides() config.ResourceOption {
 	}
 }
 
+func RemoveVersion(Name string) []string {
+	// Replace string with regex
+
+	rg := regexp.MustCompile(`_v[0-9]+`)
+	y := rg.ReplaceAllString(Name, "")
+
+	return strings.Split(strings.TrimPrefix(y, fmt.Sprintf("%s_", resourcePrefix)), "_")
+
+}
+
+func RemoveGroup(Name []string) string {
+	return strings.Join(Name[1:], "_")
+}
+
+func KindRemoveVersion() config.ResourceOption {
+	return func(r *config.Resource) {
+		matchedName, _ := regexp.MatchString(`_v[0-9]+`, r.Name)
+		matchedKind, _ := regexp.MatchString(`V[0-9]+`, r.Kind)
+
+		if (r.Kind == "" && matchedName) || matchedKind {
+
+			r.Kind = name.NewFromSnake(RemoveGroup(RemoveVersion(r.Name))).Camel
+
+		}
+	}
+}
+
 // GroupKindCalculator returns the correct group and kind name for given TF
 // resource.
 type GroupKindCalculator func(resource string) (string, string)
@@ -34,7 +64,8 @@ type GroupKindCalculator func(resource string) (string, string)
 // a number of words in resource name before calculating the kind of the resource.
 func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 	return func(resource string) (string, string) {
-		words := strings.Split(strings.TrimPrefix(resource, "flexibleengine_"), "_")
+		// words := strings.Split(strings.TrimPrefix(resource, "flexibleengine_"), "_")
+		words := RemoveVersion(resource)
 		snakeKind := strings.Join(words[count:], "_")
 		return group, name.NewFromSnake(snakeKind).Camel
 	}
