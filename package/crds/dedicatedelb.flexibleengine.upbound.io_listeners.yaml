@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: listeners.dedicatedelb.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: dedicatedelb.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: Listener
+    listKind: ListenerList
+    plural: listeners
+    singular: listener
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Vip is the Schema for the Vips API. <no value>
+        description: Listener is the Schema for the Listeners API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: ListenerSpec defines the desired state of Listener
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,14 +63,334 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
+                  accessPolicy:
                     type: string
+                  advancedForwardingEnabled:
+                    type: boolean
+                  caCertificate:
+                    type: string
+                  caCertificateRef:
+                    description: Reference to a Certificate to populate caCertificate.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  caCertificateSelector:
+                    description: Selector for a Certificate to populate caCertificate.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  defaultPoolId:
+                    type: string
+                  defaultPoolIdRef:
+                    description: Reference to a Pool to populate defaultPoolId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  defaultPoolIdSelector:
+                    description: Selector for a Pool to populate defaultPoolId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  description:
+                    type: string
+                  forwardEip:
+                    type: boolean
+                  http2Enable:
+                    type: boolean
+                  idleTimeout:
+                    type: number
+                  ipGroup:
+                    type: string
+                  ipGroupRef:
+                    description: Reference to a IPGroup to populate ipGroup.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  ipGroupSelector:
+                    description: Selector for a IPGroup to populate ipGroup.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  loadbalancerId:
+                    type: string
+                  loadbalancerIdRef:
+                    description: Reference to a LoadBalancer to populate loadbalancerId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  loadbalancerIdSelector:
+                    description: Selector for a LoadBalancer to populate loadbalancerId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   name:
                     type: string
-                  networkId:
+                  protocol:
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  protocolPort:
+                    type: number
+                  region:
+                    type: string
+                  requestTimeout:
+                    type: number
+                  responseTimeout:
+                    type: number
+                  serverCertificate:
+                    type: string
+                  serverCertificateRef:
+                    description: Reference to a Certificate to populate serverCertificate.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -103,8 +423,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  serverCertificateSelector:
+                    description: Selector for a Certificate to populate serverCertificate.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -142,44 +462,49 @@ spec:
                             type: string
                         type: object
                     type: object
-                  subnetId:
-                    type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
+                  sniCertificate:
+                    items:
+                      type: string
+                    type: array
+                  sniCertificateRefs:
+                    description: References to Certificate to populate sniCertificate.
+                    items:
+                      description: A Reference to a named object.
+                      properties:
+                        name:
+                          description: Name of the referenced object.
+                          type: string
+                        policy:
+                          description: Policies for referencing.
+                          properties:
+                            resolution:
+                              default: Required
+                              description: Resolution specifies whether resolution
+                                of this reference is required. The default is 'Required',
+                                which means the reconcile will fail if the reference
+                                cannot be resolved. 'Optional' means this reference
+                                will be a no-op if it cannot be resolved.
+                              enum:
+                              - Required
+                              - Optional
+                              type: string
+                            resolve:
+                              description: Resolve specifies when this reference should
+                                be resolved. The default is 'IfNotPresent', which
+                                will attempt to resolve the reference only when the
+                                corresponding field is not present. Use 'Always' to
+                                resolve the reference on every reconcile.
+                              enum:
+                              - Always
+                              - IfNotPresent
+                              type: string
+                          type: object
+                      required:
+                      - name
+                      type: object
+                    type: array
+                  sniCertificateSelector:
+                    description: Selector for a list of Certificate to populate sniCertificate.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -217,6 +542,15 @@ spec:
                             type: string
                         type: object
                     type: object
+                  tags:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  tlsCiphersPolicy:
+                    type: string
+                required:
+                - protocol
+                - protocolPort
                 type: object
               providerConfigRef:
                 default:
@@ -390,17 +724,11 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: ListenerStatus defines the observed state of Listener.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    type: string
                   id:
-                    type: string
-                  status:
-                    type: string
-                  tenantId:
                     type: string
                 type: object
               conditions:

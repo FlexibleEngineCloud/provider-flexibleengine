@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: members.dedicatedelb.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: dedicatedelb.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: Member
+    listKind: MemberList
+    plural: members
+    singular: member
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Vip is the Schema for the Vips API. <no value>
+        description: Member is the Schema for the Members API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: MemberSpec defines the desired state of Member
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,14 +63,14 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
+                  address:
                     type: string
                   name:
                     type: string
-                  networkId:
+                  poolId:
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  poolIdRef:
+                    description: Reference to a Pool to populate poolId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -103,8 +103,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  poolIdSelector:
+                    description: Selector for a Pool to populate poolId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -142,7 +142,13 @@ spec:
                             type: string
                         type: object
                     type: object
+                  protocolPort:
+                    type: number
+                  region:
+                    type: string
                   subnetId:
+                    description: The IPv4 or IPv6 subnet ID of the subnet in which
+                      to access the member
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.
@@ -217,6 +223,11 @@ spec:
                             type: string
                         type: object
                     type: object
+                  weight:
+                    type: number
+                required:
+                - address
+                - protocolPort
                 type: object
               providerConfigRef:
                 default:
@@ -390,17 +401,11 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: MemberStatus defines the observed state of Member.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    type: string
                   id:
-                    type: string
-                  status:
-                    type: string
-                  tenantId:
                     type: string
                 type: object
               conditions:

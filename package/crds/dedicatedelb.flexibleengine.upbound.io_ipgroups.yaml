@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: ipgroups.dedicatedelb.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: dedicatedelb.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: IPGroup
+    listKind: IPGroupList
+    plural: ipgroups
+    singular: ipgroup
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Vip is the Schema for the Vips API. <no value>
+        description: IPGroup is the Schema for the IPGroups API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: IPGroupSpec defines the desired state of IPGroup
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,160 +63,28 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
+                  description:
                     type: string
+                  enterpriseProjectId:
+                    type: string
+                  ipList:
+                    items:
+                      properties:
+                        description:
+                          type: string
+                        ip:
+                          type: string
+                      required:
+                      - ip
+                      type: object
+                    type: array
                   name:
                     type: string
-                  networkId:
+                  region:
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  subnetId:
-                    type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                required:
+                - ipList
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -390,17 +258,11 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: IPGroupStatus defines the observed state of IPGroup.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    type: string
                   id:
-                    type: string
-                  status:
-                    type: string
-                  tenantId:
                     type: string
                 type: object
               conditions:
