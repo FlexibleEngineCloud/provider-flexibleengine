@@ -14,17 +14,13 @@ import (
 )
 
 type ListenerObservation struct {
-<<<<<<< HEAD
 
 	// The unique ID for the listener.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type ListenerParameters struct {
 
-<<<<<<< HEAD
 	// Specifies the access policy for the listener. Valid options are white and
 	// black.
 	// +kubebuilder:validation:Optional
@@ -37,14 +33,6 @@ type ListenerParameters struct {
 
 	// Specifies the ID of the CA certificate used by the listener.
 	// This parameter is valid when protocol is set to HTTPS.
-=======
-	// +kubebuilder:validation:Optional
-	AccessPolicy *string `json:"accessPolicy,omitempty" tf:"access_policy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	AdvancedForwardingEnabled *bool `json:"advancedForwardingEnabled,omitempty" tf:"advanced_forwarding_enabled,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Certificate
 	// +kubebuilder:validation:Optional
 	CACertificate *string `json:"caCertificate,omitempty" tf:"ca_certificate,omitempty"`
@@ -57,11 +45,8 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	CACertificateSelector *v1.Selector `json:"caCertificateSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// The ID of the default pool with which the listener is associated. Changing this
 	// creates a new listener.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Pool
 	// +kubebuilder:validation:Optional
 	DefaultPoolID *string `json:"defaultPoolId,omitempty" tf:"default_pool_id,omitempty"`
@@ -74,7 +59,6 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	DefaultPoolIDSelector *v1.Selector `json:"defaultPoolIdSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Human-readable description for the listener.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -91,17 +75,6 @@ type ListenerParameters struct {
 	Http2Enable *bool `json:"http2Enable,omitempty" tf:"http2_enable,omitempty"`
 
 	// Specifies the ip group id for the listener.
-=======
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ForwardEIP *bool `json:"forwardEip,omitempty" tf:"forward_eip,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Http2Enable *bool `json:"http2Enable,omitempty" tf:"http2_enable,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=IPGroup
 	// +kubebuilder:validation:Optional
 	IPGroup *string `json:"ipGroup,omitempty" tf:"ip_group,omitempty"`
@@ -114,18 +87,12 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	IPGroupSelector *v1.Selector `json:"ipGroupSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Specifies the idle timeout for the listener. Value range: 0 to 4000.
 	// +kubebuilder:validation:Optional
 	IdleTimeout *float64 `json:"idleTimeout,omitempty" tf:"idle_timeout,omitempty"`
 
 	// The load balancer on which to provision this listener. Changing this
 	// creates a new listener.
-=======
-	// +kubebuilder:validation:Optional
-	IdleTimeout *float64 `json:"idleTimeout,omitempty" tf:"idle_timeout,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=LoadBalancer
 	// +kubebuilder:validation:Optional
 	LoadbalancerID *string `json:"loadbalancerId,omitempty" tf:"loadbalancer_id,omitempty"`
@@ -138,7 +105,6 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	LoadbalancerIDSelector *v1.Selector `json:"loadbalancerIdSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Human-readable name for the listener.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -170,26 +136,6 @@ type ListenerParameters struct {
 
 	// Specifies the ID of the server certificate used by the listener.
 	// This parameter is mandatory when protocol is set to HTTPS.
-=======
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Required
-	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
-
-	// +kubebuilder:validation:Required
-	ProtocolPort *float64 `json:"protocolPort" tf:"protocol_port,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	RequestTimeout *float64 `json:"requestTimeout,omitempty" tf:"request_timeout,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ResponseTimeout *float64 `json:"responseTimeout,omitempty" tf:"response_timeout,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Certificate
 	// +kubebuilder:validation:Optional
 	ServerCertificate *string `json:"serverCertificate,omitempty" tf:"server_certificate,omitempty"`
@@ -202,11 +148,8 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	ServerCertificateSelector *v1.Selector `json:"serverCertificateSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Lists the IDs of SNI certificates (server certificates with a domain name) used
 	// by the listener. This parameter is valid when protocol is set to HTTPS.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Certificate
 	// +kubebuilder:validation:Optional
 	SniCertificate []*string `json:"sniCertificate,omitempty" tf:"sni_certificate,omitempty"`
@@ -219,7 +162,6 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	SniCertificateSelector *v1.Selector `json:"sniCertificateSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Specifies the TLS cipher policy for the listener. Valid options are:
 	// tls-1-0-inherit, tls-1-0, tls-1-1, tls-1-2, tls-1-2-strict, tls-1-2-fs, tls-1-0-with-1-3, and tls-1-2-fs-with-1-3.
 	// This parameter is valid when protocol is set to HTTPS.
@@ -227,11 +169,6 @@ type ListenerParameters struct {
 	TLSCiphersPolicy *string `json:"tlsCiphersPolicy,omitempty" tf:"tls_ciphers_policy,omitempty"`
 
 	// The key/value pairs to associate with the listener.
-=======
-	// +kubebuilder:validation:Optional
-	TLSCiphersPolicy *string `json:"tlsCiphersPolicy,omitempty" tf:"tls_ciphers_policy,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
@@ -250,11 +187,7 @@ type ListenerStatus struct {
 
 // +kubebuilder:object:root=true
 
-<<<<<<< HEAD
 // Listener is the Schema for the Listeners API. ""page_title: "flexibleengine_lb_listener_v3"
-=======
-// Listener is the Schema for the Listeners API. <no value>
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

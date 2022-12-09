@@ -18,7 +18,6 @@ type PersistenceObservation struct {
 
 type PersistenceParameters struct {
 
-<<<<<<< HEAD
 	// Specifies the name of the cookie if persistence mode is set
 	// appropriately. Required if type = APP_COOKIE.
 	// +kubebuilder:validation:Optional
@@ -31,30 +30,18 @@ type PersistenceParameters struct {
 
 	// Specifies the type of persistence mode. The current specification supports
 	// SOURCE_IP, HTTP_COOKIE, and APP_COOKIE.
-=======
-	// +kubebuilder:validation:Optional
-	CookieName *string `json:"cookieName,omitempty" tf:"cookie_name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 }
 
 type PoolObservation struct {
-<<<<<<< HEAD
 
 	// The unique ID for the pool.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type PoolParameters struct {
 
-<<<<<<< HEAD
 	// Specifies the description for the pool.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -67,14 +54,6 @@ type PoolParameters struct {
 	// Specifies the listener on which the members of the pool will be
 	// associated with.
 	// Changing this creates a new pool. Note:  Exactly one of LoadbalancerID or ListenerID must be provided.
-=======
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Required
-	LBMethod *string `json:"lbMethod" tf:"lb_method,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Listener
 	// +kubebuilder:validation:Optional
 	ListenerID *string `json:"listenerId,omitempty" tf:"listener_id,omitempty"`
@@ -87,11 +66,8 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ListenerIDSelector *v1.Selector `json:"listenerIdSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Specifies the load balancer on which to provision this pool.
 	// Changing this creates a new pool. Note:  Exactly one of LoadbalancerID or ListenerID must be provided.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=LoadBalancer
 	// +kubebuilder:validation:Optional
 	LoadbalancerID *string `json:"loadbalancerId,omitempty" tf:"loadbalancer_id,omitempty"`
@@ -104,7 +80,6 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	LoadbalancerIDSelector *v1.Selector `json:"loadbalancerIdSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Specifies the name for the pool.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -122,17 +97,6 @@ type PoolParameters struct {
 
 	// Specifies the region in which to create the ELB pool resource.
 	// Changing this creates a new pool.
-=======
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Persistence []PersistenceParameters `json:"persistence,omitempty" tf:"persistence,omitempty"`
-
-	// +kubebuilder:validation:Required
-	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -151,11 +115,7 @@ type PoolStatus struct {
 
 // +kubebuilder:object:root=true
 
-<<<<<<< HEAD
 // Pool is the Schema for the Pools API. ""page_title: "flexibleengine_lb_pool_v3"
-=======
-// Pool is the Schema for the Pools API. <no value>
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

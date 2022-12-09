@@ -372,8 +372,8 @@ func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &VPCSubnetList{},
-			Managed: &VPCSubnet{},
+			List:    &NetworkingSubnetList{},
+			Managed: &NetworkingSubnet{},
 		},
 	})
 	if err != nil {

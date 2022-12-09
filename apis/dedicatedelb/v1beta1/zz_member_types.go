@@ -14,17 +14,13 @@ import (
 )
 
 type MemberObservation struct {
-<<<<<<< HEAD
 
 	// The unique ID for the member.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type MemberParameters struct {
 
-<<<<<<< HEAD
 	// Specifies the IP address of the member to receive traffic from the
 	// load balancer. Changing this creates a new member.
 	// +kubebuilder:validation:Required
@@ -35,14 +31,6 @@ type MemberParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Specifies the id of the pool that this member will be assigned to.
-=======
-	// +kubebuilder:validation:Required
-	Address *string `json:"address" tf:"address,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Pool
 	// +kubebuilder:validation:Optional
 	PoolID *string `json:"poolId,omitempty" tf:"pool_id,omitempty"`
@@ -55,7 +43,6 @@ type MemberParameters struct {
 	// +kubebuilder:validation:Optional
 	PoolIDSelector *v1.Selector `json:"poolIdSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Specifies the port on which to listen for client traffic.
 	// Changing this creates a new member.
 	// +kubebuilder:validation:Required
@@ -71,14 +58,6 @@ type MemberParameters struct {
 	// If this parameter is not passed, cross-VPC backend has been enabled for the load balancer. In this case,
 	// cross-VPC backend servers must use private IPv4 addresses, and the protocol of the backend server group
 	// must be TCP, HTTP, or HTTPS.
-=======
-	// +kubebuilder:validation:Required
-	ProtocolPort *float64 `json:"protocolPort" tf:"protocol_port,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// The IPv4 or IPv6 subnet ID of the subnet in which to access the member
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
@@ -92,12 +71,9 @@ type MemberParameters struct {
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 
-<<<<<<< HEAD
 	// Specifies the positive integer value that indicates the relative portion of traffic
 	// that this member should receive from the pool. For example, a member with a weight of 10 receives five times as
 	// much traffic as a member with a weight of 2.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
@@ -116,11 +92,7 @@ type MemberStatus struct {
 
 // +kubebuilder:object:root=true
 
-<<<<<<< HEAD
 // Member is the Schema for the Members API. ""page_title: "flexibleengine_lb_member_v3"
-=======
-// Member is the Schema for the Members API. <no value>
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -14,17 +14,13 @@ import (
 )
 
 type IPGroupObservation struct {
-<<<<<<< HEAD
 
 	// The uuid of the ip group.
-=======
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type IPGroupParameters struct {
 
-<<<<<<< HEAD
 	// Specifies the description of the ip group.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -44,20 +40,6 @@ type IPGroupParameters struct {
 
 	// The region in which to create the ip group resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new ip group.
-=======
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnterpriseProjectID *string `json:"enterpriseProjectId,omitempty" tf:"enterprise_project_id,omitempty"`
-
-	// +kubebuilder:validation:Required
-	IPList []IPListParameters `json:"ipList" tf:"ip_list,omitempty"`
-
-	// +kubebuilder:validation:Required
-	Name *string `json:"name" tf:"name,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -67,17 +49,11 @@ type IPListObservation struct {
 
 type IPListParameters struct {
 
-<<<<<<< HEAD
 	// Human-readable description for the ip.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// IP address or CIDR block.
-=======
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Required
 	IP *string `json:"ip" tf:"ip,omitempty"`
 }
@@ -96,11 +72,7 @@ type IPGroupStatus struct {
 
 // +kubebuilder:object:root=true
 
-<<<<<<< HEAD
 // IPGroup is the Schema for the IPGroups API. ""page_title: "flexibleengine_elb_ipgroup"
-=======
-// IPGroup is the Schema for the IPGroups API. <no value>
->>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
