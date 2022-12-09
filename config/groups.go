@@ -79,6 +79,10 @@ func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 // The initial grouping is calculated based on folder grouping of AWS TF Provider
 // which is based on Go SDK. Here is the script used to fetch that list:
 // https://gist.github.com/muvaf/8d61365ffc1df7757864422ba16d7819
+// ! Warning do not consider _v[0-9]
+// ? Examples
+// ? "flexibleengine_vpc_subnet_v1": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: Subnet
+// ? "flexibleengine_networking_subnet_v2": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: NetWorkingSubnet
 var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_identity_agency_v3":              ReplaceGroupWords("iam", 1),
 	"flexibleengine_identity_group_membership_v3":    ReplaceGroupWords("iam", 1),

@@ -21,7 +21,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_vpcep_approval", func(r *config.Resource) {
 
 		// endpoint_id is the ID of the endpoint to which this approval will be attached.
-		r.References["endpoint_id"] = config.Reference{
+		r.References["endpoints"] = config.Reference{
 			Type: "EndPoint",
 		}
 
