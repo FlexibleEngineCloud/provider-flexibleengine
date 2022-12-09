@@ -62,15 +62,15 @@ type ServiceParameters struct {
 	// +kubebuilder:validation:Optional
 	Permissions []*string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.NetworkPort
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
-	// Reference to a Port in vpc to populate portId.
+	// Reference to a NetworkPort in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDRef *v1.Reference `json:"portIdRef,omitempty" tf:"-"`
 
-	// Selector for a Port in vpc to populate portId.
+	// Selector for a NetworkPort in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 

@@ -230,8 +230,8 @@ func (mg *RouterInterface) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &PortList{},
-			Managed: &Port{},
+			List:    &NetworkPortList{},
+			Managed: &NetworkPort{},
 		},
 	})
 	if err != nil {

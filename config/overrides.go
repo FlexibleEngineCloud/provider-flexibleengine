@@ -14,7 +14,9 @@ const (
 
 // Generate Type
 func GenerateType(Module, Type string) string {
-	return fmt.Sprintf("%s/apis/%s.%s", ModulePath, Version, Type)
+	// github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.VPC"
+
+	return fmt.Sprintf("%s/apis/%s/%s.%s", ModulePath, Module, Version, Type)
 }
 
 // KnownReferencers adds referencers for fields that are known and common among
@@ -30,13 +32,15 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			switch k {
 			// vpc_id is a reference to a Vpc resource
 			case "vpc_id":
+				x := GenerateType("vpc", "VPC")
 				r.References[k] = config.Reference{
-					Type: GenerateType("vpc", "VPC"),
+					Type: x,
 				}
 				// router_id is a reference to a Router resource
 			case "router_id":
+				x := GenerateType("vpc", "Router")
 				r.References[k] = config.Reference{
-					Type: GenerateType("vpc", "Router"),
+					Type: x,
 				}
 				// subnet_id is a reference to a Subnet resource
 			case "subnet_id":
@@ -51,8 +55,9 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				}
 				// network_id is a reference to a Network resource
 			case "network_id":
+				x := GenerateType("vpc", "Network")
 				r.References[k] = config.Reference{
-					Type: GenerateType("vpc", "Network"),
+					Type: x,
 				}
 				// security_group_id is a reference to a SecurityGroup resource
 			case "security_group_id":
@@ -71,6 +76,6 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 
 func defaultVersion() config.ResourceOption {
 	return func(r *config.Resource) {
-		r.Version = VersionV1Beta1
+		r.Version = Version
 	}
 }

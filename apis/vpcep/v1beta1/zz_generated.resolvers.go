@@ -127,8 +127,8 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &v1beta1.PortList{},
-			Managed: &v1beta1.Port{},
+			List:    &v1beta1.NetworkPortList{},
+			Managed: &v1beta1.NetworkPort{},
 		},
 	})
 	if err != nil {
