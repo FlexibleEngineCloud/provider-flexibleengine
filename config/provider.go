@@ -34,6 +34,8 @@ func GetProvider() *ujconfig.Provider {
 			ExternalNameConfigurations(),
 			RemoveVersion(),
 			KnownReferencers(),
+			GroupKindOverrides(),
+			KindOverrides(),
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
