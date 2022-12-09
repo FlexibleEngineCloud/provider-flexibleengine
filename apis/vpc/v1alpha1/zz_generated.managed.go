@@ -667,135 +667,135 @@ func (mg *RouterInterface) SetWriteConnectionSecretToReference(r *xpv1.SecretRef
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this SecgroupRule.
-func (mg *SecgroupRule) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this SecGroup.
+func (mg *SecGroup) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this SecgroupRule.
-func (mg *SecgroupRule) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this SecGroup.
+func (mg *SecGroup) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this SecgroupRule.
-func (mg *SecgroupRule) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this SecGroup.
+func (mg *SecGroup) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this SecgroupRule.
+GetProviderReference of this SecGroup.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *SecgroupRule) GetProviderReference() *xpv1.Reference {
+func (mg *SecGroup) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this SecgroupRule.
-func (mg *SecgroupRule) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this SecGroup.
+func (mg *SecGroup) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this SecgroupRule.
-func (mg *SecgroupRule) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this SecGroup.
+func (mg *SecGroup) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this SecgroupRule.
-func (mg *SecgroupRule) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this SecGroup.
+func (mg *SecGroup) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this SecgroupRule.
-func (mg *SecgroupRule) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this SecGroup.
+func (mg *SecGroup) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this SecgroupRule.
-func (mg *SecgroupRule) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this SecGroup.
+func (mg *SecGroup) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this SecgroupRule.
+SetProviderReference of this SecGroup.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *SecgroupRule) SetProviderReference(r *xpv1.Reference) {
+func (mg *SecGroup) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this SecgroupRule.
-func (mg *SecgroupRule) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this SecGroup.
+func (mg *SecGroup) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this SecgroupRule.
-func (mg *SecgroupRule) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this SecGroup.
+func (mg *SecGroup) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this SecurityGroup.
-func (mg *SecurityGroup) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this SecGroupRule.
+func (mg *SecGroupRule) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this SecurityGroup.
-func (mg *SecurityGroup) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this SecGroupRule.
+func (mg *SecGroupRule) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this SecurityGroup.
-func (mg *SecurityGroup) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this SecGroupRule.
+func (mg *SecGroupRule) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this SecurityGroup.
+GetProviderReference of this SecGroupRule.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *SecurityGroup) GetProviderReference() *xpv1.Reference {
+func (mg *SecGroupRule) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this SecurityGroup.
-func (mg *SecurityGroup) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this SecGroupRule.
+func (mg *SecGroupRule) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this SecurityGroup.
-func (mg *SecurityGroup) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this SecGroupRule.
+func (mg *SecGroupRule) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this SecurityGroup.
-func (mg *SecurityGroup) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this SecGroupRule.
+func (mg *SecGroupRule) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this SecurityGroup.
-func (mg *SecurityGroup) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this SecGroupRule.
+func (mg *SecGroupRule) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this SecurityGroup.
-func (mg *SecurityGroup) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this SecGroupRule.
+func (mg *SecGroupRule) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this SecurityGroup.
+SetProviderReference of this SecGroupRule.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *SecurityGroup) SetProviderReference(r *xpv1.Reference) {
+func (mg *SecGroupRule) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this SecurityGroup.
-func (mg *SecurityGroup) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this SecGroupRule.
+func (mg *SecGroupRule) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this SecurityGroup.
-func (mg *SecurityGroup) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this SecGroupRule.
+func (mg *SecGroupRule) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 

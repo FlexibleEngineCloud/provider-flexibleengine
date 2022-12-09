@@ -119,4 +119,6 @@ var KindMap = map[string]string{
 	"flexibleengine_compute_keypair_v2":              "KeyPair",
 	"flexibleengine_compute_servergroup_v2":          "ServerGroup",
 	"flexibleengine_compute_floatingip_associate_v2": "FloatingIpAssociate",
+	"flexibleengine_networking_secgroup_v2":          "SecGroup",
+	"flexibleengine_networking_secgroup_rule_v2":     "SecGroupRule",
 }

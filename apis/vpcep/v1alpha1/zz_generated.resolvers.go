@@ -18,7 +18,24 @@ func (mg *Approval) ResolveReferences(ctx context.Context, c client.Reader) erro
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
 	var err error
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Endpoints),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.EndpointsRefs,
+		Selector:      mg.Spec.ForProvider.EndpointsSelector,
+		To: reference.To{
+			List:    &EndPointList{},
+			Managed: &EndPoint{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Endpoints")
+	}
+	mg.Spec.ForProvider.Endpoints = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.EndpointsRefs = mrsp.ResolvedReferences
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ServiceID),

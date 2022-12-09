@@ -44,7 +44,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				// security_group_id is a reference to a SecurityGroup resource
 			case "security_group_id":
 				r.References["security_group_id"] = config.Reference{
-					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.SecurityGroup",
+					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.SecGroup",
 				}
 				// port_id is a reference to a NetworkPort resource
 			case "port_id":

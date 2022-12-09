@@ -275,8 +275,8 @@ func (mg *RouterInterface) ResolveReferences(ctx context.Context, c client.Reade
 	return nil
 }
 
-// ResolveReferences of this SecgroupRule.
-func (mg *SecgroupRule) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this SecGroupRule.
+func (mg *SecGroupRule) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -288,8 +288,8 @@ func (mg *SecgroupRule) ResolveReferences(ctx context.Context, c client.Reader) 
 		Reference:    mg.Spec.ForProvider.RemoteGroupIDRef,
 		Selector:     mg.Spec.ForProvider.RemoteGroupIDSelector,
 		To: reference.To{
-			List:    &SecurityGroupList{},
-			Managed: &SecurityGroup{},
+			List:    &SecGroupList{},
+			Managed: &SecGroup{},
 		},
 	})
 	if err != nil {
@@ -304,8 +304,8 @@ func (mg *SecgroupRule) ResolveReferences(ctx context.Context, c client.Reader) 
 		Reference:    mg.Spec.ForProvider.SecurityGroupIDRef,
 		Selector:     mg.Spec.ForProvider.SecurityGroupIDSelector,
 		To: reference.To{
-			List:    &SecurityGroupList{},
-			Managed: &SecurityGroup{},
+			List:    &SecGroupList{},
+			Managed: &SecGroup{},
 		},
 	})
 	if err != nil {
@@ -372,8 +372,8 @@ func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &VPCSubnetList{},
-			Managed: &VPCSubnet{},
+			List:    &NetworkingSubnetList{},
+			Managed: &NetworkingSubnet{},
 		},
 	})
 	if err != nil {

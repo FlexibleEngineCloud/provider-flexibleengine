@@ -37,8 +37,8 @@ import (
 	router "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/router"
 	routerinterface "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routerinterface"
 	routetable "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routetable"
+	secgroup "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/secgroup"
 	secgrouprule "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/secgrouprule"
-	securitygroup "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/securitygroup"
 	vip "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vip"
 	vipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vipassociate"
 	vpc "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vpc"
@@ -80,8 +80,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		router.Setup,
 		routerinterface.Setup,
 		routetable.Setup,
+		secgroup.Setup,
 		secgrouprule.Setup,
-		securitygroup.Setup,
 		vip.Setup,
 		vipassociate.Setup,
 		vpc.Setup,

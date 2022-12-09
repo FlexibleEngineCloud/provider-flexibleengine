@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: securitygroups.vpc.flexibleengine.upbound.io
+  name: secgroups.vpc.flexibleengine.upbound.io
 spec:
   group: vpc.flexibleengine.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: SecurityGroup
-    listKind: SecurityGroupList
-    plural: securitygroups
-    singular: securitygroup
+    kind: SecGroup
+    listKind: SecGroupList
+    plural: secgroups
+    singular: secgroup
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: SecurityGroup is the Schema for the SecurityGroups API. <no value>
+        description: SecGroup is the Schema for the SecGroups API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SecurityGroupSpec defines the desired state of SecurityGroup
+            description: SecGroupSpec defines the desired state of SecGroup
             properties:
               deletionPolicy:
                 default: Delete
@@ -248,7 +248,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: SecurityGroupStatus defines the observed state of SecurityGroup.
+            description: SecGroupStatus defines the observed state of SecGroup.
             properties:
               atProvider:
                 properties:

@@ -309,18 +309,18 @@ func (tr *Router) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this SecgroupRule
-func (mg *SecgroupRule) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this SecGroupRule
+func (mg *SecGroupRule) GetTerraformResourceType() string {
 	return "flexibleengine_networking_secgroup_rule_v2"
 }
 
-// GetConnectionDetailsMapping for this SecgroupRule
-func (tr *SecgroupRule) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this SecGroupRule
+func (tr *SecGroupRule) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this SecgroupRule
-func (tr *SecgroupRule) GetObservation() (map[string]any, error) {
+// GetObservation of this SecGroupRule
+func (tr *SecGroupRule) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -329,8 +329,8 @@ func (tr *SecgroupRule) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this SecgroupRule
-func (tr *SecgroupRule) SetObservation(obs map[string]any) error {
+// SetObservation for this SecGroupRule
+func (tr *SecGroupRule) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -338,16 +338,16 @@ func (tr *SecgroupRule) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this SecgroupRule
-func (tr *SecgroupRule) GetID() string {
+// GetID returns ID of underlying Terraform resource of this SecGroupRule
+func (tr *SecGroupRule) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this SecgroupRule
-func (tr *SecgroupRule) GetParameters() (map[string]any, error) {
+// GetParameters of this SecGroupRule
+func (tr *SecGroupRule) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -356,8 +356,8 @@ func (tr *SecgroupRule) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this SecgroupRule
-func (tr *SecgroupRule) SetParameters(params map[string]any) error {
+// SetParameters for this SecGroupRule
+func (tr *SecGroupRule) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -365,10 +365,10 @@ func (tr *SecgroupRule) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this SecgroupRule using its observed tfState.
+// LateInitialize this SecGroupRule using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *SecgroupRule) LateInitialize(attrs []byte) (bool, error) {
-	params := &SecgroupRuleParameters{}
+func (tr *SecGroupRule) LateInitialize(attrs []byte) (bool, error) {
+	params := &SecGroupRuleParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -379,22 +379,22 @@ func (tr *SecgroupRule) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *SecgroupRule) GetTerraformSchemaVersion() int {
+func (tr *SecGroupRule) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this SecurityGroup
-func (mg *SecurityGroup) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this SecGroup
+func (mg *SecGroup) GetTerraformResourceType() string {
 	return "flexibleengine_networking_secgroup_v2"
 }
 
-// GetConnectionDetailsMapping for this SecurityGroup
-func (tr *SecurityGroup) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this SecGroup
+func (tr *SecGroup) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this SecurityGroup
-func (tr *SecurityGroup) GetObservation() (map[string]any, error) {
+// GetObservation of this SecGroup
+func (tr *SecGroup) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -403,8 +403,8 @@ func (tr *SecurityGroup) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this SecurityGroup
-func (tr *SecurityGroup) SetObservation(obs map[string]any) error {
+// SetObservation for this SecGroup
+func (tr *SecGroup) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -412,16 +412,16 @@ func (tr *SecurityGroup) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this SecurityGroup
-func (tr *SecurityGroup) GetID() string {
+// GetID returns ID of underlying Terraform resource of this SecGroup
+func (tr *SecGroup) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this SecurityGroup
-func (tr *SecurityGroup) GetParameters() (map[string]any, error) {
+// GetParameters of this SecGroup
+func (tr *SecGroup) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -430,8 +430,8 @@ func (tr *SecurityGroup) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this SecurityGroup
-func (tr *SecurityGroup) SetParameters(params map[string]any) error {
+// SetParameters for this SecGroup
+func (tr *SecGroup) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -439,10 +439,10 @@ func (tr *SecurityGroup) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this SecurityGroup using its observed tfState.
+// LateInitialize this SecGroup using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *SecurityGroup) LateInitialize(attrs []byte) (bool, error) {
-	params := &SecurityGroupParameters{}
+func (tr *SecGroup) LateInitialize(attrs []byte) (bool, error) {
+	params := &SecGroupParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -453,7 +453,7 @@ func (tr *SecurityGroup) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *SecurityGroup) GetTerraformSchemaVersion() int {
+func (tr *SecGroup) GetTerraformSchemaVersion() int {
 	return 0
 }
 

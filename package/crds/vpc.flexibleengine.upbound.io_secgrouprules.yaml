@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: SecgroupRule
-    listKind: SecgroupRuleList
+    kind: SecGroupRule
+    listKind: SecGroupRuleList
     plural: secgrouprules
     singular: secgrouprule
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: SecgroupRule is the Schema for the SecgroupRules API. <no value>
+        description: SecGroupRule is the Schema for the SecGroupRules API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SecgroupRuleSpec defines the desired state of SecgroupRule
+            description: SecGroupRuleSpec defines the desired state of SecGroupRule
             properties:
               deletionPolicy:
                 default: Delete
@@ -80,7 +80,7 @@ spec:
                   remoteGroupId:
                     type: string
                   remoteGroupIdRef:
-                    description: Reference to a SecurityGroup to populate remoteGroupId.
+                    description: Reference to a SecGroup to populate remoteGroupId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -114,7 +114,7 @@ spec:
                     - name
                     type: object
                   remoteGroupIdSelector:
-                    description: Selector for a SecurityGroup to populate remoteGroupId.
+                    description: Selector for a SecGroup to populate remoteGroupId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -157,7 +157,7 @@ spec:
                   securityGroupId:
                     type: string
                   securityGroupIdRef:
-                    description: Reference to a SecurityGroup in vpc to populate securityGroupId.
+                    description: Reference to a SecGroup in vpc to populate securityGroupId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -191,7 +191,7 @@ spec:
                     - name
                     type: object
                   securityGroupIdSelector:
-                    description: Selector for a SecurityGroup in vpc to populate securityGroupId.
+                    description: Selector for a SecGroup in vpc to populate securityGroupId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -407,7 +407,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: SecgroupRuleStatus defines the observed state of SecgroupRule.
+            description: SecGroupRuleStatus defines the observed state of SecGroupRule.
             properties:
               atProvider:
                 properties:

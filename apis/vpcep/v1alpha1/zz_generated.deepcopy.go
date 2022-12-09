@@ -114,6 +114,18 @@ func (in *ApprovalParameters) DeepCopyInto(out *ApprovalParameters) {
 			}
 		}
 	}
+	if in.EndpointsRefs != nil {
+		in, out := &in.EndpointsRefs, &out.EndpointsRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.EndpointsSelector != nil {
+		in, out := &in.EndpointsSelector, &out.EndpointsSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)

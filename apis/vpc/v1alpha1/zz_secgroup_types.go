@@ -13,11 +13,11 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type SecurityGroupObservation struct {
+type SecGroupObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type SecurityGroupParameters struct {
+type SecGroupParameters struct {
 
 	// +kubebuilder:validation:Optional
 	DeleteDefaultRules *bool `json:"deleteDefaultRules,omitempty" tf:"delete_default_rules,omitempty"`
@@ -35,51 +35,51 @@ type SecurityGroupParameters struct {
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 }
 
-// SecurityGroupSpec defines the desired state of SecurityGroup
-type SecurityGroupSpec struct {
+// SecGroupSpec defines the desired state of SecGroup
+type SecGroupSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     SecurityGroupParameters `json:"forProvider"`
+	ForProvider     SecGroupParameters `json:"forProvider"`
 }
 
-// SecurityGroupStatus defines the observed state of SecurityGroup.
-type SecurityGroupStatus struct {
+// SecGroupStatus defines the observed state of SecGroup.
+type SecGroupStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SecurityGroupObservation `json:"atProvider,omitempty"`
+	AtProvider        SecGroupObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SecurityGroup is the Schema for the SecurityGroups API. <no value>
+// SecGroup is the Schema for the SecGroups API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type SecurityGroup struct {
+type SecGroup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              SecurityGroupSpec   `json:"spec"`
-	Status            SecurityGroupStatus `json:"status,omitempty"`
+	Spec              SecGroupSpec   `json:"spec"`
+	Status            SecGroupStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SecurityGroupList contains a list of SecurityGroups
-type SecurityGroupList struct {
+// SecGroupList contains a list of SecGroups
+type SecGroupList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []SecurityGroup `json:"items"`
+	Items           []SecGroup `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	SecurityGroup_Kind             = "SecurityGroup"
-	SecurityGroup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SecurityGroup_Kind}.String()
-	SecurityGroup_KindAPIVersion   = SecurityGroup_Kind + "." + CRDGroupVersion.String()
-	SecurityGroup_GroupVersionKind = CRDGroupVersion.WithKind(SecurityGroup_Kind)
+	SecGroup_Kind             = "SecGroup"
+	SecGroup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SecGroup_Kind}.String()
+	SecGroup_KindAPIVersion   = SecGroup_Kind + "." + CRDGroupVersion.String()
+	SecGroup_GroupVersionKind = CRDGroupVersion.WithKind(SecGroup_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&SecurityGroup{}, &SecurityGroupList{})
+	SchemeBuilder.Register(&SecGroup{}, &SecGroupList{})
 }
