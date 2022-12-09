@@ -21,15 +21,15 @@ type ApprovalObservation struct {
 
 type ApprovalParameters struct {
 
-	// +crossplane:generate:reference:type=EndPoint
+	// +crossplane:generate:reference:type=Endpoint
 	// +kubebuilder:validation:Optional
 	Endpoints []*string `json:"endpoints,omitempty" tf:"endpoints,omitempty"`
 
-	// References to EndPoint to populate endpoints.
+	// References to Endpoint to populate endpoints.
 	// +kubebuilder:validation:Optional
 	EndpointsRefs []v1.Reference `json:"endpointsRefs,omitempty" tf:"-"`
 
-	// Selector for a list of EndPoint to populate endpoints.
+	// Selector for a list of Endpoint to populate endpoints.
 	// +kubebuilder:validation:Optional
 	EndpointsSelector *v1.Selector `json:"endpointsSelector,omitempty" tf:"-"`
 

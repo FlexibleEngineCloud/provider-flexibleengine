@@ -22,7 +22,7 @@ func Configure(p *config.Provider) {
 
 		// endpoint_id is the ID of the endpoint to which this approval will be attached.
 		r.References["endpoints"] = config.Reference{
-			Type: "EndPoint",
+			Type: "Endpoint",
 		}
 
 		// service_id is the ID of the service to which this approval will be attached.

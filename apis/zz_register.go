@@ -10,7 +10,8 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1"
+	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/dedicatedelb/v1beta1"
+	v1beta1ecs "github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1"
 	v1beta1eip "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1"
 	v1beta1iam "github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1"
 	v1alpha1 "github.com/gaetanars/provider-flexibleengine/apis/v1alpha1"
@@ -23,6 +24,7 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1beta1ecs.SchemeBuilder.AddToScheme,
 		v1beta1eip.SchemeBuilder.AddToScheme,
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
