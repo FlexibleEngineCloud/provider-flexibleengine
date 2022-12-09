@@ -4,7 +4,9 @@ Copyright 2022 Upbound Inc.
 
 package config
 
-import "github.com/upbound/upjet/pkg/config"
+import (
+	"github.com/upbound/upjet/pkg/config"
+)
 
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
@@ -175,6 +177,7 @@ func TemplatedStringAsIdentifierWithNoName(tmpl string) config.ExternalName {
 // assuming they will be tested.
 func ExternalNameConfigurations() config.ResourceOption {
 	return func(r *config.Resource) {
+
 		if e, ok := ExternalNameConfigs[r.Name]; ok {
 			r.ExternalName = e
 		}

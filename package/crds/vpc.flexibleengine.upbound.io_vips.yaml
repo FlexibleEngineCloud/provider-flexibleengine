@@ -70,7 +70,7 @@ spec:
                   networkId:
                     type: string
                   networkIdRef:
-                    description: Reference to a Network to populate networkId.
+                    description: Reference to a Network in vpc to populate networkId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -104,7 +104,7 @@ spec:
                     - name
                     type: object
                   networkIdSelector:
-                    description: Selector for a Network to populate networkId.
+                    description: Selector for a Network in vpc to populate networkId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -145,7 +145,7 @@ spec:
                   subnetId:
                     type: string
                   subnetIdRef:
-                    description: Reference to a Subnet to populate subnetId.
+                    description: Reference to a Subnet in vpc to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -179,7 +179,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a Subnet to populate subnetId.
+                    description: Selector for a Subnet in vpc to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

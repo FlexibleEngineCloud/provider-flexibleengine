@@ -30,10 +30,11 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
-			RemoveVersion(),
 			KnownReferencers(),
 			GroupKindOverrides(),
 			KindOverrides(),
+			// KindRemoveVersion END
+			KindRemoveVersion(),
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
@@ -43,6 +44,9 @@ func GetProvider() *ujconfig.Provider {
 		iam.Configure,
 		vpc.Configure,
 		vpcep.Configure,
+		eip.Configure,
+		iam.Configure,
+		ecs.Configure,
 	} {
 		configure(pc)
 	}

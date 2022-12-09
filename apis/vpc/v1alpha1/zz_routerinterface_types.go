@@ -19,42 +19,42 @@ type RouterInterfaceObservation struct {
 
 type RouterInterfaceParameters struct {
 
-	// +crossplane:generate:reference:type=NetworkPort
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.NetworkPort
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
-	// Reference to a NetworkPort to populate portId.
+	// Reference to a NetworkPort in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDRef *v1.Reference `json:"portIdRef,omitempty" tf:"-"`
 
-	// Selector for a NetworkPort to populate portId.
+	// Selector for a NetworkPort in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// +crossplane:generate:reference:type=Router
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Router
 	// +kubebuilder:validation:Optional
 	RouterID *string `json:"routerId,omitempty" tf:"router_id,omitempty"`
 
-	// Reference to a Router to populate routerId.
+	// Reference to a Router in vpc to populate routerId.
 	// +kubebuilder:validation:Optional
 	RouterIDRef *v1.Reference `json:"routerIdRef,omitempty" tf:"-"`
 
-	// Selector for a Router to populate routerId.
+	// Selector for a Router in vpc to populate routerId.
 	// +kubebuilder:validation:Optional
 	RouterIDSelector *v1.Selector `json:"routerIdSelector,omitempty" tf:"-"`
 
-	// +crossplane:generate:reference:type=Subnet
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Subnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a Subnet to populate subnetId.
+	// Reference to a Subnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a Subnet to populate subnetId.
+	// Selector for a Subnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }

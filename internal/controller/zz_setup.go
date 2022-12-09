@@ -9,43 +9,43 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
-	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/floatingipassociate"
-	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/instance"
-	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/interfaceattach"
-	keypair "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/keypair"
-	servergroup "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/servergroup"
-	volumeattach "github.com/gaetanars/provider-flexibleengine/internal/controller/compute/volumeattach"
-	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/agency"
-	group "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/group"
-	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/groupmembership"
-	project "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/project"
-	provider "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/provider"
-	providerconversion "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/providerconversion"
-	role "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/role"
-	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/roleassignment"
-	user "github.com/gaetanars/provider-flexibleengine/internal/controller/identity/user"
+	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
+	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
+	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/interfaceattach"
+	keypair "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/keypair"
+	servergroup "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/servergroup"
+	volumeattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/volumeattach"
+	eip "github.com/gaetanars/provider-flexibleengine/internal/controller/eip/eip"
+	eipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/eip/eipassociate"
+	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/agency"
+	group "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/group"
+	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/groupmembership"
+	project "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/project"
+	provider "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/provider"
+	providerconversion "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/providerconversion"
+	role "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/role"
+	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/roleassignment"
+	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
-	eip "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/eip"
-	eipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/eipassociate"
-	endpoint "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/endpoint"
-	endpointapproval "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/endpointapproval"
-	endpointservice "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/endpointservice"
-	flowlogv1 "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/flowlogv1"
+	flowlog "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/flowlog"
 	network "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/network"
-	networkport "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networkport"
-	networksubnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networksubnet"
+	networkingsubnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networkingsubnet"
 	peeringconnection "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peeringconnection"
 	peeringconnectionaccepter "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/peeringconnectionaccepter"
+	port "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/port"
 	route "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/route"
 	router "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/router"
 	routerinterface "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routerinterface"
 	routetable "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/routetable"
+	secgrouprule "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/secgrouprule"
 	securitygroup "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/securitygroup"
-	securitygrouprule "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/securitygrouprule"
-	subnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/subnet"
 	vip "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vip"
 	vipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vipassociate"
 	vpc "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vpc"
+	vpcsubnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/vpcsubnet"
+	approval "github.com/gaetanars/provider-flexibleengine/internal/controller/vpcep/approval"
+	endpoint "github.com/gaetanars/provider-flexibleengine/internal/controller/vpcep/endpoint"
+	service "github.com/gaetanars/provider-flexibleengine/internal/controller/vpcep/service"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -58,6 +58,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		keypair.Setup,
 		servergroup.Setup,
 		volumeattach.Setup,
+		eip.Setup,
+		eipassociate.Setup,
 		agency.Setup,
 		group.Setup,
 		groupmembership.Setup,
@@ -68,27 +70,25 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		roleassignment.Setup,
 		user.Setup,
 		providerconfig.Setup,
-		eip.Setup,
-		eipassociate.Setup,
-		endpoint.Setup,
-		endpointapproval.Setup,
-		endpointservice.Setup,
-		flowlogv1.Setup,
+		flowlog.Setup,
 		network.Setup,
-		networkport.Setup,
-		networksubnet.Setup,
+		networkingsubnet.Setup,
 		peeringconnection.Setup,
 		peeringconnectionaccepter.Setup,
+		port.Setup,
 		route.Setup,
 		router.Setup,
 		routerinterface.Setup,
 		routetable.Setup,
+		secgrouprule.Setup,
 		securitygroup.Setup,
-		securitygrouprule.Setup,
-		subnet.Setup,
 		vip.Setup,
 		vipassociate.Setup,
 		vpc.Setup,
+		vpcsubnet.Setup,
+		approval.Setup,
+		endpoint.Setup,
+		service.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

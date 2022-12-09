@@ -11,18 +11,18 @@ func Configure(p *config.Provider) {
 
 	// flexibleengine_vpc_eip_associate
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_eip_associate
-	p.AddResourceConfigurator("flexibleengine_vpc_eip_associate", func(r *config.Resource) {
-		r.Kind = "EIPAssociate"
+	// p.AddResourceConfigurator("flexibleengine_vpc_eip_associate", func(r *config.Resource) {
+	// 	r.Kind = "EIPAssociate"
 
-		// eip_id is the ID of the EIP to associate.
-		r.References["network_id"] = config.Reference{
-			Type: "Network",
-		}
+	// 	// eip_id is the ID of the EIP to associate.
+	// 	r.References["network_id"] = config.Reference{
+	// 		Type: "Network",
+	// 	}
 
-		// port_id is the ID of the port to associate.
-		r.References["port_id"] = config.Reference{
-			Type: "NetworkPort",
-		}
-	})
+	// 	// port_id is the ID of the port to associate.
+	// 	r.References["port_id"] = config.Reference{
+	// 		Type: "NetworkPort",
+	// 	}
+	// })
 
 }
