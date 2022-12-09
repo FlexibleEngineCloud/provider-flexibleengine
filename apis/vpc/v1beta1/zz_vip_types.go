@@ -54,8 +54,11 @@ type VipParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+<<<<<<< HEAD
 	// Subnet in which to allocate IP address for this vip.
 	// Changing this creates a new vip.
+=======
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`

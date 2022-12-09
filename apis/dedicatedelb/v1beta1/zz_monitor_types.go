@@ -14,13 +14,17 @@ import (
 )
 
 type MonitorObservation struct {
+<<<<<<< HEAD
 
 	// The unique ID for the monitor.
+=======
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type MonitorParameters struct {
 
+<<<<<<< HEAD
 	// Specifies the Domain Name of the Monitor.
 	// +kubebuilder:validation:Optional
 	DomainName *string `json:"domainName,omitempty" tf:"domain_name,omitempty"`
@@ -35,6 +39,17 @@ type MonitorParameters struct {
 	MaxRetries *float64 `json:"maxRetries" tf:"max_retries,omitempty"`
 
 	// Specifies the id of the pool that this monitor will be assigned to.
+=======
+	// +kubebuilder:validation:Optional
+	DomainName *string `json:"domainName,omitempty" tf:"domain_name,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Interval *float64 `json:"interval" tf:"interval,omitempty"`
+
+	// +kubebuilder:validation:Required
+	MaxRetries *float64 `json:"maxRetries" tf:"max_retries,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=Pool
 	// +kubebuilder:validation:Optional
 	PoolID *string `json:"poolId,omitempty" tf:"pool_id,omitempty"`
@@ -47,6 +62,7 @@ type MonitorParameters struct {
 	// +kubebuilder:validation:Optional
 	PoolIDSelector *v1.Selector `json:"poolIdSelector,omitempty" tf:"-"`
 
+<<<<<<< HEAD
 	// Specifies the health check port. The value ranges from 1 to 65535.
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
@@ -68,6 +84,20 @@ type MonitorParameters struct {
 
 	// Specifies the required for HTTP(S) types. URI path that will be accessed if monitor
 	// type is HTTP or HTTPS.
+=======
+	// +kubebuilder:validation:Optional
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Timeout *float64 `json:"timeout" tf:"timeout,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	URLPath *string `json:"urlPath,omitempty" tf:"url_path,omitempty"`
 }
@@ -86,7 +116,11 @@ type MonitorStatus struct {
 
 // +kubebuilder:object:root=true
 
+<<<<<<< HEAD
 // Monitor is the Schema for the Monitors API. ""page_title: "flexibleengine_lb_monitor_v3"
+=======
+// Monitor is the Schema for the Monitors API. <no value>
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

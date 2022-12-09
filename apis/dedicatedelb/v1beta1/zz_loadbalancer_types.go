@@ -16,6 +16,7 @@ import (
 type LoadBalancerObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+<<<<<<< HEAD
 	// The ipv4 eip address of the Load Balancer.
 	IPv4EIP *string `json:"ipv4Eip,omitempty" tf:"ipv4_eip,omitempty"`
 
@@ -26,6 +27,14 @@ type LoadBalancerObservation struct {
 	IPv6EIP *string `json:"ipv6Eip,omitempty" tf:"ipv6_eip,omitempty"`
 
 	// The ipv6 eip id of the Load Balancer.
+=======
+	IPv4EIP *string `json:"ipv4Eip,omitempty" tf:"ipv4_eip,omitempty"`
+
+	IPv6Address *string `json:"ipv6Address,omitempty" tf:"ipv6_address,omitempty"`
+
+	IPv6EIP *string `json:"ipv6Eip,omitempty" tf:"ipv6_eip,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	IPv6EIPID *string `json:"ipv6EipId,omitempty" tf:"ipv6_eip_id,omitempty"`
 }
 
@@ -40,6 +49,7 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	AutoscalingEnabled *bool `json:"autoscalingEnabled,omitempty" tf:"autoscaling_enabled,omitempty"`
 
+<<<<<<< HEAD
 	// Specifies the list of AZ names. Changing this parameter will create a
 	// new resource.
 	// +kubebuilder:validation:Required
@@ -51,29 +61,49 @@ type LoadBalancerParameters struct {
 	BandwidthChargeMode *string `json:"bandwidthChargeMode,omitempty" tf:"bandwidth_charge_mode,omitempty"`
 
 	// Bandwidth size. Changing this parameter will create a new resource.
+=======
+	// +kubebuilder:validation:Required
+	AvailabilityZone []*string `json:"availabilityZone" tf:"availability_zone,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	BandwidthChargeMode *string `json:"bandwidthChargeMode,omitempty" tf:"bandwidth_charge_mode,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	BandwidthSize *float64 `json:"bandwidthSize,omitempty" tf:"bandwidth_size,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	ChargingMode *string `json:"chargingMode,omitempty" tf:"charging_mode,omitempty"`
 
+<<<<<<< HEAD
 	// Enable this if you want to associate the IP addresses of backend servers with
 	// your load balancer. Can only be true when updating.
 	// +kubebuilder:validation:Optional
 	CrossVPCBackend *bool `json:"crossVpcBackend,omitempty" tf:"cross_vpc_backend,omitempty"`
 
 	// Human-readable description for the loadbalancer.
+=======
+	// +kubebuilder:validation:Optional
+	CrossVPCBackend *bool `json:"crossVpcBackend,omitempty" tf:"cross_vpc_backend,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	EnterpriseProjectID *string `json:"enterpriseProjectId,omitempty" tf:"enterprise_project_id,omitempty"`
 
+<<<<<<< HEAD
 	// The ipv4 address of the load balancer.
 	// +kubebuilder:validation:Optional
 	IPv4Address *string `json:"ipv4Address,omitempty" tf:"ipv4_address,omitempty"`
 
 	// The ID of the EIP. Changing this parameter will create a new resource.
+=======
+	// +kubebuilder:validation:Optional
+	IPv4Address *string `json:"ipv4Address,omitempty" tf:"ipv4_address,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	IPv4EIPID *string `json:"ipv4EipId,omitempty" tf:"ipv4_eip_id,omitempty"`
@@ -86,7 +116,10 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	IPv4EIPIDSelector *v1.Selector `json:"ipv4EipIdSelector,omitempty" tf:"-"`
 
+<<<<<<< HEAD
 	// The subnet on which to allocate the loadbalancer's ipv4 address.
+=======
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// the IPv4 subnet ID of the subnet where the load balancer resides
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
@@ -100,11 +133,17 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	IPv4SubnetIDSelector *v1.Selector `json:"ipv4SubnetIdSelector,omitempty" tf:"-"`
 
+<<<<<<< HEAD
 	// The ipv6 bandwidth id. Only support shared bandwidth.
 	// +kubebuilder:validation:Optional
 	IPv6BandwidthID *string `json:"ipv6BandwidthId,omitempty" tf:"ipv6_bandwidth_id,omitempty"`
 
 	// The network on which to allocate the loadbalancer's ipv6 address.
+=======
+	// +kubebuilder:validation:Optional
+	IPv6BandwidthID *string `json:"ipv6BandwidthId,omitempty" tf:"ipv6_bandwidth_id,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// the ID of the subnet where the load balancer resides
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
@@ -118,6 +157,7 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	IPv6NetworkIDSelector *v1.Selector `json:"ipv6NetworkIdSelector,omitempty" tf:"-"`
 
+<<<<<<< HEAD
 	// Elastic IP type. Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Optional
 	Iptype *string `json:"iptype,omitempty" tf:"iptype,omitempty"`
@@ -135,6 +175,20 @@ type LoadBalancerParameters struct {
 	MinL7FlavorID *string `json:"minL7FlavorId,omitempty" tf:"min_l7_flavor_id,omitempty"`
 
 	// Human-readable name for the loadbalancer.
+=======
+	// +kubebuilder:validation:Optional
+	Iptype *string `json:"iptype,omitempty" tf:"iptype,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	L4FlavorID *string `json:"l4FlavorId,omitempty" tf:"l4_flavor_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	L7FlavorID *string `json:"l7FlavorId,omitempty" tf:"l7_flavor_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	MinL7FlavorID *string `json:"minL7FlavorId,omitempty" tf:"min_l7_flavor_id,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
@@ -144,6 +198,7 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	PeriodUnit *string `json:"periodUnit,omitempty" tf:"period_unit,omitempty"`
 
+<<<<<<< HEAD
 	// The region in which to create the loadbalancer resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new loadbalancer.
 	// +kubebuilder:validation:Optional
@@ -159,6 +214,17 @@ type LoadBalancerParameters struct {
 
 	// The vpc on which to create the loadbalancer. Changing this creates a new
 	// loadbalancer.
+=======
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Sharetype *string `json:"sharetype,omitempty" tf:"sharetype,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -186,7 +252,11 @@ type LoadBalancerStatus struct {
 
 // +kubebuilder:object:root=true
 
+<<<<<<< HEAD
 // LoadBalancer is the Schema for the LoadBalancers API. ""page_title: "flexibleengine_lb_loadbalancer_v3"
+=======
+// LoadBalancer is the Schema for the LoadBalancers API. <no value>
+>>>>>>> 073fca432c54112a5bd069d5eba77a07c6045db5
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
