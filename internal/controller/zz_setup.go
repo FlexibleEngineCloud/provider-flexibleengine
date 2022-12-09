@@ -51,6 +51,7 @@ import (
 	role "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/role"
 	roleassignment "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/roleassignment"
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
+<<<<<<< HEAD
 	image "github.com/gaetanars/provider-flexibleengine/internal/controller/ims/image"
 	key "github.com/gaetanars/provider-flexibleengine/internal/controller/kms/key"
 	obsbucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucket"
@@ -59,6 +60,11 @@ import (
 	s3bucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucket"
 	s3bucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketobject"
 	s3bucketpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketpolicy"
+=======
+	dnatrule "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/dnatrule"
+	gateway "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/gateway"
+	snatrule "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/snatrule"
+>>>>>>> 2610e0c (Add nat)
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
 	organization "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/organizationusers"
@@ -146,6 +152,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		role.Setup,
 		roleassignment.Setup,
 		user.Setup,
+<<<<<<< HEAD
 		image.Setup,
 		key.Setup,
 		obsbucket.Setup,
@@ -154,6 +161,11 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		s3bucket.Setup,
 		s3bucketobject.Setup,
 		s3bucketpolicy.Setup,
+=======
+		dnatrule.Setup,
+		gateway.Setup,
+		snatrule.Setup,
+>>>>>>> 2610e0c (Add nat)
 		providerconfig.Setup,
 		organization.Setup,
 		organizationusers.Setup,

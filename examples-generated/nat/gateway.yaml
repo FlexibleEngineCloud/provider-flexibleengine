@@ -1,0 +1,22 @@
+apiVersion: nat.flexibleengine.upbound.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nat/v1beta1/gateway
+  labels:
+    testing.upbound.io/example-name: nat_1
+  name: nat-1
+spec:
+  forProvider:
+    description: test for terraform
+    name: nat_test
+    spec: "1"
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-vpc
+
+---
+
