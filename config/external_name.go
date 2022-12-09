@@ -10,7 +10,7 @@ import "github.com/upbound/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 
-  /*
+	/*
 		> COMPUTE Modules
 	*/
 
@@ -27,10 +27,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Imported with the following format : {instance_id}/{volume_id}
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
 
-  /*
+	/*
 		> IDENTITY Modules
 	*/
-  
+
 	// Imported using the ID
 	"flexibleengine_identity_agency_v3": config.IdentifierFromProvider,
 	// No import documented

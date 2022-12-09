@@ -69,6 +69,8 @@ spec:
                     type: string
                   region:
                     type: string
+                required:
+                - publicKey
                 type: object
               providerConfigRef:
                 default:

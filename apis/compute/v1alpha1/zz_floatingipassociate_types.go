@@ -22,8 +22,17 @@ type FloatingIpAssociateParameters struct {
 	// +kubebuilder:validation:Optional
 	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
-	// +kubebuilder:validation:Required
-	FloatingIP *string `json:"floatingIp" tf:"floating_ip,omitempty"`
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.EIP
+	// +kubebuilder:validation:Optional
+	FloatingIP *string `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
+
+	// Reference to a EIP in vpc to populate floatingIp.
+	// +kubebuilder:validation:Optional
+	FloatingIPRef *v1.Reference `json:"floatingIpRef,omitempty" tf:"-"`
+
+	// Selector for a EIP in vpc to populate floatingIp.
+	// +kubebuilder:validation:Optional
+	FloatingIPSelector *v1.Selector `json:"floatingIpSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional

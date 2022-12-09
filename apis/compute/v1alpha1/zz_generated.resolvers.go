@@ -8,6 +8,7 @@ package v1alpha1
 import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
+	v1alpha1 "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -18,6 +19,22 @@ func (mg *FloatingIpAssociate) ResolveReferences(ctx context.Context, c client.R
 
 	var rsp reference.ResolutionResponse
 	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FloatingIP),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.FloatingIPRef,
+		Selector:     mg.Spec.ForProvider.FloatingIPSelector,
+		To: reference.To{
+			List:    &v1alpha1.EIPList{},
+			Managed: &v1alpha1.EIP{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.FloatingIP")
+	}
+	mg.Spec.ForProvider.FloatingIP = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.FloatingIPRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.InstanceID),

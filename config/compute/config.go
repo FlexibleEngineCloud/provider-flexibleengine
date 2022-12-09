@@ -5,9 +5,9 @@ import "github.com/upbound/upjet/pkg/config"
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_compute_floatingip_associate_v2", func(r *config.Resource) {
-		// r.References["floating_ip"] = config.Reference{
-		// 	Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Eip",
-		// }
+		r.References["floating_ip"] = config.Reference{
+			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.EIP",
+		}
 		r.References["instance_id"] = config.Reference{
 			Type: "Instance",
 		}
@@ -41,6 +41,7 @@ func Configure(p *config.Provider) {
 		r.Kind = "InterfaceAttach"
 	})
 	p.AddResourceConfigurator("flexibleengine_compute_keypair_v2", func(r *config.Resource) {
+		config.MarkAsRequired(r.TerraformResource, "public_key")
 		r.Kind = "KeyPair"
 	})
 	p.AddResourceConfigurator("flexibleengine_compute_servergroup_v2", func(r *config.Resource) {

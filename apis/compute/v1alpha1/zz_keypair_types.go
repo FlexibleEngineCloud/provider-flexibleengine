@@ -22,8 +22,8 @@ type KeyPairParameters struct {
 	// +kubebuilder:validation:Optional
 	PrivateKeyPath *string `json:"privateKeyPath,omitempty" tf:"private_key_path,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	PublicKey *string `json:"publicKey,omitempty" tf:"public_key,omitempty"`
+	// +kubebuilder:validation:Required
+	PublicKey *string `json:"publicKey" tf:"public_key,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`

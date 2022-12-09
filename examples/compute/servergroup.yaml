@@ -1,0 +1,13 @@
+apiVersion: compute.flexibleengine.upbound.io/v1alpha1
+kind: ServerGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: compute/v1beta1/servergroup
+  labels:
+    testing.upbound.io/example-name: example_servergroup
+  name: example-servergroup
+spec:
+  forProvider:
+    name: example-servergroup
+    policies: ["anti-affinity"]
+    
