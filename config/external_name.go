@@ -145,6 +145,38 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_vpc_eip_associate": config.IdentifierFromProvider,
 
 	/*
+		> Elastic Load Balance (Dedicated ELB)
+	*/
+
+	// flexibleengine_elb_certificate - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_certificate
+	"flexibleengine_elb_certificate": config.IdentifierFromProvider,
+
+	// flexibleengine_elb_ipgroup - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_ipgroup
+	"flexibleengine_elb_ipgroup": config.IdentifierFromProvider,
+
+	// flexibleengine_lb_listener_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_listener_v3
+	"flexibleengine_lb_listener_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_lb_loadbalancer_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_loadbalancer_v3
+	"flexibleengine_lb_loadbalancer_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_lb_member_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v3
+	"flexibleengine_lb_member_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_lb_monitor_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_monitor_v3
+	"flexibleengine_lb_monitor_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_lb_pool_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_pool_v3
+	"flexibleengine_lb_pool_v3": config.IdentifierFromProvider,
+
+	/*
 		> VPC Endpoint (VPCEP)
 	*/
 
