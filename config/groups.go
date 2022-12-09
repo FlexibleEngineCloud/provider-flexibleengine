@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 
 	"github.com/upbound/upjet/pkg/types/name"
@@ -29,18 +30,18 @@ func KindOverrides() config.ResourceOption {
 	}
 }
 
-func RemoveVersion(Name string) []string {
+func RemoveVersion(name string) []string {
 	// Replace string with regex
 
 	rg := regexp.MustCompile(`_v[0-9]+`)
-	y := rg.ReplaceAllString(Name, "")
+	y := rg.ReplaceAllString(name, "")
 
-	return strings.Split(strings.TrimPrefix(y, fmt.Sprintf("%s_", ResourcePrefix)), "_")
+	return strings.Split(strings.TrimPrefix(y, fmt.Sprintf("%s_", tools.ResourcePrefix)), "_")
 
 }
 
-func RemoveGroup(Name []string) string {
-	return strings.Join(Name[1:], "_")
+func RemoveGroup(name []string) string {
+	return strings.Join(name[1:], "_")
 }
 
 func KindRemoveVersion() config.ResourceOption {

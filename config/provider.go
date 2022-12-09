@@ -10,14 +10,12 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
+	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
 
-const (
-	ResourcePrefix = "flexibleengine"
-	ModulePath     = "github.com/gaetanars/provider-flexibleengine"
-)
+const ()
 
 var (
 	//go:embed schema.json
@@ -29,7 +27,7 @@ var (
 
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
-	pc := ujconfig.NewProvider([]byte(providerSchema), ResourcePrefix, ModulePath, providerMetadata,
+	pc := ujconfig.NewProvider([]byte(providerSchema), tools.ResourcePrefix, tools.ModulePath, providerMetadata,
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
