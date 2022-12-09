@@ -112,6 +112,13 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_networking_vip_v2":               ReplaceGroupWords("vpc", 1),
 	"flexibleengine_vpc_eip":                         ReplaceGroupWords("eip", 1),
 	"flexibleengine_vpc_eip_associate":               ReplaceGroupWords("eip", 1),
+	"flexibleengine_elb_certificate":                 ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_elb_ipgroup":                     ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_lb_listener_v3":                  ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_lb_loadbalancer_v3":              ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_lb_member_v3":                    ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_lb_monitor_v3":                   ReplaceGroupWords("dedicatedelb", 1),
+	"flexibleengine_lb_pool_v3":                      ReplaceGroupWords("dedicatedelb", 1),
 }
 
 // KindMap contains kind string overrides.
@@ -121,4 +128,6 @@ var KindMap = map[string]string{
 	"flexibleengine_compute_floatingip_associate_v2": "FloatingIpAssociate",
 	"flexibleengine_networking_secgroup_v2":          "SecGroup",
 	"flexibleengine_networking_secgroup_rule_v2":     "SecGroupRule",
+	"flexibleengine_lb_loadbalancer_v3":              "LoadBalancer",
+	"flexibleengine_elb_ipgroup":                     "IPGroup",
 }
