@@ -68,7 +68,7 @@ spec:
                       type: string
                     type: array
                   endpointsRefs:
-                    description: References to EndPoint to populate endpoints.
+                    description: References to Endpoint to populate endpoints.
                     items:
                       description: A Reference to a named object.
                       properties:
@@ -105,7 +105,7 @@ spec:
                       type: object
                     type: array
                   endpointsSelector:
-                    description: Selector for a list of EndPoint to populate endpoints.
+                    description: Selector for a list of Endpoint to populate endpoints.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

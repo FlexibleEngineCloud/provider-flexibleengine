@@ -38,15 +38,15 @@ type EIPAssociateParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.NetworkPort
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
-	// Reference to a NetworkPort in vpc to populate portId.
+	// Reference to a Port in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDRef *v1.Reference `json:"portIdRef,omitempty" tf:"-"`
 
-	// Selector for a NetworkPort in vpc to populate portId.
+	// Selector for a Port in vpc to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 

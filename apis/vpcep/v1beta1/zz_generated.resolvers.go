@@ -27,8 +27,8 @@ func (mg *Approval) ResolveReferences(ctx context.Context, c client.Reader) erro
 		References:    mg.Spec.ForProvider.EndpointsRefs,
 		Selector:      mg.Spec.ForProvider.EndpointsSelector,
 		To: reference.To{
-			List:    &EndPointList{},
-			Managed: &EndPoint{},
+			List:    &EndpointList{},
+			Managed: &Endpoint{},
 		},
 	})
 	if err != nil {
@@ -127,8 +127,8 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &v1beta1.NetworkPortList{},
-			Managed: &v1beta1.NetworkPort{},
+			List:    &v1beta1.PortList{},
+			Managed: &v1beta1.Port{},
 		},
 	})
 	if err != nil {

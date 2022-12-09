@@ -67,7 +67,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				// port_id is a reference to a NetworkPort resource
 			case "port_id":
 				r.References[k] = config.Reference{
-					Type: GenerateType("vpc", "NetworkPort"),
+					Type: GenerateType("vpc", "Port"),
 				}
 			}
 		}

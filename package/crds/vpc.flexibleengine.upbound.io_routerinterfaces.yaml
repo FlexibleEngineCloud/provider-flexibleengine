@@ -67,7 +67,7 @@ spec:
                   portId:
                     type: string
                   portIdRef:
-                    description: Reference to a NetworkPort in vpc to populate portId.
+                    description: Reference to a Port in vpc to populate portId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -101,7 +101,7 @@ spec:
                     - name
                     type: object
                   portIdSelector:
-                    description: Selector for a NetworkPort in vpc to populate portId.
+                    description: Selector for a Port in vpc to populate portId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

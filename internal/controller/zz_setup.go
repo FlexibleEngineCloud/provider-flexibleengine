@@ -9,6 +9,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	certificate "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/certificate"
 	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
 	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
 	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/interfaceattach"
@@ -52,6 +53,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		certificate.Setup,
 		floatingipassociate.Setup,
 		instance.Setup,
 		interfaceattach.Setup,
