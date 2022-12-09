@@ -6,7 +6,7 @@
 
 # ---
 
-# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 # kind: Vpc
 # metadata:
 #   annotations:
@@ -20,7 +20,7 @@
 #     cidr: "10.2.3.0/24"
 
 # ---
-# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 # kind: Vpc
 # metadata:
 #   annotations:
@@ -34,7 +34,7 @@
 #     cidr: "10.2.4.0/24"
 
 # --- 
-# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 # kind: Subnet
 # metadata:
 #   annotations:
@@ -51,7 +51,7 @@
 #     cidr: "10.2.3.0/28"
 #     gatewayIp: "10.2.3.1"
 # ---
-# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 # kind: PeeringConnection
 # metadata:
 #   annotations:
@@ -69,7 +69,7 @@
 #         testing.upbound.io/example-name: example-vpc-2
 #     name: "example-peering"
 # ---
-# apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 # kind: Route
 # metadata:
 #   annotations:

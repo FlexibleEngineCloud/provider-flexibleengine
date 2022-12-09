@@ -1,4 +1,4 @@
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: VPC
 metadata:
   annotations:
@@ -12,7 +12,7 @@ spec:
     cidr: "10.2.3.0/24"
 
 --- 
-apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: VPCSubnet
 metadata:
   annotations:

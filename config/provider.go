@@ -30,6 +30,7 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
+			defaultVersion(),
 			KnownReferencers(),
 			GroupKindOverrides(),
 			KindOverrides(),

@@ -1,4 +1,4 @@
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: Provider
 metadata:
   annotations:
@@ -10,7 +10,7 @@ spec:
   forProvider:
     protocol: saml
 ---
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: ProviderConversion
 metadata:
   annotations:

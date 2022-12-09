@@ -1,4 +1,4 @@
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: Role
 metadata:
   annotations:
@@ -34,7 +34,7 @@ spec:
         ]
       }
 ---
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: Group
 metadata:
   annotations:
@@ -46,7 +46,7 @@ spec:
   forProvider: 
     name: example-group
 ---
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: User
 metadata:
   annotations:
@@ -58,7 +58,7 @@ spec:
   forProvider:
     name: example-user
 ---
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: GroupMembership
 metadata:
   annotations:
@@ -75,7 +75,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_user
 ---
-apiVersion: iam.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: RoleAssignment
 metadata:
   annotations:
