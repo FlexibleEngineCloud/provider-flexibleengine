@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Vip is the Schema for the Vips API. <no value>
+        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,10 +64,16 @@ spec:
               forProvider:
                 properties:
                   ipAddress:
+                    description: IP address desired in the subnet for this vip. If
+                      you don't specify ip_address, an available IP address from the
+                      specified subnet will be allocated to this vip.
                     type: string
                   name:
+                    description: A unique name for the vip.
                     type: string
                   networkId:
+                    description: The ID of the network to attach the vip to. Changing
+                      this creates a new vip.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in vpc to populate networkId.
@@ -143,10 +149,11 @@ spec:
                         type: object
                     type: object
                   subnetId:
+                    description: Subnet in which to allocate IP address for this vip.
+                      Changing this creates a new vip.
                     type: string
                   subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
+                    description: Reference to a VPCSubnet in vpc to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -180,8 +187,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
+                    description: Selector for a VPCSubnet in vpc to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -397,12 +403,16 @@ spec:
               atProvider:
                 properties:
                   deviceOwner:
+                    description: The device owner of the vip.
                     type: string
                   id:
+                    description: The ID of the vip.
                     type: string
                   status:
+                    description: The status of vip.
                     type: string
                   tenantId:
+                    description: The tenant ID of the vip.
                     type: string
                 type: object
               conditions:

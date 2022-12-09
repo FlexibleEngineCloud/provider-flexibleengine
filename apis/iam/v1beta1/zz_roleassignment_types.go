@@ -19,9 +19,11 @@ type RoleAssignmentObservation struct {
 
 type RoleAssignmentParameters struct {
 
+	// The domain to assign the role in.
 	// +kubebuilder:validation:Optional
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
+	// The group to assign the role in.
 	// +crossplane:generate:reference:type=Group
 	// +kubebuilder:validation:Optional
 	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
@@ -34,9 +36,11 @@ type RoleAssignmentParameters struct {
 	// +kubebuilder:validation:Optional
 	GroupIDSelector *v1.Selector `json:"groupIdSelector,omitempty" tf:"-"`
 
+	// The project to assign the role in.
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// The role to assign.
 	// +crossplane:generate:reference:type=Role
 	// +kubebuilder:validation:Optional
 	RoleID *string `json:"roleId,omitempty" tf:"role_id,omitempty"`
@@ -64,7 +68,7 @@ type RoleAssignmentStatus struct {
 
 // +kubebuilder:object:root=true
 
-// RoleAssignment is the Schema for the RoleAssignments API. <no value>
+// RoleAssignment is the Schema for the RoleAssignments API. ""page_title: "flexibleengine_identity_role_assignment_v3"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

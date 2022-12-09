@@ -19,9 +19,12 @@ type InterfaceAttachObservation struct {
 
 type InterfaceAttachParameters struct {
 
+	// An IP address to assosciate with the port.
+	// NOTE: This option cannot be used with port_id. You must specifiy a network_id. The IP address must lie in a range on the supplied network.
 	// +kubebuilder:validation:Optional
 	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
+	// The ID of the Instance to attach the Port or Network to.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -34,6 +37,8 @@ type InterfaceAttachParameters struct {
 	// +kubebuilder:validation:Optional
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
+	// The ID of the Network to attach to an Instance. A port will be created automatically.
+	// NOTE: This option and port_id are mutually exclusive.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -46,6 +51,8 @@ type InterfaceAttachParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// The ID of the Port to attach to an Instance.
+	// NOTE: This option and network_id are mutually exclusive.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
@@ -58,6 +65,9 @@ type InterfaceAttachParameters struct {
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
+	// The region in which to create the interface attachment.
+	// If omitted, the region argument of the provider is used. Changing this
+	// creates a new attachment.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -76,7 +86,7 @@ type InterfaceAttachStatus struct {
 
 // +kubebuilder:object:root=true
 
-// InterfaceAttach is the Schema for the InterfaceAttachs API. <no value>
+// InterfaceAttach is the Schema for the InterfaceAttachs API. ""page_title: "flexibleengine_compute_interface_attach_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

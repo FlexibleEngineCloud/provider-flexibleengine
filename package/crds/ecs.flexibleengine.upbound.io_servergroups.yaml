@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: ServerGroup is the Schema for the ServerGroups API. <no value>
+        description: 'ServerGroup is the Schema for the ServerGroups API. ""page_title:
+          "flexibleengine_compute_servergroup_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,16 +65,26 @@ spec:
               forProvider:
                 properties:
                   name:
+                    description: A unique name for the server group. Changing this
+                      creates a new server group.
                     type: string
                   policies:
+                    description: The set of policies for the server group. Only anti-affinity
+                      policy is supported right now, which menas all servers in this
+                      group must be deployed on different hosts. Changing this creates
+                      a new server group.
                     items:
                       type: string
                     type: array
                   region:
+                    description: The region in which to obtain the V2 Compute client.
+                      If omitted, the region argument of the provider is used. Changing
+                      this creates a new server group.
                     type: string
                   valueSpecs:
                     additionalProperties:
                       type: string
+                    description: Map of additional options.
                     type: object
                 required:
                 - name
@@ -257,6 +268,7 @@ spec:
                   id:
                     type: string
                   members:
+                    description: The instances that are part of this server group.
                     items:
                       type: string
                     type: array

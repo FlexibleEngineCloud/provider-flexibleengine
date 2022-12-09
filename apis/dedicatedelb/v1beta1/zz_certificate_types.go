@@ -14,38 +14,55 @@ import (
 )
 
 type CertificateObservation struct {
+
+	// Indicates the creation time.
 	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
 
+	// Indicates the expire time.
 	ExpireTime *string `json:"expireTime,omitempty" tf:"expire_time,omitempty"`
 
+	// Specifies a resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Indicates the update time.
 	UpdateTime *string `json:"updateTime,omitempty" tf:"update_time,omitempty"`
 }
 
 type CertificateParameters struct {
 
+	// Specifies the public encrypted key of the certificate, PEM format.
 	// +kubebuilder:validation:Required
 	Certificate *string `json:"certificate" tf:"certificate,omitempty"`
 
+	// Specifies the description of the certificate.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Specifies the domain of the certificate. The value contains a maximum of 100 characters.
+	// This parameter is valid only when type is set to "server".
 	// +kubebuilder:validation:Optional
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
+	// Specifies a resource ID in UUID format.
 	// +kubebuilder:validation:Optional
 	EnterpriseProjectID *string `json:"enterpriseProjectId,omitempty" tf:"enterprise_project_id,omitempty"`
 
+	// Specifies the name of the certificate. Does not have to be unique.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Specifies the private encrypted key of the certificate, PEM format.
+	// This parameter is valid and mandatory only when type is set to "server".
 	// +kubebuilder:validation:Optional
 	PrivateKey *string `json:"privateKey,omitempty" tf:"private_key,omitempty"`
 
+	// The region in which to create the ELB certificate resource. If omitted, the
+	// provider-level region will be used. Changing this creates a new certificate.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the certificate type. The default value is "server".
+	// The value can be one of the following:
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -64,7 +81,7 @@ type CertificateStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Certificate is the Schema for the Certificates API. <no value>
+// Certificate is the Schema for the Certificates API. ""page_title: "flexibleengine_elb_certificate"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

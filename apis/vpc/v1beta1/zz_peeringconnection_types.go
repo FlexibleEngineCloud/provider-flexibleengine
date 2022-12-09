@@ -14,19 +14,25 @@ import (
 )
 
 type PeeringConnectionObservation struct {
+
+	// The VPC peering connection ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The VPC peering connection status. The value can be PENDING_ACCEPTANCE, REJECTED, EXPIRED, DELETED, or ACTIVE.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type PeeringConnectionParameters struct {
 
+	// Specifies the name of the VPC peering connection. The value can contain 1 to 64 characters.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// Specified the Tenant Id of the accepter tenant. Changing this creates a new VPC peering connection.
 	// +kubebuilder:validation:Optional
 	PeerTenantID *string `json:"peerTenantId,omitempty" tf:"peer_tenant_id,omitempty"`
 
+	// Specifies the VPC ID of the accepter tenant. Changing this creates a new VPC peering connection.
 	// +crossplane:generate:reference:type=VPC
 	// +kubebuilder:validation:Optional
 	PeerVPCID *string `json:"peerVpcId,omitempty" tf:"peer_vpc_id,omitempty"`
@@ -42,6 +48,7 @@ type PeeringConnectionParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the ID of a VPC involved in a VPC peering connection. Changing this creates a new VPC peering connection.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -69,7 +76,7 @@ type PeeringConnectionStatus struct {
 
 // +kubebuilder:object:root=true
 
-// PeeringConnection is the Schema for the PeeringConnections API. <no value>
+// PeeringConnection is the Schema for the PeeringConnections API. ""page_title: "flexibleengine_vpc_peering_connection_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Group is the Schema for the Groups API. <no value>
+        description: 'Group is the Schema for the Groups API. ""page_title: "flexibleengine_identity_group_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,10 +64,14 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: A description of the group.
                     type: string
                   domainId:
+                    description: The domain this group belongs to.
                     type: string
                   name:
+                    description: The name of the group.The length is less than or
+                      equal to 64 bytes
                     type: string
                 required:
                 - name

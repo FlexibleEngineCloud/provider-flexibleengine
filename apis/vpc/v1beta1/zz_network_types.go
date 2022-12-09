@@ -19,24 +19,40 @@ type NetworkObservation struct {
 
 type NetworkParameters struct {
 
+	// The administrative state of the network.
+	// Acceptable values are "true" and "false". Changing this value updates the
+	// state of the existing network.
 	// +kubebuilder:validation:Optional
 	AdminStateUp *string `json:"adminStateUp,omitempty" tf:"admin_state_up,omitempty"`
 
+	// The name of the network. Changing this updates the name of
+	// the existing network.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The region in which to obtain the V2 Networking client.
+	// A Networking client is needed to create a Neutron network. If omitted, the
+	// region argument of the provider is used. Changing this creates a new
+	// network.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// An array of one or more provider segment objects.
 	// +kubebuilder:validation:Optional
 	Segments []SegmentsParameters `json:"segments,omitempty" tf:"segments,omitempty"`
 
+	// Specifies whether the network resource can be accessed
+	// by any tenant or not. Changing this updates the sharing capabalities of the
+	// existing network.
 	// +kubebuilder:validation:Optional
 	Shared *string `json:"shared,omitempty" tf:"shared,omitempty"`
 
+	// The owner of the network. Required if admin wants to
+	// create a network for another tenant. Changing this creates a new network.
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
+	// Map of additional options.
 	// +kubebuilder:validation:Optional
 	ValueSpecs map[string]*string `json:"valueSpecs,omitempty" tf:"value_specs,omitempty"`
 }
@@ -46,12 +62,15 @@ type SegmentsObservation struct {
 
 type SegmentsParameters struct {
 
+	// The type of physical network.
 	// +kubebuilder:validation:Optional
 	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
 
+	// The physical network where this network is implemented.
 	// +kubebuilder:validation:Optional
 	PhysicalNetwork *string `json:"physicalNetwork,omitempty" tf:"physical_network,omitempty"`
 
+	// An isolated segment on the physical network.
 	// +kubebuilder:validation:Optional
 	SegmentationID *float64 `json:"segmentationId,omitempty" tf:"segmentation_id,omitempty"`
 }
@@ -70,7 +89,7 @@ type NetworkStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Network is the Schema for the Networks API. <no value>
+// Network is the Schema for the Networks API. ""page_title: "flexibleengine_networking_network_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

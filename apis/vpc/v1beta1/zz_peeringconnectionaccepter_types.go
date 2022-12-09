@@ -14,27 +14,36 @@ import (
 )
 
 type PeeringConnectionAccepterObservation struct {
+
+	// The VPC peering connection ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The VPC peering connection name.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The Tenant Id of the accepter tenant.
 	PeerTenantID *string `json:"peerTenantId,omitempty" tf:"peer_tenant_id,omitempty"`
 
+	// The VPC ID of the accepter tenant.
 	PeerVPCID *string `json:"peerVpcId,omitempty" tf:"peer_vpc_id,omitempty"`
 
+	// The VPC peering connection status.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The ID of requester VPC involved in a VPC peering connection.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type PeeringConnectionAccepterParameters struct {
 
+	// Whether or not to accept the peering request. Defaults to false.
 	// +kubebuilder:validation:Optional
 	Accept *bool `json:"accept,omitempty" tf:"accept,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The VPC Peering Connection ID to manage. Changing this creates a new VPC peering connection accepter.
 	// +crossplane:generate:reference:type=PeeringConnection
 	// +kubebuilder:validation:Optional
 	VPCPeeringConnectionID *string `json:"vpcPeeringConnectionId,omitempty" tf:"vpc_peering_connection_id,omitempty"`
@@ -62,7 +71,7 @@ type PeeringConnectionAccepterStatus struct {
 
 // +kubebuilder:object:root=true
 
-// PeeringConnectionAccepter is the Schema for the PeeringConnectionAccepters API. <no value>
+// PeeringConnectionAccepter is the Schema for the PeeringConnectionAccepters API. ""page_title: "flexibleengine_vpc_peering_connection_accepter_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: VolumeAttach is the Schema for the VolumeAttachs API. <no value>
+        description: 'VolumeAttach is the Schema for the VolumeAttachs API. ""page_title:
+          "flexibleengine_compute_volume_attach_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,12 +65,21 @@ spec:
               forProvider:
                 properties:
                   device:
+                    description: 'The device of the volume attachment (ex: /dev/vdc).
+                      NOTE: Being able to specify a device is dependent upon the hypervisor
+                      in use. Please use with caution.'
                     type: string
                   instanceId:
+                    description: The ID of the Instance to attach the Volume to.
                     type: string
                   region:
+                    description: The region in which to obtain the V2 Compute client.
+                      A Compute client is needed to create a volume attachment. If
+                      omitted, the region argument of the provider is used. Changing
+                      this creates a new volume attachment.
                     type: string
                   volumeId:
+                    description: The ID of the Volume to attach to an Instance.
                     type: string
                 required:
                 - instanceId

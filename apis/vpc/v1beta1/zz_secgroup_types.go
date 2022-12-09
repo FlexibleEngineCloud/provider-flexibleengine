@@ -14,23 +14,35 @@ import (
 )
 
 type SecGroupObservation struct {
+
+	// The resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type SecGroupParameters struct {
 
+	// Whether or not to delete the default
+	// egress security rules. This is false by default. See the below note
+	// for more information.
 	// +kubebuilder:validation:Optional
 	DeleteDefaultRules *bool `json:"deleteDefaultRules,omitempty" tf:"delete_default_rules,omitempty"`
 
+	// A unique name for the security group.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// A unique name for the security group.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// The region in which to obtain the V2 networking client.
+	// A networking client is needed to create a port. If omitted, the
+	// region argument of the provider is used. Changing this creates a new
+	// security group.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The resource ID in UUID format.
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 }
@@ -49,7 +61,7 @@ type SecGroupStatus struct {
 
 // +kubebuilder:object:root=true
 
-// SecGroup is the Schema for the SecGroups API. <no value>
+// SecGroup is the Schema for the SecGroups API. ""page_title: "flexibleengine_networking_secgroup_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

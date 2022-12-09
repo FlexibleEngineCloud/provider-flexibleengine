@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Certificate is the Schema for the Certificates API. <no value>
+        description: 'Certificate is the Schema for the Certificates API. ""page_title:
+          "flexibleengine_elb_certificate"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,20 +65,37 @@ spec:
               forProvider:
                 properties:
                   certificate:
+                    description: Specifies the public encrypted key of the certificate,
+                      PEM format.
                     type: string
                   description:
+                    description: Specifies the description of the certificate.
                     type: string
                   domain:
+                    description: Specifies the domain of the certificate. The value
+                      contains a maximum of 100 characters. This parameter is valid
+                      only when type is set to "server".
                     type: string
                   enterpriseProjectId:
+                    description: Specifies a resource ID in UUID format.
                     type: string
                   name:
+                    description: Specifies the name of the certificate. Does not have
+                      to be unique.
                     type: string
                   privateKey:
+                    description: Specifies the private encrypted key of the certificate,
+                      PEM format. This parameter is valid and mandatory only when
+                      type is set to "server".
                     type: string
                   region:
+                    description: The region in which to create the ELB certificate
+                      resource. If omitted, the provider-level region will be used.
+                      Changing this creates a new certificate.
                     type: string
                   type:
+                    description: 'Specifies the certificate type. The default value
+                      is "server". The value can be one of the following:'
                     type: string
                 required:
                 - certificate
@@ -259,12 +277,16 @@ spec:
               atProvider:
                 properties:
                   createTime:
+                    description: Indicates the creation time.
                     type: string
                   expireTime:
+                    description: Indicates the expire time.
                     type: string
                   id:
+                    description: Specifies a resource ID in UUID format.
                     type: string
                   updateTime:
+                    description: Indicates the update time.
                     type: string
                 type: object
               conditions:

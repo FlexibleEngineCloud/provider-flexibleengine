@@ -1,0 +1,72 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: PeeringConnectionAccepter
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/peeringconnectionaccepter
+  labels:
+    testing.upbound.io/example-name: peer
+  name: peer
+spec:
+  forProvider:
+    accept: true
+    provider: flexibleengine.peer
+    vpcPeeringConnectionIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: peering
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: PeeringConnection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/peeringconnectionaccepter
+  labels:
+    testing.upbound.io/example-name: peering
+  name: peering
+spec:
+  forProvider:
+    name: ${var.peer_name}
+    peerTenantId: ${var.tenant_id}
+    peerVpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_peer
+    provider: flexibleengine.main
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_main
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/peeringconnectionaccepter
+  labels:
+    testing.upbound.io/example-name: vpc_main
+  name: vpc-main
+spec:
+  forProvider:
+    cidr: ${var.vpc_cidr}
+    name: ${var.vpc_name}
+    provider: flexibleengine.main
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/peeringconnectionaccepter
+  labels:
+    testing.upbound.io/example-name: vpc_peer
+  name: vpc-peer
+spec:
+  forProvider:
+    cidr: ${var.peer_vpc_cidr}
+    name: ${var.peer_vpc_name}
+    provider: flexibleengine.peer
+
+---
+

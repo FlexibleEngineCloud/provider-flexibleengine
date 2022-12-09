@@ -14,22 +14,30 @@ import (
 )
 
 type ProjectObservation struct {
+
+	// A resource ID in UUID format.
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
+	// Enabling status of this project.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
+	// A resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	IsDomain *bool `json:"isDomain,omitempty" tf:"is_domain,omitempty"`
 
+	// The parent of this project.
 	ParentID *string `json:"parentId,omitempty" tf:"parent_id,omitempty"`
 }
 
 type ProjectParameters struct {
 
+	// A description of the project.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The name of the project. The length is less than or equal
+	// to 64 bytes. Name mut be prefixed with a valid region name (eg. eu-west-0_project_1).
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 }
@@ -48,7 +56,7 @@ type ProjectStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Project is the Schema for the Projects API. <no value>
+// Project is the Schema for the Projects API. ""page_title: "flexibleengine_identity_project_v3"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

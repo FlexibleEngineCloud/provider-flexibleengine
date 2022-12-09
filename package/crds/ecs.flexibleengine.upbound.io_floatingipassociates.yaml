@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: FloatingIpAssociate is the Schema for the FloatingIpAssociates
-          API. <no value>
+        description: 'FloatingIpAssociate is the Schema for the FloatingIpAssociates
+          API. ""page_title: "flexibleengine_compute_floatingip_associate_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -65,8 +65,10 @@ spec:
               forProvider:
                 properties:
                   fixedIp:
+                    description: The specific IP address to direct traffic to.
                     type: string
                   floatingIp:
+                    description: The floating IP to associate.
                     type: string
                   floatingIpRef:
                     description: Reference to a EIP in eip to populate floatingIp.
@@ -142,6 +144,7 @@ spec:
                         type: object
                     type: object
                   instanceId:
+                    description: The instance to associte the floating IP with.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -217,6 +220,10 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: The region in which to obtain the V2 Compute client.
+                      Keypairs are associated with accounts, but a Compute client
+                      is needed to create one. If omitted, the region argument of
+                      the provider is used. Changing this creates a new floatingip_associate.
                     type: string
                 type: object
               providerConfigRef:

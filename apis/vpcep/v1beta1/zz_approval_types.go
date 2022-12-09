@@ -14,13 +14,18 @@ import (
 )
 
 type ApprovalObservation struct {
+
+	// An array of VPC endpoints connect to the VPC endpoint service. Structure is documented below.
 	Connections []ConnectionsObservation `json:"connections,omitempty" tf:"connections,omitempty"`
 
+	// The unique ID in UUID format which equals to the ID of the VPC endpoint service.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type ApprovalParameters struct {
 
+	// Specifies the list of VPC endpoint IDs which accepted to connect to VPC endpoint service.
+	// The VPC endpoints will be rejected when the resource was destroyed.
 	// +crossplane:generate:reference:type=Endpoint
 	// +kubebuilder:validation:Optional
 	Endpoints []*string `json:"endpoints,omitempty" tf:"endpoints,omitempty"`
@@ -33,9 +38,11 @@ type ApprovalParameters struct {
 	// +kubebuilder:validation:Optional
 	EndpointsSelector *v1.Selector `json:"endpointsSelector,omitempty" tf:"-"`
 
+	// The region in which to obtain the VPC endpoint service.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the ID of the VPC endpoint service. Changing this creates a new resource.
 	// +crossplane:generate:reference:type=Service
 	// +kubebuilder:validation:Optional
 	ServiceID *string `json:"serviceId,omitempty" tf:"service_id,omitempty"`
@@ -50,12 +57,17 @@ type ApprovalParameters struct {
 }
 
 type ConnectionsObservation struct {
+
+	// The user's domain ID.
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
+	// The unique ID of the VPC endpoint.
 	EndpointID *string `json:"endpointId,omitempty" tf:"endpoint_id,omitempty"`
 
+	// The packet ID of the VPC endpoint.
 	PacketID *float64 `json:"packetId,omitempty" tf:"packet_id,omitempty"`
 
+	// The connection status of the VPC endpoint.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
@@ -76,7 +88,7 @@ type ApprovalStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Approval is the Schema for the Approvals API. <no value>
+// Approval is the Schema for the Approvals API. ""page_title: "flexibleengine_vpcep_approval"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

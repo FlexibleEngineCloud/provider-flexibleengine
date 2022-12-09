@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Service is the Schema for the Services API. <no value>
+        description: 'Service is the Schema for the Services API. ""page_title: "flexibleengine_vpcep_service"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,14 +64,25 @@ spec:
               forProvider:
                 properties:
                   approval:
+                    description: Specifies whether connection approval is required.
+                      The default value is false.
                     type: boolean
                   name:
+                    description: Specifies the name of the VPC endpoint service. The
+                      value contains a maximum of 16 characters, including letters,
+                      digits, underscores (_), and hyphens (-).
                     type: string
                   permissions:
+                    description: Specifies the list of accounts to access the VPC
+                      endpoint service. The record is in the iam:domain::domain_id
+                      format, while * allows all users to access the VPC endpoint
+                      service.
                     items:
                       type: string
                     type: array
                   portId:
+                    description: Specifies the ID for identifying the backend resource
+                      of the VPC endpoint service.
                     type: string
                   portIdRef:
                     description: Reference to a Port in vpc to populate portId.
@@ -147,27 +158,48 @@ spec:
                         type: object
                     type: object
                   portMapping:
+                    description: Specified the port mappings opened to the VPC endpoint
+                      service. Structure is documented below.
                     items:
                       properties:
                         protocol:
+                          description: Specifies the protocol used in port mappings.
+                            The value can be TCP or UDP. The default value is TCP.
                           type: string
                         servicePort:
+                          description: Specifies the port for accessing the VPC endpoint
+                            service. This port is provided by the backend service
+                            to provide services. The value ranges from 1 to 65535.
                           type: number
                         terminalPort:
+                          description: Specifies the port for accessing the VPC endpoint.
+                            This port is provided by the VPC endpoint, allowing you
+                            to access the VPC endpoint service. The value ranges from
+                            1 to 65535.
                           type: number
                       type: object
                     type: array
                   region:
+                    description: The region in which to create the VPC endpoint service.
                     type: string
                   serverType:
+                    description: Specifies the backend resource type. The value can
+                      be VM, VIP or LB. Changing this creates a new VPC endpoint service.
                     type: string
                   serviceType:
+                    description: The type of the VPC endpoint service. Only interface
+                      can be configured.
                     type: string
                   tags:
                     additionalProperties:
                       type: string
+                    description: The key/value pairs to associate with the VPC endpoint
+                      service.
                     type: object
                   vpcId:
+                    description: Specifies the ID of the VPC to which the backend
+                      resource of the VPC endpoint service belongs. Changing this
+                      creates a new VPC endpoint service.
                     type: string
                   vpcIdRef:
                     description: Reference to a VPC in vpc to populate vpcId.
@@ -423,23 +455,35 @@ spec:
               atProvider:
                 properties:
                   connections:
+                    description: An array of VPC endpoints connect to the VPC endpoint
+                      service. Structure is documented below.
                     items:
                       properties:
                         domainId:
+                          description: The user's domain ID.
                           type: string
                         endpointId:
+                          description: The unique ID of the VPC endpoint.
                           type: string
                         packetId:
+                          description: The packet ID of the VPC endpoint.
                           type: number
                         status:
+                          description: The status of the VPC endpoint service. The
+                            value can be available or failed.
                           type: string
                       type: object
                     type: array
                   id:
+                    description: The unique ID of the VPC endpoint service.
                     type: string
                   serviceName:
+                    description: 'The full name of the VPC endpoint service in the
+                      format: region.name.id.'
                     type: string
                   status:
+                    description: The status of the VPC endpoint service. The value
+                      can be available or failed.
                     type: string
                 type: object
               conditions:

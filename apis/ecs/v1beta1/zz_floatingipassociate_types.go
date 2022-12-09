@@ -19,9 +19,11 @@ type FloatingIpAssociateObservation struct {
 
 type FloatingIpAssociateParameters struct {
 
+	// The specific IP address to direct traffic to.
 	// +kubebuilder:validation:Optional
 	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
+	// The floating IP to associate.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	FloatingIP *string `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
@@ -34,6 +36,7 @@ type FloatingIpAssociateParameters struct {
 	// +kubebuilder:validation:Optional
 	FloatingIPSelector *v1.Selector `json:"floatingIpSelector,omitempty" tf:"-"`
 
+	// The instance to associte the floating IP with.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -46,6 +49,10 @@ type FloatingIpAssociateParameters struct {
 	// +kubebuilder:validation:Optional
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
+	// The region in which to obtain the V2 Compute client.
+	// Keypairs are associated with accounts, but a Compute client is needed to
+	// create one. If omitted, the region argument of the provider is used.
+	// Changing this creates a new floatingip_associate.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -64,7 +71,7 @@ type FloatingIpAssociateStatus struct {
 
 // +kubebuilder:object:root=true
 
-// FloatingIpAssociate is the Schema for the FloatingIpAssociates API. <no value>
+// FloatingIpAssociate is the Schema for the FloatingIpAssociates API. ""page_title: "flexibleengine_compute_floatingip_associate_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

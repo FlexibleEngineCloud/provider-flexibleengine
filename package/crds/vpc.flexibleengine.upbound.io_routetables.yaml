@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: RouteTable is the Schema for the RouteTables API. <no value>
+        description: 'RouteTable is the Schema for the RouteTables API. ""page_title:
+          "flexibleengine_vpc_route_table"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,21 +65,42 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: Specifies the supplementary information about the
+                      route table. The value is a string of no more than 255 characters
+                      and cannot contain angle brackets (< or >).
                     type: string
                   name:
+                    description: Specifies the route table name. The value is a string
+                      of no more than 64 characters that can contain letters, digits,
+                      underscores (_), hyphens (-), and periods (.).
                     type: string
                   region:
+                    description: The region in which to create the vpc route table.
+                      If omitted, the provider-level region will be used. Changing
+                      this creates a new resource.
                     type: string
                   route:
+                    description: Specifies the route object list. The route object
+                      is documented below.
                     items:
                       properties:
                         description:
+                          description: Specifies the supplementary information about
+                            the route. The value is a string of no more than 255 characters
+                            and cannot contain angle brackets (< or >).
                           type: string
                         destination:
+                          description: Specifies the destination address in the CIDR
+                            notation format, for example, 192.168.200.0/24. The destination
+                            of each route must be unique and cannot overlap with any
+                            subnet in the VPC.
                           type: string
                         nexthop:
+                          description: Specifies the next hop.
                           type: string
                         type:
+                          description: 'Specifies the route type. Currently, the value
+                            can be: ecs, eni, vip, nat, peering, vpn and dc.'
                           type: string
                       required:
                       - destination
@@ -87,6 +109,8 @@ spec:
                       type: object
                     type: array
                   subnets:
+                    description: Specifies an array of one or more subnets associating
+                      with the route table.
                     items:
                       type: string
                     type: array
@@ -167,6 +191,8 @@ spec:
                         type: object
                     type: object
                   vpcId:
+                    description: Specifies the VPC ID for which a route table is to
+                      be added. Changing this creates a new resource.
                     type: string
                   vpcIdRef:
                     description: Reference to a VPC in vpc to populate vpcId.
@@ -421,6 +447,7 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The resource ID in UUID format.
                     type: string
                 type: object
               conditions:

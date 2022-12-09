@@ -14,8 +14,11 @@ import (
 )
 
 type ConversionRulesObservation struct {
+
+	// The federated user information on the cloud platform.
 	Local []LocalObservation `json:"local,omitempty" tf:"local,omitempty"`
 
+	// The description of the identity provider.
 	Remote []RemoteObservation `json:"remote,omitempty" tf:"remote,omitempty"`
 }
 
@@ -23,8 +26,11 @@ type ConversionRulesParameters struct {
 }
 
 type LocalObservation struct {
+
+	// The user group to which the federated user belongs on the cloud platform.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// The name of a federated user on the cloud platform.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
@@ -36,64 +42,103 @@ type OpenIDConnectConfigObservation struct {
 
 type OpenIDConnectConfigParameters struct {
 
+	// Specifies the access type of the identity provider.
+	// Available options are:
 	// +kubebuilder:validation:Required
 	AccessType *string `json:"accessType" tf:"access_type,omitempty"`
 
+	// Specifies the authorization endpoint of the OpenID Connect identity
+	// provider. This field is required only if the access type is set to program_console.
 	// +kubebuilder:validation:Optional
 	AuthorizationEndpoint *string `json:"authorizationEndpoint,omitempty" tf:"authorization_endpoint,omitempty"`
 
+	// Specifies the ID of a client registered with the OpenID Connect identity provider.
 	// +kubebuilder:validation:Required
 	ClientID *string `json:"clientId" tf:"client_id,omitempty"`
 
+	// Specifies the URL of the identity provider.
+	// This field corresponds to the iss field in the ID token.
 	// +kubebuilder:validation:Required
 	ProviderURL *string `json:"providerUrl" tf:"provider_url,omitempty"`
 
+	// Response mode.
+	// Valid values is form_post and fragment, default value is form_post.
+	// This field is required only if the access type is set to program_console.
 	// +kubebuilder:validation:Optional
 	ResponseMode *string `json:"responseMode,omitempty" tf:"response_mode,omitempty"`
 
+	// Response type. Valid values is id_token, default value is id_token.
+	// This field is required only if the access type is set to program_console.
 	// +kubebuilder:validation:Optional
 	ResponseType *string `json:"responseType,omitempty" tf:"response_type,omitempty"`
 
+	// Specifies the scopes of authorization requests. It is an array of one or more scopes.
+	// Valid values are openid, email, profile and other values defined by you.
+	// This field is required only if the access type is set to program_console.
 	// +kubebuilder:validation:Optional
 	Scopes []*string `json:"scopes,omitempty" tf:"scopes,omitempty"`
 
+	// Public key used to sign the ID token of the OpenID Connect identity provider.
+	// This field is required only if the protocol is set to oidc.
 	// +kubebuilder:validation:Required
 	SigningKey *string `json:"signingKey" tf:"signing_key,omitempty"`
 }
 
 type ProviderObservation struct {
+
+	// The identity conversion rules of the identity provider.
+	// The object structure is documented below
 	ConversionRules []ConversionRulesObservation `json:"conversionRules,omitempty" tf:"conversion_rules,omitempty"`
 
+	// The resource ID which equals to the name.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The login link of the identity provider.
 	LoginLink *string `json:"loginLink,omitempty" tf:"login_link,omitempty"`
 
+	// The single sign-on type of the identity provider.
 	SsoType *string `json:"ssoType,omitempty" tf:"sso_type,omitempty"`
 }
 
 type ProviderParameters struct {
 
+	// Specifies the description of the identity provider.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Specifies the status for the identity provider. Defaults to true.
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
+	// Specifies the metadata of the IDP(Identity Provider) server.
+	// To obtain the metadata file of your enterprise IDP, contact the enterprise administrator.
+	// This field is used to import a metadata file to IAM to implement federated identity authentication.
+	// This field is required only if the protocol is set to saml.
+	// The maximum length is 30,000 characters and it stores in the state with SHA1 algorithm.
 	// +kubebuilder:validation:Optional
 	Metadata *string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// Specifies the description of the identity provider.
+	// This field is required only if the protocol is set to oidc.
 	// +kubebuilder:validation:Optional
 	OpenIDConnectConfig []OpenIDConnectConfigParameters `json:"openidConnectConfig,omitempty" tf:"openid_connect_config,omitempty"`
 
+	// Specifies the protocol of the identity provider.
+	// Valid values are saml and oidc.
+	// Changing this creates a new resource.
 	// +kubebuilder:validation:Required
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 }
 
 type RemoteObservation struct {
+
+	// The attribute in the IDP assertion.
 	Attribute *string `json:"attribute,omitempty" tf:"attribute,omitempty"`
 
+	// The condition of conversion rule.
 	Condition *string `json:"condition,omitempty" tf:"condition,omitempty"`
 
+	// The rule is matched only if the specified strings appear in the attribute type.
 	Value []*string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
@@ -114,7 +159,7 @@ type ProviderStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Provider is the Schema for the Providers API. <no value>
+// Provider is the Schema for the Providers API. ""page_title: "flexibleengine_identity_provider"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

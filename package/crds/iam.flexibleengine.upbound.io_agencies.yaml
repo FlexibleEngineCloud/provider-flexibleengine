@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Agency is the Schema for the Agencys API. <no value>
+        description: 'Agency is the Schema for the Agencys API. ""page_title: "flexibleengine_identity_agency_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,25 +64,42 @@ spec:
               forProvider:
                 properties:
                   delegatedDomainName:
+                    description: Specifies the name of delegated user domain. This
+                      parameter and delegated_service_name are alternative.
                     type: string
                   delegatedServiceName:
+                    description: Specifies the name of delegated cloud service. This
+                      parameter and delegated_domain_name are alternative.
                     type: string
                   description:
+                    description: Specifies the supplementary information about the
+                      agency. The value is a string of 0 to 255 characters.
                     type: string
                   domainRoles:
+                    description: Specifies an array of one or more role names which
+                      stand for the permissionis to be granted to agency on domain.
                     items:
                       type: string
                     type: array
                   duration:
+                    description: Specifies the validity period of an agency. The valid
+                      value are ONEDAY and FOREVER, defaults to FOREVER.
                     type: string
                   name:
+                    description: Specifies the name of agency. The name is a string
+                      of 1 to 64 characters. Changing this will create a new agency.
                     type: string
                   projectRole:
+                    description: Specifies an array of one or more roles and projects
+                      which are used to grant permissions to agency on project. The
+                      structure is documented below.
                     items:
                       properties:
                         project:
+                          description: Specifies the name of project.
                           type: string
                         roles:
+                          description: Specifies an array of role names.
                           items:
                             type: string
                           type: array
@@ -271,10 +288,13 @@ spec:
               atProvider:
                 properties:
                   createTime:
+                    description: The time when the agency was created.
                     type: string
                   expireTime:
+                    description: The expiration time of agency.
                     type: string
                   id:
+                    description: The agency ID.
                     type: string
                 type: object
               conditions:

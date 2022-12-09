@@ -14,23 +14,34 @@ import (
 )
 
 type VipObservation struct {
+
+	// The device owner of the vip.
 	DeviceOwner *string `json:"deviceOwner,omitempty" tf:"device_owner,omitempty"`
 
+	// The ID of the vip.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The status of vip.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The tenant ID of the vip.
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 }
 
 type VipParameters struct {
 
+	// IP address desired in the subnet for this vip.
+	// If you don't specify ip_address, an available IP address from
+	// the specified subnet will be allocated to this vip.
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
+	// A unique name for the vip.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The ID of the network to attach the vip to.
+	// Changing this creates a new vip.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -43,15 +54,17 @@ type VipParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.NetworkingSubnet
+	// Subnet in which to allocate IP address for this vip.
+	// Changing this creates a new vip.
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a NetworkingSubnet in vpc to populate subnetId.
+	// Reference to a VPCSubnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a NetworkingSubnet in vpc to populate subnetId.
+	// Selector for a VPCSubnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }
@@ -70,7 +83,7 @@ type VipStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Vip is the Schema for the Vips API. <no value>
+// Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

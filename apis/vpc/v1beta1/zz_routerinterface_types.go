@@ -19,6 +19,8 @@ type RouterInterfaceObservation struct {
 
 type RouterInterfaceParameters struct {
 
+	// ID of the port this interface connects to. Changing
+	// this creates a new router interface.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
@@ -31,9 +33,15 @@ type RouterInterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
+	// The region in which to obtain the V2 networking client.
+	// A networking client is needed to create a router. If omitted, the
+	// region argument of the provider is used. Changing this creates a new
+	// router interface.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// ID of the router this interface belongs to. Changing
+	// this creates a new router interface.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Router
 	// +kubebuilder:validation:Optional
 	RouterID *string `json:"routerId,omitempty" tf:"router_id,omitempty"`
@@ -46,6 +54,8 @@ type RouterInterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	RouterIDSelector *v1.Selector `json:"routerIdSelector,omitempty" tf:"-"`
 
+	// ID of the subnet this interface connects to. Changing
+	// this creates a new router interface.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
@@ -73,7 +83,7 @@ type RouterInterfaceStatus struct {
 
 // +kubebuilder:object:root=true
 
-// RouterInterface is the Schema for the RouterInterfaces API. <no value>
+// RouterInterface is the Schema for the RouterInterfaces API. ""page_title: "flexibleengine_networking_router_interface_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: User is the Schema for the Users API. <no value>
+        description: 'User is the Schema for the Users API. ""page_title: "flexibleengine_identity_user_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,18 +64,32 @@ spec:
               forProvider:
                 properties:
                   countryCode:
+                    description: Specifies the country code. The country code of the
+                      Chinese mainland is 0086. This parameter must be used together
+                      with phone.
                     type: string
                   description:
+                    description: Specifies the description of the user.
                     type: string
                   email:
+                    description: Specifies the email address with a maximum of 255
+                      characters.
                     type: string
                   enabled:
+                    description: Specifies whether the user is enabled or disabled.
+                      Valid values are true and false.
                     type: boolean
                   name:
+                    description: Specifies the name of the user. The user name consists
+                      of 5 to 32 characters. It can contain only uppercase letters,
+                      lowercase letters, digits, spaces, and special characters (-_)
+                      and cannot start with a digit.
                     type: string
                   passwordSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
+                    description: 'Specifies the password for the user with 6 to 32
+                      characters. It must contain at least two of the following character
+                      types: uppercase letters, lowercase letters, digits, and special
+                      characters.'
                     properties:
                       key:
                         description: The key to select.
@@ -92,6 +106,8 @@ spec:
                     - namespace
                     type: object
                   phone:
+                    description: Specifies the mobile number with a maximum of 32
+                      digits. This parameter must be used together with country_code.
                     type: string
                 required:
                 - name
@@ -273,12 +289,16 @@ spec:
               atProvider:
                 properties:
                   createTime:
+                    description: The time when the IAM user was created.
                     type: string
                   id:
+                    description: The resource ID in UUID format.
                     type: string
                   lastLogin:
+                    description: The tiem when the IAM user last login.
                     type: string
                   passwordStrength:
+                    description: Indicates the password strength.
                     type: string
                 type: object
               conditions:

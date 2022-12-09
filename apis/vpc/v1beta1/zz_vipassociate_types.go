@@ -16,16 +16,22 @@ import (
 type VipAssociateObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The IP address in the subnet for this vip.
 	VipIPAddress *string `json:"vipIpAddress,omitempty" tf:"vip_ip_address,omitempty"`
 
+	// The ID of the subnet this vip connects to.
 	VipSubnetID *string `json:"vipSubnetId,omitempty" tf:"vip_subnet_id,omitempty"`
 }
 
 type VipAssociateParameters struct {
 
+	// An array of one or more IDs of the ports to attach the vip to.
+	// Changing this creates a new vip associate.
 	// +kubebuilder:validation:Required
 	PortIds []*string `json:"portIds" tf:"port_ids,omitempty"`
 
+	// The ID of vip to attach the port to.
+	// Changing this creates a new vip associate.
 	// +kubebuilder:validation:Required
 	VipID *string `json:"vipId" tf:"vip_id,omitempty"`
 }
@@ -44,7 +50,7 @@ type VipAssociateStatus struct {
 
 // +kubebuilder:object:root=true
 
-// VipAssociate is the Schema for the VipAssociates API. <no value>
+// VipAssociate is the Schema for the VipAssociates API. ""page_title: "flexibleengine_networking_vip_associate_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

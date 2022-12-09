@@ -18,23 +18,35 @@ type PortMappingObservation struct {
 
 type PortMappingParameters struct {
 
+	// Specifies the protocol used in port mappings.
+	// The value can be TCP or UDP. The default value is TCP.
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// Specifies the port for accessing the VPC endpoint service.
+	// This port is provided by the backend service to provide services. The value ranges from 1 to 65535.
 	// +kubebuilder:validation:Optional
 	ServicePort *float64 `json:"servicePort,omitempty" tf:"service_port,omitempty"`
 
+	// Specifies the port for accessing the VPC endpoint.
+	// This port is provided by the VPC endpoint, allowing you to access the VPC endpoint service.
+	// The value ranges from 1 to 65535.
 	// +kubebuilder:validation:Optional
 	TerminalPort *float64 `json:"terminalPort,omitempty" tf:"terminal_port,omitempty"`
 }
 
 type ServiceConnectionsObservation struct {
+
+	// The user's domain ID.
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
+	// The unique ID of the VPC endpoint.
 	EndpointID *string `json:"endpointId,omitempty" tf:"endpoint_id,omitempty"`
 
+	// The packet ID of the VPC endpoint.
 	PacketID *float64 `json:"packetId,omitempty" tf:"packet_id,omitempty"`
 
+	// The status of the VPC endpoint service. The value can be available or failed.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
@@ -42,26 +54,37 @@ type ServiceConnectionsParameters struct {
 }
 
 type ServiceObservation struct {
+
+	// An array of VPC endpoints connect to the VPC endpoint service. Structure is documented below.
 	Connections []ServiceConnectionsObservation `json:"connections,omitempty" tf:"connections,omitempty"`
 
+	// The unique ID of the VPC endpoint service.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The full name of the VPC endpoint service in the format: region.name.id.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The status of the VPC endpoint service. The value can be available or failed.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ServiceParameters struct {
 
+	// Specifies whether connection approval is required. The default value is false.
 	// +kubebuilder:validation:Optional
 	Approval *bool `json:"approval,omitempty" tf:"approval,omitempty"`
 
+	// Specifies the name of the VPC endpoint service. The value contains a maximum of
+	// 16 characters, including letters, digits, underscores (_), and hyphens (-).
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Specifies the list of accounts to access the VPC endpoint service.
+	// The record is in the iam:domain::domain_id format, while * allows all users to access the VPC endpoint service.
 	// +kubebuilder:validation:Optional
 	Permissions []*string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 
+	// Specifies the ID for identifying the backend resource of the VPC endpoint service.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
@@ -74,21 +97,30 @@ type ServiceParameters struct {
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
+	// Specified the port mappings opened to the VPC endpoint service.
+	// Structure is documented below.
 	// +kubebuilder:validation:Required
 	PortMapping []PortMappingParameters `json:"portMapping" tf:"port_mapping,omitempty"`
 
+	// The region in which to create the VPC endpoint service.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the backend resource type. The value can be VM, VIP or LB.
+	// Changing this creates a new VPC endpoint service.
 	// +kubebuilder:validation:Required
 	ServerType *string `json:"serverType" tf:"server_type,omitempty"`
 
+	// The type of the VPC endpoint service. Only interface can be configured.
 	// +kubebuilder:validation:Optional
 	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
 
+	// The key/value pairs to associate with the VPC endpoint service.
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Specifies the ID of the VPC to which the backend resource of
+	// the VPC endpoint service belongs. Changing this creates a new VPC endpoint service.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -116,7 +148,7 @@ type ServiceStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Service is the Schema for the Services API. <no value>
+// Service is the Schema for the Services API. ""page_title: "flexibleengine_vpcep_service"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

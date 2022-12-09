@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Project is the Schema for the Projects API. <no value>
+        description: 'Project is the Schema for the Projects API. ""page_title: "flexibleengine_identity_project_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,8 +64,12 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: A description of the project.
                     type: string
                   name:
+                    description: The name of the project. The length is less than
+                      or equal to 64 bytes. Name mut be prefixed with a valid region
+                      name (eg. eu-west-0_project_1).
                     type: string
                 required:
                 - name
@@ -247,14 +251,18 @@ spec:
               atProvider:
                 properties:
                   domainId:
+                    description: A resource ID in UUID format.
                     type: string
                   enabled:
+                    description: Enabling status of this project.
                     type: boolean
                   id:
+                    description: A resource ID in UUID format.
                     type: string
                   isDomain:
                     type: boolean
                   parentId:
+                    description: The parent of this project.
                     type: string
                 type: object
               conditions:

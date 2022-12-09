@@ -14,58 +14,88 @@ import (
 )
 
 type VPCSubnetObservation struct {
+
+	// The resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The subnet (Native OpenStack API) ID.
 	IPv4SubnetID *string `json:"ipv4SubnetId,omitempty" tf:"ipv4_subnet_id,omitempty"`
 
+	// The IPv6 subnet CIDR block.
 	IPv6Cidr *string `json:"ipv6Cidr,omitempty" tf:"ipv6_cidr,omitempty"`
 
+	// The IPv6 subnet gateway.
 	IPv6Gateway *string `json:"ipv6Gateway,omitempty" tf:"ipv6_gateway,omitempty"`
 
+	// The ID of the IPv6 subnet (Native OpenStack API).
 	IPv6SubnetID *string `json:"ipv6SubnetId,omitempty" tf:"ipv6_subnet_id,omitempty"`
 
+	// The subnet (Native OpenStack API) ID.
 	// schema: Deprecated
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type VPCSubnetParameters struct {
 
+	// Specifies the availability zone (AZ) to which the subnet belongs.
+	// The value must be an existing AZ in the system. Changing this creates a new subnet.
 	// +kubebuilder:validation:Optional
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
+	// Specifies the network segment on which the subnet resides. The value must be in
+	// CIDR format and within the CIDR block of the VPC. The subnet mask cannot be greater than 28. Changing this creates a
+	// new subnet.
 	// +kubebuilder:validation:Required
 	Cidr *string `json:"cidr" tf:"cidr,omitempty"`
 
+	// Specifies whether the DHCP function is enabled for the subnet. Defaults to true.
 	// +kubebuilder:validation:Optional
 	DHCPEnable *bool `json:"dhcpEnable,omitempty" tf:"dhcp_enable,omitempty"`
 
+	// Specifies the DNS server address list of a subnet. This field is required if you need to
+	// use more than two DNS servers. This parameter value is the superset of both DNS server address 1 and DNS server
+	// address 2.
 	// +kubebuilder:validation:Optional
 	DNSList []*string `json:"dnsList,omitempty" tf:"dns_list,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Specifies the gateway of the subnet. The value must be a valid IP address
+	// in the subnet segment. Changing this creates a new subnet.
 	// +kubebuilder:validation:Required
 	GatewayIP *string `json:"gatewayIp" tf:"gateway_ip,omitempty"`
 
+	// Specifies whether the IPv6 function is enabled for the subnet. Defaults to false.
 	// +kubebuilder:validation:Optional
 	IPv6Enable *bool `json:"ipv6Enable,omitempty" tf:"ipv6_enable,omitempty"`
 
+	// Specifies the subnet name. The value is a string of 1 to 64 characters that can contain
+	// letters, digits, underscores (_), and hyphens (-).
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// Specifies the IP address of DNS server 1 on the subnet. The value must be a valid
+	// IP address.
 	// +kubebuilder:validation:Optional
 	PrimaryDNS *string `json:"primaryDns,omitempty" tf:"primary_dns,omitempty"`
 
+	// Specifies the region in which to create the vpc subnet. If omitted, the
+	// provider-level region will be used. Changing this creates a new subnet.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the IP address of DNS server 2 on the subnet. The value must be a valid
+	// IP address.
 	// +kubebuilder:validation:Optional
 	SecondaryDNS *string `json:"secondaryDns,omitempty" tf:"secondary_dns,omitempty"`
 
+	// The key/value pairs to associate with the subnet.
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Specifies the ID of the VPC to which the subnet belongs. Changing this creates
+	// a new subnet.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -93,7 +123,7 @@ type VPCSubnetStatus struct {
 
 // +kubebuilder:object:root=true
 
-// VPCSubnet is the Schema for the VPCSubnets API. <no value>
+// VPCSubnet is the Schema for the VPCSubnets API. ""page_title: "flexibleengine_vpc_subnet_v1"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

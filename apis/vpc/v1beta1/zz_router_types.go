@@ -14,32 +14,56 @@ import (
 )
 
 type RouterObservation struct {
+
+	// ID of the router.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type RouterParameters struct {
 
+	// Administrative up/down status for the router
+	// (must be "true" or "false" if provided). Changing this updates the
+	// admin_state_up of an existing router.
 	// +kubebuilder:validation:Optional
 	AdminStateUp *bool `json:"adminStateUp,omitempty" tf:"admin_state_up,omitempty"`
 
+	// Indicates whether or not to create a
+	// distributed router. The default policy setting in Neutron restricts
+	// usage of this property to administrative users only.
 	// +kubebuilder:validation:Optional
 	Distributed *bool `json:"distributed,omitempty" tf:"distributed,omitempty"`
 
+	// Enable Source NAT for the router. Valid values are
+	// "true" or "false". An external_gateway has to be set in order to set this
+	// property. Changing this updates the enable_snat of the router.
 	// +kubebuilder:validation:Optional
 	EnableSnat *bool `json:"enableSnat,omitempty" tf:"enable_snat,omitempty"`
 
+	// The network UUID of an external gateway for
+	// the router. A router with an external gateway is required if any compute
+	// instances or load balancers will be using floating IPs. Changing this
+	// updates the external_gateway of an existing router.
 	// +kubebuilder:validation:Optional
 	ExternalGateway *string `json:"externalGateway,omitempty" tf:"external_gateway,omitempty"`
 
+	// A unique name for the router. Changing this
+	// updates the name of an existing router.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The region in which to obtain the V2 networking client.
+	// A networking client is needed to create a router. If omitted, the
+	// region argument of the provider is used. Changing this creates a new
+	// router.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The owner of the floating IP. Required if admin wants
+	// to create a router for another tenant. Changing this creates a new router.
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
+	// Map of additional driver-specific options.
 	// +kubebuilder:validation:Optional
 	ValueSpecs map[string]*string `json:"valueSpecs,omitempty" tf:"value_specs,omitempty"`
 }
@@ -58,7 +82,7 @@ type RouterStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Router is the Schema for the Routers API. <no value>
+// Router is the Schema for the Routers API. ""page_title: "flexibleengine_networking_router_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

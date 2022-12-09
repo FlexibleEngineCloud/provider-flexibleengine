@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Approval is the Schema for the Approvals API. <no value>
+        description: 'Approval is the Schema for the Approvals API. ""page_title:
+          "flexibleengine_vpcep_approval"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,6 +65,9 @@ spec:
               forProvider:
                 properties:
                   endpoints:
+                    description: Specifies the list of VPC endpoint IDs which accepted
+                      to connect to VPC endpoint service. The VPC endpoints will be
+                      rejected when the resource was destroyed.
                     items:
                       type: string
                     type: array
@@ -144,8 +148,11 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: The region in which to obtain the VPC endpoint service.
                     type: string
                   serviceId:
+                    description: Specifies the ID of the VPC endpoint service. Changing
+                      this creates a new resource.
                     type: string
                   serviceIdRef:
                     description: Reference to a Service to populate serviceId.
@@ -398,19 +405,27 @@ spec:
               atProvider:
                 properties:
                   connections:
+                    description: An array of VPC endpoints connect to the VPC endpoint
+                      service. Structure is documented below.
                     items:
                       properties:
                         domainId:
+                          description: The user's domain ID.
                           type: string
                         endpointId:
+                          description: The unique ID of the VPC endpoint.
                           type: string
                         packetId:
+                          description: The packet ID of the VPC endpoint.
                           type: number
                         status:
+                          description: The connection status of the VPC endpoint.
                           type: string
                       type: object
                     type: array
                   id:
+                    description: The unique ID in UUID format which equals to the
+                      ID of the VPC endpoint service.
                     type: string
                 type: object
               conditions:

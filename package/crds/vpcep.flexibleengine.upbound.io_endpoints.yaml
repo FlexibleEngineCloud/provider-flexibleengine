@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Endpoint is the Schema for the Endpoints API. <no value>
+        description: 'Endpoint is the Schema for the Endpoints API. ""page_title:
+          "flexibleengine_vpcep_endpoint"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,12 +65,21 @@ spec:
               forProvider:
                 properties:
                   enableDns:
+                    description: Specifies whether to create a private domain name.
+                      The default value is true. Changing this creates a new VPC endpoint.
                     type: boolean
                   enableWhitelist:
+                    description: Specifies whether to enable access control. The default
+                      value is false. Changing this creates a new VPC endpoint.
                     type: boolean
                   ipAddress:
+                    description: Specifies the IP address for accessing the associated
+                      VPC endpoint service. Only IPv4 addresses are supported. Changing
+                      this creates a new VPC endpoint.
                     type: string
                   networkId:
+                    description: Specifies the network ID of the subnet in the VPC
+                      specified by vpc_id. Changing this creates a new VPC endpoint.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in vpc to populate networkId.
@@ -145,8 +155,11 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: The region in which to create the VPC endpoint.
                     type: string
                   serviceId:
+                    description: Specifies the ID of the VPC endpoint service. Changing
+                      this creates a new VPC endpoint.
                     type: string
                   serviceIdRef:
                     description: Reference to a Service to populate serviceId.
@@ -224,8 +237,11 @@ spec:
                   tags:
                     additionalProperties:
                       type: string
+                    description: The key/value pairs to associate with the VPC endpoint.
                     type: object
                   vpcId:
+                    description: Specifies the ID of the VPC where the VPC endpoint
+                      is to be created. Changing this creates a new VPC endpoint.
                     type: string
                   vpcIdRef:
                     description: Reference to a VPC in vpc to populate vpcId.
@@ -301,6 +317,9 @@ spec:
                         type: object
                     type: object
                   whitelist:
+                    description: Specifies the list of IP address or CIDR block which
+                      can be accessed to the VPC endpoint. Changing this creates a
+                      new VPC endpoint.
                     items:
                       type: string
                     type: array
@@ -482,16 +501,25 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The unique ID of the VPC endpoint.
                     type: string
                   packetId:
+                    description: The packet ID of the VPC endpoint.
                     type: number
                   privateDomainName:
+                    description: The domain name for accessing the associated VPC
+                      endpoint service. This parameter is only available when enable_dns
+                      is set to true.
                     type: string
                   serviceName:
+                    description: The name of the VPC endpoint service.
                     type: string
                   serviceType:
+                    description: The type of the VPC endpoint service.
                     type: string
                   status:
+                    description: The status of the VPC endpoint. The value can be
+                      accepted, pendingAcceptance or rejected.
                     type: string
                 type: object
               conditions:

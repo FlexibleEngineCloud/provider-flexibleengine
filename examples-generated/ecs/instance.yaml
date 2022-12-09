@@ -1,0 +1,28 @@
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    flavorId: s3.large.2
+    imageId: ad091b52-742f-469e-8f3c-fd81cadf0743
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: basic
+    network:
+    - uuidSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+    securityGroups:
+    - default
+    tags:
+      foo: bar
+      this: that
+
+---
+

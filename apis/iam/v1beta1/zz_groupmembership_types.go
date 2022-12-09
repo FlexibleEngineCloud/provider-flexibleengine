@@ -19,6 +19,7 @@ type GroupMembershipObservation struct {
 
 type GroupMembershipParameters struct {
 
+	// The group ID of this membership.
 	// +crossplane:generate:reference:type=Group
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
@@ -31,6 +32,7 @@ type GroupMembershipParameters struct {
 	// +kubebuilder:validation:Optional
 	GroupSelector *v1.Selector `json:"groupSelector,omitempty" tf:"-"`
 
+	// A List of user IDs to associate to the group.
 	// +crossplane:generate:reference:type=User
 	// +kubebuilder:validation:Optional
 	Users []*string `json:"users,omitempty" tf:"users,omitempty"`
@@ -58,7 +60,7 @@ type GroupMembershipStatus struct {
 
 // +kubebuilder:object:root=true
 
-// GroupMembership is the Schema for the GroupMemberships API. <no value>
+// GroupMembership is the Schema for the GroupMemberships API. ""page_title: "flexibleengine_identity_group_membership_v3"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

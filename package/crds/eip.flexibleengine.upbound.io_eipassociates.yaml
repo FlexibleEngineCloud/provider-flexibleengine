@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: EIPAssociate is the Schema for the EIPAssociates API. <no value>
+        description: 'EIPAssociate is the Schema for the EIPAssociates API. ""page_title:
+          "flexibleengine_vpc_eip_associate"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,8 +65,13 @@ spec:
               forProvider:
                 properties:
                   fixedIp:
+                    description: Specifies a private IP address to associate with
+                      the EIP. Changing this creates a new resource.
                     type: string
                   networkId:
+                    description: Specifies the ID of the network to which the fixed_ip
+                      belongs. It is mandatory when fixed_ip is set. Changing this
+                      creates a new resource.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in vpc to populate networkId.
@@ -141,6 +147,9 @@ spec:
                         type: object
                     type: object
                   portId:
+                    description: Specifies an existing port ID to associate with the
+                      EIP. This parameter and fixed_ip are alternative. Changing this
+                      creates a new resource.
                     type: string
                   portIdRef:
                     description: Reference to a Port in vpc to populate portId.
@@ -216,8 +225,13 @@ spec:
                         type: object
                     type: object
                   publicIp:
+                    description: Specifies the EIP address to associate. Changing
+                      this creates a new resource.
                     type: string
                   region:
+                    description: Specifies the region in which to associate the EIP.
+                      If omitted, the provider-level region will be used. Changing
+                      this creates a new resource.
                     type: string
                 required:
                 - publicIp
@@ -399,10 +413,13 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The resource ID in UUID format.
                     type: string
                   macAddress:
+                    description: The MAC address of the private IP.
                     type: string
                   status:
+                    description: The status of EIP, should be BOUND.
                     type: string
                 type: object
               conditions:

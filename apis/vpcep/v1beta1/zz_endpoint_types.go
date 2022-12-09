@@ -14,30 +14,46 @@ import (
 )
 
 type EndpointObservation struct {
+
+	// The unique ID of the VPC endpoint.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The packet ID of the VPC endpoint.
 	PacketID *float64 `json:"packetId,omitempty" tf:"packet_id,omitempty"`
 
+	// The domain name for accessing the associated VPC endpoint service.
+	// This parameter is only available when enable_dns is set to true.
 	PrivateDomainName *string `json:"privateDomainName,omitempty" tf:"private_domain_name,omitempty"`
 
+	// The name of the VPC endpoint service.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The type of the VPC endpoint service.
 	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
 
+	// The status of the VPC endpoint. The value can be accepted, pendingAcceptance or rejected.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type EndpointParameters struct {
 
+	// Specifies whether to create a private domain name. The default value is true.
+	// Changing this creates a new VPC endpoint.
 	// +kubebuilder:validation:Optional
 	EnableDNS *bool `json:"enableDns,omitempty" tf:"enable_dns,omitempty"`
 
+	// Specifies whether to enable access control. The default value is false.
+	// Changing this creates a new VPC endpoint.
 	// +kubebuilder:validation:Optional
 	EnableWhitelist *bool `json:"enableWhitelist,omitempty" tf:"enable_whitelist,omitempty"`
 
+	// Specifies the IP address for accessing the associated VPC endpoint service.
+	// Only IPv4 addresses are supported. Changing this creates a new VPC endpoint.
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
+	// Specifies the network ID of the subnet in the VPC specified by vpc_id.
+	// Changing this creates a new VPC endpoint.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -50,9 +66,12 @@ type EndpointParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// The region in which to create the VPC endpoint.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the ID of the VPC endpoint service.
+	// Changing this creates a new VPC endpoint.
 	// +crossplane:generate:reference:type=Service
 	// +kubebuilder:validation:Optional
 	ServiceID *string `json:"serviceId,omitempty" tf:"service_id,omitempty"`
@@ -65,9 +84,12 @@ type EndpointParameters struct {
 	// +kubebuilder:validation:Optional
 	ServiceIDSelector *v1.Selector `json:"serviceIdSelector,omitempty" tf:"-"`
 
+	// The key/value pairs to associate with the VPC endpoint.
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Specifies the ID of the VPC where the VPC endpoint is to be created.
+	// Changing this creates a new VPC endpoint.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -80,6 +102,8 @@ type EndpointParameters struct {
 	// +kubebuilder:validation:Optional
 	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 
+	// Specifies the list of IP address or CIDR block which can be accessed to the VPC endpoint.
+	// Changing this creates a new VPC endpoint.
 	// +kubebuilder:validation:Optional
 	Whitelist []*string `json:"whitelist,omitempty" tf:"whitelist,omitempty"`
 }
@@ -98,7 +122,7 @@ type EndpointStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Endpoint is the Schema for the Endpoints API. <no value>
+// Endpoint is the Schema for the Endpoints API. ""page_title: "flexibleengine_vpcep_endpoint"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

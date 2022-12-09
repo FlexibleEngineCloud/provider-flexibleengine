@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: FlowLog is the Schema for the FlowLogs API. <no value>
+        description: 'FlowLog is the Schema for the FlowLogs API. ""page_title: "flexibleengine_vpc_flow_log_v1"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,20 +64,39 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: (Optinal, String) Specifies supplementary information
+                      about the VPC flow log. The value is a string of no more than
+                      255 characters and cannot contain angle brackets (< or >).
                     type: string
                   logGroupId:
+                    description: Specifies the LTS log group ID. Changing this creates
+                      a new VPC flow log.
                     type: string
                   logTopicId:
+                    description: Specifies the LTS log topic ID. Changing this creates
+                      a new VPC flow log.
                     type: string
                   name:
+                    description: Specifies the VPC flow log name. The value is a string
+                      of 1 to 64 characters that can contain letters, digits, underscores
+                      (_), hyphens (-) and periods (.).
                     type: string
                   region:
+                    description: The region in which to create the VPC flow log resource.
+                      If omitted, the provider-level region will be used. Changing
+                      this creates a new VPC flow log.
                     type: string
                   resourceId:
+                    description: Specifies the network port ID. Changing this creates
+                      a new VPC flow log.
                     type: string
                   resourceType:
+                    description: The type of resource on which to create the VPC flow
+                      log. The value is fixed to port.
                     type: string
                   trafficType:
+                    description: '(Optinal, String, ForceNew) Specifies the type of
+                      traffic to log. The value can be:'
                     type: string
                 required:
                 - logGroupId
@@ -262,8 +281,11 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The VPC flow log ID in UUID format.
                     type: string
                   status:
+                    description: The status of the flow log. The value can be ACTIVE,
+                      DOWN or ERROR.
                     type: string
                 type: object
               conditions:

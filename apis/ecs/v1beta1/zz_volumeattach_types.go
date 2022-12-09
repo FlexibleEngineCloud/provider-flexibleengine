@@ -19,15 +19,24 @@ type VolumeAttachObservation struct {
 
 type VolumeAttachParameters struct {
 
+	// The device of the volume attachment (ex: /dev/vdc).
+	// NOTE: Being able to specify a device is dependent upon the hypervisor in
+	// use. Please use with caution.
 	// +kubebuilder:validation:Optional
 	Device *string `json:"device,omitempty" tf:"device,omitempty"`
 
+	// The ID of the Instance to attach the Volume to.
 	// +kubebuilder:validation:Required
 	InstanceID *string `json:"instanceId" tf:"instance_id,omitempty"`
 
+	// The region in which to obtain the V2 Compute client.
+	// A Compute client is needed to create a volume attachment. If omitted, the
+	// region argument of the provider is used. Changing this creates a
+	// new volume attachment.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The ID of the Volume to attach to an Instance.
 	// +kubebuilder:validation:Required
 	VolumeID *string `json:"volumeId" tf:"volume_id,omitempty"`
 }
@@ -46,7 +55,7 @@ type VolumeAttachStatus struct {
 
 // +kubebuilder:object:root=true
 
-// VolumeAttach is the Schema for the VolumeAttachs API. <no value>
+// VolumeAttach is the Schema for the VolumeAttachs API. ""page_title: "flexibleengine_compute_volume_attach_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

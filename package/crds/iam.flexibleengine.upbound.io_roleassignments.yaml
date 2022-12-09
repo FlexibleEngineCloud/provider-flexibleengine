@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: RoleAssignment is the Schema for the RoleAssignments API. <no
-          value>
+        description: 'RoleAssignment is the Schema for the RoleAssignments API. ""page_title:
+          "flexibleengine_identity_role_assignment_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -65,8 +65,10 @@ spec:
               forProvider:
                 properties:
                   domainId:
+                    description: The domain to assign the role in.
                     type: string
                   groupId:
+                    description: The group to assign the role in.
                     type: string
                   groupIdRef:
                     description: Reference to a Group to populate groupId.
@@ -142,8 +144,10 @@ spec:
                         type: object
                     type: object
                   projectId:
+                    description: The project to assign the role in.
                     type: string
                   roleId:
+                    description: The role to assign.
                     type: string
                   roleIdRef:
                     description: Reference to a Role to populate roleId.

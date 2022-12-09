@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Instance is the Schema for the Instances API. <no value>
+        description: 'Instance is the Schema for the Instances API. ""page_title:
+          "flexibleengine_compute_instance_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,51 +65,100 @@ spec:
               forProvider:
                 properties:
                   adminPass:
+                    description: The administrative password to assign to the server.
+                      Changing this changes the root password on the existing server.
                     type: string
                   autoRecovery:
+                    description: Configures or deletes automatic recovery of an instance
                     type: boolean
                   availabilityZone:
+                    description: The availability zone in which to create the server.
+                      Changing this creates a new server.
                     type: string
                   blockDevice:
+                    description: Configuration of block devices. The block_device
+                      structure is documented below. Changing this creates a new server.
+                      You can specify multiple block devices which will create an
+                      instance with multiple disks. This configuration is very flexible,
+                      so please see the following reference for more information.
                     items:
                       properties:
                         bootIndex:
+                          description: The boot index of the volume. It defaults to
+                            0, which indicates that it's a system disk. Changing this
+                            creates a new server.
                           type: number
                         deleteOnTermination:
+                          description: Delete the volume / block device upon termination
+                            of the instance. Defaults to false. Changing this creates
+                            a new server.
                           type: boolean
                         destinationType:
+                          description: The type that gets created. Possible values
+                            are "volume" and "local". Changing this creates a new
+                            server.
                           type: string
                         deviceName:
+                          description: A unique name for the resource.
                           type: string
                         deviceType:
                           type: string
                         diskBus:
+                          description: The low-level disk bus that will be used, for
+                            example, virtio, scsi. Most common thing is to leave this
+                            empty. Changing this creates a new server.
                           type: string
                         guestFormat:
                           type: string
                         sourceType:
+                          description: The source type of the device. Must be one
+                            of "blank", "image", "volume", or "snapshot". Changing
+                            this creates a new server.
                           type: string
                         uuid:
+                          description: The UUID of the image, volume, or snapshot.
+                            Changing this creates a new server.
                           type: string
                         volumeSize:
+                          description: 'The size of the volume to create (in gigabytes).
+                            Required in the following combinations: source=image and
+                            destination=volume, source=blank and destination=local,
+                            and source=blank and destination=volume. Changing this
+                            creates a new server.'
                           type: number
                         volumeType:
+                          description: Currently, the value can be SSD (ultra-I/O
+                            disk type), SAS (high I/O disk type), or SATA (common
+                            I/O disk type)
                           type: string
                       required:
                       - sourceType
                       type: object
                     type: array
                   configDrive:
+                    description: Whether to use the config_drive feature to configure
+                      the instance. Changing this creates a new server.
                     type: boolean
                   flavorId:
+                    description: The flavor ID of the desired flavor for the server.
+                      Changing this resizes the existing server.
                     type: string
                   flavorName:
+                    description: The name of the desired flavor for the server. Changing
+                      this resizes the existing server.
                     type: string
                   imageId:
+                    description: The image ID of the desired image for the server.
+                      Changing this creates a new server.
                     type: string
                   imageName:
+                    description: The name of the desired image for the server. Changing
+                      this creates a new server.
                     type: string
                   keyPair:
+                    description: The name of a key pair to put on the server. The
+                      key pair must already be created and associated with the tenant's
+                      account. Changing this creates a new server.
                     type: string
                   keyPairRef:
                     description: Reference to a KeyPair to populate keyPair.
@@ -186,21 +236,37 @@ spec:
                   metadata:
                     additionalProperties:
                       type: string
+                    description: The key/value pairs to associate with the instance.
+                      Changing this updates the existing server metadata.
                     type: object
                   name:
+                    description: A unique name for the resource.
                     type: string
                   network:
+                    description: An array of one or more networks to attach to the
+                      instance. The network object structure is documented below.
+                      Changing this creates a new server.
                     items:
                       properties:
                         accessNetwork:
+                          description: Specifies if this network should be used for
+                            provisioning access. Accepts true or false. Defaults to
+                            false.
                           type: boolean
                         fixedIpV4:
+                          description: Specifies a fixed IPv4 address to be used on
+                            this network. Changing this creates a new server.
                           type: string
                         fixedIpV6:
+                          description: Specifies a fixed IPv6 address to be used on
+                            this network. Changing this creates a new server.
                           type: string
                         name:
+                          description: A unique name for the resource.
                           type: string
                         port:
+                          description: The port UUID of a network to attach to the
+                            server. Changing this creates a new server.
                           type: string
                         portRef:
                           description: Reference to a Port in vpc to populate port.
@@ -279,6 +345,8 @@ spec:
                               type: object
                           type: object
                         uuid:
+                          description: The network UUID to attach to the server. Changing
+                            this creates a new server.
                           type: string
                         uuidRef:
                           description: Reference to a Network in vpc to populate uuid.
@@ -371,19 +439,31 @@ spec:
                       type: object
                     type: array
                   region:
+                    description: The region in which to create the server instance.
+                      If omitted, the region argument of the provider is used. Changing
+                      this creates a new server.
                     type: string
                   schedulerHints:
+                    description: Provide the Nova scheduler with hints on how the
+                      instance should be launched. The available hints are described
+                      below.
                     items:
                       properties:
                         buildNearHostIp:
                           type: string
                         dehId:
+                          description: Specifies the DeH ID. This parameter takes
+                            effect only when the value of tenancy is dedicated. If
+                            you do not specify this parameter, the system will automatically
+                            assign a DeH to you to deploy ECSs.
                           type: string
                         differentHost:
                           items:
                             type: string
                           type: array
                         group:
+                          description: Specifies the anti-affinity group ID. The instance
+                            will be placed into that group.
                           type: string
                         query:
                           items:
@@ -396,20 +476,36 @@ spec:
                         targetCell:
                           type: string
                         tenancy:
+                          description: Specifies whether the ECS is created on a Dedicated
+                            Host (DeH) or in a shared pool (default). The value can
+                            be shared or dedicated.
                           type: string
                       type: object
                     type: array
                   securityGroups:
+                    description: 'An array of one or more security group names to
+                      associate with the server. Changing this results in adding/removing
+                      security groups from the existing server. Note: When attaching
+                      the instance to networks using Ports, place the security groups
+                      on the Port and not the instance.'
                     items:
                       type: string
                     type: array
                   stopBeforeDestroy:
+                    description: Whether to try stop instance gracefully before destroying
+                      it, thus giving chance for guest OS daemons to stop correctly.
+                      If instance doesn't stop within timeout, it will be destroyed
+                      anyway.
                     type: boolean
                   tags:
                     additionalProperties:
                       type: string
+                    description: Specifies the key/value pairs to associate with the
+                      instance.
                     type: object
                   userData:
+                    description: The user data to provide when launching the instance.
+                      Changing this creates a new server.
                     type: string
                 required:
                 - name
@@ -591,18 +687,25 @@ spec:
               atProvider:
                 properties:
                   accessIpV4:
+                    description: The first detected Fixed IPv4 address or the Floating
+                      IP.
                     type: string
                   accessIpV6:
+                    description: The first detected Fixed IPv6 address.
                     type: string
                   allMetadata:
                     additionalProperties:
                       type: string
                     type: object
                   floatingIp:
+                    description: The EIP address that is associted to the instance.
                     type: string
                   id:
                     type: string
                   network:
+                    description: An array of one or more networks to attach to the
+                      instance. The network object structure is documented below.
+                      Changing this creates a new server.
                     items:
                       properties:
                         mac:
@@ -610,21 +713,30 @@ spec:
                       type: object
                     type: array
                   status:
+                    description: The status of the instance.
                     type: string
                   systemDiskId:
+                    description: The system disk voume ID.
                     type: string
                   volumeAttached:
+                    description: An array of one or more disks to attach to the instance.
+                      The volume_attached object structure is documented below.
                     items:
                       properties:
                         bootIndex:
+                          description: The volume boot index on that attachment.
                           type: number
                         pciAddress:
+                          description: The volume pci address on that attachment.
                           type: string
                         size:
+                          description: The volume size on that attachment.
                           type: number
                         type:
+                          description: The volume type on that attachment.
                           type: string
                         uuid:
+                          description: The volume id on that attachment.
                           type: string
                       type: object
                     type: array

@@ -1,0 +1,60 @@
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: FloatingIpAssociate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/floatingipassociate
+  labels:
+    testing.upbound.io/example-name: fip_1
+  name: fip-1
+spec:
+  forProvider:
+    floatingIpSelector:
+      matchLabels:
+        testing.upbound.io/example-name: eip_1
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: instance_1
+
+---
+
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/floatingipassociate
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider:
+    flavorId: 3
+    imageId: ad091b52-742f-469e-8f3c-fd81cadf0743
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: instance_1
+    securityGroups:
+    - default
+
+---
+
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/floatingipassociate
+  labels:
+    testing.upbound.io/example-name: eip_1
+  name: eip-1
+spec:
+  forProvider:
+    bandwidth:
+    - chargeMode: traffic
+      name: test
+      shareType: PER
+      size: 8
+    publicip:
+    - type: 5_bgp
+
+---
+

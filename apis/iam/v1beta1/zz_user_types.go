@@ -14,35 +14,54 @@ import (
 )
 
 type UserObservation struct {
+
+	// The time when the IAM user was created.
 	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
 
+	// The resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The tiem when the IAM user last login.
 	LastLogin *string `json:"lastLogin,omitempty" tf:"last_login,omitempty"`
 
+	// Indicates the password strength.
 	PasswordStrength *string `json:"passwordStrength,omitempty" tf:"password_strength,omitempty"`
 }
 
 type UserParameters struct {
 
+	// Specifies the country code. The country code of the Chinese mainland is 0086.
+	// This parameter must be used together with phone.
 	// +kubebuilder:validation:Optional
 	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
 
+	// Specifies the description of the user.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Specifies the email address with a maximum of 255 characters.
 	// +kubebuilder:validation:Optional
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
+	// Specifies whether the user is enabled or disabled.
+	// Valid values are true and false.
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
+	// Specifies the name of the user. The user name consists of
+	// 5 to 32 characters. It can contain only uppercase letters, lowercase letters,
+	// digits, spaces, and special characters (-_) and cannot start with a digit.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// Specifies the password for the user with 6 to 32 characters.
+	// It must contain at least two of the following character types: uppercase letters, lowercase letters,
+	// digits, and special characters.
 	// +kubebuilder:validation:Optional
 	PasswordSecretRef *v1.SecretKeySelector `json:"passwordSecretRef,omitempty" tf:"-"`
 
+	// Specifies the mobile number with a maximum of 32 digits.
+	// This parameter must be used together with country_code.
 	// +kubebuilder:validation:Optional
 	Phone *string `json:"phone,omitempty" tf:"phone,omitempty"`
 }
@@ -61,7 +80,7 @@ type UserStatus struct {
 
 // +kubebuilder:object:root=true
 
-// User is the Schema for the Users API. <no value>
+// User is the Schema for the Users API. ""page_title: "flexibleengine_identity_user_v3"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

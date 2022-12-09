@@ -19,15 +19,17 @@ const (
 	ModulePath     = "github.com/gaetanars/provider-flexibleengine"
 )
 
-//go:embed schema.json
-var providerSchema string
+var (
+	//go:embed schema.json
+	providerSchema string
 
-//go:embed provider-metadata.yaml
-var providerMetadata string
+	//go:embed provider-metadata.yaml
+	providerMetadata []byte
+)
 
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
-	pc := ujconfig.NewProvider([]byte(providerSchema), ResourcePrefix, ModulePath, []byte(providerMetadata),
+	pc := ujconfig.NewProvider([]byte(providerSchema), ResourcePrefix, ModulePath, providerMetadata,
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),

@@ -18,9 +18,11 @@ type ConversionRulesLocalObservation struct {
 
 type ConversionRulesLocalParameters struct {
 
+	// Specifies the user group to which the federated user belongs on the cloud platform.
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// Specifies the name of a federated user on the cloud platform.
 	// +kubebuilder:validation:Required
 	Username *string `json:"username" tf:"username,omitempty"`
 }
@@ -30,12 +32,16 @@ type ConversionRulesRemoteObservation struct {
 
 type ConversionRulesRemoteParameters struct {
 
+	// Specifies the attribute in the IDP assertion.
 	// +kubebuilder:validation:Required
 	Attribute *string `json:"attribute" tf:"attribute,omitempty"`
 
+	// Specifies the condition of conversion rule.
+	// Available options are:
 	// +kubebuilder:validation:Optional
 	Condition *string `json:"condition,omitempty" tf:"condition,omitempty"`
 
+	// Specifies the rule is matched only if the specified strings appear in the attribute type.
 	// +kubebuilder:validation:Optional
 	Value []*string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -45,22 +51,31 @@ type ProviderConversionConversionRulesObservation struct {
 
 type ProviderConversionConversionRulesParameters struct {
 
+	// Specifies the federated user information on the cloud platform.
 	// +kubebuilder:validation:Required
 	Local []ConversionRulesLocalParameters `json:"local" tf:"local,omitempty"`
 
+	// Specifies Federated user information in the IDP system.
 	// +kubebuilder:validation:Required
 	Remote []ConversionRulesRemoteParameters `json:"remote" tf:"remote,omitempty"`
 }
 
 type ProviderConversionObservation struct {
+
+	// The ID of conversion rules.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type ProviderConversionParameters struct {
 
+	// Specifies the identity conversion rules of the identity provider.
+	// You can use identity conversion rules to map the identities of existing users to FlexibleEngine and manage their access
+	// to cloud resources.
+	// The object structure is documented below.
 	// +kubebuilder:validation:Required
 	ConversionRules []ProviderConversionConversionRulesParameters `json:"conversionRules" tf:"conversion_rules,omitempty"`
 
+	// The ID or name of the identity provider used to manage the conversion rules.
 	// +crossplane:generate:reference:type=Provider
 	// +kubebuilder:validation:Optional
 	ProviderID *string `json:"providerId,omitempty" tf:"provider_id,omitempty"`
@@ -88,7 +103,7 @@ type ProviderConversionStatus struct {
 
 // +kubebuilder:object:root=true
 
-// ProviderConversion is the Schema for the ProviderConversions API. <no value>
+// ProviderConversion is the Schema for the ProviderConversions API. ""page_title: "flexibleengine_identity_provider_conversion"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -18,9 +18,15 @@ type AllowedAddressPairsObservation struct {
 
 type AllowedAddressPairsParameters struct {
 
+	// The additional IP address. The value can be an IP Address or a CIDR,
+	// and can not be 0.0.0.0. A server connected to the port can send a packet with source address
+	// which matches one of the specified allowed address pairs.
+	// It is recommended to configure an independent security group for the port if a large CIDR
+	// block (subnet mask less than 24) is configured.
 	// +kubebuilder:validation:Required
 	IPAddress *string `json:"ipAddress" tf:"ip_address,omitempty"`
 
+	// The additional MAC address.
 	// +kubebuilder:validation:Optional
 	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
 }
@@ -30,9 +36,13 @@ type FixedIPObservation struct {
 
 type FixedIPParameters struct {
 
+	// IP address desired in the subnet for this port. If
+	// you don't specify ip_address, an available IP address from the specified
+	// subnet will be allocated to this port.
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
+	// Subnet in which to allocate IP address for this port.
 	// +kubebuilder:validation:Required
 	SubnetID *string `json:"subnetId" tf:"subnet_id,omitempty"`
 }
@@ -45,27 +55,44 @@ type PortObservation struct {
 
 type PortParameters struct {
 
+	// Administrative up/down status for the port
+	// (must be "true" or "false" if provided). Changing this updates the
+	// admin_state_up of an existing port.
 	// +kubebuilder:validation:Optional
 	AdminStateUp *bool `json:"adminStateUp,omitempty" tf:"admin_state_up,omitempty"`
 
+	// An array of IP/MAC Address pairs of additional IP
+	// addresses that can be active on this port. The structure is described below.
 	// +kubebuilder:validation:Optional
 	AllowedAddressPairs []AllowedAddressPairsParameters `json:"allowedAddressPairs,omitempty" tf:"allowed_address_pairs,omitempty"`
 
+	// The ID of the device attached to the port. Changing this
+	// creates a new port.
 	// +kubebuilder:validation:Optional
 	DeviceID *string `json:"deviceId,omitempty" tf:"device_id,omitempty"`
 
+	// The device owner of the Port. Changing this creates
+	// a new port.
 	// +kubebuilder:validation:Optional
 	DeviceOwner *string `json:"deviceOwner,omitempty" tf:"device_owner,omitempty"`
 
+	// An array of desired IPs for this port. The structure is
+	// described below.
 	// +kubebuilder:validation:Optional
 	FixedIP []FixedIPParameters `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
+	// Specify a specific MAC address for the port. Changing
+	// this creates a new port.
 	// +kubebuilder:validation:Optional
 	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
 
+	// A unique name for the port. Changing this
+	// updates the name of an existing port.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The ID of the network to attach the port to. Changing
+	// this creates a new port.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -78,15 +105,25 @@ type PortParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// The region in which to obtain the V2 networking client.
+	// A networking client is needed to create a port. If omitted, the
+	// region argument of the provider is used. Changing this creates a new
+	// port.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// A list of security group IDs to apply to the
+	// port. The security groups must be specified by ID and not name (as opposed
+	// to how they are configured with the Compute Instance).
 	// +kubebuilder:validation:Optional
 	SecurityGroupIds []*string `json:"securityGroupIds,omitempty" tf:"security_group_ids,omitempty"`
 
+	// The owner of the Port. Required if admin wants
+	// to create a port for another tenant. Changing this creates a new port.
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
+	// Map of additional options.
 	// +kubebuilder:validation:Optional
 	ValueSpecs map[string]*string `json:"valueSpecs,omitempty" tf:"value_specs,omitempty"`
 }
@@ -105,7 +142,7 @@ type PortStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Port is the Schema for the Ports API. <no value>
+// Port is the Schema for the Ports API. ""page_title: "flexibleengine_networking_port_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

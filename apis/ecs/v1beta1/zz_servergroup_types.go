@@ -16,20 +16,30 @@ import (
 type ServerGroupObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The instances that are part of this server group.
 	Members []*string `json:"members,omitempty" tf:"members,omitempty"`
 }
 
 type ServerGroupParameters struct {
 
+	// A unique name for the server group. Changing this creates
+	// a new server group.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// The set of policies for the server group. Only anti-affinity
+	// policy is supported right now, which menas all servers in this group must be
+	// deployed on different hosts. Changing this creates a new server group.
 	// +kubebuilder:validation:Optional
 	Policies []*string `json:"policies,omitempty" tf:"policies,omitempty"`
 
+	// The region in which to obtain the V2 Compute client.
+	// If omitted, the region argument of the provider is used. Changing
+	// this creates a new server group.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Map of additional options.
 	// +kubebuilder:validation:Optional
 	ValueSpecs map[string]*string `json:"valueSpecs,omitempty" tf:"value_specs,omitempty"`
 }
@@ -48,7 +58,7 @@ type ServerGroupStatus struct {
 
 // +kubebuilder:object:root=true
 
-// ServerGroup is the Schema for the ServerGroups API. <no value>
+// ServerGroup is the Schema for the ServerGroups API. ""page_title: "flexibleengine_compute_servergroup_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

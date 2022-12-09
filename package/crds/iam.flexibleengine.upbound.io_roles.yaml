@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Role is the Schema for the Roles API. <no value>
+        description: 'Role is the Schema for the Roles API. ""page_title: "flexibleengine_identity_role_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,12 +64,17 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: Description of the custom policy.
                     type: string
                   name:
+                    description: Name of the custom policy.
                     type: string
                   policy:
+                    description: Document of the custom policy.
                     type: string
                   type:
+                    description: 'Display mode. Valid options are AX: Account level
+                      and XA: Project level.'
                     type: string
                 required:
                 - description
@@ -254,10 +259,13 @@ spec:
               atProvider:
                 properties:
                   domainId:
+                    description: The account id.
                     type: string
                   id:
+                    description: The role id.
                     type: string
                   references:
+                    description: The number of references.
                     type: number
                 type: object
               conditions:

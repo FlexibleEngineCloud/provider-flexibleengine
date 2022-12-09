@@ -1,0 +1,19 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: FlowLog
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+  labels:
+    testing.upbound.io/example-name: flowlog1
+  name: flowlog1
+spec:
+  forProvider:
+    description: ${var.flowlog_desc}
+    logGroupId: ${flexibleengine_lts_group.log_group1.id}
+    logTopicId: ${flexibleengine_lts_topic.log_topic1.id}
+    name: ${var.flowlog_name}
+    resourceId: ${var.port_id}
+    trafficType: all
+
+---
+

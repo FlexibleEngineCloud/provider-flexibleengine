@@ -1,0 +1,26 @@
+apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
+kind: Endpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcep/v1beta1/endpoint
+  labels:
+    testing.upbound.io/example-name: myendpoint
+  name: myendpoint
+spec:
+  forProvider:
+    enableDns: true
+    enableWhitelist: true
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    serviceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: flexibleengine_vpcep_public_services
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    whitelist:
+    - 192.168.0.0/24
+
+---
+

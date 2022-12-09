@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: InterfaceAttach is the Schema for the InterfaceAttachs API. <no
-          value>
+        description: 'InterfaceAttach is the Schema for the InterfaceAttachs API.
+          ""page_title: "flexibleengine_compute_interface_attach_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -65,8 +65,14 @@ spec:
               forProvider:
                 properties:
                   fixedIp:
+                    description: 'An IP address to assosciate with the port. NOTE:
+                      This option cannot be used with port_id. You must specifiy a
+                      network_id. The IP address must lie in a range on the supplied
+                      network.'
                     type: string
                   instanceId:
+                    description: The ID of the Instance to attach the Port or Network
+                      to.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -142,6 +148,9 @@ spec:
                         type: object
                     type: object
                   networkId:
+                    description: 'The ID of the Network to attach to an Instance.
+                      A port will be created automatically. NOTE: This option and
+                      port_id are mutually exclusive.'
                     type: string
                   networkIdRef:
                     description: Reference to a Network in vpc to populate networkId.
@@ -217,6 +226,8 @@ spec:
                         type: object
                     type: object
                   portId:
+                    description: 'The ID of the Port to attach to an Instance. NOTE:
+                      This option and network_id are mutually exclusive.'
                     type: string
                   portIdRef:
                     description: Reference to a Port in vpc to populate portId.
@@ -292,6 +303,9 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: The region in which to create the interface attachment.
+                      If omitted, the region argument of the provider is used. Changing
+                      this creates a new attachment.
                     type: string
                 type: object
               providerConfigRef:

@@ -14,24 +14,32 @@ import (
 )
 
 type RoleObservation struct {
+
+	// The account id.
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
+	// The role id.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The number of references.
 	References *float64 `json:"references,omitempty" tf:"references,omitempty"`
 }
 
 type RoleParameters struct {
 
+	// Description of the custom policy.
 	// +kubebuilder:validation:Required
 	Description *string `json:"description" tf:"description,omitempty"`
 
+	// Name of the custom policy.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// Document of the custom policy.
 	// +kubebuilder:validation:Required
 	Policy *string `json:"policy" tf:"policy,omitempty"`
 
+	// Display mode. Valid options are AX: Account level and XA: Project level.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 }
@@ -50,7 +58,7 @@ type RoleStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Role is the Schema for the Roles API. <no value>
+// Role is the Schema for the Roles API. ""page_title: "flexibleengine_identity_role_v3"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

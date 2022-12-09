@@ -1,0 +1,22 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/routetable
+  labels:
+    testing.upbound.io/example-name: demo
+  name: demo
+spec:
+  forProvider:
+    description: a custom route table demo
+    name: demo
+    route:
+    - destination: 172.16.0.0/16
+      nexthop: ${var.vpc_peering_id}
+      type: peering
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

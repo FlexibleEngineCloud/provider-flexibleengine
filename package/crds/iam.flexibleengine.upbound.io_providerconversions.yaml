@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: ProviderConversion is the Schema for the ProviderConversions
-          API. <no value>
+        description: 'ProviderConversion is the Schema for the ProviderConversions
+          API. ""page_title: "flexibleengine_identity_provider_conversion"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -65,27 +65,44 @@ spec:
               forProvider:
                 properties:
                   conversionRules:
+                    description: Specifies the identity conversion rules of the identity
+                      provider. You can use identity conversion rules to map the identities
+                      of existing users to FlexibleEngine and manage their access
+                      to cloud resources. The object structure is documented below.
                     items:
                       properties:
                         local:
+                          description: Specifies the federated user information on
+                            the cloud platform.
                           items:
                             properties:
                               group:
+                                description: Specifies the user group to which the
+                                  federated user belongs on the cloud platform.
                                 type: string
                               username:
+                                description: Specifies the name of a federated user
+                                  on the cloud platform.
                                 type: string
                             required:
                             - username
                             type: object
                           type: array
                         remote:
+                          description: Specifies Federated user information in the
+                            IDP system.
                           items:
                             properties:
                               attribute:
+                                description: Specifies the attribute in the IDP assertion.
                                 type: string
                               condition:
+                                description: 'Specifies the condition of conversion
+                                  rule. Available options are:'
                                 type: string
                               value:
+                                description: Specifies the rule is matched only if
+                                  the specified strings appear in the attribute type.
                                 items:
                                   type: string
                                 type: array
@@ -99,6 +116,8 @@ spec:
                       type: object
                     type: array
                   providerId:
+                    description: The ID or name of the identity provider used to manage
+                      the conversion rules.
                     type: string
                   providerIdRef:
                     description: Reference to a Provider to populate providerId.
@@ -353,6 +372,7 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The ID of conversion rules.
                     type: string
                 type: object
               conditions:

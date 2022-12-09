@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Route is the Schema for the Routes API. <no value>
+        description: 'Route is the Schema for the Routes API. ""page_title: "flexibleengine_vpc_route"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,14 +64,28 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: Specifies the supplementary information about the
+                      route. The value is a string of no more than 255 characters
+                      and cannot contain angle brackets (< or >).
                     type: string
                   destination:
+                    description: Specifies the destination address in the CIDR notation
+                      format, for example, 192.168.200.0/24. The destination of each
+                      route must be unique and cannot overlap with any subnet in the
+                      VPC. Changing this creates a new resource.
                     type: string
                   nexthop:
+                    description: Specifies the next hop.
                     type: string
                   region:
+                    description: The region in which to create the VPC route. If omitted,
+                      the provider-level region will be used. Changing this creates
+                      a new resource.
                     type: string
                   routeTableId:
+                    description: Specifies the route table ID for which a route is
+                      to be added. If the value is not set, the route will be added
+                      to the default route table.
                     type: string
                   routeTableIdRef:
                     description: Reference to a RouteTable to populate routeTableId.
@@ -147,8 +161,12 @@ spec:
                         type: object
                     type: object
                   type:
+                    description: 'Specifies the route type. Currently, the value can
+                      be: ecs, eni, vip, nat, peering, vpn and dc.'
                     type: string
                   vpcId:
+                    description: Specifies the VPC for which a route is to be added.
+                      Changing this creates a new resource.
                     type: string
                   vpcIdRef:
                     description: Reference to a VPC in vpc to populate vpcId.
@@ -405,8 +423,10 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The route ID, the format is <route_table_id>/<destination>
                     type: string
                   routeTableName:
+                    description: The name of route table.
                     type: string
                 type: object
               conditions:

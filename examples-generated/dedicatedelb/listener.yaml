@@ -1,0 +1,38 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: Listener
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    description: basic description
+    idleTimeout: 60
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+    name: basic
+    protocol: HTTP
+    protocolPort: 8080
+    requestTimeout: 60
+    responseTimeout: 60
+    tags:
+      key: value
+
+---
+
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider: {}
+
+---
+

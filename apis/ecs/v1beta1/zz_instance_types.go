@@ -18,90 +18,146 @@ type BlockDeviceObservation struct {
 
 type BlockDeviceParameters struct {
 
+	// The boot index of the volume. It defaults to 0, which
+	// indicates that it's a system disk. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	BootIndex *float64 `json:"bootIndex,omitempty" tf:"boot_index,omitempty"`
 
+	// Delete the volume / block device upon
+	// termination of the instance. Defaults to false. Changing this creates a
+	// new server.
 	// +kubebuilder:validation:Optional
 	DeleteOnTermination *bool `json:"deleteOnTermination,omitempty" tf:"delete_on_termination,omitempty"`
 
+	// The type that gets created. Possible values
+	// are "volume" and "local". Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	DestinationType *string `json:"destinationType,omitempty" tf:"destination_type,omitempty"`
 
+	// A unique name for the resource.
 	// +kubebuilder:validation:Optional
 	DeviceName *string `json:"deviceName,omitempty" tf:"device_name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	DeviceType *string `json:"deviceType,omitempty" tf:"device_type,omitempty"`
 
+	// The low-level disk bus that will be used, for example, virtio, scsi.
+	// Most common thing is to leave this empty. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	DiskBus *string `json:"diskBus,omitempty" tf:"disk_bus,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	GuestFormat *string `json:"guestFormat,omitempty" tf:"guest_format,omitempty"`
 
+	// The source type of the device. Must be one of
+	// "blank", "image", "volume", or "snapshot". Changing this creates a new
+	// server.
 	// +kubebuilder:validation:Required
 	SourceType *string `json:"sourceType" tf:"source_type,omitempty"`
 
+	// The UUID of
+	// the image, volume, or snapshot. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	UUID *string `json:"uuid,omitempty" tf:"uuid,omitempty"`
 
+	// The size of the volume to create (in gigabytes). Required
+	// in the following combinations: source=image and destination=volume,
+	// source=blank and destination=local, and source=blank and destination=volume.
+	// Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	VolumeSize *float64 `json:"volumeSize,omitempty" tf:"volume_size,omitempty"`
 
+	// Currently, the value can be SSD (ultra-I/O disk type),
+	// SAS (high I/O disk type), or SATA (common I/O disk type)
 	// +kubebuilder:validation:Optional
 	VolumeType *string `json:"volumeType,omitempty" tf:"volume_type,omitempty"`
 }
 
 type InstanceObservation struct {
+
+	// The first detected Fixed IPv4 address or the Floating IP.
 	AccessIPV4 *string `json:"accessIpV4,omitempty" tf:"access_ip_v4,omitempty"`
 
+	// The first detected Fixed IPv6 address.
 	AccessIPV6 *string `json:"accessIpV6,omitempty" tf:"access_ip_v6,omitempty"`
 
 	AllMetadata map[string]*string `json:"allMetadata,omitempty" tf:"all_metadata,omitempty"`
 
+	// The EIP address that is associted to the instance.
 	FloatingIP *string `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// An array of one or more networks to attach to the
+	// instance. The network object structure is documented below. Changing this
+	// creates a new server.
 	// +kubebuilder:validation:Optional
 	Network []NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The status of the instance.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The system disk voume ID.
 	SystemDiskID *string `json:"systemDiskId,omitempty" tf:"system_disk_id,omitempty"`
 
+	// An array of one or more disks to attach to the instance.
+	// The volume_attached object structure is documented below.
 	VolumeAttached []VolumeAttachedObservation `json:"volumeAttached,omitempty" tf:"volume_attached,omitempty"`
 }
 
 type InstanceParameters struct {
 
+	// The administrative password to assign to the server.
+	// Changing this changes the root password on the existing server.
 	// +kubebuilder:validation:Optional
 	AdminPass *string `json:"adminPass,omitempty" tf:"admin_pass,omitempty"`
 
+	// Configures or deletes automatic recovery of an instance
 	// +kubebuilder:validation:Optional
 	AutoRecovery *bool `json:"autoRecovery,omitempty" tf:"auto_recovery,omitempty"`
 
+	// The availability zone in which to create
+	// the server. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
+	// Configuration of block devices. The block_device
+	// structure is documented below. Changing this creates a new server.
+	// You can specify multiple block devices which will create an instance with
+	// multiple disks. This configuration is very flexible, so please see the
+	// following reference
+	// for more information.
 	// +kubebuilder:validation:Optional
 	BlockDevice []BlockDeviceParameters `json:"blockDevice,omitempty" tf:"block_device,omitempty"`
 
+	// Whether to use the config_drive feature to
+	// configure the instance. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	ConfigDrive *bool `json:"configDrive,omitempty" tf:"config_drive,omitempty"`
 
+	// The flavor ID of
+	// the desired flavor for the server. Changing this resizes the existing server.
 	// +kubebuilder:validation:Optional
 	FlavorID *string `json:"flavorId,omitempty" tf:"flavor_id,omitempty"`
 
+	// The name of the
+	// desired flavor for the server. Changing this resizes the existing server.
 	// +kubebuilder:validation:Optional
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
+	// The image ID of
+	// the desired image for the server. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	ImageID *string `json:"imageId,omitempty" tf:"image_id,omitempty"`
 
+	// The name of the
+	// desired image for the server. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	ImageName *string `json:"imageName,omitempty" tf:"image_name,omitempty"`
 
+	// The name of a key pair to put on the server. The key
+	// pair must already be created and associated with the tenant's account.
+	// Changing this creates a new server.
 	// +crossplane:generate:reference:type=KeyPair
 	// +kubebuilder:validation:Optional
 	KeyPair *string `json:"keyPair,omitempty" tf:"key_pair,omitempty"`
@@ -114,33 +170,55 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	KeyPairSelector *v1.Selector `json:"keyPairSelector,omitempty" tf:"-"`
 
+	// The key/value pairs to associate with the instance.
+	// Changing this updates the existing server metadata.
 	// +kubebuilder:validation:Optional
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// A unique name for the resource.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// An array of one or more networks to attach to the
+	// instance. The network object structure is documented below. Changing this
+	// creates a new server.
 	// +kubebuilder:validation:Optional
 	Network []NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Personality []PersonalityParameters `json:"personality,omitempty" tf:"personality,omitempty"`
 
+	// The region in which to create the server instance. If
+	// omitted, the region argument of the provider is used. Changing this
+	// creates a new server.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Provide the Nova scheduler with hints on how
+	// the instance should be launched. The available hints are described below.
 	// +kubebuilder:validation:Optional
 	SchedulerHints []SchedulerHintsParameters `json:"schedulerHints,omitempty" tf:"scheduler_hints,omitempty"`
 
+	// An array of one or more security group names
+	// to associate with the server. Changing this results in adding/removing
+	// security groups from the existing server. Note: When attaching the
+	// instance to networks using Ports, place the security groups on the Port
+	// and not the instance.
 	// +kubebuilder:validation:Optional
 	SecurityGroups []*string `json:"securityGroups,omitempty" tf:"security_groups,omitempty"`
 
+	// Whether to try stop instance gracefully
+	// before destroying it, thus giving chance for guest OS daemons to stop correctly.
+	// If instance doesn't stop within timeout, it will be destroyed anyway.
 	// +kubebuilder:validation:Optional
 	StopBeforeDestroy *bool `json:"stopBeforeDestroy,omitempty" tf:"stop_before_destroy,omitempty"`
 
+	// Specifies the key/value pairs to associate with the instance.
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// The user data to provide when launching the instance.
+	// Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
 }
@@ -151,18 +229,27 @@ type NetworkObservation struct {
 
 type NetworkParameters struct {
 
+	// Specifies if this network should be used for
+	// provisioning access. Accepts true or false. Defaults to false.
 	// +kubebuilder:validation:Optional
 	AccessNetwork *bool `json:"accessNetwork,omitempty" tf:"access_network,omitempty"`
 
+	// Specifies a fixed IPv4 address to be used on this
+	// network. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	FixedIPV4 *string `json:"fixedIpV4,omitempty" tf:"fixed_ip_v4,omitempty"`
 
+	// Specifies a fixed IPv6 address to be used on this
+	// network. Changing this creates a new server.
 	// +kubebuilder:validation:Optional
 	FixedIPV6 *string `json:"fixedIpV6,omitempty" tf:"fixed_ip_v6,omitempty"`
 
+	// A unique name for the resource.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The port UUID of a network to
+	// attach to the server. Changing this creates a new server.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
@@ -175,6 +262,8 @@ type NetworkParameters struct {
 	// +kubebuilder:validation:Optional
 	PortSelector *v1.Selector `json:"portSelector,omitempty" tf:"-"`
 
+	// The network UUID to
+	// attach to the server. Changing this creates a new server.
 	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	UUID *string `json:"uuid,omitempty" tf:"uuid,omitempty"`
@@ -208,12 +297,15 @@ type SchedulerHintsParameters struct {
 	// +kubebuilder:validation:Optional
 	BuildNearHostIP *string `json:"buildNearHostIp,omitempty" tf:"build_near_host_ip,omitempty"`
 
+	// Specifies the DeH ID. This parameter takes effect only when the value of tenancy is dedicated.
+	// If you do not specify this parameter, the system will automatically assign a DeH to you to deploy ECSs.
 	// +kubebuilder:validation:Optional
 	DehID *string `json:"dehId,omitempty" tf:"deh_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	DifferentHost []*string `json:"differentHost,omitempty" tf:"different_host,omitempty"`
 
+	// Specifies the anti-affinity group ID. The instance will be placed into that group.
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
@@ -226,19 +318,27 @@ type SchedulerHintsParameters struct {
 	// +kubebuilder:validation:Optional
 	TargetCell *string `json:"targetCell,omitempty" tf:"target_cell,omitempty"`
 
+	// Specifies whether the ECS is created on a Dedicated Host (DeH) or in a shared pool (default).
+	// The value can be shared or dedicated.
 	// +kubebuilder:validation:Optional
 	Tenancy *string `json:"tenancy,omitempty" tf:"tenancy,omitempty"`
 }
 
 type VolumeAttachedObservation struct {
+
+	// The volume boot index on that attachment.
 	BootIndex *float64 `json:"bootIndex,omitempty" tf:"boot_index,omitempty"`
 
+	// The volume pci address on that attachment.
 	PciAddress *string `json:"pciAddress,omitempty" tf:"pci_address,omitempty"`
 
+	// The volume size on that attachment.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// The volume type on that attachment.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// The volume id on that attachment.
 	UUID *string `json:"uuid,omitempty" tf:"uuid,omitempty"`
 }
 
@@ -259,7 +359,7 @@ type InstanceStatus struct {
 
 // +kubebuilder:object:root=true
 
-// Instance is the Schema for the Instances API. <no value>
+// Instance is the Schema for the Instances API. ""page_title: "flexibleengine_compute_instance_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

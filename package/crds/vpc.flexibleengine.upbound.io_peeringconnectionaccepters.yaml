@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: PeeringConnectionAccepter is the Schema for the PeeringConnectionAccepters
-          API. <no value>
+        description: 'PeeringConnectionAccepter is the Schema for the PeeringConnectionAccepters
+          API. ""page_title: "flexibleengine_vpc_peering_connection_accepter_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -66,10 +66,14 @@ spec:
               forProvider:
                 properties:
                   accept:
+                    description: Whether or not to accept the peering request. Defaults
+                      to false.
                     type: boolean
                   region:
                     type: string
                   vpcPeeringConnectionId:
+                    description: The VPC Peering Connection ID to manage. Changing
+                      this creates a new VPC peering connection accepter.
                     type: string
                   vpcPeeringConnectionIdRef:
                     description: Reference to a PeeringConnection to populate vpcPeeringConnectionId.
@@ -323,16 +327,23 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The VPC peering connection ID.
                     type: string
                   name:
+                    description: The VPC peering connection name.
                     type: string
                   peerTenantId:
+                    description: The Tenant Id of the accepter tenant.
                     type: string
                   peerVpcId:
+                    description: The VPC ID of the accepter tenant.
                     type: string
                   status:
+                    description: The VPC peering connection status.
                     type: string
                   vpcId:
+                    description: The ID of requester VPC involved in a VPC peering
+                      connection.
                     type: string
                 type: object
               conditions:

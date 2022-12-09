@@ -10,6 +10,12 @@ import (
 	"github.com/upbound/upjet/pkg/controller"
 
 	certificate "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/certificate"
+	ipgroup "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/ipgroup"
+	listener "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/listener"
+	loadbalancer "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/loadbalancer"
+	member "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/member"
+	monitor "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
+	pool "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/pool"
 	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
 	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
 	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/interfaceattach"
@@ -54,6 +60,12 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		certificate.Setup,
+		ipgroup.Setup,
+		listener.Setup,
+		loadbalancer.Setup,
+		member.Setup,
+		monitor.Setup,
+		pool.Setup,
 		floatingipassociate.Setup,
 		instance.Setup,
 		interfaceattach.Setup,

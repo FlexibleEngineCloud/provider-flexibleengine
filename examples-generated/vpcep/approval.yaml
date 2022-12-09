@@ -1,0 +1,66 @@
+apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
+kind: Approval
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcep/v1beta1/approval
+  labels:
+    testing.upbound.io/example-name: approval
+  name: approval
+spec:
+  forProvider:
+    endpointsRefs:
+    - name: demo
+    serviceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: demo
+
+---
+
+apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
+kind: Endpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcep/v1beta1/approval
+  labels:
+    testing.upbound.io/example-name: demo
+  name: demo
+spec:
+  forProvider:
+    enableDns: true
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    serviceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: demo
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
+kind: Service
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcep/v1beta1/approval
+  labels:
+    testing.upbound.io/example-name: demo
+  name: demo
+spec:
+  forProvider:
+    approval: true
+    name: demo-service
+    portIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    portMapping:
+    - servicePort: 8080
+      terminalPort: 80
+    serverType: VM
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

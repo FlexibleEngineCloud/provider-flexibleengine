@@ -14,17 +14,29 @@ import (
 )
 
 type KeyPairObservation struct {
+
+	// The resource ID which as same as keypair name.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type KeyPairParameters struct {
 
+	// Specifies the path of the created private key.
+	// The private key file (.pem) is created only after the resource is created.
+	// By default, the private key file will be created in the same folder as the work directory.
+	// If you need to create it in another folder, please specify the path for private_key_path.
+	// Changing this creates a new keypair.
 	// +kubebuilder:validation:Optional
 	PrivateKeyPath *string `json:"privateKeyPath,omitempty" tf:"private_key_path,omitempty"`
 
+	// Specifies a imported OpenSSH-formatted public key.
+	// Changing this creates a new keypair.
 	// +kubebuilder:validation:Required
 	PublicKey *string `json:"publicKey" tf:"public_key,omitempty"`
 
+	// Specifies the region in which to create the keypair resource.
+	// If omitted, the region argument of the provider is used.
+	// Changing this creates a new keypair.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -43,7 +55,7 @@ type KeyPairStatus struct {
 
 // +kubebuilder:object:root=true
 
-// KeyPair is the Schema for the KeyPairs API. <no value>
+// KeyPair is the Schema for the KeyPairs API. ""page_title: "flexibleengine_compute_keypair_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

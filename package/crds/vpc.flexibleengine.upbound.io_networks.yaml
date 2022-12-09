@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Network is the Schema for the Networks API. <no value>
+        description: 'Network is the Schema for the Networks API. ""page_title: "flexibleengine_networking_network_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,29 +64,50 @@ spec:
               forProvider:
                 properties:
                   adminStateUp:
+                    description: The administrative state of the network. Acceptable
+                      values are "true" and "false". Changing this value updates the
+                      state of the existing network.
                     type: string
                   name:
+                    description: The name of the network. Changing this updates the
+                      name of the existing network.
                     type: string
                   region:
+                    description: The region in which to obtain the V2 Networking client.
+                      A Networking client is needed to create a Neutron network. If
+                      omitted, the region argument of the provider is used. Changing
+                      this creates a new network.
                     type: string
                   segments:
+                    description: An array of one or more provider segment objects.
                     items:
                       properties:
                         networkType:
+                          description: The type of physical network.
                           type: string
                         physicalNetwork:
+                          description: The physical network where this network is
+                            implemented.
                           type: string
                         segmentationId:
+                          description: An isolated segment on the physical network.
                           type: number
                       type: object
                     type: array
                   shared:
+                    description: Specifies whether the network resource can be accessed
+                      by any tenant or not. Changing this updates the sharing capabalities
+                      of the existing network.
                     type: string
                   tenantId:
+                    description: The owner of the network. Required if admin wants
+                      to create a network for another tenant. Changing this creates
+                      a new network.
                     type: string
                   valueSpecs:
                     additionalProperties:
                       type: string
+                    description: Map of additional options.
                     type: object
                 type: object
               providerConfigRef:

@@ -14,34 +14,51 @@ import (
 )
 
 type FlowLogObservation struct {
+
+	// The VPC flow log ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The status of the flow log. The value can be ACTIVE, DOWN or ERROR.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type FlowLogParameters struct {
 
+	// (Optinal, String) Specifies supplementary information about the VPC flow log.
+	// The value is a string of no more than 255 characters and cannot contain angle brackets (< or >).
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Specifies the LTS log group ID.
+	// Changing this creates a new VPC flow log.
 	// +kubebuilder:validation:Required
 	LogGroupID *string `json:"logGroupId" tf:"log_group_id,omitempty"`
 
+	// Specifies the LTS log topic ID.
+	// Changing this creates a new VPC flow log.
 	// +kubebuilder:validation:Required
 	LogTopicID *string `json:"logTopicId" tf:"log_topic_id,omitempty"`
 
+	// Specifies the VPC flow log name.
+	// The value is a string of 1 to 64 characters that can contain letters, digits, underscores (_), hyphens (-) and periods (.).
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// The region in which to create the VPC flow log resource.
+	// If omitted, the provider-level region will be used. Changing this creates a new VPC flow log.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Specifies the network port ID.
+	// Changing this creates a new VPC flow log.
 	// +kubebuilder:validation:Required
 	ResourceID *string `json:"resourceId" tf:"resource_id,omitempty"`
 
+	// The type of resource on which to create the VPC flow log. The value is fixed to port.
 	// +kubebuilder:validation:Optional
 	ResourceType *string `json:"resourceType,omitempty" tf:"resource_type,omitempty"`
 
+	// (Optinal, String, ForceNew) Specifies the type of traffic to log. The value can be:
 	// +kubebuilder:validation:Optional
 	TrafficType *string `json:"trafficType,omitempty" tf:"traffic_type,omitempty"`
 }
@@ -60,7 +77,7 @@ type FlowLogStatus struct {
 
 // +kubebuilder:object:root=true
 
-// FlowLog is the Schema for the FlowLogs API. <no value>
+// FlowLog is the Schema for the FlowLogs API. ""page_title: "flexibleengine_vpc_flow_log_v1"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

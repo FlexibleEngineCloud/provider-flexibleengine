@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: NetworkingSubnet is the Schema for the NetworkingSubnets API.
-          <no value>
+        description: 'NetworkingSubnet is the Schema for the NetworkingSubnets API.
+          ""page_title: "flexibleengine_networking_subnet_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -65,11 +65,16 @@ spec:
               forProvider:
                 properties:
                   allocationPools:
+                    description: An array of sub-ranges of CIDR available for dynamic
+                      allocation to ports. The allocation_pool object structure is
+                      documented below. Changing this creates a new subnet.
                     items:
                       properties:
                         end:
+                          description: The ending addresss.
                           type: string
                         start:
+                          description: The starting address.
                           type: string
                       required:
                       - end
@@ -77,21 +82,40 @@ spec:
                       type: object
                     type: array
                   cidr:
+                    description: CIDR representing IP range for this subnet, based
+                      on IP version. Changing this creates a new subnet.
                     type: string
                   dnsNameservers:
+                    description: An array of DNS name server names used by hosts in
+                      this subnet. Changing this updates the DNS name servers for
+                      the existing subnet.
                     items:
                       type: string
                     type: array
                   enableDhcp:
+                    description: The administrative state of the network. Acceptable
+                      values are "true" and "false". Changing this value enables or
+                      disables the DHCP capabilities of the existing subnet. Defaults
+                      to true.
                     type: boolean
                   gatewayIp:
+                    description: Default gateway used by devices in this subnet. Leaving
+                      this blank and not setting no_gateway will cause a default gateway
+                      of .1 to be used. Changing this updates the gateway IP of the
+                      existing subnet.
                     type: string
                   hostRoutes:
+                    description: An array of routes that should be used by devices
+                      with IPs from this subnet (not including local subnet route).
+                      The host_route object structure is documented below. Changing
+                      this updates the host routes for the existing subnet.
                     items:
                       properties:
                         destinationCidr:
+                          description: The destination CIDR.
                           type: string
                         nextHop:
+                          description: The next hop in the route.
                           type: string
                       required:
                       - destinationCidr
@@ -99,10 +123,16 @@ spec:
                       type: object
                     type: array
                   ipVersion:
+                    description: IP version, either 4 (default) or 6. Changing this
+                      creates a new subnet.
                     type: number
                   name:
+                    description: The name of the subnet. Changing this updates the
+                      name of the existing subnet.
                     type: string
                   networkId:
+                    description: The UUID of the parent network. Changing this creates
+                      a new subnet.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in vpc to populate networkId.
@@ -178,14 +208,24 @@ spec:
                         type: object
                     type: object
                   noGateway:
+                    description: Do not set a gateway IP on this subnet. Changing
+                      this removes or adds a default gateway IP of the existing subnet.
                     type: boolean
                   region:
+                    description: The region in which to obtain the V2 Networking client.
+                      A Networking client is needed to create a Neutron subnet. If
+                      omitted, the region argument of the provider is used. Changing
+                      this creates a new subnet.
                     type: string
                   tenantId:
+                    description: The owner of the subnet. Required if admin wants
+                      to create a subnet for another tenant. Changing this creates
+                      a new subnet.
                     type: string
                   valueSpecs:
                     additionalProperties:
                       type: string
+                    description: Map of additional options.
                     type: object
                 required:
                 - cidr

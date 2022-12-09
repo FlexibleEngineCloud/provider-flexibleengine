@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: EIP is the Schema for the EIPs API. <no value>
+        description: 'EIP is the Schema for the EIPs API. ""page_title: "flexibleengine_vpc_eip"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,15 +64,27 @@ spec:
               forProvider:
                 properties:
                   bandwidth:
+                    description: The bandwidth object.
                     items:
                       properties:
                         chargeMode:
+                          description: Specifies whether the bandwidth is billed by
+                            traffic or by bandwidth size. Only traffic supported now.
+                            Changing this creates a new EIP.
                           type: string
                         name:
+                          description: The bandwidth name, which is a string of 1
+                            to 64 characters that contain letters, digits, underscores
+                            (_), and hyphens (-).
                           type: string
                         shareType:
+                          description: Specifies the bandwidth type. The value is
+                            PER, indicating that the bandwidth is dedicated. Changing
+                            this creates a new EIP.
                           type: string
                         size:
+                          description: The bandwidth size. The value ranges from 1
+                            to 1000 Mbit/s.
                           type: number
                       required:
                       - name
@@ -81,23 +93,37 @@ spec:
                       type: object
                     type: array
                   publicip:
+                    description: The elastic IP address object.
                     items:
                       properties:
                         ipAddress:
+                          description: The value must be a valid IP address in the
+                            available IP address segment. Changing this creates a
+                            new EIP.
                           type: string
                         portId:
+                          description: The port id which this EIP will associate with.
+                            If the value is not specified, the EIP will be in unbind
+                            state.
                           type: string
                         type:
+                          description: The value must be a type supported by the system.
+                            Only 5_bgp supported now. Changing this creates a new
+                            EIP.
                           type: string
                       required:
                       - type
                       type: object
                     type: array
                   region:
+                    description: The region in which to create the EIP. If omitted,
+                      the region argument of the provider is used. Changing this creates
+                      a new EIP.
                     type: string
                   tags:
                     additionalProperties:
                       type: string
+                    description: The key/value pairs to associate with the EIP.
                     type: object
                 required:
                 - bandwidth
@@ -280,10 +306,13 @@ spec:
               atProvider:
                 properties:
                   address:
+                    description: The IP address of the EIP.
                     type: string
                   id:
+                    description: The resource ID in UUID format.
                     type: string
                   status:
+                    description: The status of EIP.
                     type: string
                 type: object
               conditions:
