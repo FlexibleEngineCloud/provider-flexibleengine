@@ -29,8 +29,14 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				}
 				// subnet_id is a reference to a Subnet resource
 			case "subnet_id":
-				r.References["subnet_id"] = config.Reference{
-					Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Subnet",
+				if _, ok := r.References["network_id"]; ok {
+					r.References["subnet_id"] = config.Reference{
+						Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.NetworkingSubnet",
+					}
+				} else {
+					r.References["subnet_id"] = config.Reference{
+						Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Subnet",
+					}
 				}
 				// network_id is a reference to a Network resource
 			case "network_id":
@@ -57,7 +63,6 @@ func RemoveVersion() config.ResourceOption { //nolint:gocyclo
 	return func(r *config.Resource) {
 		// if Kind contains version, remove it (Version pattern: _v[0-9]+)
 		// ex: "Vpc_v1" -> "Vpc"
-		//if kind match regex
 		r.Kind = strings.ReplaceAll(r.Kind, "_v[0-9]+", "")
 	}
 }
