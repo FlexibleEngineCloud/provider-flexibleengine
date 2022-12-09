@@ -1,8 +1,8 @@
-apiVersion: compute.flexibleengine.upbound.io/v1alpha1
+apiVersion: ecs.flexibleengine.upbound.io/v1alpha1
 kind: KeyPair
 metadata:
   annotations:
-    meta.upbound.io/example-id: compute/v1beta1/keypair
+    meta.upbound.io/example-id: ecs/v1beta1/keypair
   labels:
     testing.upbound.io/example-name: example_keypair
   name: example-keypair

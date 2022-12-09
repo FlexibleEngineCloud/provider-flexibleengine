@@ -1,17 +1,16 @@
-package compute
+package ecs
 
 import "github.com/upbound/upjet/pkg/config"
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_compute_floatingip_associate_v2", func(r *config.Resource) {
-		r.References["floating_ip"] = config.Reference{
-			Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.EIP",
-		}
+		// r.References["floating_ip"] = config.Reference{
+		// 	Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.EIP",
+		// }
 		r.References["instance_id"] = config.Reference{
 			Type: "Instance",
 		}
-		r.Kind = "FloatingIpAssociate"
 	})
 	p.AddResourceConfigurator("flexibleengine_compute_instance_v2", func(r *config.Resource) {
 		// r.References["image_id"] = config.Reference{
@@ -26,7 +25,6 @@ func Configure(p *config.Provider) {
 		r.References["key_pair"] = config.Reference{
 			Type: "KeyPair",
 		}
-		r.Kind = "Instance"
 	})
 	p.AddResourceConfigurator("flexibleengine_compute_interface_attach_v2", func(r *config.Resource) {
 		r.References["instance_id"] = config.Reference{
@@ -38,16 +36,8 @@ func Configure(p *config.Provider) {
 		// r.References["port_id"] = config.Reference{
 		// 	Type: "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1alpha1.Port",
 		// }
-		r.Kind = "InterfaceAttach"
 	})
 	p.AddResourceConfigurator("flexibleengine_compute_keypair_v2", func(r *config.Resource) {
 		config.MarkAsRequired(r.TerraformResource, "public_key")
-		r.Kind = "KeyPair"
-	})
-	p.AddResourceConfigurator("flexibleengine_compute_servergroup_v2", func(r *config.Resource) {
-		r.Kind = "ServerGroup"
-	})
-	p.AddResourceConfigurator("flexibleengine_compute_volume_attach_v2", func(r *config.Resource) {
-		r.Kind = "VolumeAttach"
 	})
 }

@@ -1,8 +1,8 @@
-apiVersion: compute.flexibleengine.upbound.io/v1alpha1
+apiVersion: ecs.flexibleengine.upbound.io/v1alpha1
 kind: ServerGroup
 metadata:
   annotations:
-    meta.upbound.io/example-id: compute/v1beta1/servergroup
+    meta.upbound.io/example-id: ecs/v1beta1/servergroup
   labels:
     testing.upbound.io/example-name: example_servergroup
   name: example-servergroup

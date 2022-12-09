@@ -81,6 +81,7 @@ var GroupMap = map[string]GroupKindCalculator{
 
 // KindMap contains kind string overrides.
 var KindMap = map[string]string{
-	"flexibleengine_compute_keypair_v2":     "KeyPair",
-	"flexibleengine_compute_servergroup_v2": "ServerGroup",
+	"flexibleengine_compute_keypair_v2":              "KeyPair",
+	"flexibleengine_compute_servergroup_v2":          "ServerGroup",
+	"flexibleengine_compute_floatingip_associate_v2": "FloatingIpAssociate",
 }

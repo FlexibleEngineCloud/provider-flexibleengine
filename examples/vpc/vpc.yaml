@@ -2,7 +2,7 @@ apiVersion: vpc.flexibleengine.upbound.io/v1alpha1
 kind: Vpc
 metadata:
   annotations:
-    meta.upbound.io/example-id: identity/v1beta1/vpc
+    meta.upbound.io/example-id: iam/v1beta1/vpc
   labels:
     testing.upbound.io/example-name: example-vpc
   name: example-vpc

@@ -1,8 +1,8 @@
-apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1alpha1
 kind: Group
 metadata:
   annotations:
-    meta.upbound.io/example-id: identity/v1beta1/group
+    meta.upbound.io/example-id: iam/v1beta1/group
   labels:
     testing.upbound.io/example-name: example_group
   name: example-group

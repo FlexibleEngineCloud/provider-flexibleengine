@@ -1,4 +1,4 @@
-package identity
+package iam
 
 import "github.com/upbound/upjet/pkg/config"
 

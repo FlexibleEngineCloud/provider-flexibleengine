@@ -1,8 +1,8 @@
-apiVersion: identity.flexibleengine.upbound.io/v1alpha1
+apiVersion: iam.flexibleengine.upbound.io/v1alpha1
 kind: Role
 metadata:
   annotations:
-    meta.upbound.io/example-id: identity/v1beta1/role
+    meta.upbound.io/example-id: iam/v1beta1/role
   labels:
     testing.upbound.io/example-name: example_role
   name: example-role
