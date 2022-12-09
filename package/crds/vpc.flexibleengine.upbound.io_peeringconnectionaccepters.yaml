@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: peerings.vpc.flexibleengine.upbound.io
+  name: peeringconnectionaccepters.vpc.flexibleengine.upbound.io
 spec:
   group: vpc.flexibleengine.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: Peering
-    listKind: PeeringList
-    plural: peerings
-    singular: peering
+    kind: PeeringConnectionAccepter
+    listKind: PeeringConnectionAccepterList
+    plural: peeringconnectionaccepters
+    singular: peeringconnectionaccepter
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Peering is the Schema for the Peerings API. <no value>
+        description: PeeringConnectionAccepter is the Schema for the PeeringConnectionAccepters
+          API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,8 @@ spec:
           metadata:
             type: object
           spec:
-            description: PeeringSpec defines the desired state of Peering
+            description: PeeringConnectionAccepterSpec defines the desired state of
+              PeeringConnectionAccepter
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,18 +65,14 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  name:
-                    type: string
-                  peerTenantId:
-                    type: string
-                  peerVpcId:
-                    type: string
+                  accept:
+                    type: boolean
                   region:
                     type: string
-                  vpcId:
+                  vpcPeeringConnectionId:
                     type: string
-                  vpcIdRef:
-                    description: Reference to a Vpc to populate vpcId.
+                  vpcPeeringConnectionIdRef:
+                    description: Reference to a PeeringConnection to populate vpcPeeringConnectionId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -107,8 +105,8 @@ spec:
                     required:
                     - name
                     type: object
-                  vpcIdSelector:
-                    description: Selector for a Vpc to populate vpcId.
+                  vpcPeeringConnectionIdSelector:
+                    description: Selector for a PeeringConnection to populate vpcPeeringConnectionId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -146,9 +144,6 @@ spec:
                             type: string
                         type: object
                     type: object
-                required:
-                - name
-                - peerVpcId
                 type: object
               providerConfigRef:
                 default:
@@ -322,13 +317,22 @@ spec:
             - forProvider
             type: object
           status:
-            description: PeeringStatus defines the observed state of Peering.
+            description: PeeringConnectionAccepterStatus defines the observed state
+              of PeeringConnectionAccepter.
             properties:
               atProvider:
                 properties:
                   id:
                     type: string
+                  name:
+                    type: string
+                  peerTenantId:
+                    type: string
+                  peerVpcId:
+                    type: string
                   status:
+                    type: string
+                  vpcId:
                     type: string
                 type: object
               conditions:

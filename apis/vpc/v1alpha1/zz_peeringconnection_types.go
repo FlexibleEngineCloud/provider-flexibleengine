@@ -13,13 +13,13 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type PeeringObservation struct {
+type PeeringConnectionObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
-type PeeringParameters struct {
+type PeeringConnectionParameters struct {
 
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
@@ -27,8 +27,17 @@ type PeeringParameters struct {
 	// +kubebuilder:validation:Optional
 	PeerTenantID *string `json:"peerTenantId,omitempty" tf:"peer_tenant_id,omitempty"`
 
-	// +kubebuilder:validation:Required
-	PeerVPCID *string `json:"peerVpcId" tf:"peer_vpc_id,omitempty"`
+	// +crossplane:generate:reference:type=Vpc
+	// +kubebuilder:validation:Optional
+	PeerVPCID *string `json:"peerVpcId,omitempty" tf:"peer_vpc_id,omitempty"`
+
+	// Reference to a Vpc to populate peerVpcId.
+	// +kubebuilder:validation:Optional
+	PeerVPCIDRef *v1.Reference `json:"peerVpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vpc to populate peerVpcId.
+	// +kubebuilder:validation:Optional
+	PeerVPCIDSelector *v1.Selector `json:"peerVpcIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -46,51 +55,51 @@ type PeeringParameters struct {
 	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
-// PeeringSpec defines the desired state of Peering
-type PeeringSpec struct {
+// PeeringConnectionSpec defines the desired state of PeeringConnection
+type PeeringConnectionSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     PeeringParameters `json:"forProvider"`
+	ForProvider     PeeringConnectionParameters `json:"forProvider"`
 }
 
-// PeeringStatus defines the observed state of Peering.
-type PeeringStatus struct {
+// PeeringConnectionStatus defines the observed state of PeeringConnection.
+type PeeringConnectionStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        PeeringObservation `json:"atProvider,omitempty"`
+	AtProvider        PeeringConnectionObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Peering is the Schema for the Peerings API. <no value>
+// PeeringConnection is the Schema for the PeeringConnections API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type Peering struct {
+type PeeringConnection struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              PeeringSpec   `json:"spec"`
-	Status            PeeringStatus `json:"status,omitempty"`
+	Spec              PeeringConnectionSpec   `json:"spec"`
+	Status            PeeringConnectionStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// PeeringList contains a list of Peerings
-type PeeringList struct {
+// PeeringConnectionList contains a list of PeeringConnections
+type PeeringConnectionList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Peering `json:"items"`
+	Items           []PeeringConnection `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Peering_Kind             = "Peering"
-	Peering_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Peering_Kind}.String()
-	Peering_KindAPIVersion   = Peering_Kind + "." + CRDGroupVersion.String()
-	Peering_GroupVersionKind = CRDGroupVersion.WithKind(Peering_Kind)
+	PeeringConnection_Kind             = "PeeringConnection"
+	PeeringConnection_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: PeeringConnection_Kind}.String()
+	PeeringConnection_KindAPIVersion   = PeeringConnection_Kind + "." + CRDGroupVersion.String()
+	PeeringConnection_GroupVersionKind = CRDGroupVersion.WithKind(PeeringConnection_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Peering{}, &PeeringList{})
+	SchemeBuilder.Register(&PeeringConnection{}, &PeeringConnectionList{})
 }
