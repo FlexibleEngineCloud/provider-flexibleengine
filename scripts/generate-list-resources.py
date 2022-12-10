@@ -22,6 +22,9 @@ for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/
             with open('.work/FlexibleEngineCloud/flexibleengine/docs/resources/'+file) as f:
                 for line in f:
                     if line.startswith('# flexibleengine'):
+
+                        # remove \ in line
+                        line = line.replace('\\', '')
                         # Define var found to check if resource is already implemented
                         found = False
                         with open('config/external_name.go') as x:
