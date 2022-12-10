@@ -3,6 +3,7 @@ package config
 import (
 	"strings"
 
+	"github.com/gaetanars/provider-flexibleengine/config/common"
 	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -71,6 +72,15 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			case "instance_id":
 				r.References[k] = config.Reference{
 					Type: tools.GenerateType("ecs", "Instance"),
+				}
+			case "image_name":
+				r.References[k] = config.Reference{
+					TerraformName: "flexibleengine_images_image_v2",
+					Extractor:     common.PathImageNameExtractor,
+				}
+			case "image_id":
+				r.References[k] = config.Reference{
+					Type: tools.GenerateType("ims", "Image"),
 				}
 			}
 		}

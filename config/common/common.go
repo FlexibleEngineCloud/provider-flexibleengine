@@ -28,6 +28,9 @@ var (
 
 	// PathRegionExtractor is the golang path to RegionExtractor function
 	PathRegionExtractor = SelfPackagePath + ".RegionExtractor()"
+
+	// PathImageNameExtractor is the golang path to ImageNameExtractor function
+	PathImageNameExtractor = SelfPackagePath + ".ImageNameExtractor()"
 )
 
 // RegionExtractor extracts region from "spec.forProvider.region" which
@@ -56,5 +59,22 @@ func TerraformID() reference.ExtractValueFn {
 			return ""
 		}
 		return tr.GetID()
+	}
+}
+
+// ImageNameExtractor extracts image name from "spec.forProvider.image_name"
+func ImageNameExtractor() reference.ExtractValueFn {
+	return func(mg xpresource.Managed) string {
+		paved, err := fieldpath.PaveObject(mg)
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		r, err := paved.GetString("spec.forProvider.image_name")
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		return r
 	}
 }

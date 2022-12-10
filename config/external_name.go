@@ -17,6 +17,14 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Bare Metal Server (BMS)
+	*/
+
+	// flexibleengine_compute_bms_server_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_bms_server_v2
+	"flexibleengine_compute_bms_server_v2": config.IdentifierFromProvider,
+
+	/*
 		> Elastic Volume Service (EVS)
 	*/
 
