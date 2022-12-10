@@ -11,6 +11,7 @@ import (
 	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1"
 	v1beta11 "github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta12 "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1"
+	common "github.com/gaetanars/provider-flexibleengine/config/common"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -79,6 +80,22 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	}
 	mg.Spec.ForProvider.ImageID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ImageIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ImageName),
+		Extract:      common.ImageNameExtractor(),
+		Reference:    mg.Spec.ForProvider.ImageNameRef,
+		Selector:     mg.Spec.ForProvider.ImageNameSelector,
+		To: reference.To{
+			List:    &v1beta11.ImageList{},
+			Managed: &v1beta11.Image{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ImageName")
+	}
+	mg.Spec.ForProvider.ImageName = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ImageNameRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KeyPair),

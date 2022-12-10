@@ -132,6 +132,9 @@ var GroupMap = map[string]GroupKindCalculator{
 
 	// EVS
 	"flexibleengine_blockstorage_volume_v2": ReplaceGroupWords("evs", 0), // Group: evs, Kind: Volume
+
+	// BMS
+	"flexibleengine_compute_bms_server_v2": ReplaceGroupWords("bms", 2), // Group: bms, Kind: Server
 }
 
 // KindMap contains kind string overrides.

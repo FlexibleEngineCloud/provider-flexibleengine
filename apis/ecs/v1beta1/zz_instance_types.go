@@ -161,8 +161,18 @@ type InstanceParameters struct {
 
 	// The name of the
 	// desired image for the server. Changing this creates a new server.
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1.Image
+	// +crossplane:generate:reference:extractor=github.com/gaetanars/provider-flexibleengine/config/common.ImageNameExtractor()
 	// +kubebuilder:validation:Optional
 	ImageName *string `json:"imageName,omitempty" tf:"image_name,omitempty"`
+
+	// Reference to a Image in ims to populate imageName.
+	// +kubebuilder:validation:Optional
+	ImageNameRef *v1.Reference `json:"imageNameRef,omitempty" tf:"-"`
+
+	// Selector for a Image in ims to populate imageName.
+	// +kubebuilder:validation:Optional
+	ImageNameSelector *v1.Selector `json:"imageNameSelector,omitempty" tf:"-"`
 
 	// The name of a key pair to put on the server. The key
 	// pair must already be created and associated with the tenant's account.

@@ -460,6 +460,16 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ImageNameRef != nil {
+		in, out := &in.ImageNameRef, &out.ImageNameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ImageNameSelector != nil {
+		in, out := &in.ImageNameSelector, &out.ImageNameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.KeyPair != nil {
 		in, out := &in.KeyPair, &out.KeyPair
 		*out = new(string)

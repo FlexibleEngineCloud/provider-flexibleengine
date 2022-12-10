@@ -9,6 +9,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	server "github.com/gaetanars/provider-flexibleengine/internal/controller/bms/server"
 	addon "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/addon"
 	cluster "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/cluster"
 	namespace "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/namespace"
@@ -99,6 +100,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		server.Setup,
 		addon.Setup,
 		cluster.Setup,
 		namespace.Setup,

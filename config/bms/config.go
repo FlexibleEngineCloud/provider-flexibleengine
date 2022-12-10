@@ -12,9 +12,9 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_bms_server_v2
 	p.AddResourceConfigurator("flexibleengine_blockstorage_volume_v2", func(r *config.Resource) {
 
-		// secruity_groups
+		// security_groups
 		// TODO Here security_groups require name instead of id
-		r.References["secruity_groups"] = config.Reference{}
+		// r.References["security_groups"] = config.Reference{}
 
 		// network.uuid
 		r.References["network.uuid"] = config.Reference{
