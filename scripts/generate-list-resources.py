@@ -13,8 +13,10 @@ print('# Resources')
 countImplemented = 0
 countNotImplemented = 0
 
-linesImplementedPrint = []
-linesNotImplementedPrint = []
+# array to store lines to print by group
+# array array
+linesImplementedPrint = {}
+linesNotImplementedPrint = {}
 
 for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/resources'):
     for file in files:
@@ -25,6 +27,15 @@ for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/
 
                         # remove \ in line
                         line = line.replace('\\', '')
+
+                        # identify group of resource (ex: flexibleengine_group_resource)
+                        group = line[2:-1].split('_')[1]
+                        if group not in linesImplementedPrint:
+                            linesImplementedPrint[group] = []
+
+                        if group not in linesNotImplementedPrint:
+                            linesNotImplementedPrint[group] = []
+
                         # Define var found to check if resource is already implemented
                         found = False
                         with open('config/external_name.go') as x:
@@ -34,20 +45,42 @@ for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/
                                 if l.find(line[2:-1]) != -1:
                                     found = True
                                     countImplemented += 1
-                                    linesImplementedPrint.append(
+                                    linesImplementedPrint[group].append(
                                         '* [x] [' + line[2:-1] + '](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/' + file[0:-3] + ')')
                                     break
 
                         if found == False:
                             countNotImplemented += 1
-                            linesNotImplementedPrint.append(
+                            linesNotImplementedPrint[group].append(
                                 '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/' + file[0:-3] + ')')
                         break
 
-print('## Implemented (' + str(countImplemented) + ')')
-for line in linesImplementedPrint:
-    print(line)
+# Print Last update
+print('\nLast update: ' + os.popen('date').read())
 
-print('## Not implemented (' + str(countNotImplemented) + ')')
-for line in linesNotImplementedPrint:
-    print(line)
+# Calculate percentage of resources implemented
+percentage = (countImplemented /
+              (countImplemented + countNotImplemented)) * 100
+print('\n## Resources implemented: ' + str(countImplemented) +
+      ' (' + str(round(percentage, 2)) + '%)\n')
+
+# Print resources implemented by group
+for group in linesImplementedPrint:
+    # calculate percentage of resources implemented by group
+    percentage = (len(linesImplementedPrint[group]) / (
+        len(linesImplementedPrint[group]) + len(linesNotImplementedPrint[group]))) * 100
+    print('### ' + group + ' -- :white_check_mark: ' + str(len(linesImplementedPrint[group])) + ' :x: ' + str(
+        len(linesNotImplementedPrint[group])) + ' (' + str(round(percentage, 2)) + '%)\n')
+    for line in linesImplementedPrint[group]:
+        print(line)
+    for line in linesNotImplementedPrint[group]:
+        print(line)
+    print('\n')
+
+# print('\n## Resources not implemented (' + str(countNotImplemented) + ')\n')
+# # Print resources not implemented by group
+# for group in linesNotImplementedPrint:
+#     print('### ' + group + '\n')
+#     for line in linesNotImplementedPrint[group]:
+#         print(line)
+#     print('\n')
