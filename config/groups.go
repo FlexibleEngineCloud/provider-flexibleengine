@@ -129,6 +129,9 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_s3_bucket":              ReplaceGroupWords("oss", 0), // Group: oss, Kind: S3Bucket
 	"flexibleengine_s3_bucket_object":       ReplaceGroupWords("oss", 0), // Group: oss, Kind: S3Object
 	"flexibleengine_s3_bucket_policy":       ReplaceGroupWords("oss", 0), // Group: oss, Kind: S3BucketPolicy
+
+	// EVS
+	"flexibleengine_blockstorage_volume_v2": ReplaceGroupWords("evs", 0), // Group: evs, Kind: Volume
 }
 
 // KindMap contains kind string overrides.
@@ -146,4 +149,6 @@ var KindMap = map[string]string{
 	"flexibleengine_obs_bucket":                      "OBSBucket",
 	"flexibleengine_obs_bucket_object":               "OBSBucketObject",
 	"flexibleengine_obs_bucket_replication":          "OBSBucketReplication",
+	"flexibleengine_waf_rule_blacklist":              "RuleBlacklist",
+	"flexibleengine_blockstorage_volume_v2":          "BlockStorageVolume",
 }

@@ -22,6 +22,8 @@ import (
 	member "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/member"
 	monitor "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
 	pool "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/pool"
+	recordset "github.com/gaetanars/provider-flexibleengine/internal/controller/dns/recordset"
+	zone "github.com/gaetanars/provider-flexibleengine/internal/controller/dns/zone"
 	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
 	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
 	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/interfaceattach"
@@ -38,6 +40,7 @@ import (
 	monitorelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/monitor"
 	poolelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/pool"
 	whitelist "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/whitelist"
+	blockstoragevolume "github.com/gaetanars/provider-flexibleengine/internal/controller/evs/blockstoragevolume"
 	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/agency"
 	group "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/group"
 	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/groupmembership"
@@ -56,6 +59,8 @@ import (
 	s3bucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketobject"
 	s3bucketpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketpolicy"
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
+	backup "github.com/gaetanars/provider-flexibleengine/internal/controller/vbs/backup"
+	backuppolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/vbs/backuppolicy"
 	flowlog "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/flowlog"
 	network "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/network"
 	networkingsubnet "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/networkingsubnet"
@@ -75,6 +80,19 @@ import (
 	approval "github.com/gaetanars/provider-flexibleengine/internal/controller/vpcep/approval"
 	endpoint "github.com/gaetanars/provider-flexibleengine/internal/controller/vpcep/endpoint"
 	service "github.com/gaetanars/provider-flexibleengine/internal/controller/vpcep/service"
+	certificatewaf "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/certificate"
+	dedicatedcertificate "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/dedicatedcertificate"
+	dedicateddomain "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/dedicateddomain"
+	dedicatedinstance "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/dedicatedinstance"
+	dedicatedpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/dedicatedpolicy"
+	domain "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/domain"
+	policy "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/policy"
+	rulealarmmasking "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/rulealarmmasking"
+	ruleblacklist "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/ruleblacklist"
+	ruleccprotection "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/ruleccprotection"
+	ruledatamasking "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/ruledatamasking"
+	rulepreciseprotection "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/rulepreciseprotection"
+	rulewebtamperprotection "github.com/gaetanars/provider-flexibleengine/internal/controller/waf/rulewebtamperprotection"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -94,6 +112,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		member.Setup,
 		monitor.Setup,
 		pool.Setup,
+		recordset.Setup,
+		zone.Setup,
 		floatingipassociate.Setup,
 		instance.Setup,
 		interfaceattach.Setup,
@@ -110,6 +130,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		monitorelb.Setup,
 		poolelb.Setup,
 		whitelist.Setup,
+		blockstoragevolume.Setup,
 		agency.Setup,
 		group.Setup,
 		groupmembership.Setup,
@@ -128,6 +149,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		s3bucketobject.Setup,
 		s3bucketpolicy.Setup,
 		providerconfig.Setup,
+		backup.Setup,
+		backuppolicy.Setup,
 		flowlog.Setup,
 		network.Setup,
 		networkingsubnet.Setup,
@@ -147,6 +170,19 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		approval.Setup,
 		endpoint.Setup,
 		service.Setup,
+		certificatewaf.Setup,
+		dedicatedcertificate.Setup,
+		dedicateddomain.Setup,
+		dedicatedinstance.Setup,
+		dedicatedpolicy.Setup,
+		domain.Setup,
+		policy.Setup,
+		rulealarmmasking.Setup,
+		ruleblacklist.Setup,
+		ruleccprotection.Setup,
+		ruledatamasking.Setup,
+		rulepreciseprotection.Setup,
+		rulewebtamperprotection.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

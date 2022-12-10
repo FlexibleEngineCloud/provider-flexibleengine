@@ -26,8 +26,17 @@ type VolumeAttachParameters struct {
 	Device *string `json:"device,omitempty" tf:"device,omitempty"`
 
 	// The ID of the Instance to attach the Volume to.
-	// +kubebuilder:validation:Required
-	InstanceID *string `json:"instanceId" tf:"instance_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +kubebuilder:validation:Optional
+	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
+
+	// Reference to a Instance in ecs to populate instanceId.
+	// +kubebuilder:validation:Optional
+	InstanceIDRef *v1.Reference `json:"instanceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in ecs to populate instanceId.
+	// +kubebuilder:validation:Optional
+	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
 	// The region in which to obtain the V2 Compute client.
 	// A Compute client is needed to create a volume attachment. If omitted, the

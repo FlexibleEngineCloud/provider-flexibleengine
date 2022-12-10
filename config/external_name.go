@@ -5,12 +5,108 @@ Copyright 2022 Upbound Inc.
 package config
 
 import (
+	"context"
+	"strings"
+
+	"github.com/pkg/errors"
 	"github.com/upbound/upjet/pkg/config"
 )
 
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
+
+	/*
+		> Elastic Volume Service (EVS)
+	*/
+
+	// flexibleengine_blockstorage_volume_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/blockstorage_volume_v2
+	"flexibleengine_blockstorage_volume_v2": config.IdentifierFromProvider,
+
+	/*
+		> Volume Backup Service (VBS)
+	*/
+
+	// flexibleengine_vbs_backup_policy_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vbs_backup_policy_v2
+	"flexibleengine_vbs_backup_policy_v2": config.IdentifierFromProvider,
+
+	// flexibleengine_vbs_backup_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vbs_backup_v2
+	"flexibleengine_vbs_backup_v2": config.IdentifierFromProvider,
+
+	/*
+		> Web Application Firewall (WAF)
+	*/
+
+	// flexibleengine_waf_certificate - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_certificate
+	"flexibleengine_waf_certificate": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_dedicated_certificate - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_dedicated_certificate
+	"flexibleengine_waf_dedicated_certificate": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_dedicated_domain - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_dedicated_domain
+	"flexibleengine_waf_dedicated_domain": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_dedicated_instance - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_dedicated_instance
+	"flexibleengine_waf_dedicated_instance": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_dedicated_policy - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_dedicated_policy
+	"flexibleengine_waf_dedicated_policy": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_domain - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_domain
+	"flexibleengine_waf_domain": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_policy - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_policy
+	"flexibleengine_waf_policy": config.IdentifierFromProvider,
+
+	// flexibleengine_waf_rule_alarm_masking - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_alarm_masking
+	"flexibleengine_waf_rule_alarm_masking": TemplatedStringAsIdentifierWithNoName("{{ .parameters.policy_id }}/{{ .external_name }}"),
+
+	// flexibleengine_waf_rule_blacklist - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_blacklist
+	"flexibleengine_waf_rule_blacklist": TemplatedStringAsIdentifierWithNoName("{{ .parameters.policy_id }}/{{ .external_name }}"),
+
+	// flexibleengine_waf_rule_cc_protection - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_cc_protection
+	"flexibleengine_waf_rule_cc_protection": TemplatedStringAsIdentifierWithNoName("{{ .parameters.policy_id }}/{{ .external_name }}"),
+
+	// flexibleengine_waf_rule_data_masking - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_data_masking
+	"flexibleengine_waf_rule_data_masking": TemplatedStringAsIdentifierWithNoName("{{ .parameters.policy_id }}/{{ .external_name }}"),
+
+	// flexibleengine_waf_rule_precise_protection - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_precise_protection
+	"flexibleengine_waf_rule_precise_protection": TemplatedStringAsIdentifierWithNoName("{{ .parameters.policy_id }}/{{ .external_name }}"),
+
+	// flexibleengine_waf_rule_web_tamper_protection - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_web_tamper_protection
+	"flexibleengine_waf_rule_web_tamper_protection": TemplatedStringAsIdentifierWithNoName("{{ .parameters.policy_id }}/{{ .external_name }}"),
+
+	/*
+		> Domain Name Service (DNS)
+	*/
+
+	// flexibleengine_dns_zone_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_zone_v2
+	"flexibleengine_dns_zone_v2": config.IdentifierFromProvider,
+
+	// flexibleengine_dns_recordset_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_recordset_v2
+	"flexibleengine_dns_recordset_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.zone_id }}/{{ .parameters.recordset_id }}"),
+
+	// flexibleengine_dns_ptrrecord_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_ptrrecord_v2
+	// "flexibleengine_dns_ptrrecord_v2": FormattedIdentifierFromProvider(":", "flexibleengine_vpc_eip"),
 	/*
 		> Cloud Container Engine (CCE)
 	*/
@@ -27,16 +123,22 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 
 	// Imported with the following format : {floating_ip}/{instance_id}/{fixed_ip}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_floatingip_associate_v2
 	"flexibleengine_compute_floatingip_associate_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.floating_ip}}/{{.parameters.instance_id}}/{{.parameters.fixed_ip}}"),
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_instance_v2
 	"flexibleengine_compute_instance_v2": config.IdentifierFromProvider,
 	// Imported with the following format : {instance_id}/{port_id}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_interface_attach_v2
 	"flexibleengine_compute_interface_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.port_id}}"),
 	// Imported using name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_keypair_v2
 	"flexibleengine_compute_keypair_v2": config.NameAsIdentifier,
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_secgroup_v2
 	"flexibleengine_compute_servergroup_v2": config.IdentifierFromProvider,
 	// Imported with the following format : {instance_id}/{volume_id}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_volume_attach_v2
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
 
 	/*
@@ -44,22 +146,31 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_agency_v3
 	"flexibleengine_identity_agency_v3": config.IdentifierFromProvider,
 	// No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_agency_token_v3
 	"flexibleengine_identity_group_membership_v3": config.IdentifierFromProvider,
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_group_v3
 	"flexibleengine_identity_group_v3": config.IdentifierFromProvider,
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_project_v3
 	"flexibleengine_identity_project_v3": config.IdentifierFromProvider,
 	// Imported using name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_provider_v3
 	"flexibleengine_identity_provider": config.NameAsIdentifier,
 	// Imported using provider_id
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_provider_conversion
 	"flexibleengine_identity_provider_conversion": TemplatedStringAsIdentifierWithNoName("{{.parameters.provider_id}}"),
 	// No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_role_assignment_v3
 	"flexibleengine_identity_role_assignment_v3": config.IdentifierFromProvider,
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_role_v3
 	"flexibleengine_identity_role_v3": config.IdentifierFromProvider,
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_user_v3
 	"flexibleengine_identity_user_v3": config.IdentifierFromProvider,
 
 	/*
@@ -73,6 +184,8 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> Key Management Service (KMS)
 	*/
+	// flexibleengine_kms_key_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/kms_key_v1
 	"flexibleengine_kms_key_v1": config.IdentifierFromProvider,
 
 	/*
@@ -296,4 +409,28 @@ func ExternalNameConfigured() []string {
 		i++
 	}
 	return l
+}
+
+// FormattedIdentifierFromProvider is a helper function to construct Terraform
+// IDs that use elements from the parameters in a certain string format.
+// It should be used in cases where all information in the ID is gathered from
+// the spec and not user defined like name. For example, zone_id:vpc_id.
+func FormattedIdentifierFromProvider(separator string, keys ...string) config.ExternalName {
+	e := config.IdentifierFromProvider
+	e.GetIDFn = func(_ context.Context, _ string, parameters map[string]interface{}, _ map[string]interface{}) (string, error) {
+		vals := make([]string, len(keys))
+		for i, key := range keys {
+			val, ok := parameters[key]
+			if !ok {
+				return "", errors.Errorf("%s cannot be empty", key)
+			}
+			s, ok := val.(string)
+			if !ok {
+				return "", errors.Errorf("%s needs to be string", key)
+			}
+			vals[i] = s
+		}
+		return strings.Join(vals, separator), nil
+	}
+	return e
 }

@@ -7,22 +7,34 @@ import (
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
+
+	// flexibleengine_cce_addon_v3
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_addon_v3
 	p.AddResourceConfigurator("flexibleengine_cce_addon_v3", func(r *config.Resource) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
 	})
+
+	// flexibleengine_cce_cluster_v3
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_cluster_v3
 	p.AddResourceConfigurator("flexibleengine_cce_cluster_v3", func(r *config.Resource) {
 		r.References["highway_subnet_id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "NetworkingSubnet"),
 		}
 	})
+
+	// flexibleengine_cce_namespace
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_namespace
 	p.AddResourceConfigurator("flexibleengine_cce_namespace", func(r *config.Resource) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
 		config.MarkAsRequired(r.TerraformResource, "name")
 	})
+
+	// flexibleengine_cce_node_pool_v3
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_pool_v3
 	p.AddResourceConfigurator("flexibleengine_cce_node_pool_v3", func(r *config.Resource) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
@@ -34,6 +46,9 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("kms", "Key"),
 		}
 	})
+
+	// flexibleengine_cce_node_v3
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_v3
 	p.AddResourceConfigurator("flexibleengine_cce_node_v3", func(r *config.Resource) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
@@ -48,6 +63,9 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("kms", "Key"),
 		}
 	})
+
+	// flexibleengine_cce_pvc
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_pvc
 	p.AddResourceConfigurator("flexibleengine_cce_pvc", func(r *config.Resource) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",

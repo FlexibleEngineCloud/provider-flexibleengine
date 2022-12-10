@@ -68,6 +68,10 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 						Type: tools.GenerateType("oss", "S3Bucket"),
 					}
 				}
+			case "instance_id":
+				r.References[k] = config.Reference{
+					Type: tools.GenerateType("ecs", "Instance"),
+				}
 			}
 		}
 	}

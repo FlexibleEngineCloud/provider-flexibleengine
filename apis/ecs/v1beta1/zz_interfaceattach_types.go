@@ -25,15 +25,15 @@ type InterfaceAttachParameters struct {
 	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
 	// The ID of the Instance to attach the Port or Network to.
-	// +crossplane:generate:reference:type=Instance
+	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1.Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
-	// Reference to a Instance to populate instanceId.
+	// Reference to a Instance in ecs to populate instanceId.
 	// +kubebuilder:validation:Optional
 	InstanceIDRef *v1.Reference `json:"instanceIdRef,omitempty" tf:"-"`
 
-	// Selector for a Instance to populate instanceId.
+	// Selector for a Instance in ecs to populate instanceId.
 	// +kubebuilder:validation:Optional
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 

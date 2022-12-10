@@ -1,0 +1,19 @@
+apiVersion: evs.flexibleengine.upbound.io/v1beta1
+kind: BlockStorageVolume
+metadata:
+  annotations:
+    meta.upbound.io/example-id: evs/v1beta1/blockstoragevolume
+  labels:
+    testing.upbound.io/example-name: volume_1
+  name: volume-1
+spec:
+  forProvider:
+    description: first test volume
+    metadata:
+      __system__cmkid: kms_id
+      __system__encrypted: "1"
+    name: volume_1
+    size: 3
+
+---
+
