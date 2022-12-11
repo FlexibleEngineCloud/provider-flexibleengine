@@ -21,9 +21,9 @@ import (
 	v1beta1iam "github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1ims "github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta1kms "github.com/gaetanars/provider-flexibleengine/apis/kms/v1beta1"
+	v1beta1nat "github.com/gaetanars/provider-flexibleengine/apis/nat/v1beta1"
 	v1beta1oss "github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1"
 	v1beta1swr "github.com/gaetanars/provider-flexibleengine/apis/swr/v1beta1"
-	v1beta1nat "github.com/gaetanars/provider-flexibleengine/apis/nat/v1beta1"
 	v1alpha1 "github.com/gaetanars/provider-flexibleengine/apis/v1alpha1"
 	v1beta1apis "github.com/gaetanars/provider-flexibleengine/apis/v1beta1"
 	v1beta1vbs "github.com/gaetanars/provider-flexibleengine/apis/vbs/v1beta1"
@@ -46,9 +46,9 @@ func init() {
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1ims.SchemeBuilder.AddToScheme,
 		v1beta1kms.SchemeBuilder.AddToScheme,
+		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1beta1oss.SchemeBuilder.AddToScheme,
 		v1beta1swr.SchemeBuilder.AddToScheme,
-		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1beta1apis.SchemeBuilder.AddToScheme,
 		v1beta1vbs.SchemeBuilder.AddToScheme,

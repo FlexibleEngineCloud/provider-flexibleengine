@@ -10,13 +10,13 @@ spec:
   forProvider:
     floatingIpIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: eip_1
+        testing.upbound.io/example-name: example
     natGatewayIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: nat-1
+        testing.upbound.io/example-name: example
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-subnet
+        testing.upbound.io/example-name: example
 
 ---
 
