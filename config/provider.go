@@ -14,6 +14,7 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/ims"
 	"github.com/gaetanars/provider-flexibleengine/config/kms"
 	"github.com/gaetanars/provider-flexibleengine/config/oss"
+	"github.com/gaetanars/provider-flexibleengine/config/swr"
 	"github.com/gaetanars/provider-flexibleengine/config/vbs"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
@@ -49,6 +50,7 @@ func GetProvider() *ujconfig.Provider {
 		// add custom config functions
 		dedicatedelb.Configure,
 		bms.Configure,
+		swr.Configure,
 		waf.Configure,
 		evs.Configure,
 		vbs.Configure,

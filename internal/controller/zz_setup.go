@@ -60,6 +60,10 @@ import (
 	s3bucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketobject"
 	s3bucketpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketpolicy"
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
+	organization "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/organization"
+	organizationusers "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/organizationusers"
+	repository "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/repository"
+	repositorysharing "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/repositorysharing"
 	backup "github.com/gaetanars/provider-flexibleengine/internal/controller/vbs/backup"
 	backuppolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/vbs/backuppolicy"
 	flowlog "github.com/gaetanars/provider-flexibleengine/internal/controller/vpc/flowlog"
@@ -151,6 +155,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		s3bucketobject.Setup,
 		s3bucketpolicy.Setup,
 		providerconfig.Setup,
+		organization.Setup,
+		organizationusers.Setup,
+		repository.Setup,
+		repositorysharing.Setup,
 		backup.Setup,
 		backuppolicy.Setup,
 		flowlog.Setup,

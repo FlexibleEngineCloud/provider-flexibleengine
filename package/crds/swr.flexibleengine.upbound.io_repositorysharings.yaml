@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: repositorysharings.swr.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: swr.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: RepositorySharing
+    listKind: RepositorySharingList
+    plural: repositorysharings
+    singular: repositorysharing
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'RepositorySharing is the Schema for the RepositorySharings API.
+          ""page_title: "flexibleengine_swr_repository_sharing"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: RepositorySharingSpec defines the desired state of RepositorySharing
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +64,22 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  deadline:
+                    description: Specifies the end date of image sharing (UTC time
+                      in YYYY-MM-DD format, for example 2021-10-01). When the value
+                      is set to forever, the image will be permanently available for
+                      the domain. The validity period is calculated by day. The shared
+                      images expire at 00:00:00 on the day after the end date.
                     type: string
-                  name:
-                    description: A unique name for the vip.
+                  description:
+                    description: Specifies the description of the repository sharing.
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
+                  organization:
+                    description: Specifies the name of the organization (namespace)
+                      the repository belongs. Changing this creates a new resource.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  organizationRef:
+                    description: Reference to a Organization to populate organization.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -109,8 +112,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  organizationSelector:
+                    description: Selector for a Organization to populate organization.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -148,12 +151,21 @@ spec:
                             type: string
                         type: object
                     type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  permission:
+                    description: Specifies the permission to be granted. Currently,
+                      only the pull permission is supported. Default value is pull.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
+                  region:
+                    description: Specifies the region in which to create the resource.
+                      If omitted, the provider-level region will be used. Changing
+                      this creates a new resource.
+                    type: string
+                  repository:
+                    description: Specifies the name of the repository to be shared.
+                      Changing this creates a new resource.
+                    type: string
+                  repositoryRef:
+                    description: Reference to a User in iam to populate repository.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -186,8 +198,8 @@ spec:
                     required:
                     - name
                     type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
+                  repositorySelector:
+                    description: Selector for a User in iam to populate repository.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -225,6 +237,13 @@ spec:
                             type: string
                         type: object
                     type: object
+                  sharingAccount:
+                    description: Specifies the name of the account for repository
+                      sharing. Changing this creates a new resource.
+                    type: string
+                required:
+                - deadline
+                - sharingAccount
                 type: object
               providerConfigRef:
                 default:
@@ -398,22 +417,18 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: RepositorySharingStatus defines the observed state of RepositorySharing.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
-                    type: string
                   id:
-                    description: The ID of the vip.
+                    description: ID of the repository sharing. The value is the value
+                      of sharing_account.
                     type: string
                   status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
-                    type: string
+                    description: Indicates the repository sharing is valid (true)
+                      or expired (false).
+                    type: boolean
                 type: object
               conditions:
                 description: Conditions of the resource.

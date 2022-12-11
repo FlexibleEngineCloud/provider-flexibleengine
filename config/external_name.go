@@ -17,6 +17,26 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Software Repository for Container (SWR)
+	*/
+
+	// flexibleengine_swr_organization - Imported using the Name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization
+	"flexibleengine_swr_organization": config.NameAsIdentifier,
+
+	// flexibleengine_swr_organization_users - Imported using the ID (ID is name of resource 0_o )
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users
+	"flexibleengine_swr_organization_users": config.IdentifierFromProvider,
+
+	// flexibleengine_swr_repository - Imported using the Template (org-name/repo-name)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository
+	"flexibleengine_swr_repository": TemplatedStringAsIdentifierWithNoName("{{ .parameters.organization }}/{{ .external_name }}"),
+
+	// flexibleengine_swr_repository_sharing - Imported using the Template (org-name/repo-name/sharing-account)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository_sharing
+	"flexibleengine_swr_repository_sharing": TemplatedStringAsIdentifierWithNoName("{{ .parameters.organization }}/{{ .parameters.repository }}/{{ .external_name }}"),
+
+	/*
 		> Bare Metal Server (BMS)
 	*/
 

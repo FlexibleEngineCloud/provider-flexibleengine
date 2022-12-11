@@ -1,0 +1,23 @@
+apiVersion: swr.flexibleengine.upbound.io/v1beta1
+kind: OrganizationUsers
+metadata:
+  annotations:
+    meta.upbound.io/example-id: swr/v1beta1/organizationusers
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    organizationSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    users:
+    - permission: Read
+      userId: ${var.user_1.id}
+      userName: ${var.user_1.name}
+    - permission: Read
+      userId: ${var.user_2.id}
+      userName: ${var.user_2.name}
+
+---
+

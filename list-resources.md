@@ -1,18 +1,18 @@
 # Resources
 
-Last update: Dim 11 déc 2022 10:57:27 CET
+Last update: Dim 11 déc 2022 12:15:31 CET
 
 
-## Resources implemented: 87/188 (46.28%)
+## Resources implemented: 91/188 (48.4%)
 
-### Software Repository for Container (SWR) (0.0%)
+### Software Repository for Container (SWR) (100.0%)
 
-#### Implemented (0) -- Not implemented (4)
+#### Implemented (4) -- Not implemented (0)
 
-* [ ] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
-* [ ] [flexibleengine_swr_organization](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization)
-* [ ] [flexibleengine_swr_repository](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository)
-* [ ] [flexibleengine_swr_repository_sharing](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository_sharing)
+* [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
+* [x] [flexibleengine_swr_organization](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization)
+* [x] [flexibleengine_swr_repository](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository)
+* [x] [flexibleengine_swr_repository_sharing](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository_sharing)
 
 
 ### Deprecated (0.0%)
