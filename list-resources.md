@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 12:54:53 CET
+Last update: Dim 11 déc 2022 13:08:19 CET
 
 
-## Resources implemented: 94/188 (50.0%)
+## Resources implemented: 97/188 (51.6%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -281,13 +281,13 @@ Last update: Dim 11 déc 2022 12:54:53 CET
 * [ ] [flexibleengine_sfs_file_system_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sfs_file_system_v2)
 
 
-### NAT Gateway (NAT) (0.0%)
+### NAT Gateway (NAT) (100.0%)
 
-#### Implemented (0) -- Not implemented (3)
+#### Implemented (3) -- Not implemented (0)
 
-* [ ] [flexibleengine_nat_gateway_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_gateway_v2)
-* [ ] [flexibleengine_nat_snat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_snat_rule_v2)
-* [ ] [flexibleengine_nat_dnat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2)
+* [x] [flexibleengine_nat_gateway_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_gateway_v2)
+* [x] [flexibleengine_nat_snat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_snat_rule_v2)
+* [x] [flexibleengine_nat_dnat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2)
 
 
 ### Log Tank Service (LTS) (0.0%)

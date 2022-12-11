@@ -14,6 +14,7 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
 	"github.com/gaetanars/provider-flexibleengine/config/ims"
 	"github.com/gaetanars/provider-flexibleengine/config/kms"
+	"github.com/gaetanars/provider-flexibleengine/config/nat"
 	"github.com/gaetanars/provider-flexibleengine/config/oss"
 	"github.com/gaetanars/provider-flexibleengine/config/swr"
 	"github.com/gaetanars/provider-flexibleengine/config/vbs"
@@ -65,6 +66,7 @@ func GetProvider() *ujconfig.Provider {
 		vpc.Configure,
 		vpcep.Configure,
 		oss.Configure,
+		nat.Configure,
 	} {
 		configure(pc)
 	}

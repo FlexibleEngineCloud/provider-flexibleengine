@@ -56,6 +56,9 @@ import (
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
 	image "github.com/gaetanars/provider-flexibleengine/internal/controller/ims/image"
 	key "github.com/gaetanars/provider-flexibleengine/internal/controller/kms/key"
+	dnatrule "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/dnatrule"
+	gateway "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/gateway"
+	snatrule "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/snatrule"
 	obsbucket "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucket"
 	obsbucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketobject"
 	obsbucketreplication "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
@@ -154,6 +157,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		user.Setup,
 		image.Setup,
 		key.Setup,
+		dnatrule.Setup,
+		gateway.Setup,
+		snatrule.Setup,
 		obsbucket.Setup,
 		obsbucketobject.Setup,
 		obsbucketreplication.Setup,
