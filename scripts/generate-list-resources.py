@@ -7,8 +7,6 @@
 
 import os
 
-
-print('# Resources')
 # Count number of resources implemented and not implemented
 countImplemented = 0
 countNotImplemented = 0
@@ -75,35 +73,67 @@ if 'Deprecated' in linesNotImplementedPrint:
     countNotImplemented -= len(linesNotImplementedPrint['Deprecated'])
     del linesNotImplementedPrint['Deprecated']
 
-# Print Last update
-print('\nLast update: ' + os.popen('date').read())
+percentageG = (countImplemented /
+               (countImplemented + countNotImplemented)) * 100
+# # Print Last update
+# print('\nLast update: ' + os.popen('date').read())
 
-# Calculate percentage of resources implemented
-percentage = (countImplemented /
-              (countImplemented + countNotImplemented)) * 100
-print('\n## Resources implemented: ' + str(countImplemented) + '/' + str((countImplemented + countNotImplemented)) +
-      ' (' + str(round(percentage, 2)) + '%)\n')
+# # Calculate percentage of resources implemented
+# print('\n## Resources implemented: ' + str(countImplemented) + '/' + str((countImplemented + countNotImplemented)) +
+#       ' (' + str(round(percentage, 2)) + '%)\n')
 
-# Print resources implemented by group
-for group in linesImplementedPrint:
-    # calculate percentage of resources implemented by group
-    percentage = (len(linesImplementedPrint[group]) / (
-        len(linesImplementedPrint[group]) + len(linesNotImplementedPrint[group]))) * 100
-    print('### ' + group + ' (' + str(round(percentage, 2)) + '%)\n')
-    print('#### Implemented (' +
-          str(len(linesImplementedPrint[group])) + ') -- Not implemented (' +
-          str(len(linesNotImplementedPrint[group])) + ')\n')
-    for line in linesImplementedPrint[group]:
-        print(line)
-    for line in linesNotImplementedPrint[group]:
-        print(line)
-    print('\n')
+# # Print resources implemented by group
+# for group in linesImplementedPrint:
+#     # calculate percentage of resources implemented by group
+#     percentage = (len(linesImplementedPrint[group]) / (
+#         len(linesImplementedPrint[group]) + len(linesNotImplementedPrint[group]))) * 100
+#     print('### ' + group + ' (' + str(round(percentage, 2)) + '%)\n')
+#     print('#### Implemented (' +
+#           str(len(linesImplementedPrint[group])) + '/' +
+#           str(len(linesNotImplementedPrint[group]) +
+#               len(linesImplementedPrint[group])) + ')')
+#     for line in linesImplementedPrint[group]:
+#         print(line)
+#     for line in linesNotImplementedPrint[group]:
+#         print(line)
+#     print('\n')
 
-# Print Deprecated resources
-if len(linesDeprecatedPrint) > 0:
-    print('---------------------------------------')
-    print('## Deprecated\n')
-    for group in linesDeprecatedPrint:
-        for line in group:
-            print(line)
-        print('\n')
+# # Print Deprecated resources
+# if len(linesDeprecatedPrint) > 0:
+#     print('---------------------------------------')
+#     print('## Deprecated\n')
+#     for group in linesDeprecatedPrint:
+#         for line in group:
+#             print(line)
+#         print('\n')
+
+# Write list of resources in file
+with open('list-resources.md', 'w') as f:
+    f.write('# Resources\n')
+    f.write('\nLast update: ' + os.popen('date').read())
+    f.write('\n## Resources implemented: ' + str(countImplemented) + '/' + str((countImplemented + countNotImplemented)) +
+            ' (' + str(round(percentageG, 2)) + '%)\n')
+    for group in linesImplementedPrint:
+        percentage = (len(linesImplementedPrint[group]) / (
+            len(linesImplementedPrint[group]) + len(linesNotImplementedPrint[group]))) * 100
+        f.write('### ' + group + ' (' + str(round(percentage, 2)) + '%)\n')
+        f.write('#### Implemented (' +
+                str(len(linesImplementedPrint[group])) + '/' +
+                str(len(linesNotImplementedPrint[group]) +
+                    len(linesImplementedPrint[group])) + ')\n')
+        for line in linesImplementedPrint[group]:
+            f.write(line + '\n')
+        for line in linesNotImplementedPrint[group]:
+            f.write(line + '\n')
+        f.write('\n')
+    if len(linesDeprecatedPrint) > 0:
+        f.write('---------------------------------------\n')
+        f.write('## Deprecated\n')
+        for group in linesDeprecatedPrint:
+            for line in group:
+                f.write(line + '\n')
+            f.write('\n')
+
+print("> Successfully generated list of resources")
+print("Implemented " + str(countImplemented) + "/" + str((countImplemented +
+      countNotImplemented)) + " (" + str(round(percentageG, 2)) + "%) resources")
