@@ -1,0 +1,1052 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: apis.agd.flexibleengine.upbound.io
+spec:
+  group: agd.flexibleengine.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - flexibleengine
+    kind: API
+    listKind: APIList
+    plural: apis
+    singular: api
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: 'API is the Schema for the APIs API. ""page_title: "flexibleengine_apig_api"'
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: APISpec defines the desired state of API
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  authorizerId:
+                    description: Specifies ID of the front-end custom authorizer.
+                    type: string
+                  backendParams:
+                    description: Specifies an array of one or more backend parameters.
+                      The object structure is documented below. The maximum of request
+                      parameters is 50.
+                    items:
+                      properties:
+                        description:
+                          description: Specifies the description of the constant or
+                            system parameter, which contain a maximum of 255 characters,
+                            and the angle brackets (< and >) are not allowed.
+                          type: string
+                        location:
+                          description: Specifies the location of the backend parameter.
+                            The valid values are PATH, QUERY and HEADER.
+                          type: string
+                        name:
+                          description: Specifies the backend parameter name, which
+                            contain of 1 to 32 characters and start with a letter.
+                            Only letters, digits, hyphens (-), underscores (_) and
+                            periods (.) are allowed. The parameter name is not case-sensitive.
+                            It cannot start with 'x-apig-' or 'x-sdk-' and cannot
+                            be 'x-stage'. If the location is specified as HEADER,
+                            the name cannot contain underscores.
+                          type: string
+                        type:
+                          description: Specifies the backend parameter type. The valid
+                            values are REQUEST, CONSTANT and SYSTEM.
+                          type: string
+                        value:
+                          description: Specifies the request parameter name corresponding
+                            to the request parameter name of the back-end parameter.
+                          type: string
+                      required:
+                      - location
+                      - name
+                      - type
+                      - value
+                      type: object
+                    type: array
+                  bodyDescription:
+                    description: Specifies the description of the API request body,
+                      which can be an example request body, media type or parameters.
+                      The request body does not exceed 20,480 characters. Chinese
+                      characters must be in UTF-8 or Unicode format.
+                    type: string
+                  cors:
+                    description: Specifies whether CORS is supported, default to false.
+                    type: boolean
+                  description:
+                    description: Specifies the API description, which can contain
+                      a maximum of 255 characters. The Chinese characters must be
+                      in UTF-8 or Unicode format.
+                    type: string
+                  failureResponse:
+                    description: Specifies the example response for a successful request.
+                      Ensure that the response does not exceed 20,480 characters.
+                      Chinese characters must be in UTF-8 or Unicode format.
+                    type: string
+                  funcGraph:
+                    description: Specifies the function graph backend details. The
+                      object structure is documented below. Changing this will create
+                      a new API resource.
+                    items:
+                      properties:
+                        authorizerId:
+                          description: Specifies the ID of the backend custom authorization.
+                          type: string
+                        functionUrn:
+                          description: Specifies the function graph URN.
+                          type: string
+                        invocationType:
+                          description: Specifies the invocation mode. The valid values
+                            are async and sync, default to sync.
+                          type: string
+                        timeout:
+                          description: Specifies the location of the backend parameter.
+                            The valid value is range form 1 to 600,000, default to
+                            5,000.
+                          type: number
+                        version:
+                          description: Specifies the version of the function graph.
+                          type: string
+                      required:
+                      - functionUrn
+                      type: object
+                    type: array
+                  funcGraphPolicy:
+                    description: Specifies the Mock policy backends. The maximum of
+                      the policy is 5. The object structure is documented below.
+                    items:
+                      properties:
+                        authorizerId:
+                          description: Specifies the ID of the backend custom authorization.
+                          type: string
+                        backendParams:
+                          description: Specifies an array of one or more backend parameters.
+                            The maximum of request parameters is 50. The object structure
+                            is documented above.
+                          items:
+                            properties:
+                              description:
+                                description: Specifies the description of the request
+                                  parameter, which contain a maximum of 255 characters,
+                                  and the angle brackets (< and >) are not allowed.
+                                type: string
+                              location:
+                                description: Specifies the location of the request
+                                  parameter. The valid values are PATH, QUERY and
+                                  HEADER, default to PATH.
+                                type: string
+                              name:
+                                description: Specifies the backend policy name, which
+                                  can contains of 3 to 64 characters and start with
+                                  a letter. Only letters, digits, and underscores
+                                  (_) are allowed.
+                                type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private.
+                                type: string
+                              value:
+                                description: 'Specifies the condition type. For a
+                                  condition with the input parameter source:'
+                                type: string
+                            required:
+                            - location
+                            - name
+                            - type
+                            - value
+                            type: object
+                          type: array
+                        conditions:
+                          description: Specifies an array of one or more policy conditions.
+                            Up to five conditions can be set. The object structure
+                            is documented below.
+                          items:
+                            properties:
+                              paramName:
+                                description: Specifies the request parameter name.
+                                  This parameter is required if the policy type is
+                                  param.
+                                type: string
+                              source:
+                                description: Specifies the policy type. The valid
+                                  values are param and source, default to source.
+                                type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private.
+                                type: string
+                              value:
+                                description: 'Specifies the condition type. For a
+                                  condition with the input parameter source:'
+                                type: string
+                            required:
+                            - value
+                            type: object
+                          type: array
+                        effectiveMode:
+                          description: Specifies the effective mode of the backend
+                            policy. The valid values are ALL and ANY, default to ANY.
+                          type: string
+                        functionUrn:
+                          description: Specifies the URN of the function graph.
+                          type: string
+                        invocationMode:
+                          description: Specifies the invocation mode of the function
+                            graph. The valid values are async and sync, default to
+                            sync.
+                          type: string
+                        name:
+                          description: Specifies the backend policy name, which can
+                            contains of 3 to 64 characters and start with a letter.
+                            Only letters, digits, and underscores (_) are allowed.
+                          type: string
+                        timeout:
+                          description: Specifies the timeout, in ms, which allowed
+                            for APIG to request the backend service. The valid value
+                            is range from 1 to 600,000, default to 5,000.
+                          type: number
+                        version:
+                          description: Specifies the version of the function graph.
+                          type: string
+                      required:
+                      - conditions
+                      - functionUrn
+                      - name
+                      type: object
+                    type: array
+                  groupId:
+                    description: Specifies an ID of the APIG group to which the API
+                      belongs to.
+                    type: string
+                  groupIdRef:
+                    description: Reference to a Group to populate groupId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  groupIdSelector:
+                    description: Selector for a Group to populate groupId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  instanceId:
+                    description: Specifies an ID of the APIG dedicated instance to
+                      which the API belongs to. Changing this will create a new API
+                      resource.
+                    type: string
+                  instanceIdRef:
+                    description: Reference to a Instance to populate instanceId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  instanceIdSelector:
+                    description: Selector for a Instance to populate instanceId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  matching:
+                    description: Specifies the route matching mode. The valid value
+                      are Exact and Prefix, default to Exact.
+                    type: string
+                  mock:
+                    description: Specifies the mock backend details. The object structure
+                      is documented below. Changing this will create a new API resource.
+                    items:
+                      properties:
+                        authorizerId:
+                          description: Specifies the ID of the backend custom authorization.
+                          type: string
+                        response:
+                          description: Specifies the response of the backend policy,
+                            which contain a maximum of 2,048 characters, and the angle
+                            brackets (< and >) are not allowed.
+                          type: string
+                      type: object
+                    type: array
+                  mockPolicy:
+                    description: Specifies the Mock policy backends. The maximum of
+                      the policy is 5. The object structure is documented below.
+                    items:
+                      properties:
+                        authorizerId:
+                          description: Specifies the ID of the backend custom authorization.
+                          type: string
+                        backendParams:
+                          description: Specifies an array of one or more backend parameters.
+                            The maximum of request parameters is 50. The object structure
+                            is documented above.
+                          items:
+                            properties:
+                              description:
+                                description: Specifies the description of the request
+                                  parameter, which contain a maximum of 255 characters,
+                                  and the angle brackets (< and >) are not allowed.
+                                type: string
+                              location:
+                                description: Specifies the location of the request
+                                  parameter. The valid values are PATH, QUERY and
+                                  HEADER, default to PATH.
+                                type: string
+                              name:
+                                description: Specifies the backend policy name, which
+                                  can contains of 3 to 64 characters and start with
+                                  a letter. Only letters, digits, and underscores
+                                  (_) are allowed.
+                                type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private.
+                                type: string
+                              value:
+                                description: 'Specifies the condition type. For a
+                                  condition with the input parameter source:'
+                                type: string
+                            required:
+                            - location
+                            - name
+                            - type
+                            - value
+                            type: object
+                          type: array
+                        conditions:
+                          description: Specifies an array of one or more policy conditions.
+                            Up to five conditions can be set. The object structure
+                            is documented below.
+                          items:
+                            properties:
+                              paramName:
+                                description: Specifies the request parameter name.
+                                  This parameter is required if the policy type is
+                                  param.
+                                type: string
+                              source:
+                                description: Specifies the policy type. The valid
+                                  values are param and source, default to source.
+                                type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private.
+                                type: string
+                              value:
+                                description: 'Specifies the condition type. For a
+                                  condition with the input parameter source:'
+                                type: string
+                            required:
+                            - value
+                            type: object
+                          type: array
+                        effectiveMode:
+                          description: Specifies the effective mode of the backend
+                            policy. The valid values are ALL and ANY, default to ANY.
+                          type: string
+                        name:
+                          description: Specifies the backend policy name, which can
+                            contains of 3 to 64 characters and start with a letter.
+                            Only letters, digits, and underscores (_) are allowed.
+                          type: string
+                        response:
+                          description: Specifies the response of the backend policy,
+                            which contain a maximum of 2,048 characters, and the angle
+                            brackets (< and >) are not allowed.
+                          type: string
+                      required:
+                      - conditions
+                      - name
+                      type: object
+                    type: array
+                  name:
+                    description: Specifies the API name, which can consists of 3 to
+                      64 characters, starting with a letter. Only letters, digits
+                      and underscores (_) are allowed. Chinese characters must be
+                      in UTF-8 or Unicode format.
+                    type: string
+                  region:
+                    description: Specifies the region in which to create the API resource.
+                      If omitted, the provider-level region will be used. Changing
+                      this will create a new API resource.
+                    type: string
+                  requestMethod:
+                    description: Specifies the request method of the API. The valid
+                      values are GET, POST , PUT, DELETE, HEAD, PATCH, OPTIONS and
+                      ANY.
+                    type: string
+                  requestParams:
+                    description: Specifies an array of one or more request parameters
+                      of the front-end. The maximum of request parameters is 50. The
+                      object structure is documented below.
+                    items:
+                      properties:
+                        default:
+                          description: Specifies the default value of the request
+                            parameter, which contain a maximum of 255 characters,
+                            and the angle brackets (< and >) are not allowed.
+                          type: string
+                        description:
+                          description: Specifies the description of the request parameter,
+                            which contain a maximum of 255 characters, and the angle
+                            brackets (< and >) are not allowed.
+                          type: string
+                        example:
+                          description: Specifies the example value of the request
+                            parameter, which contain a maximum of 255 characters,
+                            and the angle brackets (< and >) are not allowed.
+                          type: string
+                        location:
+                          description: Specifies the location of the request parameter.
+                            The valid values are PATH, QUERY and HEADER, default to
+                            PATH.
+                          type: string
+                        maximum:
+                          description: Specifies the maximum value or size of the
+                            request parameter.
+                          type: number
+                        minimum:
+                          description: Specifies the minimum value or size of the
+                            request parameter. For string type, The maximum and minimum
+                            means size. For number type, they means value.
+                          type: number
+                        name:
+                          description: Specifies the request parameter name, which
+                            contain of 1 to 32 characters and start with a letter.
+                            Only letters, digits, hyphens (-), underscores (_) and
+                            periods (.) are allowed. If Location is specified as HEADER
+                            and security_authentication is specified as APP, the parameter
+                            name is not 'Authorization' ( case-insensitive) and cannot
+                            contain underscores.
+                          type: string
+                        required:
+                          description: Specifies whether the request parameter is
+                            required.
+                          type: boolean
+                        type:
+                          description: Specifies the request parameter type. The valid
+                            values are STRING and NUMBER, default to STRING.
+                          type: string
+                      required:
+                      - name
+                      - required
+                      type: object
+                    type: array
+                  requestPath:
+                    description: Specifies the request address, which can contain
+                      a maximum of 512 characters request parameters enclosed with
+                      brackets ({}).
+                    type: string
+                  requestProtocol:
+                    description: Specifies the request protocol of the API. The valid
+                      value are HTTP, HTTPS and BOTH.
+                    type: string
+                  responseId:
+                    description: Specifies the APIG group response ID.
+                    type: string
+                  securityAuthentication:
+                    description: Specifies the security authentication mode. The valid
+                      values are NONE, APP and IAM, default to NONE.
+                    type: string
+                  simpleAuthentication:
+                    description: Specifies whether AppCode authentication is enabled.
+                      The applicaiton code must located in the header when simple_authentication
+                      is true.
+                    type: boolean
+                  successResponse:
+                    description: Specifies the example response for a successful request.
+                      Ensure that the response does not exceed 20,480 characters.
+                      Chinese characters must be in UTF-8 or Unicode format.
+                    type: string
+                  type:
+                    description: Specifies the API type. The valid values are Public
+                      and Private.
+                    type: string
+                  web:
+                    description: Specifies the web backend details. The object structure
+                      is documented below. Changing this will create a new API resource.
+                    items:
+                      properties:
+                        authorizerId:
+                          description: Specifies the ID of the backend custom authorization.
+                          type: string
+                        backendAddress:
+                          description: Specifies the backend service address, which
+                            consists of a domain name or IP address, and a port number,
+                            with not more than 255 characters. The backend service
+                            address must be in the format "Host name:Port number",
+                            for example, apig.example.com:7443. If the port number
+                            is not specified, the default HTTPS port 443, or the default
+                            HTTP port 80 is used. The backend service address can
+                            contain environment variables, each starting with a letter
+                            and consisting of 3 to 32 characters. Only letters, digits,
+                            hyphens (-), and underscores (_) are allowed.
+                          type: string
+                        hostHeader:
+                          description: Specifies the proxy host header. The host header
+                            can be customized for requests to be forwarded to cloud
+                            servers through the VPC channel. By default, the original
+                            host header of the request is used.
+                          type: string
+                        path:
+                          description: Specifies the backend request address, which
+                            can contain a maximum of 512 characters and must comply
+                            with URI specifications.
+                          type: string
+                        requestMethod:
+                          description: Specifies the backend request method of the
+                            API. The valid types are GET, POST, PUT, DELETE, HEAD,
+                            PATCH, OPTIONS and ANY.
+                          type: string
+                        requestProtocol:
+                          description: Specifies the backend request protocol. The
+                            valid values are HTTP and HTTPS, default to HTTPS.
+                          type: string
+                        sslEnable:
+                          description: Specifies the indicates whether to enable two-way
+                            authentication, default to false.
+                          type: boolean
+                        timeout:
+                          description: Specifies the timeout, in ms, which allowed
+                            for APIG to request the backend service. The valid value
+                            is range from 1 to 600,000, default to 5,000.
+                          type: number
+                        vpcChannelId:
+                          description: Specifies the VPC channel ID. This parameter
+                            and backend_address are alternative.
+                          type: string
+                      required:
+                      - path
+                      type: object
+                    type: array
+                  webPolicy:
+                    description: Specifies the example response for a failed request.
+                      The maximum of the policy is 5. The object structure is documented
+                      below.
+                    items:
+                      properties:
+                        authorizerId:
+                          description: Specifies the ID of the backend custom authorization.
+                          type: string
+                        backendAddress:
+                          description: Specifies the backend service address, which
+                            consists of a domain name or IP address, and a port number,
+                            with not more than 255 characters. The backend service
+                            address must be in the format "Host name:Port number",
+                            for example, apig.example.com:7443. If the port number
+                            is not specified, the default HTTPS port 443 or the default
+                            HTTP port 80 is used. The backend service address can
+                            contain environment variables, each starting with a letter
+                            and consisting of 3 to 32 characters. Only letters, digits,
+                            hyphens (-), and underscores (_) are allowed.
+                          type: string
+                        backendParams:
+                          description: Specifies an array of one or more backend parameters.
+                            The maximum of request parameters is 50. The object structure
+                            is documented above.
+                          items:
+                            properties:
+                              description:
+                                description: Specifies the description of the request
+                                  parameter, which contain a maximum of 255 characters,
+                                  and the angle brackets (< and >) are not allowed.
+                                type: string
+                              location:
+                                description: Specifies the location of the request
+                                  parameter. The valid values are PATH, QUERY and
+                                  HEADER, default to PATH.
+                                type: string
+                              name:
+                                description: Specifies the backend policy name, which
+                                  can contains of 3 to 64 characters and start with
+                                  a letter. Only letters, digits, and underscores
+                                  (_) are allowed.
+                                type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private.
+                                type: string
+                              value:
+                                description: 'Specifies the condition type. For a
+                                  condition with the input parameter source:'
+                                type: string
+                            required:
+                            - location
+                            - name
+                            - type
+                            - value
+                            type: object
+                          type: array
+                        conditions:
+                          description: Specifies an array of one or more policy conditions.
+                            Up to five conditions can be set. The object structure
+                            is documented below.
+                          items:
+                            properties:
+                              paramName:
+                                description: Specifies the request parameter name.
+                                  This parameter is required if the policy type is
+                                  param.
+                                type: string
+                              source:
+                                description: Specifies the policy type. The valid
+                                  values are param and source, default to source.
+                                type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private.
+                                type: string
+                              value:
+                                description: 'Specifies the condition type. For a
+                                  condition with the input parameter source:'
+                                type: string
+                            required:
+                            - value
+                            type: object
+                          type: array
+                        effectiveMode:
+                          description: Specifies the effective mode of the backend
+                            policy. The valid values are ALL and ANY, default to ANY.
+                          type: string
+                        hostHeader:
+                          description: Specifies the proxy host header. The host header
+                            can be customized for requests to be forwarded to cloud
+                            servers through the VPC channel. By default, the original
+                            host header of the request is used.
+                          type: string
+                        name:
+                          description: Specifies the backend policy name, which can
+                            contains of 3 to 64 characters and start with a letter.
+                            Only letters, digits, and underscores (_) are allowed.
+                          type: string
+                        path:
+                          description: Specifies the backend request address, which
+                            can contain a maximum of 512 characters and must comply
+                            with URI specifications.
+                          type: string
+                        requestMethod:
+                          description: Specifies the backend request method of the
+                            API. The valid types are GET, POST, PUT, DELETE, HEAD,
+                            PATCH, OPTIONS and ANY.
+                          type: string
+                        requestProtocol:
+                          description: Specifies the backend request protocol. The
+                            valid values are HTTP and HTTPS, default to HTTPS.
+                          type: string
+                        timeout:
+                          description: Specifies the timeout, in ms, which allowed
+                            for APIG to request the backend service. The valid value
+                            is range from 1 to 600,000, default to 5,000.
+                          type: number
+                        vpcChannelId:
+                          description: Specifies the VPC channel ID. This parameter
+                            and backend_address are alternative.
+                          type: string
+                      required:
+                      - conditions
+                      - name
+                      - path
+                      - requestMethod
+                      type: object
+                    type: array
+                required:
+                - name
+                - requestMethod
+                - requestPath
+                - requestProtocol
+                - type
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: APIStatus defines the observed state of API.
+            properties:
+              atProvider:
+                properties:
+                  id:
+                    description: ID of the APIG API.
+                    type: string
+                  registerTime:
+                    description: Time when the API is registered, in UTC format.
+                    type: string
+                  updateTime:
+                    description: Time when the API was last modified, in UTC format.
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

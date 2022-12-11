@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 14:56:21 CET
+Last update: Dim 11 déc 2022 16:01:39 CET
 
 
-## Resources implemented: 99/178 (55.62%)
+## Resources implemented: 110/178 (61.8%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -167,21 +167,21 @@ Last update: Dim 11 déc 2022 14:56:21 CET
 * [ ] [flexibleengine_compute_floatingip_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_floatingip_v2)
 
 
-### API Gateway (Dedicated APIG) (0.0%)
+### API Gateway (Dedicated APIG) (100.0%)
 
-#### Implemented (0) -- Not implemented (11)
+#### Implemented (11) -- Not implemented (0)
 
-* [ ] [flexibleengine_apig_throttling_policy_associate](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_throttling_policy_associate)
-* [ ] [flexibleengine_apig_api](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api)
-* [ ] [flexibleengine_apig_environment](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_environment)
-* [ ] [flexibleengine_apig_vpc_channel](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_vpc_channel)
-* [ ] [flexibleengine_apig_application](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_application)
-* [ ] [flexibleengine_apig_response](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_response)
-* [ ] [flexibleengine_apig_throttling_policy](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_throttling_policy)
-* [ ] [flexibleengine_apig_instance](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_instance)
-* [ ] [flexibleengine_apig_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_group)
-* [ ] [flexibleengine_apig_custom_authorizer](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_custom_authorizer)
-* [ ] [flexibleengine_apig_api_publishment](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api_publishment)
+* [x] [flexibleengine_apig_throttling_policy_associate](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_throttling_policy_associate)
+* [x] [flexibleengine_apig_api](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api)
+* [x] [flexibleengine_apig_environment](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_environment)
+* [x] [flexibleengine_apig_vpc_channel](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_vpc_channel)
+* [x] [flexibleengine_apig_application](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_application)
+* [x] [flexibleengine_apig_response](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_response)
+* [x] [flexibleengine_apig_throttling_policy](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_throttling_policy)
+* [x] [flexibleengine_apig_instance](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_instance)
+* [x] [flexibleengine_apig_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_group)
+* [x] [flexibleengine_apig_custom_authorizer](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_custom_authorizer)
+* [x] [flexibleengine_apig_api_publishment](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api_publishment)
 
 
 ### Storage Disaster Recovery Service (SDRS) (0.0%)

@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: snatrules.nat.flexibleengine.upbound.io
+  name: throttlingpolicies.agd.flexibleengine.upbound.io
 spec:
-  group: nat.flexibleengine.upbound.io
+  group: agd.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: SnatRule
-    listKind: SnatRuleList
-    plural: snatrules
-    singular: snatrule
+    kind: ThrottlingPolicy
+    listKind: ThrottlingPolicyList
+    plural: throttlingpolicies
+    singular: throttlingpolicy
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'SnatRule is the Schema for the SnatRules API. ""page_title:
-          "flexibleengine_nat_snat_rule_v2"'
+        description: 'ThrottlingPolicy is the Schema for the ThrottlingPolicys API.
+          ""page_title: "flexibleengine_apig_throttling_policy"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SnatRuleSpec defines the desired state of SnatRule
+            description: ThrottlingPolicySpec defines the desired state of ThrottlingPolicy
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,17 +64,113 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  cidr:
-                    description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                  appThrottles:
+                    description: Specifies an array of one or more special throttling
+                      policies for APP limit. The throttle object of the user_throttles
+                      structure is documented below.
+                    items:
+                      properties:
+                        maxApiRequests:
+                          description: Specifies the maximum number of times an API
+                            can be accessed within a specified period.
+                          type: number
+                        throttlingObjectId:
+                          description: Specifies the object ID which the special throttling
+                            policy belongs.
+                          type: string
+                        throttlingObjectIdRef:
+                          description: Reference to a Application to populate throttlingObjectId.
+                          properties:
+                            name:
+                              description: Name of the referenced object.
+                              type: string
+                            policy:
+                              description: Policies for referencing.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          required:
+                          - name
+                          type: object
+                        throttlingObjectIdSelector:
+                          description: Selector for a Application to populate throttlingObjectId.
+                          properties:
+                            matchControllerRef:
+                              description: MatchControllerRef ensures an object with
+                                the same controller reference as the selecting object
+                                is selected.
+                              type: boolean
+                            matchLabels:
+                              additionalProperties:
+                                type: string
+                              description: MatchLabels ensures an object with matching
+                                labels is selected.
+                              type: object
+                            policy:
+                              description: Policies for selection.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          type: object
+                      required:
+                      - maxApiRequests
+                      type: object
+                    type: array
+                  description:
+                    description: Specifies the description about the API throttling
+                      policy. The description contain a maximum of 255 characters
+                      and the angle brackets (< and >) are not allowed. Chinese characters
+                      must be in UTF-8 or Unicode format.
                     type: string
-                  floatingIpId:
-                    description: ID of the floating ip this snat rule connets to.
-                      Changing this creates a new snat rule.
+                  instanceId:
+                    description: Specifies an ID of the APIG dedicated instance to
+                      which the API throttling policy belongs to. Changing this will
+                      create a new API throttling policy resource.
                     type: string
-                  floatingIpIdRef:
-                    description: Reference to a EIP in eip to populate floatingIpId.
+                  instanceIdRef:
+                    description: Reference to a Instance to populate instanceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -107,8 +203,8 @@ spec:
                     required:
                     - name
                     type: object
-                  floatingIpIdSelector:
-                    description: Selector for a EIP in eip to populate floatingIpId.
+                  instanceIdSelector:
+                    description: Selector for a Instance to populate instanceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -146,249 +242,76 @@ spec:
                             type: string
                         type: object
                     type: object
-                  natGatewayId:
-                    description: ID of the nat gateway this snat rule belongs to.
-                      Changing this creates a new snat rule.
-                    type: string
-                  natGatewayIdRef:
-                    description: Reference to a Gateway to populate natGatewayId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  natGatewayIdSelector:
-                    description: Selector for a Gateway to populate natGatewayId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  networkId:
-                    description: The resource ID in UUID format.
-                    type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  region:
-                    description: The region in which to obtain the V2 nat client.
-                      If omitted, the region argument of the provider is used. Changing
-                      this creates a new snat rule.
-                    type: string
-                  sourceType:
-                    description: Specifies the scenario. The valid value is 0 (VPC
-                      scenario) and 1 (Direct Connect scenario). Only cidr can be
-                      specified over a Direct Connect connection. If no value is entered,
-                      the default value 0 (VPC scenario) is used. Changing this creates
-                      a new snat rule.
+                  maxApiRequests:
+                    description: Specifies the maximum number of times an API can
+                      be accessed within a specified period. The value of this parameter
+                      cannot exceed the default limit 200 TPS.
                     type: number
-                  subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
+                  maxAppRequests:
+                    description: Specifies the maximum number of times the API can
+                      be accessed by an app within the same period. The value of this
+                      parameter must be less than or equal to the value of max_user_requests.
+                    type: number
+                  maxIpRequests:
+                    description: Specifies the maximum number of times the API can
+                      be accessed by an IP address within the same period. The value
+                      of this parameter must be less than or equal to the value of
+                      max_api_requests.
+                    type: number
+                  maxUserRequests:
+                    description: Specifies the maximum number of times the API can
+                      be accessed by a user within the same period. The value of this
+                      parameter must be less than or equal to the value of max_api_requests.
+                    type: number
+                  name:
+                    description: Specifies the name of the API throttling policy.
+                      The policy name consists of 3 to 64 characters, starting with
+                      a letter. Only letters, digits and underscores (_) are allowed.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                  period:
+                    description: 'Specifies the period of time for limiting the number
+                      of API calls. This parameter applies with each of the API call
+                      limits: max_api_requests, max_app_requests, max_ip_requests
+                      and max_user_requests.'
+                    type: number
+                  periodUnit:
+                    description: Specifies the time unit for limiting the number of
+                      API calls. The valid values are SECOND, MINUTE, HOUR and DAY,
+                      default to MINUTE.
+                    type: string
+                  region:
+                    description: Specifies the region in which to create the API throttling
+                      policy resource. If omitted, the provider-level region will
+                      be used. Changing this will create a new API throttling policy
+                      resource.
+                    type: string
+                  type:
+                    description: 'Specifies the type of the request throttling policy.
+                      The valid values are as follows:'
+                    type: string
+                  userThrottles:
+                    description: Specifies an array of one or more special throttling
+                      policies for IAM user limit. The throttle object of the user_throttles
+                      structure is documented below.
+                    items:
+                      properties:
+                        maxApiRequests:
+                          description: Specifies the maximum number of times an API
+                            can be accessed within a specified period.
+                          type: number
+                        throttlingObjectId:
+                          description: Specifies the object ID which the special throttling
+                            policy belongs.
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                      required:
+                      - maxApiRequests
+                      - throttlingObjectId
+                      type: object
+                    type: array
+                required:
+                - maxApiRequests
+                - name
+                - period
                 type: object
               providerConfigRef:
                 default:
@@ -562,19 +485,46 @@ spec:
             - forProvider
             type: object
           status:
-            description: SnatRuleStatus defines the observed state of SnatRule.
+            description: ThrottlingPolicyStatus defines the observed state of ThrottlingPolicy.
             properties:
               atProvider:
                 properties:
-                  floatingIpAddress:
-                    description: The actual floating IP address.
+                  appThrottles:
+                    description: Specifies an array of one or more special throttling
+                      policies for APP limit. The throttle object of the user_throttles
+                      structure is documented below.
+                    items:
+                      properties:
+                        id:
+                          description: ID of the API throttling policy.
+                          type: string
+                        throttlingObjectName:
+                          description: The object name which the special user throttling
+                            policy belongs.
+                          type: string
+                      type: object
+                    type: array
+                  createTime:
+                    description: Time when the API throttling policy was created.
                     type: string
                   id:
-                    description: The resource ID in UUID format.
+                    description: ID of the API throttling policy.
                     type: string
-                  status:
-                    description: The status of the snat rule.
-                    type: string
+                  userThrottles:
+                    description: Specifies an array of one or more special throttling
+                      policies for IAM user limit. The throttle object of the user_throttles
+                      structure is documented below.
+                    items:
+                      properties:
+                        id:
+                          description: ID of the API throttling policy.
+                          type: string
+                        throttlingObjectName:
+                          description: The object name which the special user throttling
+                            policy belongs.
+                          type: string
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

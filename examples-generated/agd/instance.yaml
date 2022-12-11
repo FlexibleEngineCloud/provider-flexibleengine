@@ -1,0 +1,33 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    availableZones:
+    - ${data.flexibleengine_availability_zones.test.names[0]}
+    - ${data.flexibleengine_availability_zones.test.names[1]}
+    bandwidthSize: 3
+    description: Created by script
+    edition: BASIC
+    eipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    maintainBegin: "06:00:00"
+    name: ${var.instance_name}
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

@@ -208,8 +208,8 @@ func (mg *SnatRule) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1beta11.NetworkingSubnetList{},
-			Managed: &v1beta11.NetworkingSubnet{},
+			List:    &v1beta11.VPCSubnetList{},
+			Managed: &v1beta11.VPCSubnet{},
 		},
 	})
 	if err != nil {

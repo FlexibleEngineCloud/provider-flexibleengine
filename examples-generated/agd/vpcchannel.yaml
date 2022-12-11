@@ -1,0 +1,26 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: VPCChannel
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/vpcchannel
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    httpCode: 201,202,203
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    members:
+    - id: ${var.ecs_id1}
+      weight: 30
+    - id: ${var.ecs_id2}
+      weight: 70
+    name: ${var.app_name}
+    path: /
+    port: 8080
+    protocol: HTTPS
+
+---
+

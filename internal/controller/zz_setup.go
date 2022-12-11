@@ -11,6 +11,17 @@ import (
 
 	api "github.com/gaetanars/provider-flexibleengine/internal/controller/ag/api"
 	group "github.com/gaetanars/provider-flexibleengine/internal/controller/ag/group"
+	apiagd "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/api"
+	apipublishment "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/apipublishment"
+	application "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/application"
+	customauthorizer "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/customauthorizer"
+	environment "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/environment"
+	groupagd "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/group"
+	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/instance"
+	response "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/response"
+	throttlingpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/throttlingpolicy"
+	throttlingpolicyassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/throttlingpolicyassociate"
+	vpcchannel "github.com/gaetanars/provider-flexibleengine/internal/controller/agd/vpcchannel"
 	server "github.com/gaetanars/provider-flexibleengine/internal/controller/bms/server"
 	addon "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/addon"
 	cluster "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/cluster"
@@ -20,7 +31,7 @@ import (
 	pvc "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/pvc"
 	databaserole "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/databaseuser"
-	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/instance"
+	instancedds "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/instance"
 	certificate "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/certificate"
 	ipgroup "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/ipgroup"
 	listener "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/listener"
@@ -114,6 +125,17 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		api.Setup,
 		group.Setup,
+		apiagd.Setup,
+		apipublishment.Setup,
+		application.Setup,
+		customauthorizer.Setup,
+		environment.Setup,
+		groupagd.Setup,
+		instance.Setup,
+		response.Setup,
+		throttlingpolicy.Setup,
+		throttlingpolicyassociate.Setup,
+		vpcchannel.Setup,
 		server.Setup,
 		addon.Setup,
 		cluster.Setup,
@@ -123,7 +145,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		pvc.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
-		instance.Setup,
+		instancedds.Setup,
 		certificate.Setup,
 		ipgroup.Setup,
 		listener.Setup,

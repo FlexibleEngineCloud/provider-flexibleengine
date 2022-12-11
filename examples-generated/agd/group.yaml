@@ -1,0 +1,23 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    description: ${var.description}
+    environment:
+    - environmentId: ${var.environment_id}
+      variable:
+      - name: TERRAFORM
+        value: /stage/terraform
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: ${var.group_name}
+
+---
+

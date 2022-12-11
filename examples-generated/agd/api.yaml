@@ -1,0 +1,40 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: API
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/api
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    authorizerId: ${var.custom_auth_id}
+    backendParams:
+    - location: HEADER
+      name: X-User-Auth
+      type: SYSTEM
+      value: user_name
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    matching: Exact
+    name: ${var.api_name}
+    requestMethod: POST
+    requestPath: /terraform/users
+    requestProtocol: HTTP
+    responseId: ${var.custom_response_id}
+    securityAuthentication: AUTHORIZER
+    successResponse: Successful
+    type: Public
+    web:
+    - path: /backend/users
+      requestMethod: POST
+      requestProtocol: HTTP
+      timeout: 5000
+      vpcChannelId: ${var.vpc_channel_id}
+
+---
+

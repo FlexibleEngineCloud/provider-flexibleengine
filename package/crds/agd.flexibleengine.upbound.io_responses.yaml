@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: snatrules.nat.flexibleengine.upbound.io
+  name: responses.agd.flexibleengine.upbound.io
 spec:
-  group: nat.flexibleengine.upbound.io
+  group: agd.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: SnatRule
-    listKind: SnatRuleList
-    plural: snatrules
-    singular: snatrule
+    kind: Response
+    listKind: ResponseList
+    plural: responses
+    singular: response
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'SnatRule is the Schema for the SnatRules API. ""page_title:
-          "flexibleengine_nat_snat_rule_v2"'
+        description: 'Response is the Schema for the Responses API. ""page_title:
+          "flexibleengine_apig_response"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SnatRuleSpec defines the desired state of SnatRule
+            description: ResponseSpec defines the desired state of Response
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,17 +64,13 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  cidr:
-                    description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                  groupId:
+                    description: Specifies the ID of the API group to which the API
+                      response belongs to. Changing this will create a new API custom
+                      response resource.
                     type: string
-                  floatingIpId:
-                    description: ID of the floating ip this snat rule connets to.
-                      Changing this creates a new snat rule.
-                    type: string
-                  floatingIpIdRef:
-                    description: Reference to a EIP in eip to populate floatingIpId.
+                  groupIdRef:
+                    description: Reference to a Group to populate groupId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -107,8 +103,8 @@ spec:
                     required:
                     - name
                     type: object
-                  floatingIpIdSelector:
-                    description: Selector for a EIP in eip to populate floatingIpId.
+                  groupIdSelector:
+                    description: Selector for a Group to populate groupId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -146,12 +142,13 @@ spec:
                             type: string
                         type: object
                     type: object
-                  natGatewayId:
-                    description: ID of the nat gateway this snat rule belongs to.
-                      Changing this creates a new snat rule.
+                  instanceId:
+                    description: Specifies the ID of the APIG dedicated instance to
+                      which the API group where the API custom response belongs. Changing
+                      this will create a new API custom response resource.
                     type: string
-                  natGatewayIdRef:
-                    description: Reference to a Gateway to populate natGatewayId.
+                  instanceIdRef:
+                    description: Reference to a Instance to populate instanceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -184,8 +181,8 @@ spec:
                     required:
                     - name
                     type: object
-                  natGatewayIdSelector:
-                    description: Selector for a Gateway to populate natGatewayId.
+                  instanceIdSelector:
+                    description: Selector for a Instance to populate instanceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -223,172 +220,41 @@ spec:
                             type: string
                         type: object
                     type: object
-                  networkId:
-                    description: The resource ID in UUID format.
+                  name:
+                    description: Specifies the name of the API custom response. The
+                      name consists of 1 to 64 characters, and only letters, digits,
+                      hyphens(-), and underscores (_) are allowed.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
                   region:
-                    description: The region in which to obtain the V2 nat client.
-                      If omitted, the region argument of the provider is used. Changing
-                      this creates a new snat rule.
+                    description: Specifies the region in which to create the API custom
+                      response resource. If omitted, the provider-level region will
+                      be used. Changing this will create a new API custom response
+                      resource.
                     type: string
-                  sourceType:
-                    description: Specifies the scenario. The valid value is 0 (VPC
-                      scenario) and 1 (Direct Connect scenario). Only cidr can be
-                      specified over a Direct Connect connection. If no value is entered,
-                      the default value 0 (VPC scenario) is used. Changing this creates
-                      a new snat rule.
-                    type: number
-                  subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
-                    type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                  rule:
+                    description: Specifies the API custom response rules definition.
+                      The object structure is documented below.
+                    items:
+                      properties:
+                        body:
+                          description: Specifies the body template of the API response
+                            rule, e.g. {\"code\":\"$context.authorizer.frontend.code\",\"message\":\"$context.authorizer.frontend.message\"}
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                        errorType:
+                          description: Specifies the type of the API custom response
+                            rule.
+                          type: string
+                        statusCode:
+                          description: Specifies the HTTP status code of the API response
+                            rule.
+                          type: number
+                      required:
+                      - body
+                      - errorType
+                      type: object
+                    type: array
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -562,18 +428,18 @@ spec:
             - forProvider
             type: object
           status:
-            description: SnatRuleStatus defines the observed state of SnatRule.
+            description: ResponseStatus defines the observed state of Response.
             properties:
               atProvider:
                 properties:
-                  floatingIpAddress:
-                    description: The actual floating IP address.
+                  createTime:
+                    description: Time when the API custom response is created.
                     type: string
                   id:
-                    description: The resource ID in UUID format.
+                    description: ID of the API custom response.
                     type: string
-                  status:
-                    description: The status of the snat rule.
+                  updateTime:
+                    description: Time when the API custom response was last modified.
                     type: string
                 type: object
               conditions:

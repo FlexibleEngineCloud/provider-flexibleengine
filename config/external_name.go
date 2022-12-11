@@ -17,6 +17,54 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> API Gateway Dedicated (AGD)
+	*/
+
+	// flexibleengine_apig_api - Imported using the Template (name/id)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api
+	"flexibleengine_apig_api": TemplatedStringAsIdentifierWithNoName("{{ .parameters.name }}/{{ .parameters.instance_id }}"),
+
+	// flexibleengine_apig_throttling_policy_associate - Imported using the Template (<instance id>/<policy_id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_throttling_policy_associate
+	"flexibleengine_apig_throttling_policy_associate": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.policy_id }}"),
+
+	// flexibleengine_apig_environment - Imported using the Template (<instance id>/<environment id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_environment
+	"flexibleengine_apig_environment": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .external_name }}"),
+
+	// flexibleengine_apig_vpc_channel - Imported using the Template (<instance id>/<name>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_vpc_channel
+	"flexibleengine_apig_vpc_channel": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.name }}"),
+
+	// flexibleengine_apig_application - Imported using the Template (<instance id>/<id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_application
+	"flexibleengine_apig_application": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .external_name }}"),
+
+	// flexibleengine_apig_response - Imported using the Template (<instance id>/<api id>/<response id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_response
+	"flexibleengine_apig_response": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.group_id }}/{{ .external_name }}"),
+
+	// flexibleengine_apig_throttling_policy - Imported using the Template (<instance id>/<policy id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_throttling_policy
+	"flexibleengine_apig_throttling_policy": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .external_name }}"),
+
+	// flexibleengine_apig_instance - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_instance
+	"flexibleengine_apig_instance": config.IdentifierFromProvider,
+
+	// flexibleengine_apig_group - Imported using the Template (<instance id>/<group id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_group
+	"flexibleengine_apig_group": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .external_name }}"),
+
+	// flexibleengine_apig_custom_authorizer - Imported using the Template (<instance id>/name)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_custom_authorizer
+	"flexibleengine_apig_custom_authorizer": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.name }}"),
+
+	// flexibleengine_apig_api_publishment - Imported using the Template (<instance id>/<env id>/<api id>)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api_publishment
+	"flexibleengine_apig_api_publishment": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.env_id }}/{{ .parameters.api_id }}"),
+
+	/*
 		> API Gateway (AG)
 	*/
 

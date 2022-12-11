@@ -1,0 +1,20 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: Application
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/application
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    appCodes:
+    - ${var.app_code}
+    description: Created by script
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: ${var.app_name}
+
+---
+

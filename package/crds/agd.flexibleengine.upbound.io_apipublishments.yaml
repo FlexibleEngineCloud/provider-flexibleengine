@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: snatrules.nat.flexibleengine.upbound.io
+  name: apipublishments.agd.flexibleengine.upbound.io
 spec:
-  group: nat.flexibleengine.upbound.io
+  group: agd.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: SnatRule
-    listKind: SnatRuleList
-    plural: snatrules
-    singular: snatrule
+    kind: APIPublishment
+    listKind: APIPublishmentList
+    plural: apipublishments
+    singular: apipublishment
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'SnatRule is the Schema for the SnatRules API. ""page_title:
-          "flexibleengine_nat_snat_rule_v2"'
+        description: 'APIPublishment is the Schema for the APIPublishments API. ""page_title:
+          "flexibleengine_apig_api_publishment"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SnatRuleSpec defines the desired state of SnatRule
+            description: APIPublishmentSpec defines the desired state of APIPublishment
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,17 +64,12 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  cidr:
-                    description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                  apiId:
+                    description: Specifies the API ID to be published or already published.
+                      Changing this will create a new publishment resource.
                     type: string
-                  floatingIpId:
-                    description: ID of the floating ip this snat rule connets to.
-                      Changing this creates a new snat rule.
-                    type: string
-                  floatingIpIdRef:
-                    description: Reference to a EIP in eip to populate floatingIpId.
+                  apiIdRef:
+                    description: Reference to a API to populate apiId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -107,8 +102,8 @@ spec:
                     required:
                     - name
                     type: object
-                  floatingIpIdSelector:
-                    description: Selector for a EIP in eip to populate floatingIpId.
+                  apiIdSelector:
+                    description: Selector for a API to populate apiId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -146,12 +141,16 @@ spec:
                             type: string
                         type: object
                     type: object
-                  natGatewayId:
-                    description: ID of the nat gateway this snat rule belongs to.
-                      Changing this creates a new snat rule.
+                  description:
+                    description: Specifies the description of the current publishment.
                     type: string
-                  natGatewayIdRef:
-                    description: Reference to a Gateway to populate natGatewayId.
+                  envId:
+                    description: Specifies the environment ID to which the current
+                      version of the API will be published or has been published.
+                      Changing this will create a new publishment resource.
+                    type: string
+                  envIdRef:
+                    description: Reference to a Environment to populate envId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -184,8 +183,8 @@ spec:
                     required:
                     - name
                     type: object
-                  natGatewayIdSelector:
-                    description: Selector for a Gateway to populate natGatewayId.
+                  envIdSelector:
+                    description: Selector for a Environment to populate envId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -223,11 +222,13 @@ spec:
                             type: string
                         type: object
                     type: object
-                  networkId:
-                    description: The resource ID in UUID format.
+                  instanceId:
+                    description: Specifies an ID of the APIG dedicated instance to
+                      which the API belongs to. Changing this will create a new publishment
+                      resource.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  instanceIdRef:
+                    description: Reference to a Instance to populate instanceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -260,8 +261,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  instanceIdSelector:
+                    description: Selector for a Instance to populate instanceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -300,95 +301,13 @@ spec:
                         type: object
                     type: object
                   region:
-                    description: The region in which to obtain the V2 nat client.
-                      If omitted, the region argument of the provider is used. Changing
-                      this creates a new snat rule.
+                    description: Specifies the region in which to publish APIs. If
+                      omitted, the provider-level region will be used. Changing this
+                      will create a new publishment resource.
                     type: string
-                  sourceType:
-                    description: Specifies the scenario. The valid value is 0 (VPC
-                      scenario) and 1 (Direct Connect scenario). Only cidr can be
-                      specified over a Direct Connect connection. If no value is entered,
-                      the default value 0 (VPC scenario) is used. Changing this creates
-                      a new snat rule.
-                    type: number
-                  subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
+                  versionId:
+                    description: Specifies the version ID of the current publishment.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
                 type: object
               providerConfigRef:
                 default:
@@ -562,18 +481,36 @@ spec:
             - forProvider
             type: object
           status:
-            description: SnatRuleStatus defines the observed state of SnatRule.
+            description: APIPublishmentStatus defines the observed state of APIPublishment.
             properties:
               atProvider:
                 properties:
-                  floatingIpAddress:
-                    description: The actual floating IP address.
+                  envName:
+                    description: Environment name to which the current version of
+                      the API is published.
                     type: string
+                  histories:
+                    description: All publish informations of the API. The structure
+                      is documented below.
+                    items:
+                      properties:
+                        description:
+                          description: Version description of the API publishment.
+                          type: string
+                        versionId:
+                          description: Version ID of the API publishment.
+                          type: string
+                      type: object
+                    type: array
                   id:
-                    description: The resource ID in UUID format.
+                    description: Resource ID, which is constructed from the instance
+                      ID, environment ID, and API ID, separated by slashes.
                     type: string
-                  status:
-                    description: The status of the snat rule.
+                  publishId:
+                    description: The publish ID of the API in current environment.
+                    type: string
+                  publishTime:
+                    description: Time when the current version was published.
                     type: string
                 type: object
               conditions:

@@ -140,6 +140,19 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_api_gateway_api":   ReplaceGroupWords("ag", 2), // Group: ag, Kind: API
 	"flexibleengine_api_gateway_group": ReplaceGroupWords("ag", 2), // Group: ag, Kind: Group
 
+	// AGD
+	"flexibleengine_apig_api":                         ReplaceGroupWords("agd", 1), // Group: agd, Kind: API
+	"flexibleengine_apig_throttling_policy_associate": ReplaceGroupWords("agd", 1), // Group: agd, Kind: ThrottlingPolicyAssociate
+	"flexibleengine_apig_environment":                 ReplaceGroupWords("agd", 1), // Group: agd, Kind: Environment
+	"flexibleengine_apig_vpc_channel":                 ReplaceGroupWords("agd", 1), // Group: agd, Kind: VpcChannel
+	"flexibleengine_apig_application":                 ReplaceGroupWords("agd", 1), // Group: agd, Kind: Application
+	"flexibleengine_apig_response":                    ReplaceGroupWords("agd", 1), // Group: agd, Kind: Response
+	"flexibleengine_apig_throttling_policy":           ReplaceGroupWords("agd", 1), // Group: agd, Kind: ThrottlingPolicy
+	"flexibleengine_apig_instance":                    ReplaceGroupWords("agd", 1), // Group: agd, Kind: Instance
+	"flexibleengine_apig_group":                       ReplaceGroupWords("agd", 1), // Group: agd, Kind: Group
+	"flexibleengine_apig_custom_authorizer":           ReplaceGroupWords("agd", 1), // Group: agd, Kind: CustomAuthorizer
+	"flexibleengine_apig_api_publishment":             ReplaceGroupWords("agd", 1), // Group: agd, Kind: ApiPublishment
+
 }
 
 // KindMap contains kind string overrides.

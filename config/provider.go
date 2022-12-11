@@ -5,6 +5,7 @@ import (
 	_ "embed"
 
 	"github.com/gaetanars/provider-flexibleengine/config/ag"
+	"github.com/gaetanars/provider-flexibleengine/config/agd"
 	"github.com/gaetanars/provider-flexibleengine/config/bms"
 	"github.com/gaetanars/provider-flexibleengine/config/dds"
 	"github.com/gaetanars/provider-flexibleengine/config/dedicatedelb"
@@ -53,6 +54,7 @@ func GetProvider() *ujconfig.Provider {
 		// add custom config functions
 		dedicatedelb.Configure,
 		ag.Configure,
+		agd.Configure,
 		bms.Configure,
 		dds.Configure,
 		swr.Configure,
