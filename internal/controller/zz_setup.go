@@ -9,6 +9,8 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	api "github.com/gaetanars/provider-flexibleengine/internal/controller/ag/api"
+	group "github.com/gaetanars/provider-flexibleengine/internal/controller/ag/group"
 	server "github.com/gaetanars/provider-flexibleengine/internal/controller/bms/server"
 	addon "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/addon"
 	cluster "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/cluster"
@@ -46,7 +48,7 @@ import (
 	whitelist "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/whitelist"
 	blockstoragevolume "github.com/gaetanars/provider-flexibleengine/internal/controller/evs/blockstoragevolume"
 	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/agency"
-	group "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/group"
+	groupiam "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/group"
 	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/groupmembership"
 	project "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/project"
 	provider "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/provider"
@@ -110,6 +112,8 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		api.Setup,
+		group.Setup,
 		server.Setup,
 		addon.Setup,
 		cluster.Setup,
@@ -147,7 +151,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		whitelist.Setup,
 		blockstoragevolume.Setup,
 		agency.Setup,
-		group.Setup,
+		groupiam.Setup,
 		groupmembership.Setup,
 		project.Setup,
 		provider.Setup,

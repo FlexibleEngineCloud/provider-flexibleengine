@@ -4,6 +4,7 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/gaetanars/provider-flexibleengine/config/ag"
 	"github.com/gaetanars/provider-flexibleengine/config/bms"
 	"github.com/gaetanars/provider-flexibleengine/config/dds"
 	"github.com/gaetanars/provider-flexibleengine/config/dedicatedelb"
@@ -51,6 +52,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		dedicatedelb.Configure,
+		ag.Configure,
 		bms.Configure,
 		dds.Configure,
 		swr.Configure,

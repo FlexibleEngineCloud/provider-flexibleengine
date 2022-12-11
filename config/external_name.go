@@ -17,6 +17,18 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> API Gateway (AG)
+	*/
+
+	// flexibleengine_api_gateway_api - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/api_gateway_api
+	"flexibleengine_api_gateway_api": config.IdentifierFromProvider,
+
+	// flexibleengine_api_gateway_group - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/api_gateway_group
+	"flexibleengine_api_gateway_group": config.IdentifierFromProvider,
+
+	/*
 		> Document Database Service (DDS)
 	*/
 

@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 13:16:19 CET
+Last update: Dim 11 déc 2022 14:56:21 CET
 
 
-## Resources implemented: 97/178 (54.49%)
+## Resources implemented: 99/178 (55.62%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -456,12 +456,12 @@ Last update: Dim 11 déc 2022 13:16:19 CET
 * [ ] [flexibleengine_dcs_instance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dcs_instance_v1)
 
 
-### API Gateway (0.0%)
+### API Gateway (100.0%)
 
-#### Implemented (0) -- Not implemented (2)
+#### Implemented (2) -- Not implemented (0)
 
-* [ ] [flexibleengine_api_gateway_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/api_gateway_group)
-* [ ] [flexibleengine_api_gateway_api](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/api_gateway_api)
+* [x] [flexibleengine_api_gateway_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/api_gateway_group)
+* [x] [flexibleengine_api_gateway_api](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/api_gateway_api)
 
 
 ### Image Management Service (IMS) (100.0%)
