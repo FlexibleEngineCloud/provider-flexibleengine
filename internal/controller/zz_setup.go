@@ -59,11 +59,12 @@ import (
 	monitorelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/monitor"
 	poolelb "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/pool"
 	whitelist "github.com/gaetanars/provider-flexibleengine/internal/controller/elb/whitelist"
+	project "github.com/gaetanars/provider-flexibleengine/internal/controller/eps/project"
 	blockstoragevolume "github.com/gaetanars/provider-flexibleengine/internal/controller/evs/blockstoragevolume"
 	agency "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/agency"
 	groupiam "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/group"
 	groupmembership "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/groupmembership"
-	project "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/project"
+	projectiam "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/project"
 	provider "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/provider"
 	providerconversion "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/providerconversion"
 	role "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/role"
@@ -175,11 +176,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		monitorelb.Setup,
 		poolelb.Setup,
 		whitelist.Setup,
+		project.Setup,
 		blockstoragevolume.Setup,
 		agency.Setup,
 		groupiam.Setup,
 		groupmembership.Setup,
-		project.Setup,
+		projectiam.Setup,
 		provider.Setup,
 		providerconversion.Setup,
 		role.Setup,

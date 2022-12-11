@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 16:47:17 CET
+Last update: Dim 11 déc 2022 16:50:36 CET
 
 
-## Resources implemented: 112/178 (62.92%)
+## Resources implemented: 113/178 (63.48%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -435,11 +435,11 @@ Last update: Dim 11 déc 2022 16:47:17 CET
 * [x] [flexibleengine_kms_key_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/kms_key_v1)
 
 
-### Enterprise Project Management Service (EPS) (0.0%)
+### Enterprise Project Management Service (EPS) (100.0%)
 
-#### Implemented (0) -- Not implemented (1)
+#### Implemented (1) -- Not implemented (0)
 
-* [ ] [flexibleengine_enterprise_project](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/enterprise_project)
+* [x] [flexibleengine_enterprise_project](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/enterprise_project)
 
 
 ### Data Replication Service (DRS) (100.0%)

@@ -153,6 +153,8 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_apig_custom_authorizer":           ReplaceGroupWords("agd", 1), // Group: agd, Kind: CustomAuthorizer
 	"flexibleengine_apig_api_publishment":             ReplaceGroupWords("agd", 1), // Group: agd, Kind: ApiPublishment
 
+	// EPS
+	"flexibleengine_enterprise_project": ReplaceGroupWords("eps", 1), // Group: eps, Kind: Project
 }
 
 // KindMap contains kind string overrides.

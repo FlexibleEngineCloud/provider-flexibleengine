@@ -22,6 +22,7 @@ import (
 	v1beta1ecs "github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1"
 	v1beta1eip "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1"
 	v1beta1elb "github.com/gaetanars/provider-flexibleengine/apis/elb/v1beta1"
+	v1beta1eps "github.com/gaetanars/provider-flexibleengine/apis/eps/v1beta1"
 	v1beta1evs "github.com/gaetanars/provider-flexibleengine/apis/evs/v1beta1"
 	v1beta1iam "github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1ims "github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1"
@@ -52,6 +53,7 @@ func init() {
 		v1beta1ecs.SchemeBuilder.AddToScheme,
 		v1beta1eip.SchemeBuilder.AddToScheme,
 		v1beta1elb.SchemeBuilder.AddToScheme,
+		v1beta1eps.SchemeBuilder.AddToScheme,
 		v1beta1evs.SchemeBuilder.AddToScheme,
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1ims.SchemeBuilder.AddToScheme,

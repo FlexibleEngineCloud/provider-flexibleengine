@@ -17,6 +17,14 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Enterprise Project Management Service (EPS)
+	*/
+
+	// flexibleengine_enterprise_project - Imported using the Enterprise Project ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/enterprise_project
+	"flexibleengine_enterprise_project": config.IdentifierFromProvider,
+
+	/*
 		> Data Replication Service (DRS)
 	*/
 
