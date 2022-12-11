@@ -8,7 +8,9 @@ metadata:
   name: v001
 spec:
   forProvider:
-    datasetId: ${var.dataset_id}
+    datasetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     description: Created by demo
     name: v001
 

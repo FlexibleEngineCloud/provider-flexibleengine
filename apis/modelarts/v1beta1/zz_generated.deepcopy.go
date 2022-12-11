@@ -422,6 +422,16 @@ func (in *DatasetVersionParameters) DeepCopyInto(out *DatasetVersionParameters) 
 		*out = new(string)
 		**out = **in
 	}
+	if in.DatasetIDRef != nil {
+		in, out := &in.DatasetIDRef, &out.DatasetIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DatasetIDSelector != nil {
+		in, out := &in.DatasetIDSelector, &out.DatasetIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)

@@ -51,8 +51,17 @@ type DatasetVersionParameters struct {
 
 	// Specifies the ID of dataset.
 	// Changing this parameter will create a new resource.
-	// +kubebuilder:validation:Required
-	DatasetID *string `json:"datasetId" tf:"dataset_id,omitempty"`
+	// +crossplane:generate:reference:type=Dataset
+	// +kubebuilder:validation:Optional
+	DatasetID *string `json:"datasetId,omitempty" tf:"dataset_id,omitempty"`
+
+	// Reference to a Dataset to populate datasetId.
+	// +kubebuilder:validation:Optional
+	DatasetIDRef *v1.Reference `json:"datasetIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dataset to populate datasetId.
+	// +kubebuilder:validation:Optional
+	DatasetIDSelector *v1.Selector `json:"datasetIdSelector,omitempty" tf:"-"`
 
 	// Specifies the description of dataset version. It contains a maximum of
 	// 256 characters and cannot contain special characters !<>=&"'. Changing this parameter will create a new resource.

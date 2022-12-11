@@ -1,4 +1,4 @@
-package modelsarts
+package modelarts
 
 import (
 	"github.com/upbound/upjet/pkg/config"
@@ -15,7 +15,7 @@ func Configure(p *config.Provider) {
 
 		// dataset_id
 		r.References["dataset_id"] = config.Reference{
-			Type: "DataSet",
+			Type: "Dataset",
 		}
 
 		r.UseAsync = true
