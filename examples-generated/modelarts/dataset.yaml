@@ -1,0 +1,21 @@
+apiVersion: modelarts.flexibleengine.upbound.io/v1beta1
+kind: Dataset
+metadata:
+  annotations:
+    meta.upbound.io/example-id: modelarts/v1beta1/dataset
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    dataSource:
+    - path: ${var.input_obs_path}
+    description: Terraform Demo
+    labels:
+    - name: foo
+    name: ${var.name}
+    outputPath: ${var.output_obs_path}
+    type: 1
+
+---
+

@@ -1,0 +1,16 @@
+apiVersion: modelarts.flexibleengine.upbound.io/v1beta1
+kind: DatasetVersion
+metadata:
+  annotations:
+    meta.upbound.io/example-id: modelarts/v1beta1/datasetversion
+  labels:
+    testing.upbound.io/example-name: v001
+  name: v001
+spec:
+  forProvider:
+    datasetId: ${var.dataset_id}
+    description: Created by demo
+    name: v001
+
+---
+

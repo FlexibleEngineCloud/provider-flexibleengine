@@ -17,6 +17,18 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> AI Development Platform (ModelArts)
+	*/
+
+	// flexibleengine_modelarts_dataset - Imported using the Dataset ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/modelarts_dataset
+	"flexibleengine_modelarts_dataset": config.IdentifierFromProvider,
+
+	// flexibleengine_modelarts_dataset_version - Imported using the Dataset Version ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/modelarts_dataset_version
+	"flexibleengine_modelarts_dataset_version": config.IdentifierFromProvider,
+
+	/*
 		> Enterprise Project Management Service (EPS)
 	*/
 

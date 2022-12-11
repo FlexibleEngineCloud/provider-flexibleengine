@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 16:50:36 CET
+Last update: Dim 11 déc 2022 17:02:13 CET
 
 
-## Resources implemented: 113/178 (63.48%)
+## Resources implemented: 115/178 (64.61%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -420,12 +420,12 @@ Last update: Dim 11 déc 2022 16:50:36 CET
 * [ ] [flexibleengine_cbr_policy](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cbr_policy)
 
 
-### AI Development Platform (ModelArts) (0.0%)
+### AI Development Platform (ModelArts) (100.0%)
 
-#### Implemented (0) -- Not implemented (2)
+#### Implemented (2) -- Not implemented (0)
 
-* [ ] [flexibleengine_modelarts_dataset](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/modelarts_dataset)
-* [ ] [flexibleengine_modelarts_dataset_version](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/modelarts_dataset_version)
+* [x] [flexibleengine_modelarts_dataset](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/modelarts_dataset)
+* [x] [flexibleengine_modelarts_dataset_version](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/modelarts_dataset_version)
 
 
 ### Key Management Service (KMS) (100.0%)

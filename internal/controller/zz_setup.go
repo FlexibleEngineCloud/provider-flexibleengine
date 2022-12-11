@@ -72,6 +72,8 @@ import (
 	user "github.com/gaetanars/provider-flexibleengine/internal/controller/iam/user"
 	image "github.com/gaetanars/provider-flexibleengine/internal/controller/ims/image"
 	key "github.com/gaetanars/provider-flexibleengine/internal/controller/kms/key"
+	dataset "github.com/gaetanars/provider-flexibleengine/internal/controller/modelarts/dataset"
+	datasetversion "github.com/gaetanars/provider-flexibleengine/internal/controller/modelarts/datasetversion"
 	dnatrule "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/dnatrule"
 	gateway "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/gateway"
 	snatrule "github.com/gaetanars/provider-flexibleengine/internal/controller/nat/snatrule"
@@ -189,6 +191,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		user.Setup,
 		image.Setup,
 		key.Setup,
+		dataset.Setup,
+		datasetversion.Setup,
 		dnatrule.Setup,
 		gateway.Setup,
 		snatrule.Setup,
