@@ -42,6 +42,7 @@ import (
 	pool "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/pool"
 	recordset "github.com/gaetanars/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/gaetanars/provider-flexibleengine/internal/controller/dns/zone"
+	job "github.com/gaetanars/provider-flexibleengine/internal/controller/drs/job"
 	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
 	instanceecs "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
 	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/interfaceattach"
@@ -157,6 +158,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		pool.Setup,
 		recordset.Setup,
 		zone.Setup,
+		job.Setup,
 		floatingipassociate.Setup,
 		instanceecs.Setup,
 		interfaceattach.Setup,

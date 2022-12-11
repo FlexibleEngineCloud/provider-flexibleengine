@@ -17,6 +17,14 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Data Replication Service (DRS)
+	*/
+
+	// flexibleengine_drs_job - Imported using the Job ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_job
+	"flexibleengine_drs_job": config.IdentifierFromProvider,
+
+	/*
 		> Distributed Cache Service (DCS)
 	*/
 

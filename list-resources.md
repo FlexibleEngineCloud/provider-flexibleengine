@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 16:41:30 CET
+Last update: Dim 11 déc 2022 16:47:17 CET
 
 
-## Resources implemented: 111/178 (62.36%)
+## Resources implemented: 112/178 (62.92%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -442,11 +442,11 @@ Last update: Dim 11 déc 2022 16:41:30 CET
 * [ ] [flexibleengine_enterprise_project](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/enterprise_project)
 
 
-### Data Replication Service (DRS) (0.0%)
+### Data Replication Service (DRS) (100.0%)
 
-#### Implemented (0) -- Not implemented (1)
+#### Implemented (1) -- Not implemented (0)
 
-* [ ] [flexibleengine_drs_job](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_job)
+* [x] [flexibleengine_drs_job](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_job)
 
 
 ### Distributed Cache Service (DCS) (100.0%)
