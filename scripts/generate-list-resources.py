@@ -17,6 +17,7 @@ countNotImplemented = 0
 # array array
 linesImplementedPrint = {}
 linesNotImplementedPrint = {}
+linesDeprecatedPrint = []
 
 for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/resources'):
     for file in files:
@@ -62,6 +63,18 @@ for root, dirs, files in os.walk('.work/FlexibleEngineCloud/flexibleengine/docs/
                                 '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/' + file[0:-3] + ')')
                         break
 
+# If exist remove group Deprecated
+if 'Deprecated' in linesImplementedPrint:
+    linesDeprecatedPrint.append(linesImplementedPrint['Deprecated'])
+    countImplemented -= len(linesImplementedPrint['Deprecated'])
+    del linesImplementedPrint['Deprecated']
+
+
+if 'Deprecated' in linesNotImplementedPrint:
+    linesDeprecatedPrint.append(linesNotImplementedPrint['Deprecated'])
+    countNotImplemented -= len(linesNotImplementedPrint['Deprecated'])
+    del linesNotImplementedPrint['Deprecated']
+
 # Print Last update
 print('\nLast update: ' + os.popen('date').read())
 
@@ -85,3 +98,12 @@ for group in linesImplementedPrint:
     for line in linesNotImplementedPrint[group]:
         print(line)
     print('\n')
+
+# Print Deprecated resources
+if len(linesDeprecatedPrint) > 0:
+    print('---------------------------------------')
+    print('## Deprecated\n')
+    for group in linesDeprecatedPrint:
+        for line in group:
+            print(line)
+        print('\n')

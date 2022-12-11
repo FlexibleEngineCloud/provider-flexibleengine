@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 13:08:19 CET
+Last update: Dim 11 déc 2022 13:16:19 CET
 
 
-## Resources implemented: 97/188 (51.6%)
+## Resources implemented: 97/178 (54.49%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -13,22 +13,6 @@ Last update: Dim 11 déc 2022 13:08:19 CET
 * [x] [flexibleengine_swr_organization](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization)
 * [x] [flexibleengine_swr_repository](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository)
 * [x] [flexibleengine_swr_repository_sharing](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_repository_sharing)
-
-
-### Deprecated (0.0%)
-
-#### Implemented (0) -- Not implemented (10)
-
-* [ ] [flexibleengine_drs_replication_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_replication_v2)
-* [ ] [flexibleengine_networking_router_route_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_route_v2)
-* [ ] [flexibleengine_rds_instance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_instance_v1)
-* [ ] [flexibleengine_drs_replicationconsistencygroup_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_replicationconsistencygroup_v2)
-* [ ] [flexibleengine_elb_health](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_health)
-* [ ] [flexibleengine_elb_listener](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_listener)
-* [ ] [flexibleengine_vpc_route_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_route_v2)
-* [ ] [flexibleengine_elb_backend](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_backend)
-* [ ] [flexibleengine_elb_loadbalancer](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_loadbalancer)
-* [ ] [flexibleengine_lb_certificate_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_certificate_v2)
 
 
 ### Cloud Container Engine (CCE) (100.0%)
@@ -485,5 +469,22 @@ Last update: Dim 11 déc 2022 13:08:19 CET
 #### Implemented (1) -- Not implemented (0)
 
 * [x] [flexibleengine_images_image_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/images_image_v2)
+
+
+---------------------------------------
+## Deprecated
+
+
+
+* [ ] [flexibleengine_drs_replication_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_replication_v2)
+* [ ] [flexibleengine_networking_router_route_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_route_v2)
+* [ ] [flexibleengine_rds_instance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_instance_v1)
+* [ ] [flexibleengine_drs_replicationconsistencygroup_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_replicationconsistencygroup_v2)
+* [ ] [flexibleengine_elb_health](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_health)
+* [ ] [flexibleengine_elb_listener](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_listener)
+* [ ] [flexibleengine_vpc_route_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_route_v2)
+* [ ] [flexibleengine_elb_backend](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_backend)
+* [ ] [flexibleengine_elb_loadbalancer](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/elb_loadbalancer)
+* [ ] [flexibleengine_lb_certificate_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_certificate_v2)
 
 
