@@ -17,6 +17,14 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Distributed Cache Service (DCS)
+	*/
+
+	// flexibleengine_dcs_instance_v1 Imported using the Id
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dcs_instance_v1
+	"flexibleengine_dcs_instance_v1": config.IdentifierFromProvider,
+
+	/*
 		> API Gateway Dedicated (AGD)
 	*/
 

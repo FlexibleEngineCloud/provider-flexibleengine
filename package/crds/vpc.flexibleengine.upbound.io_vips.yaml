@@ -153,7 +153,8 @@ spec:
                       Changing this creates a new vip.
                     type: string
                   subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
+                    description: Reference to a NetworkingSubnet in vpc to populate
+                      subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -187,7 +188,8 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
+                    description: Selector for a NetworkingSubnet in vpc to populate
+                      subnetId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

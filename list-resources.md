@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 16:01:39 CET
+Last update: Dim 11 déc 2022 16:41:30 CET
 
 
-## Resources implemented: 110/178 (61.8%)
+## Resources implemented: 111/178 (62.36%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -449,11 +449,11 @@ Last update: Dim 11 déc 2022 16:01:39 CET
 * [ ] [flexibleengine_drs_job](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/drs_job)
 
 
-### Distributed Cache Service (DCS) (0.0%)
+### Distributed Cache Service (DCS) (100.0%)
 
-#### Implemented (0) -- Not implemented (1)
+#### Implemented (1) -- Not implemented (0)
 
-* [ ] [flexibleengine_dcs_instance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dcs_instance_v1)
+* [x] [flexibleengine_dcs_instance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dcs_instance_v1)
 
 
 ### API Gateway (100.0%)

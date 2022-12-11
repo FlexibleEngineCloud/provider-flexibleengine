@@ -29,6 +29,7 @@ import (
 	node "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/pvc"
+	instancedcs "github.com/gaetanars/provider-flexibleengine/internal/controller/dcs/instance"
 	databaserole "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/databaseuser"
 	instancedds "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/instance"
@@ -143,6 +144,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		node.Setup,
 		nodepool.Setup,
 		pvc.Setup,
+		instancedcs.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
 		instancedds.Setup,

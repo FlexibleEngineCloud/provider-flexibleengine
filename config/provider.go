@@ -7,6 +7,7 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/ag"
 	"github.com/gaetanars/provider-flexibleengine/config/agd"
 	"github.com/gaetanars/provider-flexibleengine/config/bms"
+	"github.com/gaetanars/provider-flexibleengine/config/dcs"
 	"github.com/gaetanars/provider-flexibleengine/config/dds"
 	"github.com/gaetanars/provider-flexibleengine/config/dedicatedelb"
 	"github.com/gaetanars/provider-flexibleengine/config/ecs"
@@ -56,6 +57,7 @@ func GetProvider() *ujconfig.Provider {
 		ag.Configure,
 		agd.Configure,
 		bms.Configure,
+		dcs.Configure,
 		dds.Configure,
 		swr.Configure,
 		waf.Configure,
