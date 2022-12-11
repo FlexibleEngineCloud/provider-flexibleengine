@@ -16,6 +16,9 @@ import (
 	node "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/gaetanars/provider-flexibleengine/internal/controller/cce/pvc"
+	databaserole "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/databaserole"
+	databaseuser "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/databaseuser"
+	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/dds/instance"
 	certificate "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/certificate"
 	ipgroup "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/ipgroup"
 	listener "github.com/gaetanars/provider-flexibleengine/internal/controller/dedicatedelb/listener"
@@ -26,7 +29,7 @@ import (
 	recordset "github.com/gaetanars/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/gaetanars/provider-flexibleengine/internal/controller/dns/zone"
 	floatingipassociate "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
-	instance "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
+	instanceecs "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/instance"
 	interfaceattach "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/interfaceattach"
 	keypair "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/keypair"
 	servergroup "github.com/gaetanars/provider-flexibleengine/internal/controller/ecs/servergroup"
@@ -111,6 +114,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		node.Setup,
 		nodepool.Setup,
 		pvc.Setup,
+		databaserole.Setup,
+		databaseuser.Setup,
+		instance.Setup,
 		certificate.Setup,
 		ipgroup.Setup,
 		listener.Setup,
@@ -121,7 +127,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		recordset.Setup,
 		zone.Setup,
 		floatingipassociate.Setup,
-		instance.Setup,
+		instanceecs.Setup,
 		interfaceattach.Setup,
 		keypair.Setup,
 		servergroup.Setup,

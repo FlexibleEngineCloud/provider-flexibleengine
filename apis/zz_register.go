@@ -12,6 +12,7 @@ import (
 
 	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/bms/v1beta1"
 	v1beta1cce "github.com/gaetanars/provider-flexibleengine/apis/cce/v1beta1"
+	v1beta1dds "github.com/gaetanars/provider-flexibleengine/apis/dds/v1beta1"
 	v1beta1dedicatedelb "github.com/gaetanars/provider-flexibleengine/apis/dedicatedelb/v1beta1"
 	v1beta1dns "github.com/gaetanars/provider-flexibleengine/apis/dns/v1beta1"
 	v1beta1ecs "github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1"
@@ -36,6 +37,7 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1beta1cce.SchemeBuilder.AddToScheme,
+		v1beta1dds.SchemeBuilder.AddToScheme,
 		v1beta1dedicatedelb.SchemeBuilder.AddToScheme,
 		v1beta1dns.SchemeBuilder.AddToScheme,
 		v1beta1ecs.SchemeBuilder.AddToScheme,

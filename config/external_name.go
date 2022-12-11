@@ -17,6 +17,25 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Document Database Service (DDS)
+		flexibleengine_dds_instance_v3
+		flexibleengine_dds_database_user
+		flexibleengine_dds_database_role
+	*/
+
+	// flexibleengine_dds_instance_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_instance_v3
+	"flexibleengine_dds_instance_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_dds_database_user - Imported using the Template (instance-id/db-name/username)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_user
+	"flexibleengine_dds_database_user": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.db_name }}/{{ .external_name }}"),
+
+	// flexibleengine_dds_database_role - Imported using the Template (instance-id/db-name/role-name)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_role
+	"flexibleengine_dds_database_role": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.db_name }}/{{ .external_name }}"),
+
+	/*
 		> Software Repository for Container (SWR)
 	*/
 

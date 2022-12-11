@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 12:15:31 CET
+Last update: Dim 11 déc 2022 12:54:53 CET
 
 
-## Resources implemented: 91/188 (48.4%)
+## Resources implemented: 94/188 (50.0%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -62,13 +62,13 @@ Last update: Dim 11 déc 2022 12:15:31 CET
 * [x] [flexibleengine_waf_rule_blacklist](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/waf_rule_blacklist)
 
 
-### Document Database Service (DDS) (0.0%)
+### Document Database Service (DDS) (100.0%)
 
-#### Implemented (0) -- Not implemented (3)
+#### Implemented (3) -- Not implemented (0)
 
-* [ ] [flexibleengine_dds_database_role](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_role)
-* [ ] [flexibleengine_dds_instance_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_instance_v3)
-* [ ] [flexibleengine_dds_database_user](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_user)
+* [x] [flexibleengine_dds_database_role](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_role)
+* [x] [flexibleengine_dds_instance_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_instance_v3)
+* [x] [flexibleengine_dds_database_user](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_user)
 
 
 ### Cloud Eye (CES) (0.0%)
