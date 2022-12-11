@@ -375,7 +375,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_vpcep_approval": config.IdentifierFromProvider,
 
 	/*
-<<<<<<< HEAD
 		> Object Storage Service (OSS)
 	*/
 
@@ -402,8 +401,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_s3_bucket_policy - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_policy
 	"flexibleengine_s3_bucket_policy": config.IdentifierFromProvider,
-=======
-		> NAT Gateway (NAT)
+
+	/*
+	  > NAT Gateway (NAT)
 	*/
 
 	// flexibleengine_nat_gateway_v2 - Imported using the ID
@@ -414,7 +414,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2
 	"flexibleengine_nat_dnat_rule_v2": config.IdentifierFromProvider,
 	"flexibleengine_nat_snat_rule_v2": config.IdentifierFromProvider,
->>>>>>> 2610e0c (Add nat)
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

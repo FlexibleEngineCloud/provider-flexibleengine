@@ -11,15 +11,12 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/elb"
 	"github.com/gaetanars/provider-flexibleengine/config/evs"
 	"github.com/gaetanars/provider-flexibleengine/config/iam"
-<<<<<<< HEAD
 	"github.com/gaetanars/provider-flexibleengine/config/ims"
 	"github.com/gaetanars/provider-flexibleengine/config/kms"
+	"github.com/gaetanars/provider-flexibleengine/config/nat"
 	"github.com/gaetanars/provider-flexibleengine/config/oss"
 	"github.com/gaetanars/provider-flexibleengine/config/swr"
 	"github.com/gaetanars/provider-flexibleengine/config/vbs"
-=======
-	"github.com/gaetanars/provider-flexibleengine/config/nat"
->>>>>>> 2610e0c (Add nat)
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
 	"github.com/gaetanars/provider-flexibleengine/config/vpcep"
 	"github.com/gaetanars/provider-flexibleengine/config/waf"
@@ -66,11 +63,8 @@ func GetProvider() *ujconfig.Provider {
 		kms.Configure,
 		vpc.Configure,
 		vpcep.Configure,
-<<<<<<< HEAD
 		oss.Configure,
-=======
 		nat.Configure,
->>>>>>> 2610e0c (Add nat)
 	} {
 		configure(pc)
 	}
