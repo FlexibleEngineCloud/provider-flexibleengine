@@ -17,6 +17,34 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Relational Database Service (RDS)
+	*/
+
+	// flexibleengine_rds_instance_v3 - Imported using the Instance ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_instance_v3
+	"flexibleengine_rds_instance_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_rds_account - Imported using the Template (instance_id/username)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_account
+	"flexibleengine_rds_account": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.name }}"),
+
+	// flexibleengine_rds_read_replica_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_read_replica_v3
+	"flexibleengine_rds_read_replica_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_rds_database - Imported using the Template (instance_id/db_name)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_database
+	"flexibleengine_rds_database": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.name }}"),
+
+	// flexibleengine_rds_parametergroup_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_parametergroup_v3
+	"flexibleengine_rds_parametergroup_v3": config.IdentifierFromProvider,
+
+	// flexibleengine_rds_database_privilege - Imported using the Template (instance_id/db_name)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_database_privilege
+	"flexibleengine_rds_database_privilege": TemplatedStringAsIdentifierWithNoName("{{ .parameters.instance_id }}/{{ .parameters.db_name }}"),
+
+	/*
 		> AI Development Platform (ModelArts)
 	*/
 

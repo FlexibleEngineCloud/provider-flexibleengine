@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: snatrules.nat.flexibleengine.upbound.io
+  name: instances.rds.flexibleengine.upbound.io
 spec:
-  group: nat.flexibleengine.upbound.io
+  group: rds.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: SnatRule
-    listKind: SnatRuleList
-    plural: snatrules
-    singular: snatrule
+    kind: Instance
+    listKind: InstanceList
+    plural: instances
+    singular: instance
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'SnatRule is the Schema for the SnatRules API. ""page_title:
-          "flexibleengine_nat_snat_rule_v2"'
+        description: 'Instance is the Schema for the Instances API. ""page_title:
+          "flexibleengine_rds_instance_v3"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SnatRuleSpec defines the desired state of SnatRule
+            description: InstanceSpec defines the desired state of Instance
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,170 +64,133 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  cidr:
-                    description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                  autoPay:
                     type: string
-                  floatingIpId:
-                    description: ID of the floating ip this snat rule connets to.
-                      Changing this creates a new snat rule.
+                  autoRenew:
                     type: string
-                  floatingIpIdRef:
-                    description: Reference to a EIP in eip to populate floatingIpId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  floatingIpIdSelector:
-                    description: Selector for a EIP in eip to populate floatingIpId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                  availabilityZone:
+                    description: Specifies the list of AZ name. Changing this parameter
+                      will create a new resource.
+                    items:
+                      type: string
+                    type: array
+                  backupStrategy:
+                    description: Specifies the advanced backup policy. Structure is
+                      documented below.
+                    items:
+                      properties:
+                        keepDays:
+                          description: Specifies the retention days for specific backup
+                            files. The value range is from 0 to 732. If this parameter
+                            is not specified or set to 0, the automated backup policy
+                            is disabled.
+                          type: number
+                        startTime:
+                          description: 'Specifies the backup time window. Automated
+                            backups will be triggered during the backup time window.
+                            It must be a valid value in the hh:mm-HH:MM format. The
+                            current time is in the UTC format. The HH value must be
+                            1 greater than the hh value. The values of mm and MM must
+                            be the same and must be set to any of the following: 00,
+                            15, 30, or 45. Example value: 08:15-09:15 23:00-00: 00.'
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  natGatewayId:
-                    description: ID of the nat gateway this snat rule belongs to.
-                      Changing this creates a new snat rule.
+                      required:
+                      - startTime
+                      type: object
+                    type: array
+                  chargingMode:
                     type: string
-                  natGatewayIdRef:
-                    description: Reference to a Gateway to populate natGatewayId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  natGatewayIdSelector:
-                    description: Selector for a Gateway to populate natGatewayId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                  collation:
+                    type: string
+                  db:
+                    description: Specifies the database information. Structure is
+                      documented below. Changing this parameter will create a new
+                      resource.
+                    items:
+                      properties:
+                        passwordSecretRef:
+                          description: 'Specifies the database password. The value
+                            cannot be empty and should contain 8 to 32 characters,
+                            including uppercase and lowercase letters, digits, and
+                            the following special characters: ~!@#%^*-_=+? You are
+                            advised to enter a strong password to improve security,
+                            preventing security risks such as brute force cracking.  Changing
+                            this parameter will create a new resource.'
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                        port:
+                          description: Specifies the database port.
+                          type: number
+                        type:
+                          description: Specifies the DB engine. Available value are
+                            MySQL, PostgreSQL and SQLServer. Changing this parameter
+                            will create a new resource.
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  networkId:
+                        version:
+                          description: 'Specifies the database version. MySQL databases
+                            support MySQL 5.6 and 5.7, example values: "5.6", "5.7".
+                            PostgreSQL databases support PostgreSQL 9.5, 9.6, 10 and
+                            11, example values: "9.5", "9.6", "10", "11". Microsoft
+                            SQL Server databases support 2014 SE and 2014 EE, example
+                            values: "2014_SE", "2014_EE". Changing this parameter
+                            will create a new resource.'
+                          type: string
+                      required:
+                      - passwordSecretRef
+                      - type
+                      - version
+                      type: object
+                    type: array
+                  enterpriseProjectId:
                     description: The resource ID in UUID format.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  fixedIp:
+                    description: Specifies an intranet IP address of RDS DB instance.
+                      Changing this parameter will create a new resource.
+                    type: string
+                  flavor:
+                    description: Specifies the specification code.
+                    type: string
+                  haReplicationMode:
+                    description: Specifies the replication mode for the standby DB
+                      instance. Changing this parameter will create a new resource.
+                    type: string
+                  name:
+                    description: Specifies the DB instance name. The DB instance name
+                      of the same type must be unique for the same tenant. The value
+                      must be 4 to 64 characters in length and start with a letter.
+                      It is case-sensitive and can contain only letters, digits, hyphens
+                      (-), and underscores (_).
+                    type: string
+                  paramGroupId:
+                    description: Specifies the parameter group ID. Changing this parameter
+                      will create a new resource.
+                    type: string
+                  period:
+                    type: number
+                  periodUnit:
+                    type: string
+                  region:
+                    type: string
+                  securityGroupId:
+                    description: Specifies the security group which the RDS DB instance
+                      belongs to.
+                    type: string
+                  securityGroupIdRef:
+                    description: Reference to a SecGroup in vpc to populate securityGroupId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -260,8 +223,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  securityGroupIdSelector:
+                    description: Selector for a SecGroup in vpc to populate securityGroupId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -299,22 +262,12 @@ spec:
                             type: string
                         type: object
                     type: object
-                  region:
-                    description: The region in which to obtain the V2 nat client.
-                      If omitted, the region argument of the provider is used. Changing
-                      this creates a new snat rule.
-                    type: string
-                  sourceType:
-                    description: Specifies the scenario. The valid value is 0 (VPC
-                      scenario) and 1 (Direct Connect scenario). Only cidr can be
-                      specified over a Direct Connect connection. If no value is entered,
-                      the default value 0 (VPC scenario) is used. Changing this creates
-                      a new snat rule.
-                    type: number
+                  sslEnable:
+                    description: Specifies whether to enable the SSL for MySQL database.
+                    type: boolean
                   subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
+                    description: Specifies the network ID of a subnet. Changing this
+                      parameter will create a new resource.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.
@@ -389,6 +342,198 @@ spec:
                             type: string
                         type: object
                     type: object
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: A mapping of tags to assign to the RDS instance.
+                      Each tag is represented by one key-value pair.
+                    type: object
+                  timeZone:
+                    description: Specifies the UTC time zone. The value ranges from
+                      UTC-12:00 to UTC+12:00 at the full hour, and defaults to UTC.
+                    type: string
+                  volume:
+                    description: Specifies the volume information. Structure is documented
+                      below.
+                    items:
+                      properties:
+                        diskEncryptionId:
+                          description: Specifies the key ID for disk encryption. Changing
+                            this parameter will create a new resource.
+                          type: string
+                        diskEncryptionIdRef:
+                          description: Reference to a Key in kms to populate diskEncryptionId.
+                          properties:
+                            name:
+                              description: Name of the referenced object.
+                              type: string
+                            policy:
+                              description: Policies for referencing.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          required:
+                          - name
+                          type: object
+                        diskEncryptionIdSelector:
+                          description: Selector for a Key in kms to populate diskEncryptionId.
+                          properties:
+                            matchControllerRef:
+                              description: MatchControllerRef ensures an object with
+                                the same controller reference as the selecting object
+                                is selected.
+                              type: boolean
+                            matchLabels:
+                              additionalProperties:
+                                type: string
+                              description: MatchLabels ensures an object with matching
+                                labels is selected.
+                              type: object
+                            policy:
+                              description: Policies for selection.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          type: object
+                        size:
+                          description: Specifies the volume size. Its value range
+                            is from 40 GB to 4000 GB. The value must be a multiple
+                            of 10 and greater than the original size.
+                          type: number
+                        type:
+                          description: 'Specifies the volume type. Its value can be
+                            any of the following and is case-sensitive:'
+                          type: string
+                      required:
+                      - size
+                      - type
+                      type: object
+                    type: array
+                  vpcId:
+                    description: Specifies the VPC ID. Changing this parameter will
+                      create a new resource.
+                    type: string
+                  vpcIdRef:
+                    description: Reference to a VPC in vpc to populate vpcId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  vpcIdSelector:
+                    description: Selector for a VPC in vpc to populate vpcId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                required:
+                - availabilityZone
+                - db
+                - flavor
+                - name
+                - volume
                 type: object
               providerConfigRef:
                 default:
@@ -562,18 +707,64 @@ spec:
             - forProvider
             type: object
           status:
-            description: SnatRuleStatus defines the observed state of SnatRule.
+            description: InstanceStatus defines the observed state of Instance.
             properties:
               atProvider:
                 properties:
-                  floatingIpAddress:
-                    description: The actual floating IP address.
+                  created:
+                    description: Indicates the creation time.
                     type: string
+                  db:
+                    description: Specifies the database information. Structure is
+                      documented below. Changing this parameter will create a new
+                      resource.
+                    items:
+                      properties:
+                        userName:
+                          description: Indicates the default user name of database.
+                          type: string
+                      type: object
+                    type: array
                   id:
                     description: The resource ID in UUID format.
                     type: string
+                  nodes:
+                    description: Indicates the instance nodes information. Structure
+                      is documented below.
+                    items:
+                      properties:
+                        availabilityZone:
+                          description: Indicates the AZ.
+                          type: string
+                        id:
+                          description: Indicates the node ID.
+                          type: string
+                        name:
+                          description: Indicates the node name.
+                          type: string
+                        role:
+                          description: Indicates the node type. The value can be master
+                            or slave, indicating the primary node or standby node
+                            respectively.
+                          type: string
+                        status:
+                          description: Indicates the node status.
+                          type: string
+                      type: object
+                    type: array
+                  privateIps:
+                    description: Indicates the private IP address list. It is a blank
+                      string until an ECS is created.
+                    items:
+                      type: string
+                    type: array
+                  publicIps:
+                    description: Indicates the public IP address list.
+                    items:
+                      type: string
+                    type: array
                   status:
-                    description: The status of the snat rule.
+                    description: Indicates the DB instance status.
                     type: string
                 type: object
               conditions:

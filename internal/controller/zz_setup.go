@@ -84,6 +84,12 @@ import (
 	s3bucketobject "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketobject"
 	s3bucketpolicy "github.com/gaetanars/provider-flexibleengine/internal/controller/oss/s3bucketpolicy"
 	providerconfig "github.com/gaetanars/provider-flexibleengine/internal/controller/providerconfig"
+	account "github.com/gaetanars/provider-flexibleengine/internal/controller/rds/account"
+	database "github.com/gaetanars/provider-flexibleengine/internal/controller/rds/database"
+	databaseprivilege "github.com/gaetanars/provider-flexibleengine/internal/controller/rds/databaseprivilege"
+	instancerds "github.com/gaetanars/provider-flexibleengine/internal/controller/rds/instance"
+	parametergroup "github.com/gaetanars/provider-flexibleengine/internal/controller/rds/parametergroup"
+	readreplica "github.com/gaetanars/provider-flexibleengine/internal/controller/rds/readreplica"
 	organization "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/gaetanars/provider-flexibleengine/internal/controller/swr/repository"
@@ -203,6 +209,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		s3bucketobject.Setup,
 		s3bucketpolicy.Setup,
 		providerconfig.Setup,
+		account.Setup,
+		database.Setup,
+		databaseprivilege.Setup,
+		instancerds.Setup,
+		parametergroup.Setup,
+		readreplica.Setup,
 		organization.Setup,
 		organizationusers.Setup,
 		repository.Setup,

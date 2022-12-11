@@ -22,6 +22,7 @@ import (
 	"github.com/gaetanars/provider-flexibleengine/config/modelarts"
 	"github.com/gaetanars/provider-flexibleengine/config/nat"
 	"github.com/gaetanars/provider-flexibleengine/config/oss"
+	"github.com/gaetanars/provider-flexibleengine/config/rds"
 	"github.com/gaetanars/provider-flexibleengine/config/swr"
 	"github.com/gaetanars/provider-flexibleengine/config/vbs"
 	"github.com/gaetanars/provider-flexibleengine/config/vpc"
@@ -71,6 +72,7 @@ func GetProvider() *ujconfig.Provider {
 		vbs.Configure,
 		elb.Configure,
 		ecs.Configure,
+		rds.Configure,
 		eip.Configure,
 		iam.Configure,
 		ims.Configure,

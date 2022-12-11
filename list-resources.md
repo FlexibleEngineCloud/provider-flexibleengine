@@ -1,9 +1,9 @@
 # Resources
 
-Last update: Dim 11 déc 2022 17:08:07 CET
+Last update: Dim 11 déc 2022 17:26:17 CET
 
 
-## Resources implemented: 115/178 (64.61%)
+## Resources implemented: 121/178 (67.98%)
 
 ### Software Repository for Container (SWR) (100.0%)
 
@@ -359,16 +359,16 @@ Last update: Dim 11 déc 2022 17:08:07 CET
 * [ ] [flexibleengine_cts_tracker_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cts_tracker_v1)
 
 
-### Relational Database Service (RDS) (0.0%)
+### Relational Database Service (RDS) (100.0%)
 
-#### Implemented (0) -- Not implemented (6)
+#### Implemented (6) -- Not implemented (0)
 
-* [ ] [flexibleengine_rds_account](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_account)
-* [ ] [flexibleengine_rds_read_replica_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_read_replica_v3)
-* [ ] [flexibleengine_rds_database](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_database)
-* [ ] [flexibleengine_rds_parametergroup_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_parametergroup_v3)
-* [ ] [flexibleengine_rds_instance_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_instance_v3)
-* [ ] [flexibleengine_rds_database_privilege](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_database_privilege)
+* [x] [flexibleengine_rds_account](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_account)
+* [x] [flexibleengine_rds_read_replica_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_read_replica_v3)
+* [x] [flexibleengine_rds_database](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_database)
+* [x] [flexibleengine_rds_parametergroup_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_parametergroup_v3)
+* [x] [flexibleengine_rds_instance_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_instance_v3)
+* [x] [flexibleengine_rds_database_privilege](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rds_database_privilege)
 
 
 ### Elastic Load Balance (Dedicated ELB) (100.0%)

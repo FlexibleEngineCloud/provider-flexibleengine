@@ -30,6 +30,7 @@ import (
 	v1beta1modelarts "github.com/gaetanars/provider-flexibleengine/apis/modelarts/v1beta1"
 	v1beta1nat "github.com/gaetanars/provider-flexibleengine/apis/nat/v1beta1"
 	v1beta1oss "github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1"
+	v1beta1rds "github.com/gaetanars/provider-flexibleengine/apis/rds/v1beta1"
 	v1beta1swr "github.com/gaetanars/provider-flexibleengine/apis/swr/v1beta1"
 	v1alpha1 "github.com/gaetanars/provider-flexibleengine/apis/v1alpha1"
 	v1beta1apis "github.com/gaetanars/provider-flexibleengine/apis/v1beta1"
@@ -62,6 +63,7 @@ func init() {
 		v1beta1modelarts.SchemeBuilder.AddToScheme,
 		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1beta1oss.SchemeBuilder.AddToScheme,
+		v1beta1rds.SchemeBuilder.AddToScheme,
 		v1beta1swr.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1beta1apis.SchemeBuilder.AddToScheme,
