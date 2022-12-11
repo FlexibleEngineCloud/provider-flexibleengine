@@ -85,11 +85,3 @@ for group in linesImplementedPrint:
     for line in linesNotImplementedPrint[group]:
         print(line)
     print('\n')
-
-# print('\n## Resources not implemented (' + str(countNotImplemented) + ')\n')
-# # Print resources not implemented by group
-# for group in linesNotImplementedPrint:
-#     print('### ' + group + '\n')
-#     for line in linesNotImplementedPrint[group]:
-#         print(line)
-#     print('\n')

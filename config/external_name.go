@@ -18,9 +18,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
 		> Document Database Service (DDS)
-		flexibleengine_dds_instance_v3
-		flexibleengine_dds_database_user
-		flexibleengine_dds_database_role
 	*/
 
 	// flexibleengine_dds_instance_v3 - Imported using the ID
