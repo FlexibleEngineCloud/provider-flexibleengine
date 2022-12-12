@@ -1,0 +1,23 @@
+apiVersion: as.flexibleengine.upbound.io/v1beta1
+kind: Configuration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: as/v1beta1/configuration
+  labels:
+    testing.upbound.io/example-name: my_as_config
+  name: my-as-config
+spec:
+  forProvider:
+    instanceConfig:
+    - disk:
+      - diskType: SYS
+        size: 40
+        volumeType: SATA
+      flavor: ${var.flavor}
+      image: ${var.image_id}
+      keyName: ${var.keyname}
+      userData: ${file("userdata.txt")}
+    scalingConfigurationName: my_as_config
+
+---
+

@@ -1,0 +1,33 @@
+apiVersion: as.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: as/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: my_as_group
+  name: my-as-group
+spec:
+  forProvider:
+    deleteInstances: "yes"
+    deletePublicip: true
+    desireInstanceNumber: 2
+    maxInstanceNumber: 10
+    minInstanceNumber: 0
+    networks:
+    - idSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+    scalingConfigurationIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    scalingGroupName: my_as_group
+    securityGroups:
+    - idSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

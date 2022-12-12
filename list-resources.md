@@ -1,8 +1,8 @@
 # Resources
 
-Last update: lun. 12 déc. 2022 17:12:49 CET
+Last update: lun. 12 déc. 2022 17:40:43 CET
 
-## Resources implemented: 145/178 (81.46%)
+## Resources implemented: 149/178 (83.71%)
 ### Identity and Access Management (IAM) (100.0%)
 #### Implemented (9/9)
 * [x] [flexibleengine_identity_role_assignment_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_role_assignment_v3)
@@ -161,12 +161,12 @@ Last update: lun. 12 déc. 2022 17:12:49 CET
 #### Implemented (1/1)
 * [x] [flexibleengine_blockstorage_volume_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/blockstorage_volume_v2)
 
-### Auto Scaling (AS) (0.0%)
-#### Implemented (0/4)
-* [ ] [flexibleengine_as_lifecycle_hook_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_lifecycle_hook_v1)
-* [ ] [flexibleengine_as_configuration_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_configuration_v1)
-* [ ] [flexibleengine_as_policy_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_policy_v1)
-* [ ] [flexibleengine_as_group_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_group_v1)
+### Auto Scaling (AS) (100.0%)
+#### Implemented (4/4)
+* [x] [flexibleengine_as_lifecycle_hook_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_lifecycle_hook_v1)
+* [x] [flexibleengine_as_configuration_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_configuration_v1)
+* [x] [flexibleengine_as_policy_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_policy_v1)
+* [x] [flexibleengine_as_group_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_group_v1)
 
 ### Log Tank Service (LTS) (100.0%)
 #### Implemented (2/2)

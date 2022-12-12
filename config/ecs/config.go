@@ -32,6 +32,9 @@ func Configure(p *config.Provider) {
 		r.References["scheduler_hints.group"] = config.Reference{
 			Type: "ServerGroup",
 		}
+		r.References["image_id"] = config.Reference{
+			Type: tools.GenerateType("ims", "Image"),
+		}
 	})
 
 	// flexibleengine_compute_keypair_v2

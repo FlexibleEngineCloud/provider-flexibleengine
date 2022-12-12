@@ -6,6 +6,7 @@ import (
 
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ag"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/agd"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/as"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/bms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
@@ -62,6 +63,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		dedicatedelb.Configure,
+		as.Configure,
 		ag.Configure,
 		agd.Configure,
 		bms.Configure,

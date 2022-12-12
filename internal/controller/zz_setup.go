@@ -22,8 +22,12 @@ import (
 	throttlingpolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/agd/throttlingpolicy"
 	throttlingpolicyassociate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/agd/throttlingpolicyassociate"
 	vpcchannel "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/agd/vpcchannel"
+	configuration "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/configuration"
+	groupas "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/group"
+	lifecyclehook "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/lifecyclehook"
+	policy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/policy"
 	server "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/bms/server"
-	policy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/policy"
+	policycbr "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/policy"
 	vault "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/vault"
 	addon "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/addon"
 	cluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/cluster"
@@ -171,8 +175,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		throttlingpolicy.Setup,
 		throttlingpolicyassociate.Setup,
 		vpcchannel.Setup,
-		server.Setup,
+		configuration.Setup,
+		groupas.Setup,
+		lifecyclehook.Setup,
 		policy.Setup,
+		server.Setup,
+		policycbr.Setup,
 		vault.Setup,
 		addon.Setup,
 		cluster.Setup,
