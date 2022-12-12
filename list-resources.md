@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 20:17:16 CET
+Last update: Lun 12 déc 2022 20:51:52 CET
 
-## Resources implemented: 169/178 (94.94%)
+## Resources implemented: 172/178 (96.63%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -158,11 +158,11 @@ Last update: Lun 12 déc 2022 20:17:16 CET
 #### Implemented (0/1)
 * [ ] [flexibleengine_antiddos_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/antiddos_v1)
 
-### Cloud Service Engine (CSE) (0.0%)
-#### Implemented (0/3)
-* [ ] [flexibleengine_cse_microservice_engine](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_engine)
-* [ ] [flexibleengine_cse_microservice](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice)
-* [ ] [flexibleengine_cse_microservice_instance](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_instance)
+### Cloud Service Engine (CSE) (100.0%)
+#### Implemented (3/3)
+* [x] [flexibleengine_cse_microservice_engine](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_engine)
+* [x] [flexibleengine_cse_microservice](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice)
+* [x] [flexibleengine_cse_microservice_instance](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_instance)
 
 ### Data Lake Insight (DLI) (100.0%)
 #### Implemented (6/6)
