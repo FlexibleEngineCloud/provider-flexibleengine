@@ -1,0 +1,21 @@
+apiVersion: mrs.flexibleengine.upbound.io/v1beta1
+kind: MrsJob
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mrs/v1beta1/mrsjob
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    clusterId: ${var.cluster_id}
+    name: ${var.job_name}
+    parameters: ${var.access_key} ${var.secret_key} 1 s3a://obs-demo-analysis/input
+      s3a://obs-demo-analysis/output
+    programParameters:
+      --class: com.orange.bigdata.spark.examples.DriverBehavior
+    programPath: ${var.program_path}
+    type: SparkSubmit
+
+---
+

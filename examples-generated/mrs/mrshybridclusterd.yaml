@@ -1,0 +1,84 @@
+apiVersion: mrs.flexibleengine.upbound.io/v1beta1
+kind: MrsHybridClusterD
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mrs/v1beta1/mrshybridclusterd
+  labels:
+    testing.upbound.io/example-name: cluster1
+  name: cluster1
+spec:
+  forProvider:
+    analysisCoreNodes:
+    - dataVolumeCount: 1
+      dataVolumeSize: 100
+      dataVolumeType: SATA
+      flavor: s3.xlarge.4.linux.mrs
+      nodeNumber: 1
+    availableZone: eu-west-0a
+    clusterAdminSecretSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    clusterName: mrs-hybrid-cluster-acc
+    clusterVersion: MRS 2.0.1
+    componentList:
+    - Hadoop
+    - Storm
+    - Spark
+    - Hive
+    masterNodeKeyPair: KeyPair-ci
+    masterNodes:
+    - dataVolumeCount: 1
+      dataVolumeSize: 100
+      dataVolumeType: SATA
+      flavor: s3.2xlarge.4.linux.mrs
+      nodeNumber: 1
+    streamingCoreNodes:
+    - dataVolumeCount: 1
+      dataVolumeSize: 100
+      dataVolumeType: SATA
+      flavor: s3.xlarge.4.linux.mrs
+      nodeNumber: 1
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet_1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mrs/v1beta1/mrshybridclusterd
+  labels:
+    testing.upbound.io/example-name: subnet_1
+  name: subnet-1
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: flexibleengine_subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mrs/v1beta1/mrshybridclusterd
+  labels:
+    testing.upbound.io/example-name: vpc_1
+  name: vpc-1
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: terraform_provider_vpc
+
+---
+

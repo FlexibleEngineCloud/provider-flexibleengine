@@ -1,0 +1,755 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: mrsclusterds.mrs.flexibleengine.upbound.io
+spec:
+  group: mrs.flexibleengine.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - flexibleengine
+    kind: MrsClusterD
+    listKind: MrsClusterDList
+    plural: mrsclusterds
+    singular: mrsclusterd
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: 'MrsClusterD is the Schema for the MrsClusterDs API. ""page_title:
+          "flexibleengine_mrs_cluster_v1"'
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: MrsClusterDSpec defines the desired state of MrsClusterD
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  addJobs:
+                    description: You can submit a job when you create a cluster to
+                      save time and use MRS easily. Only one job can be added. The
+                      object structure is documented below.
+                    items:
+                      properties:
+                        arguments:
+                          description: Key parameter for program execution The parameter
+                            is specified by the function of the user's program. MRS
+                            is only responsible for loading the parameter. The parameter
+                            contains a maximum of 2047 characters, excluding special
+                            characters such as ;|&>'<$, and can be empty.
+                          type: string
+                        fileAction:
+                          description: Data import and export import export
+                          type: string
+                        hiveScriptPath:
+                          description: 'SQL program path This parameter is needed
+                            by Spark Script and Hive Script jobs only and must meet
+                            the following requirements: Contains a maximum of 1023
+                            characters, excluding special characters such as ;|&><''$.
+                            The address cannot be empty or full of spaces. Starts
+                            with / or s3a://. Ends with .sql. sql is case-insensitive.'
+                          type: string
+                        hql:
+                          description: HiveQL statement
+                          type: string
+                        input:
+                          description: Path for inputting data, which must start with
+                            / or s3a://. A correct OBS path is required. The parameter
+                            contains a maximum of 1023 characters, excluding special
+                            characters such as ;|&>'<$, and can be empty.
+                          type: string
+                        jarPath:
+                          description: 'Path of the .jar file or .sql file for program
+                            execution The parameter must meet the following requirements:
+                            Contains a maximum of 1023 characters, excluding special
+                            characters such as ;|&><''$. The address cannot be empty
+                            or full of spaces. Starts with / or s3a://. Spark Script
+                            must end with .sql; while MapReduce and Spark Jar must
+                            end with .jar. sql and jar are case-insensitive.'
+                          type: string
+                        jobLog:
+                          description: Path for storing job logs that record job running
+                            status. This path must start with / or s3a://. A correct
+                            OBS path is required. The parameter contains a maximum
+                            of 1023 characters, excluding special characters such
+                            as ;|&>'<$, and can be empty.
+                          type: string
+                        jobName:
+                          description: 'Job name It contains only 1 to 64 letters,
+                            digits, hyphens (-), and underscores (_). NOTE: Identical
+                            job names are allowed but not recommended.'
+                          type: string
+                        jobType:
+                          description: 'Job type 1: MapReduce 2: Spark 3: Hive Script
+                            4: HiveQL (not supported currently) 5: DistCp, importing
+                            and exporting data (not supported in this API currently).
+                            6: Spark Script 7: Spark SQL, submitting Spark SQL statements
+                            (not supported in this API currently). NOTE: Spark and
+                            Hive jobs can be added to only clusters including Spark
+                            and Hive components.'
+                          type: number
+                        output:
+                          description: Path for outputting data, which must start
+                            with / or s3a://. A correct OBS path is required. If the
+                            path does not exist, the system automatically creates
+                            it. The parameter contains a maximum of 1023 characters,
+                            excluding special characters such as ;|&>'<$, and can
+                            be empty.
+                          type: string
+                        shutdownCluster:
+                          description: 'Whether to delete the cluster after the jobs
+                            are complete true: Yes false: No'
+                          type: boolean
+                        submitJobOnceClusterRun:
+                          description: 'true: A job is submitted when a cluster is
+                            created. false: A job is submitted separately. The parameter
+                            is set to true in this example.'
+                          type: boolean
+                      required:
+                      - jarPath
+                      - jobName
+                      - jobType
+                      - submitJobOnceClusterRun
+                      type: object
+                    type: array
+                  availableZoneId:
+                    description: ID or Name of an available zone. Obtain the value
+                      from Regions and Endpoints.
+                    type: string
+                  billingType:
+                    type: number
+                  clusterAdminSecretSecretRef:
+                    description: Indicates the password of the MRS Manager administrator.
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
+                  clusterName:
+                    description: Cluster name, which is globally unique and contains
+                      only 1 to 64 letters, digits, hyphens (-), and underscores (_).
+                    type: string
+                  clusterType:
+                    description: 'Type of clusters. 0: analysis cluster; 1: streaming
+                      cluster. The default value is 0.'
+                    type: number
+                  clusterVersion:
+                    description: 'Version of the clusters. Possible values are as
+                      follows: MRS 1.8.9, MRS 2.0.1, MRS 2.1.0 and MRS 3.1.0-LTS.1.
+                      The latest version of MRS is used by default.'
+                    type: string
+                  componentList:
+                    description: Service component list. The object structure is documented
+                      below.
+                    items:
+                      properties:
+                        componentName:
+                          description: the Component name.
+                          type: string
+                      required:
+                      - componentName
+                      type: object
+                    type: array
+                  coreNodeNum:
+                    description: 'Number of Core nodes Value range: 3 to 500. A maximum
+                      of 500 Core nodes are supported by default. If more than 500
+                      Core nodes are required, contact technical support engineers
+                      or invoke background APIs to modify the database.'
+                    type: number
+                  coreNodeSize:
+                    description: Instance specification of a Core node Configuration
+                      method of this parameter is identical to that of master_node_size.
+                    type: string
+                  logCollection:
+                    description: 'Indicates whether logs are collected when cluster
+                      installation fails. 0: not collected 1: collected The default
+                      value is 0. If log_collection is set to 1, OBS buckets will
+                      be created to collect the MRS logs. These buckets will be charged.'
+                    type: number
+                  masterNodeNum:
+                    description: Number of Master nodes The value is 2.
+                    type: number
+                  masterNodeSize:
+                    description: Best match based on several years of commissioning
+                      experience. MRS supports specifications of hosts, and host specifications
+                      are determined by CPUs, memory, and disks space.
+                    type: string
+                  nodePublicCertName:
+                    description: Name of a key pair You can use a key to log in to
+                      the Master node in the cluster.
+                    type: string
+                  region:
+                    description: Cluster region information. Obtain the value from
+                      Regions and Endpoints.
+                    type: string
+                  safeMode:
+                    description: MRS cluster running mode.
+                    type: number
+                  subnetId:
+                    description: 'Subnet ID Obtain the subnet ID from the management
+                      console as follows: Register an account and log in to the management
+                      console. Click Virtual Private Cloud and select Virtual Private
+                      Cloud from the left list. On the Virtual Private Cloud page,
+                      obtain the subnet ID from the list.'
+                    type: string
+                  subnetIdRef:
+                    description: Reference to a VPCSubnet in vpc to populate subnetId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  subnetIdSelector:
+                    description: Selector for a VPCSubnet in vpc to populate subnetId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  volumeSize:
+                    description: 'Data disk storage space of a Core node Users can
+                      add disks to expand storage capacity when creating a cluster.
+                      There are the following scenarios: Separation of data storage
+                      and computing: Data is stored in the OBS system. Costs of clusters
+                      are relatively low but computing performance is poor. The clusters
+                      can be deleted at any time. It is recommended when data computing
+                      is not frequently performed. Integration of data storage and
+                      computing: Data is stored in the HDFS system. Costs of clusters
+                      are relatively high but computing performance is good. The clusters
+                      cannot be deleted in a short term. It is recommended when data
+                      computing is frequently performed. Value range: 100 GB to 32000
+                      GB'
+                    type: number
+                  volumeType:
+                    description: 'Type of disks SATA and SSD are supported. SATA:
+                      common I/O SSD: super high-speed I/O'
+                    type: string
+                  vpcId:
+                    description: 'ID of the VPC where the subnet locates Obtain the
+                      VPC ID from the management console as follows: Register an account
+                      and log in to the management console. Click Virtual Private
+                      Cloud and select Virtual Private Cloud from the left list. On
+                      the Virtual Private Cloud page, obtain the VPC ID from the list.'
+                    type: string
+                  vpcIdRef:
+                    description: Reference to a VPC in vpc to populate vpcId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  vpcIdSelector:
+                    description: Selector for a VPC in vpc to populate vpcId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                required:
+                - availableZoneId
+                - clusterName
+                - componentList
+                - coreNodeNum
+                - coreNodeSize
+                - masterNodeNum
+                - masterNodeSize
+                - nodePublicCertName
+                - safeMode
+                - volumeSize
+                - volumeType
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: MrsClusterDStatus defines the observed state of MrsClusterD.
+            properties:
+              atProvider:
+                properties:
+                  availableZoneName:
+                    description: Name of an availability zone.
+                    type: string
+                  chargingStartTime:
+                    description: Time when charging starts.
+                    type: string
+                  clusterId:
+                    description: Cluster ID.
+                    type: string
+                  clusterState:
+                    description: 'Cluster status. Valid values include: starting,
+                      running, terminated, failed, abnormal, terminating, frozen,
+                      scaling-out and scaling-in.'
+                    type: string
+                  componentList:
+                    description: Service component list. The object structure is documented
+                      below.
+                    items:
+                      properties:
+                        componentDesc:
+                          description: Component description.
+                          type: string
+                        componentId:
+                          description: Component ID. For example, component_id of
+                            Hadoop is MRS 3.1.0-LTS.1_001, MRS 2.1.0_001, MRS 2.0.1_001,
+                            and MRS 1.8.9_001.
+                          type: string
+                        componentVersion:
+                          description: Component version.
+                          type: string
+                      type: object
+                    type: array
+                  coreNodeProductId:
+                    description: Product ID of a Core node.
+                    type: string
+                  coreNodeSpecId:
+                    description: Specification ID of a Core node.
+                    type: string
+                  createAt:
+                    description: Cluster creation time.
+                    type: string
+                  deploymentId:
+                    description: Deployment ID of a cluster.
+                    type: string
+                  duration:
+                    description: Cluster subscription duration.
+                    type: string
+                  errorInfo:
+                    description: Error information.
+                    type: string
+                  externalAlternateIp:
+                    description: Backup external IP address.
+                    type: string
+                  externalIp:
+                    description: External IP address.
+                    type: string
+                  fee:
+                    description: Cluster creation fee, which is automatically calculated.
+                    type: string
+                  hadoopVersion:
+                    description: Hadoop version.
+                    type: string
+                  id:
+                    description: The resource ID in UUID format.
+                    type: string
+                  instanceId:
+                    description: Instance ID.
+                    type: string
+                  internalIp:
+                    type: string
+                  masterNodeIp:
+                    description: IP address of a Master node.
+                    type: string
+                  masterNodeProductId:
+                    description: Product ID of a Master node.
+                    type: string
+                  masterNodeSpecId:
+                    description: Specification ID of a Master node.
+                    type: string
+                  orderId:
+                    description: Order ID for creating clusters.
+                    type: string
+                  privateIpFirst:
+                    description: Primary private IP address.
+                    type: string
+                  remark:
+                    description: Remarks of a cluster.
+                    type: string
+                  securityGroupsId:
+                    description: Security group ID.
+                    type: string
+                  slaveSecurityGroupsId:
+                    description: Standby security group ID.
+                    type: string
+                  tenantId:
+                    description: Project ID.
+                    type: string
+                  updateAt:
+                    description: Cluster update time.
+                    type: string
+                  vnc:
+                    description: URI address for remote login of the elastic cloud
+                      server.
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

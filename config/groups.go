@@ -180,4 +180,9 @@ var KindMap = map[string]string{
 	"flexibleengine_sdrs_protectiongroup_v1":         "ProtectionGroup",
 	"flexibleengine_sdrs_protectedinstance_v1":       "ProtectedInstance",
 	"flexibleengine_ces_alarmrule":                   "AlarmRule",
+	"flexibleengine_mrs_hybrid_cluster_v1":           "MrsHybridClusterD",
+	"flexibleengine_mrs_cluster_v1":                  "MrsClusterD",
+	"flexibleengine_mrs_cluster_v2":                  "MrsCluster",
+	"flexibleengine_mrs_job_v1":                      "MrsJobD",
+	"flexibleengine_mrs_job_v2":                      "MrsJob",
 }

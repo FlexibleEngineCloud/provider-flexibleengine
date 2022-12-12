@@ -92,6 +92,11 @@ import (
 	instancemls "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mls/instance"
 	dataset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/dataset"
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
+	mrscluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrscluster"
+	mrsclusterd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrsclusterd"
+	mrshybridclusterd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrshybridclusterd"
+	mrsjob "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrsjob"
+	mrsjobd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrsjobd"
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
 	gateway "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/gateway"
 	snatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/snatrule"
@@ -245,6 +250,11 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		instancemls.Setup,
 		dataset.Setup,
 		datasetversion.Setup,
+		mrscluster.Setup,
+		mrsclusterd.Setup,
+		mrshybridclusterd.Setup,
+		mrsjob.Setup,
+		mrsjobd.Setup,
 		dnatrule.Setup,
 		gateway.Setup,
 		snatrule.Setup,

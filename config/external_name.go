@@ -702,6 +702,29 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_as_lifecycle_hook_v1 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_lifecycle_hook_v1
 	"flexibleengine_as_lifecycle_hook_v1": TemplatedStringAsIdentifierWithNoName("{{.parameters.sfs_id}}/{{.external_name}}"),
+
+	/*
+		> MapReduce Service (MRS)
+	*/
+	// flexibleengine_mrs_cluster_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v1
+	"flexibleengine_mrs_cluster_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_mrs_cluster_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v2
+	"flexibleengine_mrs_cluster_v2": config.IdentifierFromProvider,
+
+	// flexibleengine_mrs_hybrid_cluster_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_hybrid_cluster_v1
+	"flexibleengine_mrs_hybrid_cluster_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_mrs_job_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v1
+	"flexibleengine_mrs_job_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_mrs_job_v2 - Imported using template
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v2
+	"flexibleengine_mrs_job_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

@@ -24,6 +24,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/kms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/lts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/modelarts"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/mrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/rds"
@@ -92,6 +93,7 @@ func GetProvider() *ujconfig.Provider {
 		sdrs.Configure,
 		ces.Configure,
 		css.Configure,
+		mrs.Configure,
 	} {
 		configure(pc)
 	}
