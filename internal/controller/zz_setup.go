@@ -44,6 +44,7 @@ import (
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
 	job "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/drs/job"
+	floatingip "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/floatingip"
 	floatingipassociate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
 	instanceecs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/instance"
 	interfaceattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/interfaceattach"
@@ -170,6 +171,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		recordset.Setup,
 		zone.Setup,
 		job.Setup,
+		floatingip.Setup,
 		floatingipassociate.Setup,
 		instanceecs.Setup,
 		interfaceattach.Setup,

@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 14:23:37 CET
+Last update: Lun 12 déc 2022 14:30:44 CET
 
-## Resources implemented: 122/178 (68.54%)
+## Resources implemented: 123/178 (69.1%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -113,15 +113,15 @@ Last update: Lun 12 déc 2022 14:23:37 CET
 * [ ] [flexibleengine_mrs_cluster_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v2)
 * [ ] [flexibleengine_mrs_job_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v2)
 
-### Elastic Cloud Server (ECS) (85.71%)
-#### Implemented (6/7)
+### Elastic Cloud Server (ECS) (100.0%)
+#### Implemented (7/7)
 * [x] [flexibleengine_compute_floatingip_associate_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_floatingip_associate_v2)
 * [x] [flexibleengine_compute_interface_attach_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_interface_attach_v2)
+* [x] [flexibleengine_compute_floatingip_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_floatingip_v2)
 * [x] [flexibleengine_compute_instance_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_instance_v2)
 * [x] [flexibleengine_compute_keypair_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_keypair_v2)
 * [x] [flexibleengine_compute_volume_attach_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_volume_attach_v2)
 * [x] [flexibleengine_compute_servergroup_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_servergroup_v2)
-* [ ] [flexibleengine_compute_floatingip_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_floatingip_v2)
 
 ### API Gateway (Dedicated APIG) (100.0%)
 #### Implemented (11/11)
