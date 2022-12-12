@@ -23,6 +23,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/rds"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/sdrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/swr"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vpc"
@@ -81,6 +82,7 @@ func GetProvider() *ujconfig.Provider {
 		vpcep.Configure,
 		oss.Configure,
 		nat.Configure,
+		sdrs.Configure,
 	} {
 		configure(pc)
 	}

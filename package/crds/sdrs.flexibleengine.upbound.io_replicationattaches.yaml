@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: replicationattaches.sdrs.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: sdrs.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: ReplicationAttach
+    listKind: ReplicationAttachList
+    plural: replicationattaches
+    singular: replicationattach
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'ReplicationAttach is the Schema for the ReplicationAttachs API.
+          ""page_title: "flexibleengine_sdrs_replication_attach_v1"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: ReplicationAttachSpec defines the desired state of ReplicationAttach
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +64,16 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  device:
+                    description: Specifies the device name, eg. /dev/vdb. Changing
+                      this creates a new replication attach.
                     type: string
-                  name:
-                    description: A unique name for the vip.
+                  instanceId:
+                    description: Specifies the ID of a protected instance. Changing
+                      this creates a new replication attach.
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
-                    type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  instanceIdRef:
+                    description: Reference to a ProtectedInstance to populate instanceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -109,8 +106,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  instanceIdSelector:
+                    description: Selector for a ProtectedInstance to populate instanceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -148,13 +145,12 @@ spec:
                             type: string
                         type: object
                     type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  replicationId:
+                    description: Specifies the ID of a replication pair. Changing
+                      this creates a new replication attach.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
+                  replicationIdRef:
+                    description: Reference to a ReplicationPair to populate replicationId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -187,9 +183,8 @@ spec:
                     required:
                     - name
                     type: object
-                  subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
+                  replicationIdSelector:
+                    description: Selector for a ReplicationPair to populate replicationId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -227,6 +222,8 @@ spec:
                             type: string
                         type: object
                     type: object
+                required:
+                - device
                 type: object
               providerConfigRef:
                 default:
@@ -400,21 +397,15 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: ReplicationAttachStatus defines the observed state of ReplicationAttach.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
-                    type: string
                   id:
-                    description: The ID of the vip.
+                    description: The resource ID in format of <instance_id>:<replication_id>.
                     type: string
                   status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
+                    description: The status of the SDRS replication attch resource.
                     type: string
                 type: object
               conditions:

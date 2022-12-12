@@ -555,6 +555,15 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2
 	"flexibleengine_nat_dnat_rule_v2": config.IdentifierFromProvider,
 	"flexibleengine_nat_snat_rule_v2": config.IdentifierFromProvider,
+
+	/*
+	  > Storage Disaster Recovery Service (SDRS)
+	*/
+	"flexibleengine_sdrs_drill_v1":              config.IdentifierFromProvider,
+	"flexibleengine_sdrs_protectedinstance_v1":  config.IdentifierFromProvider,
+	"flexibleengine_sdrs_protectiongroup_v1":    config.IdentifierFromProvider,
+	"flexibleengine_sdrs_replication_attach_v1": config.IdentifierFromProvider,
+	"flexibleengine_sdrs_replication_pair_v1":   config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

@@ -91,6 +91,11 @@ import (
 	instancerds "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/instance"
 	parametergroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/parametergroup"
 	readreplica "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/readreplica"
+	drill "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/drill"
+	protectedinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/protectedinstance"
+	protectiongroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/protectiongroup"
+	replicationattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/replicationattach"
+	replicationpair "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/replicationpair"
 	organization "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
@@ -217,6 +222,11 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		instancerds.Setup,
 		parametergroup.Setup,
 		readreplica.Setup,
+		drill.Setup,
+		protectedinstance.Setup,
+		protectiongroup.Setup,
+		replicationattach.Setup,
+		replicationpair.Setup,
 		organization.Setup,
 		organizationusers.Setup,
 		repository.Setup,
