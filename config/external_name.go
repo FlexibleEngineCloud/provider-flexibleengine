@@ -570,11 +570,24 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// flexibleengine_lts_topic - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic
-	"flexibleengine_lts_topic": config.IdentifierFromProvider,
+	"flexibleengine_lts_topic": TemplatedStringAsIdentifierWithNoName("{{.parameters.group_id}}/{{.external_name}}"),
 
 	// flexibleengine_lts_group - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group
 	"flexibleengine_lts_group": config.IdentifierFromProvider,
+
+	/*
+		> Ressource Template Service (RTS)
+		 flexibleengine_rts_software_config_v1
+		 flexibleengine_rts_stack_v1
+	*/
+	// flexibleengine_rts_software_config_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1
+	"flexibleengine_rts_software_config_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_rts_stack_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1
+	"flexibleengine_rts_stack_v1": config.NameAsIdentifier,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

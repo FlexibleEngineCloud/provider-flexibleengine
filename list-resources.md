@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 14:51:52 CET
+Last update: Lun 12 déc 2022 15:12:43 CET
 
-## Resources implemented: 125/178 (70.22%)
+## Resources implemented: 127/178 (71.35%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -94,10 +94,10 @@ Last update: Lun 12 déc 2022 14:51:52 CET
 * [ ] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_cluster_v1)
 * [ ] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_snapshot_v1)
 
-### Resource Template Service (RTS) (0.0%)
-#### Implemented (0/2)
-* [ ] [flexibleengine_rts_software_config_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1)
-* [ ] [flexibleengine_rts_stack_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1)
+### Resource Template Service (RTS) (100.0%)
+#### Implemented (2/2)
+* [x] [flexibleengine_rts_software_config_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1)
+* [x] [flexibleengine_rts_stack_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1)
 
 ### Distributed Message Service (DMS) (0.0%)
 #### Implemented (0/3)

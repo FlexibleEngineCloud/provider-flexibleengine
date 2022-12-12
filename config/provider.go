@@ -63,6 +63,7 @@ func GetProvider() *ujconfig.Provider {
 		ag.Configure,
 		agd.Configure,
 		bms.Configure,
+		lts.Configure,
 		dcs.Configure,
 		lts.Configure,
 		drs.Configure,
