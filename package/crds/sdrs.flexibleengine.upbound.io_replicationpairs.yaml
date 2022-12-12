@@ -174,8 +174,8 @@ spec:
                       creates a new pair.
                     type: string
                   volumeIdRef:
-                    description: Reference to a BlockStorageVolume in evs to populate
-                      volumeId.
+                    description: "Reference to a BlockStorageVolume\t in evs to populate
+                      volumeId."
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -209,8 +209,8 @@ spec:
                     - name
                     type: object
                   volumeIdSelector:
-                    description: Selector for a BlockStorageVolume in evs to populate
-                      volumeId.
+                    description: "Selector for a BlockStorageVolume\t in evs to populate
+                      volumeId."
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

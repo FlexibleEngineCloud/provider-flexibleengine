@@ -70,11 +70,11 @@ type ReplicationPairParameters struct {
 	// +kubebuilder:validation:Optional
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 
-	// Reference to a BlockStorageVolume in evs to populate volumeId.
+	// Reference to a BlockStorageVolume	 in evs to populate volumeId.
 	// +kubebuilder:validation:Optional
 	VolumeIDRef *v1.Reference `json:"volumeIdRef,omitempty" tf:"-"`
 
-	// Selector for a BlockStorageVolume in evs to populate volumeId.
+	// Selector for a BlockStorageVolume	 in evs to populate volumeId.
 	// +kubebuilder:validation:Optional
 	VolumeIDSelector *v1.Selector `json:"volumeIdSelector,omitempty" tf:"-"`
 }

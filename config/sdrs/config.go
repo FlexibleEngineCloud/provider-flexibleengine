@@ -50,7 +50,7 @@ func Configure(p *config.Provider) {
 			Type: "ProtectionGroup",
 		}
 		r.References["volume_id"] = config.Reference{
-			Type: tools.GenerateType("evs", "BlockStorageVolume"),
+			Type: tools.GenerateType("evs", "BlockStorageVolume	"),
 		}
 	})
 
