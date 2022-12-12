@@ -608,7 +608,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_css_snapshot_v1": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
 
 	/*
-		> Cloud  Server Backup Service (CSBS)
+	  > Cloud  Server Backup Service (CSBS)
 	*/
 
 	// flexibleengine_csbs_backup_policy_v1 - Imported using the ID
@@ -625,6 +625,14 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_sfs_access_rule_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.sfs_id}}/{{.external_name}}"),
 	"flexibleengine_sfs_file_system_v2": config.IdentifierFromProvider,
 	"flexibleengine_sfs_turbo":          config.IdentifierFromProvider,
+
+	/*
+	  > Machine Learning Service (MLS)
+	*/
+
+	// flexibleengine_mls_instance_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1
+	"flexibleengine_mls_instance_v1": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

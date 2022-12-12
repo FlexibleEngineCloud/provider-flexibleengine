@@ -1,0 +1,24 @@
+apiVersion: mls.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mls/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: instance
+  name: instance
+spec:
+  forProvider:
+    flavor: mls.c2.2xlarge.common
+    mrsCluster:
+    - id: ${flexibleengine_mrs_cluster_v1.cluster1.id}
+    name: terraform-mls-instance
+    network:
+    - availableZone: eu-west-0a
+      publicIp:
+      - bindType: not_use
+      subnetId: b65f8d25-c533-47e2-8601-cfaa265a3e3e
+      vpcId: c1095fe7-03df-4205-ad2d-6f4c181d436e
+    version: 1.2.0
+
+---
+
