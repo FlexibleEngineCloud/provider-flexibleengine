@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: sparkjobs.dli.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: dli.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: SparkJob
+    listKind: SparkJobList
+    plural: sparkjobs
+    singular: sparkjob
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'SparkJob is the Schema for the SparkJobs API. ""page_title:
+          "flexibleengine_dli_spark_job"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: SparkJobSpec defines the desired state of SparkJob
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,170 +64,166 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  appName:
+                    description: Specifies the name of the package that is of the
+                      JAR or python file type and has been uploaded to the DLI resource
+                      management system. The OBS paths are allowed, for example, obs://<bucket
+                      name>/<package name>. Changing this parameter will submit a
+                      new spark job.
                     type: string
+                  appParameters:
+                    description: Specifies the input parameters of the main class.
+                      Changing this parameter will submit a new spark job.
+                    type: string
+                  configurations:
+                    additionalProperties:
+                      type: string
+                    description: Specifies the configuration items of the DLI spark.
+                      Please following the document of Spark configurations for this
+                      argument. If you want to enable the access metadata of DLI spark
+                      in Flexibleengine, please set spark.dli.metaAccess.enable to
+                      true. Changing this parameter will submit a new spark job.
+                    type: object
+                  dependentPackages:
+                    description: Specifies a list of package resource objects. The
+                      object structure is documented below. Changing this parameter
+                      will submit a new spark job.
+                    items:
+                      properties:
+                        groupName:
+                          description: Specifies the spark job name. The value contains
+                            a maximum of 128 characters. Changing this parameter will
+                            submit a new spark job.
+                          type: string
+                        packages:
+                          items:
+                            properties:
+                              packageName:
+                                description: Specifies the resource name of the package.
+                                  Changing this parameter will submit a new spark
+                                  job.
+                                type: string
+                              type:
+                                description: Specifies the resource type of the package.
+                                  Changing this parameter will submit a new spark
+                                  job.
+                                type: string
+                            required:
+                            - packageName
+                            - type
+                            type: object
+                          type: array
+                      required:
+                      - groupName
+                      - packages
+                      type: object
+                    type: array
+                  driverCores:
+                    description: Specifies the number of CPU cores of the Spark application
+                      driver. The default value of this value corresponds to the configuration
+                      of the selected specification. If you set this value instead
+                      of the default value, specification will be invalid. Changing
+                      this parameter will submit a new spark job.
+                    type: number
+                  driverMemory:
+                    description: Specifies the driver memory of the spark application.
+                      The default value of this value corresponds to the configuration
+                      of the selected specification. If you set this value instead
+                      of the default value, specification will be invalid. Changing
+                      this parameter will submit a new spark job.
+                    type: string
+                  executorCores:
+                    description: Specifies the number of CPU cores of each executor
+                      in the Spark application. The default value of this value corresponds
+                      to the configuration of the selected specification. If you set
+                      this value instead of the default value, specification will
+                      be invalid. Changing this parameter will submit a new spark
+                      job.
+                    type: number
+                  executorMemory:
+                    description: Specifies the executor memory of the spark application.
+                      application. The default value of this value corresponds to
+                      the configuration of the selected specification. If you set
+                      this value instead of the default value, specification will
+                      be invalid. Changing this parameter will submit a new spark
+                      job.
+                    type: string
+                  executors:
+                    description: Specifies the number of executors in a spark application.
+                      The default value of this value corresponds to the configuration
+                      of the selected specification. If you set this value instead
+                      of the default value, specification will be invalid. Changing
+                      this parameter will submit a new spark job.
+                    type: number
+                  files:
+                    description: Specifies a list of the other dependencies name which
+                      has been uploaded to the DLI resource management system. The
+                      OBS paths are allowed, for example, obs://<bucket name>/<dependent
+                      files>. Changing this parameter will submit a new spark job.
+                    items:
+                      type: string
+                    type: array
+                  jars:
+                    description: Specifies a list of the jar package name which has
+                      been uploaded to the DLI resource management system. The OBS
+                      paths are allowed, for example, obs://<bucket name>/<package
+                      name>. Changing this parameter will submit a new spark job.
+                    items:
+                      type: string
+                    type: array
+                  mainClass:
+                    description: Specifies the main class of the spark job. Required
+                      if the app_name is the JAR type. Changing this parameter will
+                      submit a new spark job.
+                    type: string
+                  maxRetries:
+                    description: Specifies the maximum retry times. The default value
+                      of this value corresponds to the configuration of the selected
+                      specification. If you set this value instead of the default
+                      value, specification will be invalid. Changing this parameter
+                      will submit a new spark job.
+                    type: number
+                  modules:
+                    description: Specifies a list of modules that depend on system
+                      resources. The dependent modules and corresponding services
+                      are as follows. Changing this parameter will submit a new spark
+                      job.
+                    items:
+                      type: string
+                    type: array
                   name:
-                    description: A unique name for the vip.
+                    description: Specifies the spark job name. The value contains
+                      a maximum of 128 characters. Changing this parameter will submit
+                      a new spark job.
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
+                  pythonFiles:
+                    description: Specifies a list of the python file name which has
+                      been uploaded to the DLI resource management system. The OBS
+                      paths are allowed, for example, obs://<bucket name>/<python
+                      file name>. Changing this parameter will submit a new spark
+                      job.
+                    items:
+                      type: string
+                    type: array
+                  queueName:
+                    description: Specifies the DLI queue name. Changing this parameter
+                      will submit a new spark job.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  region:
+                    description: Specifies the region in which to submit a spark job.
+                      If omitted, the provider-level region will be used. Changing
+                      this parameter will submit a new spark job.
                     type: string
-                  subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  specification:
+                    description: Specifies the compute resource type for spark application.
+                      The available types and related specifications are as follows,
+                      default to minimum configuration (type A). Changing this parameter
+                      will submit a new spark job.
+                    type: string
+                required:
+                - appName
+                - name
+                - queueName
                 type: object
               providerConfigRef:
                 default:
@@ -400,21 +397,18 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: SparkJobStatus defines the observed state of SparkJob.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
+                  createdAt:
+                    description: Time of the DLI spark job submit.
                     type: string
                   id:
-                    description: The ID of the vip.
+                    description: ID of the spark job.
                     type: string
-                  status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
+                  owner:
+                    description: The owner of the spark job.
                     type: string
                 type: object
               conditions:

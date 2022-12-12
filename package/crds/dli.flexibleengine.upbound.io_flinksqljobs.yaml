@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: flinksqljobs.dli.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: dli.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: FlinksqlJob
+    listKind: FlinksqlJobList
+    plural: flinksqljobs
+    singular: flinksqljob
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'FlinksqlJob is the Schema for the FlinksqlJobs API. ""page_title:
+          "flexibleengine_dli_flinksql_job"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: FlinksqlJobSpec defines the desired state of FlinksqlJob
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +64,98 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  checkpointEnabled:
+                    description: Specifies whether to enable the automatic job snapshot
+                      function.
+                    type: boolean
+                  checkpointInterval:
+                    description: Specifies snapshot interval. The unit is second.
+                      The default value is 10.
+                    type: number
+                  checkpointMode:
+                    description: 'Specifies snapshot mode. There are two options:'
                     type: string
+                  cuNumber:
+                    description: Specifies number of CUs selected for a job. The default
+                      value is 2.
+                    type: number
+                  description:
+                    description: 'Specifies job description. Length range: 1 to 512
+                      characters.'
+                    type: string
+                  dirtyDataStrategy:
+                    description: Specifies dirty data policy of a job.
+                    type: string
+                  edgeGroupIds:
+                    description: Specifies edge computing group IDs.
+                    items:
+                      type: string
+                    type: array
+                  idleStateRetention:
+                    description: Specifies retention time of the idle state. The unit
+                      is hour. The default value is 1.
+                    type: number
+                  logEnabled:
+                    description: Specifies whether to enable the function of uploading
+                      job logs to users' OBS buckets. The default value is false.
+                    type: boolean
+                  managerCuNumber:
+                    description: Specifies number of CUs in the JobManager selected
+                      for a job. The default value is 1.
+                    type: number
                   name:
-                    description: A unique name for the vip.
+                    description: 'Specifies the name of the job. Length range: 1 to
+                      57 characters. which may consist of letters, digits, underscores
+                      (_) and hyphens (-).'
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
+                  obsBucket:
+                    description: Specifies OBS path. OBS path where users are authorized
+                      to save the snapshot. This parameter is valid only when checkpoint_enabled
+                      is set to true. OBS path where users are authorized to save
+                      the snapshot. This parameter is valid only when log_enabled
+                      is set to true.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
+                  parallelNumber:
+                    description: Specifies number of parallel for a job. The default
+                      value is 1.
+                    type: number
+                  queueName:
+                    description: Specifies name of a queue.
+                    type: string
+                  region:
+                    description: The region in which to create the DLI flink job resource.
+                      If omitted, the provider-level region will be used. Changing
+                      this parameter will create a new resource.
+                    type: string
+                  restartWhenException:
+                    description: Specifies whether to enable the function of automatically
+                      restarting a job upon job exceptions. The default value is false.
+                    type: boolean
+                  resumeCheckpoint:
+                    description: Specifies whether the abnormal restart is recovered
+                      from the checkpoint.
+                    type: boolean
+                  resumeMaxNum:
+                    description: 'Specifies maximum number of retry times upon exceptions.
+                      The unit is times/hour. Value range: -1 or greater than 0. The
+                      default value is -1, indicating that the number of times is
+                      unlimited.'
+                    type: number
+                  runMode:
+                    description: 'Specifies job running mode. The options are as follows:'
+                    type: string
+                  runtimeConfig:
+                    additionalProperties:
+                      type: string
+                    description: Specifies customizes optimization parameters when
+                      a Flink job is running.
+                    type: object
+                  smnTopic:
+                    description: Specifies SMN topic. If a job fails, the system will
+                      send a message to users subscribed to the SMN topic.
+                    type: string
+                  smnTopicRef:
+                    description: Reference to a Topic in smn to populate smnTopic.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -109,8 +188,8 @@ spec:
                     required:
                     - name
                     type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
+                  smnTopicSelector:
+                    description: Selector for a Topic in smn to populate smnTopic.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -148,85 +227,38 @@ spec:
                             type: string
                         type: object
                     type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  sql:
+                    description: 'Specifies stream SQL statement, which includes at
+                      least the following three parts: source, query, and sink. Length
+                      range: 1024x1024 characters.'
                     type: string
-                  subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: Specifies the key/value pairs to associate with the
+                      resource.
                     type: object
-                  subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  tmCus:
+                    description: Specifies number of CUs for each Task Manager. The
+                      default value is 1.
+                    type: number
+                  tmSlotNum:
+                    description: Specifies number of slots in each Task Manager. The
+                      default value is (parallel_number * tm_cus)/(cu_number - manager_cu_number).
+                    type: number
+                  type:
+                    description: Specifies the type of the job. The valid values are
+                      flink_sql_job, flink_opensource_sql_job and flink_sql_edge_job.
+                      Default value is flink_sql_job. Changing this parameter will
+                      create a new resource.
+                    type: string
+                  udfJarUrl:
+                    description: Specifies name of the resource package that has been
+                      uploaded to the DLI resource management system. The UDF Jar
+                      file of the SQL job is specified by this parameter.
+                    type: string
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -400,21 +432,14 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: FlinksqlJobStatus defines the observed state of FlinksqlJob.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
-                    type: string
                   id:
-                    description: The ID of the vip.
+                    description: The Job ID in Int format.
                     type: string
                   status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
                     type: string
                 type: object
               conditions:

@@ -186,4 +186,5 @@ var KindMap = map[string]string{
 	"flexibleengine_mrs_job_v1":                      "MrsJobD",
 	"flexibleengine_mrs_job_v2":                      "MrsJob",
 	"flexibleengine_tms_tags":                        "TmsTags",
+	"flexibleengine_dli_package":                     "DLIPackage",
 }

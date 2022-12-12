@@ -51,6 +51,12 @@ import (
 	member "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/member"
 	monitor "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
 	pool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/pool"
+	database "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/database"
+	dlipackage "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/dlipackage"
+	flinksqljob "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/flinksqljob"
+	queue "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/queue"
+	sparkjob "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/sparkjob"
+	table "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/table"
 	kafkainstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkainstance"
 	kafkatopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkatopic"
 	kafkauser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkauser"
@@ -108,7 +114,7 @@ import (
 	s3bucketpolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/s3bucketpolicy"
 	providerconfig "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/providerconfig"
 	account "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/account"
-	database "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/database"
+	databaserds "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/database"
 	databaseprivilege "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/databaseprivilege"
 	instancerds "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/instance"
 	parametergroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/parametergroup"
@@ -123,6 +129,8 @@ import (
 	accessrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/accessrule"
 	filesystem "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/filesystem"
 	turbo "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/turbo"
+	subscription "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/smn/subscription"
+	topicsmn "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/smn/topic"
 	organization "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
@@ -210,6 +218,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		member.Setup,
 		monitor.Setup,
 		pool.Setup,
+		database.Setup,
+		dlipackage.Setup,
+		flinksqljob.Setup,
+		queue.Setup,
+		sparkjob.Setup,
+		table.Setup,
 		kafkainstance.Setup,
 		kafkatopic.Setup,
 		kafkauser.Setup,
@@ -267,7 +281,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		s3bucketpolicy.Setup,
 		providerconfig.Setup,
 		account.Setup,
-		database.Setup,
+		databaserds.Setup,
 		databaseprivilege.Setup,
 		instancerds.Setup,
 		parametergroup.Setup,
@@ -282,6 +296,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		accessrule.Setup,
 		filesystem.Setup,
 		turbo.Setup,
+		subscription.Setup,
+		topicsmn.Setup,
 		organization.Setup,
 		organizationusers.Setup,
 		repository.Setup,
