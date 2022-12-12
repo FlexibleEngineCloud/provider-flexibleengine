@@ -18,6 +18,7 @@ import (
 	v1beta1dcs "github.com/FrangipaneTeam/provider-flexibleengine/apis/dcs/v1beta1"
 	v1beta1dds "github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1"
 	v1beta1dedicatedelb "github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1"
+	v1beta1dms "github.com/FrangipaneTeam/provider-flexibleengine/apis/dms/v1beta1"
 	v1beta1dns "github.com/FrangipaneTeam/provider-flexibleengine/apis/dns/v1beta1"
 	v1beta1drs "github.com/FrangipaneTeam/provider-flexibleengine/apis/drs/v1beta1"
 	v1beta1ecs "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
@@ -53,6 +54,7 @@ func init() {
 		v1beta1dcs.SchemeBuilder.AddToScheme,
 		v1beta1dds.SchemeBuilder.AddToScheme,
 		v1beta1dedicatedelb.SchemeBuilder.AddToScheme,
+		v1beta1dms.SchemeBuilder.AddToScheme,
 		v1beta1dns.SchemeBuilder.AddToScheme,
 		v1beta1drs.SchemeBuilder.AddToScheme,
 		v1beta1ecs.SchemeBuilder.AddToScheme,

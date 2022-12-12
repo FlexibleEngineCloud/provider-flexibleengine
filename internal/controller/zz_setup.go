@@ -41,6 +41,9 @@ import (
 	member "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/member"
 	monitor "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
 	pool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/pool"
+	kafkainstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkainstance"
+	kafkatopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkatopic"
+	kafkauser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkauser"
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
 	job "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/drs/job"
@@ -170,6 +173,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		member.Setup,
 		monitor.Setup,
 		pool.Setup,
+		kafkainstance.Setup,
+		kafkatopic.Setup,
+		kafkauser.Setup,
 		recordset.Setup,
 		zone.Setup,
 		job.Setup,

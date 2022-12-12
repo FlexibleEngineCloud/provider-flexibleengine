@@ -575,6 +575,22 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_lts_group - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group
 	"flexibleengine_lts_group": config.IdentifierFromProvider,
+
+	/*
+	  > Distributed Message Service (DMS)
+	*/
+
+	// flexibleengine_dms_kafka_instance - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_instance
+	"flexibleengine_dms_kafka_instance": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_kafka_topic - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_topic
+	"flexibleengine_dms_kafka_topic": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_kafka_user  - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_user
+	"flexibleengine_dms_kafka_user": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
