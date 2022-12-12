@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 14:30:44 CET
+Last update: Lun 12 déc 2022 15:07:54 CET
 
-## Resources implemented: 123/178 (69.1%)
+## Resources implemented: 125/178 (70.22%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -89,10 +89,10 @@ Last update: Lun 12 déc 2022 14:30:44 CET
 * [x] [flexibleengine_identity_agency_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_agency_v3)
 * [x] [flexibleengine_identity_group_membership_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_group_membership_v3)
 
-### Cloud Search Service (CSS) (0.0%)
-#### Implemented (0/2)
-* [ ] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_cluster_v1)
-* [ ] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_snapshot_v1)
+### Cloud Search Service (CSS) (100.0%)
+#### Implemented (2/2)
+* [x] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_cluster_v1)
+* [x] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_snapshot_v1)
 
 ### Resource Template Service (RTS) (0.0%)
 #### Implemented (0/2)

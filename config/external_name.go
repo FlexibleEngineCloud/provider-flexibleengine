@@ -560,6 +560,12 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	  > Cloud Eye (CES)
 	*/
 	"flexibleengine_ces_alarmrule": config.IdentifierFromProvider,
+
+	/*
+	  > Cloud Search Service (CSS)
+	*/
+	"flexibleengine_css_cluster_v1":  config.IdentifierFromProvider,
+	"flexibleengine_css_snapshot_v1": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
