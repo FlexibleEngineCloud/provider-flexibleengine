@@ -30,6 +30,8 @@ import (
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
 	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
+	clustercss "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/cluster"
+	snapshot "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/snapshot"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
 	databaserole "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaseuser"
@@ -41,6 +43,9 @@ import (
 	member "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/member"
 	monitor "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
 	pool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/pool"
+	kafkainstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkainstance"
+	kafkatopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkatopic"
+	kafkauser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkauser"
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
 	job "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/drs/job"
@@ -94,8 +99,16 @@ import (
 	instancerds "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/instance"
 	parametergroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/parametergroup"
 	readreplica "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rds/readreplica"
+<<<<<<< HEAD
 	softwareconfig "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rts/softwareconfig"
 	stack "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/rts/stack"
+=======
+	drill "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/drill"
+	protectedinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/protectedinstance"
+	protectiongroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/protectiongroup"
+	replicationattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/replicationattach"
+	replicationpair "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/replicationpair"
+>>>>>>> ed7bbda278d0eac3b7de7c41ad2fc22fad4313e5
 	organization "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
@@ -161,6 +174,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		nodepool.Setup,
 		pvc.Setup,
 		alarmrule.Setup,
+		clustercss.Setup,
+		snapshot.Setup,
 		instancedcs.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
@@ -172,6 +187,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		member.Setup,
 		monitor.Setup,
 		pool.Setup,
+		kafkainstance.Setup,
+		kafkatopic.Setup,
+		kafkauser.Setup,
 		recordset.Setup,
 		zone.Setup,
 		job.Setup,
@@ -225,8 +243,16 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		instancerds.Setup,
 		parametergroup.Setup,
 		readreplica.Setup,
+<<<<<<< HEAD
 		softwareconfig.Setup,
 		stack.Setup,
+=======
+		drill.Setup,
+		protectedinstance.Setup,
+		protectiongroup.Setup,
+		replicationattach.Setup,
+		replicationpair.Setup,
+>>>>>>> ed7bbda278d0eac3b7de7c41ad2fc22fad4313e5
 		organization.Setup,
 		organizationusers.Setup,
 		repository.Setup,

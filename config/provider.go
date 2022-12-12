@@ -8,6 +8,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/agd"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/bms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dedicatedelb"
@@ -25,6 +26,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/rds"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/sdrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/swr"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vpc"
@@ -85,7 +87,9 @@ func GetProvider() *ujconfig.Provider {
 		vpcep.Configure,
 		oss.Configure,
 		nat.Configure,
+		sdrs.Configure,
 		ces.Configure,
+		css.Configure,
 	} {
 		configure(pc)
 	}

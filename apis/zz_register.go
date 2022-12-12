@@ -15,9 +15,11 @@ import (
 	v1beta1bms "github.com/FrangipaneTeam/provider-flexibleengine/apis/bms/v1beta1"
 	v1beta1cce "github.com/FrangipaneTeam/provider-flexibleengine/apis/cce/v1beta1"
 	v1beta1ces "github.com/FrangipaneTeam/provider-flexibleengine/apis/ces/v1beta1"
+	v1beta1css "github.com/FrangipaneTeam/provider-flexibleengine/apis/css/v1beta1"
 	v1beta1dcs "github.com/FrangipaneTeam/provider-flexibleengine/apis/dcs/v1beta1"
 	v1beta1dds "github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1"
 	v1beta1dedicatedelb "github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1"
+	v1beta1dms "github.com/FrangipaneTeam/provider-flexibleengine/apis/dms/v1beta1"
 	v1beta1dns "github.com/FrangipaneTeam/provider-flexibleengine/apis/dns/v1beta1"
 	v1beta1drs "github.com/FrangipaneTeam/provider-flexibleengine/apis/drs/v1beta1"
 	v1beta1ecs "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
@@ -33,7 +35,11 @@ import (
 	v1beta1nat "github.com/FrangipaneTeam/provider-flexibleengine/apis/nat/v1beta1"
 	v1beta1oss "github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1"
 	v1beta1rds "github.com/FrangipaneTeam/provider-flexibleengine/apis/rds/v1beta1"
+<<<<<<< HEAD
 	v1beta1rts "github.com/FrangipaneTeam/provider-flexibleengine/apis/rts/v1beta1"
+=======
+	v1beta1sdrs "github.com/FrangipaneTeam/provider-flexibleengine/apis/sdrs/v1beta1"
+>>>>>>> ed7bbda278d0eac3b7de7c41ad2fc22fad4313e5
 	v1beta1swr "github.com/FrangipaneTeam/provider-flexibleengine/apis/swr/v1beta1"
 	v1alpha1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/v1alpha1"
 	v1beta1apis "github.com/FrangipaneTeam/provider-flexibleengine/apis/v1beta1"
@@ -51,9 +57,11 @@ func init() {
 		v1beta1bms.SchemeBuilder.AddToScheme,
 		v1beta1cce.SchemeBuilder.AddToScheme,
 		v1beta1ces.SchemeBuilder.AddToScheme,
+		v1beta1css.SchemeBuilder.AddToScheme,
 		v1beta1dcs.SchemeBuilder.AddToScheme,
 		v1beta1dds.SchemeBuilder.AddToScheme,
 		v1beta1dedicatedelb.SchemeBuilder.AddToScheme,
+		v1beta1dms.SchemeBuilder.AddToScheme,
 		v1beta1dns.SchemeBuilder.AddToScheme,
 		v1beta1drs.SchemeBuilder.AddToScheme,
 		v1beta1ecs.SchemeBuilder.AddToScheme,
@@ -69,7 +77,11 @@ func init() {
 		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1beta1oss.SchemeBuilder.AddToScheme,
 		v1beta1rds.SchemeBuilder.AddToScheme,
+<<<<<<< HEAD
 		v1beta1rts.SchemeBuilder.AddToScheme,
+=======
+		v1beta1sdrs.SchemeBuilder.AddToScheme,
+>>>>>>> ed7bbda278d0eac3b7de7c41ad2fc22fad4313e5
 		v1beta1swr.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1beta1apis.SchemeBuilder.AddToScheme,

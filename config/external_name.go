@@ -557,6 +557,15 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_nat_snat_rule_v2": config.IdentifierFromProvider,
 
 	/*
+	  > Storage Disaster Recovery Service (SDRS)
+	*/
+	"flexibleengine_sdrs_drill_v1":              config.IdentifierFromProvider,
+	"flexibleengine_sdrs_protectedinstance_v1":  config.IdentifierFromProvider,
+	"flexibleengine_sdrs_protectiongroup_v1":    config.IdentifierFromProvider,
+	"flexibleengine_sdrs_replication_attach_v1": config.IdentifierFromProvider,
+	"flexibleengine_sdrs_replication_pair_v1":   config.IdentifierFromProvider,
+
+	/*
 	  > Cloud Eye (CES)
 	*/
 
@@ -577,17 +586,38 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_lts_group": config.IdentifierFromProvider,
 
 	/*
-		> Ressource Template Service (RTS)
-		 flexibleengine_rts_software_config_v1
-		 flexibleengine_rts_stack_v1
+	  > Distributed Message Service (DMS)
 	*/
-	// flexibleengine_rts_software_config_v1 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1
-	"flexibleengine_rts_software_config_v1": config.IdentifierFromProvider,
 
-	// flexibleengine_rts_stack_v1 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1
-	"flexibleengine_rts_stack_v1": config.NameAsIdentifier,
+	// flexibleengine_dms_kafka_instance - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_instance
+	"flexibleengine_dms_kafka_instance": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_kafka_topic - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_topic
+	"flexibleengine_dms_kafka_topic": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_kafka_user  - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_user
+	"flexibleengine_dms_kafka_user": config.IdentifierFromProvider,
+
+	/*
+	  > Cloud Search Service (CSS)
+	*/
+	"flexibleengine_css_cluster_v1":  config.IdentifierFromProvider,
+	"flexibleengine_css_snapshot_v1": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+
+	/*
+		> Cloud  Server Backup Service (CSBS)
+	*/
+
+	// flexibleengine_csbs_backup_policy_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1
+	"flexibleengine_csbs_backup_policy_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_csbs_backup_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_v1
+	"flexibleengine_csbs_backup_v1": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
