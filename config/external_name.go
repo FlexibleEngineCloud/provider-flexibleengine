@@ -554,6 +554,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2
 	"flexibleengine_nat_dnat_rule_v2": config.IdentifierFromProvider,
 	"flexibleengine_nat_snat_rule_v2": config.IdentifierFromProvider,
+
+	/*
+	  > Cloud Eye (CES)
+	*/
+	"flexibleengine_ces_alarmrule": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

@@ -175,4 +175,5 @@ var KindMap = map[string]string{
 	"flexibleengine_waf_rule_blacklist":              "RuleBlacklist",
 	"flexibleengine_blockstorage_volume_v2":          "BlockStorageVolume",
 	"flexibleengine_rds_parametergroup_v3":           "ParameterGroup",
+	"flexibleengine_ces_alarmrule":                   "AlarmRule",
 }

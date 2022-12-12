@@ -7,6 +7,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ag"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/agd"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/bms"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dedicatedelb"
@@ -81,6 +82,7 @@ func GetProvider() *ujconfig.Provider {
 		vpcep.Configure,
 		oss.Configure,
 		nat.Configure,
+		ces.Configure,
 	} {
 		configure(pc)
 	}

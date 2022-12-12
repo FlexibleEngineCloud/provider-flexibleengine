@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Dim 11 déc 2022 22:41:51 CET
+Last update: Lun 12 déc 2022 14:23:37 CET
 
-## Resources implemented: 121/178 (67.98%)
+## Resources implemented: 122/178 (68.54%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -41,9 +41,9 @@ Last update: Dim 11 déc 2022 22:41:51 CET
 * [x] [flexibleengine_dds_instance_v3](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_instance_v3)
 * [x] [flexibleengine_dds_database_user](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dds_database_user)
 
-### Cloud Eye (CES) (0.0%)
-#### Implemented (0/1)
-* [ ] [flexibleengine_ces_alarmrule](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/ces_alarmrule)
+### Cloud Eye (CES) (100.0%)
+#### Implemented (1/1)
+* [x] [flexibleengine_ces_alarmrule](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/ces_alarmrule)
 
 ### Cloud Server Backup Service (CSBS) (0.0%)
 #### Implemented (0/2)

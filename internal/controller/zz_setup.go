@@ -29,6 +29,7 @@ import (
 	node "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
+	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
 	databaserole "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaseuser"
@@ -154,6 +155,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		node.Setup,
 		nodepool.Setup,
 		pvc.Setup,
+		alarmrule.Setup,
 		instancedcs.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
