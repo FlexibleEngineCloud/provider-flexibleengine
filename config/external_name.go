@@ -286,6 +286,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// No import documented
 	"flexibleengine_cce_node_v3": config.IdentifierFromProvider,
+
 	/*
 		> Elastic Cloud Server (ECS)
 	*/
@@ -308,7 +309,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Imported with the following format : {instance_id}/{volume_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_volume_attach_v2
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
-
+	"flexibleengine_compute_floatingip_v2":    config.IdentifierFromProvider,
 	/*
 		> Identity and Access Management (IAM)
 	*/

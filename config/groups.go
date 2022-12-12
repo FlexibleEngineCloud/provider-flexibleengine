@@ -90,6 +90,7 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_compute_keypair_v2":              ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Keypair (! Rewrite in KingMap)
 	"flexibleengine_compute_servergroup_v2":          ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Servergroup (! Rewrite in KingMap)
 	"flexibleengine_compute_volume_attach_v2":        ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: VolumeAttach
+	"flexibleengine_compute_floatingip_v2":           ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Floatingip
 	// VPC
 	"flexibleengine_vpc_v1":                         ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPC
 	"flexibleengine_vpc_subnet_v1":                  ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPCSubnet
@@ -161,6 +162,7 @@ var GroupMap = map[string]GroupKindCalculator{
 var KindMap = map[string]string{
 	"flexibleengine_compute_keypair_v2":              "KeyPair",
 	"flexibleengine_compute_servergroup_v2":          "ServerGroup",
+	"flexibleengine_compute_floatingip_v2":           "FloatingIp",
 	"flexibleengine_compute_floatingip_associate_v2": "FloatingIpAssociate",
 	"flexibleengine_networking_secgroup_v2":          "SecGroup",
 	"flexibleengine_networking_secgroup_rule_v2":     "SecGroupRule",
