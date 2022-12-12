@@ -1,3 +1,4 @@
+// Package waf contains the configuration for the FlexibleEngine WAF service.
 package waf
 
 import (

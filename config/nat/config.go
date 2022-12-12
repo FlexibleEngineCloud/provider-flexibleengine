@@ -1,3 +1,4 @@
+// Package nat contains custom ResourceConfigurators for the nat package.
 package nat
 
 import (

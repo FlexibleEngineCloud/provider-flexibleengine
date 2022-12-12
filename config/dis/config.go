@@ -1,3 +1,4 @@
+// Package dis contains FlexibleEngine Data Integration Service (DIS) resources.
 package dis
 
 import "github.com/upbound/upjet/pkg/config"

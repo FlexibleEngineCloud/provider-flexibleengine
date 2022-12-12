@@ -1,3 +1,4 @@
+// Package dli contains custom ResourceConfigurators for FlexibleEngine DLI resources.
 package dli
 
 import (

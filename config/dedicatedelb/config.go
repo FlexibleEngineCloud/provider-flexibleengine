@@ -1,3 +1,4 @@
+// Package dedicatedelb contains FlexibleEngine Dedicated ELB resources.
 package dedicatedelb
 
 import (

@@ -1,3 +1,4 @@
+// Package kms provides a set of custom ResourceConfigurators for the KMS
 package kms
 
 import "github.com/upbound/upjet/pkg/config"

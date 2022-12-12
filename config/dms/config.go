@@ -1,3 +1,4 @@
+// Package dms contains custom ResourceConfigurators for the dms package.
 package dms
 
 import "github.com/upbound/upjet/pkg/config"

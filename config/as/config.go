@@ -1,3 +1,4 @@
+// Package as contains FlexibleEngine AutoScaling resources.
 package as
 
 import (

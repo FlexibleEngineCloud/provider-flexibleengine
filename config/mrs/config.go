@@ -1,3 +1,4 @@
+// Package mrs contains the configuration for FlexibleEngine MRS resources.
 package mrs
 
 import (

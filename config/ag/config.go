@@ -1,3 +1,4 @@
+// Package ag contains FlexibleEngine API Gateway (AG) resources.
 package ag
 
 import (

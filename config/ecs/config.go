@@ -1,3 +1,4 @@
+// Package ecs contains FlexibleEngine ECS (Elastic Cloud Server) configuration.
 package ecs
 
 import (

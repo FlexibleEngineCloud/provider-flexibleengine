@@ -1,3 +1,4 @@
+// Package css contains custom resource configurators for FlexibleEngine CSS resources.
 package css
 
 import (

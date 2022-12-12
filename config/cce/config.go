@@ -1,3 +1,4 @@
+// Package cce contains custom resource configurators for FlexibleEngine CCE resources.
 package cce
 
 import (

@@ -1,3 +1,4 @@
+// Package rds contains custom ResourceConfigurators for FlexibleEngine RDS resources.
 package rds
 
 import (

@@ -1,3 +1,4 @@
+// Package elb contains custom ResourceConfigurators for the elb package.
 package elb
 
 import (

@@ -1,3 +1,4 @@
+// Package mls provides a set of custom ResourceConfigurators for the MLS
 package mls
 
 import "github.com/upbound/upjet/pkg/config"

@@ -1,3 +1,4 @@
+// Package ces provides a set of custom ResourceConfigurators for the CES
 package ces
 
 import (

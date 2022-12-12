@@ -1,3 +1,4 @@
+// Package dcs provides a set of custom ResourceConfigurators for the DCS
 package dcs
 
 import (

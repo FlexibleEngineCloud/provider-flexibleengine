@@ -1,3 +1,4 @@
+// Package csbs contains FlexibleEngine Cloud Server Backup Service (CSBS) resources.
 package csbs
 
 import "github.com/upbound/upjet/pkg/config"

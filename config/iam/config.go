@@ -1,3 +1,4 @@
+// Package iam provides a set of custom ResourceConfigurators for the IAM
 package iam
 
 import "github.com/upbound/upjet/pkg/config"

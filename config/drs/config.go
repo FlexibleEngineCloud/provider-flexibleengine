@@ -1,3 +1,4 @@
+// Package drs contains custom ResourceConfigurators for the drs package.
 package drs
 
 import (

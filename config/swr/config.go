@@ -1,3 +1,4 @@
+// Package swr contains the configuration for the FlexibleEngine SWR service.
 package swr
 
 import (

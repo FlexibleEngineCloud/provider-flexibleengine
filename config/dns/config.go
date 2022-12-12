@@ -1,3 +1,4 @@
+// Package dns contains custom ResourceConfigurators for the dns package.
 package dns
 
 import (

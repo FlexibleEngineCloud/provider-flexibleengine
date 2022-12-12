@@ -1,3 +1,4 @@
+// Package dds contains custom ResourceConfigurators for FlexibleEngine DDS resources.
 package dds
 
 import (

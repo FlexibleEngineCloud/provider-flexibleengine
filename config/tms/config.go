@@ -1,3 +1,4 @@
+// Package tms provides configuration for FlexibleEngine TMS resources.
 package tms
 
 import (

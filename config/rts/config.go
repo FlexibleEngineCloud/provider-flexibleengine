@@ -1,3 +1,4 @@
+// Package rts provides a set of custom ResourceConfigurators for the RTS
 package rts
 
 import "github.com/upbound/upjet/pkg/config"

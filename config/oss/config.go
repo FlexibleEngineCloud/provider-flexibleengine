@@ -1,3 +1,4 @@
+// Package oss provides a set of custom ResourceConfigurators for the OSS
 package oss
 
 import (

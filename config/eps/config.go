@@ -1,3 +1,4 @@
+// Package eps provides a set of custom ResourceConfigurators for the EPS
 package eps
 
 import (

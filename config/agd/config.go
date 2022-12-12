@@ -1,3 +1,4 @@
+// Package agd contains the configuration for the FlexibleEngine provider.
 package agd
 
 import (

@@ -1,3 +1,4 @@
+// Package evs contains custom ResourceConfigurators for FlexibleEngine EVS resources.
 package evs
 
 import (

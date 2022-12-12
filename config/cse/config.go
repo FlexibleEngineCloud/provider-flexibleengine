@@ -1,3 +1,4 @@
+// Package cse provides a set of custom ResourceConfigurators for the CSE
 package cse
 
 import (

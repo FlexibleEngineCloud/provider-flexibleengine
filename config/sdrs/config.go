@@ -1,3 +1,4 @@
+// Package sdrs provides a set of custom ResourceConfigurators for the SDRS
 package sdrs
 
 import (

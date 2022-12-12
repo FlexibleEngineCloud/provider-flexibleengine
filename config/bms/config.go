@@ -1,3 +1,4 @@
+// Package bms contains the configuration for the FlexibleEngine BMS service.
 package bms
 
 import (

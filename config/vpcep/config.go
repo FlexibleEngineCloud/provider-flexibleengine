@@ -1,3 +1,4 @@
+// Package vpcep contains FlexibleEngine Virtual Private Cloud Endpoint (VPCEP) resources.
 package vpcep
 
 import "github.com/upbound/upjet/pkg/config"

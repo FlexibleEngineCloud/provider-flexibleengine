@@ -1,3 +1,4 @@
+// Package eip contains custom ResourceConfigurators for the eip package.
 package eip
 
 import "github.com/upbound/upjet/pkg/config"

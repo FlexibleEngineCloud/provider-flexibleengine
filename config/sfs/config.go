@@ -1,3 +1,4 @@
+// Package sfs contains custom ResourceConfigurators for the sfs package.
 package sfs
 
 import (

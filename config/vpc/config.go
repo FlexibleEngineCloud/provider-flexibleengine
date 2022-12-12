@@ -1,3 +1,4 @@
+// Package vpc contains the configuration for the FlexibleEngine VPC service.
 package vpc
 
 import "github.com/upbound/upjet/pkg/config"

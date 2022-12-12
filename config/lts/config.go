@@ -1,3 +1,4 @@
+// Package lts provides a set of custom ResourceConfigurators for the LTS
 package lts
 
 import "github.com/upbound/upjet/pkg/config"

@@ -1,3 +1,4 @@
+// Package ims contains the configuration for the IMS service.
 package ims
 
 import "github.com/upbound/upjet/pkg/config"

@@ -1,3 +1,4 @@
+// Package modelarts provides a set of custom ResourceConfigurators for the ModelArts
 package modelarts
 
 import (

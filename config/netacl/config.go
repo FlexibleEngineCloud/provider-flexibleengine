@@ -1,3 +1,4 @@
+// Package netacl contains the configuration for the netacl package.
 package netacl
 
 import (
