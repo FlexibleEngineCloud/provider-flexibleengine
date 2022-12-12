@@ -51,6 +51,7 @@ import (
 	member "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/member"
 	monitor "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
 	pool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/pool"
+	stream "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dis/stream"
 	database "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/database"
 	dlipackage "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/dlipackage"
 	flinksqljob "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dli/flinksqljob"
@@ -223,6 +224,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		member.Setup,
 		monitor.Setup,
 		pool.Setup,
+		stream.Setup,
 		database.Setup,
 		dlipackage.Setup,
 		flinksqljob.Setup,

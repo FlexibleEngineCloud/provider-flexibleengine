@@ -787,6 +787,13 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_network_acl_rule - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/network_acl_rule
 	"flexibleengine_network_acl_rule": config.IdentifierFromProvider,
+
+	/*
+		>  Data Ingestion Service (DIS)
+	*/
+	// flexibleengine_dis_stream - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dis_stream
+	"flexibleengine_dis_stream": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

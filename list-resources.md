@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 20:07:26 CET
+Last update: Lun 12 déc 2022 20:17:16 CET
 
-## Resources implemented: 168/178 (94.38%)
+## Resources implemented: 169/178 (94.94%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -286,9 +286,9 @@ Last update: Lun 12 déc 2022 20:07:26 CET
 #### Implemented (1/1)
 * [x] [flexibleengine_blockstorage_volume_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/blockstorage_volume_v2)
 
-### Data Ingestion Service (DIS) (0.0%)
-#### Implemented (0/1)
-* [ ] [flexibleengine_dis_stream](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dis_stream)
+### Data Ingestion Service (DIS) (100.0%)
+#### Implemented (1/1)
+* [x] [flexibleengine_dis_stream](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dis_stream)
 
 ### Cloud Backup and Recovery (CBR) (100.0%)
 #### Implemented (2/2)
