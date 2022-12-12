@@ -34,6 +34,9 @@ var (
 
 	// PathDBNameExtractor is the golang path to DBNameExtractor function
 	PathDBNameExtractor = SelfPackagePath + ".DBNameExtractor()"
+
+	// PathNameExtractor is the golang path to NameExtractor function
+	PathNameExtractor = SelfPackagePath + ".NameExtractor()"
 )
 
 // RegionExtractor extracts region from "spec.forProvider.region" which
@@ -91,6 +94,23 @@ func DBNameExtractor() reference.ExtractValueFn {
 			return ""
 		}
 		r, err := paved.GetString("spec.forProvider.db_name")
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		return r
+	}
+}
+
+// NameExtractor extracts name from "spec.forProvider.name"
+func NameExtractor() reference.ExtractValueFn {
+	return func(mg xpresource.Managed) string {
+		paved, err := fieldpath.PaveObject(mg)
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		r, err := paved.GetString("spec.forProvider.name")
 		if err != nil {
 			// TODO should we log this error?
 			return ""

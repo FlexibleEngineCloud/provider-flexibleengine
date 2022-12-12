@@ -732,6 +732,38 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_tms_tags - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/tms_tags
 	"flexibleengine_tms_tags": config.IdentifierFromProvider,
+
+	/*
+		> Data Lake Insight (DLI)
+	*/
+	// flexibleengine_dli_queue - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_queue_v1
+	"flexibleengine_dli_queue": config.IdentifierFromProvider,
+	// flexibleengine_dli_package - No import documentation
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_package
+	"flexibleengine_dli_package": config.IdentifierFromProvider,
+	// flexibleengine_dli_database - No import documentation
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_database
+	"flexibleengine_dli_database": config.IdentifierFromProvider,
+	// flexibleengine_dli_flinksql_job - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_flinksql_job
+	"flexibleengine_dli_flinksql_job": config.IdentifierFromProvider,
+	// flexibleengine_dli_spark_job - No import documentation
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_spark_job
+	"flexibleengine_dli_spark_job": config.IdentifierFromProvider,
+	// flexibleengine_dli_table - Imported using {database_name}/{table_name}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_table
+	"flexibleengine_dli_table": TemplatedStringAsIdentifierWithNoName("{{.parameters.database_name}}/{{.external_name}}"),
+
+	/*
+	 > Simple Message Notification (SMN)
+	*/
+	// flexibleengine_smn_topic_v2 - No import documentation
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/smn_topic_v2
+	"flexibleengine_smn_topic_v2": config.NameAsIdentifier,
+	// flexibleengine_smn_subscription_v2 - No import documentation
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/smn_subscription_v2
+	"flexibleengine_smn_subscription_v2": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
