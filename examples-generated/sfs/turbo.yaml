@@ -1,0 +1,26 @@
+apiVersion: sfs.flexibleengine.upbound.io/v1beta1
+kind: Turbo
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/turbo
+  labels:
+    testing.upbound.io/example-name: sfs-turbo-1
+  name: sfs-turbo-1
+spec:
+  forProvider:
+    availabilityZone: ${var.test_az}
+    name: sfs-turbo-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    shareProto: NFS
+    size: 500
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

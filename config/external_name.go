@@ -618,6 +618,13 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_csbs_backup_v1 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_v1
 	"flexibleengine_csbs_backup_v1": config.IdentifierFromProvider,
+
+	/*
+		> Scalable File Service (SFS)
+	*/
+	"flexibleengine_sfs_access_rule_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.sfs_id}}/{{.external_name}}"),
+	"flexibleengine_sfs_file_system_v2": config.IdentifierFromProvider,
+	"flexibleengine_sfs_turbo":          config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

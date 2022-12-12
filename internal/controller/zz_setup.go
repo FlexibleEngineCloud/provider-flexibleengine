@@ -110,6 +110,9 @@ import (
 	protectiongroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/protectiongroup"
 	replicationattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/replicationattach"
 	replicationpair "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sdrs/replicationpair"
+	accessrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/accessrule"
+	filesystem "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/filesystem"
+	turbo "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/turbo"
 >>>>>>> ed7bbda278d0eac3b7de7c41ad2fc22fad4313e5
 	organization "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
@@ -256,6 +259,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		protectiongroup.Setup,
 		replicationattach.Setup,
 		replicationpair.Setup,
+		accessrule.Setup,
+		filesystem.Setup,
+		turbo.Setup,
 >>>>>>> ed7bbda278d0eac3b7de7c41ad2fc22fad4313e5
 		organization.Setup,
 		organizationusers.Setup,
