@@ -168,6 +168,9 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_fw_rule_v2":           ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: Rule
 	"flexibleengine_network_acl":          ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACL
 	"flexibleengine_network_acl_rule":     ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACLRule
+
+	// AntiDDoS
+	"flexibleengine_antiddos_v1": ReplaceGroupWords("antiddos", 0), // Group: antiddos, Kind: AntiDDoS
 }
 
 // KindMap contains kind string overrides.
@@ -193,4 +196,5 @@ var KindMap = map[string]string{
 	"flexibleengine_sdrs_protectedinstance_v1":       "ProtectedInstance",
 	"flexibleengine_ces_alarmrule":                   "AlarmRule",
 	"flexibleengine_dli_package":                     "DLIPackage",
+	"flexibleengine_antiddos_v1":                     "AntiDDoS",
 }

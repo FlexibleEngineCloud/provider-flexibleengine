@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 20:51:52 CET
+Last update: Lun 12 déc 2022 21:15:47 CET
 
-## Resources implemented: 172/178 (96.63%)
+## Resources implemented: 173/178 (97.19%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -154,9 +154,9 @@ Last update: Lun 12 déc 2022 20:51:52 CET
 #### Implemented (1/1)
 * [x] [flexibleengine_mls_instance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mls_instance_v1)
 
-### Anti-DDoS (0.0%)
-#### Implemented (0/1)
-* [ ] [flexibleengine_antiddos_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/antiddos_v1)
+### Anti-DDoS (100.0%)
+#### Implemented (1/1)
+* [x] [flexibleengine_antiddos_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/antiddos_v1)
 
 ### Cloud Service Engine (CSE) (100.0%)
 #### Implemented (3/3)

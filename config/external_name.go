@@ -17,6 +17,14 @@ import (
 var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/*
+		> Anti-DDoS (antiddos)
+	*/
+
+	// flexibleengine_antiddos_v1 - Imported using the Template (floating_ip_id)
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/antiddos_v1
+	"flexibleengine_antiddos_v1": TemplatedStringAsIdentifierWithNoName("{{ .parameters.floating_ip_id }}"),
+
+	/*
 		> Relational Database Service (RDS)
 	*/
 

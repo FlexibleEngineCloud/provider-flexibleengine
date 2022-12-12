@@ -12,6 +12,7 @@ import (
 
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ag/v1beta1"
 	v1beta1agd "github.com/FrangipaneTeam/provider-flexibleengine/apis/agd/v1beta1"
+	v1beta1antiddos "github.com/FrangipaneTeam/provider-flexibleengine/apis/antiddos/v1beta1"
 	v1beta1as "github.com/FrangipaneTeam/provider-flexibleengine/apis/as/v1beta1"
 	v1beta1bms "github.com/FrangipaneTeam/provider-flexibleengine/apis/bms/v1beta1"
 	v1beta1cbr "github.com/FrangipaneTeam/provider-flexibleengine/apis/cbr/v1beta1"
@@ -64,6 +65,7 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1beta1agd.SchemeBuilder.AddToScheme,
+		v1beta1antiddos.SchemeBuilder.AddToScheme,
 		v1beta1as.SchemeBuilder.AddToScheme,
 		v1beta1bms.SchemeBuilder.AddToScheme,
 		v1beta1cbr.SchemeBuilder.AddToScheme,

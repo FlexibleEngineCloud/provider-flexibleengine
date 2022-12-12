@@ -22,6 +22,7 @@ import (
 	throttlingpolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/agd/throttlingpolicy"
 	throttlingpolicyassociate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/agd/throttlingpolicyassociate"
 	vpcchannel "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/agd/vpcchannel"
+	antiddos "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/antiddos/antiddos"
 	configuration "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/configuration"
 	groupas "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/group"
 	lifecyclehook "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/as/lifecyclehook"
@@ -198,6 +199,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		throttlingpolicy.Setup,
 		throttlingpolicyassociate.Setup,
 		vpcchannel.Setup,
+		antiddos.Setup,
 		configuration.Setup,
 		groupas.Setup,
 		lifecyclehook.Setup,
