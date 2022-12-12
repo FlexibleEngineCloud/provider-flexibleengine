@@ -1,0 +1,21 @@
+apiVersion: cse.flexibleengine.upbound.io/v1beta1
+kind: MicroserviceEngine
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cse/v1beta1/microserviceengine
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    authType: NONE
+    availabilityZones:
+    - ${var.az1}
+    flavor: cse.s1.small
+    name: ${var.engine_name}
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
