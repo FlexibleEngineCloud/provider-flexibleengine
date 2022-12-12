@@ -586,6 +586,17 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_lts_group": config.IdentifierFromProvider,
 
 	/*
+		> Ressource Template Service (RTS)
+	*/
+	// flexibleengine_rts_software_config_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1
+	"flexibleengine_rts_software_config_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_rts_stack_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1
+	"flexibleengine_rts_stack_v1": config.NameAsIdentifier,
+
+	/*
 	  > Distributed Message Service (DMS)
 	*/
 

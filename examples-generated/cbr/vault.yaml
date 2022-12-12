@@ -1,0 +1,21 @@
+apiVersion: cbr.flexibleengine.upbound.io/v1beta1
+kind: Vault
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cbr/v1beta1/vault
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    name: ${var.vault_name}
+    protectionType: backup
+    resources:
+    - serverId: ${var.ecs_instance_id}
+    size: 100
+    tags:
+      foo: bar
+    type: server
+
+---
+

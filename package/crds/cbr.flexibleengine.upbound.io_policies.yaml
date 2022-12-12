@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: vips.vpc.flexibleengine.upbound.io
+  name: policies.cbr.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: cbr.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
-    plural: vips
-    singular: vip
+    kind: Policy
+    listKind: PolicyList
+    plural: policies
+    singular: policy
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'Policy is the Schema for the Policys API. ""page_title: "flexibleengine_cbr_policy"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: PolicySpec defines the desired state of Policy
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,170 +63,107 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  ipAddress:
-                    description: IP address desired in the subnet for this vip. If
-                      you don't specify ip_address, an available IP address from the
-                      specified subnet will be allocated to this vip.
+                  backupCycle:
+                    description: Specifies the scheduling rule for the CBR policy
+                      backup execution. The object structure is documented below.
+                    items:
+                      properties:
+                        days:
+                          description: Specifies the weekly backup day of backup schedule.
+                            It supports seven days a week (MO, TU, WE, TH, FR, SA,
+                            SU) and this parameter is separated by a comma (,) without
+                            spaces, between date and date during the configuration.
+                          type: string
+                        executionTimes:
+                          description: Specifies the backup time. Automated backups
+                            will be triggered at the backup time. The current time
+                            is in the UTC format (HH:MM). The minutes in the list
+                            must be set to 00 and the hours cannot be repeated. In
+                            the replication policy, you are advised to set one time
+                            point for one day.
+                          items:
+                            type: string
+                          type: array
+                        interval:
+                          description: Specifies the interval (in days) of backup
+                            schedule. The value range is 1 to 30. This parameter and
+                            days are alternative.
+                          type: number
+                      required:
+                      - executionTimes
+                      type: object
+                    type: array
+                  backupQuantity:
+                    description: Specifies the maximum number of retained backups.
+                      The value ranges from 2 to 99,999. This parameter and time_period
+                      are alternative.
+                    type: number
+                  destinationProjectId:
+                    description: Specifies the ID of the replication destination project,
+                      which is mandatory for cross-region replication. Required if
+                      protection_type is replication.
                     type: string
+                  destinationRegion:
+                    description: Specifies the name of the replication destination
+                      region, which is mandatory for cross-region replication. Required
+                      if protection_type is replication.
+                    type: string
+                  enabled:
+                    description: Specifies whether to enable the CBR policy. Default
+                      to true.
+                    type: boolean
+                  longTermRetention:
+                    description: Specifies the long-term retention rules, which is
+                      an advanced options of the backup_quantity. The object structure
+                      is documented below.
+                    items:
+                      properties:
+                        daily:
+                          description: '- Specifies the latest backup of each day
+                            is saved in the long term.'
+                          type: number
+                        monthly:
+                          description: '- Specifies the latest backup of each month
+                            is saved in the long term.'
+                          type: number
+                        weekly:
+                          description: '- Specifies the latest backup of each week
+                            is saved in the long term.'
+                          type: number
+                        yearly:
+                          description: '- Specifies the latest backup of each year
+                            is saved in the long term.'
+                          type: number
+                      type: object
+                    type: array
                   name:
-                    description: A unique name for the vip.
+                    description: Specifies a unique name of the CBR policy. This parameter
+                      can contain a maximum of 64 characters, which may consist of
+                      chinese charactors, letters, digits, underscores(_) and hyphens
+                      (-).
                     type: string
-                  networkId:
-                    description: The ID of the network to attach the vip to. Changing
-                      this creates a new vip.
+                  region:
+                    description: Specifies the region in which to create the CBR policy.
+                      If omitted, the provider-level region will be used. Changing
+                      this will create a new policy.
                     type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  subnetId:
-                    description: Subnet in which to allocate IP address for this vip.
-                      Changing this creates a new vip.
+                  timePeriod:
+                    description: Specifies the duration (in days) for retained backups.
+                      The value ranges from 2 to 99,999.
+                    type: number
+                  timeZone:
+                    description: 'Specifies the UTC time zone, e.g.: UTC+08:00. Required
+                      if long_term_retention is set.'
                     type: string
-                  subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  type:
+                    description: Specifies the protection type of the CBR policy.
+                      Valid values are backup and replication. Changing this will
+                      create a new policy.
+                    type: string
+                required:
+                - backupCycle
+                - name
+                - type
                 type: object
               providerConfigRef:
                 default:
@@ -400,21 +337,12 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: PolicyStatus defines the observed state of Policy.
             properties:
               atProvider:
                 properties:
-                  deviceOwner:
-                    description: The device owner of the vip.
-                    type: string
                   id:
-                    description: The ID of the vip.
-                    type: string
-                  status:
-                    description: The status of vip.
-                    type: string
-                  tenantId:
-                    description: The tenant ID of the vip.
+                    description: A resource ID in UUID format.
                     type: string
                 type: object
               conditions:
