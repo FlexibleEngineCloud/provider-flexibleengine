@@ -32,8 +32,8 @@ type DatabaseRoleParameters struct {
 	// Specifies the database name to which the role belongs.
 	// The name can contain 1 to 64 characters, only letters, digits and underscores (_) are allowed.
 	// Changing this parameter will create a new role.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/dds/v1beta1.DatabaseUser
-	// +crossplane:generate:reference:extractor=github.com/gaetanars/provider-flexibleengine/config/common.DBNameExtractor()
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1.DatabaseUser
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.DBNameExtractor()
 	// +kubebuilder:validation:Optional
 	DBName *string `json:"dbName,omitempty" tf:"db_name,omitempty"`
 

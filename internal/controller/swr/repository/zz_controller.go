@@ -18,7 +18,7 @@ import (
 	"github.com/upbound/upjet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/swr/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/swr/v1beta1"
 )
 
 // Setup adds a controller that reconciles Repository managed resources.

@@ -76,7 +76,7 @@ type InstanceParameters struct {
 
 	// Specifies the eip ID associated with the APIG dedicated instance.
 	// The EIP ID associated with the dedicated instance.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	EIPID *string `json:"eipId,omitempty" tf:"eip_id,omitempty"`
 
@@ -129,7 +129,7 @@ type InstanceParameters struct {
 	// Specifies an ID of the security group to which the APIG dedicated instance
 	// belongs to.
 	// The ID of the security group to which the dedicated instance belongs to.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
@@ -144,7 +144,7 @@ type InstanceParameters struct {
 	// Specifies an ID of the VPC subnet used to create the APIG dedicated
 	// instance. Changing this will create a new APIG dedicated instance resource.
 	// The ID of the VPC subnet used to create the dedicated instance.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
@@ -159,7 +159,7 @@ type InstanceParameters struct {
 	// Specifies an ID of the VPC used to create the APIG dedicated instance.
 	// Changing this will create a new APIG dedicated instance resource.
 	// The ID of the VPC used to create the dedicated instance.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

@@ -30,7 +30,7 @@ type OBSBucketReplicationParameters struct {
 	Agency *string `json:"agency" tf:"agency,omitempty"`
 
 	// Specifies the name of the source bucket. Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 

@@ -60,7 +60,7 @@ type BackupParameters struct {
 	SnapshotIDSelector *v1.Selector `json:"snapshotIdSelector,omitempty" tf:"-"`
 
 	// The id of the disk to be backed up. Changing the parameter will create new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
 	// +kubebuilder:validation:Optional
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 

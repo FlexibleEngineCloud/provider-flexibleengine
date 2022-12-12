@@ -165,7 +165,7 @@ type InstanceParameters struct {
 	SSLEnable *bool `json:"sslEnable,omitempty" tf:"ssl_enable,omitempty"`
 
 	// Specifies the security group which the RDS DB instance belongs to.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
@@ -179,7 +179,7 @@ type InstanceParameters struct {
 
 	// Specifies the network ID of a subnet.
 	// Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
@@ -202,7 +202,7 @@ type InstanceParameters struct {
 	TimeZone *string `json:"timeZone,omitempty" tf:"time_zone,omitempty"`
 
 	// Specifies the VPC ID. Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
@@ -248,7 +248,7 @@ type VolumeParameters struct {
 
 	// Specifies the key ID for disk encryption.
 	// Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/kms/v1beta1.Key
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1.Key
 	// +kubebuilder:validation:Optional
 	DiskEncryptionID *string `json:"diskEncryptionId,omitempty" tf:"disk_encryption_id,omitempty"`
 

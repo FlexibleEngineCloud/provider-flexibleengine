@@ -44,7 +44,7 @@ type GatewayParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The resource ID in UUID format.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Router
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Router
 	// +kubebuilder:validation:Optional
 	RouterID *string `json:"routerId,omitempty" tf:"router_id,omitempty"`
 
@@ -62,7 +62,7 @@ type GatewayParameters struct {
 
 	// Specifies the subnet ID of the downstream interface
 	// (the next hop of the DVR) of the NAT gateway. Changing this creates a new nat gateway.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
@@ -75,7 +75,7 @@ type GatewayParameters struct {
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 
 	// The resource ID in UUID format.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
@@ -89,7 +89,7 @@ type GatewayParameters struct {
 
 	// Specifies the ID of the VPC this nat gateway belongs to.
 	// Changing this creates a new nat gateway.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

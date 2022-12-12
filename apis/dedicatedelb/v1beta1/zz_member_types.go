@@ -59,7 +59,7 @@ type MemberParameters struct {
 	// cross-VPC backend servers must use private IPv4 addresses, and the protocol of the backend server group
 	// must be TCP, HTTP, or HTTPS.
 	// The IPv4 or IPv6 subnet ID of the subnet in which to access the member
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 

@@ -54,7 +54,7 @@ type EndpointParameters struct {
 
 	// Specifies the network ID of the subnet in the VPC specified by vpc_id.
 	// Changing this creates a new VPC endpoint.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -90,7 +90,7 @@ type EndpointParameters struct {
 
 	// Specifies the ID of the VPC where the VPC endpoint is to be created.
 	// Changing this creates a new VPC endpoint.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

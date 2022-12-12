@@ -147,7 +147,7 @@ type InstanceParameters struct {
 
 	// The image ID of
 	// the desired image for the server. Changing this creates a new server.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1.Image
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1.Image
 	// +kubebuilder:validation:Optional
 	ImageID *string `json:"imageId,omitempty" tf:"image_id,omitempty"`
 
@@ -161,8 +161,8 @@ type InstanceParameters struct {
 
 	// The name of the
 	// desired image for the server. Changing this creates a new server.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1.Image
-	// +crossplane:generate:reference:extractor=github.com/gaetanars/provider-flexibleengine/config/common.ImageNameExtractor()
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1.Image
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.ImageNameExtractor()
 	// +kubebuilder:validation:Optional
 	ImageName *string `json:"imageName,omitempty" tf:"image_name,omitempty"`
 
@@ -269,7 +269,7 @@ type NetworkParameters struct {
 
 	// The port UUID of a network to
 	// attach to the server. Changing this creates a new server.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
@@ -283,7 +283,7 @@ type NetworkParameters struct {
 
 	// The network UUID to
 	// attach to the server. Changing this creates a new server.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	UUID *string `json:"uuid,omitempty" tf:"uuid,omitempty"`
 

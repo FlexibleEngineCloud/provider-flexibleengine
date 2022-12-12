@@ -8,9 +8,9 @@ FlexibleEngine API.
 ## Getting Started
 
 Install the provider by using the following command after changing the image tag
-to the [latest release](https://marketplace.upbound.io/providers/gaetanars/provider-flexibleengine):
+to the [latest release](https://marketplace.upbound.io/providers/FrangipaneTeam/provider-flexibleengine):
 ```
-up ctp provider install gaetanars/provider-flexibleengine:v0.1.0
+up ctp provider install FrangipaneTeam/provider-flexibleengine:v0.1.0
 ```
 
 Alternatively, you can use declarative installation:
@@ -21,13 +21,13 @@ kind: Provider
 metadata:
   name: provider-flexibleengine
 spec:
-  package: gaetanars/provider-flexibleengine:v0.1.0
+  package: FrangipaneTeam/provider-flexibleengine:v0.1.0
 EOF
 ```
 
 Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
 
-You can see the API reference [here](https://doc.crds.dev/github.com/gaetanars/provider-flexibleengine).
+You can see the API reference [here](https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine).
 
 ## Developing
 
@@ -57,4 +57,4 @@ make build
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
-open an [issue](https://github.com/gaetanars/provider-flexibleengine/issues).
+open an [issue](https://github.com/FrangipaneTeam/provider-flexibleengine/issues).

@@ -1,4 +1,4 @@
-module github.com/gaetanars/provider-flexibleengine
+module github.com/FrangipaneTeam/provider-flexibleengine
 
 go 1.19
 

@@ -2,7 +2,7 @@
 # Setup Project
 
 PROJECT_NAME := provider-flexibleengine
-PROJECT_REPO := github.com/gaetanars/$(PROJECT_NAME)
+PROJECT_REPO := github.com/FrangipaneTeam/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.3.3
 

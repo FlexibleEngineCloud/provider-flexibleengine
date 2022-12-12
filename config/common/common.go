@@ -7,10 +7,10 @@ package common
 import (
 	"fmt"
 
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/crossplane/crossplane-runtime/pkg/fieldpath"
 	"github.com/crossplane/crossplane-runtime/pkg/reference"
 	xpresource "github.com/crossplane/crossplane-runtime/pkg/resource"
-	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/resource"
 )
 

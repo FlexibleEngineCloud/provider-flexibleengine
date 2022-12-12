@@ -1,8 +1,8 @@
 package dds
 
 import (
-	"github.com/gaetanars/provider-flexibleengine/config/common"
-	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
 

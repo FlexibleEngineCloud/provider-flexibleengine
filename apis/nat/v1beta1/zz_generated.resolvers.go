@@ -7,10 +7,10 @@ package v1beta1
 
 import (
 	"context"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
+	v1beta12 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
-	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1"
-	v1beta12 "github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1"
-	v1beta11 "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -208,8 +208,8 @@ func (mg *SnatRule) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1beta11.VPCSubnetList{},
-			Managed: &v1beta11.VPCSubnet{},
+			List:    &v1beta11.NetworkingSubnetList{},
+			Managed: &v1beta11.NetworkingSubnet{},
 		},
 	})
 	if err != nil {

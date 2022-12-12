@@ -32,7 +32,7 @@ type OBSBucketObjectParameters struct {
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
 	// The name of the bucket to put the file in.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 

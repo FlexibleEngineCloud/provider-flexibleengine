@@ -121,7 +121,7 @@ type ReadReplicaVolumeParameters struct {
 
 	// Specifies the key ID for disk encryption.
 	// Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/kms/v1beta1.Key
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1.Key
 	// +kubebuilder:validation:Optional
 	DiskEncryptionID *string `json:"diskEncryptionId,omitempty" tf:"disk_encryption_id,omitempty"`
 

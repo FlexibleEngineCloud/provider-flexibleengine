@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-flexibleengine
 spec:
-  package: gaetanars/provider-flexibleengine:v0.1.0
+  package: FrangipaneTeam/provider-flexibleengine:v0.1.0

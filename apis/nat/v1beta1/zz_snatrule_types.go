@@ -34,7 +34,7 @@ type SnatRuleParameters struct {
 
 	// ID of the floating ip this snat rule connets to.
 	// Changing this creates a new snat rule.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	FloatingIPID *string `json:"floatingIpId,omitempty" tf:"floating_ip_id,omitempty"`
 
@@ -61,7 +61,7 @@ type SnatRuleParameters struct {
 	NATGatewayIDSelector *v1.Selector `json:"natGatewayIdSelector,omitempty" tf:"-"`
 
 	// The resource ID in UUID format.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -88,15 +88,15 @@ type SnatRuleParameters struct {
 
 	// ID of the subnet this snat rule connects to.
 	// This parameter and cidr are alternative. Changing this creates a new snat rule.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.NetworkingSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a VPCSubnet in vpc to populate subnetId.
+	// Reference to a NetworkingSubnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a VPCSubnet in vpc to populate subnetId.
+	// Selector for a NetworkingSubnet in vpc to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }

@@ -20,7 +20,7 @@ type S3BucketPolicyObservation struct {
 type S3BucketPolicyParameters struct {
 
 	// The name of the bucket to which to apply the policy.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 

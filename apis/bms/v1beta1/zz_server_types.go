@@ -144,7 +144,7 @@ type ServerParameters struct {
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
 	// Changing this creates a new bms server.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1.Image
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1.Image
 	// +kubebuilder:validation:Optional
 	ImageID *string `json:"imageId,omitempty" tf:"image_id,omitempty"`
 
@@ -158,8 +158,8 @@ type ServerParameters struct {
 
 	// The name of the
 	// desired image for the bms server. Changing this creates a new bms server.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ims/v1beta1.Image
-	// +crossplane:generate:reference:extractor=github.com/gaetanars/provider-flexibleengine/config/common.ImageNameExtractor()
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1.Image
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.ImageNameExtractor()
 	// +kubebuilder:validation:Optional
 	ImageName *string `json:"imageName,omitempty" tf:"image_name,omitempty"`
 

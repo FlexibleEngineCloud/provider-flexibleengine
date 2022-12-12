@@ -43,7 +43,7 @@ type SecGroupParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The resource ID in UUID format.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 

@@ -43,7 +43,7 @@ type DnatRuleParameters struct {
 
 	// Specifies the ID of the floating IP address.
 	// Changing this creates a new dnat rule.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	FloatingIPID *string `json:"floatingIpId,omitempty" tf:"floating_ip_id,omitempty"`
 
@@ -76,7 +76,7 @@ type DnatRuleParameters struct {
 
 	// Specifies the port ID of an ECS or a BMS. This parameter is
 	// mandatory in VPC scenario. Changing this creates a new dnat rule.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 

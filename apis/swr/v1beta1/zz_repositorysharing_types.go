@@ -60,7 +60,7 @@ type RepositorySharingParameters struct {
 
 	// Specifies the name of the repository to be shared.
 	// Changing this creates a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1.User
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.User
 	// +kubebuilder:validation:Optional
 	Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
 

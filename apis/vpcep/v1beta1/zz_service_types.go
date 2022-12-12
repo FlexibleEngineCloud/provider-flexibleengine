@@ -85,7 +85,7 @@ type ServiceParameters struct {
 	Permissions []*string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 
 	// Specifies the ID for identifying the backend resource of the VPC endpoint service.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
@@ -121,7 +121,7 @@ type ServiceParameters struct {
 
 	// Specifies the ID of the VPC to which the backend resource of
 	// the VPC endpoint service belongs. Changing this creates a new VPC endpoint service.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

@@ -1,7 +1,7 @@
 package bms
 
 import (
-	"github.com/gaetanars/provider-flexibleengine/pkg/tools"
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
 

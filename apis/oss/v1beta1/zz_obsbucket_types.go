@@ -150,7 +150,7 @@ type OBSBucketParameters struct {
 
 	// Specifies the name of the bucket. Changing this parameter will create a new resource.
 	// A bucket must be named according to the globally applied DNS naming regulations as follows:
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 
@@ -176,7 +176,7 @@ type OBSBucketParameters struct {
 	ForceDestroy *bool `json:"forceDestroy,omitempty" tf:"force_destroy,omitempty"`
 
 	// Specifies the ID of a kms key. If omitted, the default master key will be used.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/kms/v1beta1.Key
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1.Key
 	// +kubebuilder:validation:Optional
 	KMSKeyID *string `json:"kmsKeyId,omitempty" tf:"kms_key_id,omitempty"`
 

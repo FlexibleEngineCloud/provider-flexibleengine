@@ -34,7 +34,7 @@ type EIPAssociateParameters struct {
 
 	// Specifies the ID of the network to which the fixed_ip belongs.
 	// It is mandatory when fixed_ip is set. Changing this creates a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -48,7 +48,7 @@ type EIPAssociateParameters struct {
 
 	// Specifies an existing port ID to associate with the EIP.
 	// This parameter and fixed_ip are alternative. Changing this creates a new resource.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 

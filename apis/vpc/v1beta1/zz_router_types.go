@@ -60,7 +60,7 @@ type RouterParameters struct {
 
 	// The owner of the floating IP. Required if admin wants
 	// to create a router for another tenant. Changing this creates a new router.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 

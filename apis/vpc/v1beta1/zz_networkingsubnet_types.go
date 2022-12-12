@@ -96,7 +96,7 @@ type NetworkingSubnetParameters struct {
 
 	// The UUID of the parent network. Changing this
 	// creates a new subnet.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -122,7 +122,7 @@ type NetworkingSubnetParameters struct {
 
 	// The owner of the subnet. Required if admin wants to
 	// create a subnet for another tenant. Changing this creates a new subnet.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 

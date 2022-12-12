@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gaetanars/provider-flexibleengine/config/common"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/pkg/errors"
 	"github.com/upbound/upjet/pkg/config"
 )

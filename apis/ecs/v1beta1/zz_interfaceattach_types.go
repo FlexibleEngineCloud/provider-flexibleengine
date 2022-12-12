@@ -25,7 +25,7 @@ type InterfaceAttachParameters struct {
 	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
 	// The ID of the Instance to attach the Port or Network to.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
@@ -39,7 +39,7 @@ type InterfaceAttachParameters struct {
 
 	// The ID of the Network to attach to an Instance. A port will be created automatically.
 	// NOTE: This option and port_id are mutually exclusive.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -53,7 +53,7 @@ type InterfaceAttachParameters struct {
 
 	// The ID of the Port to attach to an Instance.
 	// NOTE: This option and network_id are mutually exclusive.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 

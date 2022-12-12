@@ -17,12 +17,12 @@ const (
 	ResourcePrefix = "flexibleengine"
 
 	// ModulePath is the path of the module
-	ModulePath = "github.com/gaetanars/provider-flexibleengine"
+	ModulePath = "github.com/FrangipaneTeam/provider-flexibleengine"
 )
 
 // GenerateType generates the type name for a given module and type.
 // For example, GenerateType("vpc", "VPC") will return
-// "github.com/gaetanars/provider-flexibleengine/apis/vpc/v1beta1.VPC"
+// "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC"
 func GenerateType(module, _type string) string {
 	return fmt.Sprintf("%s/apis/%s/%s.%s", ModulePath, module, Version, _type)
 }

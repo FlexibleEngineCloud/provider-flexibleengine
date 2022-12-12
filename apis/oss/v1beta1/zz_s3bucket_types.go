@@ -131,7 +131,7 @@ type S3BucketParameters struct {
 	Arn *string `json:"arn,omitempty" tf:"arn,omitempty"`
 
 	// The name of the bucket.
-	// +crossplane:generate:reference:type=github.com/gaetanars/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 
