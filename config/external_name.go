@@ -606,6 +606,18 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 	"flexibleengine_css_cluster_v1":  config.IdentifierFromProvider,
 	"flexibleengine_css_snapshot_v1": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+
+	/*
+		> Cloud  Server Backup Service (CSBS)
+	*/
+
+	// flexibleengine_csbs_backup_policy_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1
+	"flexibleengine_csbs_backup_policy_v1": config.IdentifierFromProvider,
+
+	// flexibleengine_csbs_backup_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_v1
+	"flexibleengine_csbs_backup_v1": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
