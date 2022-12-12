@@ -1,0 +1,41 @@
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eip/v1beta1/eip
+  labels:
+    testing.upbound.io/example-name: example-nat-eip_1
+  name: example-nat-eip-1
+spec:
+  forProvider:
+    bandwidth:
+    - name: example-nat-test
+      shareType: PER
+      size: 10
+    publicip:
+    - type: 5_bgp
+
+---
+
+apiVersion: nat.flexibleengine.upbound.io/v1beta1
+kind: SnatRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nat/v1beta1/snatrule
+  labels:
+    testing.upbound.io/example-name: example-nat-snat_1
+  name: example-nat-snat-1
+spec:
+  forProvider:
+    floatingIpIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-nat-eip_1
+    natGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-nat-gateway
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-nat-net
+
+---
+
