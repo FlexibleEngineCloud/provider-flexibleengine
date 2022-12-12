@@ -29,6 +29,7 @@ import (
 	node "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
+	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
 	databaserole "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaseuser"
@@ -40,6 +41,9 @@ import (
 	member "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/member"
 	monitor "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/monitor"
 	pool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dedicatedelb/pool"
+	kafkainstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkainstance"
+	kafkatopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkatopic"
+	kafkauser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkauser"
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
 	job "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/drs/job"
@@ -73,6 +77,8 @@ import (
 	user "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/user"
 	image "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ims/image"
 	key "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/kms/key"
+	grouplts "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/group"
+	topic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/topic"
 	dataset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/dataset"
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
@@ -160,6 +166,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		node.Setup,
 		nodepool.Setup,
 		pvc.Setup,
+		alarmrule.Setup,
 		instancedcs.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
@@ -171,6 +178,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		member.Setup,
 		monitor.Setup,
 		pool.Setup,
+		kafkainstance.Setup,
+		kafkatopic.Setup,
+		kafkauser.Setup,
 		recordset.Setup,
 		zone.Setup,
 		job.Setup,
@@ -204,6 +214,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		user.Setup,
 		image.Setup,
 		key.Setup,
+		grouplts.Setup,
+		topic.Setup,
 		dataset.Setup,
 		datasetversion.Setup,
 		dnatrule.Setup,

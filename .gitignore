@@ -7,5 +7,4 @@ cover.out
 .DS_Store
 
 # ignore IDE folders
-.vscode/
 .idea/

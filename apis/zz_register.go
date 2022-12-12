@@ -14,9 +14,11 @@ import (
 	v1beta1agd "github.com/FrangipaneTeam/provider-flexibleengine/apis/agd/v1beta1"
 	v1beta1bms "github.com/FrangipaneTeam/provider-flexibleengine/apis/bms/v1beta1"
 	v1beta1cce "github.com/FrangipaneTeam/provider-flexibleengine/apis/cce/v1beta1"
+	v1beta1ces "github.com/FrangipaneTeam/provider-flexibleengine/apis/ces/v1beta1"
 	v1beta1dcs "github.com/FrangipaneTeam/provider-flexibleengine/apis/dcs/v1beta1"
 	v1beta1dds "github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1"
 	v1beta1dedicatedelb "github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1"
+	v1beta1dms "github.com/FrangipaneTeam/provider-flexibleengine/apis/dms/v1beta1"
 	v1beta1dns "github.com/FrangipaneTeam/provider-flexibleengine/apis/dns/v1beta1"
 	v1beta1drs "github.com/FrangipaneTeam/provider-flexibleengine/apis/drs/v1beta1"
 	v1beta1ecs "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
@@ -27,6 +29,7 @@ import (
 	v1beta1iam "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1ims "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta1kms "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
+	v1beta1lts "github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1"
 	v1beta1modelarts "github.com/FrangipaneTeam/provider-flexibleengine/apis/modelarts/v1beta1"
 	v1beta1nat "github.com/FrangipaneTeam/provider-flexibleengine/apis/nat/v1beta1"
 	v1beta1oss "github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1"
@@ -48,9 +51,11 @@ func init() {
 		v1beta1agd.SchemeBuilder.AddToScheme,
 		v1beta1bms.SchemeBuilder.AddToScheme,
 		v1beta1cce.SchemeBuilder.AddToScheme,
+		v1beta1ces.SchemeBuilder.AddToScheme,
 		v1beta1dcs.SchemeBuilder.AddToScheme,
 		v1beta1dds.SchemeBuilder.AddToScheme,
 		v1beta1dedicatedelb.SchemeBuilder.AddToScheme,
+		v1beta1dms.SchemeBuilder.AddToScheme,
 		v1beta1dns.SchemeBuilder.AddToScheme,
 		v1beta1drs.SchemeBuilder.AddToScheme,
 		v1beta1ecs.SchemeBuilder.AddToScheme,
@@ -61,6 +66,7 @@ func init() {
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1ims.SchemeBuilder.AddToScheme,
 		v1beta1kms.SchemeBuilder.AddToScheme,
+		v1beta1lts.SchemeBuilder.AddToScheme,
 		v1beta1modelarts.SchemeBuilder.AddToScheme,
 		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1beta1oss.SchemeBuilder.AddToScheme,

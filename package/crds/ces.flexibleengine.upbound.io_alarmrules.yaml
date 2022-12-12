@@ -1,0 +1,491 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: alarmrules.ces.flexibleengine.upbound.io
+spec:
+  group: ces.flexibleengine.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - flexibleengine
+    kind: AlarmRule
+    listKind: AlarmRuleList
+    plural: alarmrules
+    singular: alarmrule
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: 'AlarmRule is the Schema for the AlarmRules API. ""page_title:
+          "flexibleengine_ces_alarmrule"'
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AlarmRuleSpec defines the desired state of AlarmRule
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  alarmActionEnabled:
+                    description: Specifies whether to enable the action to be triggered
+                      by an alarm. The default value is true.
+                    type: boolean
+                  alarmActions:
+                    description: Specifies the action triggered by an alarm. The structure
+                      is described below.
+                    items:
+                      properties:
+                        notificationList:
+                          description: 'specifies the list of objects to be notified
+                            if the alarm status changes, the maximum length is 5.
+                            if type is set to notification, the value of notification_list
+                            cannot be empty. if type is set to autoscaling, the value
+                            of notification_list must be [] and the value of namespace
+                            must be SYS.AS. Note: to enable the autoscaling alarm
+                            rules take effect, you must bind scaling policies.'
+                          items:
+                            type: string
+                          type: array
+                        type:
+                          description: specifies the type of action triggered by an
+                            alarm. the value can be notification or autoscaling.
+                          type: string
+                      required:
+                      - notificationList
+                      - type
+                      type: object
+                    type: array
+                  alarmDescription:
+                    description: The value can be a string of 0 to 256 characters.
+                    type: string
+                  alarmEnabled:
+                    description: Specifies whether to enable the alarm. The default
+                      value is true.
+                    type: boolean
+                  alarmLevel:
+                    description: Specifies the alarm severity. The value can be 1,
+                      2, 3 or 4, which indicates critical, major, minor, and informational,
+                      respectively. The default value is 2. Changing this creates
+                      a new resource.
+                    type: number
+                  alarmName:
+                    description: Specifies the name of an alarm rule. The value can
+                      be a string of 1 to 128 characters that can consist of numbers,
+                      lowercase letters, uppercase letters, underscores (_), or hyphens
+                      (-).
+                    type: string
+                  condition:
+                    description: Specifies the alarm triggering condition. The structure
+                      is described below.
+                    items:
+                      properties:
+                        comparisonOperator:
+                          description: Specifies the comparison condition of alarm
+                            thresholds. The value can be >, =, <, >=, or <=.
+                          type: string
+                        count:
+                          description: Specifies the number of consecutive occurrence
+                            times. The value ranges from 1 to 5.
+                          type: number
+                        filter:
+                          description: Specifies the data rollup methods. The value
+                            can be max, min, average, sum, and vaiance.
+                          type: string
+                        period:
+                          description: 'Specifies the alarm checking period in seconds.
+                            The value can be 1, 300, 1200, 3600, 14400, and 86400.
+                            Note: If period is set to 1, the raw metric data is used
+                            to determine whether to generate an alarm.'
+                          type: number
+                        unit:
+                          description: Specifies the data unit.
+                          type: string
+                        value:
+                          description: Specifies the alarm threshold. The value ranges
+                            from 0 to Number of 1.7976931348623157e+308.
+                          type: number
+                      required:
+                      - comparisonOperator
+                      - count
+                      - filter
+                      - period
+                      - value
+                      type: object
+                    type: array
+                  insufficientdataActions:
+                    items:
+                      properties:
+                        notificationList:
+                          description: specifies the list of objects to be notified
+                            if the alarm status changes, the maximum length is 5.
+                          items:
+                            type: string
+                          type: array
+                        type:
+                          description: 'specifies the type of action triggered by
+                            an alarm. the value is notification. notification: indicates
+                            that a notification will be sent to the user.'
+                          type: string
+                      required:
+                      - notificationList
+                      - type
+                      type: object
+                    type: array
+                  metric:
+                    description: Specifies the alarm metrics. The structure is described
+                      below.
+                    items:
+                      properties:
+                        dimensions:
+                          description: Specifies the list of metric dimensions. Currently,
+                            the maximum length of the dimesion list that are supported
+                            is 3. The structure is described below.
+                          items:
+                            properties:
+                              name:
+                                description: Specifies the dimension name. The value
+                                  can be a string of 1 to 32 characters that must
+                                  start with a letter and can consists of uppercase
+                                  letters, lowercase letters, numbers, underscores
+                                  (_), or hyphens (-).
+                                type: string
+                              value:
+                                description: Specifies the dimension value. The value
+                                  can be a string of 1 to 64 characters that must
+                                  start with a letter or a number and can consists
+                                  of uppercase letters, lowercase letters, numbers,
+                                  underscores (_), or hyphens (-).
+                                type: string
+                            required:
+                            - name
+                            - value
+                            type: object
+                          type: array
+                        metricName:
+                          description: Specifies the metric name. The value can be
+                            a string of 1 to 64 characters that must start with a
+                            letter and can consists of uppercase letters, lowercase
+                            letters, numbers, or underscores (_).
+                          type: string
+                        namespace:
+                          description: Specifies the namespace in service.item format.
+                            service.item can be a string of 3 to 32 characters that
+                            must start with a letter and can consists of uppercase
+                            letters, lowercase letters, numbers, or underscores (_).
+                            For details, see Services Interconnected with Cloud Eye.
+                          type: string
+                      required:
+                      - dimensions
+                      - metricName
+                      - namespace
+                      type: object
+                    type: array
+                  okActions:
+                    description: Specifies the action triggered by the clearing of
+                      an alarm. The structure is described below.
+                    items:
+                      properties:
+                        notificationList:
+                          description: specifies the list of objects to be notified
+                            if the alarm status changes, the maximum length is 5.
+                          items:
+                            type: string
+                          type: array
+                        type:
+                          description: 'specifies the type of action triggered by
+                            an alarm. the value is notification. notification: indicates
+                            that a notification will be sent to the user.'
+                          type: string
+                      required:
+                      - notificationList
+                      - type
+                      type: object
+                    type: array
+                  region:
+                    type: string
+                required:
+                - alarmName
+                - condition
+                - metric
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: AlarmRuleStatus defines the observed state of AlarmRule.
+            properties:
+              atProvider:
+                properties:
+                  alarmState:
+                    description: 'Indicates the alarm status. The value can be:'
+                    type: string
+                  condition:
+                    description: Specifies the alarm triggering condition. The structure
+                      is described below.
+                    items:
+                      properties:
+                        suppressDuration:
+                          type: number
+                      type: object
+                    type: array
+                  id:
+                    description: Indicates the alarm rule ID.
+                    type: string
+                  updateTime:
+                    description: Indicates the time when the alarm status changed.
+                      The value is a UNIX timestamp and the unit is ms.
+                    type: number
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

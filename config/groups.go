@@ -179,4 +179,5 @@ var KindMap = map[string]string{
 	"flexibleengine_rds_parametergroup_v3":           "ParameterGroup",
 	"flexibleengine_sdrs_protectiongroup_v1":         "ProtectionGroup",
 	"flexibleengine_sdrs_protectedinstance_v1":       "ProtectedInstance",
+	"flexibleengine_ces_alarmrule":                   "AlarmRule",
 }

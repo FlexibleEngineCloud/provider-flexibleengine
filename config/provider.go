@@ -7,6 +7,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ag"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/agd"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/bms"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dedicatedelb"
@@ -19,6 +20,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/iam"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ims"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/kms"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/lts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/modelarts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
@@ -63,6 +65,7 @@ func GetProvider() *ujconfig.Provider {
 		agd.Configure,
 		bms.Configure,
 		dcs.Configure,
+		lts.Configure,
 		drs.Configure,
 		dds.Configure,
 		eps.Configure,
@@ -83,6 +86,7 @@ func GetProvider() *ujconfig.Provider {
 		oss.Configure,
 		nat.Configure,
 		sdrs.Configure,
+		ces.Configure,
 	} {
 		configure(pc)
 	}
