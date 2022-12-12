@@ -1,9 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 15:12:43 CET
+Last update: Lun 12 déc 2022 15:36:25 CET
 
-## Resources implemented: 127/178 (71.35%)
-## Resources implemented: 135/178 (75.84%)
+## Resources implemented: 137/178 (76.97%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -46,10 +45,10 @@ Last update: Lun 12 déc 2022 15:12:43 CET
 #### Implemented (1/1)
 * [x] [flexibleengine_ces_alarmrule](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/ces_alarmrule)
 
-### Cloud Server Backup Service (CSBS) (0.0%)
-#### Implemented (0/2)
-* [ ] [flexibleengine_csbs_backup_policy_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1)
-* [ ] [flexibleengine_csbs_backup_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_v1)
+### Cloud Server Backup Service (CSBS) (100.0%)
+#### Implemented (2/2)
+* [x] [flexibleengine_csbs_backup_policy_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1)
+* [x] [flexibleengine_csbs_backup_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_v1)
 
 ### Virtual Private Cloud (VPC) (100.0%)
 #### Implemented (18/18)
@@ -95,10 +94,10 @@ Last update: Lun 12 déc 2022 15:12:43 CET
 * [x] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_cluster_v1)
 * [x] [flexibleengine_css_cluster_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_snapshot_v1)
 
-### Resource Template Service (RTS) (100.0%)
-#### Implemented (2/2)
-* [x] [flexibleengine_rts_software_config_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1)
-* [x] [flexibleengine_rts_stack_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1)
+### Resource Template Service (RTS) (0.0%)
+#### Implemented (0/2)
+* [ ] [flexibleengine_rts_software_config_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1)
+* [ ] [flexibleengine_rts_stack_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1)
 
 ### Distributed Message Service (DMS) (100.0%)
 #### Implemented (3/3)
