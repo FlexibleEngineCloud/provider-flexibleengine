@@ -660,10 +660,18 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 	  >  Auto Scaling (AS)
 	*/
-	"flexibleengine_as_configuration_v1":  config.IdentifierFromProvider,
-	"flexibleengine_as_group_v1":          config.IdentifierFromProvider,
+	// flexibleengine_as_configuration_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_configuration_v1
+	"flexibleengine_as_configuration_v1": config.IdentifierFromProvider,
+	// flexibleengine_as_group_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_group_v1
+	"flexibleengine_as_group_v1": config.IdentifierFromProvider,
+	// flexibleengine_as_policy_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_policy_v1
+	"flexibleengine_as_policy_v1": config.IdentifierFromProvider,
+	// flexibleengine_as_lifecycle_hook_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_lifecycle_hook_v1
 	"flexibleengine_as_lifecycle_hook_v1": TemplatedStringAsIdentifierWithNoName("{{.parameters.sfs_id}}/{{.external_name}}"),
-	"flexibleengine_as_policy_v1":         config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
