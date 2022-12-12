@@ -34,6 +34,7 @@ import (
 	v1beta1elb "github.com/FrangipaneTeam/provider-flexibleengine/apis/elb/v1beta1"
 	v1beta1eps "github.com/FrangipaneTeam/provider-flexibleengine/apis/eps/v1beta1"
 	v1beta1evs "github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1"
+	v1beta1fgs "github.com/FrangipaneTeam/provider-flexibleengine/apis/fgs/v1beta1"
 	v1beta1iam "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1ims "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta1kms "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
@@ -87,6 +88,7 @@ func init() {
 		v1beta1elb.SchemeBuilder.AddToScheme,
 		v1beta1eps.SchemeBuilder.AddToScheme,
 		v1beta1evs.SchemeBuilder.AddToScheme,
+		v1beta1fgs.SchemeBuilder.AddToScheme,
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1ims.SchemeBuilder.AddToScheme,
 		v1beta1kms.SchemeBuilder.AddToScheme,

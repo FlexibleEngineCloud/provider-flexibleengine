@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: snatrules.nat.flexibleengine.upbound.io
+  name: triggers.fgs.flexibleengine.upbound.io
 spec:
-  group: nat.flexibleengine.upbound.io
+  group: fgs.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: SnatRule
-    listKind: SnatRuleList
-    plural: snatrules
-    singular: snatrule
+    kind: Trigger
+    listKind: TriggerList
+    plural: triggers
+    singular: trigger
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'SnatRule is the Schema for the SnatRules API. ""page_title:
-          "flexibleengine_nat_snat_rule_v2"'
+        description: 'Trigger is the Schema for the Triggers API. ""page_title: "flexibleengine_fgs_trigger"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SnatRuleSpec defines the desired state of SnatRule
+            description: TriggerSpec defines the desired state of Trigger
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,17 +63,94 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  cidr:
-                    description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                  apig:
+                    description: Specifies the configuration of the shared APIG trigger.
+                      Changing this will create a new trigger resource. The object
+                      structure is documented below.
+                    items:
+                      properties:
+                        apiName:
+                          description: Specifies the API name. Changing this will
+                            create a new trigger resource.
+                          type: string
+                        envName:
+                          description: Specifies the API environment name. Changing
+                            this will create a new trigger resource.
+                          type: string
+                        groupId:
+                          description: Specifies the ID of the APIG group to which
+                            the API belongs. Changing this will create a new trigger
+                            resource.
+                          type: string
+                        instanceId:
+                          description: resource ID in UUID format.
+                          type: string
+                        requestProtocol:
+                          description: Specifies the request protocol of the API.
+                            The valid value are HTTP and HTTPS. Default to HTTPS.
+                            Changing this will create a new trigger resource.
+                          type: string
+                        securityAuthentication:
+                          description: Specifies the security authentication mode.
+                            The valid values are NONE, APP and IAM, default to IAM.
+                            Changing this will create a new trigger resource.
+                          type: string
+                        timeout:
+                          description: Specifies the timeout for request sending.
+                            The valid value is range form 1 to 60,000, default to
+                            5,000. Changing this will create a new trigger resource.
+                          type: number
+                      required:
+                      - apiName
+                      - envName
+                      - groupId
+                      type: object
+                    type: array
+                  dis:
+                    description: Specifies the configuration of the DIS trigger. Changing
+                      this will create a new trigger resource. The object structure
+                      is documented below.
+                    items:
+                      properties:
+                        maxFetchBytes:
+                          description: Specifies the maximum volume of data that can
+                            be obtained for a single request, in Byte. Only the records
+                            with a size smaller than this value can be obtained. The
+                            valid value is range from 1,024 to 4,194,304. Changing
+                            this will create a new trigger resource.
+                          type: number
+                        pullPeriod:
+                          description: Specifies the interval at which data is pulled
+                            from the specified stream. The valid value is range from
+                            2 to 60,000. Changing this will create a new trigger resource.
+                          type: number
+                        serialEnable:
+                          description: Specifies the determines whether to pull data
+                            only after the data pulled in the last period has been
+                            processed. Changing this will create a new trigger resource.
+                          type: boolean
+                        startingPosition:
+                          description: 'Specifies the type of starting position for
+                            DIS queue. The valid values are as follows:'
+                          type: string
+                        streamName:
+                          description: Specifies the name of the DIS stream resource.
+                            Changing this will create a new trigger resource.
+                          type: string
+                      required:
+                      - maxFetchBytes
+                      - pullPeriod
+                      - serialEnable
+                      - startingPosition
+                      - streamName
+                      type: object
+                    type: array
+                  functionUrn:
+                    description: Specifies the Uniform Resource Name (URN) of the
+                      function. Changing this will create a new trigger resource.
                     type: string
-                  floatingIpId:
-                    description: ID of the floating ip this snat rule connets to.
-                      Changing this creates a new snat rule.
-                    type: string
-                  floatingIpIdRef:
-                    description: Reference to a EIP in eip to populate floatingIpId.
+                  functionUrnRef:
+                    description: Reference to a Function to populate functionUrn.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -107,8 +183,8 @@ spec:
                     required:
                     - name
                     type: object
-                  floatingIpIdSelector:
-                    description: Selector for a EIP in eip to populate floatingIpId.
+                  functionUrnSelector:
+                    description: Selector for a Function to populate functionUrn.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -146,251 +222,139 @@ spec:
                             type: string
                         type: object
                     type: object
-                  natGatewayId:
-                    description: ID of the nat gateway this snat rule belongs to.
-                      Changing this creates a new snat rule.
-                    type: string
-                  natGatewayIdRef:
-                    description: Reference to a Gateway to populate natGatewayId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  natGatewayIdSelector:
-                    description: Selector for a Gateway to populate natGatewayId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                  kafka:
+                    items:
+                      properties:
+                        batchSize:
+                          type: number
+                        instanceId:
+                          description: resource ID in UUID format.
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
+                        topicIds:
+                          items:
                             type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  networkId:
-                    description: The resource ID in UUID format.
-                    type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                          type: array
+                      required:
+                      - instanceId
+                      - topicIds
+                      type: object
+                    type: array
+                  lts:
+                    items:
+                      properties:
+                        logGroupId:
+                          description: resource ID in UUID format.
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
+                        logTopicId:
+                          description: resource ID in UUID format.
+                          type: string
+                      required:
+                      - logGroupId
+                      - logTopicId
+                      type: object
+                    type: array
+                  obs:
+                    description: Specifies the configuration of the OBS trigger. Changing
+                      this will create a new trigger resource. The object structure
+                      is documented below.
+                    items:
+                      properties:
+                        bucketName:
+                          description: Specifies the OBS bucket name. Changing this
+                            will create a new trigger resource.
+                          type: string
+                        eventNotificationName:
+                          description: Specifies the event notification name. Changing
+                            this will create a new trigger resource.
+                          type: string
+                        events:
+                          description: 'Specifies the events that can trigger functions.
+                            Changing this will create a new trigger resource. The
+                            valid values are as follows:'
+                          items:
                             type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                          type: array
+                        prefix:
+                          description: Specifies the prefix to limit notifications
+                            to objects beginning with this keyword. Changing this
+                            will create a new trigger resource.
+                          type: string
+                        suffix:
+                          description: Specifies the suffix to limit notifications
+                            to objects ending with this keyword. Changing this will
+                            create a new trigger resource.
+                          type: string
+                      required:
+                      - bucketName
+                      - eventNotificationName
+                      - events
+                      type: object
+                    type: array
                   region:
-                    description: The region in which to obtain the V2 nat client.
-                      If omitted, the region argument of the provider is used. Changing
-                      this creates a new snat rule.
+                    description: Specifies the region in which to create the trigger
+                      resource. If omitted, the provider-level region will be used.
+                      Changing this will create a new trigger resource.
                     type: string
-                  sourceType:
-                    description: Specifies the scenario. The valid value is 0 (VPC
-                      scenario) and 1 (Direct Connect scenario). Only cidr can be
-                      specified over a Direct Connect connection. If no value is entered,
-                      the default value 0 (VPC scenario) is used. Changing this creates
-                      a new snat rule.
-                    type: number
-                  subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
-                    type: string
-                  subnetIdRef:
-                    description: Reference to a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a NetworkingSubnet in vpc to populate
-                      subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
+                  smn:
+                    description: Specifies the configuration of the SMN trigger. Changing
+                      this will create a new trigger resource. The object structure
+                      is documented below.
+                    items:
+                      properties:
+                        topicUrn:
+                          description: Specifies the Uniform Resource Name (URN) for
+                            SMN topic. Changing this will create a new trigger resource.
                           type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                      required:
+                      - topicUrn
+                      type: object
+                    type: array
+                  status:
+                    description: Specifies whether trigger is enabled. The valid values
+                      are ACTIVE and DISABLED.
+                    type: string
+                  timer:
+                    description: Specifies the configuration of the timing trigger.
+                      Changing this will create a new trigger resource. The object
+                      structure is documented below.
+                    items:
+                      properties:
+                        additionalInformation:
+                          description: Specifies the event used by the timer to trigger
+                            the function. Changing this will create a new trigger
+                            resource.
+                          type: string
+                        name:
+                          description: Specifies the trigger name, which can contains
+                            of 1 to 64 characters. The name must start with a letter,
+                            only letters, digits, hyphens (-) and underscores (_)
+                            are allowed. Changing this will create a new trigger resource.
+                          type: string
+                        schedule:
+                          description: Specifies the time schedule. For the rate type,
+                            schedule is composed of time and time unit. The time unit
+                            supports minutes (m), hours (h) and days (d). For the
+                            corn expression, please refer to the User Guide. Changing
+                            this will create a new trigger resource.
+                          type: string
+                        scheduleType:
+                          description: Specifies the type of the time schedule. The
+                            valid values are Rate and Cron. Changing this will create
+                            a new trigger resource.
+                          type: string
+                      required:
+                      - name
+                      - schedule
+                      - scheduleType
+                      type: object
+                    type: array
+                  type:
+                    description: Specifies the type of the function. The valid values
+                      currently only support TIMER, OBS, SMN, DIS, and APIG. Changing
+                      this will create a new trigger resource.
+                    type: string
+                required:
+                - type
                 type: object
               providerConfigRef:
                 default:
@@ -564,18 +528,12 @@ spec:
             - forProvider
             type: object
           status:
-            description: SnatRuleStatus defines the observed state of SnatRule.
+            description: TriggerStatus defines the observed state of Trigger.
             properties:
               atProvider:
                 properties:
-                  floatingIpAddress:
-                    description: The actual floating IP address.
-                    type: string
                   id:
-                    description: The resource ID in UUID format.
-                    type: string
-                  status:
-                    description: The status of the snat rule.
+                    description: resource ID in UUID format.
                     type: string
                 type: object
               conditions:

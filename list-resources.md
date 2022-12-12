@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 21:15:47 CET
+Last update: Lun 12 déc 2022 21:59:49 CET
 
-## Resources implemented: 173/178 (97.19%)
+## Resources implemented: 176/178 (98.88%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -202,11 +202,11 @@ Last update: Lun 12 déc 2022 21:15:47 CET
 * [x] [flexibleengine_lts_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic)
 * [x] [flexibleengine_lts_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group)
 
-### FunctionGraph (0.0%)
-#### Implemented (0/3)
-* [ ] [flexibleengine_fgs_function](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_function)
-* [ ] [flexibleengine_fgs_dependency](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_dependency)
-* [ ] [flexibleengine_fgs_trigger](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_trigger)
+### FunctionGraph (100.0%)
+#### Implemented (3/3)
+* [x] [flexibleengine_fgs_function](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_function)
+* [x] [flexibleengine_fgs_dependency](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_dependency)
+* [x] [flexibleengine_fgs_trigger](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_trigger)
 
 ### Auto Scaling (AS) (100.0%)
 #### Implemented (4/4)

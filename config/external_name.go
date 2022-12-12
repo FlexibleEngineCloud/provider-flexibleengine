@@ -817,6 +817,22 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_dis_stream - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dis_stream
 	"flexibleengine_dis_stream": config.IdentifierFromProvider,
+
+	/*
+		> FunctionGraph
+	*/
+
+	// flexibleengine_fgs_function - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_function
+	"flexibleengine_fgs_function": config.IdentifierFromProvider,
+
+	// flexibleengine_fgs_dependency - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_dependency
+	"flexibleengine_fgs_dependency": config.IdentifierFromProvider,
+
+	// flexibleengine_fgs_trigger - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_trigger
+	"flexibleengine_fgs_trigger": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

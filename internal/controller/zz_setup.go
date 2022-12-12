@@ -87,6 +87,9 @@ import (
 	whitelist "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/elb/whitelist"
 	project "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/eps/project"
 	blockstoragevolume "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/evs/blockstoragevolume"
+	dependency "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/dependency"
+	function "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/function"
+	trigger "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/trigger"
 	agency "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/agency"
 	groupiam "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/group"
 	groupmembership "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/groupmembership"
@@ -264,6 +267,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		whitelist.Setup,
 		project.Setup,
 		blockstoragevolume.Setup,
+		dependency.Setup,
+		function.Setup,
+		trigger.Setup,
 		agency.Setup,
 		groupiam.Setup,
 		groupmembership.Setup,
