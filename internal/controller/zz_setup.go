@@ -30,6 +30,8 @@ import (
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
 	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
+	backup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backup"
+	backuppolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backuppolicy"
 	clustercss "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/cluster"
 	snapshot "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/snapshot"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
@@ -113,8 +115,8 @@ import (
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
 	repositorysharing "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repositorysharing"
-	backup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backup"
-	backuppolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backuppolicy"
+	backupvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backup"
+	backuppolicyvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backuppolicy"
 	flowlog "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/flowlog"
 	network "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/network"
 	networkingsubnet "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/networkingsubnet"
@@ -174,6 +176,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		nodepool.Setup,
 		pvc.Setup,
 		alarmrule.Setup,
+		backup.Setup,
+		backuppolicy.Setup,
 		clustercss.Setup,
 		snapshot.Setup,
 		instancedcs.Setup,
@@ -257,8 +261,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		organizationusers.Setup,
 		repository.Setup,
 		repositorysharing.Setup,
-		backup.Setup,
-		backuppolicy.Setup,
+		backupvbs.Setup,
+		backuppolicyvbs.Setup,
 		flowlog.Setup,
 		network.Setup,
 		networkingsubnet.Setup,
