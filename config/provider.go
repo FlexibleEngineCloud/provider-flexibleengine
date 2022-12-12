@@ -27,10 +27,12 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/modelarts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/mrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/netacl"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/rds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/sdrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/swr"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/tms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vpc"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vpcep"
@@ -96,6 +98,8 @@ func GetProvider() *ujconfig.Provider {
 		css.Configure,
 		mrs.Configure,
 		dli.Configure,
+		tms.Configure,
+		netacl.Configure,
 	} {
 		configure(pc)
 	}

@@ -98,14 +98,19 @@ import (
 	instancemls "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mls/instance"
 	dataset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/dataset"
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
-	mrscluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrscluster"
-	mrsclusterd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrsclusterd"
-	mrshybridclusterd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrshybridclusterd"
-	mrsjob "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrsjob"
-	mrsjobd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/mrsjobd"
+	clustermrs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/cluster"
+	jobmrs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/job"
+	clustermrsd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/cluster"
+	hybridcluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/hybridcluster"
+	jobmrsd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/job"
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
 	gateway "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/gateway"
 	snatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/snatrule"
+	acl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/acl"
+	aclrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/aclrule"
+	firewallgroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/firewallgroup"
+	policynetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/policy"
+	rule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/rule"
 	obsbucket "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucket"
 	obsbucketobject "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucketobject"
 	obsbucketreplication "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
@@ -135,7 +140,7 @@ import (
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
 	repositorysharing "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repositorysharing"
-	tmstags "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/tms/tmstags"
+	tags "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/tms/tags"
 	backupvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backup"
 	backuppolicyvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backuppolicy"
 	flowlog "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/flowlog"
@@ -265,14 +270,19 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		instancemls.Setup,
 		dataset.Setup,
 		datasetversion.Setup,
-		mrscluster.Setup,
-		mrsclusterd.Setup,
-		mrshybridclusterd.Setup,
-		mrsjob.Setup,
-		mrsjobd.Setup,
+		clustermrs.Setup,
+		jobmrs.Setup,
+		clustermrsd.Setup,
+		hybridcluster.Setup,
+		jobmrsd.Setup,
 		dnatrule.Setup,
 		gateway.Setup,
 		snatrule.Setup,
+		acl.Setup,
+		aclrule.Setup,
+		firewallgroup.Setup,
+		policynetacl.Setup,
+		rule.Setup,
 		obsbucket.Setup,
 		obsbucketobject.Setup,
 		obsbucketreplication.Setup,
@@ -302,7 +312,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		organizationusers.Setup,
 		repository.Setup,
 		repositorysharing.Setup,
-		tmstags.Setup,
+		tags.Setup,
 		backupvbs.Setup,
 		backuppolicyvbs.Setup,
 		flowlog.Setup,

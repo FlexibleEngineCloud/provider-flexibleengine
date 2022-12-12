@@ -13,92 +13,18 @@ import (
 	"github.com/upbound/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this MrsClusterD
-func (mg *MrsClusterD) GetTerraformResourceType() string {
-	return "flexibleengine_mrs_cluster_v1"
-}
-
-// GetConnectionDetailsMapping for this MrsClusterD
-func (tr *MrsClusterD) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"cluster_admin_secret": "spec.forProvider.clusterAdminSecretSecretRef"}
-}
-
-// GetObservation of this MrsClusterD
-func (tr *MrsClusterD) GetObservation() (map[string]any, error) {
-	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
-	if err != nil {
-		return nil, err
-	}
-	base := map[string]any{}
-	return base, json.TFParser.Unmarshal(o, &base)
-}
-
-// SetObservation for this MrsClusterD
-func (tr *MrsClusterD) SetObservation(obs map[string]any) error {
-	p, err := json.TFParser.Marshal(obs)
-	if err != nil {
-		return err
-	}
-	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
-}
-
-// GetID returns ID of underlying Terraform resource of this MrsClusterD
-func (tr *MrsClusterD) GetID() string {
-	if tr.Status.AtProvider.ID == nil {
-		return ""
-	}
-	return *tr.Status.AtProvider.ID
-}
-
-// GetParameters of this MrsClusterD
-func (tr *MrsClusterD) GetParameters() (map[string]any, error) {
-	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
-	if err != nil {
-		return nil, err
-	}
-	base := map[string]any{}
-	return base, json.TFParser.Unmarshal(p, &base)
-}
-
-// SetParameters for this MrsClusterD
-func (tr *MrsClusterD) SetParameters(params map[string]any) error {
-	p, err := json.TFParser.Marshal(params)
-	if err != nil {
-		return err
-	}
-	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
-}
-
-// LateInitialize this MrsClusterD using its observed tfState.
-// returns True if there are any spec changes for the resource.
-func (tr *MrsClusterD) LateInitialize(attrs []byte) (bool, error) {
-	params := &MrsClusterDParameters{}
-	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
-		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
-	}
-	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
-
-	li := resource.NewGenericLateInitializer(opts...)
-	return li.LateInitialize(&tr.Spec.ForProvider, params)
-}
-
-// GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *MrsClusterD) GetTerraformSchemaVersion() int {
-	return 0
-}
-
-// GetTerraformResourceType returns Terraform resource type for this MrsCluster
-func (mg *MrsCluster) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Cluster
+func (mg *Cluster) GetTerraformResourceType() string {
 	return "flexibleengine_mrs_cluster_v2"
 }
 
-// GetConnectionDetailsMapping for this MrsCluster
-func (tr *MrsCluster) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Cluster
+func (tr *Cluster) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"manager_admin_pwd": "spec.forProvider.managerAdminPwdSecretRef"}
 }
 
-// GetObservation of this MrsCluster
-func (tr *MrsCluster) GetObservation() (map[string]any, error) {
+// GetObservation of this Cluster
+func (tr *Cluster) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -107,8 +33,8 @@ func (tr *MrsCluster) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this MrsCluster
-func (tr *MrsCluster) SetObservation(obs map[string]any) error {
+// SetObservation for this Cluster
+func (tr *Cluster) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -116,16 +42,16 @@ func (tr *MrsCluster) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this MrsCluster
-func (tr *MrsCluster) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Cluster
+func (tr *Cluster) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this MrsCluster
-func (tr *MrsCluster) GetParameters() (map[string]any, error) {
+// GetParameters of this Cluster
+func (tr *Cluster) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -134,8 +60,8 @@ func (tr *MrsCluster) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this MrsCluster
-func (tr *MrsCluster) SetParameters(params map[string]any) error {
+// SetParameters for this Cluster
+func (tr *Cluster) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -143,10 +69,10 @@ func (tr *MrsCluster) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this MrsCluster using its observed tfState.
+// LateInitialize this Cluster using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *MrsCluster) LateInitialize(attrs []byte) (bool, error) {
-	params := &MrsClusterParameters{}
+func (tr *Cluster) LateInitialize(attrs []byte) (bool, error) {
+	params := &ClusterParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -157,170 +83,22 @@ func (tr *MrsCluster) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *MrsCluster) GetTerraformSchemaVersion() int {
+func (tr *Cluster) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this MrsHybridClusterD
-func (mg *MrsHybridClusterD) GetTerraformResourceType() string {
-	return "flexibleengine_mrs_hybrid_cluster_v1"
-}
-
-// GetConnectionDetailsMapping for this MrsHybridClusterD
-func (tr *MrsHybridClusterD) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"cluster_admin_secret": "spec.forProvider.clusterAdminSecretSecretRef"}
-}
-
-// GetObservation of this MrsHybridClusterD
-func (tr *MrsHybridClusterD) GetObservation() (map[string]any, error) {
-	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
-	if err != nil {
-		return nil, err
-	}
-	base := map[string]any{}
-	return base, json.TFParser.Unmarshal(o, &base)
-}
-
-// SetObservation for this MrsHybridClusterD
-func (tr *MrsHybridClusterD) SetObservation(obs map[string]any) error {
-	p, err := json.TFParser.Marshal(obs)
-	if err != nil {
-		return err
-	}
-	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
-}
-
-// GetID returns ID of underlying Terraform resource of this MrsHybridClusterD
-func (tr *MrsHybridClusterD) GetID() string {
-	if tr.Status.AtProvider.ID == nil {
-		return ""
-	}
-	return *tr.Status.AtProvider.ID
-}
-
-// GetParameters of this MrsHybridClusterD
-func (tr *MrsHybridClusterD) GetParameters() (map[string]any, error) {
-	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
-	if err != nil {
-		return nil, err
-	}
-	base := map[string]any{}
-	return base, json.TFParser.Unmarshal(p, &base)
-}
-
-// SetParameters for this MrsHybridClusterD
-func (tr *MrsHybridClusterD) SetParameters(params map[string]any) error {
-	p, err := json.TFParser.Marshal(params)
-	if err != nil {
-		return err
-	}
-	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
-}
-
-// LateInitialize this MrsHybridClusterD using its observed tfState.
-// returns True if there are any spec changes for the resource.
-func (tr *MrsHybridClusterD) LateInitialize(attrs []byte) (bool, error) {
-	params := &MrsHybridClusterDParameters{}
-	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
-		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
-	}
-	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
-
-	li := resource.NewGenericLateInitializer(opts...)
-	return li.LateInitialize(&tr.Spec.ForProvider, params)
-}
-
-// GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *MrsHybridClusterD) GetTerraformSchemaVersion() int {
-	return 0
-}
-
-// GetTerraformResourceType returns Terraform resource type for this MrsJobD
-func (mg *MrsJobD) GetTerraformResourceType() string {
-	return "flexibleengine_mrs_job_v1"
-}
-
-// GetConnectionDetailsMapping for this MrsJobD
-func (tr *MrsJobD) GetConnectionDetailsMapping() map[string]string {
-	return nil
-}
-
-// GetObservation of this MrsJobD
-func (tr *MrsJobD) GetObservation() (map[string]any, error) {
-	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
-	if err != nil {
-		return nil, err
-	}
-	base := map[string]any{}
-	return base, json.TFParser.Unmarshal(o, &base)
-}
-
-// SetObservation for this MrsJobD
-func (tr *MrsJobD) SetObservation(obs map[string]any) error {
-	p, err := json.TFParser.Marshal(obs)
-	if err != nil {
-		return err
-	}
-	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
-}
-
-// GetID returns ID of underlying Terraform resource of this MrsJobD
-func (tr *MrsJobD) GetID() string {
-	if tr.Status.AtProvider.ID == nil {
-		return ""
-	}
-	return *tr.Status.AtProvider.ID
-}
-
-// GetParameters of this MrsJobD
-func (tr *MrsJobD) GetParameters() (map[string]any, error) {
-	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
-	if err != nil {
-		return nil, err
-	}
-	base := map[string]any{}
-	return base, json.TFParser.Unmarshal(p, &base)
-}
-
-// SetParameters for this MrsJobD
-func (tr *MrsJobD) SetParameters(params map[string]any) error {
-	p, err := json.TFParser.Marshal(params)
-	if err != nil {
-		return err
-	}
-	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
-}
-
-// LateInitialize this MrsJobD using its observed tfState.
-// returns True if there are any spec changes for the resource.
-func (tr *MrsJobD) LateInitialize(attrs []byte) (bool, error) {
-	params := &MrsJobDParameters{}
-	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
-		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
-	}
-	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
-
-	li := resource.NewGenericLateInitializer(opts...)
-	return li.LateInitialize(&tr.Spec.ForProvider, params)
-}
-
-// GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *MrsJobD) GetTerraformSchemaVersion() int {
-	return 0
-}
-
-// GetTerraformResourceType returns Terraform resource type for this MrsJob
-func (mg *MrsJob) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Job
+func (mg *Job) GetTerraformResourceType() string {
 	return "flexibleengine_mrs_job_v2"
 }
 
-// GetConnectionDetailsMapping for this MrsJob
-func (tr *MrsJob) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Job
+func (tr *Job) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this MrsJob
-func (tr *MrsJob) GetObservation() (map[string]any, error) {
+// GetObservation of this Job
+func (tr *Job) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -329,8 +107,8 @@ func (tr *MrsJob) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this MrsJob
-func (tr *MrsJob) SetObservation(obs map[string]any) error {
+// SetObservation for this Job
+func (tr *Job) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -338,16 +116,16 @@ func (tr *MrsJob) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this MrsJob
-func (tr *MrsJob) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Job
+func (tr *Job) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this MrsJob
-func (tr *MrsJob) GetParameters() (map[string]any, error) {
+// GetParameters of this Job
+func (tr *Job) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -356,8 +134,8 @@ func (tr *MrsJob) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this MrsJob
-func (tr *MrsJob) SetParameters(params map[string]any) error {
+// SetParameters for this Job
+func (tr *Job) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -365,10 +143,10 @@ func (tr *MrsJob) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this MrsJob using its observed tfState.
+// LateInitialize this Job using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *MrsJob) LateInitialize(attrs []byte) (bool, error) {
-	params := &MrsJobParameters{}
+func (tr *Job) LateInitialize(attrs []byte) (bool, error) {
+	params := &JobParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -379,6 +157,6 @@ func (tr *MrsJob) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *MrsJob) GetTerraformSchemaVersion() int {
+func (tr *Job) GetTerraformSchemaVersion() int {
 	return 0
 }

@@ -7,68 +7,68 @@ package v1beta1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 
-// GetCondition of this TmsTags.
-func (mg *TmsTags) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this Tags.
+func (mg *Tags) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this TmsTags.
-func (mg *TmsTags) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this Tags.
+func (mg *Tags) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this TmsTags.
-func (mg *TmsTags) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this Tags.
+func (mg *Tags) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this TmsTags.
+GetProviderReference of this Tags.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *TmsTags) GetProviderReference() *xpv1.Reference {
+func (mg *Tags) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this TmsTags.
-func (mg *TmsTags) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this Tags.
+func (mg *Tags) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this TmsTags.
-func (mg *TmsTags) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this Tags.
+func (mg *Tags) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this TmsTags.
-func (mg *TmsTags) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this Tags.
+func (mg *Tags) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this TmsTags.
-func (mg *TmsTags) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this Tags.
+func (mg *Tags) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this TmsTags.
-func (mg *TmsTags) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this Tags.
+func (mg *Tags) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this TmsTags.
+SetProviderReference of this Tags.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *TmsTags) SetProviderReference(r *xpv1.Reference) {
+func (mg *Tags) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this TmsTags.
-func (mg *TmsTags) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this Tags.
+func (mg *Tags) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this TmsTags.
-func (mg *TmsTags) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this Tags.
+func (mg *Tags) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

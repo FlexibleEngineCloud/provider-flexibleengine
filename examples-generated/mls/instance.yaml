@@ -22,8 +22,8 @@ spec:
 
 ---
 
-apiVersion: mrs.flexibleengine.upbound.io/v1beta1
-kind: MrsClusterD
+apiVersion: mrsd.flexibleengine.upbound.io/v1beta1
+kind: Cluster
 metadata:
   annotations:
     meta.upbound.io/example-id: mls/v1beta1/instance
