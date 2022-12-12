@@ -484,19 +484,29 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> Elastic Load Balance (ELB)
 	*/
-
+	// flexibleengine_lb_l7policy_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_l7policy_v2
 	"flexibleengine_lb_l7policy_v2": config.IdentifierFromProvider,
-	"flexibleengine_lb_l7rule_v2":   config.IdentifierFromProvider,
-	// No import documented
-	"flexibleengine_lb_listener_v2":     config.IdentifierFromProvider,
+	// flexibleengine_lb_l7rule_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_l7rule_v2
+	"flexibleengine_lb_l7rule_v2": config.IdentifierFromProvider,
+	// flexibleengine_lb_listener_v2 - No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_listener_v2
+	"flexibleengine_lb_listener_v2": config.IdentifierFromProvider,
+	// flexibleengine_lb_loadbalancer_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_loadbalancer_v2
 	"flexibleengine_lb_loadbalancer_v2": config.IdentifierFromProvider,
-	// No import documented
+	// flexibleengine_lb_member_v2 - No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v2
 	"flexibleengine_lb_member_v2": config.IdentifierFromProvider,
-	// No import documented
+	// flexibleengine_lb_monitor_v2 - No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_monitor_v2
 	"flexibleengine_lb_monitor_v2": config.IdentifierFromProvider,
-	// No import documented
+	// flexibleengine_lb_pool_v2 - No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_pool_v2
 	"flexibleengine_lb_pool_v2": config.IdentifierFromProvider,
-	// No import documented
+	// flexibleengine_lb_whitelist_v2 - No import documented
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_whitelist_v2
 	"flexibleengine_lb_whitelist_v2": config.IdentifierFromProvider,
 
 	/*
@@ -559,11 +569,21 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 	  > Storage Disaster Recovery Service (SDRS)
 	*/
-	"flexibleengine_sdrs_drill_v1":              config.IdentifierFromProvider,
-	"flexibleengine_sdrs_protectedinstance_v1":  config.IdentifierFromProvider,
-	"flexibleengine_sdrs_protectiongroup_v1":    config.IdentifierFromProvider,
+	// flexibleengine_sdrs_drill_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_drill_v1
+	"flexibleengine_sdrs_drill_v1": config.IdentifierFromProvider,
+	// flexibleengine_sdrs_protectedinstance_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_protectedinstance_v1
+	"flexibleengine_sdrs_protectedinstance_v1": config.IdentifierFromProvider,
+	// flexibleengine_sdrs_protectiongroup_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_protectiongroup_v1
+	"flexibleengine_sdrs_protectiongroup_v1": config.IdentifierFromProvider,
+	// flexibleengine_sdrs_replication_attach_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_replication_attach_v1
 	"flexibleengine_sdrs_replication_attach_v1": config.IdentifierFromProvider,
-	"flexibleengine_sdrs_replication_pair_v1":   config.IdentifierFromProvider,
+	// flexibleengine_sdrs_replication_pair_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_replication_pair_v1
+	"flexibleengine_sdrs_replication_pair_v1": config.IdentifierFromProvider,
 
 	/*
 	  > Cloud Eye (CES)
@@ -615,7 +635,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 	  > Cloud Search Service (CSS)
 	*/
-	"flexibleengine_css_cluster_v1":  config.IdentifierFromProvider,
+	// flexibleengine_css_cluster_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_cluster_v1
+	"flexibleengine_css_cluster_v1": config.IdentifierFromProvider,
+	// flexibleengine_css_snapshot_v1 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_snapshot_v1
 	"flexibleengine_css_snapshot_v1": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
 
 	/*
@@ -633,9 +657,15 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> Scalable File Service (SFS)
 	*/
+	// flexibleengine_sfs_access_rule_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sfs_access_rule_v2
 	"flexibleengine_sfs_access_rule_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.sfs_id}}/{{.external_name}}"),
+	// flexibleengine_sfs_file_system_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sfs_file_system_v2
 	"flexibleengine_sfs_file_system_v2": config.IdentifierFromProvider,
-	"flexibleengine_sfs_turbo":          config.IdentifierFromProvider,
+	// flexibleengine_sfs_share_access_rule_v2 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sfs_share_access_rule_v2
+	"flexibleengine_sfs_turbo": config.IdentifierFromProvider,
 
 	/*
 	  > Machine Learning Service (MLS)
