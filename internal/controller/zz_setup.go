@@ -127,6 +127,7 @@ import (
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
 	repositorysharing "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repositorysharing"
+	tmstags "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/tms/tmstags"
 	backupvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backup"
 	backuppolicyvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backuppolicy"
 	flowlog "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/flowlog"
@@ -285,6 +286,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		organizationusers.Setup,
 		repository.Setup,
 		repositorysharing.Setup,
+		tmstags.Setup,
 		backupvbs.Setup,
 		backuppolicyvbs.Setup,
 		flowlog.Setup,

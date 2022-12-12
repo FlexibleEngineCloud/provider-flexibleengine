@@ -22,3 +22,44 @@ spec:
 
 ---
 
+apiVersion: mrs.flexibleengine.upbound.io/v1beta1
+kind: MrsClusterD
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mls/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: cluster1
+  name: cluster1
+spec:
+  forProvider:
+    availableZoneId: eu-west-0a
+    billingType: 12
+    clusterAdminSecretSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    clusterName: mrs-cluster-acc
+    clusterType: 0
+    clusterVersion: MRS 1.3.0
+    componentList:
+    - componentName: Hadoop
+    - componentName: Spark
+    - componentName: Hive
+    coreNodeNum: 3
+    coreNodeSize: s1.xlarge.linux.mrs
+    masterNodeNum: 2
+    masterNodeSize: s1.4xlarge.linux.mrs
+    nodePublicCertName: KeyPair-ci
+    region: eu-west-0
+    safeMode: 0
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    volumeSize: 100
+    volumeType: SATA
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

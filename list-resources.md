@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 18:05:26 CET
+Last update: Lun 12 déc 2022 18:18:50 CET
 
-## Resources implemented: 154/178 (86.52%)
+## Resources implemented: 155/178 (87.08%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -173,9 +173,9 @@ Last update: Lun 12 déc 2022 18:05:26 CET
 * [ ] [flexibleengine_dli_table](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_table)
 * [ ] [flexibleengine_dli_spark_job](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_spark_job)
 
-### Tag Management Service (TMS) (0.0%)
-#### Implemented (0/1)
-* [ ] [flexibleengine_tms_tags](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/tms_tags)
+### Tag Management Service (TMS) (100.0%)
+#### Implemented (1/1)
+* [x] [flexibleengine_tms_tags](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/tms_tags)
 
 ### Network ACL (0.0%)
 #### Implemented (0/5)

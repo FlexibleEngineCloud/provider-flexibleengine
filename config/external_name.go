@@ -725,6 +725,13 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_mrs_job_v2 - Imported using template
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v2
 	"flexibleengine_mrs_job_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+
+	/*
+		> Tag Management Service (TMS)
+	*/
+	// flexibleengine_tms_tags - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/tms_tags
+	"flexibleengine_tms_tags": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
