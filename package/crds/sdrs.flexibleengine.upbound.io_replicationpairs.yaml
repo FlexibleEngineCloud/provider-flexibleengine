@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: snatrules.nat.flexibleengine.upbound.io
+  name: replicationpairs.sdrs.flexibleengine.upbound.io
 spec:
-  group: nat.flexibleengine.upbound.io
+  group: sdrs.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: SnatRule
-    listKind: SnatRuleList
-    plural: snatrules
-    singular: snatrule
+    kind: ReplicationPair
+    listKind: ReplicationPairList
+    plural: replicationpairs
+    singular: replicationpair
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'SnatRule is the Schema for the SnatRules API. ""page_title:
-          "flexibleengine_nat_snat_rule_v2"'
+        description: 'ReplicationPair is the Schema for the ReplicationPairs API.
+          ""page_title: "flexibleengine_sdrs_replication_pair_v1"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SnatRuleSpec defines the desired state of SnatRule
+            description: ReplicationPairSpec defines the desired state of ReplicationPair
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,17 +64,23 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  cidr:
-                    description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                  deleteTargetVolume:
+                    description: Specifies whether to delete the target disk. The
+                      default value is false.
+                    type: boolean
+                  description:
+                    description: The description of a replication pair. Changing this
+                      creates a new pair.
                     type: string
-                  floatingIpId:
-                    description: ID of the floating ip this snat rule connets to.
-                      Changing this creates a new snat rule.
+                  faultLevel:
+                    description: Specifies the fault level of a replication pair.
                     type: string
-                  floatingIpIdRef:
-                    description: Reference to a EIP in eip to populate floatingIpId.
+                  groupId:
+                    description: Specifies the ID of a protection group. Changing
+                      this creates a new pair.
+                    type: string
+                  groupIdRef:
+                    description: Reference to a ProtectionGroup to populate groupId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -107,8 +113,8 @@ spec:
                     required:
                     - name
                     type: object
-                  floatingIpIdSelector:
-                    description: Selector for a EIP in eip to populate floatingIpId.
+                  groupIdSelector:
+                    description: Selector for a ProtectionGroup to populate groupId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -146,12 +152,30 @@ spec:
                             type: string
                         type: object
                     type: object
-                  natGatewayId:
-                    description: ID of the nat gateway this snat rule belongs to.
-                      Changing this creates a new snat rule.
+                  name:
+                    description: The name of a replication pair. The name can contain
+                      a maximum of 64 bytes. The value can contain only letters (a
+                      to z and A to Z), digits (0 to 9), decimal points (.), underscores
+                      (_), and hyphens (-).
                     type: string
-                  natGatewayIdRef:
-                    description: Reference to a Gateway to populate natGatewayId.
+                  replicationModel:
+                    description: Specifies the replication mode of a replication pair.
+                      The default value is hypermetro.
+                    type: string
+                  status:
+                    description: Specifies the status of a replication pair.
+                    type: string
+                  targetVolumeId:
+                    description: Specifies the ID of the disk in the protection availability
+                      zone.
+                    type: string
+                  volumeId:
+                    description: Specifies the ID of a source disk. Changing this
+                      creates a new pair.
+                    type: string
+                  volumeIdRef:
+                    description: Reference to a BlockStorageVolume in evs to populate
+                      volumeId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -184,8 +208,9 @@ spec:
                     required:
                     - name
                     type: object
-                  natGatewayIdSelector:
-                    description: Selector for a Gateway to populate natGatewayId.
+                  volumeIdSelector:
+                    description: Selector for a BlockStorageVolume in evs to populate
+                      volumeId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -223,172 +248,8 @@ spec:
                             type: string
                         type: object
                     type: object
-                  networkId:
-                    description: The resource ID in UUID format.
-                    type: string
-                  networkIdRef:
-                    description: Reference to a Network in vpc to populate networkId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  networkIdSelector:
-                    description: Selector for a Network in vpc to populate networkId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
-                  region:
-                    description: The region in which to obtain the V2 nat client.
-                      If omitted, the region argument of the provider is used. Changing
-                      this creates a new snat rule.
-                    type: string
-                  sourceType:
-                    description: Specifies the scenario. The valid value is 0 (VPC
-                      scenario) and 1 (Direct Connect scenario). Only cidr can be
-                      specified over a Direct Connect connection. If no value is entered,
-                      the default value 0 (VPC scenario) is used. Changing this creates
-                      a new snat rule.
-                    type: number
-                  subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
-                    type: string
-                  subnetIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  subnetIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate subnetId.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -562,18 +423,12 @@ spec:
             - forProvider
             type: object
           status:
-            description: SnatRuleStatus defines the observed state of SnatRule.
+            description: ReplicationPairStatus defines the observed state of ReplicationPair.
             properties:
               atProvider:
                 properties:
-                  floatingIpAddress:
-                    description: The actual floating IP address.
-                    type: string
                   id:
-                    description: The resource ID in UUID format.
-                    type: string
-                  status:
-                    description: The status of the snat rule.
+                    description: ID of the replication pair.
                     type: string
                 type: object
               conditions:

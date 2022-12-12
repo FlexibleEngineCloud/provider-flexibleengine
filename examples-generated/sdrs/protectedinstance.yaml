@@ -1,0 +1,43 @@
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ProtectedInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/protectedinstance
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider:
+    description: test description
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: group_1
+    name: instance_1
+    serverIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ProtectionGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/protectedinstance
+  labels:
+    testing.upbound.io/example-name: group_1
+  name: group-1
+spec:
+  forProvider:
+    description: test description
+    domainId: ${data.flexibleengine_sdrs_domain_v1.domain_1.id}
+    drType: migration
+    name: group_1
+    sourceAvailabilityZone: eu-west-0a
+    sourceVpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    targetAvailabilityZone: eu-west-0b
+
+---
+

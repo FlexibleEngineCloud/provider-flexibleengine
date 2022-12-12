@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 15:07:54 CET
+Last update: Lun 12 déc 2022 15:11:53 CET
 
-## Resources implemented: 125/178 (70.22%)
+## Resources implemented: 135/178 (75.84%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -99,11 +99,11 @@ Last update: Lun 12 déc 2022 15:07:54 CET
 * [ ] [flexibleengine_rts_software_config_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_software_config_v1)
 * [ ] [flexibleengine_rts_stack_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1)
 
-### Distributed Message Service (DMS) (0.0%)
-#### Implemented (0/3)
-* [ ] [flexibleengine_dms_kafka_user](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_user)
-* [ ] [flexibleengine_dms_kafka_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_topic)
-* [ ] [flexibleengine_dms_kafka_instance](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_instance)
+### Distributed Message Service (DMS) (100.0%)
+#### Implemented (3/3)
+* [x] [flexibleengine_dms_kafka_user](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_user)
+* [x] [flexibleengine_dms_kafka_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_topic)
+* [x] [flexibleengine_dms_kafka_instance](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_instance)
 
 ### MapReduce Service (MRS) (0.0%)
 #### Implemented (0/5)
@@ -137,13 +137,13 @@ Last update: Lun 12 déc 2022 15:07:54 CET
 * [x] [flexibleengine_apig_custom_authorizer](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_custom_authorizer)
 * [x] [flexibleengine_apig_api_publishment](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/apig_api_publishment)
 
-### Storage Disaster Recovery Service (SDRS) (0.0%)
-#### Implemented (0/5)
-* [ ] [flexibleengine_sdrs_replication_pair_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_replication_pair_v1)
-* [ ] [flexibleengine_sdrs_protectedinstance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_protectedinstance_v1)
-* [ ] [flexibleengine_sdrs_replication_attach_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_replication_attach_v1)
-* [ ] [flexibleengine_sdrs_drill_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_drill_v1)
-* [ ] [flexibleengine_sdrs_protectiongroup_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_protectiongroup_v1)
+### Storage Disaster Recovery Service (SDRS) (100.0%)
+#### Implemented (5/5)
+* [x] [flexibleengine_sdrs_replication_pair_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_replication_pair_v1)
+* [x] [flexibleengine_sdrs_protectedinstance_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_protectedinstance_v1)
+* [x] [flexibleengine_sdrs_replication_attach_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_replication_attach_v1)
+* [x] [flexibleengine_sdrs_drill_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_drill_v1)
+* [x] [flexibleengine_sdrs_protectiongroup_v1](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sdrs_protectiongroup_v1)
 
 ### Volume Backup Service (VBS) (100.0%)
 #### Implemented (2/2)
@@ -197,10 +197,10 @@ Last update: Lun 12 déc 2022 15:07:54 CET
 * [x] [flexibleengine_nat_snat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_snat_rule_v2)
 * [x] [flexibleengine_nat_dnat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2)
 
-### Log Tank Service (LTS) (0.0%)
-#### Implemented (0/2)
-* [ ] [flexibleengine_lts_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic)
-* [ ] [flexibleengine_lts_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group)
+### Log Tank Service (LTS) (100.0%)
+#### Implemented (2/2)
+* [x] [flexibleengine_lts_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic)
+* [x] [flexibleengine_lts_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group)
 
 ### FunctionGraph (0.0%)
 #### Implemented (0/3)

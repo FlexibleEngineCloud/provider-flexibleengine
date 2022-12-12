@@ -1,0 +1,18 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: KafkaTopic
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/kafkatopic
+  labels:
+    testing.upbound.io/example-name: topic
+  name: topic
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: topic_1
+    partitions: 20
+
+---
+
