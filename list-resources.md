@@ -1,8 +1,8 @@
 # Resources
 
-Last update: Lun 12 déc 2022 14:30:44 CET
+Last update: Lun 12 déc 2022 14:51:52 CET
 
-## Resources implemented: 123/178 (69.1%)
+## Resources implemented: 125/178 (70.22%)
 ### Software Repository for Container (SWR) (100.0%)
 #### Implemented (4/4)
 * [x] [flexibleengine_swr_organization_users](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/swr_organization_users)
@@ -197,10 +197,10 @@ Last update: Lun 12 déc 2022 14:30:44 CET
 * [x] [flexibleengine_nat_snat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_snat_rule_v2)
 * [x] [flexibleengine_nat_dnat_rule_v2](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/nat_dnat_rule_v2)
 
-### Log Tank Service (LTS) (0.0%)
-#### Implemented (0/2)
-* [ ] [flexibleengine_lts_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic)
-* [ ] [flexibleengine_lts_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group)
+### Log Tank Service (LTS) (100.0%)
+#### Implemented (2/2)
+* [x] [flexibleengine_lts_topic](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic)
+* [x] [flexibleengine_lts_group](https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group)
 
 ### FunctionGraph (0.0%)
 #### Implemented (0/3)

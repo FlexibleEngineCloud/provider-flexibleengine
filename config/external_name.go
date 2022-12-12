@@ -559,7 +559,22 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 	  > Cloud Eye (CES)
 	*/
+
+	// flexibleengine_ces_alarmrule - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/ces_alarmrule
 	"flexibleengine_ces_alarmrule": config.IdentifierFromProvider,
+
+	/*
+		> Log Tanker Service (LTS)
+	*/
+
+	// flexibleengine_lts_topic - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic
+	"flexibleengine_lts_topic": config.IdentifierFromProvider,
+
+	// flexibleengine_lts_group - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_group
+	"flexibleengine_lts_group": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

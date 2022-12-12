@@ -17,3 +17,34 @@ spec:
 
 ---
 
+apiVersion: lts.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+  labels:
+    testing.upbound.io/example-name: log_group1
+  name: log-group1
+spec:
+  forProvider:
+    groupName: ${var.log_group_name}
+
+---
+
+apiVersion: lts.flexibleengine.upbound.io/v1beta1
+kind: Topic
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+  labels:
+    testing.upbound.io/example-name: log_topic1
+  name: log-topic1
+spec:
+  forProvider:
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: log_group1
+    topicName: ${var.log_topic_name}
+
+---
+

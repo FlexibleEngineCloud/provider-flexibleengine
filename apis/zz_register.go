@@ -28,6 +28,7 @@ import (
 	v1beta1iam "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1ims "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta1kms "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
+	v1beta1lts "github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1"
 	v1beta1modelarts "github.com/FrangipaneTeam/provider-flexibleengine/apis/modelarts/v1beta1"
 	v1beta1nat "github.com/FrangipaneTeam/provider-flexibleengine/apis/nat/v1beta1"
 	v1beta1oss "github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1"
@@ -62,6 +63,7 @@ func init() {
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1ims.SchemeBuilder.AddToScheme,
 		v1beta1kms.SchemeBuilder.AddToScheme,
+		v1beta1lts.SchemeBuilder.AddToScheme,
 		v1beta1modelarts.SchemeBuilder.AddToScheme,
 		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1beta1oss.SchemeBuilder.AddToScheme,

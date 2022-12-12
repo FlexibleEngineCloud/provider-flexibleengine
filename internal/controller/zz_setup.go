@@ -74,6 +74,8 @@ import (
 	user "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/user"
 	image "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ims/image"
 	key "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/kms/key"
+	grouplts "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/group"
+	topic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/topic"
 	dataset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/dataset"
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
@@ -201,6 +203,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		user.Setup,
 		image.Setup,
 		key.Setup,
+		grouplts.Setup,
+		topic.Setup,
 		dataset.Setup,
 		datasetversion.Setup,
 		dnatrule.Setup,

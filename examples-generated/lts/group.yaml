@@ -1,0 +1,14 @@
+apiVersion: lts.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lts/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: group_1
+  name: group-1
+spec:
+  forProvider:
+    groupName: log_group1
+
+---
+

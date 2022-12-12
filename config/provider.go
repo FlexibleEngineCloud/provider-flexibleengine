@@ -20,6 +20,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/iam"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ims"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/kms"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/lts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/modelarts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
@@ -63,6 +64,7 @@ func GetProvider() *ujconfig.Provider {
 		agd.Configure,
 		bms.Configure,
 		dcs.Configure,
+		lts.Configure,
 		drs.Configure,
 		dds.Configure,
 		eps.Configure,
