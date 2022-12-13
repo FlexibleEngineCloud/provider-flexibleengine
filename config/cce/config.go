@@ -12,6 +12,9 @@ func Configure(p *config.Provider) {
 	// flexibleengine_cce_addon_v3
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_addon_v3
 	p.AddResourceConfigurator("flexibleengine_cce_addon_v3", func(r *config.Resource) {
+
+		r.UseAsync = true
+		
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}

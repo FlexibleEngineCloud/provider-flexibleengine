@@ -23,8 +23,6 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 
-		// TODO admin_pass
-
 	})
 
 	// flexibleengine_cse_microservice
@@ -37,8 +35,6 @@ func Configure(p *config.Provider) {
 		r.References["connect_address"] = config.Reference{
 			Type: "MicroserviceEngine",
 		}
-
-		// TODO admin_pass
 
 	})
 
@@ -57,8 +53,6 @@ func Configure(p *config.Provider) {
 		r.References["microservice_id"] = config.Reference{
 			Type: "Microservice",
 		}
-
-		// TODO admin_pass
 
 	})
 
