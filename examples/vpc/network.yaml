@@ -1,0 +1,13 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/network
+  labels:
+    testing.upbound.io/example-name: network_1
+  name: network-1
+spec:
+  forProvider:
+    adminStateUp: "true"
+    name: network_1
+---

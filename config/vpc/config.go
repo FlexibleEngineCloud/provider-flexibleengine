@@ -86,5 +86,14 @@ func Configure(p *config.Provider) {
 			Type: "SecurityGroup",
 		}
 	})
+	// flexibleengine_networking_router_interface_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_interface_v2
+	p.AddResourceConfigurator("flexibleengine_networking_router_interface_v2", func(r *config.Resource) {
+
+		// subnet_id is the ID of the subnet to which this interface is attached.
+		r.References["subnet_id"] = config.Reference{
+			Type: "NetworkingSubnet",
+		}
+	})
 
 }

@@ -1,0 +1,12 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Router
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/router
+  labels:
+    testing.upbound.io/example-name: router_1
+  name: router-1
+spec:
+  forProvider:
+    name: my_router
+---

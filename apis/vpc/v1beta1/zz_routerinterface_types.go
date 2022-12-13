@@ -56,15 +56,15 @@ type RouterInterfaceParameters struct {
 
 	// ID of the subnet this interface connects to. Changing
 	// this creates a new router interface.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=NetworkingSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a VPCSubnet in vpc to populate subnetId.
+	// Reference to a NetworkingSubnet to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a VPCSubnet in vpc to populate subnetId.
+	// Selector for a NetworkingSubnet to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }

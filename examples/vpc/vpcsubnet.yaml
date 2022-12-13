@@ -1,0 +1,30 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpc
+  labels:
+    testing.upbound.io/example-name: vpc_v1
+  name: vpc-v1
+spec:
+  forProvider:
+    name: "example-vpc"
+    cidr: "192.168.0.0/16"
+---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
+  labels:
+    testing.upbound.io/example-name: subnet_v1
+  name: subnet-v1
+spec:
+  forProvider:
+    cidr: "192.168.0.0/24"
+    gatewayIp: "192.168.0.1"
+    name: "example-subnet"
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_v1
+---
