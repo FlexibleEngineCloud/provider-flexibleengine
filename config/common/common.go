@@ -40,6 +40,9 @@ var (
 
 	// PathAddressExtractor is the golang path to AddressExtractor function
 	PathAddressExtractor = SelfPackagePath + ".AddressExtractor()"
+
+	// PathIDExtractor is the golang path to IDExtractor function
+	PathIDExtractor = SelfPackagePath + ".IDExtractor()"
 )
 
 // RegionExtractor extracts region from "spec.forProvider.region" which
@@ -148,6 +151,23 @@ func AddressExtractor() reference.ExtractValueFn {
 			return ""
 		}
 		r, err := paved.GetString("spec.forProvider.address")
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		return r
+	}
+}
+
+// IDExtractor extracts ID from "status.atProvider.id"
+func IDExtractor() reference.ExtractValueFn {
+	return func(mg xpresource.Managed) string {
+		paved, err := fieldpath.PaveObject(mg)
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		r, err := paved.GetString("status.atProvider.id")
 		if err != nil {
 			// TODO should we log this error?
 			return ""

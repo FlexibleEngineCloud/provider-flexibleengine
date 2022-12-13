@@ -2,6 +2,7 @@
 package ecs
 
 import (
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -20,7 +21,8 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_instance_v2
 	p.AddResourceConfigurator("flexibleengine_compute_instance_v2", func(r *config.Resource) {
 		r.References["network.uuid"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
+			Type:      tools.GenerateType("vpc", "VPCSubnet"),
+			Extractor: common.PathIDExtractor,
 		}
 
 		// ? @Gaetan - tools.GenerateType("vpc", "NetworkPort"),

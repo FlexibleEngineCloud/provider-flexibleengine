@@ -134,7 +134,7 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].UUID),
-			Extract:      reference.ExternalName(),
+			Extract:      common.IDExtractor(),
 			Reference:    mg.Spec.ForProvider.Network[i3].UUIDRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].UUIDSelector,
 			To: reference.To{
