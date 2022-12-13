@@ -9,7 +9,9 @@ metadata:
 spec:
   forProvider:
     backupName: ${var.backup_name}
-    resourceId: ${var.resource_id}
+    resourceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     resourceType: OS::Nova::Server
 
 ---

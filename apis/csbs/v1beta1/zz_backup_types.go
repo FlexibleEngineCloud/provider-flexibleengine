@@ -45,8 +45,17 @@ type BackupParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// ID of the target to which the backup is restored. Changing this creates a new backup.
-	// +kubebuilder:validation:Required
-	ResourceID *string `json:"resourceId" tf:"resource_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +kubebuilder:validation:Optional
+	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
+
+	// Reference to a Instance in ecs to populate resourceId.
+	// +kubebuilder:validation:Optional
+	ResourceIDRef *v1.Reference `json:"resourceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in ecs to populate resourceId.
+	// +kubebuilder:validation:Optional
+	ResourceIDSelector *v1.Selector `json:"resourceIdSelector,omitempty" tf:"-"`
 
 	// Type of the target to which the backup is restored. The default value is OS::Nova::Server for an ECS. Changing this creates a new backup.
 	// +kubebuilder:validation:Optional

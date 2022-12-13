@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1beta1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -138,6 +139,16 @@ func (in *BackupParameters) DeepCopyInto(out *BackupParameters) {
 		in, out := &in.ResourceID, &out.ResourceID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ResourceIDRef != nil {
+		in, out := &in.ResourceIDRef, &out.ResourceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ResourceIDSelector != nil {
+		in, out := &in.ResourceIDSelector, &out.ResourceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ResourceType != nil {
 		in, out := &in.ResourceType, &out.ResourceType

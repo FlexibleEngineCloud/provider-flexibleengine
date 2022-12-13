@@ -10,6 +10,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/as"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/bms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/csbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cse"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cts"
@@ -111,6 +112,7 @@ func GetProvider() *ujconfig.Provider {
 		dis.Configure,
 		cts.Configure,
 		dws.Configure,
+		csbs.Configure,
 	} {
 		configure(pc)
 	}
