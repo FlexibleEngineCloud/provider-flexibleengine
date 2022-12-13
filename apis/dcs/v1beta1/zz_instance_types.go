@@ -137,15 +137,16 @@ type InstanceParameters struct {
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the network id of the subnet. Changing this creates a new instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
-	// Reference to a Network in vpc to populate networkId.
+	// Reference to a VPCSubnet in vpc to populate networkId.
 	// +kubebuilder:validation:Optional
 	NetworkIDRef *v1.Reference `json:"networkIdRef,omitempty" tf:"-"`
 
-	// Selector for a Network in vpc to populate networkId.
+	// Selector for a VPCSubnet in vpc to populate networkId.
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 

@@ -23,12 +23,12 @@ func (mg *EIPAssociate) ResolveReferences(ctx context.Context, c client.Reader) 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.IDExtractor(),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
-			List:    &v1beta1.NetworkList{},
-			Managed: &v1beta1.Network{},
+			List:    &v1beta1.VPCSubnetList{},
+			Managed: &v1beta1.VPCSubnet{},
 		},
 	})
 	if err != nil {

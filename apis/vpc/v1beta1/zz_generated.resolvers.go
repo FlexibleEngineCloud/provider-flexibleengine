@@ -8,6 +8,7 @@ package v1beta1
 import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -48,12 +49,12 @@ func (mg *NetworkingSubnet) ResolveReferences(ctx context.Context, c client.Read
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.IDExtractor(),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
-			List:    &NetworkList{},
-			Managed: &Network{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -158,12 +159,12 @@ func (mg *Port) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.IDExtractor(),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
-			List:    &NetworkList{},
-			Managed: &Network{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -479,12 +480,12 @@ func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.IDExtractor(),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
-			List:    &NetworkList{},
-			Managed: &Network{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -499,8 +500,8 @@ func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &NetworkingSubnetList{},
-			Managed: &NetworkingSubnet{},
+			List:    &VPCSubnetList{},
+			Managed: &VPCSubnet{},
 		},
 	})
 	if err != nil {
