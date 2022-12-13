@@ -59,13 +59,12 @@ func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), tools.ResourcePrefix, tools.ModulePath, providerMetadata,
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
-			ExternalNameConfigurations(),
-			defaultVersion(),
-			GroupKindOverrides(),
-			KnownReferencers(),
-			KindOverrides(),
-			// KindRemoveVersion Always at the end
-			KindRemoveVersion(),
+			ExternalNameConfigurations(), // 1
+			defaultVersion(),             // 2
+			GroupKindOverrides(),         // 3
+			KnownReferencers(),           // 4
+			KindOverrides(),              // 5
+			KindRemoveVersion(),          // Always at the end
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
