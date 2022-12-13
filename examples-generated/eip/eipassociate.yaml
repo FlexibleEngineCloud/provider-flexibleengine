@@ -12,7 +12,9 @@ spec:
     networkIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    publicIp: ${var.public_address}
+    publicIpSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
 
 ---
 

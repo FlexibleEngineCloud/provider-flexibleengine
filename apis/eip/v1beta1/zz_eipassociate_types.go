@@ -61,8 +61,18 @@ type EIPAssociateParameters struct {
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
 	// Specifies the EIP address to associate. Changing this creates a new resource.
-	// +kubebuilder:validation:Required
-	PublicIP *string `json:"publicIp" tf:"public_ip,omitempty"`
+	// +crossplane:generate:reference:type=EIP
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.AddressExtractor()
+	// +kubebuilder:validation:Optional
+	PublicIP *string `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
+
+	// Reference to a EIP to populate publicIp.
+	// +kubebuilder:validation:Optional
+	PublicIPRef *v1.Reference `json:"publicIpRef,omitempty" tf:"-"`
+
+	// Selector for a EIP to populate publicIp.
+	// +kubebuilder:validation:Optional
+	PublicIPSelector *v1.Selector `json:"publicIpSelector,omitempty" tf:"-"`
 
 	// Specifies the region in which to associate the EIP. If omitted, the provider-level
 	// region will be used. Changing this creates a new resource.

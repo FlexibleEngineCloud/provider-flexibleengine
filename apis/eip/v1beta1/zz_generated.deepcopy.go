@@ -223,6 +223,16 @@ func (in *EIPAssociateParameters) DeepCopyInto(out *EIPAssociateParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PublicIPRef != nil {
+		in, out := &in.PublicIPRef, &out.PublicIPRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PublicIPSelector != nil {
+		in, out := &in.PublicIPSelector, &out.PublicIPSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)

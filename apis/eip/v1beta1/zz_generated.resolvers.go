@@ -8,6 +8,7 @@ package v1beta1
 import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
+	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -51,6 +52,22 @@ func (mg *EIPAssociate) ResolveReferences(ctx context.Context, c client.Reader) 
 	}
 	mg.Spec.ForProvider.PortID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.PortIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PublicIP),
+		Extract:      common.AddressExtractor(),
+		Reference:    mg.Spec.ForProvider.PublicIPRef,
+		Selector:     mg.Spec.ForProvider.PublicIPSelector,
+		To: reference.To{
+			List:    &EIPList{},
+			Managed: &EIP{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.PublicIP")
+	}
+	mg.Spec.ForProvider.PublicIP = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.PublicIPRef = rsp.ResolvedReference
 
 	return nil
 }
