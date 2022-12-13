@@ -19,6 +19,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dedicatedelb"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dis"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dli"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/dms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/drs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dws"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ecs"
@@ -113,6 +114,7 @@ func GetProvider() *ujconfig.Provider {
 		cts.Configure,
 		dws.Configure,
 		csbs.Configure,
+		dms.Configure,
 	} {
 		configure(pc)
 	}
