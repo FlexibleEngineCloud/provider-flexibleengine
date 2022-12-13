@@ -1,0 +1,22 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Agency
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/agency
+  labels:
+    testing.upbound.io/example-name: agency
+  name: agency
+spec:
+  forProvider:
+    description: this is a domain test agency
+    delegatedServiceName: op_svc_evs
+    domainRoles:
+    - OBS OperateAccess
+    name: test_agency
+    projectRole:
+    - project: eu-west-0
+      roles:
+      - Tenant Administrator
+
+---
+

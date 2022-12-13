@@ -4,7 +4,10 @@ metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/project
   labels:
-    testing.upbound.io/example-name: eu-west-0_example_project
-  name: eu-west-0_example-project
+    testing.upbound.io/example-name: project_1
+  name: project-1
 spec:
-  forProvider: {}
+  forProvider:
+    description: A ACC test project
+    name: eu-west-0_project_1
+---

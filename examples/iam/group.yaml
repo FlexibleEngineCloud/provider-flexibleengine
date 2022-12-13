@@ -4,8 +4,10 @@ metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/group
   labels:
-    testing.upbound.io/example-name: example_group
-  name: example-group
+    testing.upbound.io/example-name: group_1
+  name: group-1
 spec:
   forProvider:
-    name: example-group
+    description: This is a test group
+    name: group_1
+---
