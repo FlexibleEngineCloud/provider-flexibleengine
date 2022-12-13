@@ -54,15 +54,25 @@ def main():
                 # Open the file
                 x = open("examples/" + group + "/" + file, "r")
                 # Read the content of the file
-                content = x.read()
+                content = x.readlines()
                 # Close the file
                 x.close()
+
 
                 # If the file contains strict the apiVersion and the kind 
                 # apiVersion: <apiVersion>
                 # kind: <kind>
                 # in File check first line is equal to apiVersion and second line is equal to kind
-                if content.splitlines()[0] == "apiVersion: " + apiVersion and content.splitlines()[1] == "kind: " + kind:
+                foundApiVersion = False
+                foundKind = False
+                for i in range(len(content)):
+                    content[i] = content[i].strip()
+                    if content[i] == "apiVersion: " + apiVersion:
+                        foundApiVersion = True
+                    if content[i] == "kind: " + kind:
+                        foundKind = True
+
+                if foundApiVersion and foundKind:
                     fileToApply.append("examples/" + group + "/" + file)
                     
     # Print the kubectl command to apply all resources
@@ -91,9 +101,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         print("Enter name (nat/gateway): ")
         sys.argv.append(input())
-
-
-
 
 
     if len(sys.argv) != 2 or sys.argv[1] == "--help":
