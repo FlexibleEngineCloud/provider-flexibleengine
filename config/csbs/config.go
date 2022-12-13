@@ -15,5 +15,6 @@ func Configure(p *config.Provider) {
 		r.References["resource_id"] = config.Reference{
 			Type: tools.GenerateType("ecs", "Instance"),
 		}
+		r.UseAsync = true
 	})
 }
