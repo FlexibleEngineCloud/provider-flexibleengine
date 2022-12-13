@@ -14,6 +14,11 @@
             "command": "python3 scripts/generate-list-resources.py"
         },
         {
+            "label": "Generate list tested",
+            "type": "shell",
+            "command": "python3 scripts/generate-check-examples.py package/crds/ examples/ > list-tested.md"
+        },
+        {
             "label": "Reviewable",
             "type": "shell",
             "command": "make reviewable"
