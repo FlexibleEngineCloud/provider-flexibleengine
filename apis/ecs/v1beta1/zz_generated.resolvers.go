@@ -138,8 +138,8 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 			Reference:    mg.Spec.ForProvider.Network[i3].UUIDRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].UUIDSelector,
 			To: reference.To{
-				List:    &v1beta12.NetworkList{},
-				Managed: &v1beta12.Network{},
+				List:    &v1beta12.VPCSubnetList{},
+				Managed: &v1beta12.VPCSubnet{},
 			},
 		})
 		if err != nil {

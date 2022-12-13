@@ -283,15 +283,15 @@ type NetworkParameters struct {
 
 	// The network UUID to
 	// attach to the server. Changing this creates a new server.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	UUID *string `json:"uuid,omitempty" tf:"uuid,omitempty"`
 
-	// Reference to a Network in vpc to populate uuid.
+	// Reference to a VPCSubnet in vpc to populate uuid.
 	// +kubebuilder:validation:Optional
 	UUIDRef *v1.Reference `json:"uuidRef,omitempty" tf:"-"`
 
-	// Selector for a Network in vpc to populate uuid.
+	// Selector for a VPCSubnet in vpc to populate uuid.
 	// +kubebuilder:validation:Optional
 	UUIDSelector *v1.Selector `json:"uuidSelector,omitempty" tf:"-"`
 }

@@ -495,7 +495,8 @@ spec:
                             this creates a new server.
                           type: string
                         uuidRef:
-                          description: Reference to a Network in vpc to populate uuid.
+                          description: Reference to a VPCSubnet in vpc to populate
+                            uuid.
                           properties:
                             name:
                               description: Name of the referenced object.
@@ -530,7 +531,8 @@ spec:
                           - name
                           type: object
                         uuidSelector:
-                          description: Selector for a Network in vpc to populate uuid.
+                          description: Selector for a VPCSubnet in vpc to populate
+                            uuid.
                           properties:
                             matchControllerRef:
                               description: MatchControllerRef ensures an object with

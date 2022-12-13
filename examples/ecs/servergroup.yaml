@@ -10,4 +10,4 @@ spec:
   forProvider:
     name: example-servergroup
     policies: ["anti-affinity"]
-    
+---
