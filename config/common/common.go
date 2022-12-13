@@ -37,6 +37,9 @@ var (
 
 	// PathBucketNameExtractor is the golang path to BucketNameExtractor function
 	PathBucketNameExtractor = SelfPackagePath + ".BucketNameExtractor()"
+
+	// PathAddressExtractor is the golang path to AddressExtractor function
+	PathAddressExtractor = SelfPackagePath + ".AddressExtractor()"
 )
 
 // RegionExtractor extracts region from "spec.forProvider.region" which
@@ -128,6 +131,23 @@ func BucketNameExtractor() reference.ExtractValueFn {
 			return ""
 		}
 		r, err := paved.GetString("spec.forProvider.bucket")
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		return r
+	}
+}
+
+// AddressExtractor extracts address from "spec.forProvider.address"
+func AddressExtractor() reference.ExtractValueFn {
+	return func(mg xpresource.Managed) string {
+		paved, err := fieldpath.PaveObject(mg)
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		r, err := paved.GetString("spec.forProvider.address")
 		if err != nil {
 			// TODO should we log this error?
 			return ""
