@@ -1,0 +1,67 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/role
+  labels:
+    testing.upbound.io/example-name: role
+  name: role
+spec:
+  forProvider:
+    description: created by terraform
+    name: test
+    policy: |
+      {
+        "Version": "1.1",
+        "Statement": [
+          {
+            "Action": [
+              "obs:bucket:GetBucketAcl"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+              "obs:*:*:bucket:*"
+            ],
+            "Condition": {
+              "StringStartWith": {
+                "g:ProjectName": [
+                  "eu-west-0"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    type: AX
+---
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: group_1
+  name: group-1
+spec:
+  forProvider:
+    description: This is a test group
+    name: group_1
+---
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: RoleAssignment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/roleassignment
+  labels:
+    testing.upbound.io/example-name: role_assignment_1
+  name: role-assignment-1
+spec:
+  forProvider:
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: group_1
+    domainId: 9e2d8c6bfd704d5784205410d07ac0b3
+    roleIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: role
+---
