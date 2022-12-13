@@ -13,13 +13,13 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type SecGroupRuleObservation struct {
+type SecurityGroupRuleObservation struct {
 
 	// The resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type SecGroupRuleParameters struct {
+type SecurityGroupRuleParameters struct {
 
 	// Specifies the supplementary information about the security group rule.
 	// This parameter can contain a maximum of 255 characters and cannot contain angle brackets (< or >).
@@ -64,15 +64,15 @@ type SecGroupRuleParameters struct {
 	// The remote group id, the value needs to be an
 	// FlexibleEngine ID of a security group in the same tenant. Changing this creates
 	// a new security group rule.
-	// +crossplane:generate:reference:type=SecGroup
+	// +crossplane:generate:reference:type=SecurityGroup
 	// +kubebuilder:validation:Optional
 	RemoteGroupID *string `json:"remoteGroupId,omitempty" tf:"remote_group_id,omitempty"`
 
-	// Reference to a SecGroup to populate remoteGroupId.
+	// Reference to a SecurityGroup to populate remoteGroupId.
 	// +kubebuilder:validation:Optional
 	RemoteGroupIDRef *v1.Reference `json:"remoteGroupIdRef,omitempty" tf:"-"`
 
-	// Selector for a SecGroup to populate remoteGroupId.
+	// Selector for a SecurityGroup to populate remoteGroupId.
 	// +kubebuilder:validation:Optional
 	RemoteGroupIDSelector *v1.Selector `json:"remoteGroupIdSelector,omitempty" tf:"-"`
 
@@ -83,15 +83,15 @@ type SecGroupRuleParameters struct {
 
 	// The security group ID the rule should belong
 	// to. Changing this creates a new security group rule.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
-	// Reference to a SecGroup in vpc to populate securityGroupId.
+	// Reference to a SecurityGroup in vpc to populate securityGroupId.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDRef *v1.Reference `json:"securityGroupIdRef,omitempty" tf:"-"`
 
-	// Selector for a SecGroup in vpc to populate securityGroupId.
+	// Selector for a SecurityGroup in vpc to populate securityGroupId.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDSelector *v1.Selector `json:"securityGroupIdSelector,omitempty" tf:"-"`
 
@@ -109,51 +109,51 @@ type SecGroupRuleParameters struct {
 	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 }
 
-// SecGroupRuleSpec defines the desired state of SecGroupRule
-type SecGroupRuleSpec struct {
+// SecurityGroupRuleSpec defines the desired state of SecurityGroupRule
+type SecurityGroupRuleSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     SecGroupRuleParameters `json:"forProvider"`
+	ForProvider     SecurityGroupRuleParameters `json:"forProvider"`
 }
 
-// SecGroupRuleStatus defines the observed state of SecGroupRule.
-type SecGroupRuleStatus struct {
+// SecurityGroupRuleStatus defines the observed state of SecurityGroupRule.
+type SecurityGroupRuleStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SecGroupRuleObservation `json:"atProvider,omitempty"`
+	AtProvider        SecurityGroupRuleObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SecGroupRule is the Schema for the SecGroupRules API. ""page_title: "flexibleengine_networking_secgroup_rule_v2"
+// SecurityGroupRule is the Schema for the SecurityGroupRules API. ""page_title: "flexibleengine_networking_secgroup_rule_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type SecGroupRule struct {
+type SecurityGroupRule struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              SecGroupRuleSpec   `json:"spec"`
-	Status            SecGroupRuleStatus `json:"status,omitempty"`
+	Spec              SecurityGroupRuleSpec   `json:"spec"`
+	Status            SecurityGroupRuleStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SecGroupRuleList contains a list of SecGroupRules
-type SecGroupRuleList struct {
+// SecurityGroupRuleList contains a list of SecurityGroupRules
+type SecurityGroupRuleList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []SecGroupRule `json:"items"`
+	Items           []SecurityGroupRule `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	SecGroupRule_Kind             = "SecGroupRule"
-	SecGroupRule_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SecGroupRule_Kind}.String()
-	SecGroupRule_KindAPIVersion   = SecGroupRule_Kind + "." + CRDGroupVersion.String()
-	SecGroupRule_GroupVersionKind = CRDGroupVersion.WithKind(SecGroupRule_Kind)
+	SecurityGroupRule_Kind             = "SecurityGroupRule"
+	SecurityGroupRule_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SecurityGroupRule_Kind}.String()
+	SecurityGroupRule_KindAPIVersion   = SecurityGroupRule_Kind + "." + CRDGroupVersion.String()
+	SecurityGroupRule_GroupVersionKind = CRDGroupVersion.WithKind(SecurityGroupRule_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&SecGroupRule{}, &SecGroupRuleList{})
+	SchemeBuilder.Register(&SecurityGroupRule{}, &SecurityGroupRuleList{})
 }

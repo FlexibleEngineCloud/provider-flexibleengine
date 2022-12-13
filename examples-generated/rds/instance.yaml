@@ -39,7 +39,7 @@ spec:
 ---
 
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: SecGroup
+kind: SecurityGroup
 metadata:
   annotations:
     meta.upbound.io/example-id: rds/v1beta1/instance

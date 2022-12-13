@@ -111,8 +111,8 @@ func (mg *Group) ResolveReferences(ctx context.Context, c client.Reader) error {
 			Reference:    mg.Spec.ForProvider.SecurityGroups[i3].IDRef,
 			Selector:     mg.Spec.ForProvider.SecurityGroups[i3].IDSelector,
 			To: reference.To{
-				List:    &v1beta12.SecGroupList{},
-				Managed: &v1beta12.SecGroup{},
+				List:    &v1beta12.SecurityGroupList{},
+				Managed: &v1beta12.SecurityGroup{},
 			},
 		})
 		if err != nil {

@@ -1,0 +1,34 @@
+apiVersion: dws.flexibleengine.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dws/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: cluster
+  name: cluster
+spec:
+  forProvider:
+    availabilityZone: '{{ availability_zone }}'
+    name: dws_cluster_test
+    nodeType: dws.d1.xlarge
+    numberOfNode: 3
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    userNameSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    userPwdSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

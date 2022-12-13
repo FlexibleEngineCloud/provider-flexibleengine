@@ -77,15 +77,15 @@ type DedicatedInstanceParameters struct {
 
 	// The security group of the instance. This is an array of security group
 	// ids. Changing this will create a new instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroup []*string `json:"securityGroup,omitempty" tf:"security_group,omitempty"`
 
-	// References to SecGroup in vpc to populate securityGroup.
+	// References to SecurityGroup in vpc to populate securityGroup.
 	// +kubebuilder:validation:Optional
 	SecurityGroupRefs []v1.Reference `json:"securityGroupRefs,omitempty" tf:"-"`
 
-	// Selector for a list of SecGroup in vpc to populate securityGroup.
+	// Selector for a list of SecurityGroup in vpc to populate securityGroup.
 	// +kubebuilder:validation:Optional
 	SecurityGroupSelector *v1.Selector `json:"securityGroupSelector,omitempty" tf:"-"`
 

@@ -22,7 +22,7 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 		r.References["security_group_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "SecGroup"),
+			Type: tools.GenerateType("vpc", "SecurityGroup"),
 		}
 		r.References["crypt_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),

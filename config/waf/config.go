@@ -28,7 +28,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_waf_dedicated_instance", func(r *config.Resource) {
 
 		r.References["security_group"] = config.Reference{
-			Type: tools.GenerateType("vpc", "SecGroup"),
+			Type: tools.GenerateType("vpc", "SecurityGroup"),
 		}
 
 		r.References["group_id"] = config.Reference{

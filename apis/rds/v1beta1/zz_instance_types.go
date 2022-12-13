@@ -165,15 +165,15 @@ type InstanceParameters struct {
 	SSLEnable *bool `json:"sslEnable,omitempty" tf:"ssl_enable,omitempty"`
 
 	// Specifies the security group which the RDS DB instance belongs to.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
-	// Reference to a SecGroup in vpc to populate securityGroupId.
+	// Reference to a SecurityGroup in vpc to populate securityGroupId.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDRef *v1.Reference `json:"securityGroupIdRef,omitempty" tf:"-"`
 
-	// Selector for a SecGroup in vpc to populate securityGroupId.
+	// Selector for a SecurityGroup in vpc to populate securityGroupId.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDSelector *v1.Selector `json:"securityGroupIdSelector,omitempty" tf:"-"`
 

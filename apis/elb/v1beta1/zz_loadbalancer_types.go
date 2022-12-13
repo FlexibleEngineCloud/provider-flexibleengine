@@ -53,15 +53,15 @@ type LoadBalancerParameters struct {
 	// A list of security group IDs to apply to the
 	// loadbalancer. The security groups must be specified by ID and not name (as
 	// opposed to how they are configured with the Compute Instance).
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroupIds []*string `json:"securityGroupIds,omitempty" tf:"security_group_ids,omitempty"`
 
-	// References to SecGroup in vpc to populate securityGroupIds.
+	// References to SecurityGroup in vpc to populate securityGroupIds.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIdsRefs []v1.Reference `json:"securityGroupIdsRefs,omitempty" tf:"-"`
 
-	// Selector for a list of SecGroup in vpc to populate securityGroupIds.
+	// Selector for a list of SecurityGroup in vpc to populate securityGroupIds.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIdsSelector *v1.Selector `json:"securityGroupIdsSelector,omitempty" tf:"-"`
 

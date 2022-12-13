@@ -1,8 +1,8 @@
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: SecGroupRule
+kind: SecurityGroupRule
 metadata:
   annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/secgrouprule
+    meta.upbound.io/example-id: vpc/v1beta1/securitygrouprule
   labels:
     testing.upbound.io/example-name: secgroup_rule_1
   name: secgroup-rule-1
@@ -21,10 +21,10 @@ spec:
 ---
 
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: SecGroup
+kind: SecurityGroup
 metadata:
   annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/secgrouprule
+    meta.upbound.io/example-id: vpc/v1beta1/securitygrouprule
   labels:
     testing.upbound.io/example-name: secgroup_1
   name: secgroup-1

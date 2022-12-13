@@ -18,7 +18,7 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 		r.References["network_info.security_group_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "SecGroup"),
+			Type: tools.GenerateType("vpc", "SecurityGroup"),
 		}
 	})
 

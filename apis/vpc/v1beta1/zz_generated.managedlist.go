@@ -97,8 +97,8 @@ func (l *RouterList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this SecGroupList.
-func (l *SecGroupList) GetItems() []resource.Managed {
+// GetItems of this SecurityGroupList.
+func (l *SecurityGroupList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -106,8 +106,8 @@ func (l *SecGroupList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this SecGroupRuleList.
-func (l *SecGroupRuleList) GetItems() []resource.Managed {
+// GetItems of this SecurityGroupRuleList.
+func (l *SecurityGroupRuleList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

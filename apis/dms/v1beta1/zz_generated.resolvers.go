@@ -43,8 +43,8 @@ func (mg *KafkaInstance) ResolveReferences(ctx context.Context, c client.Reader)
 		Reference:    mg.Spec.ForProvider.SecurityGroupIDRef,
 		Selector:     mg.Spec.ForProvider.SecurityGroupIDSelector,
 		To: reference.To{
-			List:    &v1beta1.SecGroupList{},
-			Managed: &v1beta1.SecGroup{},
+			List:    &v1beta1.SecurityGroupList{},
+			Managed: &v1beta1.SecurityGroup{},
 		},
 	})
 	if err != nil {

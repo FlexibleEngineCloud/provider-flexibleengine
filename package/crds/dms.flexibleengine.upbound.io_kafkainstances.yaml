@@ -258,7 +258,7 @@ spec:
                     description: Specifies the ID of a security group.
                     type: string
                   securityGroupIdRef:
-                    description: Reference to a SecGroup in vpc to populate securityGroupId.
+                    description: Reference to a SecurityGroup in vpc to populate securityGroupId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -292,7 +292,7 @@ spec:
                     - name
                     type: object
                   securityGroupIdSelector:
-                    description: Selector for a SecGroup in vpc to populate securityGroupId.
+                    description: Selector for a SecurityGroup in vpc to populate securityGroupId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

@@ -276,7 +276,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_zone_v2
 	"flexibleengine_dns_zone_v2": config.IdentifierFromProvider,
 
-	// flexibleengine_dns_recordset_v2 - Imported using the ID
+	// flexibleengine_dns_recordset_v2 - Imported using {zone_id}/{recordset_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_recordset_v2
 	"flexibleengine_dns_recordset_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.zone_id }}/{{ .parameters.recordset_id }}"),
 
@@ -286,11 +286,21 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> Cloud Container Engine (CCE)
 	*/
-	"flexibleengine_cce_addon_v3":     TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
-	"flexibleengine_cce_cluster_v3":   config.IdentifierFromProvider,
-	"flexibleengine_cce_namespace":    TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.name }}"),
+	// flexibleengine_cce_addon_v3 - Imported using {cluster_id}/{addon_id}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_addon_v3
+	"flexibleengine_cce_addon_v3": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+	// flexibleengine_cce_cluster_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_cluster_v3
+	"flexibleengine_cce_cluster_v3": config.IdentifierFromProvider,
+	// flexibleengine_cce_namespace - Imported using {cluster_id}/{namespace}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_namespace
+	"flexibleengine_cce_namespace": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.name }}"),
+	// flexibleengine_cce_node_pool_v3 - Imported using {cluster_id}/{node_pool_id}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_pool_v3
 	"flexibleengine_cce_node_pool_v3": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
-	"flexibleengine_cce_pvc":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.namespace }}/{{ .parameters.name }}"),
+	// flexibleengine_cce_pvc - Imported using {cluster_id}/{namespace}/{name}
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_pvc
+	"flexibleengine_cce_pvc": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.namespace }}/{{ .parameters.name }}"),
 
 	// No import documented
 	"flexibleengine_cce_node_v3": config.IdentifierFromProvider,
@@ -833,6 +843,20 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_fgs_trigger - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_trigger
 	"flexibleengine_fgs_trigger": config.IdentifierFromProvider,
+
+	/*
+		> Cloud Trace Service (CTS)
+	*/
+	// flexibleengine_cts_tracker_v1 - Imported using name
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cts_tracker_v1
+	"flexibleengine_cts_tracker_v1": config.NameAsIdentifier,
+
+	/*
+		> Data Warehouse (DWS)
+	*/
+	// flexibleengine_dws_cluster_v1 - No import documentation
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dws_cluster_v1
+	"flexibleengine_dws_cluster_v1": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

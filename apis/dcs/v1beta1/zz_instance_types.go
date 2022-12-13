@@ -177,15 +177,15 @@ type InstanceParameters struct {
 
 	// Specifies the id of the security group which the instance belongs to.
 	// This parameter is only supported and mandatory for Memcached and Redis 3.0 versions.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +kubebuilder:validation:Optional
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
-	// Reference to a SecGroup in vpc to populate securityGroupId.
+	// Reference to a SecurityGroup in vpc to populate securityGroupId.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDRef *v1.Reference `json:"securityGroupIdRef,omitempty" tf:"-"`
 
-	// Selector for a SecGroup in vpc to populate securityGroupId.
+	// Selector for a SecurityGroup in vpc to populate securityGroupId.
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDSelector *v1.Selector `json:"securityGroupIdSelector,omitempty" tf:"-"`
 

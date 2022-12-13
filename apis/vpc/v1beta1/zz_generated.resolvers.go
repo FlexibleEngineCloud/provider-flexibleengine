@@ -360,8 +360,8 @@ func (mg *RouterInterface) ResolveReferences(ctx context.Context, c client.Reade
 	return nil
 }
 
-// ResolveReferences of this SecGroup.
-func (mg *SecGroup) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this SecurityGroup.
+func (mg *SecurityGroup) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -386,8 +386,8 @@ func (mg *SecGroup) ResolveReferences(ctx context.Context, c client.Reader) erro
 	return nil
 }
 
-// ResolveReferences of this SecGroupRule.
-func (mg *SecGroupRule) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this SecurityGroupRule.
+func (mg *SecurityGroupRule) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -399,8 +399,8 @@ func (mg *SecGroupRule) ResolveReferences(ctx context.Context, c client.Reader) 
 		Reference:    mg.Spec.ForProvider.RemoteGroupIDRef,
 		Selector:     mg.Spec.ForProvider.RemoteGroupIDSelector,
 		To: reference.To{
-			List:    &SecGroupList{},
-			Managed: &SecGroup{},
+			List:    &SecurityGroupList{},
+			Managed: &SecurityGroup{},
 		},
 	})
 	if err != nil {
@@ -415,8 +415,8 @@ func (mg *SecGroupRule) ResolveReferences(ctx context.Context, c client.Reader) 
 		Reference:    mg.Spec.ForProvider.SecurityGroupIDRef,
 		Selector:     mg.Spec.ForProvider.SecurityGroupIDSelector,
 		To: reference.To{
-			List:    &SecGroupList{},
-			Managed: &SecGroup{},
+			List:    &SecurityGroupList{},
+			Managed: &SecurityGroup{},
 		},
 	})
 	if err != nil {

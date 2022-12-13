@@ -202,8 +202,8 @@ func (mg *LoadBalancer) ResolveReferences(ctx context.Context, c client.Reader) 
 		References:    mg.Spec.ForProvider.SecurityGroupIdsRefs,
 		Selector:      mg.Spec.ForProvider.SecurityGroupIdsSelector,
 		To: reference.To{
-			List:    &v1beta11.SecGroupList{},
-			Managed: &v1beta11.SecGroup{},
+			List:    &v1beta11.SecurityGroupList{},
+			Managed: &v1beta11.SecurityGroup{},
 		},
 	})
 	if err != nil {

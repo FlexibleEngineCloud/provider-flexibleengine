@@ -415,7 +415,7 @@ spec:
                           description: The UUID of the security group.
                           type: string
                         idRef:
-                          description: Reference to a SecGroup in vpc to populate
+                          description: Reference to a SecurityGroup in vpc to populate
                             id.
                           properties:
                             name:
@@ -451,7 +451,7 @@ spec:
                           - name
                           type: object
                         idSelector:
-                          description: Selector for a SecGroup in vpc to populate
+                          description: Selector for a SecurityGroup in vpc to populate
                             id.
                           properties:
                             matchControllerRef:

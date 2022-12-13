@@ -220,15 +220,15 @@ type SecurityGroupsObservation struct {
 type SecurityGroupsParameters struct {
 
 	// The UUID of the security group.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecGroup
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Reference to a SecGroup in vpc to populate id.
+	// Reference to a SecurityGroup in vpc to populate id.
 	// +kubebuilder:validation:Optional
 	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
 
-	// Selector for a SecGroup in vpc to populate id.
+	// Selector for a SecurityGroup in vpc to populate id.
 	// +kubebuilder:validation:Optional
 	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 }

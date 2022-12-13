@@ -32,7 +32,7 @@ func Configure(p *config.Provider) {
 		// 	Type: tools.GenerateType("elb", "Listener"),
 		// }
 		r.References["security_groups.id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "SecGroup"),
+			Type: tools.GenerateType("vpc", "SecurityGroup"),
 		}
 		r.References["networks.id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "Network"),

@@ -86,8 +86,8 @@ func (mg *DedicatedInstance) ResolveReferences(ctx context.Context, c client.Rea
 		References:    mg.Spec.ForProvider.SecurityGroupRefs,
 		Selector:      mg.Spec.ForProvider.SecurityGroupSelector,
 		To: reference.To{
-			List:    &v1beta11.SecGroupList{},
-			Managed: &v1beta11.SecGroup{},
+			List:    &v1beta11.SecurityGroupList{},
+			Managed: &v1beta11.SecurityGroup{},
 		},
 	})
 	if err != nil {

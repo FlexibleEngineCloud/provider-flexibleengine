@@ -94,7 +94,7 @@ spec:
                       type: string
                     type: array
                   securityGroupIdsRefs:
-                    description: References to SecGroup in vpc to populate securityGroupIds.
+                    description: References to SecurityGroup in vpc to populate securityGroupIds.
                     items:
                       description: A Reference to a named object.
                       properties:
@@ -131,7 +131,7 @@ spec:
                       type: object
                     type: array
                   securityGroupIdsSelector:
-                    description: Selector for a list of SecGroup in vpc to populate
+                    description: Selector for a list of SecurityGroup in vpc to populate
                       securityGroupIds.
                     properties:
                       matchControllerRef:

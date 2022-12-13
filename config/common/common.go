@@ -1,7 +1,3 @@
-/*
-Copyright 2021 Upbound Inc.
-*/
-
 package common
 
 import (
@@ -37,6 +33,9 @@ var (
 
 	// PathNameExtractor is the golang path to NameExtractor function
 	PathNameExtractor = SelfPackagePath + ".NameExtractor()"
+
+	// PathBucketNameExtractor is the golang path to BucketNameExtractor function
+	PathBucketNameExtractor = SelfPackagePath + ".BucketNameExtractor()"
 )
 
 // RegionExtractor extracts region from "spec.forProvider.region" which
@@ -111,6 +110,23 @@ func NameExtractor() reference.ExtractValueFn {
 			return ""
 		}
 		r, err := paved.GetString("spec.forProvider.name")
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		return r
+	}
+}
+
+// BucketNameExtractor extracts bucket name from "spec.forProvider.bucket"
+func BucketNameExtractor() reference.ExtractValueFn {
+	return func(mg xpresource.Managed) string {
+		paved, err := fieldpath.PaveObject(mg)
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		r, err := paved.GetString("spec.forProvider.bucket")
 		if err != nil {
 			// TODO should we log this error?
 			return ""

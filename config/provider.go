@@ -12,12 +12,14 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cse"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/cts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dedicatedelb"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dis"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dli"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/drs"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/dws"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ecs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/eip"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/elb"
@@ -107,6 +109,8 @@ func GetProvider() *ujconfig.Provider {
 		tms.Configure,
 		netacl.Configure,
 		dis.Configure,
+		cts.Configure,
+		dws.Configure,
 	} {
 		configure(pc)
 	}

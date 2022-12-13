@@ -83,7 +83,7 @@ func Configure(p *config.Provider) {
 
 		// remote_group_id is the ID of the security group to which this rule applies.
 		r.References["remote_group_id"] = config.Reference{
-			Type: "SecGroup",
+			Type: "SecurityGroup",
 		}
 	})
 

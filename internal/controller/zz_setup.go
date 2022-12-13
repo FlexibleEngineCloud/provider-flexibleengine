@@ -44,6 +44,7 @@ import (
 	microserviceinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microserviceinstance"
 	clustercss "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/cluster"
 	snapshot "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/snapshot"
+	tracker "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cts/tracker"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
 	databaserole "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaseuser"
@@ -68,6 +69,7 @@ import (
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
 	job "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/drs/job"
+	clusterdws "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dws/cluster"
 	floatingip "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/floatingip"
 	floatingipassociate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/floatingipassociate"
 	instanceecs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/instance"
@@ -161,8 +163,8 @@ import (
 	router "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/router"
 	routerinterface "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/routerinterface"
 	routetable "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/routetable"
-	secgroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/secgroup"
-	secgrouprule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/secgrouprule"
+	securitygroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/securitygroup"
+	securitygrouprule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/securitygrouprule"
 	vip "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/vip"
 	vipassociate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/vipassociate"
 	vpc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/vpc"
@@ -224,6 +226,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		microserviceinstance.Setup,
 		clustercss.Setup,
 		snapshot.Setup,
+		tracker.Setup,
 		instancedcs.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
@@ -248,6 +251,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		recordset.Setup,
 		zone.Setup,
 		job.Setup,
+		clusterdws.Setup,
 		floatingip.Setup,
 		floatingipassociate.Setup,
 		instanceecs.Setup,
@@ -341,8 +345,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		router.Setup,
 		routerinterface.Setup,
 		routetable.Setup,
-		secgroup.Setup,
-		secgrouprule.Setup,
+		securitygroup.Setup,
+		securitygrouprule.Setup,
 		vip.Setup,
 		vipassociate.Setup,
 		vpc.Setup,
