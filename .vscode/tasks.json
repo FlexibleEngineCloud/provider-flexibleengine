@@ -19,6 +19,11 @@
             "command": "python3 scripts/generate-check-examples.py package/crds/ examples/ > list-tested.md"
         },
         {
+            "label": "Generate dep example",
+            "type": "shell",
+            "command": "python3 scripts/dep.py"
+        },
+        {
             "label": "Reviewable",
             "type": "shell",
             "command": "make reviewable"

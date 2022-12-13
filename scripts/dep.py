@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # This script generate kubectl command to applys all necessary resources
 # For determining the resources, read the file "<arg>.dep" and extract on each line the resource
 # Resource is composed of 3 parts: <kind>.<apiVersion>
@@ -7,7 +9,6 @@
 
 import sys
 import os
-import yaml
 import re
 
 def main():
@@ -31,18 +32,19 @@ def main():
     depFile = "examples/" + groupResource + "/" + resource + ".dep"
     # Open the dependency file
     f = open(depFile, "r")
-    # Read the content of the dependency file
-    content = f.read()
-    # Close the dependency file
+    lines = f.readlines()
+    # # Close the dependency file
     f.close()
 
+
     # For each line in the dependency file
-    for line in content.splitlines():
+    for i in range(len(lines)):
+        line = lines[i].strip()
         # Get the kind and the APIVersion
-        lineS = line.split(".")
-        kind = lineS[0]
+        l = line.split(".")
+        kind = l[0]
         # apiVersions end 
-        apiVersion = ".".join(lineS[1:])
+        apiVersion = ".".join(l[1:])
         # In resource split by dot and get the first part
         group = apiVersion.split(".")[0]
 
@@ -50,23 +52,28 @@ def main():
         for file in os.listdir("examples/" + group):
             if file.endswith(".yaml"):
                 # Open the file
-                f = open("examples/" + group + "/" + file, "r")
+                x = open("examples/" + group + "/" + file, "r")
                 # Read the content of the file
-                content = f.read()
+                content = x.read()
                 # Close the file
-                f.close()
+                x.close()
 
                 # If the file contains strict the apiVersion and the kind 
                 # apiVersion: <apiVersion>
                 # kind: <kind>
                 # in File check first line is equal to apiVersion and second line is equal to kind
                 if content.splitlines()[0] == "apiVersion: " + apiVersion and content.splitlines()[1] == "kind: " + kind:
-                    # Get the name of the resource
-                    name = os.path.splitext(file)[0]
                     fileToApply.append("examples/" + group + "/" + file)
                     
     # Print the kubectl command to apply all resources
-    print("kubectl apply -f " + " -f ".join(fileToApply))
+    origin = sys.argv[1]
+    fi = ""
+
+    for fil in fileToApply:
+        fi += f' -f {fil}'
+
+    print(f'kubectl apply  -f examples/{origin}.yaml {fi}')
+
 
 # Help func 
 def help():
@@ -79,6 +86,15 @@ def help():
     print("VPC.vpc.flexibleengine.upbound.io/v1beta1")
 
 if __name__ == "__main__":
+
+    # If sys.argv is empty prompt to user to enter the argument
+    if len(sys.argv) == 1:
+        print("Enter name (nat/gateway): ")
+        sys.argv.append(input())
+
+
+
+
 
     if len(sys.argv) != 2 or sys.argv[1] == "--help":
         help()
