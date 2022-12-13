@@ -24,7 +24,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_fgs_function", func(r *config.Resource) {
 
 		r.References["subnet_id"] = config.Reference{
-			Type: "VPCSubnet",
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 
 		// agency

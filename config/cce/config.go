@@ -14,7 +14,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_cce_addon_v3", func(r *config.Resource) {
 
 		r.UseAsync = true
-		
+
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
@@ -24,7 +24,7 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_cluster_v3
 	p.AddResourceConfigurator("flexibleengine_cce_cluster_v3", func(r *config.Resource) {
 		r.References["highway_subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "NetworkingSubnet"),
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 	})
 

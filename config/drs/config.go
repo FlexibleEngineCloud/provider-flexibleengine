@@ -20,7 +20,7 @@ func Configure(p *config.Provider) {
 
 		// db_info.subnet_id
 		r.References["db_info.subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "Subnet"),
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 
 		r.UseAsync = true

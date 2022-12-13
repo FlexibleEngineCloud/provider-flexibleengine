@@ -266,7 +266,7 @@ spec:
                       ipv6 address. the ID of the subnet where the load balancer resides
                     type: string
                   ipv6NetworkIdRef:
-                    description: Reference to a Network in vpc to populate ipv6NetworkId.
+                    description: Reference to a VPCSubnet in vpc to populate ipv6NetworkId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -300,7 +300,7 @@ spec:
                     - name
                     type: object
                   ipv6NetworkIdSelector:
-                    description: Selector for a Network in vpc to populate ipv6NetworkId.
+                    description: Selector for a VPCSubnet in vpc to populate ipv6NetworkId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

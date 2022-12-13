@@ -106,15 +106,16 @@ type LoadBalancerParameters struct {
 
 	// The network on which to allocate the loadbalancer's ipv6 address.
 	// the ID of the subnet where the load balancer resides
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	IPv6NetworkID *string `json:"ipv6NetworkId,omitempty" tf:"ipv6_network_id,omitempty"`
 
-	// Reference to a Network in vpc to populate ipv6NetworkId.
+	// Reference to a VPCSubnet in vpc to populate ipv6NetworkId.
 	// +kubebuilder:validation:Optional
 	IPv6NetworkIDRef *v1.Reference `json:"ipv6NetworkIdRef,omitempty" tf:"-"`
 
-	// Selector for a Network in vpc to populate ipv6NetworkId.
+	// Selector for a VPCSubnet in vpc to populate ipv6NetworkId.
 	// +kubebuilder:validation:Optional
 	IPv6NetworkIDSelector *v1.Selector `json:"ipv6NetworkIdSelector,omitempty" tf:"-"`
 

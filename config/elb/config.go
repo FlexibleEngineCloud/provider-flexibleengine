@@ -45,7 +45,7 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_loadbalancer_v2
 	p.AddResourceConfigurator("flexibleengine_lb_loadbalancer_v2", func(r *config.Resource) {
 		r.References["vip_subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "NetworkingSubnet"),
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 		r.References["security_group_ids"] = config.Reference{
 			Type: tools.GenerateType("vpc", "SecurityGroup"),

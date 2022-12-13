@@ -93,15 +93,15 @@ type LoadBalancerParameters struct {
 	// loadbalancer's address. A tenant can only create Loadbalancers on networks
 	// authorized by policy (e.g. networks that belong to them or networks that
 	// are shared).  Changing this creates a new loadbalancer.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.NetworkingSubnet
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	VipSubnetID *string `json:"vipSubnetId,omitempty" tf:"vip_subnet_id,omitempty"`
 
-	// Reference to a NetworkingSubnet in vpc to populate vipSubnetId.
+	// Reference to a VPCSubnet in vpc to populate vipSubnetId.
 	// +kubebuilder:validation:Optional
 	VipSubnetIDRef *v1.Reference `json:"vipSubnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a NetworkingSubnet in vpc to populate vipSubnetId.
+	// Selector for a VPCSubnet in vpc to populate vipSubnetId.
 	// +kubebuilder:validation:Optional
 	VipSubnetIDSelector *v1.Selector `json:"vipSubnetIdSelector,omitempty" tf:"-"`
 }
