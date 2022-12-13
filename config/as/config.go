@@ -27,9 +27,10 @@ func Configure(p *config.Provider) {
 		r.References["lbaas_listeners.pool_id"] = config.Reference{
 			Type: tools.GenerateType("elb", "Pool"),
 		}
-		// TODO Get flexibleengine_lb_listener_v2.listener_1.protocol_port
+		// TODO: Get protocol_port value from elb listener
 		// r.References["lbaas_listeners.protocol_port"] = config.Reference{
-		// 	Type: tools.GenerateType("elb", "Listener"),
+		// 	Type:      tools.GenerateType("elb", "Listener"),
+		// 	Extractor: common.PathProtocolPortExtractor,
 		// }
 		r.References["security_groups.id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "SecurityGroup"),
