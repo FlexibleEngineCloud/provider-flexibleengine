@@ -17,4 +17,12 @@ func Configure(p *config.Provider) {
 		}
 		r.UseAsync = true
 	})
+
+	// flexibleengine_csbs_backup_policy_v1
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1
+	p.AddResourceConfigurator("flexibleengine_csbs_backup_policy_v1", func(r *config.Resource) {
+		r.References["resource.id"] = config.Reference{
+			Type: tools.GenerateType("ecs", "Instance"),
+		}
+	})
 }

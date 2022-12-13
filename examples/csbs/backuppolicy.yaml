@@ -8,15 +8,16 @@ metadata:
   name: backup-policy-v1
 spec:
   forProvider:
-    name: ${var.name}
+    name: backup-policy-v1
     resource:
     - idSelector:
         matchLabels:
-          testing.upbound.io/example-name: example
-      name: ${var.resource_name}
+          testing.upbound.io/example-name: basic
+      name: backupTest
       type: OS::Nova::Server
     scheduledOperation:
     - enabled: true
+      maxBackups: 2
       operationType: backup
       triggerPattern: "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=12;BYMINUTE=27\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
 
