@@ -420,11 +420,25 @@ spec:
                       underscores (_) and hyphens (-). Changing this will create a
                       new MRS cluster resource.
                     type: string
-                  nodeKeyPair:
+                  nodeKeyPairSecretRef:
                     description: Specifies the name of a key pair, which is used to
                       login to the each nodes(ECSs). Changing this will create a new
                       MRS cluster resource.
-                    type: string
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
                   publicIp:
                     description: Specifies the EIP address which bound to the MRS
                       cluster. The EIP must have been created and must be in the same
@@ -741,7 +755,7 @@ spec:
                 - managerAdminPwdSecretRef
                 - masterNodes
                 - name
-                - nodeKeyPair
+                - nodeKeyPairSecretRef
                 - version
                 type: object
               providerConfigRef:

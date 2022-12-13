@@ -255,7 +255,7 @@ type ClusterParameters struct {
 	// Specifies the name of a key pair, which is used to login to the each
 	// nodes(ECSs). Changing this will create a new MRS cluster resource.
 	// +kubebuilder:validation:Required
-	NodeKeyPair *string `json:"nodeKeyPair" tf:"node_key_pair,omitempty"`
+	NodeKeyPairSecretRef v1.SecretKeySelector `json:"nodeKeyPairSecretRef" tf:"-"`
 
 	// Specifies the EIP address which bound to the MRS cluster.
 	// The EIP must have been created and must be in the same region as the cluster.

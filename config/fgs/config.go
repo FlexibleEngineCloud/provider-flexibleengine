@@ -1,3 +1,4 @@
+// Package fgs contains FlexibleEngine FunctionGraph Service (FGS) specific configuration.
 package fgs
 
 import (

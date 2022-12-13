@@ -1,3 +1,4 @@
+// Package dws contains custom resource configurators for DWS resources.
 package dws
 
 import (

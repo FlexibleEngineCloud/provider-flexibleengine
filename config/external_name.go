@@ -1,7 +1,7 @@
+// Package config contains the configuration for FlexibleEngine external name resources.
 /*
 Copyright 2022 Upbound Inc.
 */
-
 package config
 
 import (

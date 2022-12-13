@@ -1,3 +1,4 @@
+// Package common contains common resource configurators.
 package common
 
 import (

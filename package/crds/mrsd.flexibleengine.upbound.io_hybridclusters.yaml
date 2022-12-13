@@ -174,10 +174,24 @@ spec:
                       value is 0. If log_collection is set to 1, OBS buckets will
                       be created to collect the MRS logs. These buckets will be charged.'
                     type: number
-                  masterNodeKeyPair:
+                  masterNodeKeyPairSecretRef:
                     description: Name of a key pair You can use a key to log in to
                       the Master node in the cluster.
-                    type: string
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
                   masterNodes:
                     description: Specifies the master nodes information.
                     items:
@@ -525,7 +539,7 @@ spec:
                 - availableZone
                 - clusterName
                 - componentList
-                - masterNodeKeyPair
+                - masterNodeKeyPairSecretRef
                 - masterNodes
                 - streamingCoreNodes
                 type: object

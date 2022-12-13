@@ -1,3 +1,4 @@
+// Package cts contains custom resource configurators for FlexibleEngine CTS resources.
 package cts
 
 import (

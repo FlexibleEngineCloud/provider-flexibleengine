@@ -94,7 +94,7 @@ func (mg *HybridCluster) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this HybridCluster
 func (tr *HybridCluster) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"cluster_admin_secret": "spec.forProvider.clusterAdminSecretSecretRef"}
+	return map[string]string{"cluster_admin_secret": "spec.forProvider.clusterAdminSecretSecretRef", "master_node_key_pair": "spec.forProvider.masterNodeKeyPairSecretRef"}
 }
 
 // GetObservation of this HybridCluster

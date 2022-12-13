@@ -35,7 +35,10 @@ spec:
       rootVolumeSize: 300
       rootVolumeType: SAS
     name: ${var.cluster_name}
-    nodeKeyPair: ${var.keypair}
+    nodeKeyPairSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
     subnetIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example

@@ -424,11 +424,7 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.NodeKeyPair != nil {
-		in, out := &in.NodeKeyPair, &out.NodeKeyPair
-		*out = new(string)
-		**out = **in
-	}
+	out.NodeKeyPairSecretRef = in.NodeKeyPairSecretRef
 	if in.PublicIP != nil {
 		in, out := &in.PublicIP, &out.PublicIP
 		*out = new(string)

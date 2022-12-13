@@ -25,33 +25,15 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("eip", "EIP"),
 		}
 
-		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
-			conn := map[string][]byte{}
-			if a, ok := attr["manager_admin_pwd"].(string); ok {
-				conn["manager_admin_pwd"] = []byte(a)
-			}
-
-			if a, ok := attr["node_key_pair"].(string); ok {
-				conn["node_key_pair"] = []byte(a)
-			}
-			return conn, nil
-		}
+		// node_key_pair is sensitive ?
+		r.TerraformResource.Schema["node_key_pair"].Sensitive = true
 	})
 
 	// flexibleengine_mrs_hybrid_cluster_v1
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_hybrid_cluster_v1
 	p.AddResourceConfigurator("flexibleengine_mrs_hybrid_cluster_v1", func(r *config.Resource) {
-		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
-			conn := map[string][]byte{}
-			if a, ok := attr["cluster_admin_secret"].(string); ok {
-				conn["mrs_hcluster_admin_secret"] = []byte(a)
-			}
-
-			if a, ok := attr["master_node_key_pair"].(string); ok {
-				conn["mrs_hcluster_master_node_key_pair"] = []byte(a)
-			}
-			return conn, nil
-		}
+		// node_key_pair is sensitive ?
+		r.TerraformResource.Schema["master_node_key_pair"].Sensitive = true
 	})
 
 	// flexibleengine_mrs_job_v1

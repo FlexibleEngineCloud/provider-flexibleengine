@@ -20,7 +20,7 @@ func (mg *Cluster) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Cluster
 func (tr *Cluster) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"manager_admin_pwd": "spec.forProvider.managerAdminPwdSecretRef"}
+	return map[string]string{"manager_admin_pwd": "spec.forProvider.managerAdminPwdSecretRef", "node_key_pair": "spec.forProvider.nodeKeyPairSecretRef"}
 }
 
 // GetObservation of this Cluster

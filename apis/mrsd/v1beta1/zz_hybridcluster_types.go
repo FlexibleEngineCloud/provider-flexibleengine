@@ -207,7 +207,7 @@ type HybridClusterParameters struct {
 	// Name of a key pair You can use a key
 	// to log in to the Master node in the cluster.
 	// +kubebuilder:validation:Required
-	MasterNodeKeyPair *string `json:"masterNodeKeyPair" tf:"master_node_key_pair,omitempty"`
+	MasterNodeKeyPairSecretRef v1.SecretKeySelector `json:"masterNodeKeyPairSecretRef" tf:"-"`
 
 	// Specifies the master nodes information.
 	// +kubebuilder:validation:Required

@@ -962,11 +962,7 @@ func (in *HybridClusterParameters) DeepCopyInto(out *HybridClusterParameters) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.MasterNodeKeyPair != nil {
-		in, out := &in.MasterNodeKeyPair, &out.MasterNodeKeyPair
-		*out = new(string)
-		**out = **in
-	}
+	out.MasterNodeKeyPairSecretRef = in.MasterNodeKeyPairSecretRef
 	if in.MasterNodes != nil {
 		in, out := &in.MasterNodes, &out.MasterNodes
 		*out = make([]MasterNodesParameters, len(*in))

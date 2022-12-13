@@ -1,3 +1,4 @@
+// Package antiddos provides a flexibleengine_antiddos_v1 ResourceConfigurator.
 package antiddos
 
 import (

@@ -26,7 +26,10 @@ spec:
     - Storm
     - Spark
     - Hive
-    masterNodeKeyPair: KeyPair-ci
+    masterNodeKeyPairSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
     masterNodes:
     - dataVolumeCount: 1
       dataVolumeSize: 100
