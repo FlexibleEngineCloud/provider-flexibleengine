@@ -27,10 +27,10 @@ spec:
   forProvider:
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_1
+        testing.upbound.io/example-name: example_subnet
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_1
+        testing.upbound.io/example-name: example_subnet
 ---
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: Port
@@ -46,7 +46,7 @@ spec:
     name: port_1
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_1
+        testing.upbound.io/example-name: example_subnet
 ---        
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: VPC
@@ -54,8 +54,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vpc
   labels:
-    testing.upbound.io/example-name: vpc_1
-  name: vpc-1
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
 spec:
   forProvider:
     name: "example-vpc"
@@ -67,8 +67,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
   labels:
-    testing.upbound.io/example-name: subnet_1
-  name: subnet-1
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
 spec:
   forProvider:
     cidr: "192.168.0.0/24"
@@ -76,5 +76,5 @@ spec:
     name: "example-subnet"
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vpc_1
+        testing.upbound.io/example-name: example_vpc
 ---

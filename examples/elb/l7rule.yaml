@@ -1,0 +1,91 @@
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: L7Rule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/l7rule
+  labels:
+    testing.upbound.io/example-name: example_l7rule
+  name: example-l7rule
+spec:
+  forProvider:
+    compareType: EQUAL_TO
+    l7policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_l7policy
+    type: PATH
+    value: /api
+---
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: L7Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/l7policy
+  labels:
+    testing.upbound.io/example-name: example_l7policy
+  name: example-l7policy
+spec:
+  forProvider:
+    action: REDIRECT_TO_POOL
+    description: test l7 policy
+    listenerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_listener
+    redirectPoolIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_pool
+    name: test
+    position: 1
+---
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Pool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/pool
+  labels:
+    testing.upbound.io/example-name: example_pool
+  name: example-pool
+spec:
+  forProvider:
+    lbMethod: ROUND_ROBIN
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_lb
+    persistence:
+    - cookieName: testCookie
+      type: APP_COOKIE
+    protocol: HTTP
+---
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Listener
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: example_listener
+  name: example-listener
+spec:
+  forProvider:
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_lb
+    protocol: HTTP
+    protocolPort: 8080
+    tags:
+      key: value
+---
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: example_lb
+  name: example-lb
+spec:
+  forProvider:
+    tags:
+      key: value
+    vipSubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+---

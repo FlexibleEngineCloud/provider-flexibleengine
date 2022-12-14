@@ -83,7 +83,7 @@ metadata:
 spec:
   forProvider:
     fixedIp:
-    - subnetId: ${flexibleengine_networking_subnet_v2.subnet_1.id}
+    - subnetId: ${flexibleengine_networking_subnet_v2.example_subnet.id}
     name: port_1
     networkIdSelector:
       matchLabels:
@@ -102,7 +102,7 @@ metadata:
 spec:
   forProvider:
     fixedIp:
-    - subnetId: ${flexibleengine_networking_subnet_v2.subnet_1.id}
+    - subnetId: ${flexibleengine_networking_subnet_v2.example_subnet.id}
     name: port_2
     networkIdSelector:
       matchLabels:
@@ -125,7 +125,7 @@ spec:
         testing.upbound.io/example-name: router_1
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_1
+        testing.upbound.io/example-name: example_subnet
 
 ---
 
@@ -150,13 +150,13 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vipassociate
   labels:
-    testing.upbound.io/example-name: subnet_1
-  name: subnet-1
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
 spec:
   forProvider:
     cidr: 192.168.199.0/24
     ipVersion: 4
-    name: subnet_1
+    name: example_subnet
     networkIdSelector:
       matchLabels:
         testing.upbound.io/example-name: network_1
@@ -178,7 +178,7 @@ spec:
         testing.upbound.io/example-name: network_1
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_1
+        testing.upbound.io/example-name: example_subnet
 
 ---
 

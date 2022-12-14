@@ -4,11 +4,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Generate docs",
-            "type": "shell",
-            "command": "python3 scripts/generate-docs.py"
-        },
-        {
             "label": "Generate list resources",
             "type": "shell",
             "command": "python3 scripts/generate-list-resources.py"

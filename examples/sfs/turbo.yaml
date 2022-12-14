@@ -15,8 +15,8 @@ spec:
     size: 500
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_1
+        testing.upbound.io/example-name: example_subnet
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vpc_1
+        testing.upbound.io/example-name: example_vpc
 ---

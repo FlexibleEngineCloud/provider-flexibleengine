@@ -1,0 +1,16 @@
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: example_lb
+  name: example-lb
+spec:
+  forProvider:
+    tags:
+      key: value
+    vipSubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+---

@@ -5973,13 +5973,13 @@ resources:
                     {
                       "cidr": "192.168.1.0/24",
                       "gateway_ip": "192.168.1.1",
-                      "name": "subnet_1",
+                      "name": "example_subnet",
                       "vpc_id": "${flexibleengine_vpc_v1.test.id}"
                     }
                 flexibleengine_vpc_v1.test: |-
                     {
                       "cidr": "192.168.0.0/16",
-                      "name": "${vpc_1}"
+                      "name": "${example_vpc}"
                     }
             - name: function
               manifest: |-
@@ -8935,21 +8935,21 @@ resources:
                       "node_number": 1
                     }
                   ],
-                  "subnet_id": "${flexibleengine_vpc_subnet_v1.subnet_1.id}",
-                  "vpc_id": "${flexibleengine_vpc_v1.vpc_1.id}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                subnet_id: flexibleengine_vpc_subnet_v1.subnet_1.id
-                vpc_id: flexibleengine_vpc_v1.vpc_1.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_vpc_subnet_v1.subnet_1: |-
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
                     {
                       "cidr": "192.168.0.0/24",
                       "gateway_ip": "192.168.0.1",
                       "name": "flexibleengine_subnet",
-                      "vpc_id": "${flexibleengine_vpc_v1.vpc_1.id}"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
-                flexibleengine_vpc_v1.vpc_1: |-
+                flexibleengine_vpc_v1.example_vpc: |-
                     {
                       "cidr": "192.168.0.0/16",
                       "name": "terraform_provider_vpc"
@@ -9526,11 +9526,11 @@ resources:
                         "${flexibleengine_compute_secgroup_v2.secgroup_1.id}"
                       ]
                     }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
+                flexibleengine_networking_subnet_v2.example_subnet: |-
                     {
                       "cidr": "192.168.199.0/24",
                       "ip_version": 4,
-                      "name": "subnet_1",
+                      "name": "example_subnet",
                       "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
                     }
         argumentDocs:
@@ -9665,11 +9665,11 @@ resources:
               manifest: |-
                 {
                   "router_id": "${flexibleengine_networking_router_v2.router_1.id}",
-                  "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                  "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                 }
               references:
                 router_id: flexibleengine_networking_router_v2.router_1.id
-                subnet_id: flexibleengine_networking_subnet_v2.subnet_1.id
+                subnet_id: flexibleengine_networking_subnet_v2.example_subnet.id
               dependencies:
                 flexibleengine_networking_network_v2.network_1: |-
                     {
@@ -9681,7 +9681,7 @@ resources:
                       "external_gateway": "f67f0d72-0ddf-11e4-9d95-e1f29f417e2f",
                       "name": "my_router"
                     }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
+                flexibleengine_networking_subnet_v2.example_subnet: |-
                     {
                       "cidr": "192.168.199.0/24",
                       "ip_version": 4,
@@ -9730,14 +9730,14 @@ resources:
                 flexibleengine_networking_router_interface_v2.int_1: |-
                     {
                       "router_id": "${flexibleengine_networking_router_v2.router_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                      "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                     }
                 flexibleengine_networking_router_v2.router_1: |-
                     {
                       "admin_state_up": "true",
                       "name": "router_1"
                     }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
+                flexibleengine_networking_subnet_v2.example_subnet: |-
                     {
                       "cidr": "192.168.199.0/24",
                       "ip_version": 4,
@@ -9899,7 +9899,7 @@ resources:
         name: flexibleengine_networking_subnet_v2
         title: flexibleengine_networking_subnet_v2
         examples:
-            - name: subnet_1
+            - name: example_subnet
               manifest: |-
                 {
                   "cidr": "192.168.199.0/24",
@@ -10016,7 +10016,7 @@ resources:
                     {
                       "fixed_ip": [
                         {
-                          "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                          "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                         }
                       ],
                       "name": "port_1",
@@ -10026,7 +10026,7 @@ resources:
                     {
                       "fixed_ip": [
                         {
-                          "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                          "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                         }
                       ],
                       "name": "port_2",
@@ -10035,24 +10035,24 @@ resources:
                 flexibleengine_networking_router_interface_v2.router_interface_1: |-
                     {
                       "router_id": "${flexibleengine_networking_router_v2.router_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                      "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                     }
                 flexibleengine_networking_router_v2.router_1: |-
                     {
                       "external_gateway": "0a2228f2-7f8a-45f1-8e09-9039e1d09975",
                       "name": "router_1"
                     }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
+                flexibleengine_networking_subnet_v2.example_subnet: |-
                     {
                       "cidr": "192.168.199.0/24",
                       "ip_version": 4,
-                      "name": "subnet_1",
+                      "name": "example_subnet",
                       "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
                     }
                 flexibleengine_networking_vip_v2.vip_1: |-
                     {
                       "network_id": "${flexibleengine_networking_network_v2.network_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                      "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                     }
         argumentDocs:
             port_ids: |-
@@ -10074,11 +10074,11 @@ resources:
               manifest: |-
                 {
                   "network_id": "${flexibleengine_networking_network_v2.network_1.id}",
-                  "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                  "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                 }
               references:
                 network_id: flexibleengine_networking_network_v2.network_1.id
-                subnet_id: flexibleengine_networking_subnet_v2.subnet_1.id
+                subnet_id: flexibleengine_networking_subnet_v2.example_subnet.id
               dependencies:
                 flexibleengine_networking_network_v2.network_1: |-
                     {
@@ -10088,18 +10088,18 @@ resources:
                 flexibleengine_networking_router_interface_v2.router_interface_1: |-
                     {
                       "router_id": "${flexibleengine_networking_router_v2.router_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                      "subnet_id": "${flexibleengine_networking_subnet_v2.example_subnet.id}"
                     }
                 flexibleengine_networking_router_v2.router_1: |-
                     {
                       "external_gateway": "0a2228f2-7f8a-45f1-8e09-9039e1d09975",
                       "name": "router_1"
                     }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
+                flexibleengine_networking_subnet_v2.example_subnet: |-
                     {
                       "cidr": "192.168.199.0/24",
                       "ip_version": 4,
-                      "name": "subnet_1",
+                      "name": "example_subnet",
                       "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
                     }
         argumentDocs:
