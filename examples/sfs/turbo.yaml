@@ -1,0 +1,22 @@
+apiVersion: sfs.flexibleengine.upbound.io/v1beta1
+kind: Turbo
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/turbo
+  labels:
+    testing.upbound.io/example-name: example-filesystem-turbo
+  name: example-filesystem-turbo
+spec:
+  forProvider:
+    availabilityZone: eu-west-0a
+    name: example-filesystem-turbo
+    securityGroupId: 2f47d4da-797c-4a25-a96c-513167e47412
+    shareProto: NFS
+    size: 500
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet_1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_1
+---
