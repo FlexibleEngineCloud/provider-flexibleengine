@@ -8,24 +8,23 @@ metadata:
   name: rule-1
 spec:
   forProvider:
-    accessTo: ${var.vpc_id}
-    sfsId: ${flexibleengine_sfs_file_system_v2.share-file.id}
-
+    accessTo: "9d924010-5191-4ec3-939c-376588760002"
+    sfsIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-filesystem
 ---
-
 apiVersion: sfs.flexibleengine.upbound.io/v1beta1
 kind: FileSystem
 metadata:
   annotations:
-    meta.upbound.io/example-id: sfs/v1beta1/accessrule
+    meta.upbound.io/example-id: sfs/v1beta1/filesystem
   labels:
-    testing.upbound.io/example-name: share-file
-  name: share-file
+    testing.upbound.io/example-name: example-filesystem
+  name: example-filesystem
 spec:
   forProvider:
-    name: ${var.share_name}
+    description: Test SFS by Crossplane
+    name: example-filesystem
     shareProto: NFS
-    size: 100
-
+    size: 10
 ---
-
