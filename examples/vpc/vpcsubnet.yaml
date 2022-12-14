@@ -1,17 +1,4 @@
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: VPC
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vpc
-  labels:
-    testing.upbound.io/example-name: vpc_1
-  name: vpc-1
-spec:
-  forProvider:
-    name: "example-vpc"
-    cidr: "192.168.0.0/16"
----
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: VPCSubnet
 metadata:
   annotations:
@@ -28,3 +15,17 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: vpc_1
 ---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpc
+  labels:
+    testing.upbound.io/example-name: vpc_1
+  name: vpc-1
+spec:
+  forProvider:
+    name: "example-vpc"
+    cidr: "192.168.0.0/16"
+---
+

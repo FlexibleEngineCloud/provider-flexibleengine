@@ -42,9 +42,9 @@ def main():
         line = lines[i].strip()
         # Get the kind and the APIVersion
         l = line.split(".")
-        kind = l[0]
+        kind = l[0].strip()
         # apiVersions end 
-        apiVersion = ".".join(l[1:])
+        apiVersion = ".".join(l[1:]).strip()
         # In resource split by dot and get the first part
         group = apiVersion.split(".")[0]
 
@@ -58,19 +58,17 @@ def main():
                 # Close the file
                 x.close()
 
-
                 # If the file contains strict the apiVersion and the kind 
                 # apiVersion: <apiVersion>
                 # kind: <kind>
                 # in File check first line is equal to apiVersion and second line is equal to kind
                 foundApiVersion = False
                 foundKind = False
-                for i in range(len(content)):
-                    content[i] = content[i].strip()
-                    if content[i] == "apiVersion: " + apiVersion:
-                        foundApiVersion = True
-                    if content[i] == "kind: " + kind:
-                        foundKind = True
+
+                if content[0].strip() == f"apiVersion: {apiVersion}":
+                    foundApiVersion = True
+                if content[1].strip() == f"kind: {kind}":
+                    foundKind = True
 
                 if foundApiVersion and foundKind:
                     fileToApply.append("examples/" + group + "/" + file)
