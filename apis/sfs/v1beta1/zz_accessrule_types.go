@@ -40,8 +40,17 @@ type AccessRuleParameters struct {
 	AccessType *string `json:"accessType,omitempty" tf:"access_type,omitempty"`
 
 	// Specifies the UUID of the shared file system. Changing this will create a new access rule.
-	// +kubebuilder:validation:Required
-	SfsID *string `json:"sfsId" tf:"sfs_id,omitempty"`
+	// +crossplane:generate:reference:type=FileSystem
+	// +kubebuilder:validation:Optional
+	SfsID *string `json:"sfsId,omitempty" tf:"sfs_id,omitempty"`
+
+	// Reference to a FileSystem to populate sfsId.
+	// +kubebuilder:validation:Optional
+	SfsIDRef *v1.Reference `json:"sfsIdRef,omitempty" tf:"-"`
+
+	// Selector for a FileSystem to populate sfsId.
+	// +kubebuilder:validation:Optional
+	SfsIDSelector *v1.Selector `json:"sfsIdSelector,omitempty" tf:"-"`
 }
 
 // AccessRuleSpec defines the desired state of AccessRule

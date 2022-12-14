@@ -9,9 +9,7 @@ metadata:
 spec:
   forProvider:
     accessTo: ${var.vpc_id}
-    sfsIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: share-file
+    sfsId: ${flexibleengine_sfs_file_system_v2.share-file.id}
 
 ---
 

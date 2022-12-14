@@ -40,8 +40,17 @@ type TurboParameters struct {
 
 	// Specifies the ID of a KMS key to encrypt the file system.
 	// Changing this will create a new resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1.Key
 	// +kubebuilder:validation:Optional
 	CryptKeyID *string `json:"cryptKeyId,omitempty" tf:"crypt_key_id,omitempty"`
+
+	// Reference to a Key in kms to populate cryptKeyId.
+	// +kubebuilder:validation:Optional
+	CryptKeyIDRef *v1.Reference `json:"cryptKeyIdRef,omitempty" tf:"-"`
+
+	// Selector for a Key in kms to populate cryptKeyId.
+	// +kubebuilder:validation:Optional
+	CryptKeyIDSelector *v1.Selector `json:"cryptKeyIdSelector,omitempty" tf:"-"`
 
 	// Specifies the name of an SFS Turbo file system. The value contains 4 to 64
 	// characters and must start with a letter. Changing this will create a new resource.
@@ -81,6 +90,7 @@ type TurboParameters struct {
 
 	// Specifies the network ID of the subnet. Changing this will create a new resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 

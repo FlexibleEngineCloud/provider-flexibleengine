@@ -7,11 +7,39 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
+	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
+
+// ResolveReferences of this AccessRule.
+func (mg *AccessRule) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SfsID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.SfsIDRef,
+		Selector:     mg.Spec.ForProvider.SfsIDSelector,
+		To: reference.To{
+			List:    &FileSystemList{},
+			Managed: &FileSystem{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.SfsID")
+	}
+	mg.Spec.ForProvider.SfsID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.SfsIDRef = rsp.ResolvedReference
+
+	return nil
+}
 
 // ResolveReferences of this Turbo.
 func (mg *Turbo) ResolveReferences(ctx context.Context, c client.Reader) error {
@@ -21,13 +49,29 @@ func (mg *Turbo) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CryptKeyID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.CryptKeyIDRef,
+		Selector:     mg.Spec.ForProvider.CryptKeyIDSelector,
+		To: reference.To{
+			List:    &v1beta1.KeyList{},
+			Managed: &v1beta1.Key{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.CryptKeyID")
+	}
+	mg.Spec.ForProvider.CryptKeyID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CryptKeyIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SecurityGroupID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.SecurityGroupIDRef,
 		Selector:     mg.Spec.ForProvider.SecurityGroupIDSelector,
 		To: reference.To{
-			List:    &v1beta1.SecurityGroupList{},
-			Managed: &v1beta1.SecurityGroup{},
+			List:    &v1beta11.SecurityGroupList{},
+			Managed: &v1beta11.SecurityGroup{},
 		},
 	})
 	if err != nil {
@@ -38,12 +82,12 @@ func (mg *Turbo) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.IDExtractor(),
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1beta1.VPCSubnetList{},
-			Managed: &v1beta1.VPCSubnet{},
+			List:    &v1beta11.VPCSubnetList{},
+			Managed: &v1beta11.VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -58,8 +102,8 @@ func (mg *Turbo) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.VPCIDRef,
 		Selector:     mg.Spec.ForProvider.VPCIDSelector,
 		To: reference.To{
-			List:    &v1beta1.VPCList{},
-			Managed: &v1beta1.VPC{},
+			List:    &v1beta11.VPCList{},
+			Managed: &v1beta11.VPC{},
 		},
 	})
 	if err != nil {
