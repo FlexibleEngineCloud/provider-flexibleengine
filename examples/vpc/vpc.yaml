@@ -4,8 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vpc
   labels:
-    testing.upbound.io/example-name: vpc_v1
-  name: vpc-v1
+    testing.upbound.io/example-name: vpc_1
+  name: vpc-1
 spec:
   forProvider:
     name: "example-vpc"
