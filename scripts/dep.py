@@ -11,6 +11,30 @@ import sys
 import os
 import re
 
+# In specific directory find all.dep file and return content
+# Return list of content
+def loadDepFiles(dir, resource):
+
+    content = []
+
+    for file in os.listdir("examples/" + dir):
+        if file.find(f'{resource}.dep') != -1 or file.find('all.dep') != -1:
+            x = loadDepFile(dir, file)
+            for i in range(len(x)):
+                content.append(x[i])
+
+    return content
+
+def loadDepFile(dir, filename):
+    content = []
+    f = open("examples/" + dir + "/" + filename, "r")
+    x = f.readlines()
+    for i in range(len(x)):
+        content.append(x[i])
+    f.close()
+
+    return content
+
 def main():
 
     fileToApply = []
@@ -21,41 +45,22 @@ def main():
 
     # Get the groupResource and resource
     groupResource, resource = sys.argv[1].split("/")
-    # # Get the directory of the resource
-    # dir = os.path.dirname(os.path.realpath(resource))
-    # # Get the filename of the resource
-    # filename = os.path.basename(os.path.realpath(resource))
-    # # Get the name of the resource
-    # name = os.path.splitext(filename)[0]
 
-    # Get the dependency file
-    depFile = "examples/" + groupResource + "/" + resource + ".dep"
-    # Open the dependency file
-    f = open(depFile, "r")
-    lines = f.readlines()
-    # # Close the dependency file
-    f.close()
-
+    lines = loadDepFiles(groupResource, resource)
+    lines = list(dict.fromkeys(lines))
 
     # For each line in the dependency file
     for i in range(len(lines)):
-        line = lines[i].strip()
-        # Get the kind and the APIVersion
-        l = line.split(".")
-        kind = l[0].strip()
-        # apiVersions end 
-        apiVersion = ".".join(l[1:]).strip()
-        # In resource split by dot and get the first part
+        l = lines[i].strip().split(".")
+        kind = l[0]
+        apiVersion = ".".join(l[1:])
         group = apiVersion.split(".")[0]
 
         # Finds in all files in the directory examples/ the file that contains the apiVersion and the kind
         for file in os.listdir("examples/" + group):
             if file.endswith(".yaml"):
-                # Open the file
                 x = open("examples/" + group + "/" + file, "r")
-                # Read the content of the file
                 content = x.readlines()
-                # Close the file
                 x.close()
 
                 # If the file contains strict the apiVersion and the kind 
@@ -80,7 +85,7 @@ def main():
     for fil in fileToApply:
         fi += f' -f {fil}'
 
-    print(f'kubectl apply  -f examples/{origin}.yaml {fi}')
+    print(f'kubectl apply -f examples/{origin}.yaml{fi}')
 
 
 # Help func 
@@ -92,6 +97,13 @@ def help():
     print(".dep file example:")
     print("VPCSubnet.vpc.flexibleengine.upbound.io/v1beta1")
     print("VPC.vpc.flexibleengine.upbound.io/v1beta1")
+    print("--------------------------------------")
+    print("all.dep file is a special file that contains all resources that are necessary to apply in the specific directory")
+    print("all.dep file example:")
+    print("VPCSubnet.vpc.flexibleengine.upbound.io/v1beta1")
+    print("VPC.vpc.flexibleengine.upbound.io/v1beta1")
+
+
 
 if __name__ == "__main__":
 
