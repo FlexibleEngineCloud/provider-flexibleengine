@@ -1,19 +1,22 @@
-apiVersion: eip.flexibleengine.upbound.io/v1beta1
-kind: EIP
+apiVersion: nat.flexibleengine.upbound.io/v1beta1
+kind: Gateway
 metadata:
   annotations:
-    meta.upbound.io/example-id: eip/v1beta1/eip
+    meta.upbound.io/example-id: nat/v1beta1/gateway
   labels:
-    testing.upbound.io/example-name: example-nat-eip_1
-  name: example-nat-eip-1
+    testing.upbound.io/example-name: gateway_1
+  name: gateway-1
 spec:
   forProvider:
-    bandwidth:
-    - name: example-nat-test
-      shareType: PER
-      size: 10
-    publicip:
-    - type: 5_bgp
+    description: test for terraform
+    name: example-nat-gw
+    spec: "1"
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet_v1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc_v1
 
 ---
 
@@ -23,19 +26,19 @@ metadata:
   annotations:
     meta.upbound.io/example-id: nat/v1beta1/snatrule
   labels:
-    testing.upbound.io/example-name: example-nat-snat_1
-  name: example-nat-snat-1
+    testing.upbound.io/example-name: snat_1
+  name: snat-1
 spec:
   forProvider:
     floatingIpIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-nat-eip_1
+        testing.upbound.io/example-name: eip_1
     natGatewayIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-nat-gateway
+        testing.upbound.io/example-name: gateway_1
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-nat-net
+        testing.upbound.io/example-name: subnet_v1
 
 ---
 
