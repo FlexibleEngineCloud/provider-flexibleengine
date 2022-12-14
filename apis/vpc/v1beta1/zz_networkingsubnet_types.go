@@ -96,16 +96,15 @@ type NetworkingSubnetParameters struct {
 
 	// The UUID of the parent network. Changing this
 	// creates a new subnet.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
+	// +crossplane:generate:reference:type=Network
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
-	// Reference to a VPCSubnet in vpc to populate networkId.
+	// Reference to a Network to populate networkId.
 	// +kubebuilder:validation:Optional
 	NetworkIDRef *v1.Reference `json:"networkIdRef,omitempty" tf:"-"`
 
-	// Selector for a VPCSubnet in vpc to populate networkId.
+	// Selector for a Network to populate networkId.
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 

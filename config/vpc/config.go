@@ -64,18 +64,17 @@ func Configure(p *config.Provider) {
 	// TODO This require LTS (Log Tank Service)
 	// flexibleengine_vpc_flow_log_v1
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_flow_log_v1
-	// p.AddResourceConfigurator("flexibleengine_vpc_flow_log_v1", func(r *config.Resource) {
+	p.AddResourceConfigurator("flexibleengine_vpc_flow_log_v1", func(r *config.Resource) {
 
-	// 	// TODO Check if this is correct
-	// 	r.References["ressource_id"] = config.Reference{
-	// 		Type: "NetworkPort",
-	// 	}
+		r.References["ressource_id"] = config.Reference{
+			Type: "Port",
+		}
 
-	// 	r.References["log_group_id"] = config.Reference{
-	// 		Type: "LogGroup",
-	// 	}
+		// 	r.References["log_group_id"] = config.Reference{
+		// 		Type: "LogGroup",
+		// 	}
 
-	// })
+	})
 
 	// flexibleengine_networking_secgroup_rule_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_secgroup_rule_v2
@@ -93,6 +92,15 @@ func Configure(p *config.Provider) {
 		// subnet_id is the ID of the subnet to which this interface is attached.
 		r.References["subnet_id"] = config.Reference{
 			Type: "NetworkingSubnet",
+		}
+	})
+
+	// flexibleengine_networking_subnet_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_subnet_v2
+	p.AddResourceConfigurator("flexibleengine_networking_subnet_v2", func(r *config.Resource) {
+		// network_id is the ID of the network to which this subnet belongs.
+		r.References["network_id"] = config.Reference{
+			Type: "Network",
 		}
 	})
 

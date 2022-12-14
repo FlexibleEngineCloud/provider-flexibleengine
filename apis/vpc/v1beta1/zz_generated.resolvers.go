@@ -49,12 +49,12 @@ func (mg *NetworkingSubnet) ResolveReferences(ctx context.Context, c client.Read
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      common.IDExtractor(),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
-			List:    &VPCSubnetList{},
-			Managed: &VPCSubnet{},
+			List:    &NetworkList{},
+			Managed: &Network{},
 		},
 	})
 	if err != nil {

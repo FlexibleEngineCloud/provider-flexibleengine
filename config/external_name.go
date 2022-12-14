@@ -385,7 +385,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// flexibleengine_vpc_subnet_v1 - Imported using the subnet id
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_subnet_v1
-	"flexibleengine_vpc_subnet_v1": config.ExternalName{
+	"flexibleengine_vpc_subnet_v1": {
 		SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 		GetExternalNameFn: func(tfstate map[string]any) (string, error) {
 			if id, ok := tfstate["subnet_id"].(string); ok && id != "" {

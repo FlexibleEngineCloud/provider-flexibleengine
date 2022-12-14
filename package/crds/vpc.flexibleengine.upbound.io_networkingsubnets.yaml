@@ -135,7 +135,7 @@ spec:
                       a new subnet.
                     type: string
                   networkIdRef:
-                    description: Reference to a VPCSubnet in vpc to populate networkId.
+                    description: Reference to a Network to populate networkId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -169,7 +169,7 @@ spec:
                     - name
                     type: object
                   networkIdSelector:
-                    description: Selector for a VPCSubnet in vpc to populate networkId.
+                    description: Selector for a Network to populate networkId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
