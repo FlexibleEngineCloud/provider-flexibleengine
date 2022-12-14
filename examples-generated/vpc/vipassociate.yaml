@@ -1,5 +1,5 @@
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: VipAssociate
+kind: VIPAssociate
 metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vipassociate
@@ -8,10 +8,12 @@ metadata:
   name: vip-associate-1
 spec:
   forProvider:
-    portIds:
-    - ${flexibleengine_networking_port_v2.port_1.id}
-    - ${flexibleengine_networking_port_v2.port_2.id}
-    vipId: ${flexibleengine_networking_vip_v2.vip_1.id}
+    portIdsRefs:
+    - name: port_1
+    - name: port_2
+    vipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vip_1
 
 ---
 
@@ -162,7 +164,7 @@ spec:
 ---
 
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Vip
+kind: VIP
 metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vipassociate

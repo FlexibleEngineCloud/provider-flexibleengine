@@ -101,8 +101,8 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_networking_secgroup_rule_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroupRule
 	"flexibleengine_networking_secgroup_v2":         ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroup
 	"flexibleengine_networking_subnet_v2":           ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: NetworkingSubnet
-	"flexibleengine_networking_vip_associate_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VipAssociate
-	"flexibleengine_networking_vip_v2":              ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Vip
+	"flexibleengine_networking_vip_associate_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIPAssociate
+	"flexibleengine_networking_vip_v2":              ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIP
 	// EIP
 	"flexibleengine_vpc_eip":           ReplaceGroupWords("eip", 1), // Group: eip, Kind: EIP
 	"flexibleengine_vpc_eip_associate": ReplaceGroupWords("eip", 1), // Group: eip, Kind: Associate
@@ -181,6 +181,8 @@ var KindMap = map[string]string{
 	"flexibleengine_compute_floatingip_associate_v2": "FloatingIpAssociate",
 	"flexibleengine_networking_secgroup_v2":          "SecurityGroup",
 	"flexibleengine_networking_secgroup_rule_v2":     "SecurityGroupRule",
+	"flexibleengine_networking_vip_associate_v2":     "VIPAssociate",
+	"flexibleengine_networking_vip_v2":               "VIP",
 	"flexibleengine_lb_loadbalancer_v3":              "LoadBalancer",
 	"flexibleengine_elb_ipgroup":                     "IPGroup",
 	"flexibleengine_lb_loadbalancer_v2":              "LoadBalancer",

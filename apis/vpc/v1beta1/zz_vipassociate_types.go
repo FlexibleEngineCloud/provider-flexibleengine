@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type VipAssociateObservation struct {
+type VIPAssociateObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The IP address in the subnet for this vip.
@@ -23,64 +23,82 @@ type VipAssociateObservation struct {
 	VipSubnetID *string `json:"vipSubnetId,omitempty" tf:"vip_subnet_id,omitempty"`
 }
 
-type VipAssociateParameters struct {
+type VIPAssociateParameters struct {
 
 	// An array of one or more IDs of the ports to attach the vip to.
 	// Changing this creates a new vip associate.
-	// +kubebuilder:validation:Required
-	PortIds []*string `json:"portIds" tf:"port_ids,omitempty"`
+	// +crossplane:generate:reference:type=Port
+	// +kubebuilder:validation:Optional
+	PortIds []*string `json:"portIds,omitempty" tf:"port_ids,omitempty"`
+
+	// References to Port to populate portIds.
+	// +kubebuilder:validation:Optional
+	PortIdsRefs []v1.Reference `json:"portIdsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Port to populate portIds.
+	// +kubebuilder:validation:Optional
+	PortIdsSelector *v1.Selector `json:"portIdsSelector,omitempty" tf:"-"`
 
 	// The ID of vip to attach the port to.
 	// Changing this creates a new vip associate.
-	// +kubebuilder:validation:Required
-	VipID *string `json:"vipId" tf:"vip_id,omitempty"`
+	// +crossplane:generate:reference:type=VIP
+	// +kubebuilder:validation:Optional
+	VipID *string `json:"vipId,omitempty" tf:"vip_id,omitempty"`
+
+	// Reference to a VIP to populate vipId.
+	// +kubebuilder:validation:Optional
+	VipIDRef *v1.Reference `json:"vipIdRef,omitempty" tf:"-"`
+
+	// Selector for a VIP to populate vipId.
+	// +kubebuilder:validation:Optional
+	VipIDSelector *v1.Selector `json:"vipIdSelector,omitempty" tf:"-"`
 }
 
-// VipAssociateSpec defines the desired state of VipAssociate
-type VipAssociateSpec struct {
+// VIPAssociateSpec defines the desired state of VIPAssociate
+type VIPAssociateSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     VipAssociateParameters `json:"forProvider"`
+	ForProvider     VIPAssociateParameters `json:"forProvider"`
 }
 
-// VipAssociateStatus defines the observed state of VipAssociate.
-type VipAssociateStatus struct {
+// VIPAssociateStatus defines the observed state of VIPAssociate.
+type VIPAssociateStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VipAssociateObservation `json:"atProvider,omitempty"`
+	AtProvider        VIPAssociateObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VipAssociate is the Schema for the VipAssociates API. ""page_title: "flexibleengine_networking_vip_associate_v2"
+// VIPAssociate is the Schema for the VIPAssociates API. ""page_title: "flexibleengine_networking_vip_associate_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type VipAssociate struct {
+type VIPAssociate struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              VipAssociateSpec   `json:"spec"`
-	Status            VipAssociateStatus `json:"status,omitempty"`
+	Spec              VIPAssociateSpec   `json:"spec"`
+	Status            VIPAssociateStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VipAssociateList contains a list of VipAssociates
-type VipAssociateList struct {
+// VIPAssociateList contains a list of VIPAssociates
+type VIPAssociateList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []VipAssociate `json:"items"`
+	Items           []VIPAssociate `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	VipAssociate_Kind             = "VipAssociate"
-	VipAssociate_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VipAssociate_Kind}.String()
-	VipAssociate_KindAPIVersion   = VipAssociate_Kind + "." + CRDGroupVersion.String()
-	VipAssociate_GroupVersionKind = CRDGroupVersion.WithKind(VipAssociate_Kind)
+	VIPAssociate_Kind             = "VIPAssociate"
+	VIPAssociate_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VIPAssociate_Kind}.String()
+	VIPAssociate_KindAPIVersion   = VIPAssociate_Kind + "." + CRDGroupVersion.String()
+	VIPAssociate_GroupVersionKind = CRDGroupVersion.WithKind(VIPAssociate_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&VipAssociate{}, &VipAssociateList{})
+	SchemeBuilder.Register(&VIPAssociate{}, &VIPAssociateList{})
 }

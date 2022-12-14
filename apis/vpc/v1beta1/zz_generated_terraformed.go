@@ -531,18 +531,18 @@ func (tr *NetworkingSubnet) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this VipAssociate
-func (mg *VipAssociate) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this VIPAssociate
+func (mg *VIPAssociate) GetTerraformResourceType() string {
 	return "flexibleengine_networking_vip_associate_v2"
 }
 
-// GetConnectionDetailsMapping for this VipAssociate
-func (tr *VipAssociate) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this VIPAssociate
+func (tr *VIPAssociate) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this VipAssociate
-func (tr *VipAssociate) GetObservation() (map[string]any, error) {
+// GetObservation of this VIPAssociate
+func (tr *VIPAssociate) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -551,8 +551,8 @@ func (tr *VipAssociate) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this VipAssociate
-func (tr *VipAssociate) SetObservation(obs map[string]any) error {
+// SetObservation for this VIPAssociate
+func (tr *VIPAssociate) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -560,16 +560,16 @@ func (tr *VipAssociate) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this VipAssociate
-func (tr *VipAssociate) GetID() string {
+// GetID returns ID of underlying Terraform resource of this VIPAssociate
+func (tr *VIPAssociate) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this VipAssociate
-func (tr *VipAssociate) GetParameters() (map[string]any, error) {
+// GetParameters of this VIPAssociate
+func (tr *VIPAssociate) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -578,8 +578,8 @@ func (tr *VipAssociate) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this VipAssociate
-func (tr *VipAssociate) SetParameters(params map[string]any) error {
+// SetParameters for this VIPAssociate
+func (tr *VIPAssociate) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -587,10 +587,10 @@ func (tr *VipAssociate) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this VipAssociate using its observed tfState.
+// LateInitialize this VIPAssociate using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *VipAssociate) LateInitialize(attrs []byte) (bool, error) {
-	params := &VipAssociateParameters{}
+func (tr *VIPAssociate) LateInitialize(attrs []byte) (bool, error) {
+	params := &VIPAssociateParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -601,22 +601,22 @@ func (tr *VipAssociate) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *VipAssociate) GetTerraformSchemaVersion() int {
+func (tr *VIPAssociate) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Vip
-func (mg *Vip) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this VIP
+func (mg *VIP) GetTerraformResourceType() string {
 	return "flexibleengine_networking_vip_v2"
 }
 
-// GetConnectionDetailsMapping for this Vip
-func (tr *Vip) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this VIP
+func (tr *VIP) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Vip
-func (tr *Vip) GetObservation() (map[string]any, error) {
+// GetObservation of this VIP
+func (tr *VIP) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -625,8 +625,8 @@ func (tr *Vip) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Vip
-func (tr *Vip) SetObservation(obs map[string]any) error {
+// SetObservation for this VIP
+func (tr *VIP) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -634,16 +634,16 @@ func (tr *Vip) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Vip
-func (tr *Vip) GetID() string {
+// GetID returns ID of underlying Terraform resource of this VIP
+func (tr *VIP) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Vip
-func (tr *Vip) GetParameters() (map[string]any, error) {
+// GetParameters of this VIP
+func (tr *VIP) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -652,8 +652,8 @@ func (tr *Vip) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Vip
-func (tr *Vip) SetParameters(params map[string]any) error {
+// SetParameters for this VIP
+func (tr *VIP) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -661,10 +661,10 @@ func (tr *Vip) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Vip using its observed tfState.
+// LateInitialize this VIP using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Vip) LateInitialize(attrs []byte) (bool, error) {
-	params := &VipParameters{}
+func (tr *VIP) LateInitialize(attrs []byte) (bool, error) {
+	params := &VIPParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -675,7 +675,7 @@ func (tr *Vip) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Vip) GetTerraformSchemaVersion() int {
+func (tr *VIP) GetTerraformSchemaVersion() int {
 	return 0
 }
 

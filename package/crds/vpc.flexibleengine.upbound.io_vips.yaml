@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: Vip
-    listKind: VipList
+    kind: VIP
+    listKind: VIPList
     plural: vips
     singular: vip
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"'
+        description: 'VIP is the Schema for the VIPs API. ""page_title: "flexibleengine_networking_vip_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VipSpec defines the desired state of Vip
+            description: VIPSpec defines the desired state of VIP
             properties:
               deletionPolicy:
                 default: Delete
@@ -398,7 +398,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: VipStatus defines the observed state of Vip.
+            description: VIPStatus defines the observed state of VIP.
             properties:
               atProvider:
                 properties:

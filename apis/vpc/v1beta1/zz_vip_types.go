@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type VipObservation struct {
+type VIPObservation struct {
 
 	// The device owner of the vip.
 	DeviceOwner *string `json:"deviceOwner,omitempty" tf:"device_owner,omitempty"`
@@ -28,7 +28,7 @@ type VipObservation struct {
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 }
 
-type VipParameters struct {
+type VIPParameters struct {
 
 	// IP address desired in the subnet for this vip.
 	// If you don't specify ip_address, an available IP address from
@@ -70,51 +70,51 @@ type VipParameters struct {
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }
 
-// VipSpec defines the desired state of Vip
-type VipSpec struct {
+// VIPSpec defines the desired state of VIP
+type VIPSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     VipParameters `json:"forProvider"`
+	ForProvider     VIPParameters `json:"forProvider"`
 }
 
-// VipStatus defines the observed state of Vip.
-type VipStatus struct {
+// VIPStatus defines the observed state of VIP.
+type VIPStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VipObservation `json:"atProvider,omitempty"`
+	AtProvider        VIPObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Vip is the Schema for the Vips API. ""page_title: "flexibleengine_networking_vip_v2"
+// VIP is the Schema for the VIPs API. ""page_title: "flexibleengine_networking_vip_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type Vip struct {
+type VIP struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              VipSpec   `json:"spec"`
-	Status            VipStatus `json:"status,omitempty"`
+	Spec              VIPSpec   `json:"spec"`
+	Status            VIPStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VipList contains a list of Vips
-type VipList struct {
+// VIPList contains a list of VIPs
+type VIPList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Vip `json:"items"`
+	Items           []VIP `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Vip_Kind             = "Vip"
-	Vip_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Vip_Kind}.String()
-	Vip_KindAPIVersion   = Vip_Kind + "." + CRDGroupVersion.String()
-	Vip_GroupVersionKind = CRDGroupVersion.WithKind(Vip_Kind)
+	VIP_Kind             = "VIP"
+	VIP_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VIP_Kind}.String()
+	VIP_KindAPIVersion   = VIP_Kind + "." + CRDGroupVersion.String()
+	VIP_GroupVersionKind = CRDGroupVersion.WithKind(VIP_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Vip{}, &VipList{})
+	SchemeBuilder.Register(&VIP{}, &VIPList{})
 }

@@ -445,34 +445,8 @@ func (mg *SecurityGroupRule) ResolveReferences(ctx context.Context, c client.Rea
 	return nil
 }
 
-// ResolveReferences of this VPCSubnet.
-func (mg *VPCSubnet) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPIResolver(c, mg)
-
-	var rsp reference.ResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.VPCIDRef,
-		Selector:     mg.Spec.ForProvider.VPCIDSelector,
-		To: reference.To{
-			List:    &VPCList{},
-			Managed: &VPC{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.VPCID")
-	}
-	mg.Spec.ForProvider.VPCID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.VPCIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this Vip.
-func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this VIP.
+func (mg *VIP) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -509,6 +483,75 @@ func (mg *Vip) ResolveReferences(ctx context.Context, c client.Reader) error {
 	}
 	mg.Spec.ForProvider.SubnetID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.SubnetIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this VIPAssociate.
+func (mg *VIPAssociate) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
+	var err error
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.PortIds),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.PortIdsRefs,
+		Selector:      mg.Spec.ForProvider.PortIdsSelector,
+		To: reference.To{
+			List:    &PortList{},
+			Managed: &Port{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.PortIds")
+	}
+	mg.Spec.ForProvider.PortIds = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.PortIdsRefs = mrsp.ResolvedReferences
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VipID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.VipIDRef,
+		Selector:     mg.Spec.ForProvider.VipIDSelector,
+		To: reference.To{
+			List:    &VIPList{},
+			Managed: &VIP{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.VipID")
+	}
+	mg.Spec.ForProvider.VipID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.VipIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this VPCSubnet.
+func (mg *VPCSubnet) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.VPCIDRef,
+		Selector:     mg.Spec.ForProvider.VPCIDSelector,
+		To: reference.To{
+			List:    &VPCList{},
+			Managed: &VPC{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.VPCID")
+	}
+	mg.Spec.ForProvider.VPCID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.VPCIDRef = rsp.ResolvedReference
 
 	return nil
 }

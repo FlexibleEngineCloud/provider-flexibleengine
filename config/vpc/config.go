@@ -112,4 +112,17 @@ func Configure(p *config.Provider) {
 		r.UseAsync = true
 	})
 
+	// flexibleengine_vpc_vip_associate_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_vip_associate_v2
+	p.AddResourceConfigurator("flexibleengine_networking_vip_associate_v2", func(r *config.Resource) {
+		// vip_id is the ID of the virtual IP address.
+		r.References["vip_id"] = config.Reference{
+			Type: "VIP",
+		}
+		// port_ids is the ID of the port to which the virtual IP address is associated.
+		r.References["port_ids"] = config.Reference{
+			Type: "Port",
+		}
+	})
+
 }
