@@ -31,6 +31,8 @@ func Configure(p *config.Provider) {
 			Type: "Service",
 		}
 
+		r.UseAsync = true
+
 	})
 
 }

@@ -20,4 +20,10 @@ func Configure(p *config.Provider) {
 			Extractor: common.PathNameExtractor,
 		}
 	})
+
+	// flexibleengine_dli_queue
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_queue
+	p.AddResourceConfigurator("flexibleengine_dli_queue", func(r *config.Resource) {
+		r.UseAsync = true
+	})
 }

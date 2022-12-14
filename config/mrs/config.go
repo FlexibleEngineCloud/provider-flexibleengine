@@ -45,6 +45,8 @@ func Configure(p *config.Provider) {
 	// flexibleengine_mrs_job_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v2
 	p.AddResourceConfigurator("flexibleengine_mrs_job_v2", func(r *config.Resource) {
+
+		r.UseAsync = true
 	})
 
 }

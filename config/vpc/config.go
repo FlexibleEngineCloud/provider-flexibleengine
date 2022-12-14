@@ -20,6 +20,8 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_route
 	p.AddResourceConfigurator("flexibleengine_vpc_route", func(r *config.Resource) {
 
+		r.UseAsync = true
+
 		// route_table_id is the ID of the Route Table
 		r.References["route_table_id"] = config.Reference{
 			Type: "RouteTable",
@@ -102,6 +104,12 @@ func Configure(p *config.Provider) {
 		r.References["network_id"] = config.Reference{
 			Type: "Network",
 		}
+	})
+
+	// flexibleengine_vpc_eip_associate
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_eip_associate
+	p.AddResourceConfigurator("flexibleengine_vpc_eip_associate", func(r *config.Resource) {
+		r.UseAsync = true
 	})
 
 }

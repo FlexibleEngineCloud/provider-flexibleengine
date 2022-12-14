@@ -11,6 +11,8 @@ func Configure(p *config.Provider) {
 	// flexibleengine_css_cluster_v1
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/css_cluster_v1
 	p.AddResourceConfigurator("flexibleengine_css_cluster_v1", func(r *config.Resource) {
+		r.UseAsync = true
+
 		r.References["network_info.vpc_id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "VPC"),
 		}

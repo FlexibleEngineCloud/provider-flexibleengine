@@ -77,5 +77,7 @@ func Configure(p *config.Provider) {
 		r.References["namespace"] = config.Reference{
 			Type: "Namespace",
 		}
+
+		r.UseAsync = true
 	})
 }
