@@ -1,24 +1,4 @@
 apiVersion: nat.flexibleengine.upbound.io/v1beta1
-kind: Gateway
-metadata:
-  annotations:
-    meta.upbound.io/example-id: nat/v1beta1/gateway
-  labels:
-    testing.upbound.io/example-name: example_gateway
-  name: example-gateway
-spec:
-  forProvider:
-    description: test for terraform
-    name: example-gateway
-    spec: "1"
-    subnetIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example_subnet
-    vpcIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example_vpc
----
-apiVersion: nat.flexibleengine.upbound.io/v1beta1
 kind: DnatRule
 metadata:
   annotations:

@@ -1,30 +1,3 @@
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: VPC
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vpc
-  labels:
-    testing.upbound.io/example-name: example-vpc1
-  name: example-vpc1
-spec:
-  forProvider:
-    name: "example-vpc1"
-    cidr: "192.168.0.0/24"
----
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: VPC
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vpc
-  labels:
-    testing.upbound.io/example-name: example-vpc2
-  name: example-vpc2
-spec:
-  forProvider:
-    name: "example-vpc2"
-    cidr: "192.168.1.0/24"
----
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: PeeringConnection
 metadata:
