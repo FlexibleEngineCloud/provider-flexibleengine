@@ -34,8 +34,8 @@ def main():
     groupResource, resource = sys.argv[1].split("/")
 
     # if file examples/<groupResource>/<resource>.yaml does not exist
-    if not os.path.isfile("examples/" + groupResource + "/" + resource):
-        print("Error: File examples/" + groupResource + "/" + resource + " does not exist")
+    if not os.path.isfile("examples/" + groupResource + "/" + resource + ".yaml"):
+        print("Error: File examples/" + groupResource + "/" + resource + ".yaml does not exist")
         exit(1)
 
     # Read all yaml files in the directory examples/ and decode them
