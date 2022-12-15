@@ -22,11 +22,6 @@ func Configure(p *config.Provider) {
 	// flexibleengine_fgs_function
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_function
 	p.AddResourceConfigurator("flexibleengine_fgs_function", func(r *config.Resource) {
-
-		r.References["subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
-		}
-
 		// agency
 		r.References["agency"] = config.Reference{
 			Type: tools.GenerateType("iam", "Agency"),

@@ -2,7 +2,6 @@
 package nat
 
 import (
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -22,13 +21,6 @@ func Configure(p *config.Provider) {
 		r.References["floating_ip_id"] = config.Reference{
 			Type: tools.GenerateType("eip", "EIP"),
 		}
-
-		// subnet_id is a reference to a VPC Network ID	resource
-		r.References["subnet_id"] = config.Reference{
-			Type:      tools.GenerateType("vpc", "VPCSubnet"),
-			Extractor: common.PathIDExtractor,
-		}
-
 	})
 
 	// flexibleengine_nat_snat_rule_v2
@@ -39,7 +31,7 @@ func Configure(p *config.Provider) {
 		r.References["nat_gateway_id"] = config.Reference{
 			Type: "Gateway",
 		}
-		// subnet_id is the ID of the subnet to which this nat gateway will be attached.
+		// floating_ip_id is the ID of the eip to which this nat gateway will be attached.
 		r.References["floating_ip_id"] = config.Reference{
 			Type: tools.GenerateType("eip", "EIP"),
 		}

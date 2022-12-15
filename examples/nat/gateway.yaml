@@ -4,8 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: nat/v1beta1/gateway
   labels:
-    testing.upbound.io/example-name: gateway_1
-  name: gateway-1
+    testing.upbound.io/example-name: example_gateway
+  name: example-gateway
 spec:
   forProvider:
     description: test for terraform

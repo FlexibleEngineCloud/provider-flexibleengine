@@ -273,6 +273,7 @@ type ClusterParameters struct {
 	// Click Virtual Private Cloud and select Virtual Private Cloud from the left list.
 	// On the Virtual Private Cloud page, obtain the subnet ID from the list.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 

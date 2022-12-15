@@ -2,7 +2,6 @@
 package sfs
 
 import (
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -22,11 +21,6 @@ func Configure(p *config.Provider) {
 		// crypt_key_id is a reference to a Key resource
 		r.References["crypt_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
-		}
-		// subnet_id is a reference to a VPC Network ID	resource
-		r.References["subnet_id"] = config.Reference{
-			Type:      tools.GenerateType("vpc", "VPCSubnet"),
-			Extractor: common.PathIDExtractor,
 		}
 	})
 

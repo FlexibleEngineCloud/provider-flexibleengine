@@ -55,17 +55,14 @@ func Configure(p *config.Provider) {
 	// flexibleengine_lb_member_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v2
 	p.AddResourceConfigurator("flexibleengine_lb_member_v2", func(r *config.Resource) {
-		r.References["pool_id"] = config.Reference{
-			Type: "Pool",
+		r.References["subnet_id"] = config.Reference{
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 	})
 
 	// flexibleengine_lb_monitor_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_monitor_v2
 	p.AddResourceConfigurator("flexibleengine_lb_monitor_v2", func(r *config.Resource) {
-		r.References["pool_id"] = config.Reference{
-			Type: "Pool",
-		}
 	})
 
 	// flexibleengine_lb_pool_v2

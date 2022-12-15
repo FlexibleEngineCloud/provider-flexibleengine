@@ -107,6 +107,7 @@ type MicroserviceEngineParameters struct {
 	// Specifies the network ID of the subnet to which the dedicated microservice
 	// engine belongs. Changing this will create a new engine.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 

@@ -19,10 +19,6 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("eip", "EIP"),
 		}
 
-		r.References["network_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
-		}
-
 	})
 
 	// flexibleengine_cse_microservice

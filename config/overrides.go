@@ -32,7 +32,8 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				// subnet_id is a reference to a Subnet resource
 			case "subnet_id":
 				r.References[k] = config.Reference{
-					Type: tools.GenerateType("vpc", "VPCSubnet"),
+					Type:      tools.GenerateType("vpc", "VPCSubnet"),
+					Extractor: common.PathIDExtractor,
 				}
 				// if _, ok := r.TerraformResource.Schema["network_id"]; ok {
 				// 	r.References[k] = config.Reference{
@@ -85,6 +86,10 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			case "image_id":
 				r.References[k] = config.Reference{
 					Type: tools.GenerateType("ims", "Image"),
+				}
+			case "pool_id":
+				r.References[k] = config.Reference{
+					Type: "Pool",
 				}
 			}
 		}

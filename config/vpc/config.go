@@ -133,5 +133,13 @@ func Configure(p *config.Provider) {
 			Type: "VPCSubnet",
 		}
 	})
+	// flexibleengine_networking_vip_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_vip_v2
+	p.AddResourceConfigurator("flexibleengine_networking_vip_v2", func(r *config.Resource) {
+		// subnet_id is the ID of the subnet to which this VIP belongs.
+		r.References["subnet_id"] = config.Reference{
+			Type: "VPCSubnet",
+		}
+	})
 
 }
