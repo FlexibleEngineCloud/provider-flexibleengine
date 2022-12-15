@@ -4,12 +4,12 @@ metadata:
   annotations:
     meta.upbound.io/example-id: nat/v1beta1/gateway
   labels:
-    testing.upbound.io/example-name: gateway_1
-  name: gateway-1
+    testing.upbound.io/example-name: example_gateway
+  name: example-gateway
 spec:
   forProvider:
     description: test for terraform
-    name: gateway-1
+    name: example-gateway
     spec: "1"
     subnetIdSelector:
       matchLabels:
@@ -17,30 +17,25 @@ spec:
     vpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_vpc
-
 ---
-
 apiVersion: nat.flexibleengine.upbound.io/v1beta1
 kind: DnatRule
 metadata:
   annotations:
     meta.upbound.io/example-id: nat/v1beta1/dnatrule
   labels:
-    testing.upbound.io/example-name: dnat_1
-  name: dnat-1
+    testing.upbound.io/example-name: example_dnat
+  name: example-dnat
 spec:
   forProvider:
     externalServicePort: 8023
     floatingIpIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: eip_1
+        testing.upbound.io/example-name: example_eip
     internalServicePort: 23
     natGatewayIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: gateway_1
-    portIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: instance_1
+        testing.upbound.io/example-name: example_gateway
+    privateIp: 192.168.0.240
     protocol: tcp
-
 ---

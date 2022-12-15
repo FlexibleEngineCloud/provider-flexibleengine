@@ -29,8 +29,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: ecs/v1beta1/instance
   labels:
-    testing.upbound.io/example-name: basic
-  name: basic
+    testing.upbound.io/example-name: example_instance
+  name: example-instance
 spec:
   forProvider:
     flavorId: s3.large.2
@@ -38,7 +38,7 @@ spec:
     keyPairSelector:
       matchLabels:
         testing.upbound.io/example-name: example_keypair
-    name: basic
+    name: example-instance
     network:
     - uuidSelector:
         matchLabels:

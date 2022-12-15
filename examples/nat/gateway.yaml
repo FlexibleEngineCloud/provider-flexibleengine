@@ -9,7 +9,7 @@ metadata:
 spec:
   forProvider:
     description: test for terraform
-    name: gateway-1
+    name: example-gateway
     spec: "1"
     subnetIdSelector:
       matchLabels:

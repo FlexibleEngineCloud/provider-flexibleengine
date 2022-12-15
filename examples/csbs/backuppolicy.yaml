@@ -4,16 +4,16 @@ metadata:
   annotations:
     meta.upbound.io/example-id: csbs/v1beta1/backuppolicy
   labels:
-    testing.upbound.io/example-name: backup_policy_v1
-  name: backup-policy-v1
+    testing.upbound.io/example-name: example_backup_policy
+  name: example-backup-policy
 spec:
   forProvider:
-    name: backup-policy-v1
+    name: example-backup-policy
     resource:
     - idSelector:
         matchLabels:
-          testing.upbound.io/example-name: basic
-      name: backupTest
+          testing.upbound.io/example-name: example_instance
+      name: example-backup-policy
       type: OS::Nova::Server
     scheduledOperation:
     - enabled: true

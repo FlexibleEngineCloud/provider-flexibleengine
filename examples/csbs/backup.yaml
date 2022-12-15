@@ -4,8 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: csbs/v1beta1/backup
   labels:
-    testing.upbound.io/example-name: backup_v1
-  name: backup-v1
+    testing.upbound.io/example-name: example_backup
+  name: example-backup
 spec:
   forProvider:
     backupName: backupTest
