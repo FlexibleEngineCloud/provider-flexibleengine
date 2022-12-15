@@ -142,7 +142,7 @@ func BucketNameExtractor() reference.ExtractValueFn {
 	}
 }
 
-// AddressExtractor extracts address from "spec.forProvider.address"
+// AddressExtractor extracts address from "status.atProvider.address"
 func AddressExtractor() reference.ExtractValueFn {
 	return func(mg xpresource.Managed) string {
 		paved, err := fieldpath.PaveObject(mg)
@@ -150,7 +150,7 @@ func AddressExtractor() reference.ExtractValueFn {
 			// TODO should we log this error?
 			return ""
 		}
-		r, err := paved.GetString("spec.forProvider.address")
+		r, err := paved.GetString("status.atProvider.address")
 		if err != nil {
 			// TODO should we log this error?
 			return ""
