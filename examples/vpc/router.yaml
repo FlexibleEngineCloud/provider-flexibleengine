@@ -4,9 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/router
   labels:
-    testing.upbound.io/example-name: router_1
-  name: router-1
+    testing.upbound.io/example-name: example_router
+  name: example-router
 spec:
   forProvider:
-    name: my_router
----
+    name: example-router

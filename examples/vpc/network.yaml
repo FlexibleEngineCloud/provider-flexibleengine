@@ -4,10 +4,9 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/network
   labels:
-    testing.upbound.io/example-name: network_1
-  name: network-1
+    testing.upbound.io/example-name: example_network
+  name: example-network
 spec:
   forProvider:
     adminStateUp: "true"
-    name: network_1
----
+    name: example-network

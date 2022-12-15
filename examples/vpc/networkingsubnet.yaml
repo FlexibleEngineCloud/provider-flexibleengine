@@ -1,28 +1,14 @@
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Network
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/network
-  labels:
-    testing.upbound.io/example-name: network_1
-  name: network-1
-spec:
-  forProvider:
-    adminStateUp: "true"
-    name: network_1
----
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
 kind: NetworkingSubnet
 metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/networkingsubnet
   labels:
-    testing.upbound.io/example-name: example_subnet
-  name: example-subnet
+    testing.upbound.io/example-name: example_networking_subnet
+  name: example-networking-subnet
 spec:
   forProvider:
     cidr: 192.168.199.0/24
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: network_1
----
+        testing.upbound.io/example-name: example_network

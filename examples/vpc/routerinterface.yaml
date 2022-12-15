@@ -4,63 +4,13 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/routerinterface
   labels:
-    testing.upbound.io/example-name: router_interface_1
-  name: router-interface-1
+    testing.upbound.io/example-name: example_router_interface
+  name: example-router-interface
 spec:
   forProvider:
     routerIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: router_1
+        testing.upbound.io/example-name: example_router
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_subnet
-
----
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Network
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/routerinterface
-  labels:
-    testing.upbound.io/example-name: network_1
-  name: network-1
-spec:
-  forProvider:
-    adminStateUp: "true"
-    name: tf_test_network
-
----
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Router
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/routerinterface
-  labels:
-    testing.upbound.io/example-name: router_1
-  name: router-1
-spec:
-  forProvider:
-    name: my_router
-
----
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: NetworkingSubnet
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/routerinterface
-  labels:
-    testing.upbound.io/example-name: example_subnet
-  name: example-subnet
-spec:
-  forProvider:
-    cidr: 192.168.199.0/24
-    ipVersion: 4
-    networkIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: network_1
-
----
-
+        testing.upbound.io/example-name: example_networking_subnet
