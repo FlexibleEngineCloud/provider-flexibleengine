@@ -55,13 +55,6 @@ def main():
                             for i in y:
                                 if i != None:
                                     if "metadata" in i and "labels" in i["metadata"] and "testing.upbound.io/example-name" in i["metadata"]["labels"]:
-                                        # if i["metadata"]["labels"]["testing.upbound.io/example-name"] in listLabels and listLabels[i["metadata"]["labels"]["testing.upbound.io/example-name"]] != i["kind"] + "." + i["apiVersion"]:
-                                        #     print("Error: Duplicate label testing.upbound.io/example-name: " + i["metadata"]["labels"]["testing.upbound.io/example-name"])
-                                        #     print("Example: " + listLabels[i["metadata"]["labels"]["testing.upbound.io/example-name"]] + " and " + i["kind"] + "." + i["apiVersion"])
-                                        #     exit(1)
-                                        # else:
-
-                                            # if Labels[i["kind"] + "." + i["apiVersion"]] == None:
                                             if i["kind"] + "." + i["apiVersion"] not in Labels:
                                                 Labels[i["kind"] + "." + i["apiVersion"]] = {}
 
@@ -70,6 +63,16 @@ def main():
                                             for k, v in i["spec"]["forProvider"].items():
                                                 if v == None:
                                                     continue
+                                                if isinstance(v, list):
+                                                    for item in v:
+                                                        if isinstance(item, dict):
+                                                            for key in item:
+                                                                if isinstance(item[key], dict):
+                                                                    if "matchLabels" in item[key]:
+                                                                        if "testing.upbound.io/example-name" in item[key]["matchLabels"]:
+                                                                            Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(item[key]["matchLabels"]["testing.upbound.io/example-name"])
+                                                                            if groupResource == dir and resource+".yaml" == file:
+                                                                                listLabelsRequired.append(item[key]["matchLabels"]["testing.upbound.io/example-name"])
                                                 if isinstance(v, dict):
                                                     if "matchLabels" in v:
                                                         if "testing.upbound.io/example-name" in v["matchLabels"]:
