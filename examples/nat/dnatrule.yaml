@@ -13,10 +13,10 @@ spec:
     spec: "1"
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: subnet_v1
+        testing.upbound.io/example-name: example_subnet
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vpc_v1
+        testing.upbound.io/example-name: example_vpc
 
 ---
 

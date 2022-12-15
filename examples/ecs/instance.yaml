@@ -42,7 +42,7 @@ spec:
     network:
     - uuidSelector:
         matchLabels:
-          testing.upbound.io/example-name: subnet_v1
+          testing.upbound.io/example-name: example_subnet
     securityGroups:
     - default
     tags:
