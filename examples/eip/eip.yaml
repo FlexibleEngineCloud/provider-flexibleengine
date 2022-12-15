@@ -4,8 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: eip/v1beta1/eip
   labels:
-    testing.upbound.io/example-name: eip_1
-  name: eip-1
+    testing.upbound.io/example-name: example_eip
+  name: example-eip
 spec:
   forProvider:
     bandwidth:

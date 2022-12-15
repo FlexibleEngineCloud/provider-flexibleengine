@@ -157,6 +157,24 @@ func (mg *Port) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var rsp reference.ResolutionResponse
 	var err error
 
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FixedIP); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FixedIP[i3].SubnetID),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.FixedIP[i3].SubnetIDRef,
+			Selector:     mg.Spec.ForProvider.FixedIP[i3].SubnetIDSelector,
+			To: reference.To{
+				List:    &VPCSubnetList{},
+				Managed: &VPCSubnet{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.FixedIP[i3].SubnetID")
+		}
+		mg.Spec.ForProvider.FixedIP[i3].SubnetID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.FixedIP[i3].SubnetIDRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
 		Extract:      common.IDExtractor(),

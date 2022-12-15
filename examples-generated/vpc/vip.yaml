@@ -13,7 +13,7 @@ spec:
         testing.upbound.io/example-name: network_1
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_subnet
+        testing.upbound.io/example-name: subnet_1
 
 ---
 
@@ -47,7 +47,7 @@ spec:
         testing.upbound.io/example-name: router_1
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_subnet
+        testing.upbound.io/example-name: subnet_1
 
 ---
 
@@ -72,13 +72,13 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vip
   labels:
-    testing.upbound.io/example-name: example_subnet
-  name: example-subnet
+    testing.upbound.io/example-name: subnet_1
+  name: subnet-1
 spec:
   forProvider:
     cidr: 192.168.199.0/24
     ipVersion: 4
-    name: example_subnet
+    name: subnet_1
     networkIdSelector:
       matchLabels:
         testing.upbound.io/example-name: network_1

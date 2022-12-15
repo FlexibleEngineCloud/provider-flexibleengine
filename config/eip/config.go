@@ -3,7 +3,6 @@ package eip
 
 import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -16,8 +15,8 @@ func Configure(p *config.Provider) {
 			Type:      "EIP",
 			Extractor: common.PathAddressExtractor,
 		}
-		r.References["netwok_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
+		r.LateInitializer = config.LateInitializer{
+			IgnoredFields: []string{"fixed_ip", "port_id", "network_id"},
 		}
 	})
 }

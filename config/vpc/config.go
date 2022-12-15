@@ -125,4 +125,13 @@ func Configure(p *config.Provider) {
 		}
 	})
 
+	// flexibleengine_networking_port_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_port_v2
+	p.AddResourceConfigurator("flexibleengine_networking_port_v2", func(r *config.Resource) {
+		// fixed_ip.[].subnet_id is the ID of the subnet to which this port belongs.
+		r.References["fixed_ip.subnet_id"] = config.Reference{
+			Type: "VPCSubnet",
+		}
+	})
+
 }
