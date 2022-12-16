@@ -1,0 +1,16 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: DLIPackage
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/dlipackage
+  labels:
+    testing.upbound.io/example-name: queue
+  name: queue
+spec:
+  forProvider:
+    groupName: ${var.group_name}
+    objectPath: https://${var.access_domain_name}/dli/packages/object_file.py
+    type: pyFile
+
+---
+

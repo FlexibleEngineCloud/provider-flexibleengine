@@ -1,6 +1,0 @@
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-flexibleengine
-spec:
-  package: gaetanars/provider-flexibleengine:v0.1.0

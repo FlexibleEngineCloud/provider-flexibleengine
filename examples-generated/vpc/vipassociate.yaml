@@ -1,0 +1,188 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VIPAssociate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: vip_associate_1
+  name: vip-associate-1
+spec:
+  forProvider:
+    portIdsRefs:
+    - name: port_1
+    - name: port_2
+    vipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vip_1
+
+---
+
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider:
+    name: instance_1
+    network:
+    - portSelector:
+        matchLabels:
+          testing.upbound.io/example-name: port_1
+    securityGroups:
+    - default
+
+---
+
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: instance_2
+  name: instance-2
+spec:
+  forProvider:
+    name: instance_2
+    network:
+    - portSelector:
+        matchLabels:
+          testing.upbound.io/example-name: port_1
+    securityGroups:
+    - default
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: network_1
+  name: network-1
+spec:
+  forProvider:
+    adminStateUp: "true"
+    name: network_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Port
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: port_1
+  name: port-1
+spec:
+  forProvider:
+    fixedIp:
+    - subnetIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: subnet_1
+    name: port_1
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Port
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: port_2
+  name: port-2
+spec:
+  forProvider:
+    fixedIp:
+    - subnetIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: subnet_1
+    name: port_2
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: RouterInterface
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: router_interface_1
+  name: router-interface-1
+spec:
+  forProvider:
+    routerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: router_1
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Router
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: router_1
+  name: router-1
+spec:
+  forProvider:
+    externalGateway: 0a2228f2-7f8a-45f1-8e09-9039e1d09975
+    name: router_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: NetworkingSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: subnet_1
+  name: subnet-1
+spec:
+  forProvider:
+    cidr: 192.168.199.0/24
+    ipVersion: 4
+    name: subnet_1
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: vip_1
+  name: vip-1
+spec:
+  forProvider:
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network_1
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet_1
+
+---
+

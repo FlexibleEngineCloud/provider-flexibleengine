@@ -1,0 +1,32 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RuleWebTamperProtection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/rulewebtamperprotection
+  labels:
+    testing.upbound.io/example-name: rule_1
+  name: rule-1
+spec:
+  forProvider:
+    domain: www.abc.com
+    path: /a
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: policy_1
+
+---
+
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/rulewebtamperprotection
+  labels:
+    testing.upbound.io/example-name: policy_1
+  name: policy-1
+spec:
+  forProvider:
+    name: policy_1
+
+---
+

@@ -1,0 +1,26 @@
+apiVersion: bms.flexibleengine.upbound.io/v1beta1
+kind: Server
+metadata:
+  annotations:
+    meta.upbound.io/example-id: bms/v1beta1/server
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    availabilityZone: ${var.availability_zone}
+    flavorId: ${var.flavor_id}
+    imageIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    keyPair: ${var.keypair_name}
+    metadata:
+      this: that
+    name: basic
+    network:
+    - uuid: ${var.network_id}
+    securityGroups:
+    - default
+
+---
+

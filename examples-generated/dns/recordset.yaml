@@ -1,0 +1,38 @@
+apiVersion: dns.flexibleengine.upbound.io/v1beta1
+kind: Recordset
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1beta1/recordset
+  labels:
+    testing.upbound.io/example-name: rs_example_com
+  name: rs-example-com
+spec:
+  forProvider:
+    description: An example record set
+    name: rs.example.com.
+    records:
+    - 10.0.0.1
+    ttl: 3000
+    type: A
+    zoneId: ${flexibleengine_dns_zone_v2.example_zone.id}
+
+---
+
+apiVersion: dns.flexibleengine.upbound.io/v1beta1
+kind: Zone
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1beta1/recordset
+  labels:
+    testing.upbound.io/example-name: example_zone
+  name: example-zone
+spec:
+  forProvider:
+    description: a zone
+    email: email2@example.com
+    name: example.com.
+    ttl: 6000
+    zoneType: public
+
+---
+

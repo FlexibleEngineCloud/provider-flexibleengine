@@ -1,0 +1,13 @@
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: KeyPair
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/keypair
+  labels:
+    testing.upbound.io/example-name: new
+  name: new
+spec:
+  forProvider: {}
+
+---
+

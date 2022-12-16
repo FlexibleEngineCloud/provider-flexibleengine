@@ -1,0 +1,12 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/project
+  labels:
+    testing.upbound.io/example-name: project_1
+  name: project-1
+spec:
+  forProvider:
+    description: A ACC test project
+    name: eu-west-0_project_1

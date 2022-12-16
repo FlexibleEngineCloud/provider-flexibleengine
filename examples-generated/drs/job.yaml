@@ -1,0 +1,55 @@
+apiVersion: drs.flexibleengine.upbound.io/v1beta1
+kind: Job
+metadata:
+  annotations:
+    meta.upbound.io/example-id: drs/v1beta1/job
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    description: terraform demo
+    destinationDb:
+    - engineType: mysql
+      instanceId: ${flexibleengine_rds_instance_v3.mysql.id}
+      ip: ${flexibleengine_rds_instance_v3.mysql.fixed_ip}
+      passwordSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      port: 3306
+      region: ${flexibleengine_rds_instance_v3.mysql.region}
+      subnetId: ${flexibleengine_rds_instance_v3.mysql.subnet_id}
+      user: root
+    direction: up
+    engineType: mysql
+    migrationType: FULL_INCR_TRANS
+    name: ${var.name}
+    netType: eip
+    sourceDb:
+    - engineType: mysql
+      ip: ${var.source_db_ip}
+      passwordSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      port: ${var.source_db_port}
+      ssl_link: false
+      user: ${var.source_db_user}
+    type: migration
+
+---
+
+apiVersion: rds.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: drs/v1beta1/job
+  labels:
+    testing.upbound.io/example-name: mysql
+  name: mysql
+spec:
+  forProvider: {}
+
+---
+

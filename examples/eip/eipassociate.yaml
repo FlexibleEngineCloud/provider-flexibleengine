@@ -1,0 +1,37 @@
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIPAssociate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eip/v1beta1/eipassociate
+  labels:
+    testing.upbound.io/example-name: example_eipassociate
+  name: example-eipassociate
+spec:
+  forProvider:
+    fixedIp: 192.168.0.100
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    publicIpSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_eip
+    # portIdSelector:
+    #   matchLabels:
+    #     testing.upbound.io/example-name: example_port
+---
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eip/v1beta1/eip
+  labels:
+    testing.upbound.io/example-name: example_eip
+  name: example-eip
+spec:
+  forProvider:
+    bandwidth:
+    - name: test
+      shareType: PER
+      size: 10
+    publicip:
+    - type: 5_bgp

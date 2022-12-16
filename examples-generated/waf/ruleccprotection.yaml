@@ -1,0 +1,39 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RuleCcProtection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/ruleccprotection
+  labels:
+    testing.upbound.io/example-name: rule_1
+  name: rule-1
+spec:
+  forProvider:
+    action: block
+    blockPageContent: '{"error":"forbidden"}'
+    blockPageType: application/json
+    blockTime: 10
+    cookie: sessionid
+    limitNum: 10
+    limitPeriod: 60
+    mode: cookie
+    path: /abc
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: policy_1
+
+---
+
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/ruleccprotection
+  labels:
+    testing.upbound.io/example-name: policy_1
+  name: policy-1
+spec:
+  forProvider:
+    name: policy_1
+
+---
+

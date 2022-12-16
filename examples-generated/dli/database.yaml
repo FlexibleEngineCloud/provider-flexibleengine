@@ -1,0 +1,14 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/database
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    name: ${var.database_name}
+
+---
+

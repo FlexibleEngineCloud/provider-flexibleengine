@@ -1,0 +1,33 @@
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: Listener
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: example_listener
+  name: example-listener
+spec:
+  forProvider:
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_lb
+    protocol: HTTP
+    protocolPort: 8080
+    tags:
+      key: value
+---
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: example_lb
+  name: example-lb
+spec:
+  forProvider:
+    tags:
+      key: value
+    vipSubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet

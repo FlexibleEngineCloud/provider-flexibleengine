@@ -1,0 +1,36 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: S3BucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/s3bucketobject
+  labels:
+    testing.upbound.io/example-name: object
+  name: object
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    etag: ${md5(file("path/to/file"))}
+    key: new_object_key
+    source: path/to/file
+
+---
+
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: S3Bucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/s3bucketobject
+  labels:
+    testing.upbound.io/example-name: examplebucket
+  name: examplebucket
+spec:
+  forProvider:
+    acl: private
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

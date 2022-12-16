@@ -1,0 +1,78 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: Table
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    bucketLocation: obs://${flexibleengine_obs_bucket_object.test.bucket}/user/data
+    columns:
+    - description: person name
+      name: name
+      type: string
+    - description: home address
+      name: addrss
+      type: string
+    dataFormat: csv
+    dataLocation: OBS
+    databaseNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+    description: dli table test
+    name: test
+
+---
+
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    name: ${var.database_name}
+
+---
+
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    acl: private
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+    content: Jason,Tokyo
+    contentType: text/plain
+    key: user/data/user.csv
+
+---
+

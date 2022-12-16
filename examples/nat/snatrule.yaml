@@ -1,0 +1,19 @@
+apiVersion: nat.flexibleengine.upbound.io/v1beta1
+kind: SnatRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nat/v1beta1/snatrule
+  labels:
+    testing.upbound.io/example-name: example_snat
+  name: example-snat
+spec:
+  forProvider:
+    floatingIpIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_eip
+    natGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_gateway
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet

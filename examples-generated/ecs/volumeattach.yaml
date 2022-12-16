@@ -1,0 +1,48 @@
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: VolumeAttach
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/volumeattach
+  labels:
+    testing.upbound.io/example-name: va_1
+  name: va-1
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: instance_1
+    volumeId: ${flexibleengine_blockstorage_volume_v2.volume_1.id}
+
+---
+
+apiVersion: evs.flexibleengine.upbound.io/v1beta1
+kind: BlockStorageVolume
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/volumeattach
+  labels:
+    testing.upbound.io/example-name: volume_1
+  name: volume-1
+spec:
+  forProvider:
+    name: volume_1
+    size: 1
+
+---
+
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/volumeattach
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider:
+    name: instance_1
+    securityGroups:
+    - default
+
+---
+

@@ -1,0 +1,16 @@
+apiVersion: cce.flexibleengine.upbound.io/v1beta1
+kind: Addon
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cce/v1beta1/addon
+  labels:
+    testing.upbound.io/example-name: addon_test
+  name: addon-test
+spec:
+  forProvider:
+    clusterId: ${var.cluster_id}
+    templateName: metrics-server
+    version: 1.0.6
+
+---
+

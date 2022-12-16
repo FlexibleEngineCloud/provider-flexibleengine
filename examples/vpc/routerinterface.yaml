@@ -1,0 +1,16 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: RouterInterface
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/routerinterface
+  labels:
+    testing.upbound.io/example-name: example_router_interface
+  name: example-router-interface
+spec:
+  forProvider:
+    routerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_router
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_networking_subnet

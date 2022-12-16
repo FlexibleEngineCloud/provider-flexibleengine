@@ -1,0 +1,14 @@
+apiVersion: csbs.flexibleengine.upbound.io/v1beta1
+kind: Backup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: csbs/v1beta1/backup
+  labels:
+    testing.upbound.io/example-name: example_backup
+  name: example-backup
+spec:
+  forProvider:
+    backupName: example-backup
+    resourceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_instance

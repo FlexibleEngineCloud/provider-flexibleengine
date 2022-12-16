@@ -1,0 +1,24 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: DedicatedDomain
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/dedicateddomain
+  labels:
+    testing.upbound.io/example-name: domain_1
+  name: domain-1
+spec:
+  forProvider:
+    certificateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: certificate_1
+    domain: www.example.com
+    server:
+    - address: 192.168.1.100
+      clientProtocol: HTTPS
+      port: 8080
+      serverProtocol: HTTP
+      type: ipv4
+      vpcId: ${var.vpc_id}
+
+---
+

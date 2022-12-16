@@ -1,0 +1,33 @@
+apiVersion: sfs.flexibleengine.upbound.io/v1beta1
+kind: AccessRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/accessrule
+  labels:
+    testing.upbound.io/example-name: rule_1
+  name: rule-1
+spec:
+  forProvider:
+    accessTo: ${var.vpc_id}
+    sfsIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: share-file
+
+---
+
+apiVersion: sfs.flexibleengine.upbound.io/v1beta1
+kind: FileSystem
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/accessrule
+  labels:
+    testing.upbound.io/example-name: share-file
+  name: share-file
+spec:
+  forProvider:
+    name: ${var.share_name}
+    shareProto: NFS
+    size: 100
+
+---
+

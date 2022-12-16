@@ -1,0 +1,51 @@
+apiVersion: dds.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dds/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: instance
+  name: instance
+spec:
+  forProvider:
+    availabilityZone: eu-west-0a
+    backupStrategy:
+    - keepDays: "8"
+      startTime: 08:00-09:00
+    datastore:
+    - storageEngine: wiredTiger
+      type: DDS-Community
+      version: "3.4"
+    flavor:
+    - num: 2
+      specCode: dds.mongodb.s3.medium.4.mongos
+      type: mongos
+    - num: 2
+      size: 20
+      specCode: dds.mongodb.s3.medium.4.shard
+      storage: ULTRAHIGH
+      type: shard
+    - num: 1
+      size: 20
+      specCode: dds.mongodb.s3.large.2.config
+      storage: ULTRAHIGH
+      type: config
+    mode: Sharding
+    name: dds-instance
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    region: eu-west-0
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

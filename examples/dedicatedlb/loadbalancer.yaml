@@ -1,0 +1,28 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: example_lbv3
+  name: example-lbv3
+spec:
+  forProvider:
+    availabilityZone:
+    - eu-west-0a
+    - eu-west-0b
+    crossVpcBackend: true
+    description: Test by Crossplane
+    ipv4SubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    ipv4EipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_eip
+    # ipv6NetworkIdSelector:
+    #   matchLabels:
+    #     testing.upbound.io/example-name: example_subnet2
+    name: example-lbv3
+    # vpcIdSelector:
+    #   matchLabels:
+    #     testing.upbound.io/example-name: example_vpc

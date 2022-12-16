@@ -1,0 +1,76 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/network
+  labels:
+    testing.upbound.io/example-name: network_1
+  name: network-1
+spec:
+  forProvider:
+    adminStateUp: "true"
+    name: network_1
+
+---
+
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/network
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider:
+    name: instance_1
+    network:
+    - portSelector:
+        matchLabels:
+          testing.upbound.io/example-name: port_1
+    securityGroups:
+    - ${flexibleengine_compute_secgroup_v2.secgroup_1.name}
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Port
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/network
+  labels:
+    testing.upbound.io/example-name: port_1
+  name: port-1
+spec:
+  forProvider:
+    adminStateUp: "true"
+    fixedIp:
+    - {}
+    name: port_1
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network_1
+    securityGroupIds:
+    - ${flexibleengine_compute_secgroup_v2.secgroup_1.id}
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: NetworkingSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/network
+  labels:
+    testing.upbound.io/example-name: subnet_1
+  name: subnet-1
+spec:
+  forProvider:
+    cidr: 192.168.199.0/24
+    ipVersion: 4
+    name: subnet_1
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network_1
+
+---
+

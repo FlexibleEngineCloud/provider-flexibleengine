@@ -1,0 +1,14 @@
+apiVersion: sfs.flexibleengine.upbound.io/v1beta1
+kind: FileSystem
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/filesystem
+  labels:
+    testing.upbound.io/example-name: example-filesystem
+  name: example-filesystem
+spec:
+  forProvider:
+    description: Test SFS by Crossplane
+    name: example-filesystem
+    shareProto: NFS
+    size: 10

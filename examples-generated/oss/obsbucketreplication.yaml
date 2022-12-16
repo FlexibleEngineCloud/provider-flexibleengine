@@ -1,0 +1,18 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketReplication
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucketreplication
+  labels:
+    testing.upbound.io/example-name: replica
+  name: replica
+spec:
+  forProvider:
+    agency: obs-fullaccess
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    destinationBucket: my-target-bucket
+
+---
+

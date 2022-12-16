@@ -1,0 +1,19 @@
+apiVersion: sfs.flexibleengine.upbound.io/v1beta1
+kind: FileSystem
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/filesystem
+  labels:
+    testing.upbound.io/example-name: share-file
+  name: share-file
+spec:
+  forProvider:
+    accessLevel: rw
+    accessTo: ${var.vpc_id}
+    description: ${var.share_description}
+    name: ${var.share_name}
+    shareProto: NFS
+    size: 100
+
+---
+

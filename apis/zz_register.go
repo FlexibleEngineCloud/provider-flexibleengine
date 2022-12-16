@@ -10,17 +10,113 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/gaetanars/provider-flexibleengine/apis/identity/v1alpha1"
-	v1alpha1apis "github.com/gaetanars/provider-flexibleengine/apis/v1alpha1"
-	v1beta1 "github.com/gaetanars/provider-flexibleengine/apis/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ag/v1beta1"
+	v1beta1agd "github.com/FrangipaneTeam/provider-flexibleengine/apis/agd/v1beta1"
+	v1beta1antiddos "github.com/FrangipaneTeam/provider-flexibleengine/apis/antiddos/v1beta1"
+	v1beta1as "github.com/FrangipaneTeam/provider-flexibleengine/apis/as/v1beta1"
+	v1beta1bms "github.com/FrangipaneTeam/provider-flexibleengine/apis/bms/v1beta1"
+	v1beta1cbr "github.com/FrangipaneTeam/provider-flexibleengine/apis/cbr/v1beta1"
+	v1beta1cce "github.com/FrangipaneTeam/provider-flexibleengine/apis/cce/v1beta1"
+	v1beta1ces "github.com/FrangipaneTeam/provider-flexibleengine/apis/ces/v1beta1"
+	v1beta1csbs "github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1"
+	v1beta1cse "github.com/FrangipaneTeam/provider-flexibleengine/apis/cse/v1beta1"
+	v1beta1css "github.com/FrangipaneTeam/provider-flexibleengine/apis/css/v1beta1"
+	v1beta1cts "github.com/FrangipaneTeam/provider-flexibleengine/apis/cts/v1beta1"
+	v1beta1dcs "github.com/FrangipaneTeam/provider-flexibleengine/apis/dcs/v1beta1"
+	v1beta1dds "github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1"
+	v1beta1dedicatedelb "github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1"
+	v1beta1dis "github.com/FrangipaneTeam/provider-flexibleengine/apis/dis/v1beta1"
+	v1beta1dli "github.com/FrangipaneTeam/provider-flexibleengine/apis/dli/v1beta1"
+	v1beta1dms "github.com/FrangipaneTeam/provider-flexibleengine/apis/dms/v1beta1"
+	v1beta1dns "github.com/FrangipaneTeam/provider-flexibleengine/apis/dns/v1beta1"
+	v1beta1drs "github.com/FrangipaneTeam/provider-flexibleengine/apis/drs/v1beta1"
+	v1beta1dws "github.com/FrangipaneTeam/provider-flexibleengine/apis/dws/v1beta1"
+	v1beta1ecs "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
+	v1beta1eip "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
+	v1beta1elb "github.com/FrangipaneTeam/provider-flexibleengine/apis/elb/v1beta1"
+	v1beta1eps "github.com/FrangipaneTeam/provider-flexibleengine/apis/eps/v1beta1"
+	v1beta1evs "github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1"
+	v1beta1fgs "github.com/FrangipaneTeam/provider-flexibleengine/apis/fgs/v1beta1"
+	v1beta1iam "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	v1beta1ims "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
+	v1beta1kms "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
+	v1beta1lts "github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1"
+	v1beta1mls "github.com/FrangipaneTeam/provider-flexibleengine/apis/mls/v1beta1"
+	v1beta1modelarts "github.com/FrangipaneTeam/provider-flexibleengine/apis/modelarts/v1beta1"
+	v1beta1mrs "github.com/FrangipaneTeam/provider-flexibleengine/apis/mrs/v1beta1"
+	v1beta1mrsd "github.com/FrangipaneTeam/provider-flexibleengine/apis/mrsd/v1beta1"
+	v1beta1nat "github.com/FrangipaneTeam/provider-flexibleengine/apis/nat/v1beta1"
+	v1beta1netacl "github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1"
+	v1beta1oss "github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1"
+	v1beta1rds "github.com/FrangipaneTeam/provider-flexibleengine/apis/rds/v1beta1"
+	v1beta1rts "github.com/FrangipaneTeam/provider-flexibleengine/apis/rts/v1beta1"
+	v1beta1sdrs "github.com/FrangipaneTeam/provider-flexibleengine/apis/sdrs/v1beta1"
+	v1beta1sfs "github.com/FrangipaneTeam/provider-flexibleengine/apis/sfs/v1beta1"
+	v1beta1smn "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
+	v1beta1swr "github.com/FrangipaneTeam/provider-flexibleengine/apis/swr/v1beta1"
+	v1beta1tms "github.com/FrangipaneTeam/provider-flexibleengine/apis/tms/v1beta1"
+	v1alpha1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/v1alpha1"
+	v1beta1apis "github.com/FrangipaneTeam/provider-flexibleengine/apis/v1beta1"
+	v1beta1vbs "github.com/FrangipaneTeam/provider-flexibleengine/apis/vbs/v1beta1"
+	v1beta1vpc "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
+	v1beta1vpcep "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpcep/v1beta1"
+	v1beta1waf "github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
-		v1alpha1.SchemeBuilder.AddToScheme,
-		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1beta1agd.SchemeBuilder.AddToScheme,
+		v1beta1antiddos.SchemeBuilder.AddToScheme,
+		v1beta1as.SchemeBuilder.AddToScheme,
+		v1beta1bms.SchemeBuilder.AddToScheme,
+		v1beta1cbr.SchemeBuilder.AddToScheme,
+		v1beta1cce.SchemeBuilder.AddToScheme,
+		v1beta1ces.SchemeBuilder.AddToScheme,
+		v1beta1csbs.SchemeBuilder.AddToScheme,
+		v1beta1cse.SchemeBuilder.AddToScheme,
+		v1beta1css.SchemeBuilder.AddToScheme,
+		v1beta1cts.SchemeBuilder.AddToScheme,
+		v1beta1dcs.SchemeBuilder.AddToScheme,
+		v1beta1dds.SchemeBuilder.AddToScheme,
+		v1beta1dedicatedelb.SchemeBuilder.AddToScheme,
+		v1beta1dis.SchemeBuilder.AddToScheme,
+		v1beta1dli.SchemeBuilder.AddToScheme,
+		v1beta1dms.SchemeBuilder.AddToScheme,
+		v1beta1dns.SchemeBuilder.AddToScheme,
+		v1beta1drs.SchemeBuilder.AddToScheme,
+		v1beta1dws.SchemeBuilder.AddToScheme,
+		v1beta1ecs.SchemeBuilder.AddToScheme,
+		v1beta1eip.SchemeBuilder.AddToScheme,
+		v1beta1elb.SchemeBuilder.AddToScheme,
+		v1beta1eps.SchemeBuilder.AddToScheme,
+		v1beta1evs.SchemeBuilder.AddToScheme,
+		v1beta1fgs.SchemeBuilder.AddToScheme,
+		v1beta1iam.SchemeBuilder.AddToScheme,
+		v1beta1ims.SchemeBuilder.AddToScheme,
+		v1beta1kms.SchemeBuilder.AddToScheme,
+		v1beta1lts.SchemeBuilder.AddToScheme,
+		v1beta1mls.SchemeBuilder.AddToScheme,
+		v1beta1modelarts.SchemeBuilder.AddToScheme,
+		v1beta1mrs.SchemeBuilder.AddToScheme,
+		v1beta1mrsd.SchemeBuilder.AddToScheme,
+		v1beta1nat.SchemeBuilder.AddToScheme,
+		v1beta1netacl.SchemeBuilder.AddToScheme,
+		v1beta1oss.SchemeBuilder.AddToScheme,
+		v1beta1rds.SchemeBuilder.AddToScheme,
+		v1beta1rts.SchemeBuilder.AddToScheme,
+		v1beta1sdrs.SchemeBuilder.AddToScheme,
+		v1beta1sfs.SchemeBuilder.AddToScheme,
+		v1beta1smn.SchemeBuilder.AddToScheme,
+		v1beta1swr.SchemeBuilder.AddToScheme,
+		v1beta1tms.SchemeBuilder.AddToScheme,
+		v1alpha1.SchemeBuilder.AddToScheme,
+		v1beta1apis.SchemeBuilder.AddToScheme,
+		v1beta1vbs.SchemeBuilder.AddToScheme,
+		v1beta1vpc.SchemeBuilder.AddToScheme,
+		v1beta1vpcep.SchemeBuilder.AddToScheme,
+		v1beta1waf.SchemeBuilder.AddToScheme,
 	)
 }
 

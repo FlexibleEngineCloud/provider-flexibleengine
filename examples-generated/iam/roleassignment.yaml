@@ -1,0 +1,34 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: RoleAssignment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/roleassignment
+  labels:
+    testing.upbound.io/example-name: role_assignment_1
+  name: role-assignment-1
+spec:
+  forProvider:
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: group_1
+    projectId: ${data.flexibleengine_identity_project_v3.project_1.id}
+    roleIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: flexibleengine_identity_role_v3
+
+---
+
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/roleassignment
+  labels:
+    testing.upbound.io/example-name: group_1
+  name: group-1
+spec:
+  forProvider:
+    name: group_1
+
+---
+

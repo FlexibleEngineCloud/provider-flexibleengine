@@ -1,0 +1,29 @@
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_instance
+  name: example-instance
+spec:
+  forProvider:
+    flavorId: t2.micro
+    imageId: "121d32ef-80d5-41f8-a940-f227a33d2b2a"
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_keypair
+    name: example-instance
+    network:
+    - uuidSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_subnet
+    securityGroups:
+    - default
+    tags:
+      foo: bar
+      this: that
+    schedulerHints:
+    - groupSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_servergroup

@@ -1,0 +1,17 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: PeeringConnection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/peering
+  labels:
+    testing.upbound.io/example-name: example-peering
+  name: example-peering
+spec:
+  forProvider:
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-vpc1
+    peerVpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-vpc2
+    name: "example-peering"

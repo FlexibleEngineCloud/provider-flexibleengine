@@ -1,0 +1,16 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: DedicatedPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/dedicatedpolicy
+  labels:
+    testing.upbound.io/example-name: policy_1
+  name: policy-1
+spec:
+  forProvider:
+    level: 2
+    name: policy_1
+    protectionMode: log
+
+---
+

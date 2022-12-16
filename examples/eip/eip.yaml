@@ -1,0 +1,16 @@
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eip/v1beta1/eip
+  labels:
+    testing.upbound.io/example-name: example_eip
+  name: example-eip
+spec:
+  forProvider:
+    bandwidth:
+    - name: test
+      shareType: PER
+      size: 10
+    publicip:
+    - type: 5_bgp

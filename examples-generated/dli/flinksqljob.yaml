@@ -1,0 +1,16 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: FlinksqlJob
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/flinksqljob
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    name: ${var.jobName}
+    sql: ${var.sql}
+    type: flink_sql_job
+
+---
+

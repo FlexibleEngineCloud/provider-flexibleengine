@@ -1,0 +1,18 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: IPGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/ipgroup
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    description: basic example
+    ipList:
+    - description: ECS01
+      ip: 192.168.10.10
+    name: basic
+
+---
+

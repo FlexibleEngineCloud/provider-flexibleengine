@@ -1,0 +1,22 @@
+apiVersion: csbs.flexibleengine.upbound.io/v1beta1
+kind: BackupPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: csbs/v1beta1/backuppolicy
+  labels:
+    testing.upbound.io/example-name: example_backup_policy
+  name: example-backup-policy
+spec:
+  forProvider:
+    name: example-backup-policy
+    resource:
+    - idSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_instance
+      name: example-backup-policy
+      type: OS::Nova::Server
+    scheduledOperation:
+    - enabled: true
+      maxBackups: 2
+      operationType: backup
+      triggerPattern: "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=12;BYMINUTE=27\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"

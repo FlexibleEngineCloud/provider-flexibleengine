@@ -1,0 +1,79 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VIPAssociate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vipassociate
+  labels:
+    testing.upbound.io/example-name: vip_associate_1
+  name: vip-associate-1
+spec:
+  forProvider:
+    portIdsSelector:
+      matchLabels:
+        testing.upbound.io/example-name: port_1
+    vipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vip_1
+---    
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vip
+  labels:
+    testing.upbound.io/example-name: vip_1
+  name: vip-1
+spec:
+  forProvider:
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Port
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/port
+  labels:
+    testing.upbound.io/example-name: port_1
+  name: port-1
+spec:
+  forProvider:
+    adminStateUp: true
+    name: port_1
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+---        
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpc
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    name: "example-vpc"
+    cidr: "192.168.0.0/16"
+---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: "192.168.0.0/24"
+    gatewayIp: "192.168.0.1"
+    name: "example-subnet"
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc

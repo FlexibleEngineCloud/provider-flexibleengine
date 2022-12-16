@@ -1,0 +1,20 @@
+apiVersion: nat.flexibleengine.upbound.io/v1beta1
+kind: DnatRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nat/v1beta1/dnatrule
+  labels:
+    testing.upbound.io/example-name: example_dnat
+  name: example-dnat
+spec:
+  forProvider:
+    externalServicePort: 8023
+    floatingIpIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_eip
+    internalServicePort: 23
+    natGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_gateway
+    privateIp: 192.168.0.240
+    protocol: tcp

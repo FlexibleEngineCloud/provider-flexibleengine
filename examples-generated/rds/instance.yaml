@@ -1,0 +1,55 @@
+apiVersion: rds.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: instance
+  name: instance
+spec:
+  forProvider:
+    availabilityZone:
+    - ${var.primary_az}
+    backupStrategy:
+    - keepDays: 1
+      startTime: 08:00-09:00
+    db:
+    - passwordSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      port: "8635"
+      type: PostgreSQL
+      version: "11"
+    flavor: rds.pg.s3.medium.4
+    name: terraform_test_rds_instance
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: secgroup
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    volume:
+    - size: 100
+      type: COMMON
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: secgroup
+  name: secgroup
+spec:
+  forProvider:
+    description: terraform security group acceptance test
+    name: terraform_test_security_group
+
+---
+

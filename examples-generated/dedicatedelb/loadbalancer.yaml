@@ -1,0 +1,27 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    availabilityZone:
+    - eu-west-0a
+    - eu-west-0b
+    crossVpcBackend: true
+    description: basic example
+    ipv4SubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    l4FlavorId: '{{ l4_flavor_id }}'
+    l7FlavorId: '{{ l7_flavor_id }}'
+    name: basic
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

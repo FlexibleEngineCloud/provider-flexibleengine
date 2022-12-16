@@ -1,0 +1,72 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: GroupMembership
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/groupmembership
+  labels:
+    testing.upbound.io/example-name: membership_1
+  name: membership-1
+spec:
+  forProvider:
+    groupSelector:
+      matchLabels:
+        testing.upbound.io/example-name: group_1
+    usersRefs:
+    - name: user_1
+    - name: user_2
+
+---
+
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/groupmembership
+  labels:
+    testing.upbound.io/example-name: group_1
+  name: group-1
+spec:
+  forProvider:
+    description: This is a test group
+    name: group1
+
+---
+
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/groupmembership
+  labels:
+    testing.upbound.io/example-name: user_1
+  name: user-1
+spec:
+  forProvider:
+    enabled: true
+    name: user1
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+
+---
+
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/groupmembership
+  labels:
+    testing.upbound.io/example-name: user_2
+  name: user-2
+spec:
+  forProvider:
+    enabled: true
+    name: user2
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+
+---
+

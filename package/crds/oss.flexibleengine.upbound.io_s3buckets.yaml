@@ -1,0 +1,557 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: s3buckets.oss.flexibleengine.upbound.io
+spec:
+  group: oss.flexibleengine.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - flexibleengine
+    kind: S3Bucket
+    listKind: S3BucketList
+    plural: s3buckets
+    singular: s3bucket
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: 'S3Bucket is the Schema for the S3Buckets API. ""page_title:
+          "flexibleengine_s3_bucket"'
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: S3BucketSpec defines the desired state of S3Bucket
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  acl:
+                    description: The canned ACL to apply. Defaults to "private".
+                    type: string
+                  arn:
+                    description: The ARN of the bucket. Will be of format arn:aws:s3:::bucketname.
+                    type: string
+                  bucket:
+                    description: The name of the bucket.
+                    type: string
+                  bucketPrefix:
+                    description: Creates a unique bucket name beginning with the specified
+                      prefix. Conflicts with bucket.
+                    type: string
+                  bucketRef:
+                    description: Reference to a S3Bucket in oss to populate bucket.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  bucketSelector:
+                    description: Selector for a S3Bucket in oss to populate bucket.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  corsRule:
+                    description: A rule of Cross-Origin Resource Sharing (documented
+                      below).
+                    items:
+                      properties:
+                        allowedHeaders:
+                          description: Specifies which headers are allowed.
+                          items:
+                            type: string
+                          type: array
+                        allowedMethods:
+                          description: Specifies which methods are allowed. Can be
+                            GET, PUT, POST, DELETE or HEAD.
+                          items:
+                            type: string
+                          type: array
+                        allowedOrigins:
+                          description: Specifies which origins are allowed.
+                          items:
+                            type: string
+                          type: array
+                        exposeHeaders:
+                          description: Specifies expose header in the response.
+                          items:
+                            type: string
+                          type: array
+                        maxAgeSeconds:
+                          description: Specifies time in seconds that browser can
+                            cache the response for a preflight request.
+                          type: number
+                      required:
+                      - allowedMethods
+                      - allowedOrigins
+                      type: object
+                    type: array
+                  forceDestroy:
+                    description: A boolean that indicates all objects should be deleted
+                      from the bucket so that the bucket can be destroyed without
+                      error. These objects are not recoverable.
+                    type: boolean
+                  hostedZoneId:
+                    description: The Route 53 Hosted Zone ID for this bucket's region.
+                    type: string
+                  lifecycleRule:
+                    description: A configuration of object lifecycle management (documented
+                      below).
+                    items:
+                      properties:
+                        abortIncompleteMultipartUploadDays:
+                          description: Specifies the number of days after initiating
+                            a multipart upload when the multipart upload must be completed.
+                          type: number
+                        enabled:
+                          description: Enable versioning. Once you version-enable
+                            a bucket, it can never return to an unversioned state.
+                            You can, however, suspend versioning on that bucket.
+                          type: boolean
+                        expiration:
+                          description: Specifies a period in the object's expire (documented
+                            below).
+                          items:
+                            properties:
+                              date:
+                                description: Specifies the date after which you want
+                                  the corresponding action to take effect.
+                                type: string
+                              days:
+                                description: Specifies the number of days after object
+                                  creation when the specific rule action takes effect.
+                                type: number
+                              expiredObjectDeleteMarker:
+                                description: enabled or versioning-suspended bucket),
+                                  you can add this element in the lifecycle configuration
+                                  to direct Amazon S3 to delete expired object delete
+                                  markers.
+                                type: boolean
+                            type: object
+                          type: array
+                        id:
+                          description: Unique identifier for the rule.
+                          type: string
+                        noncurrentVersionExpiration:
+                          description: Specifies when noncurrent object versions expire
+                            (documented below).
+                          items:
+                            properties:
+                              days:
+                                description: Specifies the number of days after object
+                                  creation when the specific rule action takes effect.
+                                type: number
+                            type: object
+                          type: array
+                        prefix:
+                          description: Object key prefix identifying one or more objects
+                            to which the rule applies.
+                          type: string
+                      required:
+                      - enabled
+                      type: object
+                    type: array
+                  logging:
+                    description: A settings of bucket logging (documented below).
+                    items:
+                      properties:
+                        targetBucket:
+                          description: The name of the bucket that will receive the
+                            log objects.
+                          type: string
+                        targetPrefix:
+                          description: To specify a key prefix for log objects.
+                          type: string
+                      required:
+                      - targetBucket
+                      type: object
+                    type: array
+                  policy:
+                    description: A valid bucket policy JSON document. In this case,
+                      please make sure you use the verbose/specific version of the
+                      policy.
+                    type: string
+                  region:
+                    description: If specified, the region this bucket should reside
+                      in. Otherwise, the region used by the callee.
+                    type: string
+                  versioning:
+                    description: A state of versioning (documented below)
+                    items:
+                      properties:
+                        enabled:
+                          description: Enable versioning. Once you version-enable
+                            a bucket, it can never return to an unversioned state.
+                            You can, however, suspend versioning on that bucket.
+                          type: boolean
+                        mfaDelete:
+                          description: Enable MFA delete for either Change the versioning
+                            state of your bucket or Permanently delete an object version.
+                            Default is false.
+                          type: boolean
+                      type: object
+                    type: array
+                  website:
+                    description: A website object (documented below).
+                    items:
+                      properties:
+                        errorDocument:
+                          description: An absolute path to the document to return
+                            in case of a 4XX error.
+                          type: string
+                        indexDocument:
+                          description: Amazon S3 returns this index document when
+                            requests are made to the root domain or any of the subfolders.
+                          type: string
+                        redirectAllRequestsTo:
+                          description: A hostname to redirect all website requests
+                            for this bucket to. Hostname can optionally be prefixed
+                            with a protocol (http:// or https://) to use when redirecting
+                            requests. The default is the protocol that is used in
+                            the original request.
+                          type: string
+                        routingRules:
+                          description: A json array containing routing rules describing
+                            redirect behavior and when redirects are applied.
+                          type: string
+                      type: object
+                    type: array
+                  websiteDomain:
+                    description: The domain of the website endpoint, if the bucket
+                      is configured with a website. If not, this will be an empty
+                      string. This is used to create Route 53 alias records.
+                    type: string
+                  websiteEndpoint:
+                    description: The website endpoint, if the bucket is configured
+                      with a website. If not, this will be an empty string.
+                    type: string
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: S3BucketStatus defines the observed state of S3Bucket.
+            properties:
+              atProvider:
+                properties:
+                  bucketDomainName:
+                    description: The bucket domain name. Will be of format bucketname.s3.amazonaws.com.
+                    type: string
+                  id:
+                    description: Unique identifier for the rule.
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

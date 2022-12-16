@@ -1,0 +1,25 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: DedicatedInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/dedicatedinstance
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider:
+    availableZone: ${var.az_name}
+    ecsFlavor: ${var.ecs_flavor_id}
+    name: instance_1
+    securityGroupRefs:
+    - name: example
+    specificationCode: waf.instance.professional
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

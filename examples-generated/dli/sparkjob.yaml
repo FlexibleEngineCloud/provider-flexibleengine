@@ -1,0 +1,19 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: SparkJob
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/sparkjob
+  labels:
+    testing.upbound.io/example-name: default
+  name: default
+spec:
+  forProvider:
+    appName: driver_package/driver_behavior.jar
+    mainClass: driver_behavior
+    maxRetries: 20
+    name: ${var.job_name}
+    queueName: ${var.queue_name}
+    specification: B
+
+---
+

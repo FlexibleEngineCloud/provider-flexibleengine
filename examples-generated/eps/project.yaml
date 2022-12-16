@@ -1,0 +1,15 @@
+apiVersion: eps.flexibleengine.upbound.io/v1beta1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eps/v1beta1/project
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    description: example project
+    name: test
+
+---
+

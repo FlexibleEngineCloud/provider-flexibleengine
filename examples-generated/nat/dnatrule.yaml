@@ -1,0 +1,38 @@
+apiVersion: nat.flexibleengine.upbound.io/v1beta1
+kind: DnatRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nat/v1beta1/dnatrule
+  labels:
+    testing.upbound.io/example-name: dnat_1
+  name: dnat-1
+spec:
+  forProvider:
+    externalServicePort: 8023
+    floatingIpIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    internalServicePort: 23
+    natGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    portIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: instance_1
+    protocol: tcp
+
+---
+
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nat/v1beta1/dnatrule
+  labels:
+    testing.upbound.io/example-name: instance_1
+  name: instance-1
+spec:
+  forProvider: {}
+
+---
+
