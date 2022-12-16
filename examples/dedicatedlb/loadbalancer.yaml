@@ -9,8 +9,8 @@ metadata:
 spec:
   forProvider:
     availabilityZone:
-    - eu-west-0a
-    - eu-west-0b
+      - eu-west-0a
+      - eu-west-0b
     crossVpcBackend: true
     description: Test by Crossplane
     ipv4SubnetIdSelector:
@@ -19,10 +19,4 @@ spec:
     ipv4EipIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_eip
-    # ipv6NetworkIdSelector:
-    #   matchLabels:
-    #     testing.upbound.io/example-name: example_subnet2
     name: example-lbv3
-    # vpcIdSelector:
-    #   matchLabels:
-    #     testing.upbound.io/example-name: example_vpc

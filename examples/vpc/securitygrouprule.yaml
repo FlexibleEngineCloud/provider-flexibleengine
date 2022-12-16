@@ -17,16 +17,3 @@ spec:
     securityGroupIdSelector:
       matchLabels:
         testing.upbound.io/example-name: secgroup_1
----
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: SecurityGroup
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/securitygrouprule
-  labels:
-    testing.upbound.io/example-name: secgroup_1
-  name: secgroup-1
-spec:
-  forProvider:
-    description: My neutron security group
-    name: secgroup_1
