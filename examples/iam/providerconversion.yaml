@@ -1,16 +1,4 @@
 apiVersion: iam.flexibleengine.upbound.io/v1beta1
-kind: Provider
-metadata:
-  annotations:
-    meta.upbound.io/example-id: iam/v1beta1/provider
-  labels:
-    testing.upbound.io/example-name: provider_1
-  name: provider-1
-spec:
-  forProvider:
-    protocol: saml
----
-apiVersion: iam.flexibleengine.upbound.io/v1beta1
 kind: ProviderConversion
 metadata:
   annotations:
@@ -21,18 +9,18 @@ metadata:
 spec:
   forProvider:
     conversionRules:
-    - local:
-      - username: Tom
-      remote:
-      - attribute: Tom
-    - local:
-      - username: FederationUser
-      remote:
-      - attribute: username
-        condition: any_one_of
-        value:
-        - Tom
-        - Jerry
+      - local:
+        - username: Tom
+        remote:
+        - attribute: Tom
+      - local:
+        - username: FederationUser
+        remote:
+        - attribute: username
+          condition: any_one_of
+          value:
+          - Tom
+          - Jerry
     providerIdSelector:
       matchLabels:
         testing.upbound.io/example-name: provider_1

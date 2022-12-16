@@ -9,8 +9,8 @@ metadata:
 spec:
   forProvider:
     bandwidth:
-    - name: test
-      shareType: PER
-      size: 10
+      - name: test
+        shareType: PER
+        size: 10
     publicip:
-    - type: 5_bgp
+      - type: 5_bgp
