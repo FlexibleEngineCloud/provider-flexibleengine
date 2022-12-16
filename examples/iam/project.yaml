@@ -10,4 +10,3 @@ spec:
   forProvider:
     description: A ACC test project
     name: eu-west-0_project_1
----

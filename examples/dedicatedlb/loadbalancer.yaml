@@ -26,35 +26,3 @@ spec:
     # vpcIdSelector:
     #   matchLabels:
     #     testing.upbound.io/example-name: example_vpc
----
-# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-# kind: VPCSubnet
-# metadata:
-#   annotations:
-#     meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
-#   labels:
-#     testing.upbound.io/example-name: example_subnet2
-#   name: example-subnet2
-# spec:
-#   forProvider:
-#     cidr: "192.169.0.0/24"
-#     gatewayIp: "192.169.0.1"
-#     name: "example-subnet2"
-#     ipv6Enable: true
-#     vpcIdSelector:
-#       matchLabels:
-#         testing.upbound.io/example-name: example_vpc2
-# ---
-# apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-# kind: VPC
-# metadata:
-#   annotations:
-#     meta.upbound.io/example-id: vpc/v1beta1/vpc
-#   labels:
-#     testing.upbound.io/example-name: example_vpc2
-#   name: example-vpc2
-# spec:
-#   forProvider:
-#     name: "example-vpc2"
-#     cidr: "192.169.0.0/16"
-# ---

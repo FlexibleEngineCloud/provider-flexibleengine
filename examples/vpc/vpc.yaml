@@ -10,4 +10,3 @@ spec:
   forProvider:
     name: "example-vpc"
     cidr: "192.168.0.0/16"
----

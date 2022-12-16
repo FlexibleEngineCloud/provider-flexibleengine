@@ -27,4 +27,3 @@ spec:
     - groupSelector:
         matchLabels:
           testing.upbound.io/example-name: example_servergroup
----

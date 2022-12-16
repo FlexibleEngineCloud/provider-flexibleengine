@@ -13,4 +13,3 @@ spec:
     vipSubnetIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_subnet
----

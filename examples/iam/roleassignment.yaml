@@ -64,4 +64,3 @@ spec:
     roleIdSelector:
       matchLabels:
         testing.upbound.io/example-name: role
----

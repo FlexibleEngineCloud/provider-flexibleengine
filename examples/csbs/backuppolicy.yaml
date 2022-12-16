@@ -20,6 +20,3 @@ spec:
       maxBackups: 2
       operationType: backup
       triggerPattern: "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=12;BYMINUTE=27\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
-
----
-

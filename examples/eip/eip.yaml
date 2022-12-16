@@ -14,4 +14,3 @@ spec:
       size: 10
     publicip:
     - type: 5_bgp
----

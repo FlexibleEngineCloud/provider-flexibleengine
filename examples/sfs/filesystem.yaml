@@ -12,4 +12,3 @@ spec:
     name: example-filesystem
     shareProto: NFS
     size: 10
----

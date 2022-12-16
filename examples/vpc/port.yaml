@@ -48,4 +48,3 @@ spec:
     vpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_vpc
----

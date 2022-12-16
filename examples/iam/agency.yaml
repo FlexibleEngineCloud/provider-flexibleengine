@@ -17,6 +17,3 @@ spec:
     - project: eu-west-0
       roles:
       - Tenant Administrator
-
----
-
