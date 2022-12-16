@@ -1,4 +1,3 @@
----
 apiVersion: csbs.flexibleengine.upbound.io/v1beta1
 kind: Backup
 metadata:

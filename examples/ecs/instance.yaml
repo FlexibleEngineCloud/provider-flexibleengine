@@ -15,15 +15,15 @@ spec:
         testing.upbound.io/example-name: example_keypair
     name: example-instance
     network:
-    - uuidSelector:
-        matchLabels:
-          testing.upbound.io/example-name: example_subnet
+      - uuidSelector:
+          matchLabels:
+            testing.upbound.io/example-name: example_subnet
     securityGroups:
-    - default
+      - default
     tags:
       foo: bar
       this: that
     schedulerHints:
-    - groupSelector:
-        matchLabels:
-          testing.upbound.io/example-name: example_servergroup
+      - groupSelector:
+          matchLabels:
+            testing.upbound.io/example-name: example_servergroup

@@ -17,12 +17,6 @@ spec:
         name: example-backup-policy
         type: OS::Nova::Server
     scheduledOperation:
-<<<<<<< HEAD
-    - enabled: true
-      maxBackups: 2
-      operationType: backup
-      triggerPattern: "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=12;BYMINUTE=27\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
-=======
       - enabled: true
         maxBackups: 2
         operationType: backup
@@ -32,4 +26,3 @@ spec:
           RRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=12;BYMINUTE=27
           END:VEVENT
           END:VCALENDAR
->>>>>>> 0ef9cb3 (example csbs ok (lint+test+run))
