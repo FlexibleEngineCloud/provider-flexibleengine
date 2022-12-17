@@ -9,7 +9,6 @@ metadata:
 spec:
   forProvider:
     defaultResult: ABANDON
-    name: example-as-lifecyclehook
     notificationMessage: This is a test message
     notificationTopicUrnSelector:
       matchLabels:

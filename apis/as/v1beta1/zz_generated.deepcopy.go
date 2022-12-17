@@ -866,11 +866,6 @@ func (in *LifecycleHookParameters) DeepCopyInto(out *LifecycleHookParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.NotificationMessage != nil {
 		in, out := &in.NotificationMessage, &out.NotificationMessage
 		*out = new(string)
@@ -1163,6 +1158,16 @@ func (in *PolicyParameters) DeepCopyInto(out *PolicyParameters) {
 		in, out := &in.ScalingGroupID, &out.ScalingGroupID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ScalingGroupIDRef != nil {
+		in, out := &in.ScalingGroupIDRef, &out.ScalingGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ScalingGroupIDSelector != nil {
+		in, out := &in.ScalingGroupIDSelector, &out.ScalingGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ScalingPolicyAction != nil {
 		in, out := &in.ScalingPolicyAction, &out.ScalingPolicyAction

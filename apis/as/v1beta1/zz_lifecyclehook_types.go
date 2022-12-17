@@ -33,12 +33,6 @@ type LifecycleHookParameters struct {
 	// +kubebuilder:validation:Optional
 	DefaultResult *string `json:"defaultResult,omitempty" tf:"default_result,omitempty"`
 
-	// Specifies the lifecycle hook name.
-	// This parameter can contain a maximum of 32 characters, which may consist of letters, digits,
-	// underscores (_) and hyphens (-).
-	// +kubebuilder:validation:Required
-	Name *string `json:"name" tf:"name,omitempty"`
-
 	// Specifies a customized notification.
 	// This parameter can contains a maximum of 256 characters, which cannot contain the following characters: <>&'().
 	// +kubebuilder:validation:Optional

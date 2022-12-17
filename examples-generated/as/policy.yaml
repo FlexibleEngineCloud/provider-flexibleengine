@@ -9,7 +9,9 @@ metadata:
 spec:
   forProvider:
     coolDownTime: 900
-    scalingGroupId: 4579f2f5-cbe8-425a-8f32-53dcb9d9053a
+    scalingGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     scalingPolicyAction:
     - instanceNumber: 1
       operation: ADD

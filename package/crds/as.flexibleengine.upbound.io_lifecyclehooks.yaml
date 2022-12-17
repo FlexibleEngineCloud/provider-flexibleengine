@@ -69,11 +69,6 @@ spec:
                       This operation is performed when the timeout duration expires.
                       The valid values are ABANDON and CONTINUE, default to ABANDON.
                     type: string
-                  name:
-                    description: Specifies the lifecycle hook name. This parameter
-                      can contain a maximum of 32 characters, which may consist of
-                      letters, digits, underscores (_) and hyphens (-).
-                    type: string
                   notificationMessage:
                     description: 'Specifies a customized notification. This parameter
                       can contains a maximum of 256 characters, which cannot contain
@@ -243,7 +238,6 @@ spec:
                       are following strings:'
                     type: string
                 required:
-                - name
                 - type
                 type: object
               providerConfigRef:

@@ -68,8 +68,8 @@ func Configure(p *config.Provider) {
 	// flexibleengine_as_policy_v1
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_policy_v1
 	p.AddResourceConfigurator("flexibleengine_as_policy_v1", func(r *config.Resource) {
-		r.References["scaling_configuration_id"] = config.Reference{
-			Type: "Configuration",
+		r.References["scaling_group_id"] = config.Reference{
+			Type: "Group",
 		}
 		r.References["alarm_id"] = config.Reference{
 			Type: tools.GenerateType("ces", "AlarmRule"),

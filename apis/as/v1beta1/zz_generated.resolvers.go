@@ -245,5 +245,21 @@ func (mg *Policy) ResolveReferences(ctx context.Context, c client.Reader) error 
 	mg.Spec.ForProvider.AlarmID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.AlarmIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ScalingGroupID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.ScalingGroupIDRef,
+		Selector:     mg.Spec.ForProvider.ScalingGroupIDSelector,
+		To: reference.To{
+			List:    &GroupList{},
+			Managed: &Group{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ScalingGroupID")
+	}
+	mg.Spec.ForProvider.ScalingGroupID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ScalingGroupIDRef = rsp.ResolvedReference
+
 	return nil
 }

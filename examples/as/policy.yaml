@@ -4,22 +4,21 @@ metadata:
   annotations:
     meta.upbound.io/example-id: as/v1beta1/policy
   labels:
-    testing.upbound.io/example-name: hth_aspolicy
-  name: hth-aspolicy
+    testing.upbound.io/example-name: example_as_policy
+  name: example-as-policy
 spec:
   forProvider:
     coolDownTime: 900
-    scalingGroupId: 4579f2f5-cbe8-425a-8f32-53dcb9d9053a
+    scalingGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_as_group
     scalingPolicyAction:
-    - instanceNumber: 1
-      operation: ADD
+      - instanceNumber: 1
+        operation: ADD
     scalingPolicyName: hth_aspolicy
     scalingPolicyType: RECURRENCE
     scheduledPolicy:
-    - endTime: 2017-12-30T12:00Z
-      launchTime: "07:00"
-      recurrenceType: Daily
-      startTime: 2017-11-30T12:00Z
-
----
-
+      - endTime: 2099-12-30T12:00Z
+        launchTime: "07:00"
+        recurrenceType: Daily
+        startTime: 2017-11-30T12:00Z
