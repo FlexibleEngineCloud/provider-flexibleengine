@@ -201,15 +201,16 @@ type NetworksObservation struct {
 type NetworksParameters struct {
 
 	// The network UUID.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Network
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Reference to a Network in vpc to populate id.
+	// Reference to a VPCSubnet in vpc to populate id.
 	// +kubebuilder:validation:Optional
 	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
 
-	// Selector for a Network in vpc to populate id.
+	// Selector for a VPCSubnet in vpc to populate id.
 	// +kubebuilder:validation:Optional
 	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 }

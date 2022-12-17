@@ -45,16 +45,34 @@ type LifecycleHookParameters struct {
 	NotificationMessage *string `json:"notificationMessage,omitempty" tf:"notification_message,omitempty"`
 
 	// Specifies a unique topic in SMN.
-	// +kubebuilder:validation:Required
-	NotificationTopicUrn *string `json:"notificationTopicUrn" tf:"notification_topic_urn,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1.Topic
+	// +kubebuilder:validation:Optional
+	NotificationTopicUrn *string `json:"notificationTopicUrn,omitempty" tf:"notification_topic_urn,omitempty"`
+
+	// Reference to a Topic in smn to populate notificationTopicUrn.
+	// +kubebuilder:validation:Optional
+	NotificationTopicUrnRef *v1.Reference `json:"notificationTopicUrnRef,omitempty" tf:"-"`
+
+	// Selector for a Topic in smn to populate notificationTopicUrn.
+	// +kubebuilder:validation:Optional
+	NotificationTopicUrnSelector *v1.Selector `json:"notificationTopicUrnSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the ID of the AS group in UUID format.
 	// Changing this creates a new AS lifecycle hook.
-	// +kubebuilder:validation:Required
-	ScalingGroupID *string `json:"scalingGroupId" tf:"scaling_group_id,omitempty"`
+	// +crossplane:generate:reference:type=Group
+	// +kubebuilder:validation:Optional
+	ScalingGroupID *string `json:"scalingGroupId,omitempty" tf:"scaling_group_id,omitempty"`
+
+	// Reference to a Group to populate scalingGroupId.
+	// +kubebuilder:validation:Optional
+	ScalingGroupIDRef *v1.Reference `json:"scalingGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Group to populate scalingGroupId.
+	// +kubebuilder:validation:Optional
+	ScalingGroupIDSelector *v1.Selector `json:"scalingGroupIdSelector,omitempty" tf:"-"`
 
 	// Specifies the lifecycle hook timeout duration, which ranges from 300 to 86400 in the
 	// unit of second, default to 3600.

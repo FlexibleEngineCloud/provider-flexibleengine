@@ -11,8 +11,12 @@ spec:
     defaultResult: ABANDON
     name: ${var.hook_name}
     notificationMessage: This is a test message
-    notificationTopicUrn: ${var.smn_topic_urn}
-    scalingGroupId: ${var.as_group_id}
+    notificationTopicUrnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    scalingGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     type: ADD
 
 ---

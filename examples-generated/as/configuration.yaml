@@ -14,8 +14,12 @@ spec:
         size: 40
         volumeType: SATA
       flavor: ${var.flavor}
-      image: ${var.image_id}
-      keyName: ${var.keyname}
+      imageSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      keyNameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
       userData: ${file("userdata.txt")}
     scalingConfigurationName: my_as_config
 

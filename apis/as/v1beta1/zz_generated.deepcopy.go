@@ -628,6 +628,16 @@ func (in *InstanceConfigParameters) DeepCopyInto(out *InstanceConfigParameters) 
 		*out = new(string)
 		**out = **in
 	}
+	if in.ImageRef != nil {
+		in, out := &in.ImageRef, &out.ImageRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ImageSelector != nil {
+		in, out := &in.ImageSelector, &out.ImageSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.InstanceID != nil {
 		in, out := &in.InstanceID, &out.InstanceID
 		*out = new(string)
@@ -647,6 +657,16 @@ func (in *InstanceConfigParameters) DeepCopyInto(out *InstanceConfigParameters) 
 		in, out := &in.KeyName, &out.KeyName
 		*out = new(string)
 		**out = **in
+	}
+	if in.KeyNameRef != nil {
+		in, out := &in.KeyNameRef, &out.KeyNameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KeyNameSelector != nil {
+		in, out := &in.KeyNameSelector, &out.KeyNameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Metadata != nil {
 		in, out := &in.Metadata, &out.Metadata
@@ -861,6 +881,16 @@ func (in *LifecycleHookParameters) DeepCopyInto(out *LifecycleHookParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NotificationTopicUrnRef != nil {
+		in, out := &in.NotificationTopicUrnRef, &out.NotificationTopicUrnRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NotificationTopicUrnSelector != nil {
+		in, out := &in.NotificationTopicUrnSelector, &out.NotificationTopicUrnSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -870,6 +900,16 @@ func (in *LifecycleHookParameters) DeepCopyInto(out *LifecycleHookParameters) {
 		in, out := &in.ScalingGroupID, &out.ScalingGroupID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ScalingGroupIDRef != nil {
+		in, out := &in.ScalingGroupIDRef, &out.ScalingGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ScalingGroupIDSelector != nil {
+		in, out := &in.ScalingGroupIDSelector, &out.ScalingGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout

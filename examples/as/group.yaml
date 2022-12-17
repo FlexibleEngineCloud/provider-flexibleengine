@@ -5,7 +5,7 @@ metadata:
     meta.upbound.io/example-id: as/v1beta1/group
   labels:
     testing.upbound.io/example-name: example_as_group
-  name: example-as-group 
+  name: example-as-group
 spec:
   forProvider:
     deleteInstances: "yes"
@@ -14,20 +14,20 @@ spec:
     maxInstanceNumber: 10
     minInstanceNumber: 0
     networks:
-    - idSelector:
-        matchLabels:
-          testing.upbound.io/example-name: example
+      - idSelector:
+          matchLabels:
+            testing.upbound.io/example-name: example_subnet
     scalingConfigurationIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_as_configuration
-    scalingGroupName: my_as_group
+        testing.upbound.io/example-name: example_as_config
+    scalingGroupName: example-as-group
     securityGroups:
-    - idSelector:
-        matchLabels:
-          testing.upbound.io/example-name: example
+      - idSelector:
+          matchLabels:
+            testing.upbound.io/example-name: example_secgroup
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
 
 ---
 

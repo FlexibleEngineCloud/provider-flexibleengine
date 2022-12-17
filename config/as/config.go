@@ -2,6 +2,7 @@
 package as
 
 import (
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -21,7 +22,7 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("ecs", "KeyPair"),
 		}
 
-		r.References["image"] = config.Reference{
+		r.References["instance_config.image"] = config.Reference{
 			Type: tools.GenerateType("ims", "Image"),
 		}
 
@@ -46,15 +47,21 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("vpc", "SecurityGroup"),
 		}
 		r.References["networks.id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "Network"),
+			// Require Network ID of VPC Subnet
+			TerraformName: "flexibleengine_vpc_subnet_v1",
+			Extractor:     common.PathIDExtractor,
 		}
 	})
 
 	// flexibleengine_as_lifecycle_hook_v1
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_lifecycle_hook_v1
 	p.AddResourceConfigurator("flexibleengine_as_lifecycle_hook_v1", func(r *config.Resource) {
-		r.References["scaling_configuration_id"] = config.Reference{
-			Type: "Configuration",
+		r.References["scaling_group_id"] = config.Reference{
+			Type: "Group",
+		}
+
+		r.References["notification_topic_urn"] = config.Reference{
+			Type: tools.GenerateType("smn", "Topic"),
 		}
 	})
 
