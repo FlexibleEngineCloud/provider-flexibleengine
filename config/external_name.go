@@ -803,7 +803,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 	// flexibleengine_smn_topic_v2 - No import documentation
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/smn_topic_v2
-	"flexibleengine_smn_topic_v2": config.NameAsIdentifier,
+	"flexibleengine_smn_topic_v2": config.IdentifierFromProvider,
 	// flexibleengine_smn_subscription_v2 - No import documentation
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/smn_subscription_v2
 	"flexibleengine_smn_subscription_v2": config.IdentifierFromProvider,

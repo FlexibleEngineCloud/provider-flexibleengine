@@ -4,12 +4,9 @@ metadata:
   annotations:
     meta.upbound.io/example-id: smn/v1beta1/topic
   labels:
-    testing.upbound.io/example-name: topic_1
-  name: topic-1
+    testing.upbound.io/example-name: example_smn_topic
+  name: example-smn-topic
 spec:
   forProvider:
-    displayName: The display name of topic_1
-    name: topic_1
-
----
-
+    displayName: The display name of example-smn-topic
+    name: example-smn-topic

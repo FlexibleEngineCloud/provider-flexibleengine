@@ -40,6 +40,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/rds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/sdrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/sfs"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/smn"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/swr"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/tms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vbs"
@@ -86,6 +87,7 @@ func GetProvider() *ujconfig.Provider {
 		fgs.Configure,
 		lts.Configure,
 		drs.Configure,
+		smn.Configure,
 		dds.Configure,
 		eps.Configure,
 		swr.Configure,

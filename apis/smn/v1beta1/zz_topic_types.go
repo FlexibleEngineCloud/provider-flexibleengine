@@ -38,6 +38,10 @@ type TopicParameters struct {
 	// name of the email sender in an email message.
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
+	// The name of the topic to be created.
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
 }
 
 // TopicSpec defines the desired state of Topic

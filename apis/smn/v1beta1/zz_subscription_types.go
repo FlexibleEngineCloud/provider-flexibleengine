@@ -28,8 +28,17 @@ type SubscriptionParameters struct {
 	Endpoint *string `json:"endpoint" tf:"endpoint,omitempty"`
 
 	// Project ID of the topic creator.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
+
+	// Reference to a Project in iam to populate owner.
+	// +kubebuilder:validation:Optional
+	OwnerRef *v1.Reference `json:"ownerRef,omitempty" tf:"-"`
+
+	// Selector for a Project in iam to populate owner.
+	// +kubebuilder:validation:Optional
+	OwnerSelector *v1.Selector `json:"ownerSelector,omitempty" tf:"-"`
 
 	// Protocol of the message endpoint. Currently, email,
 	// sms, http, and https are supported.
@@ -54,8 +63,17 @@ type SubscriptionParameters struct {
 	SubscriptionUrn *string `json:"subscriptionUrn,omitempty" tf:"subscription_urn,omitempty"`
 
 	// Resource identifier of a topic, which is unique.
-	// +kubebuilder:validation:Required
-	TopicUrn *string `json:"topicUrn" tf:"topic_urn,omitempty"`
+	// +crossplane:generate:reference:type=Topic
+	// +kubebuilder:validation:Optional
+	TopicUrn *string `json:"topicUrn,omitempty" tf:"topic_urn,omitempty"`
+
+	// Reference to a Topic to populate topicUrn.
+	// +kubebuilder:validation:Optional
+	TopicUrnRef *v1.Reference `json:"topicUrnRef,omitempty" tf:"-"`
+
+	// Selector for a Topic to populate topicUrn.
+	// +kubebuilder:validation:Optional
+	TopicUrnSelector *v1.Selector `json:"topicUrnSelector,omitempty" tf:"-"`
 }
 
 // SubscriptionSpec defines the desired state of Subscription

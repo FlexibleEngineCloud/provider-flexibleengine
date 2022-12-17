@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1beta1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -105,6 +106,16 @@ func (in *SubscriptionParameters) DeepCopyInto(out *SubscriptionParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.OwnerRef != nil {
+		in, out := &in.OwnerRef, &out.OwnerRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.OwnerSelector != nil {
+		in, out := &in.OwnerSelector, &out.OwnerSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Protocol != nil {
 		in, out := &in.Protocol, &out.Protocol
 		*out = new(string)
@@ -129,6 +140,16 @@ func (in *SubscriptionParameters) DeepCopyInto(out *SubscriptionParameters) {
 		in, out := &in.TopicUrn, &out.TopicUrn
 		*out = new(string)
 		**out = **in
+	}
+	if in.TopicUrnRef != nil {
+		in, out := &in.TopicUrnRef, &out.TopicUrnRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TopicUrnSelector != nil {
+		in, out := &in.TopicUrnSelector, &out.TopicUrnSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -280,6 +301,11 @@ func (in *TopicParameters) DeepCopyInto(out *TopicParameters) {
 	*out = *in
 	if in.DisplayName != nil {
 		in, out := &in.DisplayName, &out.DisplayName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
