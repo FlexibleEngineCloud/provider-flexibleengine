@@ -4,13 +4,13 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vipassociate
   labels:
-    testing.upbound.io/example-name: vip_associate_1
-  name: vip-associate-1
+    testing.upbound.io/example-name: example_vip_associate
+  name: example-vip-associate
 spec:
   forProvider:
     portIdsSelector:
       matchLabels:
-        testing.upbound.io/example-name: port_1
+        testing.upbound.io/example-name: example_port
     vipIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vip_1
+        testing.upbound.io/example-name: example_vip

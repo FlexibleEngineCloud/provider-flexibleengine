@@ -4,8 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/securitygrouprule
   labels:
-    testing.upbound.io/example-name: secgroup_rule_1
-  name: secgroup-rule-1
+    testing.upbound.io/example-name: example_secgroup_rule
+  name: example-secgroup-rule
 spec:
   forProvider:
     direction: ingress
@@ -16,4 +16,4 @@ spec:
     remoteIpPrefix: 0.0.0.0/0
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: secgroup_1
+        testing.upbound.io/example-name: example_secgroup

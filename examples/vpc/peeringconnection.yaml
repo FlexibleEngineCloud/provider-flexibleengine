@@ -4,7 +4,7 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/peering
   labels:
-    testing.upbound.io/example-name: example-peering
+    testing.upbound.io/example-name: example_peering
   name: example-peering
 spec:
   forProvider:

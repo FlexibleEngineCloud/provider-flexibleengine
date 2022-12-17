@@ -4,7 +4,7 @@ metadata:
   annotations:
     meta.upbound.io/example-id: ims/v1beta1/image
   labels:
-    testing.upbound.io/example-name: example-ims-image
+    testing.upbound.io/example-name: example_ims_image
   name: example-ims-image
 spec:
   forProvider:
