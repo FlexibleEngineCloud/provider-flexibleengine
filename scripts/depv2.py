@@ -7,6 +7,9 @@
 # The script require 1 argument: <groupResource>/<resource>
 # Example: vpc/subnet.yaml
 
+# TODO
+# * Check if Label Or Ref is not found in the files in the directory examples/
+
 import sys
 import os
 import yaml
@@ -15,34 +18,33 @@ import re
 from collections import defaultdict
 
 
-
 def main():
-
 
     if len(sys.argv) != 2:
         print("Usage: python3 dep.py <groupResource>/<resource>")
         exit(1)
 
-    debug = False
+    debug = True
 
     fileToApply = []
     Labels = {}
     # Labels = defaultdict(dict)
-    listLabels = {}
     listLabelsRequired = []
+    listRefsRequired = []
 
     groupResource, resource = sys.argv[1].split("/")
 
     # if file examples/<groupResource>/<resource>.yaml does not exist
     if not os.path.isfile("examples/" + groupResource + "/" + resource + ".yaml"):
-        print("Error: File examples/" + groupResource + "/" + resource + ".yaml does not exist")
+        print("Error: File examples/" + groupResource +
+              "/" + resource + ".yaml does not exist")
         exit(1)
 
     # Read all yaml files in the directory examples/ and decode them
     # List all directory in the directory examples/
     for dir in os.listdir("examples/"):
         # dir is directory
-        if os.path.isdir("examples/" + dir) and dir != "providerconfig" and dir != 'storeconfig' :
+        if os.path.isdir("examples/" + dir) and dir != "providerconfig" and dir != 'storeconfig':
             # List all files in the directory examples/<dir>
             for file in os.listdir("examples/" + dir):
                 # If the file is a yaml file
@@ -55,44 +57,62 @@ def main():
                             for i in y:
                                 if i != None:
                                     if "metadata" in i and "labels" in i["metadata"] and "testing.upbound.io/example-name" in i["metadata"]["labels"]:
-                                            if i["kind"] + "." + i["apiVersion"] not in Labels:
-                                                Labels[i["kind"] + "." + i["apiVersion"]] = {}
+                                        if i["kind"] + "." + i["apiVersion"] not in Labels:
+                                            Labels[i["kind"] + "." +
+                                                   i["apiVersion"]] = {}
 
-                                            Labels[i["kind"] + "." + i["apiVersion"]]["label"] = i["metadata"]["labels"]["testing.upbound.io/example-name"]
-                                            Labels[i["kind"] + "." + i["apiVersion"]]["specs"] = []
-                                            for k, v in i["spec"]["forProvider"].items():
-                                                if v == None:
-                                                    continue
-                                                if isinstance(v, list):
-                                                    for item in v:
-                                                        if isinstance(item, dict):
-                                                            for key in item:
-                                                                if isinstance(item[key], dict):
-                                                                    if "matchLabels" in item[key]:
-                                                                        if "testing.upbound.io/example-name" in item[key]["matchLabels"]:
-                                                                            Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(item[key]["matchLabels"]["testing.upbound.io/example-name"])
-                                                                            if groupResource == dir and resource+".yaml" == file:
-                                                                                listLabelsRequired.append(item[key]["matchLabels"]["testing.upbound.io/example-name"])
-                                                if isinstance(v, dict):
-                                                    if "matchLabels" in v:
-                                                        if "testing.upbound.io/example-name" in v["matchLabels"]:
-                                                            Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(v["matchLabels"]["testing.upbound.io/example-name"])
-                                                            if groupResource == dir and resource+".yaml" == file:
-                                                                listLabelsRequired.append(v["matchLabels"]["testing.upbound.io/example-name"])
+                                        Labels[i["kind"] + "." + i["apiVersion"]
+                                               ]["label"] = i["metadata"]["labels"]["testing.upbound.io/example-name"]
+                                        Labels[i["kind"] + "." + i["apiVersion"]
+                                               ]["name"] = i["metadata"]["name"]
+                                        Labels[i["kind"] + "." +
+                                               i["apiVersion"]]["specs"] = []
+                                        Labels[i["kind"] + "." +
+                                               i["apiVersion"]]["refs"] = []
+                                        for k, v in i["spec"]["forProvider"].items():
+                                            if v == None:
+                                                continue
+                                            if isinstance(v, list):
+                                                for item in v:
+                                                    if isinstance(item, dict):
+                                                        for key in item:
+                                                            if isinstance(item[key], dict):
+                                                                if "matchLabels" in item[key]:
+                                                                    if "testing.upbound.io/example-name" in item[key]["matchLabels"]:
+                                                                        Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(
+                                                                            item[key]["matchLabels"]["testing.upbound.io/example-name"])
+                                                                        if groupResource == dir and resource+".yaml" == file:
+                                                                            listLabelsRequired.append(
+                                                                                item[key]["matchLabels"]["testing.upbound.io/example-name"])
+                                                            if isinstance(k, str):
+                                                                if re.match(r"^.*Ref(s)?", k):
+                                                                    Labels[i["kind"] + "." +
+                                                                           i["apiVersion"]]["refs"].append(item[key])
+                                                                    if groupResource == dir and resource+".yaml" == file:
+                                                                        listRefsRequired.append(
+                                                                            item[key])
+
+                                            if isinstance(v, dict):
+                                                if "matchLabels" in v:
+                                                    if "testing.upbound.io/example-name" in v["matchLabels"]:
+                                                        Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(
+                                                            v["matchLabels"]["testing.upbound.io/example-name"])
+                                                        if groupResource == dir and resource+".yaml" == file:
+                                                            listLabelsRequired.append(
+                                                                v["matchLabels"]["testing.upbound.io/example-name"])
 
                             z = y[0]
                             if z["kind"] + "." + z["apiVersion"] not in Labels:
                                 Labels[z["kind"] + "." + z["apiVersion"]] = {}
 
-                            Labels[z["kind"] + "." + z["apiVersion"]]["file"] = "examples/" + dir + "/" + file
+                            Labels[z["kind"] + "." + z["apiVersion"]
+                                   ]["file"] = "examples/" + dir + "/" + file
 
                         f.close()
 
     if debug:
         print("Labels:")
         print(Labels)
-        # print("listLabels:")
-        # print(listLabels)
         print("listLabelsRequired:")
         print(listLabelsRequired)
 
@@ -111,16 +131,30 @@ def main():
                     fileToApply.append(Labels[kind]["file"])
                     break
 
+    for refRequire in listRefsRequired:
+        for kind in Labels:
+            if kind in Labels:
+                if Labels[kind]["name"] in refRequire:
+                    for s in Labels[kind]["refs"]:
+                        if s not in listRefsRequired:
+                            listRefsRequired.append(s)
+
+    for refRequire in listRefsRequired:
+        for kind in Labels:
+            if kind in Labels:
+                if Labels[kind]["name"] in refRequire:
+                    fileToApply.append(Labels[kind]["file"])
+                    break
+
     if debug:
         print("Labels:")
         print(Labels)
-        print("listLabels:")
-        print(listLabels)
         print("listLabelsRequired:")
         print(listLabelsRequired)
+        print("listRefsRequired:")
+        print(listRefsRequired)
         print("fileToApply:")
         print(fileToApply)
-
 
     # Print the kubectl command to apply all resources
     origin = sys.argv[1]
@@ -133,7 +167,9 @@ def main():
 
     return
 
-# Help func 
+# Help func
+
+
 def help():
     print("This script generate kubectl command to applys all necessary resources\n")
     print("Usage: python3 dep.py <groupResource>/<resource>")
@@ -149,7 +185,6 @@ def help():
     print("VPC.vpc.flexibleengine.upbound.io/v1beta1")
 
 
-
 if __name__ == "__main__":
 
     # If sys.argv is empty prompt to user to enter the argument
@@ -157,11 +192,10 @@ if __name__ == "__main__":
         print("Enter name (nat/gateway): ")
         sys.argv.append(input())
 
-
     if len(sys.argv) != 2 or sys.argv[1] == "--help":
         help()
     else:
         main()
 
-    # Exit 0 
+    # Exit 0
     exit(0)

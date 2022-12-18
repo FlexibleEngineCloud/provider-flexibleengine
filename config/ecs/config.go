@@ -25,7 +25,6 @@ func Configure(p *config.Provider) {
 			Extractor: common.PathIDExtractor,
 		}
 
-		// ? @Gaetan - tools.GenerateType("vpc", "NetworkPort"),
 		r.References["network.port"] = config.Reference{
 			Type: tools.GenerateType("vpc", "Port"),
 		}

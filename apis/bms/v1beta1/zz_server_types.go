@@ -77,13 +77,32 @@ type NetworkParameters struct {
 
 	// The port UUID of a
 	// network to attach to the bms server. Changing this creates a new server.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Reference to a Port in vpc to populate port.
+	// +kubebuilder:validation:Optional
+	PortRef *v1.Reference `json:"portRef,omitempty" tf:"-"`
+
+	// Selector for a Port in vpc to populate port.
+	// +kubebuilder:validation:Optional
+	PortSelector *v1.Selector `json:"portSelector,omitempty" tf:"-"`
+
 	// The network UUID to
 	// attach to the bms server. Changing this creates a new bms server.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
 	UUID *string `json:"uuid,omitempty" tf:"uuid,omitempty"`
+
+	// Reference to a VPCSubnet in vpc to populate uuid.
+	// +kubebuilder:validation:Optional
+	UUIDRef *v1.Reference `json:"uuidRef,omitempty" tf:"-"`
+
+	// Selector for a VPCSubnet in vpc to populate uuid.
+	// +kubebuilder:validation:Optional
+	UUIDSelector *v1.Selector `json:"uuidSelector,omitempty" tf:"-"`
 }
 
 type ServerObservation struct {
@@ -174,8 +193,17 @@ type ServerParameters struct {
 	// The name of a key pair to put on the bms server. The key
 	// pair must already be created and associated with the tenant's account.
 	// Changing this creates a new bms server.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.KeyPair
 	// +kubebuilder:validation:Optional
 	KeyPair *string `json:"keyPair,omitempty" tf:"key_pair,omitempty"`
+
+	// Reference to a KeyPair in ecs to populate keyPair.
+	// +kubebuilder:validation:Optional
+	KeyPairRef *v1.Reference `json:"keyPairRef,omitempty" tf:"-"`
+
+	// Selector for a KeyPair in ecs to populate keyPair.
+	// +kubebuilder:validation:Optional
+	KeyPairSelector *v1.Selector `json:"keyPairSelector,omitempty" tf:"-"`
 
 	// Metadata key/value pairs to make available from
 	// within the instance. Changing this updates the existing bms server metadata.
@@ -200,8 +228,18 @@ type ServerParameters struct {
 	// An array of one or more security group names
 	// to associate with the bms server. Changing this results in adding/removing
 	// security groups from the existing bms server.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.NameExtractor()
 	// +kubebuilder:validation:Optional
 	SecurityGroups []*string `json:"securityGroups,omitempty" tf:"security_groups,omitempty"`
+
+	// References to SecurityGroup in vpc to populate securityGroups.
+	// +kubebuilder:validation:Optional
+	SecurityGroupsRefs []v1.Reference `json:"securityGroupsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of SecurityGroup in vpc to populate securityGroups.
+	// +kubebuilder:validation:Optional
+	SecurityGroupsSelector *v1.Selector `json:"securityGroupsSelector,omitempty" tf:"-"`
 
 	// Whether to try stop instance gracefully
 	// before destroying it, thus giving chance for guest OS daemons to stop correctly.

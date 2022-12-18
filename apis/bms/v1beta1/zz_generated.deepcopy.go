@@ -137,10 +137,30 @@ func (in *NetworkParameters) DeepCopyInto(out *NetworkParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PortRef != nil {
+		in, out := &in.PortRef, &out.PortRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PortSelector != nil {
+		in, out := &in.PortSelector, &out.PortSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.UUID != nil {
 		in, out := &in.UUID, &out.UUID
 		*out = new(string)
 		**out = **in
+	}
+	if in.UUIDRef != nil {
+		in, out := &in.UUIDRef, &out.UUIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.UUIDSelector != nil {
+		in, out := &in.UUIDSelector, &out.UUIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -345,6 +365,16 @@ func (in *ServerParameters) DeepCopyInto(out *ServerParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.KeyPairRef != nil {
+		in, out := &in.KeyPairRef, &out.KeyPairRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KeyPairSelector != nil {
+		in, out := &in.KeyPairSelector, &out.KeyPairSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Metadata != nil {
 		in, out := &in.Metadata, &out.Metadata
 		*out = make(map[string]*string, len(*in))
@@ -387,6 +417,18 @@ func (in *ServerParameters) DeepCopyInto(out *ServerParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.SecurityGroupsRefs != nil {
+		in, out := &in.SecurityGroupsRefs, &out.SecurityGroupsRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SecurityGroupsSelector != nil {
+		in, out := &in.SecurityGroupsSelector, &out.SecurityGroupsSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.StopBeforeDestroy != nil {
 		in, out := &in.StopBeforeDestroy, &out.StopBeforeDestroy
