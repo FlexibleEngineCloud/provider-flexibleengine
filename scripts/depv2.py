@@ -24,7 +24,7 @@ def main():
         print("Usage: python3 dep.py <groupResource>/<resource>")
         exit(1)
 
-    debug = True
+    debug = False
 
     fileToApply = []
     Labels = {}
