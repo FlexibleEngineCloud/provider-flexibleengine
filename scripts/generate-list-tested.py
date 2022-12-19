@@ -26,7 +26,7 @@ def load_crd_type(t):
 
 exceptions = {
     "provider-flexibleengine": {
-        'ProviderConfigUsage.flexibleengine.upbound.io/v1beta1', 
+        'ProviderConfigUsage.flexibleengine.upbound.io/v1beta1',
     },
 }
 
@@ -43,10 +43,9 @@ if __name__ == "__main__":
     known_crd_types = load_gvks(sys.argv[1], load_crd_type)
 
     example_types = load_gvks(sys.argv[2], lambda t: [] if t is None or not {"kind", "apiVersion"}.issubset(t.keys())
-        else [f'{t["kind"]}.{t["apiVersion"]}'])
+                              else [f'{t["kind"]}.{t["apiVersion"]}'])
 
     tested_crd_types = example_types.union(exception_set)
-
 
     # for known_crd_types group by group
     # ProtectionGroup.sdrs.flexibleengine.upbound.io/v1beta1
@@ -55,15 +54,14 @@ if __name__ == "__main__":
     # v1beta1 is the version
 
     mapPrint = {}
-    # Define map 
-
+    # Define map
 
     for known_crd_type in known_crd_types:
         # Extract the group from the known_crd_type
         group = known_crd_type.split(".")[1]
         # Extract the kind from the known_crd_type
         kind = known_crd_type.split(".")[0]
-        
+
         # If the group is not in the mapPrint
         if group not in mapPrint:
             # Add the group as a key and the kind as a value
@@ -84,17 +82,3 @@ if __name__ == "__main__":
         print(f'|---|---|---|')
         for kind in mapPrint[group]:
             print(kind)
-
-
-
-
-
-
-
-    # diff = known_crd_types.difference(example_types.union(exception_set))
-    # if len(diff) == 0:
-    #     print("All CRDs have at least one example...")
-    #     print(f'Exceptions allowed for: {exception_set}')
-    #     sys.exit(0)
-    # print(f'Please add example manifests for the following types: {diff}')
-    # sys.exit(2)
