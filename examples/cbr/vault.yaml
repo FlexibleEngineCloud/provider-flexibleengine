@@ -11,7 +11,7 @@ spec:
     name: example-vault
     protectionType: backup
     resources:
-      - serverId: example-ecs-id
+      - serverId: e1864fcd-79e4-4108-a9ef-a5c46aba928d
     size: 100
     tags:
       foo: bar
