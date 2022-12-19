@@ -7,9 +7,6 @@
 # The script require 1 argument: <groupResource>/<resource>
 # Example: vpc/subnet.yaml
 
-# TODO
-# * Check if Label Or Ref is not found in the files in the directory examples/
-
 import sys
 import os
 import yaml
@@ -120,6 +117,8 @@ def main():
         print("listLabelsRequired:")
         print(listLabelsRequired)
 
+    listLabelsRequiredFound = []
+
     for labelRequire in listLabelsRequired:
         for kind in Labels:
             if kind in Labels:
@@ -132,8 +131,18 @@ def main():
         for kind in Labels:
             if kind in Labels:
                 if Labels[kind]["label"] in labelRequire:
+                    listLabelsRequiredFound.append(Labels[kind]["name"])
                     fileToApply.append(Labels[kind]["file"])
                     break
+
+    # If the resource is not found in the list of required resources
+    foundErrors = False
+    for labelRequire in listLabelsRequired:
+        if labelRequire not in listLabelsRequiredFound:
+            foundErrors = True
+            print("ResourceSelect not found: " + labelRequire)
+
+    listRefsRequiredFound = []
 
     for refRequire in listRefsRequired:
         for kind in Labels:
@@ -147,8 +156,19 @@ def main():
         for kind in Labels:
             if kind in Labels:
                 if Labels[kind]["name"] in refRequire:
+                    listRefsRequiredFound.append(Labels[kind]["name"])
                     fileToApply.append(Labels[kind]["file"])
                     break
+
+    for refRequire in listRefsRequired:
+        if refRequire not in listRefsRequiredFound:
+            foundErrors = True
+            print("ResourceRef not found: " + refRequire)
+
+    if foundErrors:
+        print("\nError: Some resources are not found")
+        print("Please check the list of required resources in the examples directory")
+        sys.exit(1)
 
     if debug:
         print("Labels:")
@@ -238,6 +258,7 @@ if __name__ == "__main__":
             "Find example to apply (nat/gateway) >>> ", completer=CommandCompleter(), **other_args)
 
         sys.argv.append(inputObj)
+        print("")
 
     if len(sys.argv) != 2 or sys.argv[1] == "--help":
         help()
