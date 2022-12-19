@@ -13,6 +13,6 @@ spec:
     enableL7: true
     floatingIpIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-eip
+        testing.upbound.io/example-name: example_eip
     httpRequestPosId: 3
     trafficPosId: 1
