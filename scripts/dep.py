@@ -131,7 +131,7 @@ def main():
         for kind in Labels:
             if kind in Labels:
                 if Labels[kind]["label"] in labelRequire:
-                    listLabelsRequiredFound.append(Labels[kind]["name"])
+                    listLabelsRequiredFound.append(Labels[kind]["label"])
                     fileToApply.append(Labels[kind]["file"])
                     break
 
@@ -165,14 +165,18 @@ def main():
             foundErrors = True
             print("ResourceRef not found: " + refRequire)
 
+    if debug:
+        print("listLabelsRequiredFound:")
+        print(listLabelsRequiredFound)
+
     if foundErrors:
         print("\nError: Some resources are not found")
         print("Please check the list of required resources in the examples directory")
         sys.exit(1)
 
     if debug:
-        print("Labels:")
-        print(Labels)
+        # print("Labels:")
+        # print(Labels)
         print("listLabelsRequired:")
         print(listLabelsRequired)
         print("listRefsRequired:")
