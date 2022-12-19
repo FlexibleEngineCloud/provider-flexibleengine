@@ -214,15 +214,6 @@ def help():
     print("This script generate kubectl command to applys all necessary resources\n")
     print("Usage: python3 dep.py <groupResource>/<resource>")
     print("Example: python3 dep.py vpc/subnet")
-    print("--------------------------------------")
-    print(".dep file example:")
-    print("VPCSubnet.vpc.flexibleengine.upbound.io/v1beta1")
-    print("VPC.vpc.flexibleengine.upbound.io/v1beta1")
-    print("--------------------------------------")
-    print("all.dep file is a special file that contains all resources that are necessary to apply in the specific directory")
-    print("all.dep file example:")
-    print("VPCSubnet.vpc.flexibleengine.upbound.io/v1beta1")
-    print("VPC.vpc.flexibleengine.upbound.io/v1beta1")
 
 
 class CommandCompleter(Completer):
