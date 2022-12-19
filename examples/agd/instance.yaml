@@ -9,8 +9,8 @@ metadata:
 spec:
   forProvider:
     availableZones:
-      - eu-west0
-      - eu-west1
+      - eu-west-0a
+      - eu-west-0b
     bandwidthSize: 1
     description: Created by script
     edition: BASIC
@@ -21,10 +21,10 @@ spec:
     name: example-agd-instance
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_agd_group
+        testing.upbound.io/example-name: example_secgroup
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_vpcsubnet
+        testing.upbound.io/example-name: example_subnet
     vpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_vpc

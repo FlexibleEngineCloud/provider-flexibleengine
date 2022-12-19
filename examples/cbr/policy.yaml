@@ -1,0 +1,17 @@
+apiVersion: cbr.flexibleengine.upbound.io/v1beta1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cbr/v1beta1/policy
+  labels:
+    testing.upbound.io/example-name: example_cbr_policy
+  name: example-cbr-policy
+spec:
+  forProvider:
+    backupCycle:
+      - days: MO,TH
+        executionTimes:
+          - "06:00"
+    name: example-cbr-policy
+    timePeriod: 20
+    type: backup
