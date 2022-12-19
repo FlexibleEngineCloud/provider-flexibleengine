@@ -1,0 +1,20 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: example_agd_group
+  name: example-agd-group
+spec:
+  forProvider:
+    description: "example Api Gateway Dedicated - Group"
+    environment:
+      - environmentId: example-agd-environment
+        variable:
+          - name: TERRAFORM
+            value: /stage/terraform
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_agd_instance
+    name: example-agd-group
