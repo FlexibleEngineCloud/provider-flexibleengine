@@ -1,0 +1,18 @@
+apiVersion: antiddos.flexibleengine.upbound.io/v1beta1
+kind: AntiDDoS
+metadata:
+  annotations:
+    meta.upbound.io/example-id: antiddos/v1beta1/antiddos
+  labels:
+    testing.upbound.io/example-name: example_antiddos
+  name: example-antiddos
+spec:
+  forProvider:
+    appTypeId: 0
+    cleaningAccessPosId: 2
+    enableL7: true
+    floatingIpIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-eip
+    httpRequestPosId: 3
+    trafficPosId: 1
