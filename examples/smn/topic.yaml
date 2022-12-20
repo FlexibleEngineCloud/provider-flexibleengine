@@ -1,0 +1,12 @@
+apiVersion: smn.flexibleengine.upbound.io/v1beta1
+kind: Topic
+metadata:
+  annotations:
+    meta.upbound.io/example-id: smn/v1beta1/topic
+  labels:
+    testing.upbound.io/example-name: example_smn_topic
+  name: example-smn-topic
+spec:
+  forProvider:
+    displayName: The display name of example-smn-topic
+    name: example-smn-topic

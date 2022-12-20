@@ -1,0 +1,19 @@
+apiVersion: cce.flexibleengine.upbound.io/v1beta1
+kind: Pvc
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cce/v1beta1/pvc
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    accessModes:
+    - ReadWriteOnce
+    annotations:
+      everest.io/disk-volume-type: SSD
+    clusterId: ${var.cluster_id}
+    name: ${var.pvc_name}
+    namespace: ${var.namespace}
+    storage: 10Gi
+    storageClassName: csi-disk

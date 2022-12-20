@@ -80,8 +80,8 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 
-	// Specifies MLS Software version, only 1.2.0 is supported
-	// now. Changing this creates a new instance.
+	// Specifies MLS Software version, only 1.2.0 is supported now.
+	// Changing this creates a new instance.
 	// +kubebuilder:validation:Required
 	Version *string `json:"version" tf:"version,omitempty"`
 }

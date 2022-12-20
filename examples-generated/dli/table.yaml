@@ -51,9 +51,7 @@ metadata:
 spec:
   forProvider:
     acl: private
-    bucketSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    bucket: test
 
 ---
 

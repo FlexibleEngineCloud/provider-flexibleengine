@@ -38,8 +38,17 @@ type PvcParameters struct {
 	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
 
 	// Specifies the cluster ID to which the CCE PVC belongs.
-	// +kubebuilder:validation:Required
-	ClusterID *string `json:"clusterId" tf:"cluster_id,omitempty"`
+	// +crossplane:generate:reference:type=Cluster
+	// +kubebuilder:validation:Optional
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Reference to a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDRef *v1.Reference `json:"clusterIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
 	// Specifies the map of string keys and values for labels.
 	// Changing this will create a new PVC resource.
@@ -54,8 +63,17 @@ type PvcParameters struct {
 
 	// Specifies the namespace to logically divide your containers into different
 	// group. Changing this will create a new PVC resource.
-	// +kubebuilder:validation:Required
-	Namespace *string `json:"namespace" tf:"namespace,omitempty"`
+	// +crossplane:generate:reference:type=Namespace
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// Reference to a Namespace to populate namespace.
+	// +kubebuilder:validation:Optional
+	NamespaceRef *v1.Reference `json:"namespaceRef,omitempty" tf:"-"`
+
+	// Selector for a Namespace to populate namespace.
+	// +kubebuilder:validation:Optional
+	NamespaceSelector *v1.Selector `json:"namespaceSelector,omitempty" tf:"-"`
 
 	// Specifies the region in which to create the PVC resource.
 	// If omitted, the provider-level region will be used. Changing this will create a new PVC resource.

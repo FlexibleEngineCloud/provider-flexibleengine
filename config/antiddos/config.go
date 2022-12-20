@@ -14,7 +14,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_antiddos_v1", func(r *config.Resource) {
 
 		r.References["floating_ip_id"] = config.Reference{
-			Type: tools.GenerateType("ecs", "FloatingIp"),
+			Type: tools.GenerateType("eip", "EIP"),
 		}
 
 	})

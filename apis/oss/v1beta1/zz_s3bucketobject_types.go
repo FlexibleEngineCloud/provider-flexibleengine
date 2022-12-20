@@ -25,24 +25,26 @@ type S3BucketObjectObservation struct {
 
 type S3BucketObjectParameters struct {
 
-	// The canned ACL to apply. Defaults to "private".
+	// The canned ACL to apply.
+	// Defaults to "private".
 	// +kubebuilder:validation:Optional
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
 	// The name of the bucket to put the file in.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 
-	// Reference to a S3Bucket in oss to populate bucket.
+	// Reference to a S3Bucket to populate bucket.
 	// +kubebuilder:validation:Optional
 	BucketRef *v1.Reference `json:"bucketRef,omitempty" tf:"-"`
 
-	// Selector for a S3Bucket in oss to populate bucket.
+	// Selector for a S3Bucket to populate bucket.
 	// +kubebuilder:validation:Optional
 	BucketSelector *v1.Selector `json:"bucketSelector,omitempty" tf:"-"`
 
-	// Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.
+	// Specifies caching behavior along the request/reply chain Read w3c cache_control
+	// for further details.
 	// +kubebuilder:validation:Optional
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
 
@@ -50,11 +52,14 @@ type S3BucketObjectParameters struct {
 	// +kubebuilder:validation:Optional
 	Content *string `json:"content,omitempty" tf:"content,omitempty"`
 
-	// Specifies presentational information for the object. Read wc3 content_disposition for further information.
+	// Specifies presentational information for the object. Read wc3 content_disposition
+	// for further information.
 	// +kubebuilder:validation:Optional
 	ContentDisposition *string `json:"contentDisposition,omitempty" tf:"content_disposition,omitempty"`
 
-	// Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read w3c content encoding for further information.
+	// Specifies what content encodings have been applied to the object and thus what decoding
+	// mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
+	// Read w3c content encoding for further information.
 	// +kubebuilder:validation:Optional
 	ContentEncoding *string `json:"contentEncoding,omitempty" tf:"content_encoding,omitempty"`
 
@@ -62,7 +67,8 @@ type S3BucketObjectParameters struct {
 	// +kubebuilder:validation:Optional
 	ContentLanguage *string `json:"contentLanguage,omitempty" tf:"content_language,omitempty"`
 
-	// A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.
+	// A standard MIME type describing the format of the object data, e.g. application/octet-stream.
+	// All Valid MIME Types are valid for this input.
 	// +kubebuilder:validation:Optional
 	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
 
@@ -75,7 +81,8 @@ type S3BucketObjectParameters struct {
 	// +kubebuilder:validation:Required
 	Key *string `json:"key" tf:"key,omitempty"`
 
-	// Specifies server-side encryption of the object in S3. Valid values are "AES256" and "aws:kms".
+	// Specifies server-side encryption of the object in S3.
+	// Valid values are "AES256" and "aws:kms".
 	// +kubebuilder:validation:Optional
 	ServerSideEncryption *string `json:"serverSideEncryption,omitempty" tf:"server_side_encryption,omitempty"`
 

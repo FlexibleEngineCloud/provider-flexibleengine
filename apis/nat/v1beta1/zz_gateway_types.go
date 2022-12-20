@@ -44,17 +44,8 @@ type GatewayParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The resource ID in UUID format.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Router
 	// +kubebuilder:validation:Optional
 	RouterID *string `json:"routerId,omitempty" tf:"router_id,omitempty"`
-
-	// Reference to a Router in vpc to populate routerId.
-	// +kubebuilder:validation:Optional
-	RouterIDRef *v1.Reference `json:"routerIdRef,omitempty" tf:"-"`
-
-	// Selector for a Router in vpc to populate routerId.
-	// +kubebuilder:validation:Optional
-	RouterIDSelector *v1.Selector `json:"routerIdSelector,omitempty" tf:"-"`
 
 	// Specifies the nat gateway type. The value can be:
 	// +kubebuilder:validation:Required

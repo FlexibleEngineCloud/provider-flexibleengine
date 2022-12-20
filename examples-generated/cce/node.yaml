@@ -10,13 +10,17 @@ spec:
   forProvider:
     availabilityZone: ${var.availability_zone}
     bandwidthSize: 100
-    clusterId: ${var.cluster_id}
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     dataVolumes:
     - size: 100
       volumetype: SATA
     flavorId: s1.medium
     iptype: 5_bgp
-    keyPair: ${var.ssh_key}
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     name: node1
     rootVolume:
     - size: 40

@@ -1,0 +1,19 @@
+apiVersion: as.flexibleengine.upbound.io/v1beta1
+kind: LifecycleHook
+metadata:
+  annotations:
+    meta.upbound.io/example-id: as/v1beta1/lifecyclehook
+  labels:
+    testing.upbound.io/example-name: example_as_lifecyclehook
+  name: example-as-lifecyclehook
+spec:
+  forProvider:
+    defaultResult: ABANDON
+    notificationMessage: This is a test message
+    notificationTopicUrnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_smn_topic
+    scalingGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_as_group
+    type: ADD

@@ -1,0 +1,53 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketReplication
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucketreplication
+  labels:
+    testing.upbound.io/example-name: example_obsbucketreplication
+  name: example-obsbucketreplication
+spec:
+  forProvider:
+    agencySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_agency
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_obsbucket
+    destinationBucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_destination_obsbucket
+    rule:
+      - enabled: true
+        prefix: "/"
+---
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucket
+  labels:
+    testing.upbound.io/example-name: example_destination_obsbucket
+  name: example-destination-obsbucket
+spec:
+  forProvider:
+    acl: private
+    bucket: my-crossplane-example-destination-obsbucket
+    storageClass: STANDARD
+    region: eu-west-1
+  providerConfigRef:
+    name: default1
+---
+apiVersion: flexibleengine.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default1
+spec:
+  region: eu-west-1
+  domainName: OCB000OOOO
+  credentials:
+    source: Secret
+    secretRef:
+      name: example-creds
+      namespace: crossplane-system
+      key: credentials

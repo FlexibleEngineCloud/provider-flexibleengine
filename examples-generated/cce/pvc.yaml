@@ -12,9 +12,13 @@ spec:
     - ReadWriteOnce
     annotations:
       everest.io/disk-volume-type: SSD
-    clusterId: ${var.cluster_id}
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     name: ${var.pvc_name}
-    namespace: ${var.namespace}
+    namespaceSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     storage: 10Gi
     storageClassName: csi-disk
 

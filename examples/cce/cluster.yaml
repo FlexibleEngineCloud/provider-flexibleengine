@@ -1,0 +1,22 @@
+apiVersion: cce.flexibleengine.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cce/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_cce_cluster
+  name: example-cce-cluster
+spec:
+  forProvider:
+    authenticationMode: rbac
+    clusterType: VirtualMachine
+    containerNetworkType: overlay_l2
+    description: example cluster
+    flavorId: cce.s1.small
+    name: example-cce-cluster
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc

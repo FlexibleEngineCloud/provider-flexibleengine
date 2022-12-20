@@ -32,8 +32,9 @@ type ACLRuleParameters struct {
 	// +kubebuilder:validation:Optional
 	DestinationIPAddress *string `json:"destinationIpAddress,omitempty" tf:"destination_ip_address,omitempty"`
 
-	// Specifies the destination port number or port number range. The value ranges from 1 to 65535.
-	// For a port number range, enter two port numbers connected by a hyphen (-). For example, 1-100.
+	// Specifies the destination port number or port number range.
+	// The value ranges from 1 to 65535. For a port number range, enter two port numbers connected by a hyphen (-).
+	// For example, 1-100.
 	// +kubebuilder:validation:Optional
 	DestinationPort *string `json:"destinationPort,omitempty" tf:"destination_port,omitempty"`
 

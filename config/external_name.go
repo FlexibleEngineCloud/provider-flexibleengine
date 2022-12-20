@@ -327,7 +327,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Imported with the following format : {instance_id}/{volume_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_volume_attach_v2
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
-	"flexibleengine_compute_floatingip_v2":    config.IdentifierFromProvider,
+
 	/*
 		> Identity and Access Management (IAM)
 	*/
@@ -417,33 +417,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_flow_log_v1
 	"flexibleengine_vpc_flow_log_v1": config.IdentifierFromProvider,
 
-	// ! THIS IS DEPRECATED
-	// ! Now use flexibleengine_vpc_eip
-	// flexibleengine_networking_floatingip_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_floatingip_v2
-	// "flexibleengine_networking_floatingip_v2": config.IdentifierFromProvider,
-
-	// ! THIS IS NOT ANNOUNCED DEPRECATED BUT A PARENT RESOURCE IS DEPRECATED
-	// ! Now use flexibleengine_vpc_eip_associate
-	// flexibleengine_networking_floatingip_associate_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_floatingip_associate_v2
-	// "flexibleengine_networking_floatingip_associate_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_network_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_network_v2
-	"flexibleengine_networking_network_v2": config.IdentifierFromProvider,
-
 	// flexibleengine_networking_port_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_port_v2
 	"flexibleengine_networking_port_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_router_interface_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_interface_v2
-	"flexibleengine_networking_router_interface_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_router_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_v2
-	"flexibleengine_networking_router_v2": config.IdentifierFromProvider,
 
 	// flexibleengine_networking_secgroup_rule_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_secgroup_rule_v2
@@ -452,10 +428,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_networking_secgroup_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_secgroup_v2
 	"flexibleengine_networking_secgroup_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_subnet_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_subnet_v2
-	"flexibleengine_networking_subnet_v2": config.IdentifierFromProvider,
 
 	// flexibleengine_networking_vip_associate_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_vip_associate_v2
@@ -557,27 +529,27 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 		> Object Storage Service (OSS)
 	*/
 
-	// flexibleengine_obs_bucket - Imported using the Name
+	// flexibleengine_obs_bucket - Imported using ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket
-	"flexibleengine_obs_bucket": config.NameAsIdentifier,
+	"flexibleengine_obs_bucket": config.IdentifierFromProvider,
 
-	// flexibleengine_obs_bucket_object - Imported using ID
+	// flexibleengine_obs_bucket_object - No import documented
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket_object
 	"flexibleengine_obs_bucket_object": config.IdentifierFromProvider,
 
-	// flexibleengine_obs_bucket_replication - Imported using the Name
+	// flexibleengine_obs_bucket_replication - Imported using the source bucket name
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket_replication
-	"flexibleengine_obs_bucket_replication": config.NameAsIdentifier,
+	"flexibleengine_obs_bucket_replication": TemplatedStringAsIdentifierWithNoName("{{.parameters.bucket}}"),
 
-	// flexibleengine_s3_bucket - Imported using the Name
+	// flexibleengine_s3_bucket - Imported using ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket
-	"flexibleengine_s3_bucket": config.NameAsIdentifier,
+	"flexibleengine_s3_bucket": config.IdentifierFromProvider,
 
-	// flexibleengine_s3_bucket_object - Imported using ID
+	// flexibleengine_s3_bucket_object - No import documented
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_object
 	"flexibleengine_s3_bucket_object": config.IdentifierFromProvider,
 
-	// flexibleengine_s3_bucket_policy - Imported using the ID
+	// flexibleengine_s3_bucket_policy - No import documented
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_policy
 	"flexibleengine_s3_bucket_policy": config.IdentifierFromProvider,
 
@@ -744,7 +716,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_as_policy_v1": config.IdentifierFromProvider,
 	// flexibleengine_as_lifecycle_hook_v1 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/as_lifecycle_hook_v1
-	"flexibleengine_as_lifecycle_hook_v1": TemplatedStringAsIdentifierWithNoName("{{.parameters.sfs_id}}/{{.external_name}}"),
+	"flexibleengine_as_lifecycle_hook_v1": config.TemplatedStringAsIdentifier("name", "{{.parameters.scaling_group_id}}/{{.external_name}}"),
 
 	/*
 		> MapReduce Service (MRS)
@@ -803,7 +775,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 	// flexibleengine_smn_topic_v2 - No import documentation
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/smn_topic_v2
-	"flexibleengine_smn_topic_v2": config.NameAsIdentifier,
+	"flexibleengine_smn_topic_v2": config.IdentifierFromProvider,
 	// flexibleengine_smn_subscription_v2 - No import documentation
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/smn_subscription_v2
 	"flexibleengine_smn_subscription_v2": config.IdentifierFromProvider,

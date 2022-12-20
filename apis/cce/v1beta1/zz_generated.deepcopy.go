@@ -111,6 +111,16 @@ func (in *AddonParameters) DeepCopyInto(out *AddonParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -475,6 +485,16 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.HighwaySubnetIDRef != nil {
+		in, out := &in.HighwaySubnetIDRef, &out.HighwaySubnetIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.HighwaySubnetIDSelector != nil {
+		in, out := &in.HighwaySubnetIDSelector, &out.HighwaySubnetIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.KubeProxyMode != nil {
 		in, out := &in.KubeProxyMode, &out.KubeProxyMode
 		*out = new(string)
@@ -630,6 +650,16 @@ func (in *DataVolumesParameters) DeepCopyInto(out *DataVolumesParameters) {
 		in, out := &in.KMSKeyID, &out.KMSKeyID
 		*out = new(string)
 		**out = **in
+	}
+	if in.KMSKeyIDRef != nil {
+		in, out := &in.KMSKeyIDRef, &out.KMSKeyIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KMSKeyIDSelector != nil {
+		in, out := &in.KMSKeyIDSelector, &out.KMSKeyIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
@@ -800,6 +830,16 @@ func (in *NamespaceParameters) DeepCopyInto(out *NamespaceParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Labels != nil {
 		in, out := &in.Labels, &out.Labels
 		*out = make(map[string]*string, len(*in))
@@ -941,6 +981,16 @@ func (in *NodeDataVolumesParameters) DeepCopyInto(out *NodeDataVolumesParameters
 		*out = new(string)
 		**out = **in
 	}
+	if in.KMSKeyIDRef != nil {
+		in, out := &in.KMSKeyIDRef, &out.KMSKeyIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KMSKeyIDSelector != nil {
+		in, out := &in.KMSKeyIDSelector, &out.KMSKeyIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
 		*out = new(float64)
@@ -1078,6 +1128,16 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DataVolumes != nil {
 		in, out := &in.DataVolumes, &out.DataVolumes
 		*out = make([]NodeDataVolumesParameters, len(*in))
@@ -1100,6 +1160,18 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.EIPIdsRefs != nil {
+		in, out := &in.EIPIdsRefs, &out.EIPIdsRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.EIPIdsSelector != nil {
+		in, out := &in.EIPIdsSelector, &out.EIPIdsSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.EcsPerformanceType != nil {
 		in, out := &in.EcsPerformanceType, &out.EcsPerformanceType
@@ -1140,6 +1212,16 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		in, out := &in.KeyPair, &out.KeyPair
 		*out = new(string)
 		**out = **in
+	}
+	if in.KeyPairRef != nil {
+		in, out := &in.KeyPairRef, &out.KeyPairRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KeyPairSelector != nil {
+		in, out := &in.KeyPairSelector, &out.KeyPairSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Labels != nil {
 		in, out := &in.Labels, &out.Labels
@@ -1349,6 +1431,16 @@ func (in *NodePoolParameters) DeepCopyInto(out *NodePoolParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DataVolumes != nil {
 		in, out := &in.DataVolumes, &out.DataVolumes
 		*out = make([]DataVolumesParameters, len(*in))
@@ -1385,6 +1477,16 @@ func (in *NodePoolParameters) DeepCopyInto(out *NodePoolParameters) {
 		in, out := &in.KeyPair, &out.KeyPair
 		*out = new(string)
 		**out = **in
+	}
+	if in.KeyPairRef != nil {
+		in, out := &in.KeyPairRef, &out.KeyPairRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KeyPairSelector != nil {
+		in, out := &in.KeyPairSelector, &out.KeyPairSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Labels != nil {
 		in, out := &in.Labels, &out.Labels
@@ -1818,6 +1920,16 @@ func (in *PvcParameters) DeepCopyInto(out *PvcParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Labels != nil {
 		in, out := &in.Labels, &out.Labels
 		*out = make(map[string]*string, len(*in))
@@ -1842,6 +1954,16 @@ func (in *PvcParameters) DeepCopyInto(out *PvcParameters) {
 		in, out := &in.Namespace, &out.Namespace
 		*out = new(string)
 		**out = **in
+	}
+	if in.NamespaceRef != nil {
+		in, out := &in.NamespaceRef, &out.NamespaceRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NamespaceSelector != nil {
+		in, out := &in.NamespaceSelector, &out.NamespaceSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region

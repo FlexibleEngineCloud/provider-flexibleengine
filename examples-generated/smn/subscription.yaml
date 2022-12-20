@@ -11,7 +11,9 @@ spec:
     endpoint: mailtest@gmail.com
     protocol: email
     remark: O&M
-    topicUrn: ${flexibleengine_smn_topic_v2.topic_1.id}
+    topicUrnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: topic_1
 
 ---
 
@@ -26,6 +28,7 @@ metadata:
 spec:
   forProvider:
     displayName: The display name of topic_1
+    name: topic_1
 
 ---
 

@@ -33,18 +33,3 @@ spec:
 
 ---
 
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Network
-metadata:
-  annotations:
-    meta.upbound.io/example-id: ecs/v1beta1/interfaceattach
-  labels:
-    testing.upbound.io/example-name: network_1
-  name: network-1
-spec:
-  forProvider:
-    adminStateUp: "true"
-    name: network_1
-
----
-

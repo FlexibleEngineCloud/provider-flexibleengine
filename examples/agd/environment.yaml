@@ -1,0 +1,15 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: Environment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/environment
+  labels:
+    testing.upbound.io/example-name: example_agd_environment
+  name: example-agd-environment
+spec:
+  forProvider:
+    description: ${var.description}
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: ${var.environment_name}

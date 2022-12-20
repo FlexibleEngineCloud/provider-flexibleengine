@@ -9,6 +9,7 @@ metadata:
 spec:
   forProvider:
     displayName: The display name of topic_1
+    name: topic_1
 
 ---
 

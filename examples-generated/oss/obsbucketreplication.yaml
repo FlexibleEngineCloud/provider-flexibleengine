@@ -8,11 +8,15 @@ metadata:
   name: replica
 spec:
   forProvider:
-    agency: obs-fullaccess
+    agencySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     bucketSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    destinationBucket: my-target-bucket
+    destinationBucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
 
 ---
 

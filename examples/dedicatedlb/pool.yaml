@@ -1,0 +1,17 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: Pool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/pool
+  labels:
+    testing.upbound.io/example-name: example_poolv3
+  name: example-poolv3
+spec:
+  forProvider:
+    lbMethod: ROUND_ROBIN
+    listenerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_listenerv3
+    persistence:
+    - type: HTTP_COOKIE
+    protocol: HTTP

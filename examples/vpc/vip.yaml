@@ -4,8 +4,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vip
   labels:
-    testing.upbound.io/example-name: vip_1
-  name: vip-1
+    testing.upbound.io/example-name: example_vip
+  name: example-vip
 spec:
   forProvider:
     networkIdSelector:

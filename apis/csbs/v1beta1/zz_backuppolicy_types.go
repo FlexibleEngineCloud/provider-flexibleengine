@@ -32,11 +32,13 @@ type BackupPolicyParameters struct {
 	// +kubebuilder:validation:Optional
 	Common map[string]*string `json:"common,omitempty" tf:"common,omitempty"`
 
-	// Backup policy description. The value consists of 0 to 255 characters and must not contain a greater-than sign (>) or less-than sign (<).
+	// Backup policy description. The value consists of 0 to 255 characters and
+	// must not contain a greater-than sign (>) or less-than sign (<).
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// Specifies the name of backup policy. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-).
+	// Specifies the name of backup policy. The value consists of 1 to 255 characters and
+	// can contain only letters, digits, underscores (_), and hyphens (-).
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
@@ -100,7 +102,8 @@ type ScheduledOperationObservation struct {
 
 type ScheduledOperationParameters struct {
 
-	// Specifies Scheduling period description.The value consists of 0 to 255 characters and must not contain a greater-than sign (>) or less-than sign (<).
+	// Specifies Scheduling period description.The value consists of 0 to 255 characters and
+	// must not contain a greater-than sign (>) or less-than sign (<).
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -112,7 +115,8 @@ type ScheduledOperationParameters struct {
 	// +kubebuilder:validation:Optional
 	MaxBackups *float64 `json:"maxBackups,omitempty" tf:"max_backups,omitempty"`
 
-	// Specifies Scheduling period name.The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-).
+	// Specifies Scheduling period name.The value consists of 1 to 255 characters and
+	// can contain only letters, digits, underscores (_), and hyphens (-).
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 

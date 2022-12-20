@@ -1,0 +1,24 @@
+apiVersion: as.flexibleengine.upbound.io/v1beta1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: as/v1beta1/policy
+  labels:
+    testing.upbound.io/example-name: example_as_policy
+  name: example-as-policy
+spec:
+  forProvider:
+    coolDownTime: 900
+    scalingGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_as_group
+    scalingPolicyAction:
+      - instanceNumber: 1
+        operation: ADD
+    scalingPolicyName: hth_aspolicy
+    scalingPolicyType: RECURRENCE
+    scheduledPolicy:
+      - endTime: 2099-12-30T12:00Z
+        launchTime: "07:00"
+        recurrenceType: Daily
+        startTime: 2017-11-30T12:00Z

@@ -34,7 +34,8 @@ type ProtectionGroupParameters struct {
 	// +kubebuilder:validation:Optional
 	DrType *string `json:"drType,omitempty" tf:"dr_type,omitempty"`
 
-	// Enable protection or not. It can only be set to true when there's replication pairs within the protection group.
+	// Enable protection or not. It can only be set to true when there's replication pairs within
+	// the protection group.
 	// +kubebuilder:validation:Optional
 	Enable *bool `json:"enable,omitempty" tf:"enable,omitempty"`
 

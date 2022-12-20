@@ -105,8 +105,17 @@ type InstanceConfigParameters struct {
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// The image ID.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1.Image
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
+
+	// Reference to a Image in ims to populate image.
+	// +kubebuilder:validation:Optional
+	ImageRef *v1.Reference `json:"imageRef,omitempty" tf:"-"`
+
+	// Selector for a Image in ims to populate image.
+	// +kubebuilder:validation:Optional
+	ImageSelector *v1.Selector `json:"imageSelector,omitempty" tf:"-"`
 
 	// When using the existing instance specifications as the template to
 	// create AS configurations, specify this argument. In this case, flavor, image,
@@ -125,8 +134,17 @@ type InstanceConfigParameters struct {
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
 	// The name of the SSH key pair used to log in to the instance.
-	// +kubebuilder:validation:Required
-	KeyName *string `json:"keyName" tf:"key_name,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.KeyPair
+	// +kubebuilder:validation:Optional
+	KeyName *string `json:"keyName,omitempty" tf:"key_name,omitempty"`
+
+	// Reference to a KeyPair in ecs to populate keyName.
+	// +kubebuilder:validation:Optional
+	KeyNameRef *v1.Reference `json:"keyNameRef,omitempty" tf:"-"`
+
+	// Selector for a KeyPair in ecs to populate keyName.
+	// +kubebuilder:validation:Optional
+	KeyNameSelector *v1.Selector `json:"keyNameSelector,omitempty" tf:"-"`
 
 	// Metadata key/value pairs to make available from
 	// within the instance.

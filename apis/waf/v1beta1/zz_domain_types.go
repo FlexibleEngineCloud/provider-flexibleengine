@@ -15,7 +15,7 @@ import (
 
 type DomainObservation struct {
 
-	// Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain name is connected to WAF.
+	// Whether a domain name is connected to WAF.
 	AccessStatus *float64 `json:"accessStatus,omitempty" tf:"access_status,omitempty"`
 
 	// The CNAME value.
@@ -39,7 +39,8 @@ type DomainObservation struct {
 
 type DomainParameters struct {
 
-	// Specifies the certificate ID. This parameter is mandatory when client_protocol is set to HTTPS.
+	// Specifies the certificate ID.
+	// This parameter is mandatory when client_protocol is set to HTTPS.
 	// +crossplane:generate:reference:type=Certificate
 	// +kubebuilder:validation:Optional
 	CertificateID *string `json:"certificateId,omitempty" tf:"certificate_id,omitempty"`

@@ -42,7 +42,7 @@ type FixedIPParameters struct {
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
-	// Subnet in which to allocate IP address for this port.
+	// The IPv4 or IPv6 subnet ID of the VPC subnet in which to allocate IP address for this port.
 	// +crossplane:generate:reference:type=VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
@@ -57,6 +57,9 @@ type FixedIPParameters struct {
 }
 
 type PortObservation struct {
+
+	// The collection of Fixed IP addresses on the port in the
+	// order returned by the Network v2 API.
 	AllFixedIps []*string `json:"allFixedIps,omitempty" tf:"all_fixed_ips,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -100,7 +103,7 @@ type PortParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The ID of the network to attach the port to. Changing
+	// The ID of the VPC subnet to attach the port to. Changing
 	// this creates a new port.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
@@ -115,10 +118,8 @@ type PortParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
-	// The region in which to obtain the V2 networking client.
-	// A networking client is needed to create a port. If omitted, the
-	// region argument of the provider is used. Changing this creates a new
-	// port.
+	// The region in which to allocate the port. If omitted, the
+	// region argument of the provider is used. Changing this creates a new port.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 

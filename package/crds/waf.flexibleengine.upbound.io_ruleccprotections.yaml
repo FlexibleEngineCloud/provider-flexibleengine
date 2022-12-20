@@ -81,7 +81,7 @@ spec:
                     type: number
                   content:
                     description: 'Specifies the category content. The format is as
-                      follows: http://www.example.com/path. This field is mandatory
+                      follows: "http://www.example.com/path". This field is mandatory
                       when mode is set to other.'
                     type: string
                   cookie:

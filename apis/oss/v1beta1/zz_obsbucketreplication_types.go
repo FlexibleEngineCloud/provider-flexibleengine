@@ -26,25 +26,44 @@ type OBSBucketReplicationObservation struct {
 type OBSBucketReplicationParameters struct {
 
 	// Specifies the IAM agency applied to the cross-region replication function.
-	// +kubebuilder:validation:Required
-	Agency *string `json:"agency" tf:"agency,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Agency
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.NameExtractor()
+	// +kubebuilder:validation:Optional
+	Agency *string `json:"agency,omitempty" tf:"agency,omitempty"`
+
+	// Reference to a Agency in iam to populate agency.
+	// +kubebuilder:validation:Optional
+	AgencyRef *v1.Reference `json:"agencyRef,omitempty" tf:"-"`
+
+	// Selector for a Agency in iam to populate agency.
+	// +kubebuilder:validation:Optional
+	AgencySelector *v1.Selector `json:"agencySelector,omitempty" tf:"-"`
 
 	// Specifies the name of the source bucket. Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
+	// +crossplane:generate:reference:type=OBSBucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 
-	// Reference to a S3Bucket in oss to populate bucket.
+	// Reference to a OBSBucket to populate bucket.
 	// +kubebuilder:validation:Optional
 	BucketRef *v1.Reference `json:"bucketRef,omitempty" tf:"-"`
 
-	// Selector for a S3Bucket in oss to populate bucket.
+	// Selector for a OBSBucket to populate bucket.
 	// +kubebuilder:validation:Optional
 	BucketSelector *v1.Selector `json:"bucketSelector,omitempty" tf:"-"`
 
 	// Specifies the name of the destination bucket.
-	// +kubebuilder:validation:Required
-	DestinationBucket *string `json:"destinationBucket" tf:"destination_bucket,omitempty"`
+	// +crossplane:generate:reference:type=OBSBucket
+	// +kubebuilder:validation:Optional
+	DestinationBucket *string `json:"destinationBucket,omitempty" tf:"destination_bucket,omitempty"`
+
+	// Reference to a OBSBucket to populate destinationBucket.
+	// +kubebuilder:validation:Optional
+	DestinationBucketRef *v1.Reference `json:"destinationBucketRef,omitempty" tf:"-"`
+
+	// Selector for a OBSBucket to populate destinationBucket.
+	// +kubebuilder:validation:Optional
+	DestinationBucketSelector *v1.Selector `json:"destinationBucketSelector,omitempty" tf:"-"`
 
 	// A configuration of object cross-region replication management. The object supports the following:
 	// +kubebuilder:validation:Optional

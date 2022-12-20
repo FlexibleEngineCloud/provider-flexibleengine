@@ -1,0 +1,25 @@
+apiVersion: bms.flexibleengine.upbound.io/v1beta1
+kind: Server
+metadata:
+  annotations:
+    meta.upbound.io/example-id: bms/v1beta1/server
+  labels:
+    testing.upbound.io/example-name: example_bms_server
+  name: example-bms-server
+spec:
+  forProvider:
+    flavorId: physical.o2.medium
+    network:
+      - uuidSelector:
+          matchLabels:
+            testing.upbound.io/example-name: example_subnet
+    imageIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_ims_image
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_keypair
+    availabilityZone: eu-west-0b
+    name: example-bms-server
+    securityGroupsRefs:
+      - name: example-secgroup

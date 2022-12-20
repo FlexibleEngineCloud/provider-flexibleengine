@@ -21,8 +21,8 @@ type KafkaTopicObservation struct {
 
 type KafkaTopicParameters struct {
 
-	// Specifies the aging time in hours. The value ranges from 1 to 720 and defaults to 72.
-	// Changing this creates a new resource.
+	// Specifies the aging time in hours.
+	// The value ranges from 1 to 720 and defaults to 72. Changing this creates a new resource.
 	// +kubebuilder:validation:Optional
 	AgingTime *float64 `json:"agingTime,omitempty" tf:"aging_time,omitempty"`
 
@@ -46,8 +46,8 @@ type KafkaTopicParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// Specifies the partition number. The value ranges from 1 to 50 and defaults to 3.
-	// Changing this creates a new resource.
+	// Specifies the partition number.
+	// The value ranges from 1 to 50 and defaults to 3. Changing this creates a new resource.
 	// +kubebuilder:validation:Optional
 	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 

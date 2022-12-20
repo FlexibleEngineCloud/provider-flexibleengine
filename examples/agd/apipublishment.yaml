@@ -1,0 +1,19 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: APIPublishment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/apipublishment
+  labels:
+    testing.upbound.io/example-name: default
+  name: default
+spec:
+  forProvider:
+    apiIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    envIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

@@ -15,33 +15,37 @@ import (
 
 type VIPObservation struct {
 
-	// The device owner of the vip.
+	// The device owner of the VIP.
 	DeviceOwner *string `json:"deviceOwner,omitempty" tf:"device_owner,omitempty"`
 
-	// The ID of the vip.
+	// The VIP ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The status of vip.
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+	// The MAC address of the VIP.
+	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
 
-	// The tenant ID of the vip.
-	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+	// The VIP status.
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type VIPParameters struct {
 
-	// IP address desired in the subnet for this vip.
-	// If you don't specify ip_address, an available IP address from
-	// the specified subnet will be allocated to this vip.
+	// Specifies the IP address desired in the subnet for this VIP.
+	// Changing this will create a new VIP resource.
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
-	// A unique name for the vip.
+	// Specifies the IP version, either 4 (default) or 6.
+	// Changing this will create a new VIP resource.
+	// +kubebuilder:validation:Optional
+	IPVersion *float64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
+
+	// Specifies a unique name for the VIP.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The ID of the network to attach the vip to.
-	// Changing this creates a new vip.
+	// Specifies the ID of the VPC subnet to which the VIP belongs.
+	// Changing this will create a new VIP resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
@@ -55,8 +59,12 @@ type VIPParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
-	// Subnet in which to allocate IP address for this vip.
-	// Changing this creates a new vip.
+	// Specifies the region in which to create the VIP.
+	// If omitted, the provider-level region will be used. Changing this will create a new VIP resource.
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The VIP ID.
 	// +crossplane:generate:reference:type=VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`

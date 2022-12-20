@@ -26,7 +26,8 @@ type LifecycleRuleExpirationParameters struct {
 	// +kubebuilder:validation:Optional
 	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
 
-	// enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Amazon S3 to delete expired object delete markers.
+	// enabled or versioning-suspended bucket),
+	// you can add this element in the lifecycle configuration to direct Amazon S3 to delete expired object delete markers.
 	// +kubebuilder:validation:Optional
 	ExpiredObjectDeleteMarker *bool `json:"expiredObjectDeleteMarker,omitempty" tf:"expired_object_delete_marker,omitempty"`
 }
@@ -72,11 +73,13 @@ type S3BucketLifecycleRuleObservation struct {
 
 type S3BucketLifecycleRuleParameters struct {
 
-	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	// Specifies the number of days after initiating a multipart upload
+	// when the multipart upload must be completed.
 	// +kubebuilder:validation:Optional
 	AbortIncompleteMultipartUploadDays *float64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
 
-	// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+	// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state.
+	// You can, however, suspend versioning on that bucket.
 	// +kubebuilder:validation:Required
 	Enabled *bool `json:"enabled" tf:"enabled,omitempty"`
 
@@ -122,7 +125,8 @@ type S3BucketObservation struct {
 
 type S3BucketParameters struct {
 
-	// The canned ACL to apply. Defaults to "private".
+	// The canned ACL to apply.
+	// Defaults to "private".
 	// +kubebuilder:validation:Optional
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
@@ -131,43 +135,42 @@ type S3BucketParameters struct {
 	Arn *string `json:"arn,omitempty" tf:"arn,omitempty"`
 
 	// The name of the bucket.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 
-	// Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket.
+	// Creates a unique bucket name beginning with the specified prefix.
+	// Conflicts with bucket.
 	// +kubebuilder:validation:Optional
 	BucketPrefix *string `json:"bucketPrefix,omitempty" tf:"bucket_prefix,omitempty"`
 
-	// Reference to a S3Bucket in oss to populate bucket.
-	// +kubebuilder:validation:Optional
-	BucketRef *v1.Reference `json:"bucketRef,omitempty" tf:"-"`
-
-	// Selector for a S3Bucket in oss to populate bucket.
-	// +kubebuilder:validation:Optional
-	BucketSelector *v1.Selector `json:"bucketSelector,omitempty" tf:"-"`
-
-	// A rule of Cross-Origin Resource Sharing (documented below).
+	// A rule of Cross-Origin Resource Sharing
+	// (documented below).
 	// +kubebuilder:validation:Optional
 	CorsRule []S3BucketCorsRuleParameters `json:"corsRule,omitempty" tf:"cors_rule,omitempty"`
 
-	// A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable.
+	// A boolean that indicates all objects should be deleted from the bucket
+	// so that the bucket can be destroyed without error. These objects are not recoverable.
 	// +kubebuilder:validation:Optional
 	ForceDestroy *bool `json:"forceDestroy,omitempty" tf:"force_destroy,omitempty"`
 
-	// The Route 53 Hosted Zone ID for this bucket's region.
+	// The Route 53 Hosted Zone ID
+	// for this bucket's region.
 	// +kubebuilder:validation:Optional
 	HostedZoneID *string `json:"hostedZoneId,omitempty" tf:"hosted_zone_id,omitempty"`
 
-	// A configuration of object lifecycle management (documented below).
+	// A configuration of object lifecycle management
+	// (documented below).
 	// +kubebuilder:validation:Optional
 	LifecycleRule []S3BucketLifecycleRuleParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// A settings of bucket logging (documented below).
+	// A settings of bucket logging
+	// (documented below).
 	// +kubebuilder:validation:Optional
 	Logging []S3BucketLoggingParameters `json:"logging,omitempty" tf:"logging,omitempty"`
 
-	// A valid bucket policy JSON document. In this case, please make sure you use the verbose/specific version of the policy.
+	// A valid bucket policy
+	// JSON document. In this case, please make sure you use the verbose/specific version of
+	// the policy.
 	// +kubebuilder:validation:Optional
 	Policy *string `json:"policy,omitempty" tf:"policy,omitempty"`
 
@@ -175,7 +178,8 @@ type S3BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A state of versioning (documented below)
+	// A state of versioning
+	// (documented below)
 	// +kubebuilder:validation:Optional
 	Versioning []VersioningParameters `json:"versioning,omitempty" tf:"versioning,omitempty"`
 
@@ -183,7 +187,8 @@ type S3BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	Website []S3BucketWebsiteParameters `json:"website,omitempty" tf:"website,omitempty"`
 
-	// The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.
+	// The domain of the website endpoint, if the bucket is configured with a website.
+	// If not, this will be an empty string. This is used to create Route 53 alias records.
 	// +kubebuilder:validation:Optional
 	WebsiteDomain *string `json:"websiteDomain,omitempty" tf:"website_domain,omitempty"`
 
@@ -201,11 +206,14 @@ type S3BucketWebsiteParameters struct {
 	// +kubebuilder:validation:Optional
 	ErrorDocument *string `json:"errorDocument,omitempty" tf:"error_document,omitempty"`
 
-	// Amazon S3 returns this index document when requests are made to the root domain or any of the subfolders.
+	// Amazon S3 returns this index document when
+	// requests are made to the root domain or any of the subfolders.
 	// +kubebuilder:validation:Optional
 	IndexDocument *string `json:"indexDocument,omitempty" tf:"index_document,omitempty"`
 
-	// A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests. The default is the protocol that is used in the original request.
+	// A hostname to redirect all website requests for this bucket to.
+	// Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests.
+	// The default is the protocol that is used in the original request.
 	// +kubebuilder:validation:Optional
 	RedirectAllRequestsTo *string `json:"redirectAllRequestsTo,omitempty" tf:"redirect_all_requests_to,omitempty"`
 
@@ -220,11 +228,13 @@ type VersioningObservation struct {
 
 type VersioningParameters struct {
 
-	// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+	// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state.
+	// You can, however, suspend versioning on that bucket.
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// Enable MFA delete for either Change the versioning state of your bucket or Permanently delete an object version. Default is false.
+	// Enable MFA delete for either change the versioning state of your bucket or permanently delete
+	// an object version. Default is false.
 	// +kubebuilder:validation:Optional
 	MfaDelete *bool `json:"mfaDelete,omitempty" tf:"mfa_delete,omitempty"`
 }

@@ -4,24 +4,19 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Generate list resources",
+            "label": "G. List Resources",
             "type": "shell",
             "command": "python3 scripts/generate-list-resources.py"
         },
         {
-            "label": "Generate list tested",
+            "label": "G. List Tested",
             "type": "shell",
-            "command": "python3 scripts/generate-check-examples.py package/crds/ examples/ > list-tested.md"
+            "command": "python3 scripts/generate-list-tested.py package/crds/ examples/ > list-tested.md"
         },
         {
-            "label": "Generate dep example",
+            "label": "G. Kubectl Example",
             "type": "shell",
             "command": "python3 scripts/dep.py"
-        },
-        {
-            "label": "Generate dep V2 example",
-            "type": "shell",
-            "command": "python3 scripts/depv2.py"
         },
         {
             "label": "Reviewable",

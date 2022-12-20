@@ -7,7 +7,7 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -26,8 +26,8 @@ func (mg *AntiDDoS) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.FloatingIPIDRef,
 		Selector:     mg.Spec.ForProvider.FloatingIPIDSelector,
 		To: reference.To{
-			List:    &v1beta1.FloatingIpList{},
-			Managed: &v1beta1.FloatingIp{},
+			List:    &v1beta1.EIPList{},
+			Managed: &v1beta1.EIP{},
 		},
 	})
 	if err != nil {

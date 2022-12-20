@@ -1,0 +1,13 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucket
+  labels:
+    testing.upbound.io/example-name: example_obsbucket
+  name: example-obsbucket
+spec:
+  forProvider:
+    acl: private
+    bucket: my-tf-test-example-obsbucket
+    storageClass: STANDARD

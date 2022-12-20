@@ -44,7 +44,7 @@ func Configure(p *config.Provider) {
 			Type: "Cluster",
 		}
 		r.References["key_pair"] = config.Reference{
-			Type: "KeyPair",
+			Type: tools.GenerateType("ecs", "KeyPair"),
 		}
 		r.References["data_volumes.kms_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
@@ -58,7 +58,7 @@ func Configure(p *config.Provider) {
 			Type: "Cluster",
 		}
 		r.References["key_pair"] = config.Reference{
-			Type: "KeyPair",
+			Type: tools.GenerateType("ecs", "KeyPair"),
 		}
 		r.References["eip_ids"] = config.Reference{
 			Type: tools.GenerateType("eip", "EIP"),

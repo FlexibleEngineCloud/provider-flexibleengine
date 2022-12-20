@@ -1,0 +1,12 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: S3Bucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/s3bucket
+  labels:
+    testing.upbound.io/example-name: example_s3bucket
+  name: example-s3bucket
+spec:
+  forProvider:
+    acl: private
+    bucket: my-tf-test-example-s3bucket

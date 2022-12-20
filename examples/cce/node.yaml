@@ -1,0 +1,28 @@
+apiVersion: cce.flexibleengine.upbound.io/v1beta1
+kind: Node
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cce/v1beta1/node
+  labels:
+    testing.upbound.io/example-name: example_cce_node
+  name: example-cce-node
+spec:
+  forProvider:
+    availabilityZone: eu-west0a
+    bandwidthSize: 100
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_cce_cluster
+    dataVolumes:
+      - size: 100
+        volumetype: SATA
+    flavorId: s1.medium
+    iptype: 5_bgp
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_keypair
+    name: example-cce-node
+    rootVolume:
+      - size: 40
+        volumetype: SATA
+    sharetype: PER

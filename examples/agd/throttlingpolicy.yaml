@@ -1,0 +1,22 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: ThrottlingPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/throttlingpolicy
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    description: ${var.description}
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    maxApiRequests: 70
+    maxAppRequests: 45
+    maxIpRequests: 45
+    maxUserRequests: 45
+    name: ${var.policy_name}
+    period: 10
+    periodUnit: MINUTE
+    type: API-based

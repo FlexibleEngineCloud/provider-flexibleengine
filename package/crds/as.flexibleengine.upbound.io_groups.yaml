@@ -235,7 +235,8 @@ spec:
                           description: The network UUID.
                           type: string
                         idRef:
-                          description: Reference to a Network in vpc to populate id.
+                          description: Reference to a VPCSubnet in vpc to populate
+                            id.
                           properties:
                             name:
                               description: Name of the referenced object.
@@ -270,7 +271,8 @@ spec:
                           - name
                           type: object
                         idSelector:
-                          description: Selector for a Network in vpc to populate id.
+                          description: Selector for a VPCSubnet in vpc to populate
+                            id.
                           properties:
                             matchControllerRef:
                               description: MatchControllerRef ensures an object with

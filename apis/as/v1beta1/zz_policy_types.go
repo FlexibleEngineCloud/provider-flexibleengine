@@ -44,8 +44,17 @@ type PolicyParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The AS group ID. Changing this creates a new AS policy.
-	// +kubebuilder:validation:Required
-	ScalingGroupID *string `json:"scalingGroupId" tf:"scaling_group_id,omitempty"`
+	// +crossplane:generate:reference:type=Group
+	// +kubebuilder:validation:Optional
+	ScalingGroupID *string `json:"scalingGroupId,omitempty" tf:"scaling_group_id,omitempty"`
+
+	// Reference to a Group to populate scalingGroupId.
+	// +kubebuilder:validation:Optional
+	ScalingGroupIDRef *v1.Reference `json:"scalingGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Group to populate scalingGroupId.
+	// +kubebuilder:validation:Optional
+	ScalingGroupIDSelector *v1.Selector `json:"scalingGroupIdSelector,omitempty" tf:"-"`
 
 	// The action of the AS policy. The scaling_policy_action
 	// structure is documented below.

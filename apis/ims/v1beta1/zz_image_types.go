@@ -30,8 +30,7 @@ type ImageObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The metadata associated with the image.
-	// Image metadata allow for meaningfully define the image properties
-	// and tags. See http://docs.openstack.org/developer/glance/metadefs-concepts.html.
+	// Image metadata allow for meaningfully define the image properties and tags.
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
 	// The id of the flexibleengine user who owns the image.

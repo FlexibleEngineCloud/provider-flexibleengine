@@ -78,7 +78,7 @@ spec:
                     description: The ID corresponding to the Elastic IP Address (EIP).
                     type: string
                   floatingIpIdRef:
-                    description: Reference to a FloatingIp in ecs to populate floatingIpId.
+                    description: Reference to a EIP in eip to populate floatingIpId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -112,7 +112,7 @@ spec:
                     - name
                     type: object
                   floatingIpIdSelector:
-                    description: Selector for a FloatingIp in ecs to populate floatingIpId.
+                    description: Selector for a EIP in eip to populate floatingIpId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

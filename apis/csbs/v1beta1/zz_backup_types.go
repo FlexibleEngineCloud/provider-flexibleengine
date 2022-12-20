@@ -33,11 +33,13 @@ type BackupObservation struct {
 
 type BackupParameters struct {
 
-	// Name for the backup. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-). Changing backup_name creates a new backup.
+	// Name for the backup. The value consists of 1 to 255 characters and can contain
+	// only letters, digits, underscores (_), and hyphens (-). Changing backup_name creates a new backup.
 	// +kubebuilder:validation:Optional
 	BackupName *string `json:"backupName,omitempty" tf:"backup_name,omitempty"`
 
-	// Backup description. The value consists of 0 to 255 characters and must not contain a greater-than sign (>) or less-than sign (<). Changing description creates a new backup.
+	// Backup description. The value consists of 0 to 255 characters and must not contain
+	// a greater-than sign (>) or less-than sign (<). Changing description creates a new backup.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -57,7 +59,8 @@ type BackupParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceIDSelector *v1.Selector `json:"resourceIdSelector,omitempty" tf:"-"`
 
-	// Type of the target to which the backup is restored. The default value is OS::Nova::Server for an ECS. Changing this creates a new backup.
+	// Type of the target to which the backup is restored. The default value is
+	// OS::Nova::Server for an ECS. Changing this creates a new backup.
 	// +kubebuilder:validation:Optional
 	ResourceType *string `json:"resourceType,omitempty" tf:"resource_type,omitempty"`
 }

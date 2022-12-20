@@ -9,13 +9,17 @@ metadata:
 spec:
   forProvider:
     availabilityZone: ${var.availability_zone}
-    clusterId: ${var.cluster_id}
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     dataVolumes:
     - size: 100
       volumetype: SAS
     flavorId: s3.large.4
     initialNodeCount: 2
-    keyPair: ${var.keypair}
+    keyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     maxNodeCount: 10
     minNodeCount: 1
     name: testpool

@@ -14,6 +14,8 @@ import (
 )
 
 type VIPAssociateObservation struct {
+
+	// The resource ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The IP address in the subnet for this vip.

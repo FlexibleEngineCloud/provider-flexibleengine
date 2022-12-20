@@ -67,6 +67,11 @@ spec:
                     description: Topic display name, which is presented as the name
                       of the email sender in an email message.
                     type: string
+                  name:
+                    description: The name of the topic to be created.
+                    type: string
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:

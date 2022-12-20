@@ -8,7 +8,9 @@ metadata:
   name: addon-test
 spec:
   forProvider:
-    clusterId: ${var.cluster_id}
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     templateName: metrics-server
     version: 1.0.6
 

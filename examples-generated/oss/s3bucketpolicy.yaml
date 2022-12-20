@@ -29,9 +29,7 @@ metadata:
   name: b
 spec:
   forProvider:
-    bucketSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    bucket: my_tf_test_bucket
 
 ---
 

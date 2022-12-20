@@ -320,7 +320,6 @@ spec:
                       type: string
                     description: The metadata associated with the image. Image metadata
                       allow for meaningfully define the image properties and tags.
-                      See http://docs.openstack.org/developer/glance/metadefs-concepts.html.
                     type: object
                   owner:
                     description: The id of the flexibleengine user who owns the image.

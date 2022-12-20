@@ -1,0 +1,31 @@
+apiVersion: ag.flexibleengine.upbound.io/v1beta1
+kind: API
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ag/v1beta1/api
+  labels:
+    testing.upbound.io/example-name: apigw_api
+  name: apigw-api
+spec:
+  forProvider:
+    authType: IAM
+    backendType: HTTP
+    description: your descpiption
+    exampleSuccessResponse: example response
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: apigw_group
+    httpBackend:
+      - method: GET
+        protocol: HTTPS
+        timeout: 10000
+        uri: /web/openapi
+        urlDomain: backenddomain.com
+    name: apigw_api
+    requestMethod: GET
+    requestProtocol: HTTPS
+    requestUri: /test/path1
+    tags:
+      - tag1
+      - tag2
+    visibility: 1

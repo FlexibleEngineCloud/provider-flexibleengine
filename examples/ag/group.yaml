@@ -1,0 +1,12 @@
+apiVersion: ag.flexibleengine.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ag/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: apigw_group
+  name: apigw-group
+spec:
+  forProvider:
+    description: your descpiption
+    name: apigw_group

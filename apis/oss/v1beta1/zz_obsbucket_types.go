@@ -63,7 +63,8 @@ type LifecycleRuleParameters struct {
 	// +kubebuilder:validation:Required
 	Enabled *bool `json:"enabled" tf:"enabled,omitempty"`
 
-	// Specifies a period when objects that have been last updated are automatically deleted. (documented below).
+	// Specifies a period when objects that have been last updated are automatically deleted.
+	// The object structure is documented below.
 	// +kubebuilder:validation:Optional
 	Expiration []ExpirationParameters `json:"expiration,omitempty" tf:"expiration,omitempty"`
 
@@ -71,21 +72,25 @@ type LifecycleRuleParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// Specifies a period when noncurrent object versions are automatically deleted. (documented below).
+	// Specifies a period when noncurrent object versions are automatically deleted.
+	// The object structure is documented below.
 	// +kubebuilder:validation:Optional
 	NoncurrentVersionExpiration []NoncurrentVersionExpirationParameters `json:"noncurrentVersionExpiration,omitempty" tf:"noncurrent_version_expiration,omitempty"`
 
-	// Specifies a period when noncurrent object versions are automatically transitioned to STANDARD_IA or GLACIER storage class (documented below).
+	// Specifies a period when noncurrent object versions are automatically
+	// transitioned to STANDARD_IA or GLACIER storage class. The object structure is documented below.
 	// +kubebuilder:validation:Optional
 	NoncurrentVersionTransition []NoncurrentVersionTransitionParameters `json:"noncurrentVersionTransition,omitempty" tf:"noncurrent_version_transition,omitempty"`
 
 	// Object key prefix identifying one or more objects to which the rule applies.
 	// If omitted, all objects in the bucket will be managed by the lifecycle rule.
-	// The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/), and cannot contain the following special characters: :*?"<>|.
+	// The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/),
+	// and cannot contain the following special characters: :*?"<>|.
 	// +kubebuilder:validation:Optional
 	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
-	// Specifies a period when objects that have been last updated are automatically transitioned to STANDARD_IA or GLACIER storage class (documented below).
+	// Specifies a period when objects that have been last updated are automatically transitioned
+	// to STANDARD_IA or GLACIER storage class. The object structure is documented below.
 	// +kubebuilder:validation:Optional
 	Transition []TransitionParameters `json:"transition,omitempty" tf:"transition,omitempty"`
 }
@@ -150,17 +155,8 @@ type OBSBucketParameters struct {
 
 	// Specifies the name of the bucket. Changing this parameter will create a new resource.
 	// A bucket must be named according to the globally applied DNS naming regulations as follows:
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
-	// +kubebuilder:validation:Optional
-	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
-
-	// Reference to a S3Bucket in oss to populate bucket.
-	// +kubebuilder:validation:Optional
-	BucketRef *v1.Reference `json:"bucketRef,omitempty" tf:"-"`
-
-	// Selector for a S3Bucket in oss to populate bucket.
-	// +kubebuilder:validation:Optional
-	BucketSelector *v1.Selector `json:"bucketSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	Bucket *string `json:"bucket" tf:"bucket,omitempty"`
 
 	// A rule of Cross-Origin Resource Sharing (documented below).
 	// +kubebuilder:validation:Optional
@@ -212,8 +208,8 @@ type OBSBucketParameters struct {
 	// +kubebuilder:validation:Optional
 	StorageClass *string `json:"storageClass,omitempty" tf:"storage_class,omitempty"`
 
-	// Whether enable versioning. Once you version-enable a bucket, it can never return to an unversioned state.
-	// You can, however, suspend versioning on that bucket.
+	// Whether enable versioning. Once you version-enable a bucket,
+	// it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
 	// +kubebuilder:validation:Optional
 	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
 
@@ -248,17 +244,21 @@ type WebsiteParameters struct {
 	// +kubebuilder:validation:Optional
 	ErrorDocument *string `json:"errorDocument,omitempty" tf:"error_document,omitempty"`
 
-	// Specifies the default homepage of the static website, only HTML web pages are supported.
+	// Specifies the default homepage of
+	// the static website, only HTML web pages are supported.
 	// OBS only allows files such as index.html in the root directory of a bucket to function as the default homepage.
 	// That is to say, do not set the default homepage with a multi-level directory structure (for example, /page/index.html).
 	// +kubebuilder:validation:Optional
 	IndexDocument *string `json:"indexDocument,omitempty" tf:"index_document,omitempty"`
 
-	// A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests. The default is the protocol that is used in the original request.
+	// A hostname to redirect all website requests for this bucket to.
+	// Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests.
+	// The default is the protocol that is used in the original request.
 	// +kubebuilder:validation:Optional
 	RedirectAllRequestsTo *string `json:"redirectAllRequestsTo,omitempty" tf:"redirect_all_requests_to,omitempty"`
 
-	// A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied.
+	// A JSON or XML format containing routing rules describing redirect behavior and
+	// when redirects are applied.
 	// Each rule contains a Condition and a Redirect as shown in the following table:
 	// +kubebuilder:validation:Optional
 	RoutingRules *string `json:"routingRules,omitempty" tf:"routing_rules,omitempty"`

@@ -92,17 +92,13 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_compute_volume_attach_v2":        ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: VolumeAttach
 	"flexibleengine_compute_floatingip_v2":           ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Floatingip
 	// VPC
-	"flexibleengine_vpc_v1":                         ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPC
-	"flexibleengine_vpc_subnet_v1":                  ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPCSubnet
-	"flexibleengine_networking_network_v2":          ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Network
-	"flexibleengine_networking_port_v2":             ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Port
-	"flexibleengine_networking_router_interface_v2": ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: RouterInterface
-	"flexibleengine_networking_router_v2":           ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Router
-	"flexibleengine_networking_secgroup_rule_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroupRule
-	"flexibleengine_networking_secgroup_v2":         ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroup
-	"flexibleengine_networking_subnet_v2":           ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: NetworkingSubnet
-	"flexibleengine_networking_vip_associate_v2":    ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIPAssociate
-	"flexibleengine_networking_vip_v2":              ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIP
+	"flexibleengine_vpc_v1":                      ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPC
+	"flexibleengine_vpc_subnet_v1":               ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPCSubnet
+	"flexibleengine_networking_port_v2":          ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: Port
+	"flexibleengine_networking_secgroup_rule_v2": ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroupRule
+	"flexibleengine_networking_secgroup_v2":      ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroup
+	"flexibleengine_networking_vip_associate_v2": ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIPAssociate
+	"flexibleengine_networking_vip_v2":           ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIP
 	// EIP
 	"flexibleengine_vpc_eip":           ReplaceGroupWords("eip", 1), // Group: eip, Kind: EIP
 	"flexibleengine_vpc_eip_associate": ReplaceGroupWords("eip", 1), // Group: eip, Kind: Associate

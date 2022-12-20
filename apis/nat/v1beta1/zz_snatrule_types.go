@@ -28,7 +28,7 @@ type SnatRuleObservation struct {
 type SnatRuleParameters struct {
 
 	// Specifies CIDR, which can be in the format of a network segment or a host IP address.
-	// This parameter and network_id are alternative. Changing this creates a new snat rule.
+	// This parameter and subnet_id are alternative. Changing this creates a new snat rule.
 	// +kubebuilder:validation:Optional
 	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 

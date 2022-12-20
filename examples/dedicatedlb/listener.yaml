@@ -1,0 +1,20 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: Listener
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: example_listenerv3
+  name: example-listenerv3
+spec:
+  forProvider:
+    description: Test by Crossplane
+    idleTimeout: 60
+    loadbalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_lbv3
+    name: example-listenerv3
+    protocol: HTTP
+    protocolPort: 8080
+    requestTimeout: 60
+    responseTimeout: 60

@@ -28,11 +28,13 @@ type ProtectedInstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
-	// Specifies whether to delete the EIP of the target server. The default value is false. Changing this creates a new instance.
+	// Specifies whether to delete the EIP of the target server. The default value is false.
+	// Changing this creates a new instance.
 	// +kubebuilder:validation:Optional
 	DeleteTargetEIP *bool `json:"deleteTargetEip,omitempty" tf:"delete_target_eip,omitempty"`
 
-	// Specifies whether to delete the target server. The default value is false.. Changing this creates a new instance.
+	// Specifies whether to delete the target server. The default value is false.
+	// Changing this creates a new instance.
 	// +kubebuilder:validation:Optional
 	DeleteTargetServer *bool `json:"deleteTargetServer,omitempty" tf:"delete_target_server,omitempty"`
 
@@ -40,7 +42,8 @@ type ProtectedInstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// Specifies the ID of the protection group where a protected instance is added. Changing this creates a new instance.
+	// Specifies the ID of the protection group where a protected instance is added.
+	// Changing this creates a new instance.
 	// +crossplane:generate:reference:type=ProtectionGroup
 	// +kubebuilder:validation:Optional
 	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
@@ -57,11 +60,13 @@ type ProtectedInstanceParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// Specifies the IP address of the primary NIC on the target server. Changing this creates a new instance.
+	// Specifies the IP address of the primary NIC on the target server.
+	// Changing this creates a new instance.
 	// +kubebuilder:validation:Optional
 	PrimaryIPAddress *string `json:"primaryIpAddress,omitempty" tf:"primary_ip_address,omitempty"`
 
-	// Specifies the subnet ID of the primary NIC on the target server. Changing this creates a new instance.
+	// Specifies the subnet ID of the primary NIC on the target server.
+	// Changing this creates a new instance.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	PrimarySubnetID *string `json:"primarySubnetId,omitempty" tf:"primary_subnet_id,omitempty"`

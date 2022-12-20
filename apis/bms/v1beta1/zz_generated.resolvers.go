@@ -7,7 +7,9 @@ package v1beta1
 
 import (
 	"context"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
+	v1beta12 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
@@ -19,6 +21,7 @@ func (mg *Server) ResolveReferences(ctx context.Context, c client.Reader) error 
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
@@ -52,6 +55,74 @@ func (mg *Server) ResolveReferences(ctx context.Context, c client.Reader) error 
 	}
 	mg.Spec.ForProvider.ImageName = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ImageNameRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KeyPair),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.KeyPairRef,
+		Selector:     mg.Spec.ForProvider.KeyPairSelector,
+		To: reference.To{
+			List:    &v1beta11.KeyPairList{},
+			Managed: &v1beta11.KeyPair{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.KeyPair")
+	}
+	mg.Spec.ForProvider.KeyPair = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.KeyPairRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].Port),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.Network[i3].PortRef,
+			Selector:     mg.Spec.ForProvider.Network[i3].PortSelector,
+			To: reference.To{
+				List:    &v1beta12.PortList{},
+				Managed: &v1beta12.Port{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network[i3].Port")
+		}
+		mg.Spec.ForProvider.Network[i3].Port = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network[i3].PortRef = rsp.ResolvedReference
+
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].UUID),
+			Extract:      common.IDExtractor(),
+			Reference:    mg.Spec.ForProvider.Network[i3].UUIDRef,
+			Selector:     mg.Spec.ForProvider.Network[i3].UUIDSelector,
+			To: reference.To{
+				List:    &v1beta12.VPCSubnetList{},
+				Managed: &v1beta12.VPCSubnet{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network[i3].UUID")
+		}
+		mg.Spec.ForProvider.Network[i3].UUID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network[i3].UUIDRef = rsp.ResolvedReference
+
+	}
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.SecurityGroups),
+		Extract:       common.NameExtractor(),
+		References:    mg.Spec.ForProvider.SecurityGroupsRefs,
+		Selector:      mg.Spec.ForProvider.SecurityGroupsSelector,
+		To: reference.To{
+			List:    &v1beta12.SecurityGroupList{},
+			Managed: &v1beta12.SecurityGroup{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.SecurityGroups")
+	}
+	mg.Spec.ForProvider.SecurityGroups = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.SecurityGroupsRefs = mrsp.ResolvedReferences
 
 	return nil
 }

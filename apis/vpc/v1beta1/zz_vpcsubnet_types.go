@@ -18,7 +18,7 @@ type VPCSubnetObservation struct {
 	// The resource ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The subnet (Native OpenStack API) ID.
+	// The ID of the IPv4 subnet (Native OpenStack API).
 	IPv4SubnetID *string `json:"ipv4SubnetId,omitempty" tf:"ipv4_subnet_id,omitempty"`
 
 	// The IPv6 subnet CIDR block.
@@ -30,7 +30,7 @@ type VPCSubnetObservation struct {
 	// The ID of the IPv6 subnet (Native OpenStack API).
 	IPv6SubnetID *string `json:"ipv6SubnetId,omitempty" tf:"ipv6_subnet_id,omitempty"`
 
-	// The subnet (Native OpenStack API) ID.
+	// The resource ID in UUID format.
 	// schema: Deprecated
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }

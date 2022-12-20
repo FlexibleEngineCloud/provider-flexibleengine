@@ -66,7 +66,7 @@ spec:
                 properties:
                   device:
                     description: 'The device of the volume attachment (ex: /dev/vdc).
-                      NOTE: Being able to specify a device is dependent upon the hypervisor
+                      Being able to specify a device is dependent upon the hypervisor
                       in use. Please use with caution.'
                     type: string
                   instanceId:

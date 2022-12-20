@@ -1,0 +1,19 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: ThrottlingPolicyAssociate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/throttlingpolicyassociate
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    publishIds:
+      - ${var.api_publish_id1}
+      - ${var.api_publish_id2}

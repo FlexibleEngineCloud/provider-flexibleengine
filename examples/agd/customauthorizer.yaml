@@ -1,0 +1,20 @@
+apiVersion: agd.flexibleengine.upbound.io/v1beta1
+kind: CustomAuthorizer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/customauthorizer
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    cacheAge: 60
+    functionUrn: ${var.function_urn}
+    identity:
+      - location: QUERY
+        name: user_name
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: ${var.authorizer_name}
+    type: FRONTEND

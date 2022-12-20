@@ -15,10 +15,12 @@ import (
 
 type TopicObservation struct {
 
+	// The Number of metric filter.
+	FilterCount *float64 `json:"filterCount,omitempty" tf:"filter_count,omitempty"`
+
 	// The log topic ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Indicates the search switch. When index is enabled, the topic allows you to search for logs by keyword.
 	IndexEnabled *bool `json:"indexEnabled,omitempty" tf:"index_enabled,omitempty"`
 }
 
