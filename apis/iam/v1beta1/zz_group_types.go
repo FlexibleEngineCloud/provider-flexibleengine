@@ -27,8 +27,7 @@ type GroupParameters struct {
 	// +kubebuilder:validation:Optional
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
-	// The name of the group.The length is less than or equal
-	// to 64 bytes
+	// The name of the group. The length is less than or equal to 64 bytes.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 }

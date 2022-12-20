@@ -20,7 +20,8 @@ type InterfaceAttachObservation struct {
 type InterfaceAttachParameters struct {
 
 	// An IP address to assosciate with the port.
-	// NOTE: This option cannot be used with port_id. You must specifiy a network_id. The IP address must lie in a range on the supplied network.
+	// This option cannot be used with port_id. You must specify a network_id.
+	// The IP address must lie in a range on the supplied network.
 	// +kubebuilder:validation:Optional
 	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
@@ -38,7 +39,7 @@ type InterfaceAttachParameters struct {
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
 	// The ID of the Network to attach to an Instance. A port will be created automatically.
-	// NOTE: This option and port_id are mutually exclusive.
+	// This option and port_id are mutually exclusive.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
@@ -53,7 +54,7 @@ type InterfaceAttachParameters struct {
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
 	// The ID of the Port to attach to an Instance.
-	// NOTE: This option and network_id are mutually exclusive.
+	// This option and network_id are mutually exclusive.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
@@ -67,8 +68,7 @@ type InterfaceAttachParameters struct {
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
 	// The region in which to create the interface attachment.
-	// If omitted, the region argument of the provider is used. Changing this
-	// creates a new attachment.
+	// If omitted, the region argument of the provider is used. Changing this creates a new attachment.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }

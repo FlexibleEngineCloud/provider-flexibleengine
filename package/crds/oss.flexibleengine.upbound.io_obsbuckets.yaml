@@ -285,7 +285,8 @@ spec:
                           type: boolean
                         expiration:
                           description: Specifies a period when objects that have been
-                            last updated are automatically deleted. (documented below).
+                            last updated are automatically deleted. The object structure
+                            is documented below.
                           items:
                             properties:
                               days:
@@ -304,7 +305,8 @@ spec:
                           type: string
                         noncurrentVersionExpiration:
                           description: Specifies a period when noncurrent object versions
-                            are automatically deleted. (documented below).
+                            are automatically deleted. The object structure is documented
+                            below.
                           items:
                             properties:
                               days:
@@ -320,7 +322,7 @@ spec:
                         noncurrentVersionTransition:
                           description: Specifies a period when noncurrent object versions
                             are automatically transitioned to STANDARD_IA or GLACIER
-                            storage class (documented below).
+                            storage class. The object structure is documented below.
                           items:
                             properties:
                               days:
@@ -351,7 +353,8 @@ spec:
                         transition:
                           description: Specifies a period when objects that have been
                             last updated are automatically transitioned to STANDARD_IA
-                            or GLACIER storage class (documented below).
+                            or GLACIER storage class. The object structure is documented
+                            below.
                           items:
                             properties:
                               days:

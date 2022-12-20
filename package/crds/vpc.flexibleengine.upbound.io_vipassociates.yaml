@@ -401,6 +401,7 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The resource ID.
                     type: string
                   vipIpAddress:
                     description: The IP address in the subnet for this vip.

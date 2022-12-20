@@ -35,8 +35,8 @@ type QueueParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Name of a queue. Name of a newly created resource queue.
-	// The name can contain only digits, letters, and underscores (),
-	// but cannot contain only digits or start with an underscore ().
+	// The name can contain only digits, letters, and underscores (_),
+	// but cannot contain only digits or start with an underscore (_).
 	// Length range: 1 to 128 characters. Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`

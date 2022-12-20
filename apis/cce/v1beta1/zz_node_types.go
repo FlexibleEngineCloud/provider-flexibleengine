@@ -79,6 +79,8 @@ type NodeParameters struct {
 	// +kubebuilder:validation:Required
 	ClusterID *string `json:"clusterId" tf:"cluster_id,omitempty"`
 
+	// Represents the data disk to be created.
+	// Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Required
 	DataVolumes []NodeDataVolumesParameters `json:"dataVolumes" tf:"data_volumes,omitempty"`
 
@@ -159,6 +161,8 @@ type NodeParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// It corresponds to the system disk related configuration.
+	// Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Required
 	RootVolume []NodeRootVolumeParameters `json:"rootVolume" tf:"root_volume,omitempty"`
 
@@ -170,6 +174,9 @@ type NodeParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// You can add taints to created nodes to configure anti-affinity.
+	// Changing this parameter will create a new resource.
+	// Each taint contains the following parameters:
 	// +kubebuilder:validation:Optional
 	Taints []NodeTaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
 }

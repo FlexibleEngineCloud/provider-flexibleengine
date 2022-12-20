@@ -8,9 +8,9 @@ export TERRAFORM_VERSION := 1.3.6
 
 export TERRAFORM_PROVIDER_SOURCE := FlexibleEngineCloud/flexibleengine
 export TERRAFORM_PROVIDER_REPO := https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine
-export TERRAFORM_PROVIDER_VERSION := 1.35.0
+export TERRAFORM_PROVIDER_VERSION := 1.35.1
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-flexibleengine
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-flexibleengine_v1.35.0_x5
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-flexibleengine_v1.35.1_x5
 export TERRAFORM_DOCS_PATH := docs/resources
 
 PLATFORMS ?= linux_amd64 linux_arm64
@@ -122,7 +122,6 @@ pull-docs:
 		git clone -c advice.detachedHead=false --depth 1 --filter=blob:none --branch "v$(TERRAFORM_PROVIDER_VERSION)" --sparse "$(TERRAFORM_PROVIDER_REPO)" "$(WORK_DIR)/$(TERRAFORM_PROVIDER_SOURCE)"; \
 	fi
 	@git -C "$(WORK_DIR)/$(TERRAFORM_PROVIDER_SOURCE)" sparse-checkout set "$(TERRAFORM_DOCS_PATH)"
-	@python3 scripts/generate-docs.py
 
 generate.init: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs
 

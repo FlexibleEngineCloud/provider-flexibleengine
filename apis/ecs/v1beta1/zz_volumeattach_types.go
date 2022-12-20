@@ -20,8 +20,7 @@ type VolumeAttachObservation struct {
 type VolumeAttachParameters struct {
 
 	// The device of the volume attachment (ex: /dev/vdc).
-	// NOTE: Being able to specify a device is dependent upon the hypervisor in
-	// use. Please use with caution.
+	// Being able to specify a device is dependent upon the hypervisor in use. Please use with caution.
 	// +kubebuilder:validation:Optional
 	Device *string `json:"device,omitempty" tf:"device,omitempty"`
 

@@ -15,7 +15,8 @@ import (
 
 type ConfigurationParametersObservation struct {
 
-	// The parameter group description. It contains a maximum of 256 characters and cannot contain the following special characters:>!<"&'= the value is left blank by default.
+	// The parameter group description. It contains a maximum of 256 characters and
+	// cannot contain the following special characters:>!<"&'= the value is left blank by default.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// The parameter group name. It contains a maximum of 64 characters.
@@ -45,7 +46,8 @@ type DatastoreObservation struct {
 
 type DatastoreParameters struct {
 
-	// The DB engine. Currently, MySQL, PostgreSQL, and Microsoft SQL Server are supported. The value is case-insensitive and can be mysql, postgresql, or sqlserver.
+	// The DB engine. Currently, MySQL, PostgreSQL, and Microsoft SQL Server are supported.
+	// The value is case-insensitive and can be mysql, postgresql, or sqlserver.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
@@ -65,11 +67,13 @@ type ParameterGroupObservation struct {
 
 type ParameterGroupParameters struct {
 
-	// Database object. The database object structure is documented below. Changing this creates a new parameter group.
+	// Database object. The database object structure is documented below.
+	// Changing this creates a new parameter group.
 	// +kubebuilder:validation:Required
 	Datastore []DatastoreParameters `json:"datastore" tf:"datastore,omitempty"`
 
-	// The parameter group description. It contains a maximum of 256 characters and cannot contain the following special characters:>!<"&'= the value is left blank by default.
+	// The parameter group description. It contains a maximum of 256 characters and
+	// cannot contain the following special characters:>!<"&'= the value is left blank by default.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 

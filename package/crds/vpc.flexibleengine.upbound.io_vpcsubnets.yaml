@@ -383,7 +383,7 @@ spec:
                     description: The resource ID in UUID format.
                     type: string
                   ipv4SubnetId:
-                    description: The subnet (Native OpenStack API) ID.
+                    description: The ID of the IPv4 subnet (Native OpenStack API).
                     type: string
                   ipv6Cidr:
                     description: The IPv6 subnet CIDR block.
@@ -395,7 +395,7 @@ spec:
                     description: The ID of the IPv6 subnet (Native OpenStack API).
                     type: string
                   subnetId:
-                    description: 'The subnet (Native OpenStack API) ID. schema: Deprecated'
+                    description: 'The resource ID in UUID format. schema: Deprecated'
                     type: string
                 type: object
               conditions:

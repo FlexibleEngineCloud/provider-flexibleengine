@@ -10,64 +10,12 @@ spec:
   forProvider:
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: network_1
-    subnetIdSelector:
-      matchLabels:
         testing.upbound.io/example-name: subnet_1
 
 ---
 
 apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Network
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vip
-  labels:
-    testing.upbound.io/example-name: network_1
-  name: network-1
-spec:
-  forProvider:
-    adminStateUp: "true"
-    name: network_1
-
----
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: RouterInterface
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vip
-  labels:
-    testing.upbound.io/example-name: router_interface_1
-  name: router-interface-1
-spec:
-  forProvider:
-    routerIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: router_1
-    subnetIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: subnet_1
-
----
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: Router
-metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/vip
-  labels:
-    testing.upbound.io/example-name: router_1
-  name: router-1
-spec:
-  forProvider:
-    externalGateway: 0a2228f2-7f8a-45f1-8e09-9039e1d09975
-    name: router_1
-
----
-
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: NetworkingSubnet
+kind: VPCSubnet
 metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vip
@@ -76,12 +24,27 @@ metadata:
   name: subnet-1
 spec:
   forProvider:
-    cidr: 192.168.199.0/24
-    ipVersion: 4
-    name: subnet_1
-    networkIdSelector:
+    cidr: ${var.subnet_cidr}
+    gatewayIp: ${var.subnet_gateway_ip}
+    name: ${var.subnet_name}
+    vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: network_1
+        testing.upbound.io/example-name: vpc_1
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vip
+  labels:
+    testing.upbound.io/example-name: vpc_1
+  name: vpc-1
+spec:
+  forProvider:
+    cidr: ${var.vpc_cidr}
+    name: ${var.vpc_name}
 
 ---
 

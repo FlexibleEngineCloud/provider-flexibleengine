@@ -2871,13 +2871,13 @@ func (in *VIPObservation) DeepCopyInto(out *VIPObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Status != nil {
-		in, out := &in.Status, &out.Status
+	if in.MacAddress != nil {
+		in, out := &in.MacAddress, &out.MacAddress
 		*out = new(string)
 		**out = **in
 	}
-	if in.TenantID != nil {
-		in, out := &in.TenantID, &out.TenantID
+	if in.Status != nil {
+		in, out := &in.Status, &out.Status
 		*out = new(string)
 		**out = **in
 	}
@@ -2901,6 +2901,11 @@ func (in *VIPParameters) DeepCopyInto(out *VIPParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.IPVersion != nil {
+		in, out := &in.IPVersion, &out.IPVersion
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
@@ -2920,6 +2925,11 @@ func (in *VIPParameters) DeepCopyInto(out *VIPParameters) {
 		in, out := &in.NetworkIDSelector, &out.NetworkIDSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
+		*out = new(string)
+		**out = **in
 	}
 	if in.SubnetID != nil {
 		in, out := &in.SubnetID, &out.SubnetID

@@ -53,7 +53,8 @@ type StackParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Structure containing the template body. The template content must use the yaml syntax.
+	// Structure containing the template body.
+	// The template content must use the yaml syntax.
 	// +kubebuilder:validation:Optional
 	TemplateBody *string `json:"templateBody,omitempty" tf:"template_body,omitempty"`
 

@@ -118,7 +118,7 @@ spec:
                             job names are allowed but not recommended.'
                           type: string
                         jobType:
-                          description: 'Job type 1: MapReduce 2: Spark 3: Hive Script
+                          description: 'Job type. 1: MapReduce 2: Spark 3: Hive Script
                             4: HiveQL (not supported currently) 5: DistCp, importing
                             and exporting data (not supported in this API currently).
                             6: Spark Script 7: Spark SQL, submitting Spark SQL statements

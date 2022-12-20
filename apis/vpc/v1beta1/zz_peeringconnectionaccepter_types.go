@@ -43,7 +43,8 @@ type PeeringConnectionAccepterParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// The VPC Peering Connection ID to manage. Changing this creates a new VPC peering connection accepter.
+	// The VPC Peering Connection ID to manage.
+	// Changing this creates a new VPC peering connection accepter.
 	// +crossplane:generate:reference:type=PeeringConnection
 	// +kubebuilder:validation:Optional
 	VPCPeeringConnectionID *string `json:"vpcPeeringConnectionId,omitempty" tf:"vpc_peering_connection_id,omitempty"`

@@ -59,7 +59,7 @@ type PoolParameters struct {
 
 	// The Listener on which the members of the pool
 	// will be associated with. Changing this creates a new pool.
-	// Note:  One of LoadbalancerID or ListenerID must be provided.
+	// Note: One of LoadbalancerID or ListenerID must be provided.
 	// +crossplane:generate:reference:type=Listener
 	// +kubebuilder:validation:Optional
 	ListenerID *string `json:"listenerId,omitempty" tf:"listener_id,omitempty"`
@@ -74,7 +74,7 @@ type PoolParameters struct {
 
 	// The load balancer on which to provision this
 	// pool. Changing this creates a new pool.
-	// Note:  One of LoadbalancerID or ListenerID must be provided.
+	// Note: One of LoadbalancerID or ListenerID must be provided.
 	// +crossplane:generate:reference:type=LoadBalancer
 	// +kubebuilder:validation:Optional
 	LoadbalancerID *string `json:"loadbalancerId,omitempty" tf:"loadbalancer_id,omitempty"`

@@ -18,8 +18,8 @@ type BackupStrategyObservation struct {
 
 type BackupStrategyParameters struct {
 
-	// Specifies the number of days to retain the generated backup files. The
-	// value range is from 0 to 732.
+	// Specifies the number of days to retain the generated backup files.
+	// The value range is from 0 to 732.
 	// +kubebuilder:validation:Required
 	KeepDays *float64 `json:"keepDays" tf:"keep_days,omitempty"`
 
@@ -120,8 +120,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Required
 	Flavor []FlavorParameters `json:"flavor" tf:"flavor,omitempty"`
 
-	// Specifies the mode of the database instance. Changing this creates
-	// a new instance.
+	// Specifies the mode of the database instance. Changing this creates a new instance.
 	// +kubebuilder:validation:Required
 	Mode *string `json:"mode" tf:"mode,omitempty"`
 

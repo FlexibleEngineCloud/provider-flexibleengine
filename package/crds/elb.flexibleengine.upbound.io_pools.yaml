@@ -77,8 +77,8 @@ spec:
                     type: string
                   listenerId:
                     description: 'The Listener on which the members of the pool will
-                      be associated with. Changing this creates a new pool. Note:  One
-                      of LoadbalancerID or ListenerID must be provided.'
+                      be associated with. Changing this creates a new pool. Note:
+                      One of LoadbalancerID or ListenerID must be provided.'
                     type: string
                   listenerIdRef:
                     description: Reference to a Listener to populate listenerId.
@@ -155,7 +155,7 @@ spec:
                     type: object
                   loadbalancerId:
                     description: 'The load balancer on which to provision this pool.
-                      Changing this creates a new pool. Note:  One of LoadbalancerID
+                      Changing this creates a new pool. Note: One of LoadbalancerID
                       or ListenerID must be provided.'
                     type: string
                   loadbalancerIdRef:

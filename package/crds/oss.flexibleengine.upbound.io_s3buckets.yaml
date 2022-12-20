@@ -284,8 +284,8 @@ spec:
                             You can, however, suspend versioning on that bucket.
                           type: boolean
                         mfaDelete:
-                          description: Enable MFA delete for either Change the versioning
-                            state of your bucket or Permanently delete an object version.
+                          description: Enable MFA delete for either change the versioning
+                            state of your bucket or permanently delete an object version.
                             Default is false.
                           type: boolean
                       type: object

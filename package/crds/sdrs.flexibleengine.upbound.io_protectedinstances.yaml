@@ -75,7 +75,7 @@ spec:
                     type: boolean
                   deleteTargetServer:
                     description: Specifies whether to delete the target server. The
-                      default value is false.. Changing this creates a new instance.
+                      default value is false. Changing this creates a new instance.
                     type: boolean
                   description:
                     description: The description of a protected instance. Changing

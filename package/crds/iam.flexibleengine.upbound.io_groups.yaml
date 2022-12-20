@@ -70,8 +70,8 @@ spec:
                     description: The domain this group belongs to.
                     type: string
                   name:
-                    description: The name of the group.The length is less than or
-                      equal to 64 bytes
+                    description: The name of the group. The length is less than or
+                      equal to 64 bytes.
                     type: string
                 required:
                 - name

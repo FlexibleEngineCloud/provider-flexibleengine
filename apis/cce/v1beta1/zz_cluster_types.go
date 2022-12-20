@@ -69,7 +69,8 @@ type ClusterObservation struct {
 
 type ClusterParameters struct {
 
-	// Cluster annotation, key/value pair format. Changing this parameter will create a new cluster resource.
+	// Cluster annotation, key/value pair format.
+	// Changing this parameter will create a new cluster resource.
 	// +kubebuilder:validation:Optional
 	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
 
@@ -83,15 +84,19 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	AuthenticationMode *string `json:"authenticationMode,omitempty" tf:"authentication_mode,omitempty"`
 
-	// Charging mode of the cluster, which is 0 (on demand). Changing this parameter will create a new cluster resource.
+	// Charging mode of the cluster, which is 0 (on demand).
+	// Changing this parameter will create a new cluster resource.
 	// +kubebuilder:validation:Optional
 	BillingMode *float64 `json:"billingMode,omitempty" tf:"billing_mode,omitempty"`
 
-	// Cluster Type, possible values are VirtualMachine and BareMetal. Changing this parameter will create a new cluster resource.
+	// Cluster Type, possible values are VirtualMachine and BareMetal.
+	// Changing this parameter will create a new cluster resource.
 	// +kubebuilder:validation:Required
 	ClusterType *string `json:"clusterType" tf:"cluster_type,omitempty"`
 
-	// For the cluster version, possible values are listed on the CCE Cluster Version Release Notes. If this parameter is not set, the latest available version will be used.
+	// For the cluster version, possible values are listed on the
+	// CCE Cluster Version Release Notes.
+	// If this parameter is not set, the latest available version will be used.
 	// +kubebuilder:validation:Optional
 	ClusterVersion *string `json:"clusterVersion,omitempty" tf:"cluster_version,omitempty"`
 
@@ -147,7 +152,8 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	ServiceNetworkCidr *string `json:"serviceNetworkCidr,omitempty" tf:"service_network_cidr,omitempty"`
 
-	// The NETWORK ID of the subnet used to create the node. Changing this parameter will create a new cluster resource.
+	// The NETWORK ID of the subnet used to create the node.
+	// Changing this parameter will create a new cluster resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
@@ -180,7 +186,8 @@ type MastersObservation struct {
 
 type MastersParameters struct {
 
-	// Specifies the availability zone of the master node. Changing this creates a new cluster.
+	// Specifies the availability zone of the master node.
+	// Changing this creates a new cluster.
 	// +kubebuilder:validation:Optional
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 }

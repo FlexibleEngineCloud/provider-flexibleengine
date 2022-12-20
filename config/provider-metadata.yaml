@@ -25,7 +25,8 @@ resources:
             floating_ip_id: '- (Required) The ID corresponding to the Elastic IP Address (EIP).'
             http_request_pos_id: '- (Required) The position ID of number of HTTP requests. The value ranges from 1 to 15.'
             traffic_pos_id: '- (Required) The position ID of traffic. The value ranges from 1 to 9.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_antiddos_v1.myantiddos c1881895-cdcb-4d23-96cb-032e6a3ee667
     flexibleengine_api_gateway_api:
         subCategory: API Gateway
         description: '""page_title: "flexibleengine_api_gateway_api"'
@@ -129,7 +130,8 @@ resources:
             version: '- (Optional, String) Specifies the version of the API. A maximum of 16 characters are allowed.'
             visibility: '- (Required, Int) Specifies whether the API is available to the public. The value can only be 1 (public).'
             vpc_channel: '- (Optional, String) Specifies the VPC channel ID. This parameter and url_domain are alternative.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_api_gateway_api.api 774438a28a574ac8a496325d1bf51807
     flexibleengine_api_gateway_group:
         subCategory: API Gateway
         description: '""page_title: "flexibleengine_api_gateway_group"'
@@ -154,7 +156,8 @@ resources:
                 - (Optional, String, ForceNew) The region in which to create the API gateway group resource. If omitted, the
                 provider-level region will be used. Changing this creates a new gateway group resource.
             status: '- Status of the API group.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_api_gateway_group.apigw_group c8738f7c-a4b0-4c5f-a202-bda7dc4018a4
     flexibleengine_apig_api:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_api"'
@@ -440,7 +443,8 @@ resources:
             web_policy.vpc_channel_id: |-
                 - (Optional, String) Specifies the VPC channel ID. This parameter and backend_address are
                 alternative.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_api.test <instance_id>/<name>
     flexibleengine_apig_api_publishment:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_api_publishment"'
@@ -493,7 +497,10 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to publish APIs.
                 If omitted, the provider-level region will be used. Changing this will create a new publishment resource.
             version_id: '- (Optional, String) Specifies the version ID of the current publishment.'
-        importStatements: []
+        importStatements:
+            - |-
+              terraform import flexibleengine_apig_api_publishment.test
+              9b0a0a2f97aa43afbf7d852e3ba6a6f9/c5b32727186c4fe6b60408a8a297be09/9a3b3484c08545f9b9b0dcb2de0f5b8a
     flexibleengine_apig_application:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_application"'
@@ -541,7 +548,8 @@ resources:
                 - (Optional, String) Specifies the secret action to be done for the APIG application. The valid action
                 is RESET.
             update_time: '- Time when the API group was last modified, in RFC-3339 format.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_application.test <instance_id>/<id>
     flexibleengine_apig_custom_authorizer:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_custom_authorizer"'
@@ -615,7 +623,8 @@ resources:
                 - (Optional, String, ForceNew) Specifies the user data, which can contain a maximum of 2,048 characters.
                 The user data is used by APIG to invoke the specified authentication function when accessing the backend service.
                 Changing this will create a new custom authorizer resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_custom_authorizer.test <instance_id>/<name>
     flexibleengine_apig_environment:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_environment"'
@@ -649,7 +658,8 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) Specifies the region in which to create the APIG environment resource. If
                 omitted, the provider-level region will be used. Changing this will create a new APIG environment resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_environment.test <instance_id>/<id>
     flexibleengine_apig_group:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_group"'
@@ -713,7 +723,8 @@ resources:
             variable.value: |-
                 - (Required, String) Specifies the environment ariable value, which can contains of 1 to 255 characters. Only
                 letters, digits and special characters (_-/.:) are allowed.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_group.test <instance_id>/<id>
     flexibleengine_apig_instance:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_instance"'
@@ -745,7 +756,7 @@ resources:
                 vpc_id: var.vpc_id
         argumentDocs:
             available_zones: |-
-                - (Optional, List, ForceNew) Specifies an array of available zone names for the APIG dedicated
+                - (Required, List, ForceNew) Specifies an array of available zone names for the APIG dedicated
                 instance. Changing this will create a new APIG dedicated instance resource.
             bandwidth_size: |-
                 - (Optional, Int) Specifies the egress bandwidth size of the APIG dedicated instance. The range of
@@ -787,7 +798,8 @@ resources:
                 - (Required, String, ForceNew) Specifies an ID of the VPC used to create the APIG dedicated instance.
                 Changing this will create a new APIG dedicated instance resource.
             vpc_ingress_address: '- The ingress private ip address of vpc.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_instance.test de379eed30aa4d31a84f426ea3c7ef4e
     flexibleengine_apig_response:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_response"'
@@ -836,7 +848,8 @@ resources:
             rule.error_type: '- (Required, String) Specifies the type of the API custom response rule.'
             rule.status_code: '- (Optional, Int) Specifies the HTTP status code of the API response rule.'
             update_time: '- Time when the API custom response was last modified.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_response.test <instance_id>/<group_id>/<name>
     flexibleengine_apig_throttling_policy:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_throttling_policy"'
@@ -936,7 +949,8 @@ resources:
             user_throttles: |-
                 - (Optional, List) Specifies an array of one or more special throttling policies for IAM user limit.
                 The throttle object of the user_throttles structure is documented below.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_throttling_policy.test <instance_id>/<name>
     flexibleengine_apig_throttling_policy_associate:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_throttling_policy_associate"'
@@ -968,7 +982,8 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) Specifies the region where the API instance and throttling policy are located.
                 If omitted, the provider-level region will be used. Changing this will create a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_throttling_policy_associate.test <instance_id>/<policy_id>
     flexibleengine_apig_vpc_channel:
         subCategory: API Gateway (Dedicated APIG)
         description: '""page_title: "flexibleengine_apig_vpc_channel"'
@@ -1061,7 +1076,8 @@ resources:
                 - (Optional, Int) Specifies the unhealthy threshold, which refers to the number of consecutive
                 failed checks required for a backend server to be considered unhealthy.
                 The valid value is range from 2 to 10, default to 5.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_apig_vpc_channel.test <instance_id>/<name>
     flexibleengine_as_configuration_v1:
         subCategory: Auto Scaling (AS)
         description: '""page_title: "flexibleengine_as_configuration_v1"'
@@ -1399,7 +1415,8 @@ resources:
             type: |-
                 - (Required, String) Specifies the lifecycle hook type.
                 The valid values are following strings:
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_as_lifecycle_hook_v1.test <scaling_group_id>/<name>
     flexibleengine_as_policy_v1:
         subCategory: Auto Scaling (AS)
         description: '""page_title: "flexibleengine_as_policy_v1"'
@@ -1576,7 +1593,8 @@ resources:
             volume_type: |-
                 - (Optional) The type of volume to create.
                 Changing this creates a new volume.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d
     flexibleengine_cbr_policy:
         subCategory: Cloud Backup and Recovery (CBR)
         description: '""page_title: "flexibleengine_cbr_policy"'
@@ -1672,7 +1690,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the protection type of the CBR policy.
                 Valid values are backup and replication.
                 Changing this will create a new policy.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cbr_policy.test 4d2c2939-774f-42ef-ab15-e5b126b11ace
     flexibleengine_cbr_vault:
         subCategory: Cloud Backup and Recovery (CBR)
         description: '""page_title: "flexibleengine_cbr_vault"'
@@ -1788,7 +1807,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the object type of the CBR vault.
                 Changing this will create a new vault. Vaild values are as follows:
             used: '- The used capacity, in GB.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cbr_vault.test 01c33779-7c83-4182-8b6b-24a671fcedf8
     flexibleengine_cce_addon_v3:
         subCategory: Cloud Container Engine (CCE)
         description: '""page_title: "flexibleengine_cce_addon_v3"'
@@ -1843,7 +1863,10 @@ resources:
                 - (Optional, List, ForceNew) Add-on template installation parameters.
                 These parameters vary depending on the add-on. Changing this parameter will create a new resource.
             version: '- (Required, String, ForceNew) Version of the addon. Changing this parameter will create a new resource.'
-        importStatements: []
+        importStatements:
+            - |-
+              terraform import flexibleengine_cce_addon_v3.my_addon <cluster_id>/<id>
+              terraform import flexibleengine_cce_addon_v3.my_addon bb6923e4-b16e-11eb-b0cd-0255ac101da1/c7ecb230-b16f-11eb-b3b6-0255ac1015a3
     flexibleengine_cce_cluster_v3:
         subCategory: Cloud Container Engine (CCE)
         description: '""page_title: "flexibleengine_cce_cluster_v3"'
@@ -1867,14 +1890,18 @@ resources:
                 subnet_id: var.subnet_id
                 vpc_id: var.vpc_id
         argumentDocs:
-            annotations: '- (Optional) Cluster annotation, key/value pair format. Changing this parameter will create a new cluster resource.'
+            annotations: |-
+                - (Optional) Cluster annotation, key/value pair format.
+                Changing this parameter will create a new cluster resource.
             authenticating_proxy_ca: |-
                 - (Optional) CA root certificate provided in the authenticating_proxy mode. The CA root certificate
                 is encoded to the Base64 format. Changing this parameter will create a new cluster resource.
             authentication_mode: |-
                 - (Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to rbac.
                 Changing this parameter will create a new cluster resource.
-            billing_mode: '- (Optional) Charging mode of the cluster, which is 0 (on demand). Changing this parameter will create a new cluster resource.'
+            billing_mode: |-
+                - (Optional) Charging mode of the cluster, which is 0 (on demand).
+                Changing this parameter will create a new cluster resource.
             cce.s1.large: '- large-scale single cluster (up to 1000 nodes).'
             cce.s1.medium: '- medium-scale single cluster (up to 200 nodes).'
             cce.s1.small: '- small-scale single cluster (up to 50 nodes).'
@@ -1893,8 +1920,13 @@ resources:
             certificate_users.client_certificate_data: '- The client certificate data.'
             certificate_users.client_key_data: '- The client key data.'
             certificate_users.name: '- The user name.'
-            cluster_type: '- (Required) Cluster Type, possible values are VirtualMachine and BareMetal. Changing this parameter will create a new cluster resource.'
-            cluster_version: '- (Optional) For the cluster version, possible values are listed on the CCE Cluster Version Release Notes. If this parameter is not set, the latest available version will be used.'
+            cluster_type: |-
+                - (Required) Cluster Type, possible values are VirtualMachine and BareMetal.
+                Changing this parameter will create a new cluster resource.
+            cluster_version: |-
+                - (Optional) For the cluster version, possible values are listed on the
+                CCE Cluster Version Release Notes.
+                If this parameter is not set, the latest available version will be used.
             container_network_cidr: '- (Optional) Container network segment. Changing this parameter will create a new cluster resource.'
             container_network_type: '- (Required) Container network parameters. Possible values:'
             description: '- (Optional) Cluster description.'
@@ -1911,17 +1943,22 @@ resources:
             kube_proxy_mode: '- (Optional, String, ForceNew) Service forwarding mode. Two modes are available:'
             labels: '- (Optional) Cluster tag, key/value pair format. Changing this parameter will create a new cluster resource.'
             masters: '- (Optional, List, ForceNew) Advanced configuration of master nodes. Changing this creates a new cluster.'
-            masters.availability_zone: '- (Optional, String, ForceNew) Specifies the availability zone of the master node. Changing this creates a new cluster.'
+            masters.availability_zone: |-
+                - (Optional, String, ForceNew) Specifies the availability zone of the master node.
+                Changing this creates a new cluster.
             name: '- (Required) Cluster name. Changing this parameter will create a new cluster resource.'
             overlay_l2: '- An overlay_l2 network built for containers by using Open vSwitch(OVS)'
             security_group_id: '- Security group ID of the cluster.'
             service_network_cidr: '- (Optional) Service network segment. Changing this parameter will create a new cluster resource.'
             status: '-  Cluster status information.'
-            subnet_id: '- (Required) The NETWORK ID of the subnet used to create the node. Changing this parameter will create a new cluster resource.'
+            subnet_id: |-
+                - (Required) The NETWORK ID of the subnet used to create the node.
+                Changing this parameter will create a new cluster resource.
             underlay_ipvlan: '- An underlay_ipvlan network built for bare metal servers by using ipvlan.'
             vpc-router: '- An vpc-router network built for containers by using ipvlan and custom VPC routes.'
             vpc_id: '- (Required) The ID of the VPC used to create the node. Changing this parameter will create a new cluster resource.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
     flexibleengine_cce_namespace:
         subCategory: Cloud Container Engine (CCE)
         description: '""page_title: "flexibleengine_cce_namespace"'
@@ -1963,7 +2000,10 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to create the namespace resource.
                 If omitted, the provider-level region will be used. Changing this will create a new namespace resource.
             status: '- The current phase of the namespace.'
-        importStatements: []
+        importStatements:
+            - |-
+              terraform import flexibleengine_cce_namespace.test <cluster_id>/<id>
+              terraform import flexibleengine_cce_namespace.test bb6923e4-b16e-11eb-b0cd-0255ac101da1/test-namespace
     flexibleengine_cce_node_pool_v3:
         subCategory: Cloud Container Engine (CCE)
         description: '""page_title: "flexibleengine_cce_node_pool_v3"'
@@ -2073,7 +2113,8 @@ resources:
                 - (Required, String) A value must start with a letter or digit and can contain a maximum of 63 characters,
                 including letters, digits, hyphens (-), underscores (_), and periods (.).
             type: '- (Optional, String, ForceNew) Node Pool type. Possible values are: "vm" and "ElasticBMS".'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster_id>/<id>
     flexibleengine_cce_node_v3:
         subCategory: Cloud Container Engine (CCE)
         description: '""page_title: "flexibleengine_cce_node_v3"'
@@ -2118,6 +2159,9 @@ resources:
             bandwidth_charge_mode: '- (Optional) Bandwidth billing type. Changing this parameter will create a new resource.'
             bandwidth_size: '- (Optional) Bandwidth size. Changing this parameter will create a new resource.'
             cluster_id: '- (Required) ID of the cluster. Changing this parameter will create a new resource.'
+            data_volumes: |-
+                - (Required) Represents the data disk to be created.
+                Changing this parameter will create a new resource.
             dockerBaseSize: '- The available disk space of a single docker container on the node in device mapper mode.'
             ecs_performance_type: |-
                 - (Optional) Classification of cloud server specifications.
@@ -2144,6 +2188,7 @@ resources:
                 - (Optional) The maximum number of instances a node is allowed to create.
                 Changing this parameter will create a new resource.
             name: '- (Optional) Node Name.'
+            op_svc_evs: and KMS Administrator, respectively.
             os: |-
                 - (Optional) Operating System of the node, possible values are EulerOS 2.2 and CentOS 7.6. Defaults to EulerOS 2.2.
                 Changing this parameter will create a new resource.
@@ -2157,16 +2202,24 @@ resources:
             product_id: '- (Optional) The Product ID. Changing this parameter will create a new resource.'
             public_ip: '- Public IP of the CCE node.'
             public_key: '- (Optional) The Public key. Changing this parameter will create a new resource.'
+            root_volume: |-
+                - (Required) It corresponds to the system disk related configuration.
+                Changing this parameter will create a new resource.
             server_id: '- ID of the ECS instance associated with the node.'
             sharetype: '- (Optional) Bandwidth sharing type. Changing this parameter will create a new resource.'
             size: '- (Required) Specifies the disk size in GB.'
             status: '-  Node status information.'
             tags: '- (Optional) VM tag, key/value pair format.'
+            taints: |-
+                - (Optional) You can add taints to created nodes to configure anti-affinity.
+                Changing this parameter will create a new resource.
+                Each taint contains the following parameters:
             value: |-
                 - (Required) A value must start with a letter or digit and can contain a maximum of 63 characters,
                 including letters, digits, hyphens (-), underscores (_), and periods (.).
             volumetype: '- (Required) Specifies the disk type.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cce_node_v3.node_1 1c4a7f7c-5b8f-11e8-9c2d-525400bd8000/1c4a7f7c-5b8f-11e8-9c2d-525400bd8000
     flexibleengine_cce_pvc:
         subCategory: Cloud Container Engine (CCE)
         description: '""page_title: "flexibleengine_cce_pvc"'
@@ -2228,6 +2281,8 @@ resources:
                 cluster_id: var.cluster_id
                 name: var.pvc_name
                 namespace: var.namespace
+            - name: test
+              manifest: '{}'
         argumentDocs:
             access_modes: |-
                 - (Required, List, ForceNew) Specifies the desired access modes the volume should have.
@@ -2260,7 +2315,10 @@ resources:
             storage_class_name: |-
                 - (Required, String, ForceNew) Specifies the type of the storage bound to the CCE PVC.
                 The valid values are as follows:
-        importStatements: []
+        importStatements:
+            - |-
+              terraform import flexibleengine_cce_pvc.test <cluster_id>/<namespace_name>/<name>
+              terraform import flexibleengine_cce_pvc.test 5c20fdad-7288-11eb-b817-0255ac10158b/default/pvc_name
     flexibleengine_ces_alarmrule:
         subCategory: Cloud Eye (CES)
         description: '""page_title: "flexibleengine_ces_alarmrule"'
@@ -2395,7 +2453,8 @@ resources:
             update_time: |-
                 - Indicates the time when the alarm status changed.
                 The value is a UNIX timestamp and the unit is ms.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_ces_alarmrule.alarm_rule al1619678242900OxEaaODM2
     flexibleengine_compute_bms_server_v2:
         subCategory: Bare Metal Server (BMS)
         description: '""page_title: "flexibleengine_compute_bms_server_v2"'
@@ -2604,7 +2663,8 @@ resources:
                 Keypairs are associated with accounts, but a Compute client is needed to
                 create one. If omitted, the region argument of the provider is used.
                 Changing this creates a new floatingip_associate.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_compute_floatingip_associate_v2.fip_1 <floating_ip>/<instance_id>/<fixed_ip>
     flexibleengine_compute_floatingip_v2:
         subCategory: Elastic Cloud Server (ECS)
         description: '""page_title: "flexibleengine_compute_floatingip_v2"'
@@ -2626,7 +2686,8 @@ resources:
                 a compute instance. If omitted, the region argument of the provider
                 is used. Changing this creates a new floating IP (which may or may not
                 have a different address).
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_compute_floatingip_v2.floatip_1 89c60255-9bd6-460c-822a-e2b959ede9d2
     flexibleengine_compute_instance_v2:
         subCategory: Elastic Cloud Server (ECS)
         description: '""page_title: "flexibleengine_compute_instance_v2"'
@@ -2882,6 +2943,39 @@ resources:
                   ],
                   "user_data": "#cloud-config\nhostname: instance_1.example.com\nfqdn: instance_1.example.com"
                 }
+            - name: my_instance
+              manifest: '{}'
+            - name: foo
+              manifest: |-
+                {
+                  "block_device": [
+                    {
+                      "boot_index": 0,
+                      "delete_on_termination": true,
+                      "destination_type": "local",
+                      "source_type": "image",
+                      "uuid": "\u003cimage uuid\u003e"
+                    },
+                    {
+                      "boot_index": -1,
+                      "delete_on_termination": true,
+                      "destination_type": "local",
+                      "source_type": "blank",
+                      "volume_size": 1
+                    },
+                    {
+                      "boot_index": -1,
+                      "delete_on_termination": true,
+                      "destination_type": "local",
+                      "source_type": "blank",
+                      "volume_size": 1
+                    }
+                  ],
+                  "name": "terraform-test",
+                  "security_groups": [
+                    "default"
+                  ]
+                }
             - name: instance_1
               manifest: |-
                 {
@@ -3064,7 +3158,8 @@ resources:
             volume_attached.size: '- The volume size on that attachment.'
             volume_attached.type: '- The volume type on that attachment.'
             volume_attached.uuid: '- The volume id on that attachment.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_compute_instance_v2.my_instance b11b407c-e604-4e8d-8bc4-92398320b847
     flexibleengine_compute_interface_attach_v2:
         subCategory: Elastic Cloud Server (ECS)
         description: '""page_title: "flexibleengine_compute_interface_attach_v2"'
@@ -3232,19 +3327,20 @@ resources:
         argumentDocs:
             fixed_ip: |-
                 - (Optional) An IP address to assosciate with the port.
-                NOTE: This option cannot be used with port_id. You must specifiy a network_id. The IP address must lie in a range on the supplied network.
+                This option cannot be used with port_id. You must specify a network_id.
+                The IP address must lie in a range on the supplied network.
             instance_id: '- (Required) The ID of the Instance to attach the Port or Network to.'
             network_id: |-
                 - (Optional) The ID of the Network to attach to an Instance. A port will be created automatically.
-                NOTE: This option and port_id are mutually exclusive.
+                This option and port_id are mutually exclusive.
             port_id: |-
                 - (Optional) The ID of the Port to attach to an Instance.
-                NOTE: This option and network_id are mutually exclusive.
+                This option and network_id are mutually exclusive.
             region: |-
                 - (Optional) The region in which to create the interface attachment.
-                If omitted, the region argument of the provider is used. Changing this
-                creates a new attachment.
-        importStatements: []
+                If omitted, the region argument of the provider is used. Changing this creates a new attachment.
+        importStatements:
+            - terraform import flexibleengine_compute_interface_attach_v2.ai_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
     flexibleengine_compute_keypair_v2:
         subCategory: Elastic Cloud Server (ECS)
         description: '""page_title: "flexibleengine_compute_keypair_v2"'
@@ -3280,7 +3376,8 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to create the keypair resource.
                 If omitted, the region argument of the provider is used.
                 Changing this creates a new keypair.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_compute_keypair_v2.my-keypair test-keypair
     flexibleengine_compute_servergroup_v2:
         subCategory: Elastic Cloud Server (ECS)
         description: '""page_title: "flexibleengine_compute_servergroup_v2"'
@@ -3309,7 +3406,8 @@ resources:
                 If omitted, the region argument of the provider is used. Changing
                 this creates a new server group.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_compute_servergroup_v2.test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf
     flexibleengine_compute_volume_attach_v2:
         subCategory: Elastic Cloud Server (ECS)
         description: '""page_title: "flexibleengine_compute_volume_attach_v2"'
@@ -3364,8 +3462,8 @@ resources:
         argumentDocs:
             device: |-
                 - (Optional) The device of the volume attachment (ex: /dev/vdc).
-                NOTE: Being able to specify a device is dependent upon the hypervisor in
-                use. There is a chance that the device specified in Terraform will not be
+                Being able to specify a device is dependent upon the hypervisor in use.
+                There is a chance that the device specified in Terraform will not be
                 the same device the hypervisor chose. If this happens, Terraform will wish
                 to update the device upon subsequent applying which will cause the volume
                 to be detached and reattached indefinitely. Please use with caution.
@@ -3376,7 +3474,8 @@ resources:
                 region argument of the provider is used. Changing this creates a
                 new volume attachment.
             volume_id: '- (Required) The ID of the Volume to attach to an Instance.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
     flexibleengine_csbs_backup_policy_v1:
         subCategory: Cloud Server Backup Service (CSBS)
         description: '""page_title: "flexibleengine_csbs_backup_policy_v1"'
@@ -3408,19 +3507,27 @@ resources:
                 resource.name: var.resource_name
         argumentDocs:
             common: '- (Optional) General backup policy parameters, which are blank by default.'
-            description: '- (Optional) Backup policy description. The value consists of 0 to 255 characters and must not contain a greater-than sign (>) or less-than sign (<).'
+            description: |-
+                - (Optional) Backup policy description. The value consists of 0 to 255 characters and
+                must not contain a greater-than sign (>) or less-than sign (<).
             id: '- Backup Policy ID.'
-            name: '- (Required) Specifies the name of backup policy. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-).'
+            name: |-
+                - (Required) Specifies the name of backup policy. The value consists of 1 to 255 characters and
+                can contain only letters, digits, underscores (_), and hyphens (-).
             provider_id: '- (Required) Specifies backup provider ID. Default value is fc4d5750-22e7-4798-8a46-f48f62c4c1da'
             resource: 'block supports the following arguments:'
             resource.id: '- (Required) Specifies the ID of the object to be backed up.'
             resource.name: '- (Required) Specifies backup object name.'
             resource.type: '- (Required) Entity object type of the backup object. If the type is VMs, the value is OS::Nova::Server.'
             scheduled_operation: 'block supports the following arguments:'
-            scheduled_operation.description: '- (Optional) Specifies Scheduling period description.The value consists of 0 to 255 characters and must not contain a greater-than sign (>) or less-than sign (<).'
+            scheduled_operation.description: |-
+                - (Optional) Specifies Scheduling period description.The value consists of 0 to 255 characters and
+                must not contain a greater-than sign (>) or less-than sign (<).
             scheduled_operation.enabled: '- (Optional) Specifies whether the scheduling period is enabled. Default value is true'
             scheduled_operation.max_backups: '- (Optional) Specifies maximum number of backups that can be automatically created for a backup object.'
-            scheduled_operation.name: '- (Optional) Specifies Scheduling period name.The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-).'
+            scheduled_operation.name: |-
+                - (Optional) Specifies Scheduling period name.The value consists of 1 to 255 characters and
+                can contain only letters, digits, underscores (_), and hyphens (-).
             scheduled_operation.operation_type: '- (Required) Specifies Operation type, which can be backup.'
             scheduled_operation.permanent: '- (Optional) Specifies whether backups are permanently retained.'
             scheduled_operation.retention_duration_days: '- (Optional) Specifies duration of retaining a backup, in days.'
@@ -3429,7 +3536,8 @@ resources:
             trigger_id: '-  Specifies Scheduler ID.'
             trigger_name: '-  Specifies Scheduler name.'
             trigger_type: '-  Specifies Scheduler type.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_csbs_backup_policy_v1.backup_policy_v1 7056d636-ac60-4663-8a6c-82d3c32c1c64
     flexibleengine_csbs_backup_v1:
         subCategory: Cloud Server Backup Service (CSBS)
         description: '""page_title: "flexibleengine_csbs_backup_v1"'
@@ -3447,11 +3555,17 @@ resources:
                 backup_name: var.backup_name
                 resource_id: var.resource_id
         argumentDocs:
-            backup_name: '- (Optional) Name for the backup. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-). Changing backup_name creates a new backup.'
+            backup_name: |-
+                - (Optional) Name for the backup. The value consists of 1 to 255 characters and can contain
+                only letters, digits, underscores (_), and hyphens (-). Changing backup_name creates a new backup.
             backup_record_id: '- Specifies backup record ID.'
-            description: '- (Optional) Backup description. The value consists of 0 to 255 characters and must not contain a greater-than sign (>) or less-than sign (<). Changing description creates a new backup.'
+            description: |-
+                - (Optional) Backup description. The value consists of 0 to 255 characters and must not contain
+                a greater-than sign (>) or less-than sign (<). Changing description creates a new backup.
             resource_id: '- (Required) ID of the target to which the backup is restored. Changing this creates a new backup.'
-            resource_type: '- (Optional) Type of the target to which the backup is restored. The default value is OS::Nova::Server for an ECS. Changing this creates a new backup.'
+            resource_type: |-
+                - (Optional) Type of the target to which the backup is restored. The default value is
+                OS::Nova::Server for an ECS. Changing this creates a new backup.
             status: '- It specifies the status of backup.'
             vm_metadata: 'block supports the following arguments:'
             vm_metadata.cloud_service_type: '- Specifies ECS type.'
@@ -3476,7 +3590,8 @@ resources:
             volume_backups.source_volume_size: '-  Shows source volume size in GB.'
             volume_backups.space_saving_ratio: '-  Specifies space saving rate.'
             volume_backups.status: '-  Status of backup Volume.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_csbs_backup_v1.backup_v1.backup_v1 7056d636-ac60-4663-8a6c-82d3c32c1c64
     flexibleengine_cse_microservice:
         subCategory: Cloud Service Engine (CSE)
         description: '""page_title: "flexibleengine_cse_microservice"'
@@ -3547,7 +3662,9 @@ resources:
             version: |-
                 - (Required, String, ForceNew) Specifies the version of the dedicated microservice.
                 Changing this will create a new microservice.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cse_microservice.test https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d
+            - terraform import flexibleengine_cse_microservice.test 'https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/root/Test!123'
     flexibleengine_cse_microservice_engine:
         subCategory: Cloud Service Engine (CSE)
         description: '""page_title: "flexibleengine_cse_microservice_engine"'
@@ -3568,6 +3685,8 @@ resources:
               references:
                 name: var.engine_name
                 network_id: var.network_id
+            - name: test
+              manifest: '{}'
         argumentDocs:
             "8": to 32 characters long.
             admin_pass: |-
@@ -3620,7 +3739,8 @@ resources:
             version: |-
                 - (Optional, String, ForceNew) Specifies the version of the dedicated microservice engine. The value can be:
                 CSE. Defaults to: CSE. Changing this will create a new engine.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cse_microservice_engine.test eddc5d42-f9d5-4f8e-984b-d6f3e088561c
     flexibleengine_cse_microservice_instance:
         subCategory: Cloud Service Engine (CSE)
         description: '""page_title: "flexibleengine_cse_microservice_instance"'
@@ -3759,7 +3879,9 @@ resources:
             version: |-
                 - (Optional, String, ForceNew) Specifies the verison of the dedicated microservice instance.
                 Changing this will create a new microservice instance.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cse_microservice_instance.test https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/336e7428dd9411eca913fa163e7364b7
+            - terraform import flexibleengine_cse_microservice_instance.test 'https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/336e7428dd9411eca913fa163e7364b7/root/Test!123'
     flexibleengine_css_cluster_v1:
         subCategory: Cloud Search Service (CSS)
         description: '""page_title: "flexibleengine_css_cluster_v1"'
@@ -3772,8 +3894,8 @@ resources:
                 Changing this parameter will create a new resource.
             cluster_name: '- Indicates the CSS cluster name.'
             description: |-
-                - (Optional) Specifies the description of a snapshot. The value contains 0 to 256 characters, and angle brackets (<) and (>) are not allowed.
-                Changing this parameter will create a new resource.
+                - (Optional) Specifies the description of a snapshot. The value contains 0 to 256 characters,
+                and angle brackets (<) and (>) are not allowed. Changing this parameter will create a new resource.
             indices: |-
                 - (Optional) Specifies the name of the index to be backed up. Multiple index names
                 are separated by commas (,). By default, data of all indices is backed up. You can use the
@@ -3788,7 +3910,8 @@ resources:
                 lowercase letters, digits, hyphens (-), and underscores (_).
                 Changing this parameter will create a new resource.
             status: '- Indicates the snapshot status.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_css_snapshot_v1.snapshot_1 <cluster_id>/<snapshot_id>
     flexibleengine_cts_tracker_v1:
         subCategory: Cloud Trace Service (CTS)
         description: '""page_title: "flexibleengine_cts_tracker_v1"'
@@ -3810,7 +3933,8 @@ resources:
                 - The status of a tracker. The value should be enabled when creating a tracker,
                 and can be enabled or disabled when updating it.
             tracker_name: '- The tracker name. Currently, only tracker system is available.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_cts_tracker_v1.tracker system
     flexibleengine_dcs_instance_v1:
         subCategory: Distributed Cache Service (DCS)
         description: '""page_title: "flexibleengine_dcs_instance_v1"'
@@ -4007,7 +4131,8 @@ resources:
             user_id: '- Indicates a user ID.'
             vpc_id: '- (Required) Specifies the id of the VPC. Changing this creates a new instance.'
             vpc_name: '- Indicates the name of a vpc.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dcs_instance_v1.instance_1 8a1b2c3d-4e5f-6g7h-8i9j-0k1l2m3n4o5p
     flexibleengine_dds_database_role:
         subCategory: Document Database Service (DDS)
         description: '""page_title: "flexibleengine_dds_database_role"'
@@ -4102,6 +4227,8 @@ resources:
                 password: var.user_password
                 roles.db_name: var.owned_role_db_name
                 roles.name: var.owned_role_name
+            - name: test
+              manifest: '{}'
         argumentDocs:
             ~!@#%^*-_=+?: ).
             "8": to 32 characters long.
@@ -4243,10 +4370,10 @@ resources:
             backup_strategy: |-
                 - (Optional) Specifies the advanced backup policy. The structure is
                 described below. Changing this creates a new instance.
-            backup_strategy .keep_days: |-
-                - (Optional) Specifies the number of days to retain the generated backup files. The
-                value range is from 0 to 732.
-            backup_strategy .start_time: |-
+            backup_strategy.keep_days: |-
+                - (Optional) Specifies the number of days to retain the generated backup files.
+                The value range is from 0 to 732.
+            backup_strategy.start_time: |-
                 - (Required) Specifies the backup time window. Automated backups will be triggered
                 during the backup time window. The value cannot be empty. It must be a valid value in the
                 "hh:mm-HH:MM" format. The current time is in the UTC format.
@@ -4271,9 +4398,7 @@ resources:
             flavor.storage: '- (Optional) Specifies the disk type. Valid value: ULTRAHIGH which indicates the type SSD.'
             flavor.type: '- (Required) Specifies the node type. Valid value: mongos, shard, config, replica.'
             id: '- The resource ID in UUID format.'
-            mode: |-
-                - (Required) Specifies the mode of the database instance. Changing this creates
-                a new instance.
+            mode: '- (Required) Specifies the mode of the database instance. Changing this creates a new instance.'
             name: |-
                 - (Required) Specifies the DB instance name. The DB instance name of the same
                 type is unique in the same tenant. Changing this creates a new instance.
@@ -4372,7 +4497,8 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) Specifies the region in which to create the DLI database resource.
                 If omitted, the provider-level region will be used. Changing this parameter will create a new database resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dli_database.test terraform_test
     flexibleengine_dli_flinksql_job:
         subCategory: Data Lake Insight (DLI)
         description: '""page_title: "flexibleengine_dli_flinksql_job"'
@@ -4527,8 +4653,8 @@ resources:
             id: '- Specifies a resource ID in UUID format.'
             name: |-
                 - (Required, String, ForceNew) Name of a queue. Name of a newly created resource queue.
-                The name can contain only digits, letters, and underscores (),
-                but cannot contain only digits or start with an underscore ().
+                The name can contain only digits, letters, and underscores (_),
+                but cannot contain only digits or start with an underscore (_).
                 Length range: 1 to 128 characters. Changing this parameter will create a new resource.
             queue_type: |-
                 - (Optional, String, ForceNew) Indicates the queue type.
@@ -4537,6 +4663,7 @@ resources:
                 - (Optional, String, ForceNew) Queue resource mode.
                 Changing this parameter will create a new resource.
                 The options are as follows:
+            sql: .
             tags: '- (Optional, Map, ForceNew) Label of a queue. Changing this parameter will create a new resource.'
             update: '- Default is 45 minute.'
         importStatements: []
@@ -4794,6 +4921,8 @@ resources:
                 security_group_id: var.security_group_id
                 storage_space: data.flexibleengine_dms_product.test.storage_space
                 vpc_id: var.vpc_id
+            - name: instance_1
+              manifest: '{}'
         argumentDocs:
             access_user: |-
                 - (Optional, String, ForceNew) Specifies a username who can accesse the instance with
@@ -4873,7 +5002,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the ID of a VPC.
                 Changing this creates a new instance resource.
             vpc_name: '- Indicates the name of a vpc.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dms_kafka_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3
     flexibleengine_dms_kafka_topic:
         subCategory: Distributed Message Service (DMS)
         description: '""page_title: "flexibleengine_dms_kafka_topic"'
@@ -4891,8 +5021,8 @@ resources:
                 instance_id: var.kafka_instance_id
         argumentDocs:
             aging_time: |-
-                - (Optional, Int, ForceNew) Specifies the aging time in hours. The value ranges from 1 to 720 and defaults to 72.
-                Changing this creates a new resource.
+                - (Optional, Int, ForceNew) Specifies the aging time in hours.
+                The value ranges from 1 to 720 and defaults to 72. Changing this creates a new resource.
             id: '- The resource ID which equals to the topic name.'
             instance_id: |-
                 - (Required, String, ForceNew) Specifies the ID of the DMS Kafka instance to which the topic belongs.
@@ -4902,8 +5032,8 @@ resources:
                 consists of 4 to 64 characters, and supports only letters, digits, hyphens (-) and underscores (_).
                 Changing this creates a new resource.
             partitions: |-
-                - (Optional, Int, ForceNew) Specifies the partition number. The value ranges from 1 to 50 and defaults to 3.
-                Changing this creates a new resource.
+                - (Optional, Int, ForceNew) Specifies the partition number.
+                The value ranges from 1 to 50 and defaults to 3. Changing this creates a new resource.
             region: |-
                 - (Optional, String, ForceNew) The region in which to create the DMS Kafka topic resource.
                 If omitted, the provider-level region will be used. Changing this creates a new resource.
@@ -5000,7 +5130,8 @@ resources:
             ttl: |-
                 - (Optional) The time to live (TTL) of the record set (in seconds). The value
                 range is 300–2147483647. The default value is 300.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dns_ptrrecord_v2.ptr_1 eu-west-0:d90ce693-5ccf-4136-a0ed-152ce412b6b9
     flexibleengine_dns_recordset_v2:
         subCategory: Domain Name Service (DNS)
         description: '""page_title: "flexibleengine_dns_recordset_v2"'
@@ -5053,7 +5184,8 @@ resources:
             zone_id: |-
                 - (Required) The ID of the zone in which to create the record set.
                 Changing this creates a new DNS  record set.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dns_recordset_v2.recordset_1 <zone_id>/<recordset_id>
     flexibleengine_dns_zone_v2:
         subCategory: Domain Name Service (DNS)
         description: '""page_title: "flexibleengine_dns_zone_v2"'
@@ -5107,7 +5239,8 @@ resources:
             zone_type: |-
                 - (Optional) The type of zone. Can either be public or private.
                 Changing this creates a new DNS zone.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dns_zone_v2.zone_1 <zone_id>
     flexibleengine_drs_job:
         subCategory: Data Replication Service (DRS)
         description: '""page_title: "flexibleengine_drs_job"'
@@ -5168,6 +5301,8 @@ resources:
                 source_db.user: var.source_db_user
               dependencies:
                 flexibleengine_rds_instance_v3.mysql: '{}'
+            - name: test
+              manifest: '{}'
         argumentDocs:
             create: '- Default is 30 minute.'
             created_at: '- Create time. The format is ISO8601:YYYY-MM-DDThh:mm:ssZ'
@@ -5372,13 +5507,21 @@ resources:
                     }
         argumentDocs:
             created_at: '- The creation time of the replication consistency group.'
-            description: '- (Optional) The description of the replication consistency group. The description can contain a maximum of 255 bytes.'
+            description: |-
+                - (Optional) The description of the replication consistency group.
+                The description can contain a maximum of 255 bytes.
             failure_detail: '- The returned error code if the replication consistency group status is error.'
             fault_level: '- The fault level of the replication consistency group.'
             name: '- (Optional) The name of the replication consistency group. The name can contain a maximum of 255 bytes.'
-            priority_station: '- (Required) The primary AZ of the replication consistency group. That is the AZ where the production disk belongs.'
-            replication_ids: '- (Required) An array of one or more IDs of the EVS replication pairs used to create the replication consistency group.'
-            replication_model: '- (Optional) The type of the created replication consistency group. Currently only type hypermetro is supported.'
+            priority_station: |-
+                - (Required) The primary AZ of the replication consistency group. That is the AZ where
+                the production disk belongs.
+            replication_ids: |-
+                - (Required) An array of one or more IDs of the EVS replication pairs used to create
+                the replication consistency group.
+            replication_model: |-
+                - (Optional) The type of the created replication consistency group.
+                Currently only type hypermetro is supported.
             replication_status: '- The replication status of the replication consistency group.'
             status: '- The status of the replication consistency group.'
             updated_at: '- The update time of the replication consistency group.'
@@ -5457,7 +5600,8 @@ resources:
                 warehouse cluster. A password must conform to the following rules:
             version: '- Data warehouse version'
             vpc_id: '- (Required) VPC ID, which is used for configuring cluster network.'
-        importStatements: []
+        importStatements:
+            - $ terraform import flexibleengine_dws_cluster_v1.cluster 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
     flexibleengine_elb_backend:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_elb_backend"'
@@ -5530,7 +5674,8 @@ resources:
                 The value can be one of the following:
             update: '- Default is 10 minute.'
             update_time: '- Indicates the update time.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_elb_certificate.certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
     flexibleengine_elb_health:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_elb_health"'
@@ -5619,7 +5764,8 @@ resources:
                 - (Optional, String, ForceNew) The region in which to create the ip group resource. If omitted, the
                 provider-level region will be used. Changing this creates a new ip group.
             update: '- Default is 10 minute.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_elb_ipgroup.group_1 5c20fdad-7288-11eb-b817-0255ac10158b
     flexibleengine_elb_listener:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_elb_listener"'
@@ -5834,7 +5980,8 @@ resources:
             status: '- Indicates the status of an enterprise project.'
             type: '- Indicates the type of the enterprise project.'
             updated_at: '- Indicates the UTC time when the enterprise project was modified. Example: 2018-05-28T02:21:36Z'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_enterprise_project.test 88f889c7-270e-4e77-8230-bf7db08d9b0e
     flexibleengine_fgs_dependency:
         subCategory: FunctionGraph
         description: '""page_title: "flexibleengine_fgs_dependency"'
@@ -5881,7 +6028,8 @@ resources:
                 Python3.6, Go1.8, Go1.x, C#(.NET Core 2.0), C#(.NET Core 2.1), C#(.NET Core 3.1) and
                 PHP7.3.
             size: '- The dependency package size in bytes.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_fgs_dependency.test 795e722f-0c23-41b6-a189-dcd56f889cf6
     flexibleengine_fgs_function:
         subCategory: FunctionGraph
         description: '""page_title: "flexibleengine_fgs_function"'
@@ -6073,7 +6221,8 @@ resources:
                 parsed with Terraform .
             version: '- The version of the function'
             vpc_id: '- (Optional, String) Specifies the ID of VPC.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_fgs_function.my-func 7117d38e-4c8f-4624-a505-bd96b97d024c
     flexibleengine_fgs_trigger:
         subCategory: FunctionGraph
         description: '""page_title: "flexibleengine_fgs_trigger"'
@@ -6366,7 +6515,8 @@ resources:
                 to create a firewall group for another tenant. Changing this creates a new
                 firewall group.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_fw_firewall_group_v2.firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97
     flexibleengine_fw_policy_v2:
         subCategory: Network ACL
         description: '""page_title: "flexibleengine_fw_policy_v2"'
@@ -6430,7 +6580,8 @@ resources:
                 shared status of an existing firewall policy. Only administrative users
                 can specify if the policy should be shared.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_fw_policy_v2.policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0
     flexibleengine_fw_rule_v2:
         subCategory: Network ACL
         description: '""page_title: "flexibleengine_fw_rule_v2"'
@@ -6495,7 +6646,8 @@ resources:
                 wants to create a firewall rule for another tenant. Changing this creates a
                 new firewall rule.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
     flexibleengine_identity_agency_v3:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_agency_v3"'
@@ -6565,7 +6717,8 @@ resources:
                 permissions to agency on project. The structure is documented below.
             project_role.project: '- (Required) Specifies the name of project.'
             project_role.roles: '- (Required) Specifies an array of role names.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_identity_agency_v3.agency 0b97661f9900f23f4fc2c00971ea4dc0
     flexibleengine_identity_group_membership_v3:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_group_membership_v3"'
@@ -6620,10 +6773,9 @@ resources:
         argumentDocs:
             description: '- (Optional) A description of the group.'
             domain_id: '- (Optional) The domain this group belongs to.'
-            name: |-
-                - (Required) The name of the group.The length is less than or equal
-                to 64 bytes
-        importStatements: []
+            name: '- (Required) The name of the group. The length is less than or equal to 64 bytes.'
+        importStatements:
+            - terraform import flexibleengine_identity_group_v3.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2
     flexibleengine_identity_project_v3:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_project_v3"'
@@ -6644,7 +6796,8 @@ resources:
                 - (Required) The name of the project. The length is less than or equal
                 to 64 bytes. Name mut be prefixed with a valid region name (eg. eu-west-0_project_1).
             parent_id: '- The parent of this project.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_identity_project_v3.project_1 <ID>
     flexibleengine_identity_provider:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_provider"'
@@ -6735,7 +6888,8 @@ resources:
             remote.condition: '- The condition of conversion rule.'
             remote.value: '- The rule is matched only if the specified strings appear in the attribute type.'
             sso_type: '- The single sign-on type of the identity provider.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_identity_provider.provider_1 example_com_provider_saml
     flexibleengine_identity_provider_conversion:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_provider_conversion"'
@@ -6799,7 +6953,8 @@ resources:
                 - (Optional, String) Specifies the condition of conversion rule.
                 Available options are:
             remote.value: '- (Optional, List) Specifies the rule is matched only if the specified strings appear in the attribute type.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_identity_provider_conversion.conversion example_com_provider_oidc
     flexibleengine_identity_role_assignment_v3:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_role_assignment_v3"'
@@ -6866,7 +7021,8 @@ resources:
             policy: '- (Required, String) Document of the custom policy.'
             references: '- The number of references.'
             type: '- (Required, String) Display mode. Valid options are AX: Account level and XA: Project level.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_identity_role_v3.default <id>
     flexibleengine_identity_user_v3:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_user_v3"'
@@ -6880,6 +7036,8 @@ resources:
                   "name": "user_1",
                   "password": "password123!"
                 }
+            - name: user_1
+              manifest: '{}'
         argumentDocs:
             country_code: |-
                 - (Optional, String) Specifies the country code. The country code of the Chinese mainland is 0086.
@@ -6904,7 +7062,8 @@ resources:
             phone: |-
                 - (Optional, String) Specifies the mobile number with a maximum of 32 digits.
                 This parameter must be used together with country_code.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2
     flexibleengine_images_image_v2:
         subCategory: Image Management Service (IMS)
         description: '""page_title: "flexibleengine_images_image_v2"'
@@ -6948,8 +7107,7 @@ resources:
                 that will be uploaded to Glance. Conflicts with image_source_url.
             metadata: |-
                 - The metadata associated with the image.
-                Image metadata allow for meaningfully define the image properties
-                and tags. See http://docs.openstack.org/developer/glance/metadefs-concepts.html.
+                Image metadata allow for meaningfully define the image properties and tags.
             min_disk_gb: |-
                 - (Optional) Amount of disk space (in GB) required to boot image.
                 Defaults to 0.
@@ -6981,7 +7139,8 @@ resources:
                 - (Optional) The visibility of the image. Must be one of
                 "public", "private", "community", or "shared". The ability to set the
                 visibility depends upon the configuration of the FlexibleEngine cloud.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_images_image_v2.rancheros 89c60255-9bd6-460c-822a-e2b959ede9d2
     flexibleengine_kms_key_v1:
         subCategory: Key Management Service (KMS)
         description: '""page_title: "flexibleengine_kms_key_v1"'
@@ -7018,7 +7177,8 @@ resources:
                 - (Optional) Specifies the key rotation interval. The valid value is range from 30 to 365,
                 defaults to 365.
             rotation_number: '- The total number of key rotations.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64
     flexibleengine_lb_certificate_v2:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_lb_certificate_v2"'
@@ -7122,7 +7282,8 @@ resources:
                 - (Optional) The UUID of the tenant who owns the L7 Policy.
                 Only administrative users can specify a tenant UUID other than their own.
                 Changing this creates a new L7 Policy.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_l7policy_v2.l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74
     flexibleengine_lb_l7rule_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_l7rule_v2"'
@@ -7200,7 +7361,8 @@ resources:
             value: |-
                 - (Required) The value to use for the comparison. For example, the file type to
                 compare.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_l7rule_v2.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e
     flexibleengine_lb_listener_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_listener_v2"'
@@ -7294,7 +7456,9 @@ resources:
                 This parameter is valid only when the load balancer protocol is set to TERMINATED_HTTPS.
                 The value can be tls-1-0, tls-1-1, tls-1-2, or tls-1-2-strict, and the default value is tls-1-0.
                 For details of cipher suites for each security policy, see the table below.
-            transparent_client_ip_enable: '- (Optional, Bool) Specifies whether to pass source IP addresses of the clients to backend servers.'
+            transparent_client_ip_enable: |-
+                - (Optional, Bool) Specifies whether to pass source IP addresses of the clients to
+                backend servers.
         importStatements: []
     flexibleengine_lb_listener_v3:
         subCategory: Elastic Load Balance (Dedicated ELB)
@@ -7378,7 +7542,8 @@ resources:
                 tls-1-0-inherit, tls-1-0, tls-1-1, tls-1-2, tls-1-2-strict, tls-1-2-fs, tls-1-0-with-1-3, and tls-1-2-fs-with-1-3.
                 This parameter is valid when protocol is set to HTTPS.
             update: '- Default is 10 minute.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_listener_v3.listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
     flexibleengine_lb_loadbalancer_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_loadbalancer_v2"'
@@ -7426,7 +7591,8 @@ resources:
                 loadbalancer's address. A tenant can only create Loadbalancers on networks
                 authorized by policy (e.g. networks that belong to them or networks that
                 are shared).  Changing this creates a new loadbalancer.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_loadbalancer_v2.loadbalancer_1 3e3632db-36c6-4b28-a92e-e72e6562daa6
     flexibleengine_lb_loadbalancer_v3:
         subCategory: Elastic Load Balance (Dedicated ELB)
         description: '""page_title: "flexibleengine_lb_loadbalancer_v3"'
@@ -7487,6 +7653,8 @@ resources:
                   "sharetype": "PER",
                   "vpc_id": "{{ vpc_id }}"
                 }
+            - name: loadbalancer_1
+              manifest: '{}'
         argumentDocs:
             availability_zone: |-
                 - (Required, List, ForceNew) Specifies the list of AZ names. Changing this parameter will create a
@@ -7523,7 +7691,8 @@ resources:
             vpc_id: |-
                 - (Optional, String, ForceNew) The vpc on which to create the loadbalancer. Changing this creates a new
                 loadbalancer.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_loadbalancer_v3.loadbalancer_1 5c20fdad-7288-11eb-b817-0255ac10158b
     flexibleengine_lb_member_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_member_v2"'
@@ -7616,7 +7785,8 @@ resources:
                 - (Optional, Int)  Specifies the positive integer value that indicates the relative portion of traffic
                 that this member should receive from the pool. For example, a member with a weight of 10 receives five times as
                 much traffic as a member with a weight of 2.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_member_v3.member_1 5c20fdad-7288-11eb-b817-0255ac10158b/e0bd694a-abbe-450e-b329-0931fd1cc5eb
     flexibleengine_lb_monitor_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_monitor_v2"'
@@ -7716,7 +7886,8 @@ resources:
             url_path: |-
                 - (Optional, String) Specifies the required for HTTP(S) types. URI path that will be accessed if monitor
                 type is HTTP or HTTPS.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_monitor_v3.monitor_1 5c20fdad-7288-11eb-b817-0255ac10158b
     flexibleengine_lb_pool_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_pool_v2"'
@@ -7752,11 +7923,11 @@ resources:
             listener_id: |-
                 - (Optional, String, ForceNew) The Listener on which the members of the pool
                 will be associated with. Changing this creates a new pool.
-                Note:  One of LoadbalancerID or ListenerID must be provided.
+                Note: One of LoadbalancerID or ListenerID must be provided.
             loadbalancer_id: |-
                 - (Optional, String, ForceNew) The load balancer on which to provision this
                 pool. Changing this creates a new pool.
-                Note:  One of LoadbalancerID or ListenerID must be provided.
+                Note: One of LoadbalancerID or ListenerID must be provided.
             name: '- (Optional, String) Human-readable name for the pool.'
             persistence: |-
                 - (Optional, List, ForceNew) Omit this field to prevent session persistence.  Indicates
@@ -7832,7 +8003,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the type of persistence mode. The current specification supports
                 SOURCE_IP, HTTP_COOKIE, and APP_COOKIE.
             update: '- Default is 10 minutes.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_lb_pool_v3.pool_1 5c20fdad-7288-11eb-b817-0255ac10158b
     flexibleengine_lb_whitelist_v2:
         subCategory: Elastic Load Balance (ELB)
         description: '""page_title: "flexibleengine_lb_whitelist_v2"'
@@ -7901,11 +8073,11 @@ resources:
                       "group_name": "test_group"
                     }
         argumentDocs:
+            filter_count: '- The Number of metric filter.'
             group_id: |-
                 - (Required, String, ForceNew) Specifies the ID of a created log group.
                 Changing this parameter will create a new resource.
             id: '- The log topic ID in UUID format.'
-            index_enabled: '- Indicates the search switch. When index is enabled, the topic allows you to search for logs by keyword.'
             region: |-
                 - (Optional, String, ForceNew) The region in which to create the log topic resource.
                 If omitted, the provider-level region will be used. Changing this creates a new log topic resource.
@@ -8046,9 +8218,10 @@ resources:
             status: '- Indicates the MLS instance status.'
             updated: '- Indicates the update time in the following format: yyyy-mm-dd Thh:mm:ssZ.'
             version: |-
-                - (Required) Specifies MLS Software version, only 1.2.0 is supported
-                now. Changing this creates a new instance.
-        importStatements: []
+                - (Required) Specifies MLS Software version, only 1.2.0 is supported now.
+                Changing this creates a new instance.
+        importStatements:
+            - terraform import flexibleengine_mls_instance_v1.instance 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
     flexibleengine_modelarts_dataset:
         subCategory: AI Development Platform (ModelArts)
         description: '""page_title: "flexibleengine_modelarts_dataset"'
@@ -8077,6 +8250,8 @@ resources:
                 data_source.path: var.input_obs_path
                 name: var.name
                 output_path: var.output_obs_path
+            - name: test
+              manifest: '{}'
         argumentDocs:
             .jpg: ', .png, .jpeg, .bmp.'
             .mp4: .
@@ -8184,6 +8359,8 @@ resources:
                 }
               references:
                 dataset_id: var.dataset_id
+            - name: test
+              manifest: '{}'
         argumentDocs:
             create: '- Default is 5 minute.'
             created_at: '- The creation time, in UTC format.'
@@ -8297,7 +8474,7 @@ resources:
                 hyphens (-), and underscores (_). NOTE: Identical job names are allowed but
                 not recommended.
             add_jobs.job_type: |-
-                - (Required) Job type 1: MapReduce 2: Spark 3: Hive Script 4: HiveQL
+                - (Required) Job type. 1: MapReduce 2: Spark 3: Hive Script 4: HiveQL
                 (not supported currently) 5: DistCp, importing and exporting data (not supported
                 in this API currently). 6: Spark Script 7: Spark SQL, submitting Spark SQL statements
                 (not supported in this API currently). NOTE: Spark and Hive jobs can be added
@@ -8751,6 +8928,8 @@ resources:
                 public_ip: var.public_ip
                 subnet_id: var.subnet_id
                 vpc_id: var.vpc_id
+            - name: test
+              manifest: '{}'
         argumentDocs:
             DataNode: .
             DataNode:1,2: . The subscript starts from 1.
@@ -9154,7 +9333,8 @@ resources:
             type: |-
                 - (Required, String, ForceNew) Specifies the job type. The valid values are MapReduce,
                 Flink, HiveSql, HiveScript, SparkSubmit, SparkSql and SparkScript.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_mrs_job_v2.test <cluster_id>/<id>
     flexibleengine_nat_dnat_rule_v2:
         subCategory: NAT Gateway (NAT)
         description: '""page_title: "flexibleengine_nat_dnat_rule_v2"'
@@ -9221,7 +9401,8 @@ resources:
                 - (Required) Specifies the protocol type. Currently,
                 TCP, UDP, and ANY are supported. Changing this creates a new dnat rule.
             status: '- DNAT rule status.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a
     flexibleengine_nat_gateway_v2:
         subCategory: NAT Gateway (NAT)
         description: '""page_title: "flexibleengine_nat_gateway_v2"'
@@ -9262,7 +9443,8 @@ resources:
             vpc_id: |-
                 - (Required, String, ForceNew) Specifies the ID of the VPC this nat gateway belongs to.
                 Changing this creates a new nat gateway.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_nat_gateway_v2.nat_1 d126fb87-43ce-4867-a2ff-cf34af3765d9
     flexibleengine_nat_snat_rule_v2:
         subCategory: NAT Gateway (NAT)
         description: '""page_title: "flexibleengine_nat_snat_rule_v2"'
@@ -9294,7 +9476,7 @@ resources:
         argumentDocs:
             cidr: |-
                 - (Optional) Specifies CIDR, which can be in the format of a network segment or a host IP address.
-                This parameter and network_id are alternative. Changing this creates a new snat rule.
+                This parameter and subnet_id are alternative. Changing this creates a new snat rule.
             create: '- Default is 10 minute.'
             delete: '- Default is 10 minute.'
             floating_ip_address: '- The actual floating IP address.'
@@ -9318,7 +9500,8 @@ resources:
             subnet_id: |-
                 - (Optional) ID of the subnet this snat rule connects to.
                 This parameter and cidr are alternative. Changing this creates a new snat rule.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_nat_snat_rule_v2.snat_1 9e0713cb-0a2f-484e-8c7d-daecbb61dbe4
     flexibleengine_network_acl:
         subCategory: Network ACL
         description: '""page_title: "flexibleengine_network_acl"'
@@ -9396,8 +9579,9 @@ resources:
                 - (Optional) Specifies the destination IP address to which the traffic is allowed.
                 The default value is 0.0.0.0/0. For example: xxx.xxx.xxx.xxx (IP address), xxx.xxx.xxx.0/24 (CIDR block).
             destination_port: |-
-                - (Optional) Specifies the destination port number or port number range. The value ranges from 1 to 65535.
-                For a port number range, enter two port numbers connected by a hyphen (-). For example, 1-100.
+                - (Optional) Specifies the destination port number or port number range.
+                The value ranges from 1 to 65535. For a port number range, enter two port numbers connected by a hyphen (-).
+                For example, 1-100.
             enabled: '- (Optional) Enabled status for the network ACL rule. Defaults to true.'
             ip_version: |-
                 - (Optional) Specifies the IP version, either 4 (default) or 6. This parameter is
@@ -9412,9 +9596,10 @@ resources:
             source_port: |-
                 - (Optional) Specifies the source port number or port number range. The value ranges from 1 to 65535.
                 For a port number range, enter two port numbers connected by a hyphen (-). For example, 1-100.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_network_acl_rule.rule_1 89a84b28-4cc2-4859-9885-c67e802a46a3
     flexibleengine_networking_floatingip_associate_v2:
-        subCategory: Virtual Private Cloud (VPC)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_floatingip_associate_v2"'
         name: flexibleengine_networking_floatingip_associate_v2
         title: flexibleengine_networking_floatingip_associate_v2
@@ -9443,9 +9628,10 @@ resources:
                 another networking resource, such as a load balancer. If omitted, the
                 region argument of the provider is used. Changing this creates a new
                 floating IP (which may or may not have a different address).
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_floatingip_associate_v2.fip 2c7f39f3-702b-48d1-940c-b50384177ee1
     flexibleengine_networking_floatingip_v2:
-        subCategory: Virtual Private Cloud (VPC)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_floatingip_v2"'
         name: flexibleengine_networking_floatingip_v2
         title: flexibleengine_networking_floatingip_v2
@@ -9475,9 +9661,10 @@ resources:
                 belongs to the same tenant. Changing this creates a new floating IP (which
                 may or may not have a different address)
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_floatingip_v2.floatip_1 2c7f39f3-702b-48d1-940c-b50384177ee1
     flexibleengine_networking_network_v2:
-        subCategory: Virtual Private Cloud (VPC)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_network_v2"'
         name: flexibleengine_networking_network_v2
         title: flexibleengine_networking_network_v2
@@ -9558,7 +9745,8 @@ resources:
                 - (Optional) The owner of the network. Required if admin wants to
                 create a network for another tenant. Changing this creates a new network.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9
     flexibleengine_networking_port_v2:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_networking_port_v2"'
@@ -9568,44 +9756,30 @@ resources:
             - name: port_1
               manifest: |-
                 {
-                  "admin_state_up": "true",
                   "name": "port_1",
-                  "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
+                  "network_id": "${var.subnet_id}"
                 }
               references:
-                network_id: flexibleengine_networking_network_v2.network_1.id
-              dependencies:
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
+                network_id: var.subnet_id
             - name: port_1
               manifest: |-
                 {
-                  "admin_state_up": "true",
                   "allowed_address_pairs": [
                     {
                       "ip_address": "192.168.0.0/24"
                     }
                   ],
                   "name": "port_1",
-                  "network_id": "${flexibleengine_networking_network_v2.net.id}"
+                  "network_id": "${var.subnet_id}"
                 }
               references:
-                network_id: flexibleengine_networking_network_v2.net.id
-              dependencies:
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
+                network_id: var.subnet_id
         argumentDocs:
             admin_state_up: |-
                 - (Optional) Administrative up/down status for the port
                 (must be "true" or "false" if provided). Changing this updates the
                 admin_state_up of an existing port.
-            all fixed_ips: |-
+            all_fixed_ips: |-
                 - The collection of Fixed IP addresses on the port in the
                 order returned by the Network v2 API.
             allowed_address_pairs: |-
@@ -9631,7 +9805,7 @@ resources:
                 - (Optional) IP address desired in the subnet for this port. If
                 you don't specify ip_address, an available IP address from the specified
                 subnet will be allocated to this port.
-            fixed_ip.subnet_id: '- (Required) Subnet in which to allocate IP address for this port.'
+            fixed_ip.subnet_id: '- (Required) The IPv4 or IPv6 subnet ID of the VPC subnet in which to allocate IP address for this port.'
             mac_address: |-
                 - (Optional) Specify a specific MAC address for the port. Changing
                 this creates a new port.
@@ -9639,13 +9813,11 @@ resources:
                 - (Optional) A unique name for the port. Changing this
                 updates the name of an existing port.
             network_id: |-
-                - (Required) The ID of the network to attach the port to. Changing
+                - (Required) The ID of the VPC subnet to attach the port to. Changing
                 this creates a new port.
             region: |-
-                - (Optional) The region in which to obtain the V2 networking client.
-                A networking client is needed to create a port. If omitted, the
-                region argument of the provider is used. Changing this creates a new
-                port.
+                - (Optional) The region in which to allocate the port. If omitted, the
+                region argument of the provider is used. Changing this creates a new port.
             security_group_ids: |-
                 - (Optional) A list of security group IDs to apply to the
                 port. The security groups must be specified by ID and not name (as opposed
@@ -9654,9 +9826,10 @@ resources:
                 - (Optional) The owner of the Port. Required if admin wants
                 to create a port for another tenant. Changing this creates a new port.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1
     flexibleengine_networking_router_interface_v2:
-        subCategory: Virtual Private Cloud (VPC)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_router_interface_v2"'
         name: flexibleengine_networking_router_interface_v2
         title: flexibleengine_networking_router_interface_v2
@@ -9760,7 +9933,7 @@ resources:
                 this creates a new routing entry.
         importStatements: []
     flexibleengine_networking_router_v2:
-        subCategory: Virtual Private Cloud (VPC)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_router_v2"'
         name: flexibleengine_networking_router_v2
         title: flexibleengine_networking_router_v2
@@ -9866,7 +10039,8 @@ resources:
             security_group_id: |-
                 - (Required) The security group ID the rule should belong
                 to. Changing this creates a new security group rule.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_secgroup_rule_v2.secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745
     flexibleengine_networking_secgroup_v2:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_networking_secgroup_v2"'
@@ -9892,9 +10066,10 @@ resources:
                 A networking client is needed to create a port. If omitted, the
                 region argument of the provider is used. Changing this creates a new
                 security group.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_secgroup_v2.secgroup_1 38809219-5e8a-4852-9139-6f461c90e8bc
     flexibleengine_networking_subnet_v2:
-        subCategory: Virtual Private Cloud (VPC)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_subnet_v2"'
         name: flexibleengine_networking_subnet_v2
         title: flexibleengine_networking_subnet_v2
@@ -9964,7 +10139,8 @@ resources:
                 - (Optional) The owner of the subnet. Required if admin wants to
                 create a subnet for another tenant. Changing this creates a new subnet.
             value_specs: '- (Optional) Map of additional options.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_networking_subnet_v2.subnet_1 da4faf16-5546-41e4-8330-4d0002b74048
     flexibleengine_networking_vip_associate_v2:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_networking_vip_associate_v2"'
@@ -9975,86 +10151,38 @@ resources:
               manifest: |-
                 {
                   "port_ids": [
-                    "${flexibleengine_networking_port_v2.port_1.id}",
-                    "${flexibleengine_networking_port_v2.port_2.id}"
+                    "${flexibleengine_compute_instance_v2.server_1.network.0.port}",
+                    "${flexibleengine_compute_instance_v2.server_2.network.0.port}"
                   ],
                   "vip_id": "${flexibleengine_networking_vip_v2.vip_1.id}"
                 }
               references:
                 vip_id: flexibleengine_networking_vip_v2.vip_1.id
               dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
+                flexibleengine_compute_instance_v2.server_1: |-
                     {
                       "name": "instance_1",
                       "network": [
                         {
-                          "port": "${flexibleengine_networking_port_v2.port_1.id}"
+                          "uuid": "${var.subnet_id}"
                         }
-                      ],
-                      "security_groups": [
-                        "default"
                       ]
                     }
-                flexibleengine_compute_instance_v2.instance_2: |-
+                flexibleengine_compute_instance_v2.server_2: |-
                     {
                       "name": "instance_2",
                       "network": [
                         {
-                          "port": "${flexibleengine_networking_port_v2.port_1.id}"
+                          "uuid": "${var.subnet_id}"
                         }
-                      ],
-                      "security_groups": [
-                        "default"
                       ]
-                    }
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
-                flexibleengine_networking_port_v2.port_1: |-
-                    {
-                      "fixed_ip": [
-                        {
-                          "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
-                        }
-                      ],
-                      "name": "port_1",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
-                    }
-                flexibleengine_networking_port_v2.port_2: |-
-                    {
-                      "fixed_ip": [
-                        {
-                          "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
-                        }
-                      ],
-                      "name": "port_2",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
-                    }
-                flexibleengine_networking_router_interface_v2.router_interface_1: |-
-                    {
-                      "router_id": "${flexibleengine_networking_router_v2.router_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
-                    }
-                flexibleengine_networking_router_v2.router_1: |-
-                    {
-                      "external_gateway": "0a2228f2-7f8a-45f1-8e09-9039e1d09975",
-                      "name": "router_1"
-                    }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
-                    {
-                      "cidr": "192.168.199.0/24",
-                      "ip_version": 4,
-                      "name": "subnet_1",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
                     }
                 flexibleengine_networking_vip_v2.vip_1: |-
                     {
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                      "network_id": "${var.subnet_id}"
                     }
         argumentDocs:
+            id: '- The resource ID.'
             port_ids: |-
                 - (Required) An array of one or more IDs of the ports to attach the vip to.
                 Changing this creates a new vip associate.
@@ -10073,52 +10201,45 @@ resources:
             - name: vip_1
               manifest: |-
                 {
-                  "network_id": "${flexibleengine_networking_network_v2.network_1.id}",
-                  "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
+                  "network_id": "${flexibleengine_vpc_subnet_v1.subnet_1.id}"
                 }
               references:
-                network_id: flexibleengine_networking_network_v2.network_1.id
-                subnet_id: flexibleengine_networking_subnet_v2.subnet_1.id
+                network_id: flexibleengine_vpc_subnet_v1.subnet_1.id
               dependencies:
-                flexibleengine_networking_network_v2.network_1: |-
+                flexibleengine_vpc_subnet_v1.subnet_1: |-
                     {
-                      "admin_state_up": "true",
-                      "name": "network_1"
+                      "cidr": "${var.subnet_cidr}",
+                      "gateway_ip": "${var.subnet_gateway_ip}",
+                      "name": "${var.subnet_name}",
+                      "vpc_id": "${flexibleengine_vpc_v1.vpc_1.id}"
                     }
-                flexibleengine_networking_router_interface_v2.router_interface_1: |-
+                flexibleengine_vpc_v1.vpc_1: |-
                     {
-                      "router_id": "${flexibleengine_networking_router_v2.router_1.id}",
-                      "subnet_id": "${flexibleengine_networking_subnet_v2.subnet_1.id}"
-                    }
-                flexibleengine_networking_router_v2.router_1: |-
-                    {
-                      "external_gateway": "0a2228f2-7f8a-45f1-8e09-9039e1d09975",
-                      "name": "router_1"
-                    }
-                flexibleengine_networking_subnet_v2.subnet_1: |-
-                    {
-                      "cidr": "192.168.199.0/24",
-                      "ip_version": 4,
-                      "name": "subnet_1",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
+                      "cidr": "${var.vpc_cidr}",
+                      "name": "${var.vpc_name}"
                     }
         argumentDocs:
-            device_owner: '- The device owner of the vip.'
-            id: '- The ID of the vip.'
+            create: '- Default is 2 minute.'
+            delete: '- Default is 2 minute.'
+            device_owner: '- The device owner of the VIP.'
+            id: '- The VIP ID.'
             ip_address: |-
-                - (Optional) IP address desired in the subnet for this vip.
-                If you don't specify ip_address, an available IP address from
-                the specified subnet will be allocated to this vip.
-            name: '- (Optional) A unique name for the vip.'
+                - (Optional, String, ForceNew) Specifies the IP address desired in the subnet for this VIP.
+                Changing this will create a new VIP resource.
+            ip_version: |-
+                - (Optional, Int, ForceNew) Specifies the IP version, either 4 (default) or 6.
+                Changing this will create a new VIP resource.
+            mac_address: '- The MAC address of the VIP.'
+            name: '- (Optional, String) Specifies a unique name for the VIP.'
             network_id: |-
-                - (Required) The ID of the network to attach the vip to.
-                Changing this creates a new vip.
-            status: '- The status of vip.'
-            subnet_id: |-
-                - (Required) Subnet in which to allocate IP address for this vip.
-                Changing this creates a new vip.
-            tenant_id: '- The tenant ID of the vip.'
-        importStatements: []
+                - (Required, String, ForceNew) Specifies the ID of the VPC subnet to which the VIP belongs.
+                Changing this will create a new VIP resource.
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the VIP.
+                If omitted, the provider-level region will be used. Changing this will create a new VIP resource.
+            status: '- The VIP status.'
+        importStatements:
+            - terraform import flexibleengine_networking_vip_v2.test ce595799-da26-4015-8db5-7733c6db292e
     flexibleengine_obs_bucket:
         subCategory: Object Storage Service (OSS)
         description: '""page_title: "flexibleengine_obs_bucket"'
@@ -10245,6 +10366,8 @@ resources:
                   ],
                   "versioning": true
                 }
+            - name: bucket
+              manifest: '{}'
         argumentDocs:
             acl: |-
                 - (Optional) Specifies the ACL policy for a bucket. The predefined common policies are as follows:
@@ -10271,14 +10394,17 @@ resources:
             error_document: |-
                 - (Optional) Specifies the error page returned when an error occurs during static website access.
                 Only HTML, JPG, PNG, BMP, and WEBP files under the root directory are supported.
-            expiration: '- (Optional) Specifies a period when objects that have been last updated are automatically deleted. (documented below).'
+            expiration: |-
+                - (Optional) Specifies a period when objects that have been last updated are automatically deleted.
+                The object structure is documented below.
             expose_headers: (Optional) Specifies the exposed header in CORS responses, providing additional information for clients.
             force_destroy: |-
                 - (Optional) A boolean that indicates all objects should be deleted from the bucket so that
                 the bucket can be destroyed without error. Default to false.
             id: '- The name of the bucket.'
             index_document: |-
-                - (Required, unless using redirect_all_requests_to) Specifies the default homepage of the static website, only HTML web pages are supported.
+                - (Required, unless using redirect_all_requests_to) Specifies the default homepage of
+                the static website, only HTML web pages are supported.
                 OBS only allows files such as index.html in the root directory of a bucket to function as the default homepage.
                 That is to say, do not set the default homepage with a multi-level directory structure (for example, /page/index.html).
             kms_key_id: '- (Optional) Specifies the ID of a kms key. If omitted, the default master key will be used.'
@@ -10292,18 +10418,27 @@ resources:
                 data in the bucket is duplicated and stored in multiple AZs.
                 Changing this creates a new bucket.
             name: '- (Required) Unique identifier for lifecycle rules. The Rule Name contains a maximum of 255 characters.'
-            noncurrent_version_expiration: '- (Optional) Specifies a period when noncurrent object versions are automatically deleted. (documented below).'
-            noncurrent_version_transition: '- (Optional) Specifies a period when noncurrent object versions are automatically transitioned to STANDARD_IA or GLACIER storage class (documented below).'
+            noncurrent_version_expiration: |-
+                - (Optional) Specifies a period when noncurrent object versions are automatically deleted.
+                The object structure is documented below.
+            noncurrent_version_transition: |-
+                - (Optional) Specifies a period when noncurrent object versions are automatically
+                transitioned to STANDARD_IA or GLACIER storage class. The object structure is documented below.
             prefix: |-
                 - (Optional) Object key prefix identifying one or more objects to which the rule applies.
                 If omitted, all objects in the bucket will be managed by the lifecycle rule.
-                The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/), and cannot contain the following special characters: :*?"<>|.
-            redirect_all_requests_to: '- (Optional) A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests. The default is the protocol that is used in the original request.'
+                The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/),
+                and cannot contain the following special characters: :*?"<>|.
+            redirect_all_requests_to: |-
+                - (Optional) A hostname to redirect all website requests for this bucket to.
+                Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests.
+                The default is the protocol that is used in the original request.
             region: |-
                 - (Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider.
                 Changing this creates a new bucket.
             routing_rules: |-
-                - (Optional) A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied.
+                - (Optional) A JSON or XML format containing routing rules describing redirect behavior and
+                when redirects are applied.
                 Each rule contains a Condition and a Redirect as shown in the following table:
             storage_class: |-
                 - (Optional) Specifies the storage class of the bucket. OBS provides three storage classes:
@@ -10312,12 +10447,15 @@ resources:
                 - (Required) The name of the bucket that will receive the log objects.
                 The acl policy of the target bucket should be log-delivery-write.
             target_prefix: '- (Optional) To specify a key prefix for log objects.'
-            transition: '- (Optional) Specifies a period when objects that have been last updated are automatically transitioned to STANDARD_IA or GLACIER storage class (documented below).'
+            transition: |-
+                - (Optional) Specifies a period when objects that have been last updated are automatically transitioned
+                to STANDARD_IA or GLACIER storage class. The object structure is documented below.
             versioning: |-
-                - (Optional) Whether enable versioning. Once you version-enable a bucket, it can never return to an unversioned state.
-                You can, however, suspend versioning on that bucket.
+                - (Optional) Whether enable versioning. Once you version-enable a bucket,
+                it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
             website: '- (Optional) A website object (documented below).'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_obs_bucket.bucket bucket-name
     flexibleengine_obs_bucket_object:
         subCategory: Object Storage Service (OSS)
         description: '""page_title: "flexibleengine_obs_bucket_object"'
@@ -10420,7 +10558,8 @@ resources:
                 - (Optional) Specifies the storage class for replicated objects. Valid values are "STANDARD",
                 "WARM" (Infrequent Access) and "COLD" (Archive).
                 If omitted, the storage class of object copies is the same as that of objects in the source bucket.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_obs_bucket_replication.replica my-source-bucket
     flexibleengine_rds_account:
         subCategory: Relational Database Service (RDS)
         description: '""page_title: "flexibleengine_rds_account"'
@@ -10449,7 +10588,8 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) The region in which to create the rds account resource. If omitted, the
                 provider-level region will be used. Changing this creates a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rds_account.user_1 instance_id/account_name
     flexibleengine_rds_database:
         subCategory: Relational Database Service (RDS)
         description: '""page_title: "flexibleengine_rds_database"'
@@ -10479,7 +10619,8 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) The region in which to create the RDS database resource. If omitted, the
                 provider-level region will be used. Changing this creates a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rds_database.database_1 instance_id/database_name
     flexibleengine_rds_database_privilege:
         subCategory: Relational Database Service (RDS)
         description: '""page_title: "flexibleengine_rds_database_privilege"'
@@ -10518,7 +10659,8 @@ resources:
                 a maximum of 50 elements. Structure is documented below. Changing this creates a new resource.
             users.name: '- (Required, String, ForceNew) Specifies the username of the database account. Changing this creates a new resource.'
             users.readonly: '- (Optional, Bool, ForceNew) Specifies the read-only permission. The value can be:'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rds_database_privilege.test instance_id/database_name
     flexibleengine_rds_instance_v1:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_rds_instance_v1"'
@@ -10695,11 +10837,11 @@ resources:
             backupstrategy: |-
                 - (Optional) Specifies the advanced backup policy. The structure
                 is described below.
-            backupstrategy .keepdays: |-
+            backupstrategy.keepdays: |-
                 - (Optional) Specifies the number of days to retain the generated backup files.
                 Its value range is 0 to 35. If this parameter is not specified or set to 0, the
                 automated backup policy is disabled.
-            backupstrategy .starttime: |-
+            backupstrategy.starttime: |-
                 - (Optional) Indicates the backup start time that has been set.
                 The backup task will be triggered within one hour after the backup start time.
                 Valid value: The value cannot be empty. It must use the hh:mm:ss format and
@@ -10746,7 +10888,7 @@ resources:
             securitygroup: |-
                 - (Required) Specifies the security group which the RDS DB
                 instance belongs to. The structure is described below.
-            securitygroup .id: '- (Required) Specifies the ID obtained from the securitygroup.'
+            securitygroup.id: '- (Required) Specifies the ID obtained from the securitygroup.'
             status: '- Indicates the DB instance status.'
             type: '- Indicates the DB instance type, which can be master or readreplica.'
             updated: '- Indicates the update time in the following format: yyyy-mm-dd Thh:mm:ssZ.'
@@ -10909,6 +11051,8 @@ resources:
                       "description": "terraform security group acceptance test",
                       "name": "terraform_test_security_group"
                     }
+            - name: instance_1
+              manifest: '{}'
         argumentDocs:
             availability_zone: |-
                 - (Required, List, ForceNew) Specifies the list of AZ name.
@@ -10997,7 +11141,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the volume type. Its value can be any of the following
                 and is case-sensitive:
             vpc_id: '- (Required, String, ForceNew) Specifies the VPC ID. Changing this parameter will create a new resource.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rds_instance_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c
     flexibleengine_rds_parametergroup_v3:
         subCategory: Relational Database Service (RDS)
         description: '""page_title: "flexibleengine_rds_parametergroup_v3"'
@@ -11022,10 +11167,16 @@ resources:
                 }
         argumentDocs:
             configuration_parameters: '- Indicates the parameter configuration defined by users based on the default parameters groups.'
-            datastore: '- (Required) Database object. The database object structure is documented below. Changing this creates a new parameter group.'
-            datastore.type: '- (Required) The DB engine. Currently, MySQL, PostgreSQL, and Microsoft SQL Server are supported. The value is case-insensitive and can be mysql, postgresql, or sqlserver.'
+            datastore: |-
+                - (Required) Database object. The database object structure is documented below.
+                Changing this creates a new parameter group.
+            datastore.type: |-
+                - (Required) The DB engine. Currently, MySQL, PostgreSQL, and Microsoft SQL Server are supported.
+                The value is case-insensitive and can be mysql, postgresql, or sqlserver.
             datastore.version: '- (Required) Specifies the database version.'
-            description: '- (Optional) The parameter group description. It contains a maximum of 256 characters and cannot contain the following special characters:>!<"&''= the value is left blank by default.'
+            description: |-
+                - (Optional) The parameter group description. It contains a maximum of 256 characters and
+                cannot contain the following special characters:>!<"&'= the value is left blank by default.
             id: '-  ID of the parameter group.'
             name: '- (Required) The parameter group name. It contains a maximum of 64 characters.'
             readonly: '- Indicates whether the parameter is read-only.'
@@ -11034,7 +11185,8 @@ resources:
             value: '- Indicates the parameter value.'
             value_range: '- Indicates the parameter value range.'
             values: '- (Optional) Parameter group values key/value pairs defined by users based on the default parameter groups.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c
     flexibleengine_rds_read_replica_v3:
         subCategory: Relational Database Service (RDS)
         description: '""page_title: "flexibleengine_rds_read_replica_v3"'
@@ -11138,7 +11290,8 @@ resources:
                 - (Required) Specifies the volume type. Its value can be any of the following
                 and is case-sensitive:
             vpc_id: '- Indicates the VPC ID.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rds_read_replica_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c
     flexibleengine_rts_software_config_v1:
         subCategory: Resource Template Service (RTS)
         description: '""page_title: "flexibleengine_rts_software_config_v1"'
@@ -11160,7 +11313,8 @@ resources:
             name: '- (Required) The name of the software configuration.'
             options: '- (Optional) The software configuration options.'
             output_values: '- (Optional) A list of software configuration outputs.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rts_software_config_v1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
     flexibleengine_rts_stack_v1:
         subCategory: Resource Template Service (RTS)
         description: '""page_title: "flexibleengine_rts_stack_v1"'
@@ -11189,16 +11343,21 @@ resources:
             disable_rollback: '- (Optional) Set to true to disable rollback of the stack if stack creation failed.'
             environment: '- (Optional) Tthe environment information about the stack.'
             files: '- (Optional) Files used in the environment.'
-            name: '- (Required) A unique name for the stack. The value must meet the regular expression rule (^[a-zA-Z][a-zA-Z0-9_.-]{0,254}$). Changing this creates a new stack.'
+            name: |-
+                - (Required) A unique name for the stack. The value must meet the regular expression rule (^[a-zA-Z][a-zA-Z0-9_.-]{0,254}$).
+                Changing this creates a new stack.
             notification_topics: '- List of notification topics for stack.'
             outputs: '- A map of outputs from the stack.'
             parameters: '- (Optional) A list of Parameter structures that specify input parameters for the stack.'
             status: '- Specifies the stack status.'
-            template_body: '- (Optional; Required if template_url is empty) Structure containing the template body. The template content must use the yaml syntax.'
+            template_body: |-
+                - (Optional; Required if template_url is empty) Structure containing the template body.
+                The template content must use the yaml syntax.
             template_url: '- (Optional; Required if template_body is empty) Location of a file containing the template body.'
             timeout_mins: '- (Optional) Specifies the timeout duration.'
             update: '- (Default 30 minutes) Used for Stack modifications'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_rts_stack_v1.mystack rts-stack
     flexibleengine_s3_bucket:
         subCategory: Object Storage Service (OSS)
         description: '""page_title: "flexibleengine_s3_bucket"'
@@ -11326,46 +11485,82 @@ resources:
                   ]
                 }
         argumentDocs:
-            abort_incomplete_multipart_upload_days: (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
-            acl: '- (Optional) The canned ACL to apply. Defaults to "private".'
+            abort_incomplete_multipart_upload_days: |-
+                (Optional) Specifies the number of days after initiating a multipart upload
+                when the multipart upload must be completed.
+            acl: |-
+                - (Optional) The canned ACL to apply.
+                Defaults to "private".
             allowed_headers: (Optional) Specifies which headers are allowed.
             allowed_methods: (Required) Specifies which methods are allowed. Can be GET, PUT, POST, DELETE or HEAD.
             allowed_origins: (Required) Specifies which origins are allowed.
             arn: '- The ARN of the bucket. Will be of format arn:aws:s3:::bucketname.'
             bucket: '- (Optional, Forces new resource) The name of the bucket. If omitted, Terraform will assign a random, unique name.'
             bucket_domain_name: '- The bucket domain name. Will be of format bucketname.s3.amazonaws.com.'
-            bucket_prefix: '- (Optional, Forces new resource) Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket.'
-            cors_rule: '- (Optional) A rule of Cross-Origin Resource Sharing (documented below).'
+            bucket_prefix: |-
+                - (Optional, Forces new resource) Creates a unique bucket name beginning with the specified prefix.
+                Conflicts with bucket.
+            cors_rule: |-
+                - (Optional) A rule of Cross-Origin Resource Sharing
+                (documented below).
             date: (Optional) Specifies the date after which you want the corresponding action to take effect.
             days: (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
-            enabled: '- (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.'
+            enabled: |-
+                - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state.
+                You can, however, suspend versioning on that bucket.
             error_document: '- (Optional) An absolute path to the document to return in case of a 4XX error.'
             expiration: '- (Optional) Specifies a period in the object''s expire (documented below).'
-            expired_object_delete_marker: (Optional) On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Amazon S3 to delete expired object delete markers.
+            expired_object_delete_marker: |-
+                (Optional) On a versioned bucket (versioning-enabled or versioning-suspended bucket),
+                you can add this element in the lifecycle configuration to direct Amazon S3 to delete expired object delete markers.
             expose_headers: (Optional) Specifies expose header in the response.
-            force_destroy: '- (Optional, Default:false ) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable.'
-            hosted_zone_id: '- The Route 53 Hosted Zone ID for this bucket''s region.'
+            force_destroy: |-
+                - (Optional, Default:false ) A boolean that indicates all objects should be deleted from the bucket
+                so that the bucket can be destroyed without error. These objects are not recoverable.
+            hosted_zone_id: |-
+                - The Route 53 Hosted Zone ID
+                for this bucket's region.
             id: '- (Optional) Unique identifier for the rule.'
-            index_document: '- (Required, unless using redirect_all_requests_to) Amazon S3 returns this index document when requests are made to the root domain or any of the subfolders.'
-            lifecycle_rule: '- (Optional) A configuration of object lifecycle management (documented below).'
-            logging: '- (Optional) A settings of bucket logging (documented below).'
+            index_document: |-
+                - (Required, unless using redirect_all_requests_to) Amazon S3 returns this index document when
+                requests are made to the root domain or any of the subfolders.
+            lifecycle_rule: |-
+                - (Optional) A configuration of object lifecycle management
+                (documented below).
+            logging: |-
+                - (Optional) A settings of bucket logging
+                (documented below).
             max_age_seconds: (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
-            mfa_delete: '- (Optional) Enable MFA delete for either Change the versioning state of your bucket or Permanently delete an object version. Default is false.'
+            mfa_delete: |-
+                - (Optional) Enable MFA delete for either change the versioning state of your bucket or permanently delete
+                an object version. Default is false.
             noncurrent_version_expiration: '- (Optional) Specifies when noncurrent object versions expire (documented below).'
-            policy: '- (Optional) A valid bucket policy JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of the policy.'
+            policy: |-
+                - (Optional) A valid bucket policy
+                JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy
+                as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of
+                the policy.
             prefix: '- (Optional) Object key prefix identifying one or more objects to which the rule applies.'
-            redirect_all_requests_to: '- (Optional) A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests. The default is the protocol that is used in the original request.'
+            redirect_all_requests_to: |-
+                - (Optional) A hostname to redirect all website requests for this bucket to.
+                Hostname can optionally be prefixed with a protocol (http:// or https://) to use when redirecting requests.
+                The default is the protocol that is used in the original request.
             region: '- (Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the callee.'
             routing_rules: |-
                 - (Optional) A json array containing routing rules
                 describing redirect behavior and when redirects are applied.
             target_bucket: '- (Required) The name of the bucket that will receive the log objects.'
             target_prefix: '- (Optional) To specify a key prefix for log objects.'
-            versioning: '- (Optional) A state of versioning (documented below)'
+            versioning: |-
+                - (Optional) A state of versioning
+                (documented below)
             website: '- (Optional) A website object (documented below).'
-            website_domain: '- The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.'
+            website_domain: |-
+                - The domain of the website endpoint, if the bucket is configured with a website.
+                If not, this will be an empty string. This is used to create Route 53 alias records.
             website_endpoint: '- The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_s3_bucket.bucket bucket-name
     flexibleengine_s3_bucket_object:
         subCategory: Object Storage Service (OSS)
         description: '""page_title: "flexibleengine_s3_bucket_object"'
@@ -11418,20 +11613,33 @@ resources:
                       "bucket": "examplebuckettftest"
                     }
         argumentDocs:
-            acl: '- (Optional) The canned ACL to apply. Defaults to "private".'
+            acl: |-
+                - (Optional) The canned ACL to apply.
+                Defaults to "private".
             bucket: '- (Required) The name of the bucket to put the file in.'
-            cache_control: '- (Optional) Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.'
+            cache_control: |-
+                - (Optional) Specifies caching behavior along the request/reply chain Read w3c cache_control
+                for further details.
             content: '- (Required unless source given) The literal content being uploaded to the bucket.'
-            content_disposition: '- (Optional) Specifies presentational information for the object. Read wc3 content_disposition for further information.'
-            content_encoding: '- (Optional) Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read w3c content encoding for further information.'
+            content_disposition: |-
+                - (Optional) Specifies presentational information for the object. Read wc3 content_disposition
+                for further information.
+            content_encoding: |-
+                - (Optional) Specifies what content encodings have been applied to the object and thus what decoding
+                mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
+                Read w3c content encoding for further information.
             content_language: '- (Optional) The language the content is in e.g. en-US or en-GB.'
-            content_type: '- (Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.'
+            content_type: |-
+                - (Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream.
+                All Valid MIME Types are valid for this input.
             etag: |-
                 - (Optional) Used to trigger updates. The only meaningful value is ${md5(file("path/to/file"))}.
                 This attribute is not compatible with kms_key_id.
             id: '- the key of the resource supplied above'
             key: '- (Required) The name of the object once it is in the bucket.'
-            server_side_encryption: '- (Optional) Specifies server-side encryption of the object in S3. Valid values are "AES256" and "aws:kms".'
+            server_side_encryption: |-
+                - (Optional) Specifies server-side encryption of the object in S3.
+                Valid values are "AES256" and "aws:kms".
             source: '- (Required) The path to the source file being uploaded to the bucket.'
             version_id: |-
                 - A unique version ID value for the object, if bucket versioning
@@ -11485,7 +11693,8 @@ resources:
             status: |-
                 - The status of a DR drill.
                 For details, see DR Drill Status.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_sdrs_drill_v1.drill_1 22fce838-4bfb-4a92-b9aa-fc80a583eb59
     flexibleengine_sdrs_protectedinstance_v1:
         subCategory: Storage Disaster Recovery Service (SDRS)
         description: '""page_title: "flexibleengine_sdrs_protectedinstance_v1"'
@@ -11515,14 +11724,24 @@ resources:
                     }
         argumentDocs:
             cluster_id: '- (Optional) Specifies the ID of a storage pool. Changing this creates a new instance.'
-            delete_target_eip: '- (Optional) Specifies whether to delete the EIP of the target server. The default value is false. Changing this creates a new instance.'
-            delete_target_server: '- (Optional) Specifies whether to delete the target server. The default value is false.. Changing this creates a new instance.'
+            delete_target_eip: |-
+                - (Optional) Specifies whether to delete the EIP of the target server. The default value is false.
+                Changing this creates a new instance.
+            delete_target_server: |-
+                - (Optional) Specifies whether to delete the target server. The default value is false.
+                Changing this creates a new instance.
             description: '- (Optional) The description of a protected instance. Changing this creates a new instance.'
-            group_id: '- (Required) Specifies the ID of the protection group where a protected instance is added. Changing this creates a new instance.'
+            group_id: |-
+                - (Required) Specifies the ID of the protection group where a protected instance is added.
+                Changing this creates a new instance.
             id: '-  ID of the protected instance.'
             name: '- (Required) The name of a protected instance.'
-            primary_ip_address: '- (Optional) Specifies the IP address of the primary NIC on the target server. Changing this creates a new instance.'
-            primary_subnet_id: '- (Optional) Specifies the subnet ID of the primary NIC on the target server. Changing this creates a new instance.'
+            primary_ip_address: |-
+                - (Optional) Specifies the IP address of the primary NIC on the target server.
+                Changing this creates a new instance.
+            primary_subnet_id: |-
+                - (Optional) Specifies the subnet ID of the primary NIC on the target server.
+                Changing this creates a new instance.
             server_id: '- (Required) Specifies the ID of the source server. Changing this creates a new instance.'
             target_server: '-  ID of the target server.'
         importStatements: []
@@ -11551,13 +11770,16 @@ resources:
             dr_type: |-
                 - (Optional) Specifies the deployment model. The default value is migration indicating migration within a VPC.
                 Changing this creates a new group.
-            enable: '- (Optional) Enable protection or not. It can only be set to true when there''s replication pairs within the protection group.'
+            enable: |-
+                - (Optional) Enable protection or not. It can only be set to true when there's replication pairs within
+                the protection group.
             id: '-  ID of the protection group.'
             name: '- (Required) The name of a protection group.'
             source_availability_zone: '- (Required) Specifies the source AZ of a protection group. Changing this creates a new group.'
             source_vpc_id: '- (Required) Specifies the ID of the source VPC. Changing this creates a new group.'
             target_availability_zone: '- (Required) Specifies the target AZ of a protection group. Changing this creates a new group.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_sdrs_protectiongroup_v1.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c
     flexibleengine_sdrs_replication_attach_v1:
         subCategory: Storage Disaster Recovery Service (SDRS)
         description: '""page_title: "flexibleengine_sdrs_replication_attach_v1"'
@@ -11649,7 +11871,8 @@ resources:
             status: '- Specifies the status of a replication pair.'
             target_volume_id: '- Specifies the ID of the disk in the protection availability zone.'
             volume_id: '- (Required) Specifies the ID of a source disk. Changing this creates a new pair.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_sdrs_replication_pair_v1.replication_1 43b28b66-770b-4e9e-b5c6-cfc43f0593d9
     flexibleengine_sfs_access_rule_v2:
         subCategory: Scalable File Service (SFS)
         description: '""page_title: "flexibleengine_sfs_access_rule_v2"'
@@ -11700,7 +11923,8 @@ resources:
             id: '- The UUID of the share access rule.'
             sfs_id: '- (Required) Specifies the UUID of the shared file system. Changing this will create a new access rule.'
             status: '- The status of the share access rule.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_sfs_access_rule_v2 <sfs_id>/<rule_id>
     flexibleengine_sfs_file_system_v2:
         subCategory: Scalable File Service (SFS)
         description: '""page_title: "flexibleengine_sfs_file_system_v2"'
@@ -11775,7 +11999,8 @@ resources:
             size: '- (Required) The size (GB) of the shared file system.'
             status: '- The status of the shared file system.'
             volume_type: '- The volume type.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_sfs_file_system_v2 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
     flexibleengine_sfs_turbo:
         subCategory: Scalable File Service (SFS)
         description: '""page_title: "flexibleengine_sfs_turbo"'
@@ -11824,7 +12049,8 @@ resources:
             subnet_id: '- (Required) Specifies the network ID of the subnet. Changing this will create a new resource.'
             version: '- The version ID of the SFS Turbo file system.'
             vpc_id: '- (Required) Specifies the VPC ID. Changing this will create a new resource.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_sfs_turbo 1e3d5306-24c9-4316-9185-70e9787d71ab
     flexibleengine_smn_subscription_v2:
         subCategory: Simple Message Notification (SMN)
         description: '""page_title: "flexibleengine_smn_subscription_v2"'
@@ -11934,7 +12160,8 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) Specifies the region in which to create the resource. If omitted, the
                 provider-level region will be used. Changing this creates a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_swr_organization.test org-name
     flexibleengine_swr_organization_users:
         subCategory: Software Repository for Container (SWR)
         description: '""page_title: "flexibleengine_swr_organization_users"'
@@ -11983,7 +12210,8 @@ resources:
                 The values can be Manage, Write and Read.
             users.user_id: '- (Required, String) Specifies the ID of the existing IAM user.'
             users.user_name: '- (Optional, String) Specifies the name of the existing IAM user.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_swr_organization_users.test org-test
     flexibleengine_swr_repository:
         subCategory: Software Repository for Container (SWR)
         description: '""page_title: "flexibleengine_swr_repository"'
@@ -12020,7 +12248,8 @@ resources:
             repository_id: '- Numeric ID of the repository'
             size: '- Repository size.'
             "true": '- Indicates the repository is public.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_swr_repository.test org-name/repo-name
     flexibleengine_swr_repository_sharing:
         subCategory: Software Repository for Container (SWR)
         description: '""page_title: "flexibleengine_swr_repository_sharing"'
@@ -12063,7 +12292,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the name of the account for repository sharing.
                 Changing this creates a new resource.
             status: '- Indicates the repository sharing is valid (true) or expired (false).'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_swr_repository_sharing.test org-name/repo-name/sharing-account
     flexibleengine_tms_tags:
         subCategory: Tag Management Service (TMS)
         description: '""page_title: "flexibleengine_tms_tags"'
@@ -12155,7 +12385,8 @@ resources:
                 - (Optional) Specifies on which days of each week backup jobs are executed.
                 The value can be one or more of the following: SUN, MON, TUE, WED, THU, FRI, SAT.
                 Either this field or frequency must be specified.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vbs_backup_policy_v2.vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
     flexibleengine_vbs_backup_v2:
         subCategory: Volume Backup Service (VBS)
         description: '""page_title: "flexibleengine_vbs_backup_v2"'
@@ -12182,7 +12413,8 @@ resources:
             snapshot_id: '- (Optional) The snapshot id of the disk to be backed up. Changing the parameter will create new resource.'
             status: '- The status of the VBS backup.'
             volume_id: '- (Required) The id of the disk to be backed up. Changing the parameter will create new resource.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vbs_backup_v2.mybackup 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
     flexibleengine_vpc_eip:
         subCategory: Elastic IP (EIP)
         description: '""page_title: "flexibleengine_vpc_eip"'
@@ -12255,7 +12487,8 @@ resources:
                 the region argument of the provider is used. Changing this creates a new EIP.
             status: '- The status of EIP.'
             tags: '- (Optional) The key/value pairs to associate with the EIP.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_eip.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1
     flexibleengine_vpc_eip_associate:
         subCategory: Elastic IP (EIP)
         description: '""page_title: "flexibleengine_vpc_eip_associate"'
@@ -12317,7 +12550,8 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to associate the EIP. If omitted, the provider-level
                 region will be used. Changing this creates a new resource.
             status: '- The status of EIP, should be BOUND.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_eip_associate.eip 2c7f39f3-702b-48d1-940c-b50384177ee1
     flexibleengine_vpc_flow_log_v1:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_vpc_flow_log_v1"'
@@ -12362,8 +12596,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the LTS log topic ID.
                 Changing this creates a new VPC flow log.
             name: |-
-                - (Required, String) Specifies the VPC flow log name.
-                The value is a string of 1 to 64 characters that can contain letters, digits, underscores (_), hyphens (-) and periods (.).
+                - (Required, String) Specifies the VPC flow log name. The value is a string of 1 to 64 characters
+                that can contain letters, digits, underscores (_), hyphens (-) and periods (.).
             region: |-
                 - (Optional, String, ForceNew) The region in which to create the VPC flow log resource.
                 If omitted, the provider-level region will be used. Changing this creates a new VPC flow log.
@@ -12413,12 +12647,14 @@ resources:
         argumentDocs:
             accept: (Optional)- Whether or not to accept the peering request. Defaults to false.
             id: '- The VPC peering connection ID.'
-            name: "- \tThe VPC peering connection name."
+            name: '- The VPC peering connection name.'
             peer_tenant_id: '- The Tenant Id of the accepter tenant.'
             peer_vpc_id: '- The VPC ID of the accepter tenant.'
             status: '- The VPC peering connection status.'
             vpc_id: '- The ID of requester VPC involved in a VPC peering connection.'
-            vpc_peering_connection_id: (Required) - The VPC Peering Connection ID to manage. Changing this creates a new VPC peering connection accepter.
+            vpc_peering_connection_id: |-
+                (Required) - The VPC Peering Connection ID to manage.
+                Changing this creates a new VPC peering connection accepter.
         importStatements: []
     flexibleengine_vpc_peering_connection_v2:
         subCategory: Virtual Private Cloud (VPC)
@@ -12443,7 +12679,9 @@ resources:
             peer_tenant_id: (Optional) - Specified the Tenant Id of the accepter tenant. Changing this creates a new VPC peering connection.
             peer_vpc_id: (Required) - Specifies the VPC ID of the accepter tenant. Changing this creates a new VPC peering connection.
             status: '- The VPC peering connection status. The value can be PENDING_ACCEPTANCE, REJECTED, EXPIRED, DELETED, or ACTIVE.'
-            vpc_id: (Required) - Specifies the ID of a VPC involved in a VPC peering connection. Changing this creates a new VPC peering connection.
+            vpc_id: |-
+                (Required) - Specifies the ID of a VPC involved in a VPC peering connection.
+                Changing this creates a new VPC peering connection.
         importStatements: []
     flexibleengine_vpc_route:
         subCategory: Virtual Private Cloud (VPC)
@@ -12500,7 +12738,8 @@ resources:
             vpc_id: |-
                 (Required, String, ForceNew) - Specifies the VPC for which a route is to be added. Changing this creates a
                 new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_route.test <route_table_id>/<destination>
     flexibleengine_vpc_route_table:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_vpc_route_table"'
@@ -12578,7 +12817,8 @@ resources:
             vpc_id: |-
                 (Required, String, ForceNew) - Specifies the VPC ID for which a route table is to be added.
                 Changing this creates a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_route_table.demo e1b3208a-544b-42a7-84e6-5d70371dd982
     flexibleengine_vpc_route_v2:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_vpc_route_v2"'
@@ -12599,9 +12839,15 @@ resources:
         argumentDocs:
             destination: (Required) - Specifies the destination IP address or CIDR block. Changing this creates a new Route.
             id: '- The route ID.'
-            nexthop: (Required) - Specifies the next hop. If the route type is peering, enter the VPC peering connection ID. Changing this creates a new Route.
-            tenant_id: (Optional) - Specifies the tenant ID. Only the administrator can specify the tenant ID of other tenant. Changing this creates a new Route.
-            type: (Required) - Specifies the route type. Currently, the value can only be peering. Changing this creates a new Route.
+            nexthop: |-
+                (Required) - Specifies the next hop. If the route type is peering, enter the VPC peering connection ID.
+                Changing this creates a new Route.
+            tenant_id: |-
+                (Optional) - Specifies the tenant ID. Only the administrator can specify the tenant ID of other tenant.
+                Changing this creates a new Route.
+            type: |-
+                (Required) - Specifies the route type. Currently, the value can only be peering.
+                Changing this creates a new Route.
             vpc_id: (Required) - Specifies the VPC for which a route is to be added. Changing this creates a new Route.
         importStatements: []
     flexibleengine_vpc_subnet_v1:
@@ -12669,6 +12915,7 @@ resources:
                 (Required, String, ForceNew) - Specifies the gateway of the subnet. The value must be a valid IP address
                 in the subnet segment. Changing this creates a new subnet.
             id: '- The resource ID in UUID format.'
+            ipv4_subnet_id: '- The ID of the IPv4 subnet (Native OpenStack API).'
             ipv6_cidr: '- The IPv6 subnet CIDR block.'
             ipv6_enable: (Optional, Bool) - Specifies whether the IPv6 function is enabled for the subnet. Defaults to false.
             ipv6_gateway: '- The IPv6 subnet gateway.'
@@ -12686,12 +12933,12 @@ resources:
                 (Optional, String) - Specifies the IP address of DNS server 2 on the subnet. The value must be a valid
                 IP address.
             status: '- The status of the subnet. The value can be ACTIVE, DOWN, UNKNOWN, or ERROR.'
-            subnet_id: '- The subnet (Native OpenStack API) ID.'
             tags: '- (Optional, Map) The key/value pairs to associate with the subnet.'
             vpc_id: |-
                 (Required, String, ForceNew) - Specifies the ID of the VPC to which the subnet belongs. Changing this creates
                 a new subnet.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_subnet_v1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
     flexibleengine_vpc_v1:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_vpc_v1"'
@@ -12737,7 +12984,8 @@ resources:
             secondary_cidr: '- (Optional, String) Specifies the secondary CIDR block of the VPC.'
             status: '- The current status of the VPC. Possible values are as follows: CREATING, OK or ERROR.'
             tags: '- (Optional, Map) Specifies the key/value pairs to associate with the VPC.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c
     flexibleengine_vpcep_approval:
         subCategory: VPC Endpoint (VPCEP)
         description: '""page_title: "flexibleengine_vpcep_approval"'
@@ -12879,7 +13127,8 @@ resources:
             whitelist: |-
                 (Optional) - Specifies the list of IP address or CIDR block which can be accessed to the VPC endpoint.
                 Changing this creates a new VPC endpoint.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpcep_endpoint.test 828907cc-40c9-42fe-8206-ecc1bdd30060
     flexibleengine_vpcep_service:
         subCategory: VPC Endpoint (VPCEP)
         description: '""page_title: "flexibleengine_vpcep_service"'
@@ -12941,7 +13190,8 @@ resources:
             vpc_id: |-
                 (Required) - Specifies the ID of the VPC to which the backend resource of
                 the VPC endpoint service belongs. Changing this creates a new VPC endpoint service.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpcep_service.test_service 950cd3ba-9d0e-4451-97c1-3e97dd515d46
     flexibleengine_waf_certificate:
         subCategory: Web Application Firewall (WAF)
         description: '""page_title: "flexibleengine_waf_certificate"'
@@ -12955,6 +13205,8 @@ resources:
                   "name": "cert_1",
                   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIJQQIBADANBgkqhkiG9w0BAQEFAASCCSswggknAgEAAoICAQC+9uwFVenCdPD9\n5LWSWMuy4riZW718wxBpYV5Y9N8nM7N0qZLLdpImZrzBbaBldTI+AZGI3Nupuurw\n...\ns9urs/Kk/tbQhsEvu0X8FyGwo0zH6rG8apTFTlac+v4mJ4vlpxSvT5+FW2lgLISE\n+4sM7kp0qO3/p+45HykwBY5iHq3H\n-----END PRIVATE KEY-----\n"
                 }
+            - name: cert_1
+              manifest: '{}'
         argumentDocs:
             certificate: '- (Required, String, ForceNew) Specifies the certificate content. Changing this creates a new certificate.'
             expiration: '- Indicates the time when the certificate expires.'
@@ -12977,6 +13229,8 @@ resources:
                   "name": "cert_1",
                   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIJwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAM\nATAwMC4GCCsGAQUFBwIBFiJodHRwOi8vY3BzLnJvb3QteDEubGV0c2VuY3J5cHQu\n...\nhe8Y4IWS6wY7bCkjCWDcRQJMEhg76fsO3txE+FiYruq9RUWhiF1myv4Q6W+CyBFC\n1qoJFlcDyqSMo5iHq3HLjs\n-----END PRIVATE KEY-----\n"
                 }
+            - name: certificate_2
+              manifest: '{}'
         argumentDocs:
             certificate: |-
                 - (Required, String, ForceNew) Specifies the certificate content. Changing this creates a new
@@ -13234,8 +13488,10 @@ resources:
                       "private_key": "-----BEGIN PRIVATE KEY-----\nMIIJQQIBADANBgkqhkiG9w0BAQEFAASCCSswggknAgEAAoICAQC+9uwFVenCdPD9\n5LWSWMuy4riZW718wxBpYV5Y9N8nM7N0qZLLdpImZrzBbaBldTI+AZGI3Nupuurw\n...\ns9urs/Kk/tbQhsEvu0X8FyGwo0zH6rG8apTFTlac+v4mJ4vlpxSvT5+FW2lgLISE\n+4sM7kp0qO3/p+45HykwBY5iHq3H\n-----END PRIVATE KEY-----\n"
                     }
         argumentDocs:
-            access_status: '- Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain name is connected to WAF.'
-            certificate_id: '- (Optional, String) Specifies the certificate ID. This parameter is mandatory when client_protocol is set to HTTPS.'
+            access_status: '- Whether a domain name is connected to WAF.'
+            certificate_id: |-
+                - (Optional, String) Specifies the certificate ID.
+                This parameter is mandatory when client_protocol is set to HTTPS.
             cname: '- The CNAME value.'
             domain: |-
                 - (Required, String, ForceNew) Specifies the domain name to be protected. For example, www.example.com or *.example.com.
@@ -13393,7 +13649,7 @@ resources:
                 The options are application/json, text/html, and text/xml.
             block_time: '- (Optional, Int) Specifies the lock duration. The value ranges from 0 seconds to 2^32 seconds.'
             content: |-
-                - (Optional, String) Specifies the category content. The format is as follows: http://www.example.com/path.
+                - (Optional, String) Specifies the category content. The format is as follows: "http://www.example.com/path".
                 This field is mandatory when mode is set to other.
             cookie: '- (Optional, String) Specifies the cookie name. This field is mandatory when mode is set to cookie.'
             id: '-  The rule ID in UUID format.'

@@ -39,8 +39,8 @@ type FlowLogParameters struct {
 	// +kubebuilder:validation:Required
 	LogTopicID *string `json:"logTopicId" tf:"log_topic_id,omitempty"`
 
-	// Specifies the VPC flow log name.
-	// The value is a string of 1 to 64 characters that can contain letters, digits, underscores (_), hyphens (-) and periods (.).
+	// Specifies the VPC flow log name. The value is a string of 1 to 64 characters
+	// that can contain letters, digits, underscores (_), hyphens (-) and periods (.).
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 

@@ -88,6 +88,8 @@ spec:
                       a new resource.
                     type: string
                   dataVolumes:
+                    description: Represents the data disk to be created. Changing
+                      this parameter will create a new resource.
                     items:
                       properties:
                         extendParams:
@@ -186,6 +188,8 @@ spec:
                   region:
                     type: string
                   rootVolume:
+                    description: It corresponds to the system disk related configuration.
+                      Changing this parameter will create a new resource.
                     items:
                       properties:
                         extendParams:
@@ -215,6 +219,9 @@ spec:
                     description: VM tag, key/value pair format.
                     type: object
                   taints:
+                    description: 'You can add taints to created nodes to configure
+                      anti-affinity. Changing this parameter will create a new resource.
+                      Each taint contains the following parameters:'
                     items:
                       properties:
                         effect:

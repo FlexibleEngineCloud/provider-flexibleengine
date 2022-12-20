@@ -450,9 +450,7 @@ spec:
               atProvider:
                 properties:
                   accessStatus:
-                    description: 'Whether a domain name is connected to WAF. 0: The
-                      domain name is not connected to WAF, 1: The domain name is connected
-                      to WAF.'
+                    description: Whether a domain name is connected to WAF.
                     type: number
                   cname:
                     description: The CNAME value.

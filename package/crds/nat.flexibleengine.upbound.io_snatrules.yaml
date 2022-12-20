@@ -66,8 +66,8 @@ spec:
                 properties:
                   cidr:
                     description: Specifies CIDR, which can be in the format of a network
-                      segment or a host IP address. This parameter and network_id
-                      are alternative. Changing this creates a new snat rule.
+                      segment or a host IP address. This parameter and subnet_id are
+                      alternative. Changing this creates a new snat rule.
                     type: string
                   floatingIpId:
                     description: ID of the floating ip this snat rule connets to.

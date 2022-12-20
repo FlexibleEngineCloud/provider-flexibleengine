@@ -65,10 +65,9 @@ spec:
               forProvider:
                 properties:
                   fixedIp:
-                    description: 'An IP address to assosciate with the port. NOTE:
-                      This option cannot be used with port_id. You must specifiy a
-                      network_id. The IP address must lie in a range on the supplied
-                      network.'
+                    description: An IP address to assosciate with the port. This option
+                      cannot be used with port_id. You must specify a network_id.
+                      The IP address must lie in a range on the supplied network.
                     type: string
                   instanceId:
                     description: The ID of the Instance to attach the Port or Network
@@ -148,9 +147,9 @@ spec:
                         type: object
                     type: object
                   networkId:
-                    description: 'The ID of the Network to attach to an Instance.
-                      A port will be created automatically. NOTE: This option and
-                      port_id are mutually exclusive.'
+                    description: The ID of the Network to attach to an Instance. A
+                      port will be created automatically. This option and port_id
+                      are mutually exclusive.
                     type: string
                   networkIdRef:
                     description: Reference to a VPCSubnet in vpc to populate networkId.
@@ -226,8 +225,8 @@ spec:
                         type: object
                     type: object
                   portId:
-                    description: 'The ID of the Port to attach to an Instance. NOTE:
-                      This option and network_id are mutually exclusive.'
+                    description: The ID of the Port to attach to an Instance. This
+                      option and network_id are mutually exclusive.
                     type: string
                   portIdRef:
                     description: Reference to a Port in vpc to populate portId.

@@ -137,7 +137,8 @@ type ListenerParameters struct {
 	// +kubebuilder:validation:Optional
 	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
-	// Specifies whether to pass source IP addresses of the clients to backend servers.
+	// Specifies whether to pass source IP addresses of the clients to
+	// backend servers.
 	// +kubebuilder:validation:Optional
 	TransparentClientIPEnable *bool `json:"transparentClientIpEnable,omitempty" tf:"transparent_client_ip_enable,omitempty"`
 }

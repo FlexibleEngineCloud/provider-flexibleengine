@@ -68,7 +68,7 @@ type AddJobsParameters struct {
 	// +kubebuilder:validation:Required
 	JobName *string `json:"jobName" tf:"job_name,omitempty"`
 
-	// Job type 1: MapReduce 2: Spark 3: Hive Script 4: HiveQL
+	// Job type. 1: MapReduce 2: Spark 3: Hive Script 4: HiveQL
 	// (not supported currently) 5: DistCp, importing and exporting data (not supported
 	// in this API currently). 6: Spark Script 7: Spark SQL, submitting Spark SQL statements
 	// (not supported in this API currently). NOTE: Spark and Hive jobs can be added
