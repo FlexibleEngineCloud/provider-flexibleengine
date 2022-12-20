@@ -20,6 +20,3 @@ spec:
     period: 10
     periodUnit: MINUTE
     type: API-based
-
----
-

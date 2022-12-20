@@ -17,6 +17,3 @@ spec:
     namespace: ${var.namespace}
     storage: 10Gi
     storageClassName: csi-disk
-
----
-
