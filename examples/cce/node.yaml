@@ -8,21 +8,20 @@ metadata:
   name: example-cce-node
 spec:
   forProvider:
-    availabilityZone: eu-west0a
-    bandwidthSize: 100
-    clusterIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example_cce_cluster
-    dataVolumes:
-      - size: 100
-        volumetype: SATA
-    flavorId: s1.medium
-    iptype: 5_bgp
+    #clusterIdSelector:
+    #  matchLabels:
+    #    testing.upbound.io/example-name: example_cce_cluster
+    clusterId: 20e8c7cd-82cb-11ed-b702-0255ac101f6b
+    name: example-cce-node
+    flavorId: s3.large.2
+    availabilityZone: eu-west-0a
     keyPairSelector:
       matchLabels:
         testing.upbound.io/example-name: example_keypair
-    name: example-cce-node
+    #public_key: AAAAB3NzaC1yc2EAAAADAQABAAACAQCkGfb1qge/SmCtHyb4O9Tg7qe1JvYj7DFJSCcKbtKy9k2jbUG82HML/BcdJeiJPes29Tk6lnn4IKdZPrmdZ6aU/Uz+slLonZcVdOaMjjtvdQ+gEwWfZT57D9cqiqAuGFjCW4dTVzsw4heKVMhxoVCKf1Y8MuWu4T7zzQCTi6HTO0WIzEB+Ie1Q2GfLY48fknfoetFpr9b9SbmcCx6JKwO9AX292L01WVuuhtUaGLtyuaUahMgfkRuLUQ5u7OzhmRsKd/G4PZfNWArMxd4khXPbghfbnr6pa19Tw+kUEtPp/MzE8sCfzu/JDnQaHlnG9g0l1mQC7u99V4DiZ8FWsH8Vi8KjjBoRUSNVyJM8wUY5Y5DjqkSiqqVjp2gurtGdvFNuNvS+EI1Pg15aV2nrEfVdmgqCveNlrpQC35tEkiVERjkW798GGOuoDu3jCbbBhzFYyDZXvQA2pRuCq6GTDIPWFuphmjpFmhaBy/rjnClqbmYbB5S+ixJA0EBfeXJTSoKZdjdKlx3WBzlIU7FtCCjPbjEccrdXmGnWnFsZmbEMWH007Q5PHVgWbd1lrIoC24rWRAt/l/E9j+9wHSepOLbKYAW0gJagXcoAl1OAueYGR+zb+8+YLwKHk9Gt8NR9TPOEQ5iyTLl0usj3DLSCyPSe/lydzLEQJgkZkVYLszaA9w== 
+    dataVolumes:
+      - size: 100
+        volumetype: SATA
     rootVolume:
       - size: 40
         volumetype: SATA
-    sharetype: PER

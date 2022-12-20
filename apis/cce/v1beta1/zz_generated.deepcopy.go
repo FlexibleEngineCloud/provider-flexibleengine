@@ -460,6 +460,16 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.EIPRef != nil {
+		in, out := &in.EIPRef, &out.EIPRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.EIPSelector != nil {
+		in, out := &in.EIPSelector, &out.EIPSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ExtendParam != nil {
 		in, out := &in.ExtendParam, &out.ExtendParam
 		*out = make(map[string]*string, len(*in))

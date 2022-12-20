@@ -2,6 +2,7 @@
 package cce
 
 import (
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -26,6 +27,10 @@ func Configure(p *config.Provider) {
 		r.References["highway_subnet_id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
+		r.References["eip"] = config.Reference{
+			Type:      tools.GenerateType("eip", "EIP"),
+			Extractor: common.PathAddressExtractor,
+		}
 	})
 
 	// flexibleengine_cce_namespace
@@ -48,6 +53,9 @@ func Configure(p *config.Provider) {
 		}
 		r.References["data_volumes.kms_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
+		}
+		r.References["subnet_id"] = config.Reference{
+			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 	})
 

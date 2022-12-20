@@ -10,7 +10,7 @@ spec:
   forProvider:
     authenticationMode: rbac
     clusterType: VirtualMachine
-    containerNetworkType: overlay_l2
+    containerNetworkType: vpc-router
     description: example cluster
     flavorId: cce.s1.small
     name: example-cce-cluster
