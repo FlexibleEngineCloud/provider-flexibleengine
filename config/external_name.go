@@ -327,7 +327,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Imported with the following format : {instance_id}/{volume_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_volume_attach_v2
 	"flexibleengine_compute_volume_attach_v2": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.volume_id}}"),
-	"flexibleengine_compute_floatingip_v2":    config.IdentifierFromProvider,
+
 	/*
 		> Identity and Access Management (IAM)
 	*/
@@ -417,33 +417,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_flow_log_v1
 	"flexibleengine_vpc_flow_log_v1": config.IdentifierFromProvider,
 
-	// ! THIS IS DEPRECATED
-	// ! Now use flexibleengine_vpc_eip
-	// flexibleengine_networking_floatingip_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_floatingip_v2
-	// "flexibleengine_networking_floatingip_v2": config.IdentifierFromProvider,
-
-	// ! THIS IS NOT ANNOUNCED DEPRECATED BUT A PARENT RESOURCE IS DEPRECATED
-	// ! Now use flexibleengine_vpc_eip_associate
-	// flexibleengine_networking_floatingip_associate_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_floatingip_associate_v2
-	// "flexibleengine_networking_floatingip_associate_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_network_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_network_v2
-	"flexibleengine_networking_network_v2": config.IdentifierFromProvider,
-
 	// flexibleengine_networking_port_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_port_v2
 	"flexibleengine_networking_port_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_router_interface_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_interface_v2
-	"flexibleengine_networking_router_interface_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_router_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_router_v2
-	"flexibleengine_networking_router_v2": config.IdentifierFromProvider,
 
 	// flexibleengine_networking_secgroup_rule_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_secgroup_rule_v2
@@ -452,10 +428,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_networking_secgroup_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_secgroup_v2
 	"flexibleengine_networking_secgroup_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_networking_subnet_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_subnet_v2
-	"flexibleengine_networking_subnet_v2": config.IdentifierFromProvider,
 
 	// flexibleengine_networking_vip_associate_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/networking_vip_associate_v2

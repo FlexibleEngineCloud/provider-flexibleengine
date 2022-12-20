@@ -82,22 +82,6 @@ func (mg *Gateway) ResolveReferences(ctx context.Context, c client.Reader) error
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.RouterID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.RouterIDRef,
-		Selector:     mg.Spec.ForProvider.RouterIDSelector,
-		To: reference.To{
-			List:    &v1beta11.RouterList{},
-			Managed: &v1beta11.Router{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.RouterID")
-	}
-	mg.Spec.ForProvider.RouterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.RouterIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
 		Extract:      common.IDExtractor(),
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,

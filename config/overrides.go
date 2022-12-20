@@ -22,11 +22,6 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				r.References[k] = config.Reference{
 					Type: tools.GenerateType("vpc", "VPC"),
 				}
-				// router_id is a reference to a Router resource
-			case "router_id":
-				r.References[k] = config.Reference{
-					Type: tools.GenerateType("vpc", "Router"),
-				}
 				// subnet_id is a reference to a Subnet resource
 			case "subnet_id":
 				r.References[k] = config.Reference{

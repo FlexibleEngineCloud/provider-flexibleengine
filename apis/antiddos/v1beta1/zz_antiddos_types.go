@@ -32,15 +32,15 @@ type AntiDDoSParameters struct {
 	EnableL7 *bool `json:"enableL7" tf:"enable_l7,omitempty"`
 
 	// The ID corresponding to the Elastic IP Address (EIP).
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.FloatingIp
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	FloatingIPID *string `json:"floatingIpId,omitempty" tf:"floating_ip_id,omitempty"`
 
-	// Reference to a FloatingIp in ecs to populate floatingIpId.
+	// Reference to a EIP in eip to populate floatingIpId.
 	// +kubebuilder:validation:Optional
 	FloatingIPIDRef *v1.Reference `json:"floatingIpIdRef,omitempty" tf:"-"`
 
-	// Selector for a FloatingIp in ecs to populate floatingIpId.
+	// Selector for a EIP in eip to populate floatingIpId.
 	// +kubebuilder:validation:Optional
 	FloatingIPIDSelector *v1.Selector `json:"floatingIpIdSelector,omitempty" tf:"-"`
 
