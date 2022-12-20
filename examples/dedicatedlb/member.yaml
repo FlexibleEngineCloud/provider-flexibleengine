@@ -1,0 +1,18 @@
+apiVersion: dedicatedelb.flexibleengine.upbound.io/v1beta1
+kind: Member
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/member
+  labels:
+    testing.upbound.io/example-name: example_memberv3
+  name: example-memberv3
+spec:
+  forProvider:
+    address: 192.168.0.130
+    poolIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_poolv3
+    protocolPort: 8080
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
