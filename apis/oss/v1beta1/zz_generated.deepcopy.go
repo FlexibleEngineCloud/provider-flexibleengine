@@ -691,16 +691,6 @@ func (in *OBSBucketParameters) DeepCopyInto(out *OBSBucketParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.BucketRef != nil {
-		in, out := &in.BucketRef, &out.BucketRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.BucketSelector != nil {
-		in, out := &in.BucketSelector, &out.BucketSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.CorsRule != nil {
 		in, out := &in.CorsRule, &out.CorsRule
 		*out = make([]CorsRuleParameters, len(*in))
@@ -880,6 +870,16 @@ func (in *OBSBucketReplicationParameters) DeepCopyInto(out *OBSBucketReplication
 		*out = new(string)
 		**out = **in
 	}
+	if in.AgencyRef != nil {
+		in, out := &in.AgencyRef, &out.AgencyRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.AgencySelector != nil {
+		in, out := &in.AgencySelector, &out.AgencySelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Bucket != nil {
 		in, out := &in.Bucket, &out.Bucket
 		*out = new(string)
@@ -899,6 +899,16 @@ func (in *OBSBucketReplicationParameters) DeepCopyInto(out *OBSBucketReplication
 		in, out := &in.DestinationBucket, &out.DestinationBucket
 		*out = new(string)
 		**out = **in
+	}
+	if in.DestinationBucketRef != nil {
+		in, out := &in.DestinationBucketRef, &out.DestinationBucketRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DestinationBucketSelector != nil {
+		in, out := &in.DestinationBucketSelector, &out.DestinationBucketSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Rule != nil {
 		in, out := &in.Rule, &out.Rule
@@ -1534,16 +1544,6 @@ func (in *S3BucketParameters) DeepCopyInto(out *S3BucketParameters) {
 		in, out := &in.BucketPrefix, &out.BucketPrefix
 		*out = new(string)
 		**out = **in
-	}
-	if in.BucketRef != nil {
-		in, out := &in.BucketRef, &out.BucketRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.BucketSelector != nil {
-		in, out := &in.BucketSelector, &out.BucketSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.CorsRule != nil {
 		in, out := &in.CorsRule, &out.CorsRule

@@ -71,7 +71,7 @@ spec:
                     description: The name of the bucket to put the file in.
                     type: string
                   bucketRef:
-                    description: Reference to a S3Bucket in oss to populate bucket.
+                    description: Reference to a OBSBucket to populate bucket.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -105,7 +105,7 @@ spec:
                     - name
                     type: object
                   bucketSelector:
-                    description: Selector for a S3Bucket in oss to populate bucket.
+                    description: Selector for a OBSBucket to populate bucket.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

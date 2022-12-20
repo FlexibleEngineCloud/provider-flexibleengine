@@ -2,6 +2,7 @@
 package oss
 
 import (
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -28,10 +29,6 @@ func Configure(p *config.Provider) {
 		r.References["kms_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
 		}
-
-		// TODO This Require s3_bucket
-		// Logging target_bucket
-
 	})
 
 	// flexibleengine_obs_bucket_object
@@ -41,19 +38,44 @@ func Configure(p *config.Provider) {
 		r.References["sse_kms_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
 		}
+		r.References["bucket"] = config.Reference{
+			Type: "OBSBucket",
+		}
 
 	})
 
 	// flexibleengine_obs_bucket_replication
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/obs_bucket_replication
+	p.AddResourceConfigurator("flexibleengine_obs_bucket_replication", func(r *config.Resource) {
+		r.References["bucket"] = config.Reference{
+			Type: "OBSBucket",
+		}
+		r.References["destination_bucket"] = config.Reference{
+			Type: "OBSBucket",
+		}
+		r.References["agency"] = config.Reference{
+			Type:      tools.GenerateType("iam", "Agency"),
+			Extractor: common.PathNameExtractor,
+		}
+	})
 
 	// flexibleengine_s3_bucket
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket
 
 	// flexibleengine_s3_bucket_object
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_object
+	p.AddResourceConfigurator("flexibleengine_s3_bucket_object", func(r *config.Resource) {
+		r.References["bucket"] = config.Reference{
+			Type: "S3Bucket",
+		}
+	})
 
 	// flexibleengine_s3_bucket_policy
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/s3_bucket_policy
+	p.AddResourceConfigurator("flexibleengine_s3_bucket_policy", func(r *config.Resource) {
+		r.References["bucket"] = config.Reference{
+			Type: "S3Bucket",
+		}
+	})
 
 }

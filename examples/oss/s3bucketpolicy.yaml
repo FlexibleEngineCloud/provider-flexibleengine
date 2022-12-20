@@ -1,0 +1,30 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: S3BucketPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/s3bucketpolicy
+  labels:
+    testing.upbound.io/example-name: example_s3bucketpolicy
+  name: example-s3bucketpolicy
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_s3bucket
+    policy: >
+      {
+        "Version": "2008-10-17",
+        "Statement": [{
+          "Effect": "Allow",
+          "Principal": {
+            "AWS": ["*"]
+          },
+          "Action": [
+            "s3:*"
+          ],
+          "Resource": [
+            "arn:aws:s3:::my-tf-test-example-s3bucket",
+            "arn:aws:s3:::my-tf-test-example-s3bucket/*"
+          ]
+        }]
+      }

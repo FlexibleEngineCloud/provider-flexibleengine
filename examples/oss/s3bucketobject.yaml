@@ -1,0 +1,15 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: S3BucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/s3bucketobject
+  labels:
+    testing.upbound.io/example-name: example_s3bucketobject
+  name: example-s3bucketobject
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_s3bucket
+    key: example_s3bucket_object_key
+    content: "example content"

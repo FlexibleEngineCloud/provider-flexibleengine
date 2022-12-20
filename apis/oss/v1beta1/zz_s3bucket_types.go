@@ -135,7 +135,6 @@ type S3BucketParameters struct {
 	Arn *string `json:"arn,omitempty" tf:"arn,omitempty"`
 
 	// The name of the bucket.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.S3Bucket
 	// +kubebuilder:validation:Optional
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
 
@@ -143,14 +142,6 @@ type S3BucketParameters struct {
 	// Conflicts with bucket.
 	// +kubebuilder:validation:Optional
 	BucketPrefix *string `json:"bucketPrefix,omitempty" tf:"bucket_prefix,omitempty"`
-
-	// Reference to a S3Bucket in oss to populate bucket.
-	// +kubebuilder:validation:Optional
-	BucketRef *v1.Reference `json:"bucketRef,omitempty" tf:"-"`
-
-	// Selector for a S3Bucket in oss to populate bucket.
-	// +kubebuilder:validation:Optional
-	BucketSelector *v1.Selector `json:"bucketSelector,omitempty" tf:"-"`
 
 	// A rule of Cross-Origin Resource Sharing
 	// (documented below).
