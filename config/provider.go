@@ -9,6 +9,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/antiddos"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/as"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/bms"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/cce"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/csbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cse"
@@ -119,6 +120,7 @@ func GetProvider() *ujconfig.Provider {
 		csbs.Configure,
 		dms.Configure,
 		sfs.Configure,
+		cce.Configure,
 	} {
 		configure(pc)
 	}

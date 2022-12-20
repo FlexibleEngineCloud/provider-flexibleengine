@@ -34,8 +34,17 @@ type NamespaceParameters struct {
 
 	// Specifies the cluster ID to which the CCE namespace belongs.
 	// Changing this will create a new namespace resource.
-	// +kubebuilder:validation:Required
-	ClusterID *string `json:"clusterId" tf:"cluster_id,omitempty"`
+	// +crossplane:generate:reference:type=Cluster
+	// +kubebuilder:validation:Optional
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Reference to a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDRef *v1.Reference `json:"clusterIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
 	// Specifies the map of string keys and values for labels.
 	// Changing this will create a new namespace resource.
@@ -46,8 +55,8 @@ type NamespaceParameters struct {
 	// This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and hyphens (-),
 	// and must start and end with lowercase letters and digits. Changing this will create a new namespace resource.
 	// Exactly one of name or prefix must be provided.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies a prefix used by the server to generate a unique name.
 	// This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and

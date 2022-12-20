@@ -23,8 +23,17 @@ type NodeDataVolumesParameters struct {
 	ExtendParams map[string]*string `json:"extendParams,omitempty" tf:"extend_params,omitempty"`
 
 	// Specifies the ID of a KMS key. This is used to encrypt the volume.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1.Key
 	// +kubebuilder:validation:Optional
 	KMSKeyID *string `json:"kmsKeyId,omitempty" tf:"kms_key_id,omitempty"`
+
+	// Reference to a Key in kms to populate kmsKeyId.
+	// +kubebuilder:validation:Optional
+	KMSKeyIDRef *v1.Reference `json:"kmsKeyIdRef,omitempty" tf:"-"`
+
+	// Selector for a Key in kms to populate kmsKeyId.
+	// +kubebuilder:validation:Optional
+	KMSKeyIDSelector *v1.Selector `json:"kmsKeyIdSelector,omitempty" tf:"-"`
 
 	// Specifies the disk size in GB.
 	// +kubebuilder:validation:Required
@@ -76,8 +85,17 @@ type NodeParameters struct {
 	BillingMode *float64 `json:"billingMode,omitempty" tf:"billing_mode,omitempty"`
 
 	// ID of the cluster. Changing this parameter will create a new resource.
-	// +kubebuilder:validation:Required
-	ClusterID *string `json:"clusterId" tf:"cluster_id,omitempty"`
+	// +crossplane:generate:reference:type=Cluster
+	// +kubebuilder:validation:Optional
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Reference to a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDRef *v1.Reference `json:"clusterIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
 	// Represents the data disk to be created.
 	// Changing this parameter will create a new resource.
@@ -89,8 +107,17 @@ type NodeParameters struct {
 	EIPCount *float64 `json:"eipCount,omitempty" tf:"eip_count,omitempty"`
 
 	// List of existing elastic IP IDs. Changing this parameter will create a new resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	EIPIds []*string `json:"eipIds,omitempty" tf:"eip_ids,omitempty"`
+
+	// References to EIP in eip to populate eipIds.
+	// +kubebuilder:validation:Optional
+	EIPIdsRefs []v1.Reference `json:"eipIdsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of EIP in eip to populate eipIds.
+	// +kubebuilder:validation:Optional
+	EIPIdsSelector *v1.Selector `json:"eipIdsSelector,omitempty" tf:"-"`
 
 	// Classification of cloud server specifications.
 	// Changing this parameter will create a new resource.
@@ -115,8 +142,17 @@ type NodeParameters struct {
 
 	// Key pair name when logging in to select the key pair mode.
 	// Changing this parameter will create a new resource.
-	// +kubebuilder:validation:Required
-	KeyPair *string `json:"keyPair" tf:"key_pair,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.KeyPair
+	// +kubebuilder:validation:Optional
+	KeyPair *string `json:"keyPair,omitempty" tf:"key_pair,omitempty"`
+
+	// Reference to a KeyPair in ecs to populate keyPair.
+	// +kubebuilder:validation:Optional
+	KeyPairRef *v1.Reference `json:"keyPairRef,omitempty" tf:"-"`
+
+	// Selector for a KeyPair in ecs to populate keyPair.
+	// +kubebuilder:validation:Optional
+	KeyPairSelector *v1.Selector `json:"keyPairSelector,omitempty" tf:"-"`
 
 	// Tags of a Kubernetes node, key/value pair format. Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Optional

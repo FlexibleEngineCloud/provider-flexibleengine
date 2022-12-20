@@ -4,15 +4,12 @@ metadata:
   annotations:
     meta.upbound.io/example-id: cce/v1beta1/addon
   labels:
-    testing.upbound.io/example-name: addon_test
-  name: addon-test
+    testing.upbound.io/example-name: example_cce_addon
+  name: example-cce-addon
 spec:
   forProvider:
     clusterIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_cce_cluster
     templateName: metrics-server
-    version: 1.0.6
-
----
-
+    version: 1.2.1

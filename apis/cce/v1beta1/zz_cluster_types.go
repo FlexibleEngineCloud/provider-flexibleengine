@@ -126,8 +126,17 @@ type ClusterParameters struct {
 
 	// The ID of the high speed network used to create bare metal nodes.
 	// Changing this parameter will create a new cluster resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	HighwaySubnetID *string `json:"highwaySubnetId,omitempty" tf:"highway_subnet_id,omitempty"`
+
+	// Reference to a VPCSubnet in vpc to populate highwaySubnetId.
+	// +kubebuilder:validation:Optional
+	HighwaySubnetIDRef *v1.Reference `json:"highwaySubnetIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPCSubnet in vpc to populate highwaySubnetId.
+	// +kubebuilder:validation:Optional
+	HighwaySubnetIDSelector *v1.Selector `json:"highwaySubnetIdSelector,omitempty" tf:"-"`
 
 	// Service forwarding mode. Two modes are available:
 	// +kubebuilder:validation:Optional

@@ -8,9 +8,7 @@ metadata:
   name: test
 spec:
   forProvider:
-    clusterIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    clusterId: ${var.cluster_id}
     name: test-namespace
 
 ---
