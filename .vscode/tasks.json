@@ -4,19 +4,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "G. List Resources",
+            "label": "CLI ToolBox",
             "type": "shell",
-            "command": "python3 scripts/generate-list-resources.py"
-        },
-        {
-            "label": "G. List Tested",
-            "type": "shell",
-            "command": "python3 scripts/generate-list-tested.py package/crds/ examples/ > list-tested.md"
+            "command": "python3 scripts/cli.py"
         },
         {
             "label": "G. Kubectl Example",
             "type": "shell",
-            "command": "python3 scripts/dep.py"
+            "command": "python3 scripts/cli.py kubectl"
         },
         {
             "label": "Reviewable",
