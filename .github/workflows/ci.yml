@@ -286,7 +286,10 @@ jobs:
           path: _output/**
 
       - name: Publish Artifacts
-        run: make publish BRANCH_NAME=${GITHUB_REF##*/}
+        run: |
+          curl -sL https://cli.upbound.io | sh
+          ./up login
+          make publish BRANCH_NAME=${GITHUB_REF##*/}
         env:
-          # Unset UPBOUND_MARKETPLACE_PUSH_ROBOT_USR for this step
-          UPBOUND_MARKETPLACE_PUSH_ROBOT_USR: ''
+          UP_ACCOUNT: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR }}
+          UP_TOKEN: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_PSW }}
