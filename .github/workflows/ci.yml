@@ -287,8 +287,7 @@ jobs:
 
       - name: Publish Artifacts
         run: |
-          curl -sL https://cli.upbound.io | sh
-          ./up login
+          up login
           make publish BRANCH_NAME=${GITHUB_REF##*/}
         env:
           UP_ACCOUNT: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR }}
