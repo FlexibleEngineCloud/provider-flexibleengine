@@ -357,7 +357,7 @@ def kubectl():
         print(fileToApply)
 
     # Print the kubectl command to apply all resources
-    origin = sys.argv[1]
+    origin = sys.argv[2]
     fi = ""
 
     for fil in fileToApply:
@@ -419,8 +419,6 @@ class CommandCompleterKubectl(Completer):
                     if file.endswith(".yaml"):
                         # File name without extension
                         self.commands.append(dir + "/" + file[:-5])
-
-        # self.commands = ["vpc/vpc", "vpc/vpcsubnet", "command2"]
 
     def get_completions(self, document, complete_event):
         if document.text.startswith(".x "):

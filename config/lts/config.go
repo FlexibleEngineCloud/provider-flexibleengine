@@ -10,7 +10,7 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lts_topic
 	p.AddResourceConfigurator("flexibleengine_lts_topic", func(r *config.Resource) {
 
-		// vpc_id is the ID of the vpc to which this nat gateway will be attached.
+		// group_id is a reference to a Group
 		r.References["group_id"] = config.Reference{
 			Type: "Group",
 		}
