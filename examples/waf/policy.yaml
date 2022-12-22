@@ -1,0 +1,11 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/policy
+  labels:
+    testing.upbound.io/example-name: example_waf_policy
+  name: example-waf-policy
+spec:
+  forProvider:
+    name: example-waf-policy
