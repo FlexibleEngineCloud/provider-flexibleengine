@@ -1,0 +1,23 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: Domain
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/domain
+  labels:
+    testing.upbound.io/example-name: example_waf_domain
+  name: example-waf-domain
+spec:
+  forProvider:
+    certificateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_waf_certificate
+    domain: www.example.com
+    proxy: true
+    server:
+      - address: 90.84.181.77
+        clientProtocol: HTTPS
+        port: 8080
+        serverProtocol: HTTP
+    sipHeaderList:
+      - X-Forwarded-For
+    sipHeaderName: default

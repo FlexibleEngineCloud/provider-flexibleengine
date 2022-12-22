@@ -1,0 +1,16 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RuleDataMasking
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/ruledatamasking
+  labels:
+    testing.upbound.io/example-name: example_waf_ruledatamasking
+  name: example-waf-ruledatamasking
+spec:
+  forProvider:
+    field: params
+    path: /login
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_waf_policy
+    subfield: password

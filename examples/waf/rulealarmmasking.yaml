@@ -1,0 +1,15 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RuleAlarmMasking
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/rulealarmmasking
+  labels:
+    testing.upbound.io/example-name: example_waf_rulealarmmasking
+  name: example-waf-rulealarmmasking
+spec:
+  forProvider:
+    eventId: xx
+    path: /a
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_waf_policy

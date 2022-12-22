@@ -1,0 +1,22 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: DedicatedInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/dedicatedinstance
+  labels:
+    testing.upbound.io/example-name: example_waf_dedicatedinstance
+  name: example-waf-dedicatedinstance
+spec:
+  forProvider:
+    availableZone: eu-west-0a
+    ecsFlavor: t2.micro
+    name: example-waf-dedicatedinstance
+    securityGroupRefs:
+      - name: example-secgroup
+    specificationCode: waf.instance.professional
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
