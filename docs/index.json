@@ -1,5 +1,9 @@
 [
     {
+        "name": "Quickstart",
+        "location": "Quickstart.md"
+    },
+    {
         "name": "Configuration",
         "location": "Configuration.md"
     }
