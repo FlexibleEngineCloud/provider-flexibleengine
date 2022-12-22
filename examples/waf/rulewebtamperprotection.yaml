@@ -1,0 +1,15 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RuleWebTamperProtection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/rulewebtamperprotection
+  labels:
+    testing.upbound.io/example-name: example_waf_rulewebtamperprotection
+  name: example-waf-rulewebtamperprotection
+spec:
+  forProvider:
+    domain: www.abc.com
+    path: /a
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_waf_policy
