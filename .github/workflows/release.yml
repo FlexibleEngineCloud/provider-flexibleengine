@@ -102,4 +102,3 @@ jobs:
         env:
           UP_ACCOUNT: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR }}
           UP_TOKEN: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_PSW }}
-          VERSION: ${{ needs.release_please.outputs.tag_name }}
