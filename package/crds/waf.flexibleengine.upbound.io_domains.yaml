@@ -153,7 +153,7 @@ spec:
                       Changing this create a new domain.
                     type: string
                   policyIdRef:
-                    description: Reference to a Policy to populate policyId.
+                    description: Reference to a Policy in waf to populate policyId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -187,7 +187,7 @@ spec:
                     - name
                     type: object
                   policyIdSelector:
-                    description: Selector for a Policy to populate policyId.
+                    description: Selector for a Policy in waf to populate policyId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
