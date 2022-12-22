@@ -74,6 +74,12 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				r.References[k] = config.Reference{
 					Type: "Pool",
 				}
+			case "policy_id":
+				if r.ShortGroup == "waf" {
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("waf", "Policy"),
+					}
+				}
 			}
 		}
 	}

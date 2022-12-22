@@ -31,15 +31,15 @@ type RuleWebTamperProtectionParameters struct {
 	Path *string `json:"path" tf:"path,omitempty"`
 
 	// Specifies the WAF policy ID. Changing this creates a new rule.
-	// +crossplane:generate:reference:type=Policy
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1.Policy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
 
-	// Reference to a Policy to populate policyId.
+	// Reference to a Policy in waf to populate policyId.
 	// +kubebuilder:validation:Optional
 	PolicyIDRef *v1.Reference `json:"policyIdRef,omitempty" tf:"-"`
 
-	// Selector for a Policy to populate policyId.
+	// Selector for a Policy in waf to populate policyId.
 	// +kubebuilder:validation:Optional
 	PolicyIDSelector *v1.Selector `json:"policyIdSelector,omitempty" tf:"-"`
 }
