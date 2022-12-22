@@ -1,0 +1,14 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RuleBlacklist
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/ruleblacklist
+  labels:
+    testing.upbound.io/example-name: example_waf_ruleblacklist
+  name: example-waf-ruleblacklist
+spec:
+  forProvider:
+    address: 192.168.0.0/24
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_waf_policy
