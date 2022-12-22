@@ -1,4 +1,5 @@
 name: Release
+
 on:
   push:
     branches:
@@ -25,7 +26,7 @@ jobs:
   publish-artifacts:
     runs-on: ubuntu-22.04
     needs: release_please
-    if: if: ${{ needs.release_please.outputs.release_created == 'true' }}
+    if: ${{ needs.release_please.outputs.release_created == 'true' }}
 
     steps:
       - name: Setup QEMU
