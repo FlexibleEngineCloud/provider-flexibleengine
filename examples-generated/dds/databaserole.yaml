@@ -8,9 +8,7 @@ metadata:
   name: test
 spec:
   forProvider:
-    dbNameSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    dbName: ${var.db_name}
     instanceIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example

@@ -22,22 +22,6 @@ func (mg *DatabaseRole) ResolveReferences(ctx context.Context, c client.Reader) 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.DBName),
-		Extract:      common.DBNameExtractor(),
-		Reference:    mg.Spec.ForProvider.DBNameRef,
-		Selector:     mg.Spec.ForProvider.DBNameSelector,
-		To: reference.To{
-			List:    &DatabaseUserList{},
-			Managed: &DatabaseUser{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.DBName")
-	}
-	mg.Spec.ForProvider.DBName = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.DBNameRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.InstanceID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.InstanceIDRef,

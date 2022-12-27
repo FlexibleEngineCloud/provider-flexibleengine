@@ -2,7 +2,6 @@
 package dds
 
 import (
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -38,12 +37,5 @@ func Configure(p *config.Provider) {
 		r.References["instance_id"] = config.Reference{
 			Type: "Instance",
 		}
-
-		// db_name
-		r.References["db_name"] = config.Reference{
-			TerraformName: "flexibleengine_dds_database_user",
-			Extractor:     common.PathDBNameExtractor,
-		}
-
 	})
 }
