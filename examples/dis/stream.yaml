@@ -1,0 +1,12 @@
+apiVersion: dis.flexibleengine.upbound.io/v1beta1
+kind: Stream
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dis/v1beta1/stream
+  labels:
+    testing.upbound.io/example-name: example_dis_stream
+  name: example-dis-stream
+spec:
+  forProvider:
+    name: example-dis-stream
+    partitionCount: 3
