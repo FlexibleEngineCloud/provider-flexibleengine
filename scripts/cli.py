@@ -244,37 +244,46 @@ def kubectl():
                                                i["apiVersion"]]["specs"] = []
                                         Labels[i["kind"] + "." +
                                                i["apiVersion"]]["refs"] = []
-                                        for k, v in i["spec"]["forProvider"].items():
-                                            if v == None:
-                                                continue
-                                            if isinstance(v, list):
-                                                for item in v:
-                                                    if isinstance(item, dict):
-                                                        for key in item:
-                                                            if isinstance(item[key], dict):
-                                                                if "matchLabels" in item[key]:
-                                                                    if "testing.upbound.io/example-name" in item[key]["matchLabels"]:
-                                                                        Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(
-                                                                            item[key]["matchLabels"]["testing.upbound.io/example-name"])
-                                                                        if groupResource == dir and resource+".yaml" == file:
-                                                                            listLabelsRequired.append(
+                                        if "spec" in i and "forProvider" in i["spec"]:
+                                            for k, v in i["spec"]["forProvider"].items():
+                                                if v == None:
+                                                    continue
+                                                if isinstance(v, list):
+                                                    for item in v:
+                                                        if isinstance(item, dict):
+                                                            for key in item:
+                                                                if isinstance(item[key], dict):
+                                                                    if "matchLabels" in item[key]:
+                                                                        if "testing.upbound.io/example-name" in item[key]["matchLabels"]:
+                                                                            Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(
                                                                                 item[key]["matchLabels"]["testing.upbound.io/example-name"])
-                                                            if isinstance(k, str):
-                                                                if re.match(r"^.*Ref(s)?", k):
-                                                                    Labels[i["kind"] + "." +
-                                                                           i["apiVersion"]]["refs"].append(item[key])
-                                                                    if groupResource == dir and resource+".yaml" == file:
-                                                                        listRefsRequired.append(
-                                                                            item[key])
+                                                                            if groupResource == dir and resource+".yaml" == file:
+                                                                                listLabelsRequired.append(
+                                                                                    item[key]["matchLabels"]["testing.upbound.io/example-name"])
+                                                                if isinstance(k, str):
+                                                                    if re.match(r"^.*Ref(s)?", k):
+                                                                        Labels[i["kind"] + "." +
+                                                                               i["apiVersion"]]["refs"].append(item[key])
+                                                                        if groupResource == dir and resource+".yaml" == file:
+                                                                            listRefsRequired.append(
+                                                                                item[key])
 
-                                            if isinstance(v, dict):
-                                                if "matchLabels" in v:
-                                                    if "testing.upbound.io/example-name" in v["matchLabels"]:
-                                                        Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(
-                                                            v["matchLabels"]["testing.upbound.io/example-name"])
-                                                        if groupResource == dir and resource+".yaml" == file:
-                                                            listLabelsRequired.append(
+                                                if isinstance(v, dict):
+                                                    if "matchLabels" in v:
+                                                        if "testing.upbound.io/example-name" in v["matchLabels"]:
+                                                            Labels[i["kind"] + "." + i["apiVersion"]]["specs"].append(
                                                                 v["matchLabels"]["testing.upbound.io/example-name"])
+                                                            if groupResource == dir and resource+".yaml" == file:
+                                                                listLabelsRequired.append(
+                                                                    v["matchLabels"]["testing.upbound.io/example-name"])
+
+                                                    if re.match(r"^.*SecretRef(s)?", k):
+                                                        if "name" in v:
+                                                            Labels[i["kind"] + "." +
+                                                                   i["apiVersion"]]["refs"].append(v["name"])
+                                                            if groupResource == dir and resource+".yaml" == file:
+                                                                listRefsRequired.append(
+                                                                    v["name"])
 
                             z = y[0]
                             if z["kind"] + "." + z["apiVersion"] not in Labels:
@@ -326,6 +335,10 @@ def kubectl():
                         if s not in listRefsRequired:
                             listRefsRequired.append(s)
 
+    if debug:
+        print("listRefsRequired:")
+        print(listRefsRequired)
+
     for refRequire in listRefsRequired:
         for kind in Labels:
             if kind in Labels:
@@ -333,6 +346,11 @@ def kubectl():
                     listRefsRequiredFound.append(Labels[kind]["name"])
                     fileToApply.append(Labels[kind]["file"])
                     break
+    if debug:
+        print("listRefsRequiredFound:")
+        print(listRefsRequiredFound)
+        print("fileToApply:")
+        print(fileToApply)
 
     for refRequire in listRefsRequired:
         if refRequire not in listRefsRequiredFound:
