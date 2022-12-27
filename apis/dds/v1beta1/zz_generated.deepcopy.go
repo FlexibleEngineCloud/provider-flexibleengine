@@ -155,16 +155,6 @@ func (in *DatabaseRoleParameters) DeepCopyInto(out *DatabaseRoleParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.DBNameRef != nil {
-		in, out := &in.DBNameRef, &out.DBNameRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.DBNameSelector != nil {
-		in, out := &in.DBNameSelector, &out.DBNameSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.InstanceID != nil {
 		in, out := &in.InstanceID, &out.InstanceID
 		*out = new(string)
