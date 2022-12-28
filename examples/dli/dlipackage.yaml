@@ -1,0 +1,13 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: DLIPackage
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/dlipackage
+  labels:
+    testing.upbound.io/example-name: example_dli_package
+  name: example-dli-package
+spec:
+  forProvider:
+    groupName: example-dli-package-group
+    objectPath: https://example-dlipackageextra-obsbucket.oss.eu-west-0.prod-cloud-ocb.orange-business.com/dli/packages/object_file.py
+    type: pyFile

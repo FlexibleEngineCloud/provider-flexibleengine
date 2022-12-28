@@ -768,7 +768,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_dli_spark_job": config.IdentifierFromProvider,
 	// flexibleengine_dli_table - Imported using {database_name}/{table_name}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dli_table
-	"flexibleengine_dli_table": TemplatedStringAsIdentifierWithNoName("{{.parameters.database_name}}/{{.external_name}}"),
+	"flexibleengine_dli_table": TemplatedStringAsIdentifierWithNoName("{{.parameters.database_name}}/{{.parameters.name}}"),
 
 	/*
 	 > Simple Message Notification (SMN)

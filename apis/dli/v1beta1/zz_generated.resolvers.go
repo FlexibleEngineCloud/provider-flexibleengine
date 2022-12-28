@@ -8,7 +8,6 @@ package v1beta1
 import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -40,6 +39,97 @@ func (mg *FlinksqlJob) ResolveReferences(ctx context.Context, c client.Reader) e
 	return nil
 }
 
+// ResolveReferences of this SparkJob.
+func (mg *SparkJob) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.AppName),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.AppNameRef,
+		Selector:     mg.Spec.ForProvider.AppNameSelector,
+		To: reference.To{
+			List:    &DLIPackageList{},
+			Managed: &DLIPackage{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.AppName")
+	}
+	mg.Spec.ForProvider.AppName = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.AppNameRef = rsp.ResolvedReference
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Files),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.FilesRefs,
+		Selector:      mg.Spec.ForProvider.FilesSelector,
+		To: reference.To{
+			List:    &DLIPackageList{},
+			Managed: &DLIPackage{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Files")
+	}
+	mg.Spec.ForProvider.Files = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.FilesRefs = mrsp.ResolvedReferences
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Jars),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.JarsRefs,
+		Selector:      mg.Spec.ForProvider.JarsSelector,
+		To: reference.To{
+			List:    &DLIPackageList{},
+			Managed: &DLIPackage{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Jars")
+	}
+	mg.Spec.ForProvider.Jars = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.JarsRefs = mrsp.ResolvedReferences
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.PythonFiles),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.PythonFilesRefs,
+		Selector:      mg.Spec.ForProvider.PythonFilesSelector,
+		To: reference.To{
+			List:    &DLIPackageList{},
+			Managed: &DLIPackage{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.PythonFiles")
+	}
+	mg.Spec.ForProvider.PythonFiles = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.PythonFilesRefs = mrsp.ResolvedReferences
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.QueueName),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.QueueNameRef,
+		Selector:     mg.Spec.ForProvider.QueueNameSelector,
+		To: reference.To{
+			List:    &QueueList{},
+			Managed: &Queue{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.QueueName")
+	}
+	mg.Spec.ForProvider.QueueName = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.QueueNameRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this Table.
 func (mg *Table) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
@@ -49,7 +139,7 @@ func (mg *Table) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.DatabaseName),
-		Extract:      common.NameExtractor(),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.DatabaseNameRef,
 		Selector:     mg.Spec.ForProvider.DatabaseNameSelector,
 		To: reference.To{

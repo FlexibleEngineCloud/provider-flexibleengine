@@ -62,8 +62,17 @@ type SparkJobParameters struct {
 	// has been uploaded to the DLI resource management system.
 	// The OBS paths are allowed, for example, obs://<bucket name>/<package name>.
 	// Changing this parameter will submit a new spark job.
-	// +kubebuilder:validation:Required
-	AppName *string `json:"appName" tf:"app_name,omitempty"`
+	// +crossplane:generate:reference:type=DLIPackage
+	// +kubebuilder:validation:Optional
+	AppName *string `json:"appName,omitempty" tf:"app_name,omitempty"`
+
+	// Reference to a DLIPackage to populate appName.
+	// +kubebuilder:validation:Optional
+	AppNameRef *v1.Reference `json:"appNameRef,omitempty" tf:"-"`
+
+	// Selector for a DLIPackage to populate appName.
+	// +kubebuilder:validation:Optional
+	AppNameSelector *v1.Selector `json:"appNameSelector,omitempty" tf:"-"`
 
 	// Specifies the input parameters of the main class.
 	// Changing this parameter will submit a new spark job.
@@ -121,14 +130,32 @@ type SparkJobParameters struct {
 	// Specifies a list of the other dependencies name which has been uploaded to the
 	// DLI resource management system. The OBS paths are allowed, for example, obs://<bucket name>/<dependent files>.
 	// Changing this parameter will submit a new spark job.
+	// +crossplane:generate:reference:type=DLIPackage
 	// +kubebuilder:validation:Optional
 	Files []*string `json:"files,omitempty" tf:"files,omitempty"`
+
+	// References to DLIPackage to populate files.
+	// +kubebuilder:validation:Optional
+	FilesRefs []v1.Reference `json:"filesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of DLIPackage to populate files.
+	// +kubebuilder:validation:Optional
+	FilesSelector *v1.Selector `json:"filesSelector,omitempty" tf:"-"`
 
 	// Specifies a list of the jar package name which has been uploaded to the DLI
 	// resource management system. The OBS paths are allowed, for example, obs://<bucket name>/<package name>.
 	// Changing this parameter will submit a new spark job.
+	// +crossplane:generate:reference:type=DLIPackage
 	// +kubebuilder:validation:Optional
 	Jars []*string `json:"jars,omitempty" tf:"jars,omitempty"`
+
+	// References to DLIPackage to populate jars.
+	// +kubebuilder:validation:Optional
+	JarsRefs []v1.Reference `json:"jarsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of DLIPackage to populate jars.
+	// +kubebuilder:validation:Optional
+	JarsSelector *v1.Selector `json:"jarsSelector,omitempty" tf:"-"`
 
 	// Specifies the main class of the spark job.
 	// Required if the app_name is the JAR type.
@@ -158,13 +185,31 @@ type SparkJobParameters struct {
 	// Specifies a list of the python file name which has been uploaded to the
 	// DLI resource management system. The OBS paths are allowed, for example, obs://<bucket name>/<python file name>.
 	// Changing this parameter will submit a new spark job.
+	// +crossplane:generate:reference:type=DLIPackage
 	// +kubebuilder:validation:Optional
 	PythonFiles []*string `json:"pythonFiles,omitempty" tf:"python_files,omitempty"`
 
+	// References to DLIPackage to populate pythonFiles.
+	// +kubebuilder:validation:Optional
+	PythonFilesRefs []v1.Reference `json:"pythonFilesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of DLIPackage to populate pythonFiles.
+	// +kubebuilder:validation:Optional
+	PythonFilesSelector *v1.Selector `json:"pythonFilesSelector,omitempty" tf:"-"`
+
 	// Specifies the DLI queue name.
 	// Changing this parameter will submit a new spark job.
-	// +kubebuilder:validation:Required
-	QueueName *string `json:"queueName" tf:"queue_name,omitempty"`
+	// +crossplane:generate:reference:type=Queue
+	// +kubebuilder:validation:Optional
+	QueueName *string `json:"queueName,omitempty" tf:"queue_name,omitempty"`
+
+	// Reference to a Queue to populate queueName.
+	// +kubebuilder:validation:Optional
+	QueueNameRef *v1.Reference `json:"queueNameRef,omitempty" tf:"-"`
+
+	// Selector for a Queue to populate queueName.
+	// +kubebuilder:validation:Optional
+	QueueNameSelector *v1.Selector `json:"queueNameSelector,omitempty" tf:"-"`
 
 	// Specifies the region in which to submit a spark job.
 	// If omitted, the provider-level region will be used.

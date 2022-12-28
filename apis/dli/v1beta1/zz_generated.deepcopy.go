@@ -1051,6 +1051,16 @@ func (in *SparkJobParameters) DeepCopyInto(out *SparkJobParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AppNameRef != nil {
+		in, out := &in.AppNameRef, &out.AppNameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.AppNameSelector != nil {
+		in, out := &in.AppNameSelector, &out.AppNameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.AppParameters != nil {
 		in, out := &in.AppParameters, &out.AppParameters
 		*out = new(string)
@@ -1114,6 +1124,18 @@ func (in *SparkJobParameters) DeepCopyInto(out *SparkJobParameters) {
 			}
 		}
 	}
+	if in.FilesRefs != nil {
+		in, out := &in.FilesRefs, &out.FilesRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.FilesSelector != nil {
+		in, out := &in.FilesSelector, &out.FilesSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Jars != nil {
 		in, out := &in.Jars, &out.Jars
 		*out = make([]*string, len(*in))
@@ -1124,6 +1146,18 @@ func (in *SparkJobParameters) DeepCopyInto(out *SparkJobParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.JarsRefs != nil {
+		in, out := &in.JarsRefs, &out.JarsRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.JarsSelector != nil {
+		in, out := &in.JarsSelector, &out.JarsSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.MainClass != nil {
 		in, out := &in.MainClass, &out.MainClass
@@ -1162,10 +1196,32 @@ func (in *SparkJobParameters) DeepCopyInto(out *SparkJobParameters) {
 			}
 		}
 	}
+	if in.PythonFilesRefs != nil {
+		in, out := &in.PythonFilesRefs, &out.PythonFilesRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.PythonFilesSelector != nil {
+		in, out := &in.PythonFilesSelector, &out.PythonFilesSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.QueueName != nil {
 		in, out := &in.QueueName, &out.QueueName
 		*out = new(string)
 		**out = **in
+	}
+	if in.QueueNameRef != nil {
+		in, out := &in.QueueNameRef, &out.QueueNameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.QueueNameSelector != nil {
+		in, out := &in.QueueNameSelector, &out.QueueNameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region

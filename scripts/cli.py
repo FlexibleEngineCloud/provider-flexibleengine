@@ -374,6 +374,10 @@ def kubectl():
         print("fileToApply:")
         print(fileToApply)
 
+    # Find if <groupResource>/<resource>.yaml.extra file exist and add them to the list of files to apply
+    if os.path.exists(f"examples/{groupResource}/{resource}.yaml.extra"):
+        fileToApply.append(f"examples/{groupResource}/{resource}.yaml.extra")
+
     # Print the kubectl command to apply all resources
     origin = sys.argv[2]
     fi = ""

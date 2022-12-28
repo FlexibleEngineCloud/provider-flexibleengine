@@ -1,0 +1,65 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: example_dlipackageextra_obsbucket
+  name: example-dlipackageextra-obsbucket
+spec:
+  forProvider:
+    acl: private
+    bucket: example-dlipackageextra-obsbucket
+
+---
+
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: example_dlipackageextra_obsbucketobject
+  name: example-dlipackageextra-obsbucketobject
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_dlipackageextra_obsbucket
+    contentType: text/py
+    key: dli/packages/object_file.py
+    content: |
+      #!/usr/bin/env python
+      # _*_ coding: utf-8 _*_
+      import sys
+      import logging
+      from operator import add
+      import time
+      from pyspark.sql import SparkSession
+      from pyspark.sql import SQLContext
+      sparkSession = SparkSession.builder.appName("simple pyspark test DLF refresh").getOrCreate()
+      sc = SQLContext(sparkSession.sparkContext)
+      logging.basicConfig(format='%%(message)s', level=logging.INFO)
+      logger = logging.getLogger("Whatever")
+      logger.info("[DBmethods.py] HELLOOOOOOOOOOO")
+      sc._jsc.hadoopConfiguration().set("fs.obs.access.key", "%s")
+      sc._jsc.hadoopConfiguration().set("fs.obs.secret.key", "%s")
+      sc._jsc.hadoopConfiguration().set("fs.obs.endpoint", "oss.eu-west-0.prod-cloud-ocb.orange-business.com")
+      # Read private bucket with encryption using AK/SK
+      private_encrypted_file = "obs://dedicated-for-terraform-acc-test/dli/spark/people.csv"
+      df = sparkSession.read.options(header='True', inferSchema='True', delimiter=',').csv(private_encrypted_file)
+      df.show()
+      df.printSchema()
+      print(df)
+      print(df.count())
+      print(time.time())
+      my_string_to_print = "{} - {}".format(int(time.time()), df.count()/2)
+      file_name = "my_file-{}-{}".format(int(time.time()), df.count()/2)
+      print(my_string_to_print)
+      print(file_name)
+      private_encrypted_output_folder = "obs://dedicated-for-terraform-acc-test/dli/result/"
+      # my_string_to_print.write.mode('overwrite').csv(private_encrypted_output_folder)
+      final_path = "{}{}".format(private_encrypted_output_folder, file_name)
+      print(final_path)
+      sparkSession.sparkContext.parallelize([my_string_to_print]).coalesce(1).saveAsTextFile(final_path)
+

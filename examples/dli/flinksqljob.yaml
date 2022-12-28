@@ -1,0 +1,63 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: FlinksqlJob
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/flinksqljob
+  labels:
+    testing.upbound.io/example-name: example_dli_flinksqljob
+  name: example-dli-flinksqljob
+spec:
+  forProvider:
+    name: example-dli-flinksqljob
+    type: flink_sql_job
+    sql: |
+      CREATE SOURCE STREAM car_infos (
+        car_id STRING,
+        car_owner STRING,
+        car_brand STRING,
+        car_price INT
+      )
+      WITH (
+        type = "dis",
+        region = "eu-west-0",
+        channel = "example-dis-stream-input",
+        partition_count = "1",
+        encode = "csv",
+        field_delimiter = ","
+      );
+      CREATE SINK STREAM audi_cheaper_than_30w (
+        car_id STRING,
+        car_owner STRING,
+        car_brand STRING,
+        car_price INT
+      )
+      WITH (
+        type = "dis",
+        region = "eu-west-0",
+        channel = "example-dis-stream-output",
+        partition_key = "car_owner",
+        encode = "csv",
+        field_delimiter = ","
+      );
+      INSERT INTO audi_cheaper_than_30w
+      SELECT *
+      FROM car_infos
+      WHERE car_brand = "audia4" and car_price < 30;
+      CREATE SINK STREAM car_info_data (
+        car_id STRING,
+        car_owner STRING,
+        car_brand STRING,
+        car_price INT
+      )
+      WITH (
+        type ="dis",
+        region = "eu-west-0",
+        channel = "example-dis-stream-input",
+        partition_key = "car_owner",
+        encode = "csv",
+        field_delimiter = ","
+      );
+      INSERT INTO car_info_data
+      SELECT "1", "lilei", "bmw320i", 28;
+      INSERT INTO car_info_data
+      SELECT "2", "hanmeimei", "audia4", 27;

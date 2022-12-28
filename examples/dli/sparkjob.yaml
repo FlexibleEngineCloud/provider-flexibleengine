@@ -4,20 +4,17 @@ metadata:
   annotations:
     meta.upbound.io/example-id: dli/v1beta1/sparkjob
   labels:
-    testing.upbound.io/example-name: default
-  name: default
+    testing.upbound.io/example-name: example_dli_sparkjob
+  name: example-dli-sparkjob
 spec:
   forProvider:
     appNameSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_dli_package
     mainClass: driver_behavior
     maxRetries: 20
-    name: ${var.job_name}
+    name: example-dli-sparkjob
     queueNameSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_dli_queue
     specification: B
-
----
-
