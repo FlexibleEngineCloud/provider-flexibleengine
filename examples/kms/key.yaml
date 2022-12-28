@@ -1,0 +1,15 @@
+apiVersion: kms.flexibleengine.upbound.io/v1beta1
+kind: Key
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kms/v1beta1/key
+  labels:
+    testing.upbound.io/example-name: example_kms_key
+  name: example-kms-key
+spec:
+  forProvider:
+    isEnabled: true
+    keyAlias: example_kms_key
+    keyDescription: example_kms_description
+    pendingDays: "7"
+    realm: eu-west-0
