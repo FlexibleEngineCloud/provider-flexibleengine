@@ -1,0 +1,22 @@
+apiVersion: dds.flexibleengine.upbound.io/v1beta1
+kind: DatabaseUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dds/v1beta1/databaseuser
+  labels:
+    testing.upbound.io/example-name: example_dds_databaseuser
+  name: exemple-dds-databaseuser
+spec:
+  forProvider:
+    dbName: ${var.db_name}
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_dds_instance
+    name: ${var.user_name}
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    roles:
+    - dbName: ${var.owned_role_db_name}
+      name: ${var.owned_role_name}

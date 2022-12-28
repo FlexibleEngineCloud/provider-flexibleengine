@@ -1,0 +1,15 @@
+apiVersion: dds.flexibleengine.upbound.io/v1beta1
+kind: DatabaseRole
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dds/v1beta1/databaserole
+  labels:
+    testing.upbound.io/example-name: exemple_dds_databaserole
+  name: example-dds-databaserole
+spec:
+  forProvider:
+    dbName: example_dds_database
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_dds_instance
+    name: example-dds-database
