@@ -8,11 +8,15 @@ metadata:
   name: default
 spec:
   forProvider:
-    appName: driver_package/driver_behavior.jar
+    appNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     mainClass: driver_behavior
     maxRetries: 20
     name: ${var.job_name}
-    queueName: ${var.queue_name}
+    queueNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     specification: B
 
 ---

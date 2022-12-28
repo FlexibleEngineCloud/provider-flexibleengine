@@ -75,7 +75,6 @@ type TableParameters struct {
 	// Specifies the database name which the table belongs to.
 	// Changing this parameter will create a new resource.
 	// +crossplane:generate:reference:type=Database
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.NameExtractor()
 	// +kubebuilder:validation:Optional
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
