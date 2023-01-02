@@ -1,0 +1,13 @@
+apiVersion: tms.flexibleengine.upbound.io/v1beta1
+kind: Tags
+metadata:
+  annotations:
+    meta.upbound.io/example-id: tms/v1beta1/tags
+  labels:
+    testing.upbound.io/example-name: test_kms_tags
+  name: test-kms-tags
+spec:
+  forProvider:
+    tags:
+    - key: test-kms-tags-key
+      value: test-kms-tags-value
