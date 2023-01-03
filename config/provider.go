@@ -21,6 +21,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dis"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dli"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dms"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/dns"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/drs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dws"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ecs"
@@ -81,6 +82,7 @@ func GetProvider() *ujconfig.Provider {
 		as.Configure,
 		ag.Configure,
 		agd.Configure,
+		dns.Configure,
 		bms.Configure,
 		cse.Configure,
 		lts.Configure,

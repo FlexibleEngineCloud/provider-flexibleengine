@@ -1,0 +1,41 @@
+apiVersion: dns.flexibleengine.upbound.io/v1beta1
+kind: Ptrrecord
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1beta1/ptrrecord
+  labels:
+    testing.upbound.io/example-name: ptr_1
+  name: ptr-1
+spec:
+  forProvider:
+    description: An example PTR record
+    floatingipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: eip_1
+    name: ptr.example.com.
+    tags:
+      foo: bar
+    ttl: 3000
+
+---
+
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1beta1/ptrrecord
+  labels:
+    testing.upbound.io/example-name: eip_1
+  name: eip-1
+spec:
+  forProvider:
+    bandwidth:
+    - chargeMode: traffic
+      name: test
+      shareType: PER
+      size: 5
+    publicip:
+    - type: 5_bgp
+
+---
+

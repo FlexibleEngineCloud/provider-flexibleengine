@@ -59,8 +59,17 @@ type RecordsetParameters struct {
 
 	// The ID of the zone in which to create the record set.
 	// Changing this creates a new DNS  record set.
-	// +kubebuilder:validation:Required
-	ZoneID *string `json:"zoneId" tf:"zone_id,omitempty"`
+	// +crossplane:generate:reference:type=Zone
+	// +kubebuilder:validation:Optional
+	ZoneID *string `json:"zoneId,omitempty" tf:"zone_id,omitempty"`
+
+	// Reference to a Zone to populate zoneId.
+	// +kubebuilder:validation:Optional
+	ZoneIDRef *v1.Reference `json:"zoneIdRef,omitempty" tf:"-"`
+
+	// Selector for a Zone to populate zoneId.
+	// +kubebuilder:validation:Optional
+	ZoneIDSelector *v1.Selector `json:"zoneIdSelector,omitempty" tf:"-"`
 }
 
 // RecordsetSpec defines the desired state of Recordset
