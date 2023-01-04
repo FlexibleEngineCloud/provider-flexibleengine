@@ -1,5 +1,5 @@
 apiVersion: cce.flexibleengine.upbound.io/v1beta1
-kind: Namespace
+kind: CCENameSpace
 metadata:
   annotations:
     meta.upbound.io/example-id: cce/v1beta1/namespace

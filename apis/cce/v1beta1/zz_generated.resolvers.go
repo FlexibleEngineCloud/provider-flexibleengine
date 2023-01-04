@@ -117,8 +117,8 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 	return nil
 }
 
-// ResolveReferences of this Namespace.
-func (mg *Namespace) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this MyCACA.
+func (mg *MyCACA) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -325,8 +325,8 @@ func (mg *Pvc) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.NamespaceRef,
 		Selector:     mg.Spec.ForProvider.NamespaceSelector,
 		To: reference.To{
-			List:    &NamespaceList{},
-			Managed: &Namespace{},
+			List:    &MyCACAList{},
+			Managed: &MyCACA{},
 		},
 	})
 	if err != nil {

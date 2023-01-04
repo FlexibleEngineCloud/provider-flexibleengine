@@ -1,0 +1,22 @@
+apiVersion: waf.flexibleengine.upbound.io/v1beta1
+kind: RulePreciseProtection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: waf/v1beta1/rulepreciseprotection
+  labels:
+    testing.upbound.io/example-name: rule_1
+  name: rule-1
+spec:
+  forProvider:
+    conditions:
+    - content: /login
+      field: path
+      logic: prefix
+    name: rule_1
+    policyIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    priority: 10
+
+---
+

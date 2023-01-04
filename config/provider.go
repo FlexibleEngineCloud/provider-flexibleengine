@@ -48,8 +48,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vpc"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/vpcep"
-
-	//"github.com/FrangipaneTeam/provider-flexibleengine/config/waf"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/waf"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
@@ -99,7 +98,7 @@ func GetProvider() *ujconfig.Provider {
 		dds.Configure,
 		eps.Configure,
 		swr.Configure,
-		//waf.Configure,
+		waf.Configure,
 		modelarts.Configure,
 		evs.Configure,
 		vbs.Configure,

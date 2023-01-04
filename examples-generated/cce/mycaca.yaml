@@ -1,8 +1,8 @@
 apiVersion: cce.flexibleengine.upbound.io/v1beta1
-kind: Namespace
+kind: MyCACA
 metadata:
   annotations:
-    meta.upbound.io/example-id: cce/v1beta1/namespace
+    meta.upbound.io/example-id: cce/v1beta1/mycaca
   labels:
     testing.upbound.io/example-name: test
   name: test

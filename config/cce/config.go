@@ -39,7 +39,7 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
-		config.MarkAsRequired(r.TerraformResource, "name")
+		//config.MarkAsRequired(r.TerraformResource, "name")
 	})
 
 	// flexibleengine_cce_node_pool_v3
@@ -82,8 +82,9 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
+		// Rename to avoid conflict with the Namespace command
 		r.References["namespace"] = config.Reference{
-			Type: "Namespace",
+			Type: "CCENameSpace",
 		}
 
 		r.UseAsync = true

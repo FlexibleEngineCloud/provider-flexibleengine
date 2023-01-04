@@ -111,7 +111,11 @@ spec:
                       a new rule.
                     type: string
                   policyIdRef:
+<<<<<<< HEAD
                     description: Reference to a Policy in waf to populate policyId.
+=======
+                    description: Reference to a Policy to populate policyId.
+>>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -145,7 +149,11 @@ spec:
                     - name
                     type: object
                   policyIdSelector:
+<<<<<<< HEAD
                     description: Selector for a Policy in waf to populate policyId.
+=======
+                    description: Selector for a Policy to populate policyId.
+>>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

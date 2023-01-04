@@ -25,8 +25,8 @@ func (l *ClusterList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this NamespaceList.
-func (l *NamespaceList) GetItems() []resource.Managed {
+// GetItems of this MyCACAList.
+func (l *MyCACAList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

@@ -59,6 +59,7 @@ import (
 	v1beta1vbs "github.com/FrangipaneTeam/provider-flexibleengine/apis/vbs/v1beta1"
 	v1beta1vpc "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	v1beta1vpcep "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpcep/v1beta1"
+	v1beta1waf "github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1"
 )
 
 func init() {
@@ -113,6 +114,7 @@ func init() {
 		v1beta1vbs.SchemeBuilder.AddToScheme,
 		v1beta1vpc.SchemeBuilder.AddToScheme,
 		v1beta1vpcep.SchemeBuilder.AddToScheme,
+		v1beta1waf.SchemeBuilder.AddToScheme,
 	)
 }
 
