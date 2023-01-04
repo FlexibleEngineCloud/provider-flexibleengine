@@ -4,9 +4,11 @@ metadata:
   annotations:
     meta.upbound.io/example-id: cce/v1beta1/namespace
   labels:
-    testing.upbound.io/example-name: example_namespace
-  name: example-namespace
+    testing.upbound.io/example-name: example_cce_namespace
+  name: example-cce-namespace
 spec:
   forProvider:
-    clusterId: d6d147a7-8212-11ed-9719-0255ac101b6d
-    name: example-namespace
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_cce_cluster
+    name: example-cce-namespace

@@ -19,6 +19,8 @@ type ProviderConfigSpec struct {
 	Region string `json:"region"`
 	// DomainName
 	DomainName string `json:"domainName"`
+	// Insecure
+	Insecure bool `json:"insecure"`
 }
 
 // ProviderCredentials required to authenticate.
