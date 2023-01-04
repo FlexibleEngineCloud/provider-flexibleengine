@@ -278,11 +278,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// flexibleengine_dns_recordset_v2 - Imported using {zone_id}/{recordset_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_recordset_v2
-	"flexibleengine_dns_recordset_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.zone_id }}/{{ .parameters.recordset_id }}"),
+	"flexibleengine_dns_recordset_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.zone_id }}/{{ .external_name }}"),
 
 	// flexibleengine_dns_ptrrecord_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_ptrrecord_v2
-	// "flexibleengine_dns_ptrrecord_v2": FormattedIdentifierFromProvider(":", "flexibleengine_vpc_eip"),
+	"flexibleengine_dns_ptrrecord_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.region }}:{{ .external_name }}"),
 	/*
 		> Cloud Container Engine (CCE)
 	*/

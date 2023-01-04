@@ -1,0 +1,19 @@
+apiVersion: dns.flexibleengine.upbound.io/v1beta1
+kind: Ptrrecord
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1beta1/ptrrecord
+  labels:
+    testing.upbound.io/example-name: example_dns_ptrrecord
+  name: example-dns-ptrrecord
+spec:
+  forProvider:
+    region: eu-west-0
+    description: An example PTR record
+    floatingipIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_eip
+    name: ptr.example-crossplane.com.
+    tags:
+      foo: bar
+    ttl: 3000

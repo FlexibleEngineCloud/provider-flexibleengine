@@ -19,8 +19,17 @@ type RouterObservation struct {
 type RouterParameters struct {
 
 	// The VPC UUID.
-	// +kubebuilder:validation:Required
-	RouterID *string `json:"routerId" tf:"router_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +kubebuilder:validation:Optional
+	RouterID *string `json:"routerId,omitempty" tf:"router_id,omitempty"`
+
+	// Reference to a VPC in vpc to populate routerId.
+	// +kubebuilder:validation:Optional
+	RouterIDRef *v1.Reference `json:"routerIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in vpc to populate routerId.
+	// +kubebuilder:validation:Optional
+	RouterIDSelector *v1.Selector `json:"routerIdSelector,omitempty" tf:"-"`
 
 	// The region of the VPC. Defaults to the region.
 	// +kubebuilder:validation:Optional

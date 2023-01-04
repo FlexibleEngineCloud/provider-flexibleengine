@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: zones.dns.flexibleengine.upbound.io
+  name: ptrrecords.dns.flexibleengine.upbound.io
 spec:
   group: dns.flexibleengine.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: Zone
-    listKind: ZoneList
-    plural: zones
-    singular: zone
+    kind: Ptrrecord
+    listKind: PtrrecordList
+    plural: ptrrecords
+    singular: ptrrecord
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Zone is the Schema for the Zones API. ""page_title: "flexibleengine_dns_zone_v2"'
+        description: 'Ptrrecord is the Schema for the Ptrrecords API. ""page_title:
+          "flexibleengine_dns_ptrrecord_v2"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ZoneSpec defines the desired state of Zone
+            description: PtrrecordSpec defines the desired state of Ptrrecord
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,129 +65,107 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: A description of the zone.
+                    description: Description of the PTR record.
                     type: string
-                  email:
-                    description: The email contact for the zone record.
+                  floatingipId:
+                    description: The ID of the FloatingIP/EIP. Changing this creates
+                      a new PTR record.
                     type: string
+                  floatingipIdRef:
+                    description: Reference to a EIP in eip to populate floatingipId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  floatingipIdSelector:
+                    description: Selector for a EIP in eip to populate floatingipId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   name:
-                    description: The name of the zone. Note the . at the end of the
-                      name. Changing this creates a new DNS zone.
+                    description: Domain name of the PTR record. A domain name is case
+                      insensitive. Uppercase letters will also be converted into lowercase
+                      letters.
                     type: string
                   region:
-                    description: The region in which to create the DNS zone. If omitted,
-                      the region argument of the provider is used. Changing this creates
-                      a new DNS zone.
+                    description: The region in which to create the PTR record. If
+                      omitted, the region argument of the provider is used. Changing
+                      this creates a new PTR record.
                     type: string
-                  router:
-                    description: Router configuration block which is required if zone_type
-                      is private. The router structure is documented below.
-                    items:
-                      properties:
-                        routerId:
-                          description: The VPC UUID.
-                          type: string
-                        routerIdRef:
-                          description: Reference to a VPC in vpc to populate routerId.
-                          properties:
-                            name:
-                              description: Name of the referenced object.
-                              type: string
-                            policy:
-                              description: Policies for referencing.
-                              properties:
-                                resolution:
-                                  default: Required
-                                  description: Resolution specifies whether resolution
-                                    of this reference is required. The default is
-                                    'Required', which means the reconcile will fail
-                                    if the reference cannot be resolved. 'Optional'
-                                    means this reference will be a no-op if it cannot
-                                    be resolved.
-                                  enum:
-                                  - Required
-                                  - Optional
-                                  type: string
-                                resolve:
-                                  description: Resolve specifies when this reference
-                                    should be resolved. The default is 'IfNotPresent',
-                                    which will attempt to resolve the reference only
-                                    when the corresponding field is not present. Use
-                                    'Always' to resolve the reference on every reconcile.
-                                  enum:
-                                  - Always
-                                  - IfNotPresent
-                                  type: string
-                              type: object
-                          required:
-                          - name
-                          type: object
-                        routerIdSelector:
-                          description: Selector for a VPC in vpc to populate routerId.
-                          properties:
-                            matchControllerRef:
-                              description: MatchControllerRef ensures an object with
-                                the same controller reference as the selecting object
-                                is selected.
-                              type: boolean
-                            matchLabels:
-                              additionalProperties:
-                                type: string
-                              description: MatchLabels ensures an object with matching
-                                labels is selected.
-                              type: object
-                            policy:
-                              description: Policies for selection.
-                              properties:
-                                resolution:
-                                  default: Required
-                                  description: Resolution specifies whether resolution
-                                    of this reference is required. The default is
-                                    'Required', which means the reconcile will fail
-                                    if the reference cannot be resolved. 'Optional'
-                                    means this reference will be a no-op if it cannot
-                                    be resolved.
-                                  enum:
-                                  - Required
-                                  - Optional
-                                  type: string
-                                resolve:
-                                  description: Resolve specifies when this reference
-                                    should be resolved. The default is 'IfNotPresent',
-                                    which will attempt to resolve the reference only
-                                    when the corresponding field is not present. Use
-                                    'Always' to resolve the reference on every reconcile.
-                                  enum:
-                                  - Always
-                                  - IfNotPresent
-                                  type: string
-                              type: object
-                          type: object
-                        routerRegion:
-                          description: The region of the VPC. Defaults to the region.
-                          type: string
-                      type: object
-                    type: array
                   tags:
                     additionalProperties:
                       type: string
-                    description: The key/value pairs to associate with the zone.
+                    description: Tags key/value pairs to associate with the PTR record.
                     type: object
                   ttl:
-                    description: The time to live (TTL) of the zone.
+                    description: The time to live (TTL) of the record set (in seconds).
+                      The value range is 300–2147483647. The default value is 300.
                     type: number
-                  valueSpecs:
-                    additionalProperties:
-                      type: string
-                    description: Map of additional options. Changing this creates
-                      a new DNS zone.
-                    type: object
-                  zoneType:
-                    description: The type of zone. Can either be public or private.
-                      Changing this creates a new DNS zone.
-                    type: string
                 required:
                 - name
+                - region
                 type: object
               providerConfigRef:
                 default:
@@ -360,17 +339,17 @@ spec:
             - forProvider
             type: object
           status:
-            description: ZoneStatus defines the observed state of Zone.
+            description: PtrrecordStatus defines the observed state of Ptrrecord.
             properties:
               atProvider:
                 properties:
-                  id:
+                  address:
+                    description: The address of the FloatingIP/EIP.
                     type: string
-                  masters:
-                    description: An array of master DNS servers.
-                    items:
-                      type: string
-                    type: array
+                  id:
+                    description: The PTR record ID, which is in {region}:{floatingip_id}
+                      format.
+                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.
