@@ -115,24 +115,6 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].Port),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.ForProvider.Network[i3].PortRef,
-			Selector:     mg.Spec.ForProvider.Network[i3].PortSelector,
-			To: reference.To{
-				List:    &v1beta12.PortList{},
-				Managed: &v1beta12.Port{},
-			},
-		})
-		if err != nil {
-			return errors.Wrap(err, "mg.Spec.ForProvider.Network[i3].Port")
-		}
-		mg.Spec.ForProvider.Network[i3].Port = reference.ToPtrValue(rsp.ResolvedValue)
-		mg.Spec.ForProvider.Network[i3].PortRef = rsp.ResolvedReference
-
-	}
-	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].UUID),
 			Extract:      common.IDExtractor(),
 			Reference:    mg.Spec.ForProvider.Network[i3].UUIDRef,

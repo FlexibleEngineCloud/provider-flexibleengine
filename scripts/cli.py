@@ -297,10 +297,12 @@ def kubectl():
     if debug:
         print("Labels:")
         print(Labels)
-        print("listLabelsRequired:")
-        print(listLabelsRequired)
 
     listLabelsRequiredFound = []
+
+    if debug:
+        print("listLabelsRequired:")
+        print(listLabelsRequired)
 
     for labelRequire in listLabelsRequired:
         for kind in Labels:
@@ -310,13 +312,21 @@ def kubectl():
                         if s not in listLabelsRequired:
                             listLabelsRequired.append(s)
 
+    if debug:
+        print("listLabelsRequired:")
+        print(listLabelsRequired)
+
     for labelRequire in listLabelsRequired:
         for kind in Labels:
             if kind in Labels:
-                if Labels[kind]["label"] in labelRequire:
+                if labelRequire in Labels[kind]["label"]:
                     listLabelsRequiredFound.append(Labels[kind]["label"])
                     fileToApply.append(Labels[kind]["file"])
                     break
+
+    if debug:
+        print("listLabelsRequiredFound:")
+        print(listLabelsRequiredFound)
 
     # If the resource is not found in the list of required resources
     foundErrors = False
@@ -330,7 +340,7 @@ def kubectl():
     for refRequire in listRefsRequired:
         for kind in Labels:
             if kind in Labels:
-                if Labels[kind]["name"] in refRequire:
+                if refRequire in Labels[kind]["name"]:
                     for s in Labels[kind]["refs"]:
                         if s not in listRefsRequired:
                             listRefsRequired.append(s)

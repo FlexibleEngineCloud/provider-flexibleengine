@@ -1,0 +1,21 @@
+apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
+kind: VPCEPService
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcep/v1beta1/service
+  labels:
+    testing.upbound.io/example-name: example_vpcep_service
+  name: example-vpcep-service
+spec:
+  forProvider:
+    name: example-service
+    portIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_instance
+    portMapping:
+      - servicePort: 8080
+        terminalPort: 80
+    serverType: VM
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc

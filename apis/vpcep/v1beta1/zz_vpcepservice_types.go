@@ -35,7 +35,7 @@ type PortMappingParameters struct {
 	TerminalPort *float64 `json:"terminalPort,omitempty" tf:"terminal_port,omitempty"`
 }
 
-type ServiceConnectionsObservation struct {
+type VPCEPServiceConnectionsObservation struct {
 
 	// The user's domain ID.
 	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
@@ -50,13 +50,13 @@ type ServiceConnectionsObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
-type ServiceConnectionsParameters struct {
+type VPCEPServiceConnectionsParameters struct {
 }
 
-type ServiceObservation struct {
+type VPCEPServiceObservation struct {
 
 	// An array of VPC endpoints connect to the VPC endpoint service. Structure is documented below.
-	Connections []ServiceConnectionsObservation `json:"connections,omitempty" tf:"connections,omitempty"`
+	Connections []VPCEPServiceConnectionsObservation `json:"connections,omitempty" tf:"connections,omitempty"`
 
 	// The unique ID of the VPC endpoint service.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -68,7 +68,7 @@ type ServiceObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
-type ServiceParameters struct {
+type VPCEPServiceParameters struct {
 
 	// Specifies whether connection approval is required. The default value is false.
 	// +kubebuilder:validation:Optional
@@ -85,15 +85,16 @@ type ServiceParameters struct {
 	Permissions []*string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 
 	// Specifies the ID for identifying the backend resource of the VPC endpoint service.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.NetworkPortIDExtractor()
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
-	// Reference to a Port in vpc to populate portId.
+	// Reference to a Instance in ecs to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDRef *v1.Reference `json:"portIdRef,omitempty" tf:"-"`
 
-	// Selector for a Port in vpc to populate portId.
+	// Selector for a Instance in ecs to populate portId.
 	// +kubebuilder:validation:Optional
 	PortIDSelector *v1.Selector `json:"portIdSelector,omitempty" tf:"-"`
 
@@ -134,51 +135,51 @@ type ServiceParameters struct {
 	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
-// ServiceSpec defines the desired state of Service
-type ServiceSpec struct {
+// VPCEPServiceSpec defines the desired state of VPCEPService
+type VPCEPServiceSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ServiceParameters `json:"forProvider"`
+	ForProvider     VPCEPServiceParameters `json:"forProvider"`
 }
 
-// ServiceStatus defines the observed state of Service.
-type ServiceStatus struct {
+// VPCEPServiceStatus defines the observed state of VPCEPService.
+type VPCEPServiceStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ServiceObservation `json:"atProvider,omitempty"`
+	AtProvider        VPCEPServiceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Service is the Schema for the Services API. ""page_title: "flexibleengine_vpcep_service"
+// VPCEPService is the Schema for the VPCEPServices API. ""page_title: "flexibleengine_vpcep_service"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type Service struct {
+type VPCEPService struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ServiceSpec   `json:"spec"`
-	Status            ServiceStatus `json:"status,omitempty"`
+	Spec              VPCEPServiceSpec   `json:"spec"`
+	Status            VPCEPServiceStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ServiceList contains a list of Services
-type ServiceList struct {
+// VPCEPServiceList contains a list of VPCEPServices
+type VPCEPServiceList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Service `json:"items"`
+	Items           []VPCEPService `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Service_Kind             = "Service"
-	Service_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Service_Kind}.String()
-	Service_KindAPIVersion   = Service_Kind + "." + CRDGroupVersion.String()
-	Service_GroupVersionKind = CRDGroupVersion.WithKind(Service_Kind)
+	VPCEPService_Kind             = "VPCEPService"
+	VPCEPService_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VPCEPService_Kind}.String()
+	VPCEPService_KindAPIVersion   = VPCEPService_Kind + "." + CRDGroupVersion.String()
+	VPCEPService_GroupVersionKind = CRDGroupVersion.WithKind(VPCEPService_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Service{}, &ServiceList{})
+	SchemeBuilder.Register(&VPCEPService{}, &VPCEPServiceList{})
 }

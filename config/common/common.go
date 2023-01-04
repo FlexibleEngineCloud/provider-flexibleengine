@@ -43,7 +43,28 @@ var (
 
 	// PathIDExtractor is the golang path to IDExtractor function
 	PathIDExtractor = SelfPackagePath + ".IDExtractor()"
+
+	// PathNetworkPortIDExtractor is the golang path to NetworkPortIDExtractor function
+	PathNetworkPortIDExtractor = SelfPackagePath + ".NetworkPortIDExtractor()"
 )
+
+// NetworkPortIDExtractor extracts network port ID from "status.atProvider.network.0.uuid"
+func NetworkPortIDExtractor() reference.ExtractValueFn {
+	return func(mg xpresource.Managed) string {
+		paved, err := fieldpath.PaveObject(mg)
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		fmt.Printf("paved: %v", paved)
+		r, err := paved.GetString("status.atProvider.network[0].port")
+		if err != nil {
+			// TODO should we log this error?
+			return ""
+		}
+		return r
+	}
+}
 
 // RegionExtractor extracts region from "spec.forProvider.region" which
 func RegionExtractor() reference.ExtractValueFn {

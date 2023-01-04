@@ -167,7 +167,7 @@ import (
 	vpcsubnet "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/vpcsubnet"
 	approval "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/approval"
 	endpoint "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/endpoint"
-	service "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/service"
+	vpcepservice "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/vpcepservice"
 	certificatewaf "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/waf/certificate"
 	dedicatedcertificate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/waf/dedicatedcertificate"
 	dedicateddomain "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/waf/dedicateddomain"
@@ -345,7 +345,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vpcsubnet.Setup,
 		approval.Setup,
 		endpoint.Setup,
-		service.Setup,
+		vpcepservice.Setup,
 		certificatewaf.Setup,
 		dedicatedcertificate.Setup,
 		dedicateddomain.Setup,

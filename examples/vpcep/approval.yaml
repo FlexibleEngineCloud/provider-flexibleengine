@@ -1,0 +1,15 @@
+apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
+kind: Approval
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcep/v1beta1/approval
+  labels:
+    testing.upbound.io/example-name: example_vpcep_approval
+  name: example-vpcep-approval
+spec:
+  forProvider:
+    endpointsRefs:
+      - name: example-vpcep-endpoint
+    serviceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpcep_service
