@@ -8,10 +8,10 @@ metadata:
   name: example-cce-node
 spec:
   forProvider:
-    #clusterIdSelector:
-    #  matchLabels:
-    #    testing.upbound.io/example-name: example_cce_cluster
-    clusterId: 20e8c7cd-82cb-11ed-b702-0255ac101f6b
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_cce_cluster
+    #clusterId: 20e8c7cd-82cb-11ed-b702-0255ac101f6b
     name: example-cce-node
     flavorId: s3.large.2
     availabilityZone: eu-west-0a
