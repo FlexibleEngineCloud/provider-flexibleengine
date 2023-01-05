@@ -1,0 +1,13 @@
+apiVersion: evs.flexibleengine.upbound.io/v1beta1
+kind: BlockStorageVolume
+metadata:
+  annotations:
+    meta.upbound.io/example-id: evs/v1beta1/blockstoragevolume
+  labels:
+    testing.upbound.io/example-name: example_evs_blockstoragevolume
+  name: example-evs-blockstoragevolume
+spec:
+  forProvider:
+    description: first test volume
+    name: example-evs-blockstoragevolume
+    size: 3
