@@ -161,18 +161,18 @@ func (tr *Endpoint) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Service
-func (mg *Service) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this VPCEPService
+func (mg *VPCEPService) GetTerraformResourceType() string {
 	return "flexibleengine_vpcep_service"
 }
 
-// GetConnectionDetailsMapping for this Service
-func (tr *Service) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this VPCEPService
+func (tr *VPCEPService) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Service
-func (tr *Service) GetObservation() (map[string]any, error) {
+// GetObservation of this VPCEPService
+func (tr *VPCEPService) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -181,8 +181,8 @@ func (tr *Service) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Service
-func (tr *Service) SetObservation(obs map[string]any) error {
+// SetObservation for this VPCEPService
+func (tr *VPCEPService) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -190,16 +190,16 @@ func (tr *Service) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Service
-func (tr *Service) GetID() string {
+// GetID returns ID of underlying Terraform resource of this VPCEPService
+func (tr *VPCEPService) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Service
-func (tr *Service) GetParameters() (map[string]any, error) {
+// GetParameters of this VPCEPService
+func (tr *VPCEPService) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -208,8 +208,8 @@ func (tr *Service) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Service
-func (tr *Service) SetParameters(params map[string]any) error {
+// SetParameters for this VPCEPService
+func (tr *VPCEPService) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -217,10 +217,10 @@ func (tr *Service) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Service using its observed tfState.
+// LateInitialize this VPCEPService using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Service) LateInitialize(attrs []byte) (bool, error) {
-	params := &ServiceParameters{}
+func (tr *VPCEPService) LateInitialize(attrs []byte) (bool, error) {
+	params := &VPCEPServiceParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -231,6 +231,6 @@ func (tr *Service) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Service) GetTerraformSchemaVersion() int {
+func (tr *VPCEPService) GetTerraformSchemaVersion() int {
 	return 0
 }

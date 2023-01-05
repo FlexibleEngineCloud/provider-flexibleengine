@@ -40,7 +40,7 @@ spec:
 ---
 
 apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
-kind: Service
+kind: VPCEPService
 metadata:
   annotations:
     meta.upbound.io/example-id: vpcep/v1beta1/approval

@@ -7,6 +7,7 @@ package v1beta1
 
 import (
 	"context"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
@@ -44,8 +45,8 @@ func (mg *Approval) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.ServiceIDRef,
 		Selector:     mg.Spec.ForProvider.ServiceIDSelector,
 		To: reference.To{
-			List:    &ServiceList{},
-			Managed: &Service{},
+			List:    &VPCEPServiceList{},
+			Managed: &VPCEPService{},
 		},
 	})
 	if err != nil {
@@ -86,8 +87,8 @@ func (mg *Endpoint) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.ServiceIDRef,
 		Selector:     mg.Spec.ForProvider.ServiceIDSelector,
 		To: reference.To{
-			List:    &ServiceList{},
-			Managed: &Service{},
+			List:    &VPCEPServiceList{},
+			Managed: &VPCEPService{},
 		},
 	})
 	if err != nil {
@@ -115,8 +116,8 @@ func (mg *Endpoint) ResolveReferences(ctx context.Context, c client.Reader) erro
 	return nil
 }
 
-// ResolveReferences of this Service.
-func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this VPCEPService.
+func (mg *VPCEPService) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -124,12 +125,12 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PortID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.NetworkPortIDExtractor(),
 		Reference:    mg.Spec.ForProvider.PortIDRef,
 		Selector:     mg.Spec.ForProvider.PortIDSelector,
 		To: reference.To{
-			List:    &v1beta1.PortList{},
-			Managed: &v1beta1.Port{},
+			List:    &v1beta11.InstanceList{},
+			Managed: &v1beta11.Instance{},
 		},
 	})
 	if err != nil {

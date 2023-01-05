@@ -73,15 +73,15 @@ type EndpointParameters struct {
 
 	// Specifies the ID of the VPC endpoint service.
 	// Changing this creates a new VPC endpoint.
-	// +crossplane:generate:reference:type=Service
+	// +crossplane:generate:reference:type=VPCEPService
 	// +kubebuilder:validation:Optional
 	ServiceID *string `json:"serviceId,omitempty" tf:"service_id,omitempty"`
 
-	// Reference to a Service to populate serviceId.
+	// Reference to a VPCEPService to populate serviceId.
 	// +kubebuilder:validation:Optional
 	ServiceIDRef *v1.Reference `json:"serviceIdRef,omitempty" tf:"-"`
 
-	// Selector for a Service to populate serviceId.
+	// Selector for a VPCEPService to populate serviceId.
 	// +kubebuilder:validation:Optional
 	ServiceIDSelector *v1.Selector `json:"serviceIdSelector,omitempty" tf:"-"`
 

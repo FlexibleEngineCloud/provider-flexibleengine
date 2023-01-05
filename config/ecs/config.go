@@ -28,6 +28,9 @@ func Configure(p *config.Provider) {
 		r.References["network.port"] = config.Reference{
 			Type: tools.GenerateType("vpc", "Port"),
 		}
+
+		config.MoveToStatus(r.TerraformResource, "network.port")
+
 		r.References["key_pair"] = config.Reference{
 			Type: "KeyPair",
 		}

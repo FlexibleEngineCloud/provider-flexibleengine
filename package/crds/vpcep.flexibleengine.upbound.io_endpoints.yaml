@@ -162,7 +162,7 @@ spec:
                       this creates a new VPC endpoint.
                     type: string
                   serviceIdRef:
-                    description: Reference to a Service to populate serviceId.
+                    description: Reference to a VPCEPService to populate serviceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -196,7 +196,7 @@ spec:
                     - name
                     type: object
                   serviceIdSelector:
-                    description: Selector for a Service to populate serviceId.
+                    description: Selector for a VPCEPService to populate serviceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

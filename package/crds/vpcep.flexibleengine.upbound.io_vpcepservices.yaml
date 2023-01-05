@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: services.vpcep.flexibleengine.upbound.io
+  name: vpcepservices.vpcep.flexibleengine.upbound.io
 spec:
   group: vpcep.flexibleengine.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: Service
-    listKind: ServiceList
-    plural: services
-    singular: service
+    kind: VPCEPService
+    listKind: VPCEPServiceList
+    plural: vpcepservices
+    singular: vpcepservice
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Service is the Schema for the Services API. ""page_title: "flexibleengine_vpcep_service"'
+        description: 'VPCEPService is the Schema for the VPCEPServices API. ""page_title:
+          "flexibleengine_vpcep_service"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ServiceSpec defines the desired state of Service
+            description: VPCEPServiceSpec defines the desired state of VPCEPService
             properties:
               deletionPolicy:
                 default: Delete
@@ -85,7 +86,7 @@ spec:
                       of the VPC endpoint service.
                     type: string
                   portIdRef:
-                    description: Reference to a Port in vpc to populate portId.
+                    description: Reference to a Instance in ecs to populate portId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -119,7 +120,7 @@ spec:
                     - name
                     type: object
                   portIdSelector:
-                    description: Selector for a Port in vpc to populate portId.
+                    description: Selector for a Instance in ecs to populate portId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -450,7 +451,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ServiceStatus defines the observed state of Service.
+            description: VPCEPServiceStatus defines the observed state of VPCEPService.
             properties:
               atProvider:
                 properties:

@@ -244,6 +244,10 @@ type InstanceParameters struct {
 
 type NetworkObservation struct {
 	Mac *string `json:"mac,omitempty" tf:"mac,omitempty"`
+
+	// The port UUID of a network to
+	// attach to the server. Changing this creates a new server.
+	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 }
 
 type NetworkParameters struct {
@@ -266,20 +270,6 @@ type NetworkParameters struct {
 	// A unique name for the resource.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// The port UUID of a network to
-	// attach to the server. Changing this creates a new server.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
-	// +kubebuilder:validation:Optional
-	Port *string `json:"port,omitempty" tf:"port,omitempty"`
-
-	// Reference to a Port in vpc to populate port.
-	// +kubebuilder:validation:Optional
-	PortRef *v1.Reference `json:"portRef,omitempty" tf:"-"`
-
-	// Selector for a Port in vpc to populate port.
-	// +kubebuilder:validation:Optional
-	PortSelector *v1.Selector `json:"portSelector,omitempty" tf:"-"`
 
 	// The network UUID to
 	// attach to the server. Changing this creates a new server.

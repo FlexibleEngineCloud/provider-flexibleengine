@@ -1,8 +1,8 @@
 apiVersion: vpcep.flexibleengine.upbound.io/v1beta1
-kind: Service
+kind: VPCEPService
 metadata:
   annotations:
-    meta.upbound.io/example-id: vpcep/v1beta1/service
+    meta.upbound.io/example-id: vpcep/v1beta1/vpcepservice
   labels:
     testing.upbound.io/example-name: demo
   name: demo
