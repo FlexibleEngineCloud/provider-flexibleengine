@@ -86,6 +86,12 @@ spec:
                     description: Public IP address. The object structure is documented
                       below.
                     items:
+                      properties:
+                        publicBindType:
+                          description: 'Binding type of an EIP. The value can be either
+                            of the following: auto_assign, not_use and bind_existing.
+                            The default value is not_use.'
+                          type: string
                       type: object
                     type: array
                   region:
@@ -581,11 +587,6 @@ spec:
                       properties:
                         eipId:
                           description: EIP ID
-                          type: string
-                        publicBindType:
-                          description: 'Binding type of an EIP. The value can be either
-                            of the following: auto_assign, not_use and bind_existing.
-                            The default value is not_use.'
                           type: string
                       type: object
                     type: array

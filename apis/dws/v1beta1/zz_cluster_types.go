@@ -166,14 +166,15 @@ type PublicIPObservation struct {
 
 	// EIP ID
 	EIPID *string `json:"eipId,omitempty" tf:"eip_id,omitempty"`
+}
+
+type PublicIPParameters struct {
 
 	// Binding type of an EIP. The value can be
 	// either of the following: auto_assign, not_use and bind_existing.
 	// The default value is not_use.
+	// +kubebuilder:validation:Optional
 	PublicBindType *string `json:"publicBindType,omitempty" tf:"public_bind_type,omitempty"`
-}
-
-type PublicIPParameters struct {
 }
 
 // ClusterSpec defines the desired state of Cluster
