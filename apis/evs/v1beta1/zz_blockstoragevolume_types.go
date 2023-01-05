@@ -50,14 +50,6 @@ type BlockStorageVolumeParameters struct {
 	// +kubebuilder:validation:Optional
 	ConsistencyGroupID *string `json:"consistencyGroupId,omitempty" tf:"consistency_group_id,omitempty"`
 
-	// Reference to a  to populate consistencyGroupId.
-	// +kubebuilder:validation:Optional
-	ConsistencyGroupIDRef *v1.Reference `json:"consistencyGroupIdRef,omitempty" tf:"-"`
-
-	// Selector for a  to populate consistencyGroupId.
-	// +kubebuilder:validation:Optional
-	ConsistencyGroupIDSelector *v1.Selector `json:"consistencyGroupIdSelector,omitempty" tf:"-"`
-
 	// A description of the volume. Changing this updates
 	// the volume's description.
 	// +kubebuilder:validation:Optional

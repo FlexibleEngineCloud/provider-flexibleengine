@@ -163,16 +163,6 @@ func (in *BlockStorageVolumeParameters) DeepCopyInto(out *BlockStorageVolumePara
 		*out = new(string)
 		**out = **in
 	}
-	if in.ConsistencyGroupIDRef != nil {
-		in, out := &in.ConsistencyGroupIDRef, &out.ConsistencyGroupIDRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.ConsistencyGroupIDSelector != nil {
-		in, out := &in.ConsistencyGroupIDSelector, &out.ConsistencyGroupIDSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)
