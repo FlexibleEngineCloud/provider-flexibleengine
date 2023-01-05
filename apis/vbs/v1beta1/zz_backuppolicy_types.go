@@ -58,8 +58,8 @@ type BackupPolicyParameters struct {
 	// Specifies one or more volumes associated with the backup policy.
 	// Any previously associated backup policy will no longer apply.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
-	// +crossplane:generate:reference:refFieldName=resourceRef
-	// +crossplane:generate:reference:selectorFieldName=resourceSelector
+	// +crossplane:generate:reference:refFieldName=ResourceRef
+	// +crossplane:generate:reference:selectorFieldName=ResourceSelector
 	// +kubebuilder:validation:Optional
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 

@@ -66,8 +66,8 @@ func (mg *BackupPolicy) ResolveReferences(ctx context.Context, c client.Reader) 
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Resources),
 		Extract:       reference.ExternalName(),
-		References:    mg.Spec.ForProvider.resourceRef,
-		Selector:      mg.Spec.ForProvider.resourceSelector,
+		References:    mg.Spec.ForProvider.ResourceRef,
+		Selector:      mg.Spec.ForProvider.ResourceSelector,
 		To: reference.To{
 			List:    &v1beta11.BlockStorageVolumeList{},
 			Managed: &v1beta11.BlockStorageVolume{},
@@ -77,7 +77,7 @@ func (mg *BackupPolicy) ResolveReferences(ctx context.Context, c client.Reader) 
 		return errors.Wrap(err, "mg.Spec.ForProvider.Resources")
 	}
 	mg.Spec.ForProvider.Resources = reference.ToPtrValues(mrsp.ResolvedValues)
-	mg.Spec.ForProvider.resourceRef = mrsp.ResolvedReferences
+	mg.Spec.ForProvider.ResourceRef = mrsp.ResolvedReferences
 
 	return nil
 }

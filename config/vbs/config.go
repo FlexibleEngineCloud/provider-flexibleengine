@@ -30,8 +30,8 @@ func Configure(p *config.Provider) {
 		// resources
 		r.References["resources"] = config.Reference{
 			Type:              tools.GenerateType("evs", "BlockStorageVolume"),
-			SelectorFieldName: "resourceSelector",
-			RefFieldName:      "resourceRef",
+			SelectorFieldName: "ResourceSelector",
+			RefFieldName:      "ResourceRef",
 		}
 
 	})

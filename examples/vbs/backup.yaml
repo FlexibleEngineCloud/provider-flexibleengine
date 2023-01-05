@@ -11,4 +11,4 @@ spec:
     name: example-vbs-backup
     volumeIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example_evs_blockstorage
+        testing.upbound.io/example-name: example_evs_blockstoragevolume
