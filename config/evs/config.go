@@ -2,6 +2,7 @@
 package evs
 
 import (
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -14,11 +15,25 @@ func Configure(p *config.Provider) {
 
 		// consistency_group_id
 		// TODO Add Reference to consistency_group_id
+		// This is drs/replication
 		r.References["consistency_group_id"] = config.Reference{}
 
 		// snapshot_id
-		// TODO Add Reference to snapshot_id
-		r.References["snapshot_id"] = config.Reference{}
+		r.References["snapshot_id"] = config.Reference{
+			Type: tools.GenerateType("csbs", "Backup"),
+		}
+
+		// metadata.__system__cmkid
+		r.References["metadata.__system__cmkid"] = config.Reference{
+			Type: tools.GenerateType("kms", "Key"),
+		}
+
+		// image_id
+		r.References["image_id"] = config.Reference{
+			Type: tools.GenerateType("ims", "Image"),
+		}
+
+		// source_replica and source_vol_id require flexibleengine_blockstorage_volume_v2 so we can't reference them
 
 	})
 }

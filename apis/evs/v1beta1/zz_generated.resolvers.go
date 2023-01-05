@@ -7,6 +7,7 @@ package v1beta1
 
 import (
 	"context"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
@@ -35,6 +36,22 @@ func (mg *BlockStorageVolume) ResolveReferences(ctx context.Context, c client.Re
 	}
 	mg.Spec.ForProvider.ImageID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ImageIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SnapshotID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.SnapshotIDRef,
+		Selector:     mg.Spec.ForProvider.SnapshotIDSelector,
+		To: reference.To{
+			List:    &v1beta11.BackupList{},
+			Managed: &v1beta11.Backup{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.SnapshotID")
+	}
+	mg.Spec.ForProvider.SnapshotID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.SnapshotIDRef = rsp.ResolvedReference
 
 	return nil
 }
