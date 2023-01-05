@@ -47,8 +47,19 @@ type BackupPolicyParameters struct {
 	// +kubebuilder:validation:Optional
 	RententionNum *float64 `json:"rententionNum,omitempty" tf:"rentention_num,omitempty"`
 
+	// References to BlockStorageVolume in evs to populate resources.
+	// +kubebuilder:validation:Optional
+	ResourceRef []v1.Reference `json:"resourceRef,omitempty" tf:"-"`
+
+	// Selector for a list of BlockStorageVolume in evs to populate resources.
+	// +kubebuilder:validation:Optional
+	ResourceSelector *v1.Selector `json:"resourceSelector,omitempty" tf:"-"`
+
 	// Specifies one or more volumes associated with the backup policy.
 	// Any previously associated backup policy will no longer apply.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
+	// +crossplane:generate:reference:refFieldName=resourceRef
+	// +crossplane:generate:reference:selectorFieldName=resourceSelector
 	// +kubebuilder:validation:Optional
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 

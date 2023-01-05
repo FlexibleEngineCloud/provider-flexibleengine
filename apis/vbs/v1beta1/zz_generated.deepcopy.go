@@ -290,6 +290,18 @@ func (in *BackupPolicyParameters) DeepCopyInto(out *BackupPolicyParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.ResourceRef != nil {
+		in, out := &in.ResourceRef, &out.ResourceRef
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.ResourceSelector != nil {
+		in, out := &in.ResourceSelector, &out.ResourceSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Resources != nil {
 		in, out := &in.Resources, &out.Resources
 		*out = make([]*string, len(*in))

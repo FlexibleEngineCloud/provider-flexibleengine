@@ -48,14 +48,15 @@ type BackupParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The snapshot id of the disk to be backed up. Changing the parameter will create new resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1.Backup
 	// +kubebuilder:validation:Optional
 	SnapshotID *string `json:"snapshotId,omitempty" tf:"snapshot_id,omitempty"`
 
-	// Reference to a  to populate snapshotId.
+	// Reference to a Backup in csbs to populate snapshotId.
 	// +kubebuilder:validation:Optional
 	SnapshotIDRef *v1.Reference `json:"snapshotIdRef,omitempty" tf:"-"`
 
-	// Selector for a  to populate snapshotId.
+	// Selector for a Backup in csbs to populate snapshotId.
 	// +kubebuilder:validation:Optional
 	SnapshotIDSelector *v1.Selector `json:"snapshotIdSelector,omitempty" tf:"-"`
 

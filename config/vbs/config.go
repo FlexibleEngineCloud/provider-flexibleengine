@@ -10,6 +10,7 @@ import (
 func Configure(p *config.Provider) {
 
 	// flexibleengine_vbs_backup_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vbs_backup_v2
 	p.AddResourceConfigurator("flexibleengine_vbs_backup_v2", func(r *config.Resource) {
 
 		r.References["volume_id"] = config.Reference{
@@ -17,8 +18,21 @@ func Configure(p *config.Provider) {
 		}
 
 		// snapshot_id
-		// TODO Add Reference to snapshot_id
-		r.References["snapshot_id"] = config.Reference{}
+		r.References["snapshot_id"] = config.Reference{
+			Type: tools.GenerateType("csbs", "Backup"),
+		}
+	})
+
+	// flexibleengine_vbs_backup_policy_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vbs_backup_policy_v2
+	p.AddResourceConfigurator("flexibleengine_vbs_backup_policy_v2", func(r *config.Resource) {
+
+		// resources
+		r.References["resources"] = config.Reference{
+			Type:              tools.GenerateType("evs", "BlockStorageVolume"),
+			SelectorFieldName: "resourceSelector",
+			RefFieldName:      "resourceRef",
+		}
 
 	})
 }
