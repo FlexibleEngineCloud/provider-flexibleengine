@@ -79,13 +79,16 @@ def generateListTested():
         # Add the kind to the group
         mapPrint[group].append(f"|{kind}|{known_crd_type}|{tested}|")
 
+    # sort groups by alphabetical order
+    mapPrint = dict(sorted(mapPrint.items()))
+
     # Write list of resources in file
     with open('list-tested.md', 'w') as f:
         f.write('# Resources tested\n')
         f.write('\nLast update: ' + os.popen('date').read())
         for group in mapPrint:
             f.write(f'\n## {group}\n')
-            f.write(f'|Kind|CRD|Tested|\n')
+            f.write(f'|Kind|ApiVersion|Tested|\n')
             f.write(f'|---|---|---|\n')
             for kind in mapPrint[group]:
                 f.write(kind+'\n')
