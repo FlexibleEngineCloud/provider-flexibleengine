@@ -1,0 +1,14 @@
+apiVersion: vbs.flexibleengine.upbound.io/v1beta1
+kind: Backup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vbs/v1beta1/backup
+  labels:
+    testing.upbound.io/example-name: example_vbs_backup
+  name: example-vbs-backup
+spec:
+  forProvider:
+    name: example-vbs-backup
+    volumeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_evs_blockstoragevolume

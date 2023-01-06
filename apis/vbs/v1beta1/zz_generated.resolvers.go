@@ -7,7 +7,8 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -21,13 +22,29 @@ func (mg *Backup) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SnapshotID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.SnapshotIDRef,
+		Selector:     mg.Spec.ForProvider.SnapshotIDSelector,
+		To: reference.To{
+			List:    &v1beta1.BackupList{},
+			Managed: &v1beta1.Backup{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.SnapshotID")
+	}
+	mg.Spec.ForProvider.SnapshotID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.SnapshotIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VolumeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.VolumeIDRef,
 		Selector:     mg.Spec.ForProvider.VolumeIDSelector,
 		To: reference.To{
-			List:    &v1beta1.BlockStorageVolumeList{},
-			Managed: &v1beta1.BlockStorageVolume{},
+			List:    &v1beta11.BlockStorageVolumeList{},
+			Managed: &v1beta11.BlockStorageVolume{},
 		},
 	})
 	if err != nil {
@@ -35,6 +52,32 @@ func (mg *Backup) ResolveReferences(ctx context.Context, c client.Reader) error 
 	}
 	mg.Spec.ForProvider.VolumeID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.VolumeIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this BackupPolicy.
+func (mg *BackupPolicy) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var mrsp reference.MultiResolutionResponse
+	var err error
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Resources),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.ResourceRef,
+		Selector:      mg.Spec.ForProvider.ResourceSelector,
+		To: reference.To{
+			List:    &v1beta11.BlockStorageVolumeList{},
+			Managed: &v1beta11.BlockStorageVolume{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Resources")
+	}
+	mg.Spec.ForProvider.Resources = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.ResourceRef = mrsp.ResolvedReferences
 
 	return nil
 }

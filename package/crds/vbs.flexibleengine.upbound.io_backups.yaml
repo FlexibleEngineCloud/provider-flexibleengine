@@ -78,7 +78,7 @@ spec:
                       the parameter will create new resource.
                     type: string
                   snapshotIdRef:
-                    description: Reference to a  to populate snapshotId.
+                    description: Reference to a Backup in csbs to populate snapshotId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -112,7 +112,7 @@ spec:
                     - name
                     type: object
                   snapshotIdSelector:
-                    description: Selector for a  to populate snapshotId.
+                    description: Selector for a Backup in csbs to populate snapshotId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

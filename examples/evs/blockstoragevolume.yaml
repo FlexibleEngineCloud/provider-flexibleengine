@@ -11,3 +11,4 @@ spec:
     description: first test volume
     name: example-evs-blockstoragevolume
     size: 3
+    cascade: true

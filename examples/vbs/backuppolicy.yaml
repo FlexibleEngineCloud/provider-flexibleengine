@@ -1,0 +1,16 @@
+apiVersion: vbs.flexibleengine.upbound.io/v1beta1
+kind: BackupPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vbs/v1beta1/backuppolicy
+  labels:
+    testing.upbound.io/example-name: example_vbs_backuppolicy
+  name: example-vbs-backuppolicy
+spec:
+  forProvider:
+    frequency: 1
+    name: exampleVbsBackuppolicy
+    rententionNum: 7
+    retainFirstBackup: "N"
+    startTime: "12:00"
+    status: "ON"
