@@ -14,7 +14,6 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/csbs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cse"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/cts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dedicatedelb"
@@ -62,10 +61,15 @@ var (
 	providerMetadata []byte
 )
 
+var skipList = []string{
+	"flexibleengine_cts_tracker_v1$", // Only system tracker_name is available
+}
+
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), tools.ResourcePrefix, tools.ModulePath, providerMetadata,
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
+		ujconfig.WithSkipList(skipList),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(), // 1
 			defaultVersion(),             // 2
@@ -76,7 +80,6 @@ func GetProvider() *ujconfig.Provider {
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
-		// add custom config functions
 		antiddos.Configure,
 		dedicatedelb.Configure,
 		as.Configure,
@@ -117,7 +120,6 @@ func GetProvider() *ujconfig.Provider {
 		tms.Configure,
 		netacl.Configure,
 		dis.Configure,
-		cts.Configure,
 		dws.Configure,
 		csbs.Configure,
 		dms.Configure,

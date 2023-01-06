@@ -827,13 +827,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_fgs_trigger": config.IdentifierFromProvider,
 
 	/*
-		> Cloud Trace Service (CTS)
-	*/
-	// flexibleengine_cts_tracker_v1 - Imported using name
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cts_tracker_v1
-	"flexibleengine_cts_tracker_v1": config.NameAsIdentifier,
-
-	/*
 		> Data Warehouse (DWS)
 	*/
 	// flexibleengine_dws_cluster_v1 - No import documentation

@@ -21,7 +21,6 @@ import (
 	v1beta1csbs "github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1"
 	v1beta1cse "github.com/FrangipaneTeam/provider-flexibleengine/apis/cse/v1beta1"
 	v1beta1css "github.com/FrangipaneTeam/provider-flexibleengine/apis/css/v1beta1"
-	v1beta1cts "github.com/FrangipaneTeam/provider-flexibleengine/apis/cts/v1beta1"
 	v1beta1dcs "github.com/FrangipaneTeam/provider-flexibleengine/apis/dcs/v1beta1"
 	v1beta1dds "github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1"
 	v1beta1dedicatedelb "github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1"
@@ -77,7 +76,6 @@ func init() {
 		v1beta1csbs.SchemeBuilder.AddToScheme,
 		v1beta1cse.SchemeBuilder.AddToScheme,
 		v1beta1css.SchemeBuilder.AddToScheme,
-		v1beta1cts.SchemeBuilder.AddToScheme,
 		v1beta1dcs.SchemeBuilder.AddToScheme,
 		v1beta1dds.SchemeBuilder.AddToScheme,
 		v1beta1dedicatedelb.SchemeBuilder.AddToScheme,
