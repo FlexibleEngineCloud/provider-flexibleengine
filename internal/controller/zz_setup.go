@@ -44,7 +44,6 @@ import (
 	microserviceinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microserviceinstance"
 	clustercss "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/cluster"
 	snapshot "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/snapshot"
-	tracker "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cts/tracker"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
 	databaserole "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaserole"
 	databaseuser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dds/databaseuser"
@@ -222,7 +221,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		microserviceinstance.Setup,
 		clustercss.Setup,
 		snapshot.Setup,
-		tracker.Setup,
 		instancedcs.Setup,
 		databaserole.Setup,
 		databaseuser.Setup,
