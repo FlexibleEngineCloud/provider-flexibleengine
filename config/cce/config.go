@@ -39,7 +39,6 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
-		//config.MarkAsRequired(r.TerraformResource, "name")
 	})
 
 	// flexibleengine_cce_node_pool_v3
@@ -53,9 +52,6 @@ func Configure(p *config.Provider) {
 		}
 		r.References["data_volumes.kms_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
-		}
-		r.References["subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
 	})
 

@@ -46,8 +46,6 @@ var (
 
 	// PathNetworkPortIDExtractor is the golang path to NetworkPortIDExtractor function
 	PathNetworkPortIDExtractor = SelfPackagePath + ".NetworkPortIDExtractor()"
-	// PathClusterIDExtractor is the golang path to ClusterIDExtractor function
-	PathClusterIDExtractor = SelfPackagePath + ".ClusterIDExtractor()"
 )
 
 // NetworkPortIDExtractor extracts network port ID from "status.atProvider.network.0.uuid"

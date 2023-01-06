@@ -1,3 +1,4 @@
+---
 apiVersion: cce.flexibleengine.upbound.io/v1beta1
 kind: NodePool
 metadata:
@@ -24,7 +25,7 @@ spec:
     os: CentOS 7.7
     dataVolumes:
       - size: 100
-        volumetype: SATA 
+        volumetype: SATA
     rootVolume:
       - size: 40
         volumetype: SATA

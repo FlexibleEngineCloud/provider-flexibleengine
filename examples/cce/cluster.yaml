@@ -1,4 +1,3 @@
----
 apiVersion: cce.flexibleengine.upbound.io/v1beta1
 kind: Cluster
 metadata:
