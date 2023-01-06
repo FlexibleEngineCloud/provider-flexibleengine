@@ -24,9 +24,19 @@
             "command": "make generate"
         },
         {
+            "label": "Lint",
+            "type": "shell",
+            "command": "make lint"
+        },
+        {
             "label": "Run",
             "type": "shell",
             "command": "make run"
+        },
+        {
+            "label": "Apply Crds",
+            "type": "shell",
+            "command": "kubectl apply -f package/crds"
         }
     ]
 }
