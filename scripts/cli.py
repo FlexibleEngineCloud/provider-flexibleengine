@@ -322,7 +322,7 @@ def kubectl():
     for labelRequire in listLabelsRequired:
         for kind in Labels:
             if kind in Labels:
-                if labelRequire in Labels[kind]["label"]:
+                if Labels[kind]["label"] in labelRequire:
                     listLabelsRequiredFound.append(Labels[kind]["label"])
                     fileToApply.append(Labels[kind]["file"])
                     break
@@ -343,7 +343,7 @@ def kubectl():
     for refRequire in listRefsRequired:
         for kind in Labels:
             if kind in Labels:
-                if refRequire in Labels[kind]["name"]:
+                if Labels[kind]["name"] in refRequire:
                     for s in Labels[kind]["refs"]:
                         if s not in listRefsRequired:
                             listRefsRequired.append(s)
