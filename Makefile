@@ -4,7 +4,7 @@
 PROJECT_NAME := provider-flexibleengine
 PROJECT_REPO := github.com/FrangipaneTeam/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION := 1.3.6
+export TERRAFORM_VERSION := 1.3.7
 
 export TERRAFORM_PROVIDER_SOURCE := FlexibleEngineCloud/flexibleengine
 export TERRAFORM_PROVIDER_REPO := https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine

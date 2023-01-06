@@ -66,7 +66,6 @@ type RulePreciseProtectionParameters struct {
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the WAF policy ID. Changing this creates a new rule.
-<<<<<<< HEAD
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1.Policy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
@@ -76,17 +75,6 @@ type RulePreciseProtectionParameters struct {
 	PolicyIDRef *v1.Reference `json:"policyIdRef,omitempty" tf:"-"`
 
 	// Selector for a Policy in waf to populate policyId.
-=======
-	// +crossplane:generate:reference:type=Policy
-	// +kubebuilder:validation:Optional
-	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
-
-	// Reference to a Policy to populate policyId.
-	// +kubebuilder:validation:Optional
-	PolicyIDRef *v1.Reference `json:"policyIdRef,omitempty" tf:"-"`
-
-	// Selector for a Policy to populate policyId.
->>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
 	// +kubebuilder:validation:Optional
 	PolicyIDSelector *v1.Selector `json:"policyIdSelector,omitempty" tf:"-"`
 

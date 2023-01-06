@@ -11,14 +11,13 @@ spec:
     clusterIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_cce_cluster
-    #clusterId: d6d147a7-8212-11ed-9719-0255ac101b6d
     name: example-node-pool
     flavorId: s3.large.2
     availabilityZone: eu-west-0a
     keyPairSelector:
       matchLabels:
         testing.upbound.io/example-name: example_keypair
-    initialNodeCount: 1
+    initialNodeCount: 2
     scaleEnable: false
     priority: 1
     type: vm

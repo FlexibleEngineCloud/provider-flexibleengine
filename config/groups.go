@@ -195,9 +195,6 @@ var KindMap = map[string]string{
 	"flexibleengine_ces_alarmrule":                   "AlarmRule",
 	"flexibleengine_dli_package":                     "DLIPackage",
 	"flexibleengine_antiddos_v1":                     "AntiDDoS",
-<<<<<<< HEAD
 	"flexibleengine_vpcep_service":                   "VPCEPService",
-=======
 	"flexibleengine_cce_namespace":                   "CCENameSpace",
->>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
 }

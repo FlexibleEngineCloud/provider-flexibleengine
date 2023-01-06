@@ -31,8 +31,8 @@ import (
 	policycbr "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/policy"
 	vault "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/vault"
 	addon "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/addon"
+	ccenamespace "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/ccenamespace"
 	cluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/cluster"
-	mycaca "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/mycaca"
 	node "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
@@ -166,11 +166,7 @@ import (
 	vpcsubnet "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/vpcsubnet"
 	approval "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/approval"
 	endpoint "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/endpoint"
-<<<<<<< HEAD
 	vpcepservice "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/vpcepservice"
-=======
-	service "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpcep/service"
->>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
 	certificatewaf "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/waf/certificate"
 	dedicatedcertificate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/waf/dedicatedcertificate"
 	dedicateddomain "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/waf/dedicateddomain"
@@ -212,8 +208,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		policycbr.Setup,
 		vault.Setup,
 		addon.Setup,
+		ccenamespace.Setup,
 		cluster.Setup,
-		mycaca.Setup,
 		node.Setup,
 		nodepool.Setup,
 		pvc.Setup,
@@ -347,11 +343,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vpcsubnet.Setup,
 		approval.Setup,
 		endpoint.Setup,
-<<<<<<< HEAD
 		vpcepservice.Setup,
-=======
-		service.Setup,
->>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
 		certificatewaf.Setup,
 		dedicatedcertificate.Setup,
 		dedicateddomain.Setup,

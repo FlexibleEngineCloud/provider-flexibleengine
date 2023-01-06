@@ -63,7 +63,6 @@ type DomainParameters struct {
 
 	// Specifies the policy ID associated with the domain.
 	// If not specified, a new policy will be created automatically. Changing this create a new domain.
-<<<<<<< HEAD
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1.Policy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
@@ -73,17 +72,6 @@ type DomainParameters struct {
 	PolicyIDRef *v1.Reference `json:"policyIdRef,omitempty" tf:"-"`
 
 	// Selector for a Policy in waf to populate policyId.
-=======
-	// +crossplane:generate:reference:type=Policy
-	// +kubebuilder:validation:Optional
-	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
-
-	// Reference to a Policy to populate policyId.
-	// +kubebuilder:validation:Optional
-	PolicyIDRef *v1.Reference `json:"policyIdRef,omitempty" tf:"-"`
-
-	// Selector for a Policy to populate policyId.
->>>>>>> 54cb9bd (Chore(cce): Fix NameSpace)
 	// +kubebuilder:validation:Optional
 	PolicyIDSelector *v1.Selector `json:"policyIdSelector,omitempty" tf:"-"`
 

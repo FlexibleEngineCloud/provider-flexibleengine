@@ -63,15 +63,15 @@ type PvcParameters struct {
 
 	// Specifies the namespace to logically divide your containers into different
 	// group. Changing this will create a new PVC resource.
-	// +crossplane:generate:reference:type=MyCACA
+	// +crossplane:generate:reference:type=CCENameSpace
 	// +kubebuilder:validation:Optional
 	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
 
-	// Reference to a MyCACA to populate namespace.
+	// Reference to a CCENameSpace to populate namespace.
 	// +kubebuilder:validation:Optional
 	NamespaceRef *v1.Reference `json:"namespaceRef,omitempty" tf:"-"`
 
-	// Selector for a MyCACA to populate namespace.
+	// Selector for a CCENameSpace to populate namespace.
 	// +kubebuilder:validation:Optional
 	NamespaceSelector *v1.Selector `json:"namespaceSelector,omitempty" tf:"-"`
 

@@ -1,3 +1,4 @@
+---
 apiVersion: cce.flexibleengine.upbound.io/v1beta1
 kind: Cluster
 metadata:
@@ -11,8 +12,8 @@ spec:
     authenticationMode: rbac
     clusterType: VirtualMachine
     containerNetworkType: vpc-router
-    description: example cluster
-    flavorId: cce.s1.small
+    description: example-cce-cluster
+    flavorId: cce.s2.small
     name: example-cce-cluster
     subnetIdSelector:
       matchLabels:

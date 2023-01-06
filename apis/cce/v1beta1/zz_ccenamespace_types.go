@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type MyCACAObservation struct {
+type CCENameSpaceObservation struct {
 
 	// The server time when namespace was created.
 	CreationTimestamp *string `json:"creationTimestamp,omitempty" tf:"creation_timestamp,omitempty"`
@@ -25,7 +25,7 @@ type MyCACAObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
-type MyCACAParameters struct {
+type CCENameSpaceParameters struct {
 
 	// Specifies an unstructured key value map for external parameters.
 	// Changing this will create a new namespace resource.
@@ -71,51 +71,51 @@ type MyCACAParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
-// MyCACASpec defines the desired state of MyCACA
-type MyCACASpec struct {
+// CCENameSpaceSpec defines the desired state of CCENameSpace
+type CCENameSpaceSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     MyCACAParameters `json:"forProvider"`
+	ForProvider     CCENameSpaceParameters `json:"forProvider"`
 }
 
-// MyCACAStatus defines the observed state of MyCACA.
-type MyCACAStatus struct {
+// CCENameSpaceStatus defines the observed state of CCENameSpace.
+type CCENameSpaceStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        MyCACAObservation `json:"atProvider,omitempty"`
+	AtProvider        CCENameSpaceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// MyCACA is the Schema for the MyCACAs API. ""page_title: "flexibleengine_cce_namespace"
+// CCENameSpace is the Schema for the CCENameSpaces API. ""page_title: "flexibleengine_cce_namespace"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type MyCACA struct {
+type CCENameSpace struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              MyCACASpec   `json:"spec"`
-	Status            MyCACAStatus `json:"status,omitempty"`
+	Spec              CCENameSpaceSpec   `json:"spec"`
+	Status            CCENameSpaceStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// MyCACAList contains a list of MyCACAs
-type MyCACAList struct {
+// CCENameSpaceList contains a list of CCENameSpaces
+type CCENameSpaceList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []MyCACA `json:"items"`
+	Items           []CCENameSpace `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	MyCACA_Kind             = "MyCACA"
-	MyCACA_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: MyCACA_Kind}.String()
-	MyCACA_KindAPIVersion   = MyCACA_Kind + "." + CRDGroupVersion.String()
-	MyCACA_GroupVersionKind = CRDGroupVersion.WithKind(MyCACA_Kind)
+	CCENameSpace_Kind             = "CCENameSpace"
+	CCENameSpace_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: CCENameSpace_Kind}.String()
+	CCENameSpace_KindAPIVersion   = CCENameSpace_Kind + "." + CRDGroupVersion.String()
+	CCENameSpace_GroupVersionKind = CRDGroupVersion.WithKind(CCENameSpace_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&MyCACA{}, &MyCACAList{})
+	SchemeBuilder.Register(&CCENameSpace{}, &CCENameSpaceList{})
 }

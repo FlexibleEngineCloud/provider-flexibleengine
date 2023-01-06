@@ -82,11 +82,9 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
-		// Rename to avoid conflict with the Namespace command
+		// Rename to avoid conflict with the Namespace Kind of Kubernetes
 		r.References["namespace"] = config.Reference{
 			Type: "CCENameSpace",
 		}
-
-		r.UseAsync = true
 	})
 }
