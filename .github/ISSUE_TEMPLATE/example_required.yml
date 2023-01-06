@@ -1,0 +1,26 @@
+name: Example Required
+description: Help us know what example you need is missing.
+title: "[<group>] Resource not tested]"
+labels: [example-required]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for helping to improve Flexible Engine Provider!
+        
+      Please be sure to search for open issues before raising a new one. We use issues
+      for bug reports and feature requests.
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    options:
+    - label: I have searched the existing issues
+      required: true
+- type: textarea
+  attributes:
+    label: What example do you need?
+    description: Inform us on the group and resource you need an example for.
+    placeholder: |
+      "In <category> category, this resource(s) is not tested:"
+  validations:
+    required: true

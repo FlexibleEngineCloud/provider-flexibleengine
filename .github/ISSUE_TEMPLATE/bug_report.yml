@@ -1,0 +1,44 @@
+name: Bug Report
+description: Help us fix bugs by reporting them.
+title: "[<group>] <title>"
+labels: [bug]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for helping to improve Flexible Engine Provider!
+        
+      Please be sure to search for open issues before raising a new one. We use issues
+      for bug reports and feature requests.
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    options:
+    - label: I have searched the existing issues
+      required: true
+- type: textarea
+  attributes:
+    label: Current Behavior
+    description:  A concise description of what you're experiencing.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: A concise description of what you expected to happen.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Steps To Reproduce
+    description: Steps to reproduce the behavior.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Environment
+    value: |
+      * Universal Crossplane Version:
+      * Provider Version:
+  validations:
+    required: false

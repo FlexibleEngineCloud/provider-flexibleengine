@@ -1,0 +1,33 @@
+name: New Resource Request
+description: Help us know what resource you need is missing.
+title: "[<group>] New resource `<resource>`"
+labels: [new-resource]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for helping to improve Flexible Engine Provider!
+        
+      Please be sure to search for open issues before raising a new one. We use issues
+      for bug reports and feature requests.
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    options:
+    - label: I have searched the existing issues
+      required: true
+- type: textarea
+  attributes:
+    label: What resource do you need?
+    description: What is the name of the resource you want to add?
+    placeholder: "Terraform Resource Name:"
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What is your use case?
+    description: Help us for prioritization of the resource support by giving more details about
+why you need it.
+    placeholder: "Use case:"
+  validations:
+    required: false
