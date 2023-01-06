@@ -1,58 +1,34 @@
 # Provider FlexibleEngine
 
+<div align="center">
+
+![CI](https://github.com/FrangipaneTeam/provider-flexibleengine/actions/workflows/ci.yml/badge.svg) [![GitHub release](https://img.shields.io/github/release/FrangipaneTeam/provider-flexibleengine/all.svg?style=flat-square)](https://github.com/FrangipaneTeam/provider-flexibleengine/releases)
+
+</div>
+
 `provider-flexibleengine` is a [Crossplane](https://crossplane.io/) provider that
 is built using [Upjet](https://github.com/upbound/upjet) code
-generation tools and exposes XRM-conformant managed resources for the
-FlexibleEngine API.
+generation tools and exposes XRM-conformant managed resources for
+[Flexible Engine](https://cloud.orange-business.com/en/offers/infrastructure-iaas/public-cloud/).
+
+Flexible Engine is a public cloud platform that provides a full range of IaaS in France and Europe.
+It is provided by Orange, a French telecommunication company.
 
 ## Getting Started
 
-Install the provider by using the following command after changing the image tag
-to the [latest release](https://marketplace.upbound.io/providers/FrangipaneTeam/provider-flexibleengine):
-```
-up ctp provider install FrangipaneTeam/provider-flexibleengine:v0.1.0
-```
+Follow the [Quick Start Guide](https://github.com/FrangipaneTeam/provider-flexibleengine/blob/main/docs/Quickstart.md)
 
-Alternatively, you can use declarative installation:
-```
-cat <<EOF | kubectl apply -f -
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-flexibleengine
-spec:
-  package: FrangipaneTeam/provider-flexibleengine:v0.1.0
-EOF
-```
+You can find a detailed API reference with all CRDs [here](https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine).
 
-Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
+## Contributing
 
-You can see the API reference [here](https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine).
+For the general contribution guide, see [Contribution Guide](CONTRIBUTING.md)
 
-## Developing
+If you'd like to learn how to use Upjet, see [Usage Guide](https://github.com/upbound/upjet/tree/main/docs).
 
-Run code-generation pipeline:
-```console
-go run cmd/generator/main.go "$PWD"
-```
+### Add a New Resource
 
-Run against a Kubernetes cluster:
-
-```console
-make run
-```
-
-Build, push, and install:
-
-```console
-make all
-```
-
-Build binary:
-
-```console
-make build
-```
+Follow the guide [here](https://github.com/upbound/upjet/blob/main/docs/add-new-resource-short.md).
 
 ## Report a Bug
 
