@@ -1,0 +1,21 @@
+apiVersion: fgs.flexibleengine.upbound.io/v1beta1
+kind: Trigger
+metadata:
+  annotations:
+    meta.upbound.io/example-id: fgs/v1beta1/trigger
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    functionUrnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    timer:
+    - name: ${var.trigger_name}
+      schedule: 1d
+      scheduleType: Rate
+    type: TIMER
+
+---
+

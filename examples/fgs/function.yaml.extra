@@ -1,0 +1,20 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Agency
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/agency
+  labels:
+    testing.upbound.io/example-name: example_fgs_agency
+  name: example-fgs-agency
+spec:
+  forProvider:
+    description: Test by Crossplane extra
+    delegatedServiceName: op_svc_cff
+    domainRoles:
+    - OBS FullAccess
+    name: example-agency
+    projectRole:
+    - project: eu-west-0
+      roles:
+      - VPC Administrator
+      - SFS Administrator
