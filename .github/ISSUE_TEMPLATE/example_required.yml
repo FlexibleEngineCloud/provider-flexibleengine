@@ -1,6 +1,6 @@
 name: Example Required
 description: Help us know what example you need is missing.
-title: "[<group>] Resource not tested]"
+title: "[<group>] Resource not tested"
 labels: [example-required]
 body:
 - type: markdown

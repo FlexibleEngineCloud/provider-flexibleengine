@@ -26,8 +26,9 @@ body:
 - type: textarea
   attributes:
     label: What is your use case?
-    description: Help us for prioritization of the resource support by giving more details about
-why you need it.
+    description: |
+      Help us for prioritization of the resource support by giving more details about
+      why you need it.
     placeholder: "Use case:"
   validations:
     required: false
