@@ -1,0 +1,11 @@
+apiVersion: rts.flexibleengine.upbound.io/v1beta1
+kind: SoftwareConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rts/v1beta1/softwareconfig
+  labels:
+    testing.upbound.io/example-name: example_rts_softwareconfig
+  name: example-rts-softwareconfig
+spec:
+  forProvider:
+    name: example-rts-softwareconfig

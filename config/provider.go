@@ -39,6 +39,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/netacl"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/oss"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/rds"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/rts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/sdrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/sfs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/smn"
@@ -125,6 +126,7 @@ func GetProvider() *ujconfig.Provider {
 		dms.Configure,
 		sfs.Configure,
 		cce.Configure,
+		rts.Configure,
 	} {
 		configure(pc)
 	}

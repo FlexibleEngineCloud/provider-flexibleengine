@@ -629,7 +629,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// flexibleengine_rts_stack_v1 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/rts_stack_v1
-	"flexibleengine_rts_stack_v1": config.NameAsIdentifier,
+	"flexibleengine_rts_stack_v1": TemplatedStringAsIdentifierWithNoName("{{.parameters.name}}"),
 
 	/*
 	  > Distributed Message Service (DMS)
