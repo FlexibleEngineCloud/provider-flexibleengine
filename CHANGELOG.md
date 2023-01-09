@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.1.0...v0.1.1) (2023-01-09)
+
+
+### Bug Fixes
+
+* **provider:** allow empty insecure parameter ([4a0c109](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/4a0c109e8ae1658f4b05627c4a685f8986589e5e))
+* **provider:** allow empty insecure parameter ([d63d1a6](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/d63d1a6a455c9205beb0fca6adc42c171bf35a7e))
+
 ## [0.1.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.0.4...v0.1.0) (2023-01-09)
 
 
