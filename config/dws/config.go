@@ -22,12 +22,5 @@ func Configure(p *config.Provider) {
 		r.References["public_ip.eip_id"] = config.Reference{
 			Type: tools.GenerateType("eip", "EIP"),
 		}
-		//	config.MarkAsRequired(r.TerraformResource, "public_ip.public_bind_type")
-		s := config.GetSchema(r.TerraformResource, "public_ip.public_bind_type")
-		if s == nil {
-			return
-		}
-		s.Computed = true
-		s.Optional = true
 	})
 }

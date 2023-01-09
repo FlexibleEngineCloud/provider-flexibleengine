@@ -8,9 +8,9 @@ metadata:
   name: example-dws-cluster
 spec:
   forProvider:
-    availabilityZone: eu-west-0a
+    availabilityZone: eu-west-0b
     name: example_dws_cluster
-    nodeType: dws.d1.xlarge
+    nodeType: dwsx2.xlarge
     numberOfNode: 3
     securityGroupIdSelector:
       matchLabels:
@@ -20,16 +20,12 @@ spec:
         testing.upbound.io/example-name: example_subnet
     userNameSecretRef:
       key: username
-      name: example-dws-password
+      name: example-dws-cluster-secret
       namespace: crossplane-system
     userPwdSecretRef:
       key: password
-      name: example-dws-password
+      name: example-dws-cluster-secret
       namespace: crossplane-system
     vpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_vpc
-    publicIp:
-      - publicBindType: not_use
-
-    
