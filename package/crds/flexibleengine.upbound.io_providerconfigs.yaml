@@ -112,7 +112,6 @@ spec:
             required:
             - credentials
             - domainName
-            - insecure
             - region
             type: object
           status:
