@@ -20,7 +20,7 @@ type ProviderConfigSpec struct {
 	// DomainName
 	DomainName string `json:"domainName"`
 	// Insecure
-	Insecure bool `json:"insecure"`
+	Insecure bool `json:"insecure,omitempty"`
 }
 
 // ProviderCredentials required to authenticate.
