@@ -9,6 +9,7 @@ metadata:
 spec:
   forProvider:
     disableRollback: true
+    name: ${var.name}
     parameters:
       image_id: ${var.image_id}
       instance_type: ${var.instance_type}

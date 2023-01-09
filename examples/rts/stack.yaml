@@ -1,0 +1,41 @@
+apiVersion: rts.flexibleengine.upbound.io/v1beta1
+kind: Stack
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rts/v1beta1/stack
+  labels:
+    testing.upbound.io/example-name: example_rts_stack
+  name: example-rts-stack
+spec:
+  forProvider:
+    disableRollback: true
+    name: example-rts-stack
+    timeoutMins: 60
+    templateBody: |2
+      {
+        "outputs": {
+          "str1": {
+            "description": "The description of the nat server.",
+            "value": {
+              "get_resource": "random"
+            }
+          }
+        },
+        "heat_template_version": "2013-05-23",
+        "description": "A HOT template that create a single server and boot from volume.",
+        "parameters": {
+          "key_name": {
+            "type": "string",
+          "default": "keysclick",
+            "description": "Name of existing key pair for the instance to be created."
+          }
+        },
+        "resources": {
+          "random": {
+            "type": "OS::Heat::RandomString",
+            "properties": {
+              "length": 6
+            }
+          }
+        }
+      }

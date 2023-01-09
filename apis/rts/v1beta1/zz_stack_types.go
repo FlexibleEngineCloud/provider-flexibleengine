@@ -46,6 +46,11 @@ type StackParameters struct {
 	// +kubebuilder:validation:Optional
 	Files map[string]*string `json:"files,omitempty" tf:"files,omitempty"`
 
+	// A unique name for the stack. The value must meet the regular expression rule (^[a-zA-Z][a-zA-Z0-9_.-]{0,254}$).
+	// Changing this creates a new stack.
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
+
 	// A list of Parameter structures that specify input parameters for the stack.
 	// +kubebuilder:validation:Optional
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
