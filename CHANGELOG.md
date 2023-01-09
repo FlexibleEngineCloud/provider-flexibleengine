@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.1.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.0.4...v0.1.0) (2023-01-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cts:** Remove CTS tracker
+
+### Features
+
+* **cce:** Add CCE example ([bb84269](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/bb8426976652961dc5daded5e4f3ae988b1b9eec))
+* **cts:** Remove CTS tracker ([462f740](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/462f7402161913a5ec16e4c8242dc9839694d9d2))
+* **evs:** add examples ([a85d55e](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/a85d55e58facfb7b71f5ebbfe2fdf937a814a24f))
+* **rts:** add examples ([8396380](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/8396380bedaf42c281b1b5400a7a02c71bf59acf))
+* **vbs:** add examples ([7523159](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/75231598f3b773e4f985f6c31aacb3d30781f41c))
+* **vbs:** add examples ([1b99a76](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/1b99a7632c4fd24d804d524c699e804d2fb16680))
+
+
+### Bug Fixes
+
+* **cce:** Fix CCE ([bb84269](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/bb8426976652961dc5daded5e4f3ae988b1b9eec))
+* **cce:** Fix NameSpace ([8b19be6](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/8b19be6ae4241a183c4c3c2b10a5a80b5785f1ba))
+* **evs:** Remove deprecated consistency_group_id ([3c3a27d](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/3c3a27d8e47693e2f179ffc504ae443624c450e1))
+* **script:** fix bug check if label/ref is require ([8fd9b75](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/8fd9b759f2c7b76d81c3219a209dc638489d6e27))
+
 ## [0.0.4](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.0.3...v0.0.4) (2023-01-05)
 
 
