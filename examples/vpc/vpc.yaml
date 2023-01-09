@@ -9,4 +9,4 @@ metadata:
 spec:
   forProvider:
     name: "example-vpc"
-    cidr: "192.168.0.0/16"
+    cidr: "192.168.96.0/20"

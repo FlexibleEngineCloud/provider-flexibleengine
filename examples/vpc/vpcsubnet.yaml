@@ -8,9 +8,11 @@ metadata:
   name: example-subnet
 spec:
   forProvider:
-    cidr: "192.168.0.0/24"
-    gatewayIp: "192.168.0.1"
+    cidr: "192.168.100.0/24"
+    gatewayIp: "192.168.100.254"
     name: "example-subnet"
     vpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_vpc
+    primaryDns: "100.125.0.41"
+    secondaryDns: "100.126.0.41"

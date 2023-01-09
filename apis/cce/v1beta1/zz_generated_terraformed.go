@@ -161,18 +161,18 @@ func (tr *Cluster) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Namespace
-func (mg *Namespace) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this CCENameSpace
+func (mg *CCENameSpace) GetTerraformResourceType() string {
 	return "flexibleengine_cce_namespace"
 }
 
-// GetConnectionDetailsMapping for this Namespace
-func (tr *Namespace) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this CCENameSpace
+func (tr *CCENameSpace) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Namespace
-func (tr *Namespace) GetObservation() (map[string]any, error) {
+// GetObservation of this CCENameSpace
+func (tr *CCENameSpace) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -181,8 +181,8 @@ func (tr *Namespace) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Namespace
-func (tr *Namespace) SetObservation(obs map[string]any) error {
+// SetObservation for this CCENameSpace
+func (tr *CCENameSpace) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -190,16 +190,16 @@ func (tr *Namespace) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Namespace
-func (tr *Namespace) GetID() string {
+// GetID returns ID of underlying Terraform resource of this CCENameSpace
+func (tr *CCENameSpace) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Namespace
-func (tr *Namespace) GetParameters() (map[string]any, error) {
+// GetParameters of this CCENameSpace
+func (tr *CCENameSpace) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -208,8 +208,8 @@ func (tr *Namespace) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Namespace
-func (tr *Namespace) SetParameters(params map[string]any) error {
+// SetParameters for this CCENameSpace
+func (tr *CCENameSpace) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -217,10 +217,10 @@ func (tr *Namespace) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Namespace using its observed tfState.
+// LateInitialize this CCENameSpace using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Namespace) LateInitialize(attrs []byte) (bool, error) {
-	params := &NamespaceParameters{}
+func (tr *CCENameSpace) LateInitialize(attrs []byte) (bool, error) {
+	params := &CCENameSpaceParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -231,7 +231,7 @@ func (tr *Namespace) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Namespace) GetTerraformSchemaVersion() int {
+func (tr *CCENameSpace) GetTerraformSchemaVersion() int {
 	return 0
 }
 

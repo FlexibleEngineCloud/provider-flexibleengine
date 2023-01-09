@@ -2,6 +2,7 @@
 package cce
 
 import (
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -26,6 +27,10 @@ func Configure(p *config.Provider) {
 		r.References["highway_subnet_id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "VPCSubnet"),
 		}
+		r.References["eip"] = config.Reference{
+			Type:      tools.GenerateType("eip", "EIP"),
+			Extractor: common.PathAddressExtractor,
+		}
 	})
 
 	// flexibleengine_cce_namespace
@@ -34,7 +39,6 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
-		config.MarkAsRequired(r.TerraformResource, "name")
 	})
 
 	// flexibleengine_cce_node_pool_v3
@@ -74,10 +78,9 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			Type: "Cluster",
 		}
+		// Rename to avoid conflict with the Namespace Kind of Kubernetes
 		r.References["namespace"] = config.Reference{
-			Type: "Namespace",
+			Type: "CCENameSpace",
 		}
-
-		r.UseAsync = true
 	})
 }

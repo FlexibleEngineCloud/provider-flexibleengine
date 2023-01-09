@@ -32,6 +32,7 @@ const (
 	keyAccessKey  = "access_key"
 	keySecretKey  = "secret_key"
 	keyTenantName = "tenant_name"
+	keyInsecure   = "insecure"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -73,6 +74,7 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		ps.Configuration = map[string]interface{}{
 			keyRegion:     pc.Spec.Region,
 			keyDomainName: pc.Spec.DomainName,
+			keyInsecure:   pc.Spec.Insecure,
 		}
 		if v, ok := creds[keyAccessKey]; ok {
 			ps.Configuration[keyAccessKey] = v

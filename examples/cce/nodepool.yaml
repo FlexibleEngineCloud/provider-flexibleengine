@@ -1,3 +1,4 @@
+---
 apiVersion: cce.flexibleengine.upbound.io/v1beta1
 kind: NodePool
 metadata:
@@ -8,23 +9,23 @@ metadata:
   name: example-node-pool
 spec:
   forProvider:
-    availabilityZone: eu-west0a
     clusterIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_cce_cluster
-    dataVolumes:
-      - size: 100
-        volumetype: SSD
-    flavorId: cc3.large.4
-    initialNodeCount: 1
+    name: example-node-pool
+    flavorId: s3.large.2
+    availabilityZone: eu-west-0a
     keyPairSelector:
       matchLabels:
         testing.upbound.io/example-name: example_keypair
-    name: example-node-pool
-    os: EulerOS 2.9
+    initialNodeCount: 2
+    scaleEnable: false
     priority: 1
+    type: vm
+    os: CentOS 7.7
+    dataVolumes:
+      - size: 100
+        volumetype: SATA
     rootVolume:
       - size: 40
-        volumetype: SSD
-    scaleEnable: false
-    type: vm
+        volumetype: SATA

@@ -196,4 +196,5 @@ var KindMap = map[string]string{
 	"flexibleengine_dli_package":                     "DLIPackage",
 	"flexibleengine_antiddos_v1":                     "AntiDDoS",
 	"flexibleengine_vpcep_service":                   "VPCEPService",
+	"flexibleengine_cce_namespace":                   "CCENameSpace",
 }

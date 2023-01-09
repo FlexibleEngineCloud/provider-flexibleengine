@@ -31,8 +31,8 @@ import (
 	policycbr "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/policy"
 	vault "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cbr/vault"
 	addon "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/addon"
+	ccenamespace "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/ccenamespace"
 	cluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/cluster"
-	namespace "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/namespace"
 	node "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
 	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
@@ -208,8 +208,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		policycbr.Setup,
 		vault.Setup,
 		addon.Setup,
+		ccenamespace.Setup,
 		cluster.Setup,
-		namespace.Setup,
 		node.Setup,
 		nodepool.Setup,
 		pvc.Setup,

@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: namespaces.cce.flexibleengine.upbound.io
+  name: ccenamespaces.cce.flexibleengine.upbound.io
 spec:
   group: cce.flexibleengine.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - flexibleengine
-    kind: Namespace
-    listKind: NamespaceList
-    plural: namespaces
-    singular: namespace
+    kind: CCENameSpace
+    listKind: CCENameSpaceList
+    plural: ccenamespaces
+    singular: ccenamespace
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'Namespace is the Schema for the Namespaces API. ""page_title:
+        description: 'CCENameSpace is the Schema for the CCENameSpaces API. ""page_title:
           "flexibleengine_cce_namespace"'
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: NamespaceSpec defines the desired state of Namespace
+            description: CCENameSpaceSpec defines the desired state of CCENameSpace
             properties:
               deletionPolicy:
                 default: Delete
@@ -174,8 +174,6 @@ spec:
                       resource. If omitted, the provider-level region will be used.
                       Changing this will create a new namespace resource.
                     type: string
-                required:
-                - name
                 type: object
               providerConfigRef:
                 default:
@@ -349,7 +347,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: NamespaceStatus defines the observed state of Namespace.
+            description: CCENameSpaceStatus defines the observed state of CCENameSpace.
             properties:
               atProvider:
                 properties:

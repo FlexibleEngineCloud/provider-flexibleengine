@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type NamespaceObservation struct {
+type CCENameSpaceObservation struct {
 
 	// The server time when namespace was created.
 	CreationTimestamp *string `json:"creationTimestamp,omitempty" tf:"creation_timestamp,omitempty"`
@@ -25,7 +25,7 @@ type NamespaceObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
-type NamespaceParameters struct {
+type CCENameSpaceParameters struct {
 
 	// Specifies an unstructured key value map for external parameters.
 	// Changing this will create a new namespace resource.
@@ -55,8 +55,8 @@ type NamespaceParameters struct {
 	// This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and hyphens (-),
 	// and must start and end with lowercase letters and digits. Changing this will create a new namespace resource.
 	// Exactly one of name or prefix must be provided.
-	// +kubebuilder:validation:Required
-	Name *string `json:"name" tf:"name,omitempty"`
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Specifies a prefix used by the server to generate a unique name.
 	// This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and
@@ -71,51 +71,51 @@ type NamespaceParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
-// NamespaceSpec defines the desired state of Namespace
-type NamespaceSpec struct {
+// CCENameSpaceSpec defines the desired state of CCENameSpace
+type CCENameSpaceSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     NamespaceParameters `json:"forProvider"`
+	ForProvider     CCENameSpaceParameters `json:"forProvider"`
 }
 
-// NamespaceStatus defines the observed state of Namespace.
-type NamespaceStatus struct {
+// CCENameSpaceStatus defines the observed state of CCENameSpace.
+type CCENameSpaceStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        NamespaceObservation `json:"atProvider,omitempty"`
+	AtProvider        CCENameSpaceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Namespace is the Schema for the Namespaces API. ""page_title: "flexibleengine_cce_namespace"
+// CCENameSpace is the Schema for the CCENameSpaces API. ""page_title: "flexibleengine_cce_namespace"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type Namespace struct {
+type CCENameSpace struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              NamespaceSpec   `json:"spec"`
-	Status            NamespaceStatus `json:"status,omitempty"`
+	Spec              CCENameSpaceSpec   `json:"spec"`
+	Status            CCENameSpaceStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// NamespaceList contains a list of Namespaces
-type NamespaceList struct {
+// CCENameSpaceList contains a list of CCENameSpaces
+type CCENameSpaceList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Namespace `json:"items"`
+	Items           []CCENameSpace `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Namespace_Kind             = "Namespace"
-	Namespace_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Namespace_Kind}.String()
-	Namespace_KindAPIVersion   = Namespace_Kind + "." + CRDGroupVersion.String()
-	Namespace_GroupVersionKind = CRDGroupVersion.WithKind(Namespace_Kind)
+	CCENameSpace_Kind             = "CCENameSpace"
+	CCENameSpace_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: CCENameSpace_Kind}.String()
+	CCENameSpace_KindAPIVersion   = CCENameSpace_Kind + "." + CRDGroupVersion.String()
+	CCENameSpace_GroupVersionKind = CRDGroupVersion.WithKind(CCENameSpace_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Namespace{}, &NamespaceList{})
+	SchemeBuilder.Register(&CCENameSpace{}, &CCENameSpaceList{})
 }

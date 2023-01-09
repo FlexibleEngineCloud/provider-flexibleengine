@@ -113,8 +113,18 @@ type ClusterParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// EIP address of the cluster.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.AddressExtractor()
 	// +kubebuilder:validation:Optional
 	EIP *string `json:"eip,omitempty" tf:"eip,omitempty"`
+
+	// Reference to a EIP in eip to populate eip.
+	// +kubebuilder:validation:Optional
+	EIPRef *v1.Reference `json:"eipRef,omitempty" tf:"-"`
+
+	// Selector for a EIP in eip to populate eip.
+	// +kubebuilder:validation:Optional
+	EIPSelector *v1.Selector `json:"eipSelector,omitempty" tf:"-"`
 
 	// Extended parameter. Changing this parameter will create a new cluster resource.
 	// +kubebuilder:validation:Optional

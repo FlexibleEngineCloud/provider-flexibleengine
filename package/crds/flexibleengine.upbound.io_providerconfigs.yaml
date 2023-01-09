@@ -103,12 +103,16 @@ spec:
               domainName:
                 description: DomainName
                 type: string
+              insecure:
+                description: Insecure
+                type: boolean
               region:
                 description: Region
                 type: string
             required:
             - credentials
             - domainName
+            - insecure
             - region
             type: object
           status:

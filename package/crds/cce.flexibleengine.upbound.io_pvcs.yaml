@@ -170,7 +170,7 @@ spec:
                       new PVC resource.
                     type: string
                   namespaceRef:
-                    description: Reference to a Namespace to populate namespace.
+                    description: Reference to a CCENameSpace to populate namespace.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -204,7 +204,7 @@ spec:
                     - name
                     type: object
                   namespaceSelector:
-                    description: Selector for a Namespace to populate namespace.
+                    description: Selector for a CCENameSpace to populate namespace.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

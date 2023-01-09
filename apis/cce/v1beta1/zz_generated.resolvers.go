@@ -8,9 +8,9 @@ package v1beta1
 import (
 	"context"
 	v1beta13 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
-	v1beta12 "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
-	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
+	v1beta12 "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
@@ -43,66 +43,8 @@ func (mg *Addon) ResolveReferences(ctx context.Context, c client.Reader) error {
 	return nil
 }
 
-// ResolveReferences of this Cluster.
-func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPIResolver(c, mg)
-
-	var rsp reference.ResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.HighwaySubnetID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.HighwaySubnetIDRef,
-		Selector:     mg.Spec.ForProvider.HighwaySubnetIDSelector,
-		To: reference.To{
-			List:    &v1beta1.VPCSubnetList{},
-			Managed: &v1beta1.VPCSubnet{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.HighwaySubnetID")
-	}
-	mg.Spec.ForProvider.HighwaySubnetID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.HighwaySubnetIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-		Extract:      common.IDExtractor(),
-		Reference:    mg.Spec.ForProvider.SubnetIDRef,
-		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
-		To: reference.To{
-			List:    &v1beta1.VPCSubnetList{},
-			Managed: &v1beta1.VPCSubnet{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.SubnetID")
-	}
-	mg.Spec.ForProvider.SubnetID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.SubnetIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.VPCIDRef,
-		Selector:     mg.Spec.ForProvider.VPCIDSelector,
-		To: reference.To{
-			List:    &v1beta1.VPCList{},
-			Managed: &v1beta1.VPC{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.VPCID")
-	}
-	mg.Spec.ForProvider.VPCID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.VPCIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this Namespace.
-func (mg *Namespace) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this CCENameSpace.
+func (mg *CCENameSpace) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -123,6 +65,80 @@ func (mg *Namespace) ResolveReferences(ctx context.Context, c client.Reader) err
 	}
 	mg.Spec.ForProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ClusterIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this Cluster.
+func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.EIP),
+		Extract:      common.AddressExtractor(),
+		Reference:    mg.Spec.ForProvider.EIPRef,
+		Selector:     mg.Spec.ForProvider.EIPSelector,
+		To: reference.To{
+			List:    &v1beta1.EIPList{},
+			Managed: &v1beta1.EIP{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.EIP")
+	}
+	mg.Spec.ForProvider.EIP = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.EIPRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.HighwaySubnetID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.HighwaySubnetIDRef,
+		Selector:     mg.Spec.ForProvider.HighwaySubnetIDSelector,
+		To: reference.To{
+			List:    &v1beta11.VPCSubnetList{},
+			Managed: &v1beta11.VPCSubnet{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.HighwaySubnetID")
+	}
+	mg.Spec.ForProvider.HighwaySubnetID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.HighwaySubnetIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
+		Extract:      common.IDExtractor(),
+		Reference:    mg.Spec.ForProvider.SubnetIDRef,
+		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
+		To: reference.To{
+			List:    &v1beta11.VPCSubnetList{},
+			Managed: &v1beta11.VPCSubnet{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.SubnetID")
+	}
+	mg.Spec.ForProvider.SubnetID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.SubnetIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.VPCIDRef,
+		Selector:     mg.Spec.ForProvider.VPCIDSelector,
+		To: reference.To{
+			List:    &v1beta11.VPCList{},
+			Managed: &v1beta11.VPC{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.VPCID")
+	}
+	mg.Spec.ForProvider.VPCID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.VPCIDRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -158,8 +174,8 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 			Reference:    mg.Spec.ForProvider.DataVolumes[i3].KMSKeyIDRef,
 			Selector:     mg.Spec.ForProvider.DataVolumes[i3].KMSKeyIDSelector,
 			To: reference.To{
-				List:    &v1beta11.KeyList{},
-				Managed: &v1beta11.Key{},
+				List:    &v1beta12.KeyList{},
+				Managed: &v1beta12.Key{},
 			},
 		})
 		if err != nil {
@@ -175,8 +191,8 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 		References:    mg.Spec.ForProvider.EIPIdsRefs,
 		Selector:      mg.Spec.ForProvider.EIPIdsSelector,
 		To: reference.To{
-			List:    &v1beta12.EIPList{},
-			Managed: &v1beta12.EIP{},
+			List:    &v1beta1.EIPList{},
+			Managed: &v1beta1.EIP{},
 		},
 	})
 	if err != nil {
@@ -234,8 +250,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 			Reference:    mg.Spec.ForProvider.DataVolumes[i3].KMSKeyIDRef,
 			Selector:     mg.Spec.ForProvider.DataVolumes[i3].KMSKeyIDSelector,
 			To: reference.To{
-				List:    &v1beta11.KeyList{},
-				Managed: &v1beta11.Key{},
+				List:    &v1beta12.KeyList{},
+				Managed: &v1beta12.Key{},
 			},
 		})
 		if err != nil {
@@ -267,8 +283,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1beta1.VPCSubnetList{},
-			Managed: &v1beta1.VPCSubnet{},
+			List:    &v1beta11.VPCSubnetList{},
+			Managed: &v1beta11.VPCSubnet{},
 		},
 	})
 	if err != nil {
@@ -309,8 +325,8 @@ func (mg *Pvc) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.NamespaceRef,
 		Selector:     mg.Spec.ForProvider.NamespaceSelector,
 		To: reference.To{
-			List:    &NamespaceList{},
-			Managed: &Namespace{},
+			List:    &CCENameSpaceList{},
+			Managed: &CCENameSpace{},
 		},
 	})
 	if err != nil {
