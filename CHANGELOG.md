@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.1.2](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.1.1...v0.1.2) (2023-01-10)
+
+
+### Features
+
+* **dws:** add example cluster ([5b7c449](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/5b7c449f0accea9e87bf769a8221cdb8577e412c))
+* **evs:** add availabilityZone in example ([053c702](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/053c702e1331000f3c7c4a42b464ca377ffb01f2))
+* **rds:** add example ([86f463c](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/86f463ccac3d40d00e9aa3609d38aad9cacb3d1c))
+* **rds:** add example ([86f463c](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/86f463ccac3d40d00e9aa3609d38aad9cacb3d1c))
+* **rds:** Add example ([86f463c](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/86f463ccac3d40d00e9aa3609d38aad9cacb3d1c))
+* **rds:** add replicas example ([86f463c](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/86f463ccac3d40d00e9aa3609d38aad9cacb3d1c))
+* **sdrs:** add examples ([f63bbbd](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/f63bbbd16e08911941356846e120a3f4f7a6c0cd))
+
+
+### Bug Fixes
+
+* **dws:** example cluster nodetype and fix secret ([62c44d3](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/62c44d33ebf13bb9e0aacc99f53a387dcab91582))
+
 ## [0.1.1](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.1.0...v0.1.1) (2023-01-09)
 
 
