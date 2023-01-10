@@ -1,0 +1,31 @@
+apiVersion: dws.flexibleengine.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dws/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_dws_cluster
+  name: example-dws-cluster
+spec:
+  forProvider:
+    availabilityZone: eu-west-0b
+    name: example_dws_cluster
+    nodeType: dwsx2.xlarge
+    numberOfNode: 3
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_secgroup
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    userNameSecretRef:
+      key: username
+      name: example-dws-cluster-secret
+      namespace: crossplane-system
+    userPwdSecretRef:
+      key: password
+      name: example-dws-cluster-secret
+      namespace: crossplane-system
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc

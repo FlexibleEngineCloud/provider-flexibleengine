@@ -23,5 +23,4 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("eip", "EIP"),
 		}
 	})
-
 }
