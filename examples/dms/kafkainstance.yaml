@@ -1,0 +1,37 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: KafkaInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/kafkainstance
+  labels:
+    testing.upbound.io/example-name: example_dms_kafka_instance
+  name: example-dms-kafka-instance
+spec:
+  forProvider:
+    availabilityZones: 
+      - eu-west-0a
+    bandwidth: 100MB
+    engineVersion: 2.3.0
+    managerPasswordSecretRef:
+      key: example-dms-key-manager
+      name: example-dms-kafka-secret
+      namespace: crossplane-system
+    managerUser: admin
+    name: example-dms-kafka-instance
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    passwordSecretRef:
+      key: example-dms-kafka-key-user
+      name: example-dms-kafka-secret
+      namespace: crossplane-system
+    accessUser: user
+    productId: 00300-30308-0--0
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_secgroup
+    storageSpace: 600
+    storageSpecCode: dms.physical.storage.ultra
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
