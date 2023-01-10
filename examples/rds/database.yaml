@@ -1,0 +1,15 @@
+apiVersion: rds.flexibleengine.upbound.io/v1beta1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/database
+  labels:
+    testing.upbound.io/example-name: example_rds_database
+  name: example-rds-database
+spec:
+  forProvider:
+    characterSet: utf8
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_rds_instance
+    name: example-rds-database

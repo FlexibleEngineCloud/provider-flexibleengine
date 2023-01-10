@@ -4,18 +4,15 @@ metadata:
   annotations:
     meta.upbound.io/example-id: rds/v1beta1/parametergroup
   labels:
-    testing.upbound.io/example-name: pg_1
-  name: pg-1
+    testing.upbound.io/example-name: example_rds_parametergroup
+  name: example-rds-parametergroup
 spec:
   forProvider:
     datastore:
     - type: mysql
-      version: "5.6"
+      version: "5.7"
     description: description_1
-    name: pg_1
+    name: example-rds-parametergroup
     values:
       autocommit: "OFF"
       max_connections: "10"
-
----
-
