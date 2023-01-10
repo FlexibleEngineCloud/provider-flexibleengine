@@ -1,0 +1,19 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/securitygrouprule
+  labels:
+    testing.upbound.io/example-name: example_secgroup_rule_rds
+  name: example-secgroup-rule-rds
+spec:
+  forProvider:
+    direction: ingress
+    ethertype: IPv4
+    portRangeMax: 3306
+    portRangeMin: 3306
+    protocol: tcp
+    remoteIpPrefix: 0.0.0.0/0
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_secgroup

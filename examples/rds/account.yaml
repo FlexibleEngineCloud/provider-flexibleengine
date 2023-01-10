@@ -1,0 +1,18 @@
+apiVersion: rds.flexibleengine.upbound.io/v1beta1
+kind: Account
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/account
+  labels:
+    testing.upbound.io/example-name: example_rds_account
+  name: example-rds-account
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_rds_instance
+    name: example-rds-account
+    passwordSecretRef:
+      key: example-rds-key
+      name: example-rds-secret
+      namespace: crossplane-system

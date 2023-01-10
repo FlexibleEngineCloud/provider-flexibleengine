@@ -1,0 +1,17 @@
+apiVersion: rds.flexibleengine.upbound.io/v1beta1
+kind: DatabasePrivilege
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/databaseprivilege
+  labels:
+    testing.upbound.io/example-name: example_rds_databaseprivilege
+  name: example-rds-databaseprivilege
+spec:
+  forProvider:
+    dbName: example-rds-database
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_rds_instance
+    users:
+    - name: example-rds-account
+      readonly: true

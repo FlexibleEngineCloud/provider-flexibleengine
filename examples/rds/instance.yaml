@@ -1,0 +1,39 @@
+apiVersion: rds.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_rds_instance
+  name: example-rds-instance
+spec:
+  forProvider:
+    availabilityZone:
+      - eu-west-0a
+      - eu-west-0b
+    backupStrategy:
+      - keepDays: 1
+        startTime: 08:00-09:00
+    db:
+    - passwordSecretRef:
+        key: example-rds-key
+        name: example-rds-secret
+        namespace: crossplane-system
+      port: 3306
+      type: MySQL
+      version: "5.7"
+    flavor: rds.mysql.s3.medium.4.ha
+    haReplicationMode: async
+    name: example-rds-instance
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_secgroup
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    volume:
+    - size: 100
+      type: COMMON
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
