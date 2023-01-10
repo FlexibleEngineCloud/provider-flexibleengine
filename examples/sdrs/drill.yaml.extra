@@ -1,0 +1,31 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpc
+  labels:
+    testing.upbound.io/example-name: example_sdrs_drill_vpc
+  name: example-sdrs-drill-vpc
+spec:
+  forProvider:
+    name: "example-sdrs-drill-vpc"
+    cidr: "192.168.96.0/20"
+---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
+  labels:
+    testing.upbound.io/example-name: example_sdrs_drill_subnet
+  name: example-sdrs-drill-subnet
+spec:
+  forProvider:
+    cidr: "192.168.100.0/24"
+    gatewayIp: "192.168.100.254"
+    name: "example-sdrs-drill-subnet"
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_drill_vpc
+    primaryDns: "100.125.0.41"
+    secondaryDns: "100.126.0.41"

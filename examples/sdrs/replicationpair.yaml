@@ -1,0 +1,18 @@
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ReplicationPair
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/replicationpair
+  labels:
+    testing.upbound.io/example-name: example_sdrs_replicationpair
+  name: example-sdrs-replicationpair
+spec:
+  forProvider:
+    description: test description
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_protectiongroup
+    name: example-sdrs-replicationpair
+    volumeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_evs_blockstoragevolume

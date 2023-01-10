@@ -1,0 +1,19 @@
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ProtectionGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/protectiongroup
+  labels:
+    testing.upbound.io/example-name: example_sdrs_protectiongroup
+  name: example-sdrs-protectiongroup
+spec:
+  forProvider:
+    description: test description
+    domainId: 96443ca2-6a66-4231-848e-2ace986556a7
+    drType: migration
+    name: example-sdrs-protectiongroup
+    sourceAvailabilityZone: eu-west-0a
+    targetAvailabilityZone: eu-west-0b
+    sourceVpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc

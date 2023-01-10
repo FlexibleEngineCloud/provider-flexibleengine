@@ -1,0 +1,20 @@
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ProtectedInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/protectedinstance
+  labels:
+    testing.upbound.io/example-name: example_sdrs_instance
+  name: example-sdrs-instance
+spec:
+  forProvider:
+    description: test description
+    deleteTargetServer: true
+    deleteTargetEIP: true
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_protectiongroup
+    name: example-sdrs-instance
+    serverIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_instance_extra
