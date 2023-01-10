@@ -12,3 +12,4 @@ spec:
     name: example-evs-blockstoragevolume
     size: 3
     cascade: true
+    availabilityZone: eu-west-0a

@@ -1,0 +1,17 @@
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ReplicationAttach
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/replicationattach
+  labels:
+    testing.upbound.io/example-name: example_sdrs_replicationattach
+  name: example-sdrs-replicationattach
+spec:
+  forProvider:
+    device: /dev/vdb
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_instance
+    replicationIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_replicationpair

@@ -1,0 +1,17 @@
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: Drill
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/drill
+  labels:
+    testing.upbound.io/example-name: example_sdrs_drill
+  name: example-sdrs-drill
+spec:
+  forProvider:
+    drillVpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_drill_vpc
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_sdrs_protectiongroup
+    name: example-sdrs-drill
