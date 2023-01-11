@@ -58,11 +58,12 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 					Type: tools.GenerateType("iam", "Project"),
 				}
 			case "instance_id":
-				if r.ShortGroup == "dms" {
+				switch r.ShortGroup {
+				case "dms":
 					r.References[k] = config.Reference{
 						Type: tools.GenerateType("dms", "KafkaInstance"),
 					}
-				} else {
+				default:
 					r.References[k] = config.Reference{
 						Type: tools.GenerateType("ecs", "Instance"),
 					}

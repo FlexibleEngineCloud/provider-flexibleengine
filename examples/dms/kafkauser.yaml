@@ -1,0 +1,18 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: KafkaUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/kafkauser
+  labels:
+    testing.upbound.io/example-name: example_dms_kafka_user
+  name: example-dms-kafka-user
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_dms_kafka_instance
+    name: example-dms-kafka-user
+    passwordSecretRef:
+      key: example-dms-kafka-password-user
+      name: example-dms-kafka-secret-user
+      namespace: crossplane-system

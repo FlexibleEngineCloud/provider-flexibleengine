@@ -13,7 +13,7 @@ spec:
     bandwidth: 100MB
     engineVersion: 2.3.0
     managerPasswordSecretRef:
-      key: example-dms-kafka-key-manager
+      key: example-dms-kafka-password-manager
       name: example-dms-kafka-secret
       namespace: crossplane-system
     managerUser: admin
@@ -22,7 +22,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_subnet
     passwordSecretRef:
-      key: example-dms-kafka-key-user
+      key: example-dms-kafka-password-user
       name: example-dms-kafka-secret
       namespace: crossplane-system
     accessUser: user
