@@ -69,7 +69,7 @@ spec:
                       the user belongs. Changing this creates a new resource.
                     type: string
                   instanceIdRef:
-                    description: Reference to a Instance in ecs to populate instanceId.
+                    description: Reference to a KafkaInstance in dms to populate instanceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -103,7 +103,7 @@ spec:
                     - name
                     type: object
                   instanceIdSelector:
-                    description: Selector for a Instance in ecs to populate instanceId.
+                    description: Selector for a KafkaInstance in dms to populate instanceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

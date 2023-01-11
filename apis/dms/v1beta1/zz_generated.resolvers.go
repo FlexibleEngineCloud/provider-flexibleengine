@@ -7,7 +7,6 @@ package v1beta1
 
 import (
 	"context"
-	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
@@ -86,8 +85,8 @@ func (mg *KafkaTopic) ResolveReferences(ctx context.Context, c client.Reader) er
 		Reference:    mg.Spec.ForProvider.InstanceIDRef,
 		Selector:     mg.Spec.ForProvider.InstanceIDSelector,
 		To: reference.To{
-			List:    &v1beta11.InstanceList{},
-			Managed: &v1beta11.Instance{},
+			List:    &KafkaInstanceList{},
+			Managed: &KafkaInstance{},
 		},
 	})
 	if err != nil {
@@ -112,8 +111,8 @@ func (mg *KafkaUser) ResolveReferences(ctx context.Context, c client.Reader) err
 		Reference:    mg.Spec.ForProvider.InstanceIDRef,
 		Selector:     mg.Spec.ForProvider.InstanceIDSelector,
 		To: reference.To{
-			List:    &v1beta11.InstanceList{},
-			Managed: &v1beta11.Instance{},
+			List:    &KafkaInstanceList{},
+			Managed: &KafkaInstance{},
 		},
 	})
 	if err != nil {

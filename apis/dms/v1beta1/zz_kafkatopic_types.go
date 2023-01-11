@@ -28,15 +28,15 @@ type KafkaTopicParameters struct {
 
 	// Specifies the ID of the DMS Kafka instance to which the topic belongs.
 	// Changing this creates a new resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/dms/v1beta1.KafkaInstance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
-	// Reference to a Instance in ecs to populate instanceId.
+	// Reference to a KafkaInstance in dms to populate instanceId.
 	// +kubebuilder:validation:Optional
 	InstanceIDRef *v1.Reference `json:"instanceIdRef,omitempty" tf:"-"`
 
-	// Selector for a Instance in ecs to populate instanceId.
+	// Selector for a KafkaInstance in dms to populate instanceId.
 	// +kubebuilder:validation:Optional
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
