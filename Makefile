@@ -151,6 +151,11 @@ submodules:
 	@git submodule update --init --recursive
 	@git config core.hooksPath githooks
 
+# Update the submodules and the remote submodules.
+submodules-remote:
+	@git submodule sync
+	@git submodule update --init --remote --force --recursive
+	
 # This is for running out-of-cluster locally, and is for convenience. Running
 # this make target will print out the command which was used. For more control,
 # try running the binary directly with different arguments.
