@@ -11,6 +11,3 @@ spec:
     networkIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_subnet
-    subnetIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example_subnet
