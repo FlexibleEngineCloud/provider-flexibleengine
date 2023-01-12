@@ -1,0 +1,15 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/routetable
+  labels:
+    testing.upbound.io/example-name: example_vpc_route_table
+  name: example-vpc-route-table
+spec:
+  forProvider:
+    description: a custom route table demo
+    name: example-vpc-route-table
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
