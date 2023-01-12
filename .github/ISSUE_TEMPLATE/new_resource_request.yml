@@ -20,7 +20,8 @@ body:
   attributes:
     label: What resource do you need?
     description: What is the name of the resource you want to add?
-    placeholder: "Terraform Resource Name:"
+    placeholder: |
+      Terraform Resource Name:
   validations:
     required: true
 - type: textarea
@@ -29,6 +30,7 @@ body:
     description: |
       Help us for prioritization of the resource support by giving more details about
       why you need it.
-    placeholder: "Use case:"
+    placeholder: |
+      Use case:
   validations:
     required: false

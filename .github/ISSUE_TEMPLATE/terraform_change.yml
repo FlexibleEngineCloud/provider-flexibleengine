@@ -21,7 +21,7 @@ body:
     label: Issue/PR in Terraform repository
     description: Give us the link to the issue or PR in Terraform repository.
     value: |
-      "FlexibleEngineCloud/terraform-provider-flexibleengine#"
+      FlexibleEngineCloud/terraform-provider-flexibleengine#
   validations:
     required: true
 - type: textarea
@@ -29,22 +29,20 @@ body:
     label: Attribute/Argument impacted
     description: Inform us on the attribute/argument impacted by the change.
     value: |
-      "In <resource> resource, this attribute/argument is impacted:"
+      In <resource> resource, this attribute/argument is impacted:
   validations:
     required: true
 - type: checkboxes
   attributes:
     label: Is the Terraform provider released?
     options:
-    - label: "Terraform provider is released"
-    - label: "Terraform provider is not released"
-  validations:
-    required: true
+    - label: Terraform provider is released
+    - label: Terraform provider is not released
 - type: textarea
   attributes:
     label: Terraform provider version
     description: Inform us on the Terraform provider version.
     value: |
-      "Terraform provider version:"
+      Terraform provider version:
   validations:
     required: false
