@@ -21,6 +21,6 @@ body:
     label: What example do you need?
     description: Inform us on the group and resource you need an example for.
     placeholder: |
-      "In <category> category, this resource(s) is not tested:"
+      In <category> category, this resource(s) is not tested:
   validations:
     required: true
