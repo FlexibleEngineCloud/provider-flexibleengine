@@ -1,5 +1,5 @@
 name: Terraform Change
-about: Help us to track changes to the Terraform provider
+description: Help us to track changes to the Terraform provider
 title: '[<group>] <resource> attribute/argument change'
 labels: [terraform-provider]
 body:
