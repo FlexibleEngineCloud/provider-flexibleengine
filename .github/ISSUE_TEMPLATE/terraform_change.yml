@@ -1,0 +1,34 @@
+name: Terraform Change
+about: Help us to track changes to the Terraform provider
+title: '[<group>] <resource> attribute/argument change'
+labels: [terraform-provider]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for helping to improve Flexible Engine Provider!
+
+      Please be sure to search for open issues before raising a new one. We use issues
+      for bug reports and feature requests.
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    options:
+  - label: I have searched the existing issues
+      required: true
+- type: textarea
+  attributes:
+    label: Issue/PR in Terraform repository
+    description: Give us the link to the issue or PR in Terraform repository.
+    value: |
+      "FlexibleEngineCloud/terraform-provider-flexibleengine#"
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Attribute/Argument impacted
+    description: Inform us on the attribute/argument impacted by the change.
+    placeholder: |
+      "In <resource> resource, this attribute/argument is impacted:"
+  validations:
+    required: true
