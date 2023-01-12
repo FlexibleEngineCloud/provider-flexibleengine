@@ -26,6 +26,9 @@ type VIPObservation struct {
 
 	// The VIP status.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// The VIP ID.
+	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type VIPParameters struct {
@@ -63,19 +66,6 @@ type VIPParameters struct {
 	// If omitted, the provider-level region will be used. Changing this will create a new VIP resource.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	// The VIP ID.
-	// +crossplane:generate:reference:type=VPCSubnet
-	// +kubebuilder:validation:Optional
-	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
-
-	// Reference to a VPCSubnet to populate subnetId.
-	// +kubebuilder:validation:Optional
-	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
-
-	// Selector for a VPCSubnet to populate subnetId.
-	// +kubebuilder:validation:Optional
-	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }
 
 // VIPSpec defines the desired state of VIP
