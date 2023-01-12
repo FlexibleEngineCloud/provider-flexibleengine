@@ -194,9 +194,9 @@ func (mg *RouteTable) ResolveReferences(ctx context.Context, c client.Reader) er
 
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Subnets),
-		Extract:       reference.ExternalName(),
+		Extract:       common.IDExtractor(),
 		References:    mg.Spec.ForProvider.SubnetsRefs,
-		Selector:      mg.Spec.ForProvider.SubnetsSelector,
+		Selector:      mg.Spec.ForProvider.SubnetSelector,
 		To: reference.To{
 			List:    &VPCSubnetList{},
 			Managed: &VPCSubnet{},

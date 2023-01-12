@@ -1164,6 +1164,11 @@ func (in *RouteTableParameters) DeepCopyInto(out *RouteTableParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.SubnetSelector != nil {
+		in, out := &in.SubnetSelector, &out.SubnetSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Subnets != nil {
 		in, out := &in.Subnets, &out.Subnets
 		*out = make([]*string, len(*in))
@@ -1181,11 +1186,6 @@ func (in *RouteTableParameters) DeepCopyInto(out *RouteTableParameters) {
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
-	}
-	if in.SubnetsSelector != nil {
-		in, out := &in.SubnetsSelector, &out.SubnetsSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.VPCID != nil {
 		in, out := &in.VPCID, &out.VPCID
