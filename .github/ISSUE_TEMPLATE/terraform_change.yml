@@ -32,17 +32,11 @@ body:
       In <resource> resource, this attribute/argument is impacted:
   validations:
     required: true
-- type: checkboxes
-  attributes:
-    label: Is the Terraform provider released?
-    options:
-    - label: Terraform provider is released
-    - label: Terraform provider is not released
 - type: textarea
   attributes:
     label: Terraform provider version
     description: Inform us on the Terraform provider version.
     value: |
-      Terraform provider version:
+      Terraform provider version: <1.36.0|not released>
   validations:
     required: false
