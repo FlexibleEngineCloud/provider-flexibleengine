@@ -175,6 +175,7 @@ var KindMap = map[string]string{
 	"flexibleengine_compute_servergroup_v2":          "ServerGroup",
 	"flexibleengine_compute_floatingip_v2":           "FloatingIp",
 	"flexibleengine_compute_floatingip_associate_v2": "FloatingIpAssociate",
+	"flexibleengine_dcs_instance_v1":                 "Instance",
 	"flexibleengine_networking_secgroup_v2":          "SecurityGroup",
 	"flexibleengine_networking_secgroup_rule_v2":     "SecurityGroupRule",
 	"flexibleengine_networking_vip_associate_v2":     "VIPAssociate",
