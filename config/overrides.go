@@ -58,8 +58,15 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 					Type: tools.GenerateType("iam", "Project"),
 				}
 			case "instance_id":
-				r.References[k] = config.Reference{
-					Type: tools.GenerateType("ecs", "Instance"),
+				switch r.ShortGroup {
+				case "dms":
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("dms", "KafkaInstance"),
+					}
+				default:
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("ecs", "Instance"),
+					}
 				}
 			case "image_name":
 				r.References[k] = config.Reference{
