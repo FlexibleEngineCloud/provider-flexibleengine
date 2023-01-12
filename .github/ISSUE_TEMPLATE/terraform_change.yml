@@ -1,7 +1,7 @@
 name: Terraform Change
-about: Help us to track changes to the Terraform provider
+description: Help us to track changes to the Terraform provider
 title: '[<group>] <resource> attribute/argument change'
-labels: [terraform-provider]
+labels: [terraform-provider-change]
 body:
 - type: markdown
   attributes:
@@ -28,7 +28,23 @@ body:
   attributes:
     label: Attribute/Argument impacted
     description: Inform us on the attribute/argument impacted by the change.
-    placeholder: |
+    value: |
       "In <resource> resource, this attribute/argument is impacted:"
   validations:
     required: true
+- type: checkboxes
+  attributes:
+    label: Is the Terraform provider released?
+    options:
+    - label: "Terraform provider is released"
+    - label: "Terraform provider is not released"
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Terraform provider version
+    description: Inform us on the Terraform provider version.
+    value: |
+      "Terraform provider version:"
+  validations:
+    required: false
