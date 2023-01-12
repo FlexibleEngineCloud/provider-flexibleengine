@@ -201,10 +201,30 @@ func (in *FlowLogParameters) DeepCopyInto(out *FlowLogParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.LogGroupIDRef != nil {
+		in, out := &in.LogGroupIDRef, &out.LogGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LogGroupIDSelector != nil {
+		in, out := &in.LogGroupIDSelector, &out.LogGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.LogTopicID != nil {
 		in, out := &in.LogTopicID, &out.LogTopicID
 		*out = new(string)
 		**out = **in
+	}
+	if in.LogTopicIDRef != nil {
+		in, out := &in.LogTopicIDRef, &out.LogTopicIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LogTopicIDSelector != nil {
+		in, out := &in.LogTopicIDSelector, &out.LogTopicIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name

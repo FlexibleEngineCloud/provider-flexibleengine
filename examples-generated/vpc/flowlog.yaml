@@ -9,8 +9,12 @@ metadata:
 spec:
   forProvider:
     description: ${var.flowlog_desc}
-    logGroupId: ${flexibleengine_lts_group.log_group1.id}
-    logTopicId: ${flexibleengine_lts_topic.log_topic1.id}
+    logGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: log_group1
+    logTopicIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: log_topic1
     name: ${var.flowlog_name}
     resourceId: ${var.port_id}
     trafficType: all

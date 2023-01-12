@@ -7,12 +7,55 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1"
 	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
+
+// ResolveReferences of this FlowLog.
+func (mg *FlowLog) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.LogGroupID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.LogGroupIDRef,
+		Selector:     mg.Spec.ForProvider.LogGroupIDSelector,
+		To: reference.To{
+			List:    &v1beta1.GroupList{},
+			Managed: &v1beta1.Group{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.LogGroupID")
+	}
+	mg.Spec.ForProvider.LogGroupID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LogGroupIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.LogTopicID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.LogTopicIDRef,
+		Selector:     mg.Spec.ForProvider.LogTopicIDSelector,
+		To: reference.To{
+			List:    &v1beta1.TopicList{},
+			Managed: &v1beta1.Topic{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.LogTopicID")
+	}
+	mg.Spec.ForProvider.LogTopicID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LogTopicIDRef = rsp.ResolvedReference
+
+	return nil
+}
 
 // ResolveReferences of this PeeringConnection.
 func (mg *PeeringConnection) ResolveReferences(ctx context.Context, c client.Reader) error {
@@ -129,8 +172,8 @@ func (mg *Port) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
-			List:    &v1beta1.ProjectList{},
-			Managed: &v1beta1.Project{},
+			List:    &v1beta11.ProjectList{},
+			Managed: &v1beta11.Project{},
 		},
 	})
 	if err != nil {
@@ -240,8 +283,8 @@ func (mg *SecurityGroup) ResolveReferences(ctx context.Context, c client.Reader)
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
-			List:    &v1beta1.ProjectList{},
-			Managed: &v1beta1.Project{},
+			List:    &v1beta11.ProjectList{},
+			Managed: &v1beta11.Project{},
 		},
 	})
 	if err != nil {
@@ -298,8 +341,8 @@ func (mg *SecurityGroupRule) ResolveReferences(ctx context.Context, c client.Rea
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
-			List:    &v1beta1.ProjectList{},
-			Managed: &v1beta1.Project{},
+			List:    &v1beta11.ProjectList{},
+			Managed: &v1beta11.Project{},
 		},
 	})
 	if err != nil {

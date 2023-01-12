@@ -31,13 +31,31 @@ type FlowLogParameters struct {
 
 	// Specifies the LTS log group ID.
 	// Changing this creates a new VPC flow log.
-	// +kubebuilder:validation:Required
-	LogGroupID *string `json:"logGroupId" tf:"log_group_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1.Group
+	// +kubebuilder:validation:Optional
+	LogGroupID *string `json:"logGroupId,omitempty" tf:"log_group_id,omitempty"`
+
+	// Reference to a Group in lts to populate logGroupId.
+	// +kubebuilder:validation:Optional
+	LogGroupIDRef *v1.Reference `json:"logGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Group in lts to populate logGroupId.
+	// +kubebuilder:validation:Optional
+	LogGroupIDSelector *v1.Selector `json:"logGroupIdSelector,omitempty" tf:"-"`
 
 	// Specifies the LTS log topic ID.
 	// Changing this creates a new VPC flow log.
-	// +kubebuilder:validation:Required
-	LogTopicID *string `json:"logTopicId" tf:"log_topic_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1.Topic
+	// +kubebuilder:validation:Optional
+	LogTopicID *string `json:"logTopicId,omitempty" tf:"log_topic_id,omitempty"`
+
+	// Reference to a Topic in lts to populate logTopicId.
+	// +kubebuilder:validation:Optional
+	LogTopicIDRef *v1.Reference `json:"logTopicIdRef,omitempty" tf:"-"`
+
+	// Selector for a Topic in lts to populate logTopicId.
+	// +kubebuilder:validation:Optional
+	LogTopicIDSelector *v1.Selector `json:"logTopicIdSelector,omitempty" tf:"-"`
 
 	// Specifies the VPC flow log name. The value is a string of 1 to 64 characters
 	// that can contain letters, digits, underscores (_), hyphens (-) and periods (.).

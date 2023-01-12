@@ -1,0 +1,22 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: FlowLog
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+  labels:
+    testing.upbound.io/example-name: example_vpc_flowlog
+  name: example-vpc-flowlog
+spec:
+  forProvider:
+    description: example flowlog
+    logGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_lts_group
+    logTopicIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_lts_topic
+    name: example-vpc-flowlog
+    resourceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_instance
+    trafficType: all
