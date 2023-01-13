@@ -170,6 +170,10 @@ var GroupMap = map[string]GroupKindCalculator{
 }
 
 // KindMap contains kind string overrides.
+// ! Warning do not consider _v[0-9]
+// ? Examples
+// ? keypair is renamed to KeyPair instead of Keypair
+// ? servergroup is renamed to ServerGroup instead of Servergroup
 var KindMap = map[string]string{
 	"flexibleengine_compute_keypair_v2":              "KeyPair",
 	"flexibleengine_compute_servergroup_v2":          "ServerGroup",

@@ -1,0 +1,34 @@
+apiVersion: dcs.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dcs/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_dcs_redis_instance
+  name: example-dcs-redis-instance
+spec:
+  forProvider:
+    availableZones:
+    - eu-west-0a
+    - eu-west-0b
+    backupAt:
+    - 1
+    backupType: manual
+    beginAt: 00:00-01:00
+    capacity: 8
+    engine: Redis
+    engineVersion: "5.0"
+    name: example-dcs-redis-instance
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    passwordSecretRef:
+      key: example-dcs-redis-password
+      name: example-dcs-redis-secret
+      namespace: crossplane-system
+    periodType: weekly
+    productId: redis.cluster.xu1.large.r2.8-h
+    saveDays: 1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
