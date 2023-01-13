@@ -64,6 +64,16 @@ var (
 
 var skipList = []string{
 	"flexibleengine_cts_tracker_v1$", // Only system tracker_name is available
+
+	// Deprecated resources
+
+	// https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/869
+	"flexibleengine_networking_floatingip_associate_v2$",
+	"flexibleengine_networking_floatingip_v2$",
+	"flexibleengine_networking_network_v2$",
+	"flexibleengine_networking_subnet_v2$",
+	"flexibleengine_networking_router_interface_v2$",
+	"flexibleengine_networking_router_v2$",
 }
 
 // GetProvider returns provider configuration
