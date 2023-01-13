@@ -54,7 +54,7 @@ Here is an example key file:
 Use the JSON file to generate a Kubernetes secret.
 
 ```shell
-kubectl create secret generic fe-creds --from-file=credentials=./<JSON file name>
+kubectl -n upbound-system create secret generic fe-creds --from-file=credentials=./<JSON file name>
 ```
 
 ### Create a ProviderConfig object
