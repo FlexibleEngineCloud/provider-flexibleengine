@@ -30,7 +30,7 @@ type PeeringConnectionParameters struct {
 
 	// Specified the Tenant Id of the accepter tenant. Changing this creates a new VPC peering connection.
 	// +kubebuilder:validation:Optional
-	PeerTenantID *string `json:"peerTenantId,omitempty" tf:"peer_tenant_id,omitempty"`
+	PeerTenantIDSecretRef *v1.SecretKeySelector `json:"peerTenantIdSecretRef,omitempty" tf:"-"`
 
 	// Specifies the VPC ID of the accepter tenant. Changing this creates a new VPC peering connection.
 	// +crossplane:generate:reference:type=VPC

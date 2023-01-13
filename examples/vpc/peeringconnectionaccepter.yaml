@@ -4,12 +4,13 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/peeringconnectionaccepter
   labels:
-    testing.upbound.io/example-name: peer
-  name: peer
+    testing.upbound.io/example-name: example_vpc_peeringconnectionaccepter
+  name: example-vpc-peeringconnectionaccepter
 spec:
+  providerConfigRef:
+    name: externe
   forProvider:
     accept: true
-    provider: flexibleengine.peer
     vpcPeeringConnectionIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: peering
+        testing.upbound.io/example-name: example_vpc_peeringconnection

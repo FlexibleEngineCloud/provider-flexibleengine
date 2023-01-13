@@ -27,7 +27,10 @@ metadata:
 spec:
   forProvider:
     name: ${var.peer_name}
-    peerTenantId: ${var.tenant_id}
+    peerTenantIdSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
     peerVpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: vpc_peer

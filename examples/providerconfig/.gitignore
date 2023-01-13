@@ -1,2 +1,2 @@
-secret.yaml
-providerconfig.yaml
+*
+!*.tmpl

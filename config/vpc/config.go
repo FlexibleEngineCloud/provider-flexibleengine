@@ -55,6 +55,9 @@ func Configure(p *config.Provider) {
 			Type: "VPC",
 		}
 
+		// peer_tenant_id is the ID of the tenant to which the peer VPC belongs.
+		r.TerraformResource.Schema["peer_tenant_id"].Sensitive = true
+
 	})
 
 	// flexibleengine_vpc_peering_connection_accepter_v2

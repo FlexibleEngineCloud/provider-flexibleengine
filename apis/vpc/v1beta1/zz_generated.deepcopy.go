@@ -374,9 +374,9 @@ func (in *PeeringConnectionParameters) DeepCopyInto(out *PeeringConnectionParame
 		*out = new(string)
 		**out = **in
 	}
-	if in.PeerTenantID != nil {
-		in, out := &in.PeerTenantID, &out.PeerTenantID
-		*out = new(string)
+	if in.PeerTenantIDSecretRef != nil {
+		in, out := &in.PeerTenantIDSecretRef, &out.PeerTenantIDSecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
 	}
 	if in.PeerVPCID != nil {

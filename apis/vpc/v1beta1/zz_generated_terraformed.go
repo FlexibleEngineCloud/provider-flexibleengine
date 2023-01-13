@@ -464,7 +464,7 @@ func (mg *PeeringConnection) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this PeeringConnection
 func (tr *PeeringConnection) GetConnectionDetailsMapping() map[string]string {
-	return nil
+	return map[string]string{"peer_tenant_id": "spec.forProvider.peerTenantIdSecretRef"}
 }
 
 // GetObservation of this PeeringConnection
