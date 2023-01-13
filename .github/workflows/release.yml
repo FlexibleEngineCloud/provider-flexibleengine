@@ -19,7 +19,7 @@ env:
 jobs:
   release_please:
     name: Release Please
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     if: github.repository == 'FrangipaneTeam/provider-flexibleengine'
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}

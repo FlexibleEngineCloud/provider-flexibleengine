@@ -1,0 +1,28 @@
+name: Issue Labeler
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  community-issue:
+    name: Label community issues
+    if: ${{ (github.event.issue.author_association != 'OWNER' &&
+      github.event.issue.author_association != 'MEMBER' &&
+      github.event.issue.author_association != 'CONTRIBUTOR' &&
+      github.event.issue.author_association != 'COLLABORATOR' ) }}
+    runs-on: ubuntu-22.04
+    permissions:
+      issues: write
+    steps:
+      - name: Label as community issue
+        if: ${{ !contains(github.event.issue.labels.*.name, 'community') }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["community"]
+            })
