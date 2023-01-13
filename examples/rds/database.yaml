@@ -8,8 +8,8 @@ metadata:
   name: example-rds-database
 spec:
   forProvider:
-    characterSet: utf8
+    characterSet: UTF8
     instanceIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_rds_instance
-    name: example-rds-database
+    name: examplerdsdatabase

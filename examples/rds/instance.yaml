@@ -20,9 +20,9 @@ spec:
         name: example-rds-secret
         namespace: crossplane-system
       port: 3306
-      type: MySQL
-      version: "5.7"
-    flavor: rds.mysql.s3.medium.4.ha
+      type: PostgreSQL
+      version: "14"
+    flavor: rds.pg.s3.medium.4.ha
     haReplicationMode: async
     name: example-rds-instance
     securityGroupIdSelector:
@@ -32,7 +32,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_subnet
     volume:
-    - size: 100
+    - size: 40
       type: COMMON
     vpcIdSelector:
       matchLabels:
