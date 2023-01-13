@@ -1,7 +1,10 @@
-name: labeler
+name: Pull Request Labeler
 
-on: [pull_request]
-
+on: 
+  pull_request_target:
+    types: [ opened, edited, reopened, synchronize ]
+    paths-ignore:
+    - 'apis/**'
 jobs:
   labeler:
     runs-on: ubuntu-latest
@@ -10,19 +13,13 @@ jobs:
       - uses: codelytv/pr-size-labeler@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          xs_label: 'size/xs'
+          xs_label: 'size/XS'
           xs_max_size: '10'
-          s_label: 'size/s'
+          s_label: 'size/S'
           s_max_size: '100'
-          m_label: 'size/m'
+          m_label: 'size/M'
           m_max_size: '500'
-          l_label: 'size/l'
+          l_label: 'size/L'
           l_max_size: '1000'
-          xl_label: 'size/xl'
+          xl_label: 'size/XL'
           fail_if_xl: 'false'
-          message_if_xl: >
-            This PR exceeds the recommended size of 1000 lines.
-            Please make sure you are NOT addressing multiple issues with one PR.
-            Note this PR might be rejected due to its size.
-          github_api_url: 'api.github.com'
-          files_to_ignore: ''

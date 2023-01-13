@@ -34,6 +34,7 @@ jobs:
           bump-patch-for-minor-pre-major: true
     
   publish-artifacts:
+    name: Publish Artifacts
     runs-on: ubuntu-22.04
     needs: release_please
     if: ${{ needs.release_please.outputs.release_created == 'true' }}
