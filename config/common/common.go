@@ -56,7 +56,6 @@ func NetworkPortIDExtractor() reference.ExtractValueFn {
 			// TODO should we log this error?
 			return ""
 		}
-		fmt.Printf("paved: %v", paved)
 		r, err := paved.GetString("status.atProvider.network[0].port")
 		if err != nil {
 			// TODO should we log this error?

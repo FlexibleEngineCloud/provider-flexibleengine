@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type FlowLogObservation struct {
+type VPCFlowLogObservation struct {
 
 	// The VPC flow log ID in UUID format.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -22,7 +22,7 @@ type FlowLogObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
-type FlowLogParameters struct {
+type VPCFlowLogParameters struct {
 
 	// (Optinal, String) Specifies supplementary information about the VPC flow log.
 	// The value is a string of no more than 255 characters and cannot contain angle brackets (< or >).
@@ -69,8 +69,18 @@ type FlowLogParameters struct {
 
 	// Specifies the network port ID.
 	// Changing this creates a new VPC flow log.
-	// +kubebuilder:validation:Required
-	ResourceID *string `json:"resourceId" tf:"resource_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.NetworkPortIDExtractor()
+	// +kubebuilder:validation:Optional
+	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
+
+	// Reference to a Instance in ecs to populate resourceId.
+	// +kubebuilder:validation:Optional
+	ResourceIDRef *v1.Reference `json:"resourceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in ecs to populate resourceId.
+	// +kubebuilder:validation:Optional
+	ResourceIDSelector *v1.Selector `json:"resourceIdSelector,omitempty" tf:"-"`
 
 	// The type of resource on which to create the VPC flow log. The value is fixed to port.
 	// +kubebuilder:validation:Optional
@@ -81,51 +91,51 @@ type FlowLogParameters struct {
 	TrafficType *string `json:"trafficType,omitempty" tf:"traffic_type,omitempty"`
 }
 
-// FlowLogSpec defines the desired state of FlowLog
-type FlowLogSpec struct {
+// VPCFlowLogSpec defines the desired state of VPCFlowLog
+type VPCFlowLogSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     FlowLogParameters `json:"forProvider"`
+	ForProvider     VPCFlowLogParameters `json:"forProvider"`
 }
 
-// FlowLogStatus defines the observed state of FlowLog.
-type FlowLogStatus struct {
+// VPCFlowLogStatus defines the observed state of VPCFlowLog.
+type VPCFlowLogStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        FlowLogObservation `json:"atProvider,omitempty"`
+	AtProvider        VPCFlowLogObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// FlowLog is the Schema for the FlowLogs API. ""page_title: "flexibleengine_vpc_flow_log_v1"
+// VPCFlowLog is the Schema for the VPCFlowLogs API. ""page_title: "flexibleengine_vpc_flow_log_v1"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type FlowLog struct {
+type VPCFlowLog struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              FlowLogSpec   `json:"spec"`
-	Status            FlowLogStatus `json:"status,omitempty"`
+	Spec              VPCFlowLogSpec   `json:"spec"`
+	Status            VPCFlowLogStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// FlowLogList contains a list of FlowLogs
-type FlowLogList struct {
+// VPCFlowLogList contains a list of VPCFlowLogs
+type VPCFlowLogList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []FlowLog `json:"items"`
+	Items           []VPCFlowLog `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	FlowLog_Kind             = "FlowLog"
-	FlowLog_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: FlowLog_Kind}.String()
-	FlowLog_KindAPIVersion   = FlowLog_Kind + "." + CRDGroupVersion.String()
-	FlowLog_GroupVersionKind = CRDGroupVersion.WithKind(FlowLog_Kind)
+	VPCFlowLog_Kind             = "VPCFlowLog"
+	VPCFlowLog_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VPCFlowLog_Kind}.String()
+	VPCFlowLog_KindAPIVersion   = VPCFlowLog_Kind + "." + CRDGroupVersion.String()
+	VPCFlowLog_GroupVersionKind = CRDGroupVersion.WithKind(VPCFlowLog_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&FlowLog{}, &FlowLogList{})
+	SchemeBuilder.Register(&VPCFlowLog{}, &VPCFlowLogList{})
 }

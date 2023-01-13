@@ -1,0 +1,15 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: PeeringConnectionAccepter
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/peeringconnectionaccepter
+  labels:
+    testing.upbound.io/example-name: peer
+  name: peer
+spec:
+  forProvider:
+    accept: true
+    provider: flexibleengine.peer
+    vpcPeeringConnectionIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: peering

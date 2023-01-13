@@ -99,6 +99,7 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_networking_secgroup_v2":      ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: SecurityGroup
 	"flexibleengine_networking_vip_associate_v2": ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIPAssociate
 	"flexibleengine_networking_vip_v2":           ReplaceGroupWords("vpc", 1), // Group: vpc, Kind: VIP
+	"flexibleengine_vpc_flow_log_v1":             ReplaceGroupWords("lts", 0), // Group: lts, Kind: VPCFlowLog
 	// EIP
 	"flexibleengine_vpc_eip":           ReplaceGroupWords("eip", 1), // Group: eip, Kind: EIP
 	"flexibleengine_vpc_eip_associate": ReplaceGroupWords("eip", 1), // Group: eip, Kind: Associate

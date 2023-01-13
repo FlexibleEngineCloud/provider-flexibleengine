@@ -7,6 +7,8 @@ package v1beta1
 
 import (
 	"context"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
+	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -34,6 +36,64 @@ func (mg *Topic) ResolveReferences(ctx context.Context, c client.Reader) error {
 	}
 	mg.Spec.ForProvider.GroupID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.GroupIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this VPCFlowLog.
+func (mg *VPCFlowLog) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.LogGroupID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.LogGroupIDRef,
+		Selector:     mg.Spec.ForProvider.LogGroupIDSelector,
+		To: reference.To{
+			List:    &GroupList{},
+			Managed: &Group{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.LogGroupID")
+	}
+	mg.Spec.ForProvider.LogGroupID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LogGroupIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.LogTopicID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.LogTopicIDRef,
+		Selector:     mg.Spec.ForProvider.LogTopicIDSelector,
+		To: reference.To{
+			List:    &TopicList{},
+			Managed: &Topic{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.LogTopicID")
+	}
+	mg.Spec.ForProvider.LogTopicID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LogTopicIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ResourceID),
+		Extract:      common.NetworkPortIDExtractor(),
+		Reference:    mg.Spec.ForProvider.ResourceIDRef,
+		Selector:     mg.Spec.ForProvider.ResourceIDSelector,
+		To: reference.To{
+			List:    &v1beta1.InstanceList{},
+			Managed: &v1beta1.Instance{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ResourceID")
+	}
+	mg.Spec.ForProvider.ResourceID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ResourceIDRef = rsp.ResolvedReference
 
 	return nil
 }

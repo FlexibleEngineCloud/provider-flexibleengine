@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: flowlogs.vpc.flexibleengine.upbound.io
+  name: vpcflowlogs.lts.flexibleengine.upbound.io
 spec:
-  group: vpc.flexibleengine.upbound.io
+  group: lts.flexibleengine.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - flexibleengine
-    kind: FlowLog
-    listKind: FlowLogList
-    plural: flowlogs
-    singular: flowlog
+    kind: VPCFlowLog
+    listKind: VPCFlowLogList
+    plural: vpcflowlogs
+    singular: vpcflowlog
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'FlowLog is the Schema for the FlowLogs API. ""page_title: "flexibleengine_vpc_flow_log_v1"'
+        description: 'VPCFlowLog is the Schema for the VPCFlowLogs API. ""page_title:
+          "flexibleengine_vpc_flow_log_v1"'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: FlowLogSpec defines the desired state of FlowLog
+            description: VPCFlowLogSpec defines the desired state of VPCFlowLog
             properties:
               deletionPolicy:
                 default: Delete
@@ -236,6 +237,79 @@ spec:
                     description: Specifies the network port ID. Changing this creates
                       a new VPC flow log.
                     type: string
+                  resourceIdRef:
+                    description: Reference to a Instance in ecs to populate resourceId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  resourceIdSelector:
+                    description: Selector for a Instance in ecs to populate resourceId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   resourceType:
                     description: The type of resource on which to create the VPC flow
                       log. The value is fixed to port.
@@ -246,7 +320,6 @@ spec:
                     type: string
                 required:
                 - name
-                - resourceId
                 type: object
               providerConfigRef:
                 default:
@@ -420,7 +493,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: FlowLogStatus defines the observed state of FlowLog.
+            description: VPCFlowLogStatus defines the observed state of VPCFlowLog.
             properties:
               atProvider:
                 properties:

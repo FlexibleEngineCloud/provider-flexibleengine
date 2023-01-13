@@ -3,7 +3,6 @@ package vpc
 
 import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -65,28 +64,6 @@ func Configure(p *config.Provider) {
 		// peering_id is the ID of the VPC Peering Connection
 		r.References["vpc_peering_connection_id"] = config.Reference{
 			Type: "PeeringConnection",
-		}
-
-	})
-
-	// flexibleengine_vpc_flow_log_v1
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/vpc_flow_log_v1
-	p.AddResourceConfigurator("flexibleengine_vpc_flow_log_v1", func(r *config.Resource) {
-
-		// resource_id can not be a neworking_port
-		// resource_id enter in conflict if is a ecs_instance reference. This conflict is due to golang import cycle
-		// Issue: https://github.com/upbound/upjet/issues/96
-		// r.References["resource_id"] = config.Reference{
-		// 	Type:      tools.GenerateType("ecs", "Instance"),
-		// 	Extractor: common.PathNetworkPortIDExtractor,
-		// }
-
-		r.References["log_group_id"] = config.Reference{
-			Type: tools.GenerateType("lts", "Group"),
-		}
-
-		r.References["log_topic_id"] = config.Reference{
-			Type: tools.GenerateType("lts", "Topic"),
 		}
 
 	})
