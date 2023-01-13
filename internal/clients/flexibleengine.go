@@ -75,15 +75,13 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			keyRegion:     pc.Spec.Region,
 			keyDomainName: pc.Spec.DomainName,
 			keyInsecure:   pc.Spec.Insecure,
+			keyTenantName: pc.Spec.TenantName,
 		}
 		if v, ok := creds[keyAccessKey]; ok {
 			ps.Configuration[keyAccessKey] = v
 		}
 		if v, ok := creds[keySecretKey]; ok {
 			ps.Configuration[keySecretKey] = v
-		}
-		if v, ok := creds[keyTenantName]; ok {
-			ps.Configuration[keyTenantName] = v
 		}
 		return ps, nil
 	}

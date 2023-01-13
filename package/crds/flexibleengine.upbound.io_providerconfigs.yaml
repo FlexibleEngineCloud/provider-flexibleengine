@@ -109,6 +109,9 @@ spec:
               region:
                 description: Region
                 type: string
+              tenantName:
+                description: TenantName
+                type: string
             required:
             - credentials
             - domainName
