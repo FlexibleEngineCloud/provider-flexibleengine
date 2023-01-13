@@ -4,14 +4,14 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/peering
   labels:
-    testing.upbound.io/example-name: example_peering
-  name: example-peering
+    testing.upbound.io/example-name: example_vpc_peering
+  name: example-vpc-peering
 spec:
   forProvider:
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-vpc1
+        testing.upbound.io/example-name: example_vpc_peering_vpc_1
     peerVpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example-vpc2
-    name: "example-peering"
+        testing.upbound.io/example-name: example_vpc_peering_vpc_2
+    name: "example-vpc-peering"
