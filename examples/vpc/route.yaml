@@ -1,0 +1,16 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: Route
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/route
+  labels:
+    testing.upbound.io/example-name: example_vpc_route
+  name: example-vpc-route
+spec:
+  forProvider:
+    destination: 192.168.0.0/16
+    nexthop: 192.168.100.168
+    type: vip
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc_route_vpc

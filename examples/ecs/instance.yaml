@@ -8,7 +8,7 @@ metadata:
   name: example-instance
 spec:
   forProvider:
-    flavorId: t2.micro
+    flavorId: s3.small.1
     imageId: "121d32ef-80d5-41f8-a940-f227a33d2b2a"
     keyPairSelector:
       matchLabels:

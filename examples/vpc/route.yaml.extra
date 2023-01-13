@@ -1,0 +1,45 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vip
+  labels:
+    testing.upbound.io/example-name: example_vpc_route_vip
+  name: example-vpc-route-vip
+spec:
+  forProvider:
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc_route_subnet
+---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
+  labels:
+    testing.upbound.io/example-name: example_vpc_route_subnet
+  name: example-vpc-route-subnet
+spec:
+  forProvider:
+    cidr: "192.168.100.0/24"
+    gatewayIp: "192.168.100.254"
+    name: "example-subnet"
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc_route_vpc
+    primaryDns: "100.125.0.41"
+    secondaryDns: "100.126.0.41"
+---
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpc
+  labels:
+    testing.upbound.io/example-name: example_vpc_route_vpc
+  name: example-vpc-route-vpc
+spec:
+  forProvider:
+    name: "example-vpc-route-vpc"
+    cidr: "192.168.96.0/20"

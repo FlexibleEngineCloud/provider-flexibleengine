@@ -41,18 +41,20 @@ type RouteTableParameters struct {
 	// +kubebuilder:validation:Optional
 	Route []RouteTableRouteParameters `json:"route,omitempty" tf:"route,omitempty"`
 
+	// Selector for a list of VPCSubnet to populate subnets.
+	// +kubebuilder:validation:Optional
+	SubnetSelector *v1.Selector `json:"subnetSelector,omitempty" tf:"-"`
+
 	// Specifies an array of one or more subnets associating with the route table.
 	// +crossplane:generate:reference:type=VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
+	// +crossplane:generate:reference:selectorFieldName=SubnetSelector
 	// +kubebuilder:validation:Optional
 	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
 
 	// References to VPCSubnet to populate subnets.
 	// +kubebuilder:validation:Optional
 	SubnetsRefs []v1.Reference `json:"subnetsRefs,omitempty" tf:"-"`
-
-	// Selector for a list of VPCSubnet to populate subnets.
-	// +kubebuilder:validation:Optional
-	SubnetsSelector *v1.Selector `json:"subnetsSelector,omitempty" tf:"-"`
 
 	// Specifies the VPC ID for which a route table is to be added.
 	// Changing this creates a new resource.

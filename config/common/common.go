@@ -48,7 +48,7 @@ var (
 	PathNetworkPortIDExtractor = SelfPackagePath + ".NetworkPortIDExtractor()"
 )
 
-// NetworkPortIDExtractor extracts network port ID from "status.atProvider.network.0.uuid"
+// NetworkPortIDExtractor extracts network port ID from "status.atProvider.network[0].port"
 func NetworkPortIDExtractor() reference.ExtractValueFn {
 	return func(mg xpresource.Managed) string {
 		paved, err := fieldpath.PaveObject(mg)
@@ -56,7 +56,6 @@ func NetworkPortIDExtractor() reference.ExtractValueFn {
 			// TODO should we log this error?
 			return ""
 		}
-		fmt.Printf("paved: %v", paved)
 		r, err := paved.GetString("status.atProvider.network[0].port")
 		if err != nil {
 			// TODO should we log this error?

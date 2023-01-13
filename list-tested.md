@@ -1,377 +1,372 @@
-# Resources tested
 
-Last update: Ven  6 jan 2023 08:16:47 CET
+# List of tested resources
 
-## ag
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|API|API.ag.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Group|Group.ag.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
 
-## agd
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Group|Group.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|ThrottlingPolicyAssociate|ThrottlingPolicyAssociate.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Environment|Environment.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Application|Application.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|CustomAuthorizer|CustomAuthorizer.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Response|Response.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|APIPublishment|APIPublishment.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|API|API.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|VPCChannel|VPCChannel.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|ThrottlingPolicy|ThrottlingPolicy.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Instance|Instance.agd.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## ag.flexibleengine.upbound.io
+| Kind  | Tested             |
+| ----- | ------------------ |
+| API   | :white_check_mark: |
+| Group | :white_check_mark: |
 
-## antiddos
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|AntiDDoS|AntiDDoS.antiddos.flexibleengine.upbound.io/v1beta1|:x:|
+## agd.flexibleengine.upbound.io
+| Kind                      | Tested             |
+| ------------------------- | ------------------ |
+| API                       | :white_check_mark: |
+| APIPublishment            | :white_check_mark: |
+| Application               | :white_check_mark: |
+| CustomAuthorizer          | :white_check_mark: |
+| Environment               | :white_check_mark: |
+| Group                     | :white_check_mark: |
+| Instance                  | :white_check_mark: |
+| Response                  | :white_check_mark: |
+| ThrottlingPolicy          | :white_check_mark: |
+| ThrottlingPolicyAssociate | :white_check_mark: |
+| VPCChannel                | :white_check_mark: |
 
-## as
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Group|Group.as.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Policy|Policy.as.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|LifecycleHook|LifecycleHook.as.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Configuration|Configuration.as.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## antiddos.flexibleengine.upbound.io
+| Kind     | Tested |
+| -------- | ------ |
+| AntiDDoS | :x:    |
 
-## bms
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Server|Server.bms.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## as.flexibleengine.upbound.io
+| Kind          | Tested             |
+| ------------- | ------------------ |
+| Configuration | :white_check_mark: |
+| Group         | :white_check_mark: |
+| LifecycleHook | :white_check_mark: |
+| Policy        | :white_check_mark: |
 
-## cbr
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Vault|Vault.cbr.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Policy|Policy.cbr.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## bms.flexibleengine.upbound.io
+| Kind   | Tested             |
+| ------ | ------------------ |
+| Server | :white_check_mark: |
 
-## cce
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Node|Node.cce.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Cluster|Cluster.cce.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Addon|Addon.cce.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Namespace|Namespace.cce.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Pvc|Pvc.cce.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|NodePool|NodePool.cce.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## cbr.flexibleengine.upbound.io
+| Kind   | Tested             |
+| ------ | ------------------ |
+| Policy | :white_check_mark: |
+| Vault  | :white_check_mark: |
 
-## ces
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|AlarmRule|AlarmRule.ces.flexibleengine.upbound.io/v1beta1|:x:|
+## cce.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| Addon        | :white_check_mark: |
+| CCENameSpace | :white_check_mark: |
+| Cluster      | :white_check_mark: |
+| Node         | :white_check_mark: |
+| NodePool     | :white_check_mark: |
+| Pvc          | :x:                |
 
-## csbs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|BackupPolicy|BackupPolicy.csbs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Backup|Backup.csbs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## ces.flexibleengine.upbound.io
+| Kind      | Tested |
+| --------- | ------ |
+| AlarmRule | :x:    |
 
-## cse
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|MicroserviceInstance|MicroserviceInstance.cse.flexibleengine.upbound.io/v1beta1|:x:|
-|Microservice|Microservice.cse.flexibleengine.upbound.io/v1beta1|:x:|
-|MicroserviceEngine|MicroserviceEngine.cse.flexibleengine.upbound.io/v1beta1|:x:|
+## csbs.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| Backup       | :white_check_mark: |
+| BackupPolicy | :white_check_mark: |
 
-## css
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Snapshot|Snapshot.css.flexibleengine.upbound.io/v1beta1|:x:|
-|Cluster|Cluster.css.flexibleengine.upbound.io/v1beta1|:x:|
+## cse.flexibleengine.upbound.io
+| Kind                 | Tested |
+| -------------------- | ------ |
+| Microservice         | :x:    |
+| MicroserviceEngine   | :x:    |
+| MicroserviceInstance | :x:    |
 
-## cts
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Tracker|Tracker.cts.flexibleengine.upbound.io/v1beta1|:x:|
+## css.flexibleengine.upbound.io
+| Kind     | Tested |
+| -------- | ------ |
+| Cluster  | :x:    |
+| Snapshot | :x:    |
 
-## dcs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Instance|Instance.dcs.flexibleengine.upbound.io/v1beta1|:x:|
+## dcs.flexibleengine.upbound.io
+| Kind     | Tested |
+| -------- | ------ |
+| Instance | :x:    |
 
-## dds
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|DatabaseRole|DatabaseRole.dds.flexibleengine.upbound.io/v1beta1|:x:|
-|Instance|Instance.dds.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|DatabaseUser|DatabaseUser.dds.flexibleengine.upbound.io/v1beta1|:x:|
+## dds.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| DatabaseRole | :x:                |
+| DatabaseUser | :x:                |
+| Instance     | :white_check_mark: |
 
-## dedicatedelb
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|IPGroup|IPGroup.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Monitor|Monitor.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Pool|Pool.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Member|Member.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Certificate|Certificate.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Listener|Listener.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|LoadBalancer|LoadBalancer.dedicatedelb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## dedicatedelb.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| Certificate  | :white_check_mark: |
+| IPGroup      | :white_check_mark: |
+| Listener     | :white_check_mark: |
+| LoadBalancer | :white_check_mark: |
+| Member       | :white_check_mark: |
+| Monitor      | :white_check_mark: |
+| Pool         | :white_check_mark: |
 
-## dis
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Stream|Stream.dis.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## dis.flexibleengine.upbound.io
+| Kind   | Tested             |
+| ------ | ------------------ |
+| Stream | :white_check_mark: |
 
-## dli
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|DLIPackage|DLIPackage.dli.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|SparkJob|SparkJob.dli.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Table|Table.dli.flexibleengine.upbound.io/v1beta1|:x:|
-|FlinksqlJob|FlinksqlJob.dli.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Database|Database.dli.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Queue|Queue.dli.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## dli.flexibleengine.upbound.io
+| Kind        | Tested             |
+| ----------- | ------------------ |
+| DLIPackage  | :white_check_mark: |
+| Database    | :white_check_mark: |
+| FlinksqlJob | :white_check_mark: |
+| Queue       | :white_check_mark: |
+| SparkJob    | :white_check_mark: |
+| Table       | :x:                |
 
-## dms
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|KafkaInstance|KafkaInstance.dms.flexibleengine.upbound.io/v1beta1|:x:|
-|KafkaTopic|KafkaTopic.dms.flexibleengine.upbound.io/v1beta1|:x:|
-|KafkaUser|KafkaUser.dms.flexibleengine.upbound.io/v1beta1|:x:|
+## dms.flexibleengine.upbound.io
+| Kind          | Tested             |
+| ------------- | ------------------ |
+| KafkaInstance | :white_check_mark: |
+| KafkaTopic    | :white_check_mark: |
+| KafkaUser     | :white_check_mark: |
 
-## dns
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Ptrrecord|Ptrrecord.dns.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Zone|Zone.dns.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Recordset|Recordset.dns.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## dns.flexibleengine.upbound.io
+| Kind      | Tested             |
+| --------- | ------------------ |
+| Ptrrecord | :white_check_mark: |
+| Recordset | :white_check_mark: |
+| Zone      | :white_check_mark: |
 
-## drs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Job|Job.drs.flexibleengine.upbound.io/v1beta1|:x:|
+## drs.flexibleengine.upbound.io
+| Kind | Tested |
+| ---- | ------ |
+| Job  | :x:    |
 
-## dws
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Cluster|Cluster.dws.flexibleengine.upbound.io/v1beta1|:x:|
+## dws.flexibleengine.upbound.io
+| Kind    | Tested             |
+| ------- | ------------------ |
+| Cluster | :white_check_mark: |
 
-## ecs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Instance|Instance.ecs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|VolumeAttach|VolumeAttach.ecs.flexibleengine.upbound.io/v1beta1|:x:|
-|ServerGroup|ServerGroup.ecs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|KeyPair|KeyPair.ecs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|InterfaceAttach|InterfaceAttach.ecs.flexibleengine.upbound.io/v1beta1|:x:|
-|FloatingIpAssociate|FloatingIpAssociate.ecs.flexibleengine.upbound.io/v1beta1|:x:|
+## ecs.flexibleengine.upbound.io
+| Kind                | Tested             |
+| ------------------- | ------------------ |
+| FloatingIpAssociate | :x:                |
+| Instance            | :white_check_mark: |
+| InterfaceAttach     | :x:                |
+| KeyPair             | :white_check_mark: |
+| ServerGroup         | :white_check_mark: |
+| VolumeAttach        | :x:                |
 
-## eip
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|EIP|EIP.eip.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|EIPAssociate|EIPAssociate.eip.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## eip.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| EIP          | :white_check_mark: |
+| EIPAssociate | :white_check_mark: |
 
-## elb
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Listener|Listener.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|L7Policy|L7Policy.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|L7Rule|L7Rule.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Monitor|Monitor.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Whitelist|Whitelist.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Pool|Pool.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Member|Member.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|LoadBalancer|LoadBalancer.elb.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## elb.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| L7Policy     | :white_check_mark: |
+| L7Rule       | :white_check_mark: |
+| Listener     | :white_check_mark: |
+| LoadBalancer | :white_check_mark: |
+| Member       | :white_check_mark: |
+| Monitor      | :white_check_mark: |
+| Pool         | :white_check_mark: |
+| Whitelist    | :white_check_mark: |
 
-## eps
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Project|Project.eps.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## eps.flexibleengine.upbound.io
+| Kind    | Tested             |
+| ------- | ------------------ |
+| Project | :white_check_mark: |
 
-## evs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|BlockStorageVolume|BlockStorageVolume.evs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## evs.flexibleengine.upbound.io
+| Kind               | Tested             |
+| ------------------ | ------------------ |
+| BlockStorageVolume | :white_check_mark: |
 
-## fgs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Trigger|Trigger.fgs.flexibleengine.upbound.io/v1beta1|:x:|
-|Dependency|Dependency.fgs.flexibleengine.upbound.io/v1beta1|:x:|
-|Function|Function.fgs.flexibleengine.upbound.io/v1beta1|:x:|
+## fgs.flexibleengine.upbound.io
+| Kind       | Tested |
+| ---------- | ------ |
+| Dependency | :x:    |
+| Function   | :x:    |
+| Trigger    | :x:    |
 
-## flexibleengine
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|StoreConfig|StoreConfig.flexibleengine.upbound.io/v1alpha1|:x:|
-|ProviderConfigUsage|ProviderConfigUsage.flexibleengine.upbound.io/v1beta1|:x:|
-|ProviderConfig|ProviderConfig.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## flexibleengine.upbound.io
+| Kind                | Tested             |
+| ------------------- | ------------------ |
+| ProviderConfig      | :white_check_mark: |
+| ProviderConfigUsage | :x:                |
+| StoreConfig         | :white_check_mark: |
 
-## iam
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Provider|Provider.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|ProviderConversion|ProviderConversion.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Group|Group.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Agency|Agency.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Project|Project.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|User|User.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RoleAssignment|RoleAssignment.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Role|Role.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|GroupMembership|GroupMembership.iam.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## iam.flexibleengine.upbound.io
+| Kind               | Tested             |
+| ------------------ | ------------------ |
+| Agency             | :white_check_mark: |
+| Group              | :white_check_mark: |
+| GroupMembership    | :white_check_mark: |
+| Project            | :white_check_mark: |
+| Provider           | :white_check_mark: |
+| ProviderConversion | :white_check_mark: |
+| Role               | :white_check_mark: |
+| RoleAssignment     | :white_check_mark: |
+| User               | :white_check_mark: |
 
-## ims
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Image|Image.ims.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## ims.flexibleengine.upbound.io
+| Kind  | Tested             |
+| ----- | ------------------ |
+| Image | :white_check_mark: |
 
-## kms
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Key|Key.kms.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## kms.flexibleengine.upbound.io
+| Kind | Tested             |
+| ---- | ------------------ |
+| Key  | :white_check_mark: |
 
-## lts
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Topic|Topic.lts.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Group|Group.lts.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## lts.flexibleengine.upbound.io
+| Kind       | Tested             |
+| ---------- | ------------------ |
+| Group      | :white_check_mark: |
+| Topic      | :white_check_mark: |
+| VPCFlowLog | :white_check_mark: |
 
-## mls
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Instance|Instance.mls.flexibleengine.upbound.io/v1beta1|:x:|
+## mls.flexibleengine.upbound.io
+| Kind     | Tested |
+| -------- | ------ |
+| Instance | :x:    |
 
-## modelarts
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|DatasetVersion|DatasetVersion.modelarts.flexibleengine.upbound.io/v1beta1|:x:|
-|Dataset|Dataset.modelarts.flexibleengine.upbound.io/v1beta1|:x:|
+## modelarts.flexibleengine.upbound.io
+| Kind           | Tested |
+| -------------- | ------ |
+| Dataset        | :x:    |
+| DatasetVersion | :x:    |
 
-## mrs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Cluster|Cluster.mrs.flexibleengine.upbound.io/v1beta1|:x:|
-|Job|Job.mrs.flexibleengine.upbound.io/v1beta1|:x:|
+## mrs.flexibleengine.upbound.io
+| Kind    | Tested |
+| ------- | ------ |
+| Cluster | :x:    |
+| Job     | :x:    |
 
-## mrsd
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Cluster|Cluster.mrsd.flexibleengine.upbound.io/v1beta1|:x:|
-|HybridCluster|HybridCluster.mrsd.flexibleengine.upbound.io/v1beta1|:x:|
-|Job|Job.mrsd.flexibleengine.upbound.io/v1beta1|:x:|
+## mrsd.flexibleengine.upbound.io
+| Kind          | Tested |
+| ------------- | ------ |
+| Cluster       | :x:    |
+| HybridCluster | :x:    |
+| Job           | :x:    |
 
-## nat
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|SnatRule|SnatRule.nat.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|DnatRule|DnatRule.nat.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Gateway|Gateway.nat.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## nat.flexibleengine.upbound.io
+| Kind     | Tested             |
+| -------- | ------------------ |
+| DnatRule | :white_check_mark: |
+| Gateway  | :white_check_mark: |
+| SnatRule | :white_check_mark: |
 
-## netacl
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|FirewallGroup|FirewallGroup.netacl.flexibleengine.upbound.io/v1beta1|:x:|
-|ACL|ACL.netacl.flexibleengine.upbound.io/v1beta1|:x:|
-|ACLRule|ACLRule.netacl.flexibleengine.upbound.io/v1beta1|:x:|
-|Policy|Policy.netacl.flexibleengine.upbound.io/v1beta1|:x:|
-|Rule|Rule.netacl.flexibleengine.upbound.io/v1beta1|:x:|
+## netacl.flexibleengine.upbound.io
+| Kind          | Tested |
+| ------------- | ------ |
+| ACL           | :x:    |
+| ACLRule       | :x:    |
+| FirewallGroup | :x:    |
+| Policy        | :x:    |
+| Rule          | :x:    |
 
-## oss
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|OBSBucket|OBSBucket.oss.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|OBSBucketObject|OBSBucketObject.oss.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|OBSBucketReplication|OBSBucketReplication.oss.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|S3BucketObject|S3BucketObject.oss.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|S3BucketPolicy|S3BucketPolicy.oss.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|S3Bucket|S3Bucket.oss.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## oss.flexibleengine.upbound.io
+| Kind                 | Tested             |
+| -------------------- | ------------------ |
+| OBSBucket            | :white_check_mark: |
+| OBSBucketObject      | :white_check_mark: |
+| OBSBucketReplication | :white_check_mark: |
+| S3Bucket             | :white_check_mark: |
+| S3BucketObject       | :white_check_mark: |
+| S3BucketPolicy       | :white_check_mark: |
 
-## rds
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|DatabasePrivilege|DatabasePrivilege.rds.flexibleengine.upbound.io/v1beta1|:x:|
-|Instance|Instance.rds.flexibleengine.upbound.io/v1beta1|:x:|
-|ReadReplica|ReadReplica.rds.flexibleengine.upbound.io/v1beta1|:x:|
-|ParameterGroup|ParameterGroup.rds.flexibleengine.upbound.io/v1beta1|:x:|
-|Database|Database.rds.flexibleengine.upbound.io/v1beta1|:x:|
-|Account|Account.rds.flexibleengine.upbound.io/v1beta1|:x:|
+## rds.flexibleengine.upbound.io
+| Kind              | Tested             |
+| ----------------- | ------------------ |
+| Account           | :white_check_mark: |
+| Database          | :white_check_mark: |
+| DatabasePrivilege | :white_check_mark: |
+| Instance          | :white_check_mark: |
+| ParameterGroup    | :white_check_mark: |
+| ReadReplica       | :white_check_mark: |
 
-## rts
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Stack|Stack.rts.flexibleengine.upbound.io/v1beta1|:x:|
-|SoftwareConfig|SoftwareConfig.rts.flexibleengine.upbound.io/v1beta1|:x:|
+## rts.flexibleengine.upbound.io
+| Kind           | Tested             |
+| -------------- | ------------------ |
+| SoftwareConfig | :white_check_mark: |
+| Stack          | :white_check_mark: |
 
-## sdrs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|ReplicationAttach|ReplicationAttach.sdrs.flexibleengine.upbound.io/v1beta1|:x:|
-|ProtectionGroup|ProtectionGroup.sdrs.flexibleengine.upbound.io/v1beta1|:x:|
-|Drill|Drill.sdrs.flexibleengine.upbound.io/v1beta1|:x:|
-|ProtectedInstance|ProtectedInstance.sdrs.flexibleengine.upbound.io/v1beta1|:x:|
-|ReplicationPair|ReplicationPair.sdrs.flexibleengine.upbound.io/v1beta1|:x:|
+## sdrs.flexibleengine.upbound.io
+| Kind              | Tested             |
+| ----------------- | ------------------ |
+| Drill             | :white_check_mark: |
+| ProtectedInstance | :white_check_mark: |
+| ProtectionGroup   | :white_check_mark: |
+| ReplicationAttach | :white_check_mark: |
+| ReplicationPair   | :white_check_mark: |
 
-## sfs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|FileSystem|FileSystem.sfs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Turbo|Turbo.sfs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|AccessRule|AccessRule.sfs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## sfs.flexibleengine.upbound.io
+| Kind       | Tested             |
+| ---------- | ------------------ |
+| AccessRule | :white_check_mark: |
+| FileSystem | :white_check_mark: |
+| Turbo      | :white_check_mark: |
 
-## smn
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Subscription|Subscription.smn.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Topic|Topic.smn.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## smn.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| Subscription | :white_check_mark: |
+| Topic        | :white_check_mark: |
 
-## swr
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|RepositorySharing|RepositorySharing.swr.flexibleengine.upbound.io/v1beta1|:x:|
-|Organization|Organization.swr.flexibleengine.upbound.io/v1beta1|:x:|
-|Repository|Repository.swr.flexibleengine.upbound.io/v1beta1|:x:|
-|OrganizationUsers|OrganizationUsers.swr.flexibleengine.upbound.io/v1beta1|:x:|
+## swr.flexibleengine.upbound.io
+| Kind              | Tested |
+| ----------------- | ------ |
+| Organization      | :x:    |
+| OrganizationUsers | :x:    |
+| Repository        | :x:    |
+| RepositorySharing | :x:    |
 
-## tms
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Tags|Tags.tms.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## tms.flexibleengine.upbound.io
+| Kind | Tested             |
+| ---- | ------------------ |
+| Tags | :white_check_mark: |
 
-## vbs
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|BackupPolicy|BackupPolicy.vbs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Backup|Backup.vbs.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## vbs.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| Backup       | :white_check_mark: |
+| BackupPolicy | :white_check_mark: |
 
-## vpc
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|SecurityGroupRule|SecurityGroupRule.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|VIP|VIP.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|VIPAssociate|VIPAssociate.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RouteTable|RouteTable.vpc.flexibleengine.upbound.io/v1beta1|:x:|
-|Route|Route.vpc.flexibleengine.upbound.io/v1beta1|:x:|
-|PeeringConnectionAccepter|PeeringConnectionAccepter.vpc.flexibleengine.upbound.io/v1beta1|:x:|
-|FlowLog|FlowLog.vpc.flexibleengine.upbound.io/v1beta1|:x:|
-|Port|Port.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|SecurityGroup|SecurityGroup.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|PeeringConnection|PeeringConnection.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|VPC|VPC.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|VPCSubnet|VPCSubnet.vpc.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## vpc.flexibleengine.upbound.io
+| Kind                      | Tested             |
+| ------------------------- | ------------------ |
+| PeeringConnection         | :white_check_mark: |
+| PeeringConnectionAccepter | :white_check_mark: |
+| Port                      | :white_check_mark: |
+| Route                     | :white_check_mark: |
+| RouteTable                | :white_check_mark: |
+| SecurityGroup             | :white_check_mark: |
+| SecurityGroupRule         | :white_check_mark: |
+| VIP                       | :white_check_mark: |
+| VIPAssociate              | :white_check_mark: |
+| VPC                       | :white_check_mark: |
+| VPCSubnet                 | :white_check_mark: |
 
-## vpcep
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|VPCEPService|VPCEPService.vpcep.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Approval|Approval.vpcep.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Endpoint|Endpoint.vpcep.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## vpcep.flexibleengine.upbound.io
+| Kind         | Tested             |
+| ------------ | ------------------ |
+| Approval     | :white_check_mark: |
+| Endpoint     | :white_check_mark: |
+| VPCEPService | :white_check_mark: |
 
-## waf
-|Kind|ApiVersion|Tested|
-|---|---|---|
-|Domain|Domain.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|DedicatedPolicy|DedicatedPolicy.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RuleAlarmMasking|RuleAlarmMasking.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Certificate|Certificate.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|DedicatedInstance|DedicatedInstance.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RuleWebTamperProtection|RuleWebTamperProtection.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|DedicatedCertificate|DedicatedCertificate.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|Policy|Policy.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RuleDataMasking|RuleDataMasking.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RulePreciseProtection|RulePreciseProtection.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RuleBlacklist|RuleBlacklist.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|RuleCcProtection|RuleCcProtection.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
-|DedicatedDomain|DedicatedDomain.waf.flexibleengine.upbound.io/v1beta1|:white_check_mark:|
+## waf.flexibleengine.upbound.io
+| Kind                    | Tested             |
+| ----------------------- | ------------------ |
+| Certificate             | :white_check_mark: |
+| DedicatedCertificate    | :white_check_mark: |
+| DedicatedDomain         | :white_check_mark: |
+| DedicatedInstance       | :white_check_mark: |
+| DedicatedPolicy         | :white_check_mark: |
+| Domain                  | :white_check_mark: |
+| Policy                  | :white_check_mark: |
+| RuleAlarmMasking        | :white_check_mark: |
+| RuleBlacklist           | :white_check_mark: |
+| RuleCcProtection        | :white_check_mark: |
+| RuleDataMasking         | :white_check_mark: |
+| RulePreciseProtection   | :white_check_mark: |
+| RuleWebTamperProtection | :white_check_mark: |

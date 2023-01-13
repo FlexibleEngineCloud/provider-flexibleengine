@@ -104,6 +104,7 @@ import (
 	key "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/kms/key"
 	grouplts "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/group"
 	topic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/topic"
+	vpcflowlog "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/lts/vpcflowlog"
 	instancemls "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mls/instance"
 	dataset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/dataset"
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
@@ -152,7 +153,6 @@ import (
 	tags "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/tms/tags"
 	backupvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backup"
 	backuppolicyvbs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vbs/backuppolicy"
-	flowlog "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/flowlog"
 	peeringconnection "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/peeringconnection"
 	peeringconnectionaccepter "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/peeringconnectionaccepter"
 	port "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/vpc/port"
@@ -281,6 +281,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		key.Setup,
 		grouplts.Setup,
 		topic.Setup,
+		vpcflowlog.Setup,
 		instancemls.Setup,
 		dataset.Setup,
 		datasetversion.Setup,
@@ -329,7 +330,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		tags.Setup,
 		backupvbs.Setup,
 		backuppolicyvbs.Setup,
-		flowlog.Setup,
 		peeringconnection.Setup,
 		peeringconnectionaccepter.Setup,
 		port.Setup,

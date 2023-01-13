@@ -11,7 +11,7 @@ spec:
     adminStateUp: true
     name: example-vpc
     fixedIp:
-      - ipAddress: 192.168.0.100
+      - ipAddress: 192.168.100.100
         subnetIdSelector:
           matchLabels:
             testing.upbound.io/example-name: example_subnet

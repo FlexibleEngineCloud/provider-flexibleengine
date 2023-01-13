@@ -1,18 +1,24 @@
-apiVersion: vpc.flexibleengine.upbound.io/v1beta1
-kind: FlowLog
+apiVersion: lts.flexibleengine.upbound.io/v1beta1
+kind: VPCFlowLog
 metadata:
   annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+    meta.upbound.io/example-id: lts/v1beta1/vpcflowlog
   labels:
     testing.upbound.io/example-name: flowlog1
   name: flowlog1
 spec:
   forProvider:
     description: ${var.flowlog_desc}
-    logGroupId: ${flexibleengine_lts_group.log_group1.id}
-    logTopicId: ${flexibleengine_lts_topic.log_topic1.id}
+    logGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: log_group1
+    logTopicIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: log_topic1
     name: ${var.flowlog_name}
-    resourceId: ${var.port_id}
+    resourceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     trafficType: all
 
 ---
@@ -21,7 +27,7 @@ apiVersion: lts.flexibleengine.upbound.io/v1beta1
 kind: Group
 metadata:
   annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+    meta.upbound.io/example-id: lts/v1beta1/vpcflowlog
   labels:
     testing.upbound.io/example-name: log_group1
   name: log-group1
@@ -35,7 +41,7 @@ apiVersion: lts.flexibleengine.upbound.io/v1beta1
 kind: Topic
 metadata:
   annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/flowlog
+    meta.upbound.io/example-id: lts/v1beta1/vpcflowlog
   labels:
     testing.upbound.io/example-name: log_topic1
   name: log-topic1
