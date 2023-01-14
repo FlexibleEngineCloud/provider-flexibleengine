@@ -29,9 +29,11 @@ const (
 	// provider config
 	keyRegion     = "region"
 	keyDomainName = "domain_name"
+	keyDomainID   = "domain_id"
 	keyAccessKey  = "access_key"
 	keySecretKey  = "secret_key"
 	keyTenantName = "tenant_name"
+	keyTenantID   = "tenant_id"
 	keyInsecure   = "insecure"
 )
 
@@ -74,8 +76,10 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		ps.Configuration = map[string]interface{}{
 			keyRegion:     pc.Spec.Region,
 			keyDomainName: pc.Spec.DomainName,
+			keyDomainID:   pc.Spec.DomainID,
 			keyInsecure:   pc.Spec.Insecure,
 			keyTenantName: pc.Spec.TenantName,
+			keyTenantID:   pc.Spec.TenantID,
 		}
 		if v, ok := creds[keyAccessKey]; ok {
 			ps.Configuration[keyAccessKey] = v
