@@ -82,9 +82,9 @@
 | Snapshot | :x:    |
 
 ## dcs.flexibleengine.upbound.io
-| Kind     | Tested |
-| -------- | ------ |
-| Instance | :x:    |
+| Kind     | Tested             |
+| -------- | ------------------ |
+| Instance | :white_check_mark: |
 
 ## dds.flexibleengine.upbound.io
 | Kind         | Tested             |
@@ -146,12 +146,11 @@
 ## ecs.flexibleengine.upbound.io
 | Kind                | Tested             |
 | ------------------- | ------------------ |
-| FloatingIpAssociate | :x:                |
+| FloatingIpAssociate | :white_check_mark: |
 | Instance            | :white_check_mark: |
-| InterfaceAttach     | :x:                |
+| InterfaceAttach     | :white_check_mark: |
 | KeyPair             | :white_check_mark: |
 | ServerGroup         | :white_check_mark: |
-| VolumeAttach        | :x:                |
 
 ## eip.flexibleengine.upbound.io
 | Kind         | Tested             |
@@ -177,9 +176,10 @@
 | Project | :white_check_mark: |
 
 ## evs.flexibleengine.upbound.io
-| Kind               | Tested             |
-| ------------------ | ------------------ |
-| BlockStorageVolume | :white_check_mark: |
+| Kind                | Tested             |
+| ------------------- | ------------------ |
+| BlockStorageVolume  | :white_check_mark: |
+| ComputeVolumeAttach | :white_check_mark: |
 
 ## fgs.flexibleengine.upbound.io
 | Kind       | Tested |
