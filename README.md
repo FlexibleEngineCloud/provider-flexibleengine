@@ -16,7 +16,7 @@ It is provided by Orange, a French telecommunication company.
 
 ## Getting Started
 
-Follow the [Quick Start Guide](https://github.com/FrangipaneTeam/provider-flexibleengine/blob/main/docs/Quickstart.md)
+To start using this provider, follow the [Configuration Guide](docs/Configuration.md).
 
 You can find a detailed API reference with all CRDs [here](https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine).
 
