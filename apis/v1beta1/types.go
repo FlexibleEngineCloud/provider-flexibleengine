@@ -18,7 +18,13 @@ type ProviderConfigSpec struct {
 	// Region
 	Region string `json:"region"`
 	// DomainName
-	DomainName string `json:"domainName"`
+	DomainName string `json:"domainName,omitempty"`
+	// DomainID
+	DomainID string `json:"domainId,omitempty"`
+	// TenantName
+	TenantName string `json:"tenantName,omitempty"`
+	// TenantID
+	TenantID string `json:"tenantId,omitempty"`
 	// Insecure
 	Insecure bool `json:"insecure,omitempty"`
 }

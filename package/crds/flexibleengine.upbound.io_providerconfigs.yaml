@@ -100,6 +100,9 @@ spec:
                 required:
                 - source
                 type: object
+              domainId:
+                description: DomainID
+                type: string
               domainName:
                 description: DomainName
                 type: string
@@ -109,9 +112,14 @@ spec:
               region:
                 description: Region
                 type: string
+              tenantId:
+                description: TenantID
+                type: string
+              tenantName:
+                description: TenantName
+                type: string
             required:
             - credentials
-            - domainName
             - region
             type: object
           status:
