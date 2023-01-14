@@ -75,7 +75,6 @@ import (
 	interfaceattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/interfaceattach"
 	keypair "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/keypair"
 	servergroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/servergroup"
-	volumeattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ecs/volumeattach"
 	eip "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/eip/eip"
 	eipassociate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/eip/eipassociate"
 	l7policy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/elb/l7policy"
@@ -88,6 +87,7 @@ import (
 	whitelist "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/elb/whitelist"
 	project "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/eps/project"
 	blockstoragevolume "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/evs/blockstoragevolume"
+	computevolumeattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/evs/computevolumeattach"
 	dependency "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/dependency"
 	function "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/function"
 	trigger "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/trigger"
@@ -252,7 +252,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		interfaceattach.Setup,
 		keypair.Setup,
 		servergroup.Setup,
-		volumeattach.Setup,
 		eip.Setup,
 		eipassociate.Setup,
 		l7policy.Setup,
@@ -265,6 +264,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		whitelist.Setup,
 		project.Setup,
 		blockstoragevolume.Setup,
+		computevolumeattach.Setup,
 		dependency.Setup,
 		function.Setup,
 		trigger.Setup,

@@ -89,7 +89,7 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_compute_interface_attach_v2":     ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: InterfaceAttach
 	"flexibleengine_compute_keypair_v2":              ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Keypair (! Rewrite in KingMap)
 	"flexibleengine_compute_servergroup_v2":          ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Servergroup (! Rewrite in KingMap)
-	"flexibleengine_compute_volume_attach_v2":        ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: VolumeAttach
+	"flexibleengine_compute_volume_attach_v2":        ReplaceGroupWords("evs", 0), // Group: evs, Kind: ComputeVolumeAttach
 	"flexibleengine_compute_floatingip_v2":           ReplaceGroupWords("ecs", 1), // Group: ecs, Kind: Floatingip
 	// VPC
 	"flexibleengine_vpc_v1":                      ReplaceGroupWords("vpc", 0), // Group: vpc, Kind: VPC

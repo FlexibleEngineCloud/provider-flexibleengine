@@ -47,4 +47,5 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_compute_keypair_v2", func(r *config.Resource) {
 		config.MarkAsRequired(r.TerraformResource, "public_key")
 	})
+
 }

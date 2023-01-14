@@ -72,3 +72,69 @@ func (mg *BlockStorageVolume) SetPublishConnectionDetailsTo(r *xpv1.PublishConne
 func (mg *BlockStorageVolume) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
+
+// GetCondition of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetProviderConfigReference of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+/*
+GetProviderReference of this ComputeVolumeAttach.
+Deprecated: Use GetProviderConfigReference.
+*/
+func (mg *ComputeVolumeAttach) GetProviderReference() *xpv1.Reference {
+	return mg.Spec.ProviderReference
+}
+
+// GetPublishConnectionDetailsTo of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetProviderConfigReference of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+/*
+SetProviderReference of this ComputeVolumeAttach.
+Deprecated: Use SetProviderConfigReference.
+*/
+func (mg *ComputeVolumeAttach) SetProviderReference(r *xpv1.Reference) {
+	mg.Spec.ProviderReference = r
+}
+
+// SetPublishConnectionDetailsTo of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this ComputeVolumeAttach.
+func (mg *ComputeVolumeAttach) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}

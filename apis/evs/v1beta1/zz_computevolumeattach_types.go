@@ -13,11 +13,11 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type VolumeAttachObservation struct {
+type ComputeVolumeAttachObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type VolumeAttachParameters struct {
+type ComputeVolumeAttachParameters struct {
 
 	// The device of the volume attachment (ex: /dev/vdc).
 	// Being able to specify a device is dependent upon the hypervisor in use. Please use with caution.
@@ -45,55 +45,64 @@ type VolumeAttachParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The ID of the Volume to attach to an Instance.
-	// +kubebuilder:validation:Required
-	VolumeID *string `json:"volumeId" tf:"volume_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
+	// +kubebuilder:validation:Optional
+	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+
+	// Reference to a BlockStorageVolume in evs to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDRef *v1.Reference `json:"volumeIdRef,omitempty" tf:"-"`
+
+	// Selector for a BlockStorageVolume in evs to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDSelector *v1.Selector `json:"volumeIdSelector,omitempty" tf:"-"`
 }
 
-// VolumeAttachSpec defines the desired state of VolumeAttach
-type VolumeAttachSpec struct {
+// ComputeVolumeAttachSpec defines the desired state of ComputeVolumeAttach
+type ComputeVolumeAttachSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     VolumeAttachParameters `json:"forProvider"`
+	ForProvider     ComputeVolumeAttachParameters `json:"forProvider"`
 }
 
-// VolumeAttachStatus defines the observed state of VolumeAttach.
-type VolumeAttachStatus struct {
+// ComputeVolumeAttachStatus defines the observed state of ComputeVolumeAttach.
+type ComputeVolumeAttachStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VolumeAttachObservation `json:"atProvider,omitempty"`
+	AtProvider        ComputeVolumeAttachObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VolumeAttach is the Schema for the VolumeAttachs API. ""page_title: "flexibleengine_compute_volume_attach_v2"
+// ComputeVolumeAttach is the Schema for the ComputeVolumeAttachs API. ""page_title: "flexibleengine_compute_volume_attach_v2"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,flexibleengine}
-type VolumeAttach struct {
+type ComputeVolumeAttach struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              VolumeAttachSpec   `json:"spec"`
-	Status            VolumeAttachStatus `json:"status,omitempty"`
+	Spec              ComputeVolumeAttachSpec   `json:"spec"`
+	Status            ComputeVolumeAttachStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VolumeAttachList contains a list of VolumeAttachs
-type VolumeAttachList struct {
+// ComputeVolumeAttachList contains a list of ComputeVolumeAttachs
+type ComputeVolumeAttachList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []VolumeAttach `json:"items"`
+	Items           []ComputeVolumeAttach `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	VolumeAttach_Kind             = "VolumeAttach"
-	VolumeAttach_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VolumeAttach_Kind}.String()
-	VolumeAttach_KindAPIVersion   = VolumeAttach_Kind + "." + CRDGroupVersion.String()
-	VolumeAttach_GroupVersionKind = CRDGroupVersion.WithKind(VolumeAttach_Kind)
+	ComputeVolumeAttach_Kind             = "ComputeVolumeAttach"
+	ComputeVolumeAttach_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ComputeVolumeAttach_Kind}.String()
+	ComputeVolumeAttach_KindAPIVersion   = ComputeVolumeAttach_Kind + "." + CRDGroupVersion.String()
+	ComputeVolumeAttach_GroupVersionKind = CRDGroupVersion.WithKind(ComputeVolumeAttach_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&VolumeAttach{}, &VolumeAttachList{})
+	SchemeBuilder.Register(&ComputeVolumeAttach{}, &ComputeVolumeAttachList{})
 }

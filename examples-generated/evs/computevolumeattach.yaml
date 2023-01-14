@@ -1,8 +1,8 @@
-apiVersion: ecs.flexibleengine.upbound.io/v1beta1
-kind: VolumeAttach
+apiVersion: evs.flexibleengine.upbound.io/v1beta1
+kind: ComputeVolumeAttach
 metadata:
   annotations:
-    meta.upbound.io/example-id: ecs/v1beta1/volumeattach
+    meta.upbound.io/example-id: evs/v1beta1/computevolumeattach
   labels:
     testing.upbound.io/example-name: va_1
   name: va-1
@@ -11,7 +11,9 @@ spec:
     instanceIdSelector:
       matchLabels:
         testing.upbound.io/example-name: instance_1
-    volumeId: ${flexibleengine_blockstorage_volume_v2.volume_1.id}
+    volumeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: volume_1
 
 ---
 
@@ -19,7 +21,7 @@ apiVersion: evs.flexibleengine.upbound.io/v1beta1
 kind: BlockStorageVolume
 metadata:
   annotations:
-    meta.upbound.io/example-id: ecs/v1beta1/volumeattach
+    meta.upbound.io/example-id: evs/v1beta1/computevolumeattach
   labels:
     testing.upbound.io/example-name: volume_1
   name: volume-1
@@ -34,7 +36,7 @@ apiVersion: ecs.flexibleengine.upbound.io/v1beta1
 kind: Instance
 metadata:
   annotations:
-    meta.upbound.io/example-id: ecs/v1beta1/volumeattach
+    meta.upbound.io/example-id: evs/v1beta1/computevolumeattach
   labels:
     testing.upbound.io/example-name: instance_1
   name: instance-1
