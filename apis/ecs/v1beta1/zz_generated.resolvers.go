@@ -177,22 +177,6 @@ func (mg *InterfaceAttach) ResolveReferences(ctx context.Context, c client.Reade
 	mg.Spec.ForProvider.InstanceIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      common.IDExtractor(),
-		Reference:    mg.Spec.ForProvider.NetworkIDRef,
-		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
-		To: reference.To{
-			List:    &v1beta12.VPCSubnetList{},
-			Managed: &v1beta12.VPCSubnet{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.NetworkID")
-	}
-	mg.Spec.ForProvider.NetworkID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.NetworkIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PortID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.PortIDRef,

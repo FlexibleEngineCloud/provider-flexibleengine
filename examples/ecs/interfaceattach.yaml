@@ -1,0 +1,16 @@
+apiVersion: ecs.flexibleengine.upbound.io/v1beta1
+kind: InterfaceAttach
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/interfaceattach
+  labels:
+    testing.upbound.io/example-name: example_ecs_interfaceattach
+  name: example-ecs-interfaceattach
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_instance
+    portIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_port

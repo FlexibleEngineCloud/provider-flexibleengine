@@ -14,16 +14,17 @@ import (
 )
 
 type InterfaceAttachObservation struct {
+
+	// The IP address associated to the port.
+	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The ID of the Network associated to the port.
+	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 }
 
 type InterfaceAttachParameters struct {
-
-	// An IP address to assosciate with the port.
-	// This option cannot be used with port_id. You must specify a network_id.
-	// The IP address must lie in a range on the supplied network.
-	// +kubebuilder:validation:Optional
-	FixedIP *string `json:"fixedIp,omitempty" tf:"fixed_ip,omitempty"`
 
 	// The ID of the Instance to attach the Port or Network to.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
@@ -38,23 +39,7 @@ type InterfaceAttachParameters struct {
 	// +kubebuilder:validation:Optional
 	InstanceIDSelector *v1.Selector `json:"instanceIdSelector,omitempty" tf:"-"`
 
-	// The ID of the Network to attach to an Instance. A port will be created automatically.
-	// This option and port_id are mutually exclusive.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
-	// +kubebuilder:validation:Optional
-	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
-
-	// Reference to a VPCSubnet in vpc to populate networkId.
-	// +kubebuilder:validation:Optional
-	NetworkIDRef *v1.Reference `json:"networkIdRef,omitempty" tf:"-"`
-
-	// Selector for a VPCSubnet in vpc to populate networkId.
-	// +kubebuilder:validation:Optional
-	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
-
 	// The ID of the Port to attach to an Instance.
-	// This option and network_id are mutually exclusive.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
