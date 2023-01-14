@@ -25,6 +25,7 @@ type FloatingIpAssociateParameters struct {
 
 	// The floating IP to associate.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.AddressExtractor()
 	// +kubebuilder:validation:Optional
 	FloatingIP *string `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
 

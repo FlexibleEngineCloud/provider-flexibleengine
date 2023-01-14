@@ -25,7 +25,7 @@ func (mg *FloatingIpAssociate) ResolveReferences(ctx context.Context, c client.R
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FloatingIP),
-		Extract:      reference.ExternalName(),
+		Extract:      common.AddressExtractor(),
 		Reference:    mg.Spec.ForProvider.FloatingIPRef,
 		Selector:     mg.Spec.ForProvider.FloatingIPSelector,
 		To: reference.To{

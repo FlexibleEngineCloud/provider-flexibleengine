@@ -9,11 +9,13 @@ import (
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
+
 	// flexibleengine_compute_floatingip_associate_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_floatingip_associate_v2
 	p.AddResourceConfigurator("flexibleengine_compute_floatingip_associate_v2", func(r *config.Resource) {
 		r.References["floating_ip"] = config.Reference{
-			Type: tools.GenerateType("eip", "EIP"),
+			Type:      tools.GenerateType("eip", "EIP"),
+			Extractor: common.PathAddressExtractor,
 		}
 	})
 
