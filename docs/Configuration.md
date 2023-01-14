@@ -79,40 +79,14 @@ spec:
 
 **Note:** the `spec.credentials.secretRef.name` must match the `name` in the `kubectl create secret generic <name>` command.
 
-You can also use the `spec.tenantName` to specify the tenant name in the Flexible Engine account.
+The possible keys for the `spec` are:
 
-```yaml
-apiVersion: flexibleengine.upbound.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: default
-spec:
-  region: eu-west-0
-  domainName: <DOMAIN_NAME>
-  tenantName: <TENANT_NAME>
-  credentials:
-    source: Secret
-    secretRef:
-      name: fe-creds
-      namespace: upbound-system
-      key: credentials
-```
-
-If you want to use an insecure connection, you can set the `spec.insecure` to `true`.
-
-```yaml
-apiVersion: flexibleengine.upbound.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: default
-spec:
-  region: eu-west-0
-  domainName: <DOMAIN_NAME>
-  insecure: true
-  credentials:
-    source: Secret
-    secretRef:
-      name: fe-creds
-      namespace: upbound-system
-      key: credentials
-```
+| Key         | Type     | Required                      | Default |
+| :---        | :------: | :---                          | :---    |
+| domainName  | string   | One of domainName or domainId |         |
+| domainId    | string   | One of domainName or domainId |         |
+| region      | string   | true                          |         |
+| tenantName  | string   | false                         |         |
+| tenantId    | string   | false                         |         |
+| insecure    | boolean  | false                         | false   |
+| credentials | struct   | true                          |         |
