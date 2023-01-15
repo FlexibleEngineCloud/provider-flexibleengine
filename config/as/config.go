@@ -2,9 +2,10 @@
 package as
 
 import (
+	"github.com/upbound/upjet/pkg/config"
+
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
-	"github.com/upbound/upjet/pkg/config"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.

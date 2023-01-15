@@ -2,8 +2,9 @@
 package vpc
 
 import (
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/upbound/upjet/pkg/config"
+
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
