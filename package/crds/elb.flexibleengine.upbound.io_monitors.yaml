@@ -93,7 +93,7 @@ spec:
                       to.
                     type: string
                   poolIdRef:
-                    description: Reference to a Pool to populate poolId.
+                    description: Reference to a Pool in elb to populate poolId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -127,7 +127,7 @@ spec:
                     - name
                     type: object
                   poolIdSelector:
-                    description: Selector for a Pool to populate poolId.
+                    description: Selector for a Pool in elb to populate poolId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
