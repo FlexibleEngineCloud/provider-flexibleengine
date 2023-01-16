@@ -51,7 +51,7 @@ type GatewayParameters struct {
 	// +kubebuilder:validation:Required
 	Spec *string `json:"spec" tf:"spec,omitempty"`
 
-	// Specifies the subnet ID of the downstream interface
+	// Specifies the ID of the VPC Subnet of the downstream interface
 	// (the next hop of the DVR) of the NAT gateway. Changing this creates a new nat gateway.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()

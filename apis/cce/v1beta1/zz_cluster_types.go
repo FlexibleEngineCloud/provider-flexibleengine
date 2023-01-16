@@ -171,7 +171,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	ServiceNetworkCidr *string `json:"serviceNetworkCidr,omitempty" tf:"service_network_cidr,omitempty"`
 
-	// The NETWORK ID of the subnet used to create the node.
+	// The ID of the VPC Subnet used to create the node.
 	// Changing this parameter will create a new cluster resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()

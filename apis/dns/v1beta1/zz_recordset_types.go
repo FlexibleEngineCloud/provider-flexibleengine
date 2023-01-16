@@ -19,7 +19,7 @@ type RecordsetObservation struct {
 
 type RecordsetParameters struct {
 
-	// A description of the record set.
+	// A description of the record set. Max length is 255 characters.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -48,17 +48,18 @@ type RecordsetParameters struct {
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// The type of record set. The options include A, AAAA, MX,
-	// CNAME, TXT, NS, SRV, CAA, and PTR. Changing this creates a new DNS record set.
+	// CNAME, TXT, NS, SRV, CAA, and PTR.
+	// Changing this creates a new DNS record set.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
-	// Map of additional options. Changing this creates a
-	// new record set.
+	// Map of additional options.
+	// Changing this creates a new DNS record set.
 	// +kubebuilder:validation:Optional
 	ValueSpecs map[string]*string `json:"valueSpecs,omitempty" tf:"value_specs,omitempty"`
 
 	// The ID of the zone in which to create the record set.
-	// Changing this creates a new DNS  record set.
+	// Changing this creates a new DNS record set.
 	// +crossplane:generate:reference:type=Zone
 	// +kubebuilder:validation:Optional
 	ZoneID *string `json:"zoneId,omitempty" tf:"zone_id,omitempty"`

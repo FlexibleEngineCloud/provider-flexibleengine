@@ -4,18 +4,18 @@ metadata:
   annotations:
     meta.upbound.io/example-id: elb/v1beta1/member
   labels:
-    testing.upbound.io/example-name: member_1
-  name: member-1
+    testing.upbound.io/example-name: example_member
+  name: example-member
 spec:
   forProvider:
     address: 192.168.199.23
     poolIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_pool
     protocolPort: 8080
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
 
 ---
 

@@ -574,8 +574,8 @@ spec:
                       type: object
                     type: array
                   subnetId:
-                    description: Specifies the network ID of a subnet which bound
-                      to the MRS cluster. Changing this will create a new MRS cluster
+                    description: Specifies the ID of the VPC Subnet which bound to
+                      the MRS cluster. Changing this will create a new MRS cluster
                       resource.
                     type: string
                   subnetIdRef:

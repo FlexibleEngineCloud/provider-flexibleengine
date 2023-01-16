@@ -70,7 +70,8 @@ spec:
                       codes can be created. The code consists of 64 to 180 characters,
                       starting with a letter, digit, plus sign (+) or slash (/). Only
                       letters, digits and following special special characters are
-                      allowed: !@#$%+-_ /='
+                      allowed: !@#$%+-_ /= The array of one or more application codes
+                      that the application has.'
                     items:
                       type: string
                     type: array
@@ -78,12 +79,13 @@ spec:
                     description: Specifies the description about the APIG application.
                       The description contain a maximum of 255 characters and the
                       angle brackets (< and >) are not allowed. Chinese characters
-                      must be in UTF-8 or Unicode format.
+                      must be in UTF-8 or Unicode format. The application description.
                     type: string
                   instanceId:
                     description: Specifies an ID of the APIG dedicated instance to
                       which the APIG application belongs to. Changing this will create
-                      a new APIG application resource.
+                      a new APIG application resource. The ID of the dedicated instance
+                      to which the application belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -162,17 +164,19 @@ spec:
                     description: Specifies the name of the API application. The API
                       group name consists of 3 to 64 characters, starting with a letter.
                       Only letters, digits and underscores (_) are allowed. Chinese
-                      characters must be in UTF-8 or Unicode format.
+                      characters must be in UTF-8 or Unicode format. The application
+                      name.
                     type: string
                   region:
                     description: Specifies the region in which to create the APIG
                       application resource. If omitted, the provider-level region
                       will be used. Changing this will create a new APIG application
-                      resource.
+                      resource. The region where the application is located.
                     type: string
                   secretAction:
                     description: Specifies the secret action to be done for the APIG
-                      application. The valid action is RESET.
+                      application. The valid action is RESET. The secret action to
+                      be done for the application.
                     type: string
                 required:
                 - name
@@ -354,20 +358,16 @@ spec:
               atProvider:
                 properties:
                   appKey:
-                    description: App key.
-                    type: string
-                  appSecret:
-                    description: App secret.
+                    description: App key. The APP key.
                     type: string
                   id:
                     description: ID of the APIG application.
                     type: string
-                  registraionTime:
-                    description: Registration time, in RFC-3339 format.
+                  registrationTime:
+                    description: The registration time.
                     type: string
-                  updateTime:
-                    description: Time when the API group was last modified, in RFC-3339
-                      format.
+                  updatedAt:
+                    description: The latest update time of the application.
                     type: string
                 type: object
               conditions:

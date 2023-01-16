@@ -87,9 +87,9 @@ spec:
                     description: 'Specifies the nat gateway type. The value can be:'
                     type: string
                   subnetId:
-                    description: Specifies the subnet ID of the downstream interface
-                      (the next hop of the DVR) of the NAT gateway. Changing this
-                      creates a new nat gateway.
+                    description: Specifies the ID of the VPC Subnet of the downstream
+                      interface (the next hop of the DVR) of the NAT gateway. Changing
+                      this creates a new nat gateway.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

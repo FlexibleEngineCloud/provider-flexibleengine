@@ -20,7 +20,7 @@ spec:
     name: instance_1
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
     passwordSecretRef:
       key: example-key
       name: example-secret
@@ -28,12 +28,61 @@ spec:
     productId: ${data.flexibleengine_dms_product.test.id}
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_secgroup
     storageSpace: ${data.flexibleengine_dms_product.test.storage_space}
     storageSpecCode: dms.physical.storage.ultra
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/kafkainstance
+  labels:
+    testing.upbound.io/example-name: example_secgroup
+  name: example-secgroup
+spec:
+  forProvider:
+    description: My neutron security group
+    name: example-secgroup
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/kafkainstance
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/kafkainstance
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

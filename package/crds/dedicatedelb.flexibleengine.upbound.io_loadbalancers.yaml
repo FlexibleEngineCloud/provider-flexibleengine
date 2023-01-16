@@ -181,9 +181,9 @@ spec:
                         type: object
                     type: object
                   ipv4SubnetId:
-                    description: The subnet on which to allocate the loadbalancer's
-                      ipv4 address. the IPv4 subnet ID of the subnet where the load
-                      balancer resides
+                    description: The ipv4_subnet_id of the VPC Subnet on which to
+                      allocate the loadbalancer's ipv4 address. the IPv4 subnet ID
+                      of the subnet where the load balancer resides
                     type: string
                   ipv4SubnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate ipv4SubnetId.

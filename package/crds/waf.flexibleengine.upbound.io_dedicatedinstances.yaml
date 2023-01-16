@@ -253,8 +253,8 @@ spec:
                       Values are:'
                     type: string
                   subnetId:
-                    description: The subnet id of WAF dedicated instance VPC. Changing
-                      this will create a new instance.
+                    description: The ID of the VPC Subnet. Changing this will create
+                      a new instance.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

@@ -145,8 +145,8 @@ spec:
                       only letters, digits, and hyphens (-).
                     type: string
                   networkId:
-                    description: Specifies the network id of the subnet. Changing
-                      this creates a new instance.
+                    description: Specifies the ID of the VPC subnet. Changing this
+                      creates a new instance.
                     type: string
                   networkIdRef:
                     description: Reference to a VPCSubnet in vpc to populate networkId.

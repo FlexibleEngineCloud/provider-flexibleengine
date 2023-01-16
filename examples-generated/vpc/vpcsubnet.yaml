@@ -4,16 +4,16 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
   labels:
-    testing.upbound.io/example-name: subnet_v1
-  name: subnet-v1
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
 spec:
   forProvider:
-    cidr: ${var.subnet_cidr}
-    gatewayIp: ${var.subnet_gateway_ip}
-    name: ${var.subnet_name}
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vpc_v1
+        testing.upbound.io/example-name: example_vpc
 
 ---
 
@@ -23,12 +23,12 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
   labels:
-    testing.upbound.io/example-name: vpc_v1
-  name: vpc-v1
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
 spec:
   forProvider:
-    cidr: ${var.vpc_cidr}
-    name: ${var.vpc_name}
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

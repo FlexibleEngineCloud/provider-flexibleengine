@@ -245,7 +245,7 @@ type HybridClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	StreamingTaskNodes []StreamingTaskNodesParameters `json:"streamingTaskNodes,omitempty" tf:"streaming_task_nodes,omitempty"`
 
-	// Specifies the id of the subnet.
+	// Specifies the ID of the VPC Subnet.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional

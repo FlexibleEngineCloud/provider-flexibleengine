@@ -87,7 +87,7 @@ type SnatRuleParameters struct {
 	// +kubebuilder:validation:Optional
 	SourceType *float64 `json:"sourceType,omitempty" tf:"source_type,omitempty"`
 
-	// ID of the subnet this snat rule connects to.
+	// ID of the VPC Subnet this snat rule connects to.
 	// This parameter and cidr are alternative. Changing this creates a new snat rule.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()

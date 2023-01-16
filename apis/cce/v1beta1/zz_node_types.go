@@ -119,6 +119,11 @@ type NodeParameters struct {
 	// +kubebuilder:validation:Optional
 	EIPIdsSelector *v1.Selector `json:"eipIdsSelector,omitempty" tf:"-"`
 
+	// Specifies the ECS group ID. If specified, the node will be created under
+	// the cloud server group. Changing this parameter will create a new resource.
+	// +kubebuilder:validation:Optional
+	EcsGroupID *string `json:"ecsGroupId,omitempty" tf:"ecs_group_id,omitempty"`
+
 	// Classification of cloud server specifications.
 	// Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Optional
@@ -205,6 +210,21 @@ type NodeParameters struct {
 	// Bandwidth sharing type. Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Optional
 	Sharetype *string `json:"sharetype,omitempty" tf:"sharetype,omitempty"`
+
+	// Specifies the ID of the VPC Subnet to which the NIC belongs.
+	// Changing this parameter will create a new resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
+	// +kubebuilder:validation:Optional
+	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// Reference to a VPCSubnet in vpc to populate subnetId.
+	// +kubebuilder:validation:Optional
+	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPCSubnet in vpc to populate subnetId.
+	// +kubebuilder:validation:Optional
+	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 
 	// VM tag, key/value pair format.
 	// +kubebuilder:validation:Optional

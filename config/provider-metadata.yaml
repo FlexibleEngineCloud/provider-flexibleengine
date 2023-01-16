@@ -1,5 +1,80 @@
 name: FlexibleEngineCloud/flexibleengine
 resources:
+    "":
+        subCategory: Distributed Message Service (DMS)
+        name: ""
+        title: ""
+        argumentDocs:
+            availability_zones: |-
+                - (Required, List, ForceNew) Specifies the list of availability zone names, where
+                instance brokers reside and which has available resources.
+            broker_address: '- Indicates the service data address.'
+            broker_num: |-
+                - (Optional, Int, ForceNew) Specifies the broker numbers. Defaults to 1.
+                Changing this parameter will create a new resource.
+            cross_vpc_info: '- Indicates the Cross-VPC access information.'
+            description: |-
+                - (Optional, String) Specifies the description of the DMS RocketMQ instance.
+                The description can contain a maximum of 1024 characters.
+            enable_acl: '- Indicates whether access control is enabled.'
+            enable_publicip: |-
+                - (Optional, Bool, ForceNew) Specifies whether to enable public access.
+                By default, public access is disabled.
+                Changing this parameter will create a new resource.
+            engine_version: |-
+                - (Required, String, ForceNew) Specifies the version of the RocketMQ engine. Value: 4.8.0.
+                Changing this parameter will create a new resource.
+            flavor_id: '- (Required, String, ForceNew) Specifies a product ID. The options are as follows:'
+            id: '- Specifies a resource ID in UUID format.'
+            ipv6_enable: |-
+                - (Optional, Bool, ForceNew) Specifies whether to support IPv6. Defaults to false.
+                Changing this parameter will create a new resource.
+            maintain_begin: '- Indicates the time at which the maintenance window starts. The format is HH:mm:ss.'
+            maintain_end: '- Indicates the time at which the maintenance window ends. The format is HH:mm:ss.'
+            name: |-
+                - (Required, String) Specifies the name of the DMS RocketMQ instance.
+                An instance name starts with a letter, consists of 4 to 64 characters, and can contain only letters,
+                digits, underscores (_), and hyphens (-).
+            namesrv_address: '- Indicates the metadata address.'
+            new_spec_billing_enable: '- Indicates whether billing based on new specifications is enabled.'
+            node_num: '- Indicates the node quantity.'
+            public_broker_address: '- Indicates the public network service data address.'
+            public_namesrv_address: '- Indicates the public network metadata address.'
+            publicip_address: '- Indicates the public IP address.'
+            publicip_id: |-
+                - (Optional, String, ForceNew) Specifies the ID of the EIP bound to the instance.
+                Use commas (,) to separate multiple EIP IDs.
+                This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).
+                Changing this parameter will create a new resource.
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            resource_spec_code: '- Indicates the resource specifications.'
+            retention_policy: '- (Optional, Bool) Specifies the ACL access control.'
+            security_group_id: '- (Required, String) Specifies the ID of a security group.'
+            specification: |-
+                - Indicates the instance specification. For a cluster DMS RocketMQ instance, VM specifications
+                and the number of nodes are returned.
+            ssl_enable: |-
+                - (Optional, Bool, ForceNew) Specifies whether the RocketMQ SASL_SSL is enabled. Defaults to false.
+                Changing this parameter will create a new resource.
+            status: '- Indicates the status of the DMS RocketMQ instance.'
+            storage_space: |-
+                - (Required, Int, ForceNew) Specifies the message storage capacity, Unit: GB.
+                Value range: 300-3000.
+                Changing this parameter will create a new resource.
+            storage_spec_code: |-
+                - (Required, String, ForceNew) Specifies the storage I/O specification.
+                The options are as follows:
+            subnet_id: |-
+                - (Required, String, ForceNew) Specifies the ID of a subnet.
+                Changing this parameter will create a new resource.
+            type: '- Indicates the DMS RocketMQ instance type. Value: cluster.'
+            used_storage_space: '- Indicates the used message storage space. Unit: GB.'
+            vpc_id: |-
+                - (Required, String, ForceNew) Specifies the ID of a VPC.
+                Changing this parameter will create a new resource.
+        importStatements: []
     flexibleengine_antiddos_v1:
         subCategory: Anti-DDoS
         description: '""page_title: "flexibleengine_antiddos_v1"'
@@ -21,10 +96,13 @@ resources:
         argumentDocs:
             app_type_id: '- (Required) The application type ID.'
             cleaning_access_pos_id: '- (Required)The position ID of access limit during cleaning. The value ranges from 1 to 8.'
+            create: '- Default is 10 minute.'
+            delete: '- Default is 10 minute.'
             enable_l7: '- (Required) Specifies whether to enable L7 defense.'
             floating_ip_id: '- (Required) The ID corresponding to the Elastic IP Address (EIP).'
             http_request_pos_id: '- (Required) The position ID of number of HTTP requests. The value ranges from 1 to 15.'
             traffic_pos_id: '- (Required) The position ID of traffic. The value ranges from 1 to 9.'
+            update: '- Default is 10 minute.'
         importStatements:
             - terraform import flexibleengine_antiddos_v1.myantiddos c1881895-cdcb-4d23-96cb-032e6a3ee667
     flexibleengine_api_gateway_api:
@@ -731,29 +809,62 @@ resources:
         name: flexibleengine_apig_instance
         title: flexibleengine_apig_instance
         examples:
-            - name: test
+            - name: example_apig_instance
               manifest: |-
                 {
                   "available_zones": [
-                    "${data.flexibleengine_availability_zones.test.names[0]}",
-                    "${data.flexibleengine_availability_zones.test.names[1]}"
+                    "${data.flexibleengine_availability_zones.az.names[0]}",
+                    "${data.flexibleengine_availability_zones.az.names[1]}"
                   ],
                   "bandwidth_size": 3,
                   "description": "Created by script",
                   "edition": "BASIC",
-                  "eip_id": "${var.eip_id}",
+                  "eip_id": "${flexibleengine_vpc_eip.example_eip.id}",
                   "maintain_begin": "06:00:00",
                   "name": "${var.instance_name}",
-                  "security_group_id": "${var.security_group_id}",
-                  "subnet_id": "${var.subnet_id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                eip_id: var.eip_id
+                eip_id: flexibleengine_vpc_eip.example_eip.id
                 name: var.instance_name
-                security_group_id: var.security_group_id
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
+                    {
+                      "description": "My neutron security group",
+                      "name": "example-secgroup"
+                    }
+                flexibleengine_vpc_eip.example_eip: |-
+                    {
+                      "bandwidth": [
+                        {
+                          "name": "test",
+                          "share_type": "PER",
+                          "size": 10
+                        }
+                      ],
+                      "publicip": [
+                        {
+                          "type": "5_bgp"
+                        }
+                      ]
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             available_zones: |-
                 - (Required, List, ForceNew) Specifies an array of available zone names for the APIG dedicated
@@ -786,16 +897,16 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to create the APIG dedicated instance resource.
                 If omitted, the provider-level region will be used. Changing this will create a new APIG dedicated instance resource.
             security_group_id: |-
-                - (Required, String) Specifies an ID of the security group to which the APIG dedicated instance
+                - (Required, String) Specifies the ID of the security group to which the APIG dedicated instance
                 belongs to.
             status: '- Status of the APIG dedicated instance.'
             subnet_id: |-
-                - (Required, String, ForceNew) Specifies an ID of the VPC subnet used to create the APIG dedicated
+                - (Required, String, ForceNew) Specifies the ID of the VPC Subnet used to create the APIG dedicated
                 instance. Changing this will create a new APIG dedicated instance resource.
             supported_features: '- The supported features of the APIG dedicated instance.'
             update: '- Default is 10 minute.'
             vpc_id: |-
-                - (Required, String, ForceNew) Specifies an ID of the VPC used to create the APIG dedicated instance.
+                - (Required, String, ForceNew) Specifies the ID of the VPC used to create the APIG dedicated instance.
                 Changing this will create a new APIG dedicated instance resource.
             vpc_ingress_address: '- The ingress private ip address of vpc.'
         importStatements:
@@ -1215,7 +1326,7 @@ resources:
                   "min_instance_number": 0,
                   "networks": [
                     {
-                      "id": "ad091b52-742f-469e-8f3c-fd81cadf0743"
+                      "id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "scaling_configuration_id": "37e310f5-db9d-446e-9135-c625f9c2bbfc",
@@ -1225,8 +1336,24 @@ resources:
                       "id": "45e4c6de-6bf0-4843-8953-2babde3d4810"
                     }
                   ],
-                  "vpc_id": "1d8f7e7c-fe04-4cf5-85ac-08b478c290e9"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                networks.id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: my_as_group_only_remove_members
               manifest: |-
                 {
@@ -1237,7 +1364,7 @@ resources:
                   "min_instance_number": 0,
                   "networks": [
                     {
-                      "id": "ad091b52-742f-469e-8f3c-fd81cadf0743"
+                      "id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "scaling_configuration_id": "37e310f5-db9d-446e-9135-c625f9c2bbfc",
@@ -1247,20 +1374,36 @@ resources:
                       "id": "45e4c6de-6bf0-4843-8953-2babde3d4810"
                     }
                   ],
-                  "vpc_id": "1d8f7e7c-fe04-4cf5-85ac-08b478c290e9"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                networks.id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: my_as_group_with_elb
               manifest: |-
                 {
                   "delete_instances": "yes",
                   "delete_publicip": true,
                   "desire_instance_number": 2,
-                  "lb_listener_id": "${flexibleengine_elb_listener.my_listener.id}",
+                  "lb_listener_id": "${flexibleengine_lb_listener_v2.listener_1.id}",
                   "max_instance_number": 10,
                   "min_instance_number": 0,
                   "networks": [
                     {
-                      "id": "ad091b52-742f-469e-8f3c-fd81cadf0743"
+                      "id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "scaling_configuration_id": "37e310f5-db9d-446e-9135-c625f9c2bbfc",
@@ -1270,21 +1413,34 @@ resources:
                       "id": "45e4c6de-6bf0-4843-8953-2babde3d4810"
                     }
                   ],
-                  "vpc_id": "1d8f7e7c-fe04-4cf5-85ac-08b478c290e9"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                lb_listener_id: flexibleengine_elb_listener.my_listener.id
+                lb_listener_id: flexibleengine_lb_listener_v2.listener_1.id
+                networks.id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_elb_listener.my_listener: |-
+                flexibleengine_lb_listener_v2.listener_1: |-
                     {
-                      "backend_port": 21345,
-                      "backend_protocol": "TCP",
-                      "description": "my test listener",
-                      "lb_algorithm": "roundrobin",
-                      "loadbalancer_id": "cba48790-baf5-4446-adb3-02069a916e97",
-                      "name": "my_listener",
-                      "port": 12345,
-                      "protocol": "TCP"
+                      "loadbalancer_id": "${flexibleengine_lb_loadbalancer_v2.lb_1.id}",
+                      "protocol": "HTTP",
+                      "protocol_port": 8080
+                    }
+                flexibleengine_lb_loadbalancer_v2.lb_1: |-
+                    {
+                      "vip_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             available_zones: |-
@@ -1529,7 +1685,8 @@ resources:
             scheduled_policy/recurrence_type: '- See Argument Reference above.'
             scheduled_policy/recurrence_value: '- See Argument Reference above.'
             scheduled_policy/start_time: '- See Argument Reference above.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_as_policy_v1.hth_aspolicy 5f3b5f5e-1b5f-4b5a-8f32-53dcb9d9053a
     flexibleengine_blockstorage_volume_v2:
         subCategory: Elastic Volume Service (EVS)
         description: '""page_title: "flexibleengine_blockstorage_volume_v2"'
@@ -1882,13 +2039,26 @@ resources:
                   "description": "new cluster",
                   "flavor_id": "${var.flavor_id}",
                   "name": "cluster",
-                  "subnet_id": "${var.subnet_id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 flavor_id: var.flavor_id
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             annotations: |-
                 - (Optional) Cluster annotation, key/value pair format.
@@ -1952,7 +2122,7 @@ resources:
             service_network_cidr: '- (Optional) Service network segment. Changing this parameter will create a new cluster resource.'
             status: '-  Cluster status information.'
             subnet_id: |-
-                - (Required) The NETWORK ID of the subnet used to create the node.
+                - (Required) The ID of the VPC Subnet used to create the node.
                 Changing this parameter will create a new cluster resource.
             underlay_ipvlan: '- An underlay_ipvlan network built for bare metal servers by using ipvlan.'
             vpc-router: '- An vpc-router network built for containers by using ipvlan and custom VPC routes.'
@@ -2060,6 +2230,9 @@ resources:
             data_volumes.size: '- (Required, Int) Specifies the disk size in GB.'
             data_volumes.volumetype: '- (Required, String) Specifies the disk type.'
             delete: '- Default is 20 minute.'
+            ecs_group_id: |-
+                - (Optional, String, ForceNew) Specifies the ECS group ID. If specified, the node will be created under
+                the cloud server group. Changing this parameter will create a new resource.
             flavor_id: '- (Required, String, ForceNew) Specifies the flavor id. Changing this parameter will create a new resource.'
             id: '- Specifies a resource ID in UUID format.'
             initial_node_count: '- (Required, Int) Initial number of expected nodes in the node pool.'
@@ -2098,7 +2271,7 @@ resources:
                 add-on to use the auto scaling feature.
             status: '-  Node status information.'
             subnet_id: |-
-                - (Optional, String, ForceNew) The ID of the subnet to which the NIC belongs.
+                - (Optional, String, ForceNew) The ID of the VPC Subnet to which the NIC belongs.
                 Changing this parameter will create a new resource.
             tags: '- (Optional, Map) Tags of a VM node, key/value pair format.'
             taints: |-
@@ -2163,6 +2336,9 @@ resources:
                 - (Required) Represents the data disk to be created.
                 Changing this parameter will create a new resource.
             dockerBaseSize: '- The available disk space of a single docker container on the node in device mapper mode.'
+            ecs_group_id: |-
+                - (Optional) Specifies the ECS group ID. If specified, the node will be created under
+                the cloud server group. Changing this parameter will create a new resource.
             ecs_performance_type: |-
                 - (Optional) Classification of cloud server specifications.
                 Changing this parameter will create a new resource.
@@ -2209,6 +2385,9 @@ resources:
             sharetype: '- (Optional) Bandwidth sharing type. Changing this parameter will create a new resource.'
             size: '- (Required) Specifies the disk size in GB.'
             status: '-  Node status information.'
+            subnet_id: |-
+                - (Optional) Specifies the ID of the VPC Subnet to which the NIC belongs.
+                Changing this parameter will create a new resource.
             tags: '- (Optional) VM tag, key/value pair format.'
             taints: |-
                 - (Optional) You can add taints to created nodes to configure anti-affinity.
@@ -2291,9 +2470,9 @@ resources:
                 - (Optional, Map, ForceNew) Specifies the unstructured key value map for external parameters.
                 Changing this will create a new PVC resource.
             cluster_id: '- (Required, String, ForceNew) Specifies the cluster ID to which the CCE PVC belongs.'
-            create: '- Default is 5 minute.'
+            create: '- Default is 5 minutes.'
             creation_timestamp: '- The server time when PVC was created.'
-            delete: '- Default is 3 minute.'
+            delete: '- Default is 3 minutes.'
             id: '- The PVC ID in UUID format.'
             labels: |-
                 - (Optional, Map, ForceNew) Specifies the map of string keys and values for labels.
@@ -2317,8 +2496,8 @@ resources:
                 The valid values are as follows:
         importStatements:
             - |-
-              terraform import flexibleengine_cce_pvc.test <cluster_id>/<namespace_name>/<name>
-              terraform import flexibleengine_cce_pvc.test 5c20fdad-7288-11eb-b817-0255ac10158b/default/pvc_name
+              terraform import flexibleengine_cce_pvc.test <cluster_id>/<namespace_name>/<id>
+              terraform import flexibleengine_cce_pvc.test 5c20fdad-7288-11eb-b817-0255ac10158b/default/fa540f3b-12d9-40e5-8268-04bcfed95a46
     flexibleengine_ces_alarmrule:
         subCategory: Cloud Eye (CES)
         description: '""page_title: "flexibleengine_ces_alarmrule"'
@@ -2474,7 +2653,7 @@ resources:
                   "name": "basic",
                   "network": [
                     {
-                      "uuid": "${var.network_id}"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "security_groups": [
@@ -2486,7 +2665,7 @@ resources:
                 flavor_id: var.flavor_id
                 image_id: var.image_id
                 key_pair: var.keypair_name
-                network.uuid: var.network_id
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet.id
         argumentDocs:
             admin_pass: |-
                 - (Optional) The administrative password to assign to the bms server.
@@ -2599,37 +2778,13 @@ resources:
             - name: fip_1
               manifest: |-
                 {
-                  "floating_ip": "${flexibleengine_networking_floatingip_v2.fip_1.address}",
-                  "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}"
-                }
-              references:
-                floating_ip: flexibleengine_networking_floatingip_v2.fip_1.address
-                instance_id: flexibleengine_compute_instance_v2.instance_1.id
-              dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
-                    {
-                      "flavor_id": 3,
-                      "image_id": "ad091b52-742f-469e-8f3c-fd81cadf0743",
-                      "key_pair": "my_key_pair_name",
-                      "name": "instance_1",
-                      "security_groups": [
-                        "default"
-                      ]
-                    }
-                flexibleengine_networking_floatingip_v2.fip_1: |-
-                    {
-                      "pool": "admin_external_net"
-                    }
-            - name: fip_1
-              manifest: |-
-                {
                   "fixed_ip": "${flexibleengine_compute_instance_v2.instance_1.network.1.fixed_ip_v4}",
-                  "floating_ip": "${flexibleengine_networking_floatingip_v2.fip_1.address}",
+                  "floating_ip": "${flexibleengine_vpc_eip.eip_1.publicip.0.ip_address}",
                   "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}"
                 }
               references:
                 fixed_ip: flexibleengine_compute_instance_v2.instance_1.network.1.fixed_ip_v4
-                floating_ip: flexibleengine_networking_floatingip_v2.fip_1.address
+                floating_ip: flexibleengine_vpc_eip.eip_1.publicip.0.ip_address
                 instance_id: flexibleengine_compute_instance_v2.instance_1.id
               dependencies:
                 flexibleengine_compute_instance_v2.instance_1: |-
@@ -2649,10 +2804,6 @@ resources:
                       "security_groups": [
                         "default"
                       ]
-                    }
-                flexibleengine_networking_floatingip_v2.fip_1: |-
-                    {
-                      "pool": "admin_external_net"
                     }
         argumentDocs:
             fixed_ip: '- (Optional) The specific IP address to direct traffic to.'
@@ -2703,7 +2854,7 @@ resources:
                   "name": "basic",
                   "network": [
                     {
-                      "uuid": "3c4a0d74-24b9-46cf-9d7f-8b7a4dc2f65c"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "security_groups": [
@@ -2714,6 +2865,8 @@ resources:
                     "this": "that"
                   }
                 }
+              references:
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet.id
             - name: myinstance
               manifest: |-
                 {
@@ -2723,13 +2876,15 @@ resources:
                   "name": "myinstance",
                   "network": [
                     {
-                      "uuid": "3c4a0d74-24b9-46cf-9d7f-8b7a4dc2f65c"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "security_groups": [
                     "default"
                   ]
                 }
+              references:
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet.id
               dependencies:
                 flexibleengine_blockstorage_volume_v2.myvol: |-
                     {
@@ -2760,13 +2915,15 @@ resources:
                   "name": "boot-from-volume",
                   "network": [
                     {
-                      "uuid": "3c4a0d74-24b9-46cf-9d7f-8b7a4dc2f65c"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "security_groups": [
                     "default"
                   ]
                 }
+              references:
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet.id
             - name: boot-from-volume
               manifest: |-
                 {
@@ -2784,7 +2941,7 @@ resources:
                   "name": "bootfromvolume",
                   "network": [
                     {
-                      "uuid": "3c4a0d74-24b9-46cf-9d7f-8b7a4dc2f65c"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "security_groups": [
@@ -2793,6 +2950,7 @@ resources:
                 }
               references:
                 block_device.uuid: flexibleengine_blockstorage_volume_v2.myvol.id
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet.id
               dependencies:
                 flexibleengine_blockstorage_volume_v2.myvol: |-
                     {
@@ -2871,26 +3029,39 @@ resources:
                   "name": "multi-net",
                   "network": [
                     {
-                      "uuid": "3c4a0d74-24b9-46cf-9d7f-8b7a4dc2f65c"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     },
                     {
-                      "uuid": "55534eaa-533a-419d-9b40-ec427ea7195a"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet_2.id}"
                     }
                   ],
                   "security_groups": [
                     "default"
                   ]
                 }
+              references:
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet_2.id
               dependencies:
                 flexibleengine_compute_floatingip_associate_v2.myip: |-
                     {
                       "fixed_ip": "${flexibleengine_compute_instance_v2.multi-net.network.1.fixed_ip_v4}",
-                      "floating_ip": "${flexibleengine_networking_floatingip_v2.myip.address}",
+                      "floating_ip": "${flexibleengine_vpc_eip.eip_1.publicip.0.ip_address}",
                       "instance_id": "${flexibleengine_compute_instance_v2.multi-net.id}"
                     }
-                flexibleengine_networking_floatingip_v2.myip: |-
+                flexibleengine_vpc_eip.eip_1: |-
                     {
-                      "pool": "admin_external_net"
+                      "bandwidth": [
+                        {
+                          "name": "test",
+                          "share_type": "PER",
+                          "size": 10
+                        }
+                      ],
+                      "publicip": [
+                        {
+                          "type": "5_bgp"
+                        }
+                      ]
                     }
             - name: multi-eph
               manifest: |-
@@ -2935,7 +3106,7 @@ resources:
                   "name": "basic",
                   "network": [
                     {
-                      "uuid": "3c4a0d74-24b9-46cf-9d7f-8b7a4dc2f65c"
+                      "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
                   ],
                   "security_groups": [
@@ -2943,6 +3114,8 @@ resources:
                   ],
                   "user_data": "#cloud-config\nhostname: instance_1.example.com\nfqdn: instance_1.example.com"
                 }
+              references:
+                network.uuid: flexibleengine_vpc_subnet_v1.example_subnet.id
             - name: my_instance
               manifest: '{}'
             - name: foo
@@ -3010,7 +3183,7 @@ resources:
                     {
                       "admin_state_up": "true",
                       "name": "port_1",
-                      "network_id": "0a1d0a27-cffa-4de3-92c5-9d3fd3f2e74d",
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                       "security_group_ids": [
                         "2f02d20a-8dca-49b7-b26f-b6ce9fddaf4f",
                         "ca1e5ed7-dae8-4605-987b-fadaeeb30461"
@@ -3166,163 +3339,109 @@ resources:
         name: flexibleengine_compute_interface_attach_v2
         title: flexibleengine_compute_interface_attach_v2
         examples:
-            - name: ai_1
+            - name: example_interface_attach
               manifest: |-
                 {
-                  "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}",
-                  "network_id": "${flexibleengine_networking_port_v2.network_1.id}"
+                  "instance_id": "${flexibleengine_compute_instance_v2.example_instance.id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
-                instance_id: flexibleengine_compute_instance_v2.instance_1.id
-                network_id: flexibleengine_networking_port_v2.network_1.id
+                instance_id: flexibleengine_compute_instance_v2.example_instance.id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
               dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
+                flexibleengine_compute_instance_v2.example_instance: |-
                     {
-                      "name": "instance_1",
+                      "name": "example-instance",
                       "security_groups": [
                         "default"
                       ]
                     }
-                flexibleengine_networking_network_v2.network_1: |-
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
                     {
-                      "admin_state_up": "true",
-                      "name": "network_1"
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
-            - name: ai_1
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
+            - name: example_interface_attach
               manifest: |-
                 {
                   "fixed_ip": "10.0.10.10",
-                  "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}",
-                  "network_id": "${flexibleengine_networking_port_v2.network_1.id}"
+                  "instance_id": "${flexibleengine_compute_instance_v2.example_instance.id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
-                instance_id: flexibleengine_compute_instance_v2.instance_1.id
-                network_id: flexibleengine_networking_port_v2.network_1.id
-              dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
-                    {
-                      "name": "instance_1",
-                      "security_groups": [
-                        "default"
-                      ]
-                    }
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
-            - name: ai_1
+                instance_id: flexibleengine_compute_instance_v2.example_instance.id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+            - name: example_interface_attach
               manifest: |-
                 {
-                  "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}",
-                  "port_id": "${flexibleengine_networking_port_v2.port_1.id}"
+                  "instance_id": "${flexibleengine_compute_instance_v2.example_instance.id}",
+                  "port_id": "${flexibleengine_networking_port_v2.example_port.id}"
                 }
               references:
-                instance_id: flexibleengine_compute_instance_v2.instance_1.id
-                port_id: flexibleengine_networking_port_v2.port_1.id
+                instance_id: flexibleengine_compute_instance_v2.example_instance.id
+                port_id: flexibleengine_networking_port_v2.example_port.id
               dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
-                    {
-                      "name": "instance_1",
-                      "security_groups": [
-                        "default"
-                      ]
-                    }
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
-                flexibleengine_networking_port_v2.port_1: |-
+                flexibleengine_networking_port_v2.example_port: |-
                     {
                       "admin_state_up": "true",
                       "name": "port_1",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
-            - name: attachments
+            - name: example_attachments
               manifest: |-
                 {
                   "count": 2,
-                  "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}",
-                  "port_id": "${flexibleengine_networking_port_v2.ports.*.id[count.index]}"
+                  "instance_id": "${flexibleengine_compute_instance_v2.example_instance.id}",
+                  "port_id": "${flexibleengine_networking_port_v2.example_ports.*.id[count.index]}"
                 }
               references:
-                instance_id: flexibleengine_compute_instance_v2.instance_1.id
+                instance_id: flexibleengine_compute_instance_v2.example_instance.id
               dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
-                    {
-                      "name": "instance_1",
-                      "security_groups": [
-                        "default"
-                      ]
-                    }
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
-                flexibleengine_networking_port_v2.ports: |-
+                flexibleengine_networking_port_v2.example_ports: |-
                     {
                       "admin_state_up": "true",
                       "count": 2,
                       "name": "${format(\"port-%02d\", count.index + 1)}",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
-            - name: ai_1
+            - name: example_interface_attach_1
               manifest: |-
                 {
                   "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}",
-                  "port_id": "${flexibleengine_networking_port_v2.ports.*.id[0]}"
+                  "port_id": "${flexibleengine_networking_port_v2.example_ports.*.id[0]}"
                 }
               references:
                 instance_id: flexibleengine_compute_instance_v2.instance_1.id
               dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
-                    {
-                      "name": "instance_1",
-                      "security_groups": [
-                        "default"
-                      ]
-                    }
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
-                flexibleengine_networking_port_v2.ports: |-
+                flexibleengine_networking_port_v2.example_ports: |-
                     {
                       "admin_state_up": "true",
                       "count": 2,
                       "name": "${format(\"port-%02d\", count.index + 1)}",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
-            - name: ai_2
+            - name: example_interface_attach_2
               manifest: |-
                 {
                   "instance_id": "${flexibleengine_compute_instance_v2.instance_1.id}",
-                  "port_id": "${flexibleengine_networking_port_v2.ports.*.id[1]}"
+                  "port_id": "${flexibleengine_networking_port_v2.example_ports.*.id[1]}"
                 }
               references:
                 instance_id: flexibleengine_compute_instance_v2.instance_1.id
               dependencies:
-                flexibleengine_compute_instance_v2.instance_1: |-
-                    {
-                      "name": "instance_1",
-                      "security_groups": [
-                        "default"
-                      ]
-                    }
-                flexibleengine_networking_network_v2.network_1: |-
-                    {
-                      "admin_state_up": "true",
-                      "name": "network_1"
-                    }
-                flexibleengine_networking_port_v2.ports: |-
+                flexibleengine_networking_port_v2.example_ports: |-
                     {
                       "admin_state_up": "true",
                       "count": 2,
                       "name": "${format(\"port-%02d\", count.index + 1)}",
-                      "network_id": "${flexibleengine_networking_network_v2.network_1.id}"
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
         argumentDocs:
             fixed_ip: |-
@@ -3671,20 +3790,19 @@ resources:
         name: flexibleengine_cse_microservice_engine
         title: flexibleengine_cse_microservice_engine
         examples:
-            - name: test
+            - name: example_cse
               manifest: |-
                 {
                   "auth_type": "NONE",
                   "availability_zones": [
-                    "${var.az1}"
+                    "eu-west-0a"
                   ],
                   "flavor": "cse.s1.small",
-                  "name": "${var.engine_name}",
-                  "network_id": "${var.network_id}"
+                  "name": "example-cse",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
-                name: var.engine_name
-                network_id: var.network_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
             - name: test
               manifest: '{}'
         argumentDocs:
@@ -3725,7 +3843,7 @@ resources:
                 The name must start with a letter and cannot end with a hyphen (-).
                 Changing this will create a new engine.
             network_id: |-
-                - (Required, String, ForceNew) Specifies the network ID of the subnet to which the dedicated microservice
+                - (Required, String, ForceNew) Specifies the ID of VPC the subnet to which the dedicated microservice
                 engine belongs. Changing this will create a new engine.
             region: |-
                 - (Optional, String, ForceNew) Specifies the region in which to create the dedicated microservice engine.
@@ -3928,7 +4046,12 @@ resources:
                 bucket_name: var.bucket_name
         argumentDocs:
             bucket_name: '- (Required) The OBS bucket name for a tracker.'
-            file_prefix_name: '- (Optional) The prefix of a log that needs to be stored in an OBS bucket.'
+            create: '- Default 5 minutes'
+            delete: '- Default 5 minutes'
+            file_prefix_name: |-
+                - (Optional) The prefix of a log that needs to be stored in an OBS bucket.
+                The value can contain letters, digits, and special characters .-_, but cannot contain spaces.
+                The length is 1 to 64 characters.
             status: |-
                 - The status of a tracker. The value should be enabled when creating a tracker,
                 and can be enabled or disabled when updating it.
@@ -3957,18 +4080,31 @@ resources:
                   "engine": "Redis",
                   "engine_version": "5.0",
                   "name": "dcs_redis_instance",
-                  "network_id": "${var.network_id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "password": "${var.my_password}",
                   "period_type": "weekly",
                   "product_id": "${data.flexibleengine_dcs_product_v1.product1.id}",
                   "save_days": 1,
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                network_id: var.network_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 password: var.my_password
                 product_id: data.flexibleengine_dcs_product_v1.product1.id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: instance_1
               manifest: |-
                 {
@@ -3984,21 +4120,21 @@ resources:
                   "engine": "Redis",
                   "engine_version": "3.0",
                   "name": "test_dcs_instance",
-                  "network_id": "${var.network_id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "password": "${var.my_password}",
                   "period_type": "weekly",
                   "product_id": "dcs.master_standby-h",
                   "save_days": 1,
-                  "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup_1.id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                network_id: var.network_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 password: var.my_password
-                security_group_id: flexibleengine_networking_secgroup_v2.secgroup_1.id
-                vpc_id: var.vpc_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_networking_secgroup_v2.secgroup_1: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
                       "name": "secgroup_for_dcs"
                     }
@@ -4017,21 +4153,21 @@ resources:
                   "capacity": 2,
                   "engine": "Memcached",
                   "name": "%s",
-                  "network_id": "${var.network_id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "password": "${var.my_password}",
                   "period_type": "weekly",
                   "product_id": "dcs.memcached.master_standby-h",
                   "save_days": 1,
-                  "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup_1.id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                network_id: var.network_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 password: var.my_password
-                security_group_id: flexibleengine_networking_secgroup_v2.secgroup_1.id
-                vpc_id: var.vpc_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_networking_secgroup_v2.secgroup_1: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
                       "name": "secgroup_for_dcs"
                     }
@@ -4100,7 +4236,7 @@ resources:
             name: |-
                 - (Required) Indicates the name of an instance. An instance name starts with a letter,
                 consists of 4 to 64 characters, and supports only letters, digits, and hyphens (-).
-            network_id: '- (Required) Specifies the network id of the subnet. Changing this creates a new instance.'
+            network_id: '- (Required) Specifies the ID of the VPC subnet. Changing this creates a new instance.'
             password: |-
                 - (Required) Password of a DCS instance.
                 The password of a DCS Redis instance must meet the following complexity requirements:
@@ -4199,7 +4335,8 @@ resources:
                 - (Required, String, ForceNew) Specifies the name of role owned by the current role.
                 The name can contain 1 to 64 characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
                 allowed. Changing this parameter will create a new role.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dds_database_role.test <instance_id>/<db_name>/<name>
     flexibleengine_dds_database_user:
         subCategory: Document Database Service (DDS)
         description: '""page_title: "flexibleengine_dds_database_user"'
@@ -4276,7 +4413,8 @@ resources:
                 The name can contain 1 to 64 characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
                 allowed. Changing this parameter will create a new user.
             update: '- Default is 2 minute.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dds_database_user.test <instance_id>/<db_name>/<name>
     flexibleengine_dds_instance_v3:
         subCategory: Document Database Service (DDS)
         description: '""page_title: "flexibleengine_dds_instance_v3"'
@@ -4325,10 +4463,32 @@ resources:
                   "name": "dds-instance",
                   "password": "Test@123",
                   "region": "eu-west-0",
-                  "security_group_id": "e28c7982-ecf0-4498-852d-9683cfc364f2",
-                  "subnet_id": "b65f8d25-c533-47e2-8601-cfaa265a3e3e",
-                  "vpc_id": "c1095fe7-03df-4205-ad2d-6f4c181d436e"
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
+                    {
+                      "description": "My neutron security group",
+                      "name": "example-secgroup"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: instance
               manifest: |-
                 {
@@ -4359,10 +4519,14 @@ resources:
                   "name": "dds-instance",
                   "password": "Test@123",
                   "region": "eu-west-0",
-                  "security_group_id": "e28c7982-ecf0-4498-852d-9683cfc364f2",
-                  "subnet_id": "b65f8d25-c533-47e2-8601-cfaa265a3e3e",
-                  "vpc_id": "c1095fe7-03df-4205-ad2d-6f4c181d436e"
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
         argumentDocs:
             availability_zone: |-
                 - (Required) Specifies the ID of the availability zone. Changing
@@ -4429,7 +4593,7 @@ resources:
                 - (Optional) Specifies whether to enable or disable SSL. Defaults to true.
                 Changing this creates a new instance.
             status: '- Indicates the the DB instance status.'
-            subnet_id: '- (Required) Specifies the subnet Network ID. Changing this creates a new instance.'
+            subnet_id: '- (Required) Specifies the ID of the VPC Subnet. Changing this creates a new instance.'
             tags: '- (Optional) The key/value pairs to associate with the DDS instance.'
             vpc_id: '- (Required) Specifies the VPC ID. Changing this creates a new instance.'
         importStatements: []
@@ -4465,7 +4629,8 @@ resources:
             type: |-
                 - (Optional, String, ForceNew) Specifies the Stream type. The value can be COMMON or ADVANCED.
                 Defaults to COMMON. Changing this will create a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dis_stream.example dis-demo
     flexibleengine_dli_database:
         subCategory: Data Lake Insight (DLI)
         description: '""page_title: "flexibleengine_dli_database"'
@@ -4585,7 +4750,8 @@ resources:
                 - (Optional, String) Specifies name of the resource package that has been uploaded to the
                 DLI resource management system. The UDF Jar file of the SQL job is specified by this parameter.
             update: '- Default is 20 minute.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dli_flinksql_job.test 12345
     flexibleengine_dli_package:
         subCategory: Data Lake Insight (DLI)
         description: '""page_title: "flexibleengine_dli_package"'
@@ -4666,7 +4832,8 @@ resources:
             sql: .
             tags: '- (Optional, Map, ForceNew) Label of a queue. Changing this parameter will create a new resource.'
             update: '- Default is 45 minute.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dli_queue.example  abc123
     flexibleengine_dli_spark_job:
         subCategory: Data Lake Insight (DLI)
         description: '""page_title: "flexibleengine_dli_spark_job"'
@@ -4889,7 +5056,8 @@ resources:
             with_column_header: |-
                 - (Optional, Bool, ForceNew) Specifies whether the table header is included in the data file.
                 Only data in CSV files has this attribute. Changing this parameter will create a new resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_dli_table.example <database_name>/<table_name>
     flexibleengine_dms_kafka_instance:
         subCategory: Distributed Message Service (DMS)
         description: '""page_title: "flexibleengine_dms_kafka_instance"'
@@ -4906,21 +5074,39 @@ resources:
                   "manager_password": "AdminTest@123",
                   "manager_user": "admin",
                   "name": "instance_1",
-                  "network_id": "${var.subnet_id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "password": "Kafkatest@123",
                   "product_id": "${data.flexibleengine_dms_product.test.id}",
-                  "security_group_id": "${var.security_group_id}",
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
                   "storage_space": "${data.flexibleengine_dms_product.test.storage_space}",
                   "storage_spec_code": "dms.physical.storage.ultra",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zones: data.flexibleengine_dms_product.product_1.availability_zones
-                network_id: var.subnet_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 product_id: data.flexibleengine_dms_product.test.id
-                security_group_id: var.security_group_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
                 storage_space: data.flexibleengine_dms_product.test.storage_space
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
+                    {
+                      "description": "My neutron security group",
+                      "name": "example-secgroup"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: instance_1
               manifest: '{}'
         argumentDocs:
@@ -4972,7 +5158,7 @@ resources:
                 - (Required, String) Specifies the name of the DMS Kafka instance. An instance name starts with a letter,
                 consists of 4 to 64 characters, and supports only letters, digits, hyphens (-) and underscores (_).
             network_id: |-
-                - (Required, String, ForceNew) Specifies the ID of a subnet.
+                - (Required, String, ForceNew) Specifies the ID of a VPC subnet.
                 Changing this creates a new instance resource.
             node_num: '- Indicates the count of ECS instances.'
             partition_num: '- Indicates the maximum number of topics in the DMS Kafka instance.'
@@ -5075,6 +5261,140 @@ resources:
             region: |-
                 - (Optional, String, ForceNew) The region in which to create the DMS kafka user resource. If omitted, the
                 provider-level region will be used. Changing this creates a new resource.
+        importStatements:
+            - terraform import flexibleengine_dms_kafka_user.user c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/user_1
+    flexibleengine_dms_rocketmq_consumer_group:
+        subCategory: Distributed Message Service (DMS)
+        name: flexibleengine_dms_rocketmq_consumer_group
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "broadcast": true,
+                  "brokers": [
+                    "broker-0",
+                    "broker-1"
+                  ],
+                  "enabled": true,
+                  "instance_id": "${var.instance_id}",
+                  "name": "consumer_group_test",
+                  "retry_max_times": 3
+                }
+              references:
+                instance_id: var.instance_id
+        argumentDocs:
+            broadcast: '- (Optional, Bool) Specifies whether to broadcast of the consumer group.'
+            brokers: '- (Required, List, ForceNew) Specifies the list of associated brokers of the consumer group.'
+            enabled: '- (Optional, Bool) Specifies the consumer group is enabled or not. Default to true.'
+            id: '- The resource ID.'
+            instance_id: '- (Required, String, ForceNew) Specifies the ID of the rocketMQ instance.'
+            name: '- (Required, String, ForceNew) Specifies the name of the consumer group.'
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            retry_max_times: '- (Required, Int) Specifies the maximum number of retry times.'
+        importStatements: []
+    flexibleengine_dms_rocketmq_topic:
+        subCategory: Distributed Message Service (DMS)
+        name: flexibleengine_dms_rocketmq_topic
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "brokers": [
+                    {
+                      "name": "broker-0"
+                    }
+                  ],
+                  "instance_id": "${var.instance_id}",
+                  "name": "topic_test",
+                  "permission": "all",
+                  "queue_num": 3
+                }
+              references:
+                instance_id: var.instance_id
+        argumentDocs:
+            BrokerRef.name: '- (Optional, String) Indicates the name of the broker.'
+            BrokerRef.read_queue_num: '- Indicates the read queues number of the broker. It''s useless when create a topic.'
+            BrokerRef.write_queue_num: '- Indicates the read queues number of the broker. It''s useless when create a topic.'
+            brokers: '- (Required, List, ForceNew) Specifies the list of associated brokers of the topic.'
+            id: '- The resource ID.'
+            instance_id: '- (Required, String, ForceNew) Specifies the ID of the rocketMQ instance.'
+            name: '- (Required, String, ForceNew) Specifies the name of the topic.'
+            permission: |-
+                - (Optional, String) Specifies the permissions of the topic.
+                Value options: all, sub, pub. Default to all.
+            queue_num: '- (Optional, Int, ForceNew) Specifies the number of queues. Default to 3.'
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            total_read_queue_num: '- (Optional, Int) Specifies the total number of read queues.'
+            total_write_queue_num: '- (Optional, Int) Specifies the total number of write queues.'
+        importStatements: []
+    flexibleengine_dms_rocketmq_user:
+        subCategory: Distributed Message Service (DMS)
+        name: flexibleengine_dms_rocketmq_user
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "access_key": "user_test",
+                  "admin": false,
+                  "default_group_perm": "PUB",
+                  "default_topic_perm": "PUB",
+                  "group_perms": [
+                    {
+                      "name": "group_name",
+                      "perm": "PUB"
+                    }
+                  ],
+                  "instance_id": "${var.instance_id}",
+                  "secret_key": "abcdefg",
+                  "topic_perms": [
+                    {
+                      "name": "topic_name",
+                      "perm": "PUB"
+                    }
+                  ],
+                  "white_remote_address": "10.10.10.10"
+                }
+              references:
+                instance_id: var.instance_id
+        argumentDocs:
+            access_key: |-
+                - (Required, String, ForceNew) Specifies the access key of the user.
+                Changing this parameter will create a new resource.
+            admin: '- (Optional, Bool) Specifies whether the user is an administrator.'
+            default_group_perm: |-
+                - (Optional, String) Specifies the default consumer group permissions.
+                Value options: PUB|SUB, PUB, SUB, DENY.
+            default_topic_perm: |-
+                - (Optional, String) Specifies the default topic permissions.
+                Value options: PUB|SUB, PUB, SUB, DENY.
+            group_perms: |-
+                - (Optional, List) Specifies the special consumer group permissions.
+                The permission structure is documented below.
+            id: '- The resource ID.'
+            instance_id: |-
+                - (Required, String, ForceNew) Specifies the ID of the rocketMQ instance.
+                Changing this parameter will create a new resource.
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            secret_key: |-
+                - (Required, String, ForceNew) Specifies the secret key of the user.
+                Changing this parameter will create a new resource.
+            topic_perms: |-
+                - (Optional, List) Specifies the special topic permissions.
+                The permission structure is documented below.
+            topic_perms.name: '- (Optional, String) Indicates the name of a topic or consumer group.'
+            topic_perms.perm: |-
+                - (Optional, String) Indicates the permissions of the topic or consumer group.
+                Value options: PUB|SUB, PUB, SUB, DENY.
+            white_remote_address: '- (Optional, String) Specifies the IP address whitelist.'
         importStatements: []
     flexibleengine_dns_ptrrecord_v2:
         subCategory: Domain Name Service (DNS)
@@ -5116,14 +5436,14 @@ resources:
             address: '- The address of the FloatingIP/EIP.'
             description: '- (Optional) Description of the PTR record.'
             floatingip_id: |-
-                - (Required) The ID of the FloatingIP/EIP.
+                - (Required, ForceNew) The ID of the FloatingIP/EIP.
                 Changing this creates a new PTR record.
             id: '-  The PTR record ID, which is in {region}:{floatingip_id} format.'
             name: |-
                 - (Required) Domain name of the PTR record. A domain name is case insensitive.
                 Uppercase letters will also be converted into lowercase letters.
             region: |-
-                - (Optional) The region in which to create the PTR record.
+                - (Optional, ForceNew) The region in which to create the PTR record.
                 If omitted, the region argument of the provider is used.
                 Changing this creates a new PTR record.
             tags: '- (Optional) Tags key/value pairs to associate with the PTR record.'
@@ -5162,13 +5482,13 @@ resources:
                       "zone_type": "public"
                     }
         argumentDocs:
-            description: '- (Optional) A description of the record set.'
+            description: '- (Optional) A description of the record set. Max length is 255 characters.'
             name: |-
-                - (Required) The name of the record set. Note the . at the end of the name.
+                - (Required, ForceNew) The name of the record set. Note the . at the end of the name.
                 Changing this creates a new DNS record set.
             records: '- (Required) An array of DNS records.'
             region: |-
-                - (Optional) The region in which to create the DNS record set.
+                - (Optional, ForceNew) The region in which to create the DNS record set.
                 If omitted, the region argument of the provider is used.
                 Changing this creates a new DNS record set.
             tags: '- (Optional) The key/value pairs to associate with the record set.'
@@ -5176,14 +5496,15 @@ resources:
                 - (Optional) The time to live (TTL) of the record set (in seconds). The value
                 range is 300–2147483647. The default value is 300.
             type: |-
-                - (Required) The type of record set. The options include A, AAAA, MX,
-                CNAME, TXT, NS, SRV, CAA, and PTR. Changing this creates a new DNS record set.
+                - (Required, ForceNew) The type of record set. The options include A, AAAA, MX,
+                CNAME, TXT, NS, SRV, CAA, and PTR.
+                Changing this creates a new DNS record set.
             value_specs: |-
-                - (Optional) Map of additional options. Changing this creates a
-                new record set.
+                - (Optional, ForceNew) Map of additional options.
+                Changing this creates a new DNS record set.
             zone_id: |-
-                - (Required) The ID of the zone in which to create the record set.
-                Changing this creates a new DNS  record set.
+                - (Required, ForceNew) The ID of the zone in which to create the record set.
+                Changing this creates a new DNS record set.
         importStatements:
             - terraform import flexibleengine_dns_recordset_v2.recordset_1 <zone_id>/<recordset_id>
     flexibleengine_dns_zone_v2:
@@ -5216,14 +5537,14 @@ resources:
                   "zone_type": "private"
                 }
         argumentDocs:
-            description: '- (Optional) A description of the zone.'
+            description: '- (Optional) A description of the zone. Max length is 255 characters.'
             email: '- (Optional) The email contact for the zone record.'
             masters: '- An array of master DNS servers.'
             name: |-
-                - (Required) The name of the zone. Note the . at the end of the name.
+                - (Required, ForceNew) The name of the zone. Note the . at the end of the name.
                 Changing this creates a new DNS zone.
             region: |-
-                - (Optional) The region in which to create the DNS zone.
+                - (Optional, ForceNew) The region in which to create the DNS zone.
                 If omitted, the region argument of the provider is used.
                 Changing this creates a new DNS zone.
             router: |-
@@ -5232,13 +5553,15 @@ resources:
             router.router_id: '- (Required) The VPC UUID.'
             router.router_region: '- (Optional) The region of the VPC. Defaults to the region.'
             tags: '- (Optional, Map) The key/value pairs to associate with the zone.'
-            ttl: '- (Optional) The time to live (TTL) of the zone.'
+            ttl: |-
+                - (Optional) The time to live (TTL) of the zone. TTL ranges from 1 to 2147483647 seconds.
+                Default is  300.
             value_specs: |-
-                - (Optional) Map of additional options. Changing this creates a
-                new DNS zone.
-            zone_type: |-
-                - (Optional) The type of zone. Can either be public or private.
+                - (Optional, ForceNew) Map of additional options.
                 Changing this creates a new DNS zone.
+            zone_type: |-
+                - (Optional, ForceNew) The type of zone. Can either be public or private.
+                Default is public. Changing this creates a new DNS zone.
         importStatements:
             - terraform import flexibleengine_dns_zone_v2.zone_1 <zone_id>
     flexibleengine_drs_job:
@@ -5336,7 +5659,7 @@ resources:
                 - (Optional, String, ForceNew) Specifies whether to enable SSL connection.
                 Changing this parameter will create a new resource.
             db_info.subnet_id: |-
-                - (Optional, String, ForceNew) Specifies subnet ID of database when it is a RDS database.
+                - (Optional, String, ForceNew) Specifies the ID of the VPC Subnet of database when it is a RDS database.
                 It is mandatory when direction is down. Changing this parameter will create a new resource.
             db_info.user: |-
                 - (Required, String, ForceNew) Specifies the user name of database.
@@ -5419,7 +5742,8 @@ resources:
             type: |-
                 - (Required, String, ForceNew) Specifies the job type. Changing this parameter will create a new
                 resource. The options are as follows:
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_drs_job.test b11b407c-e604-4e8d-8bc4-92398320b847
     flexibleengine_drs_replication_v2:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_drs_replication_v2"'
@@ -5535,21 +5859,42 @@ resources:
             - name: cluster
               manifest: |-
                 {
-                  "availability_zone": "{{ availability_zone }}",
+                  "availability_zone": "eu-west-0a",
                   "name": "dws_cluster_test",
-                  "node_type": "dws.d1.xlarge",
+                  "node_type": "${data.flexibleengine_dws_flavors.test.flavors[0].flavor_id}",
                   "number_of_node": 3,
-                  "security_group_id": "{{ security_group_id }}",
-                  "subnet_id": "{{ subnet_id }}",
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "user_name": "cluster_admin",
                   "user_pwd": "Cluster123@!",
-                  "vpc_id": "{{ vpc_id }}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                node_type: data.flexibleengine_dws_flavors.test.flavors[0].flavor_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
+                    {
+                      "description": "My neutron security group",
+                      "name": "example-secgroup"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
-            availability_zone: '- (Optional) AZ in a cluster'
-            created: |-
-                - Cluster creation time. The format is
-                ISO8601:YYYY-MM-DDThh:mm:ssZ.
+            availability_zone: '- (Optional) AZ in a cluster.'
+            created: '- Cluster creation time. The format is ISO8601:YYYY-MM-DDThh:mm:ssZ.'
             endpoints: |-
                 - The private network connection information about the cluster.
                 The object structure is documented below.
@@ -5566,9 +5911,8 @@ resources:
             number_of_node: |-
                 - (Required) Number of nodes in a cluster. The value ranges
                 from 3 to 32.
-            port: |-
-                - (Optional) Service port of a cluster (8000 to 10000). The default
-                value is 8000.
+            port: '- (Optional) Service port of a cluster (8000 to 10000). The default value is 8000.'
+            private_ip: '- List of private network IP address.'
             public_endpoints: |-
                 - The public network connection information about the cluster.
                 The object structure is documented below.
@@ -5587,11 +5931,9 @@ resources:
                 configuring cluster network.
             status: '- Cluster status, which can be one of the following: CREATING, AVAILABLE, UNAVAILABLE and CREATION FAILED.'
             sub_status: '- Sub-status of clusters in the AVAILABLE state.'
-            subnet_id: '- (Required) Subnet ID, which is used for configuring cluster network.'
+            subnet_id: '- (Required) The ID of the VPC Subnet, which is used for configuring cluster network.'
             task_status: '- Cluster management task.'
-            updated: |-
-                - Last modification time of a cluster. The format is
-                ISO8601:YYYY-MM-DDThh:mm:ssZ.
+            updated: '- Last modification time of a cluster. The format is ISO8601:YYYY-MM-DDThh:mm:ssZ.'
             user_name: |-
                 - (Required) Administrator username for logging in to a data
                 warehouse cluster The administrator username must:
@@ -5601,7 +5943,7 @@ resources:
             version: '- Data warehouse version'
             vpc_id: '- (Required) VPC ID, which is used for configuring cluster network.'
         importStatements:
-            - $ terraform import flexibleengine_dws_cluster_v1.cluster 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+            - terraform import flexibleengine_dws_cluster_v1.cluster 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
     flexibleengine_elb_backend:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_elb_backend"'
@@ -5892,10 +6234,16 @@ resources:
                   "description": "external elb",
                   "name": "elb-external",
                   "type": "External",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: elb
               manifest: |-
                 {
@@ -5905,12 +6253,18 @@ resources:
                   "security_group_id": "${var.sec_group}",
                   "type": "Internal",
                   "vip_subnet_id": "${var.subnet_id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 security_group_id: var.sec_group
                 vip_subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             admin_state_up: '- (Optional) Specifies the status of the load balancer. Defaults to true.'
             az: |-
@@ -6117,17 +6471,17 @@ resources:
                       "share_proto": "NFS",
                       "size": 10
                     }
-                flexibleengine_vpc_subnet_v1.test: |-
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
                     {
                       "cidr": "192.168.1.0/24",
                       "gateway_ip": "192.168.1.1",
-                      "name": "subnet_1",
+                      "name": "example-subnet",
                       "vpc_id": "${flexibleengine_vpc_v1.test.id}"
                     }
-                flexibleengine_vpc_v1.test: |-
+                flexibleengine_vpc_v1.example_vpc: |-
                     {
                       "cidr": "192.168.0.0/16",
-                      "name": "${vpc_1}"
+                      "name": "example-vpc"
                     }
             - name: function
               manifest: |-
@@ -6648,6 +7002,51 @@ resources:
             value_specs: '- (Optional) Map of additional options.'
         importStatements:
             - terraform import flexibleengine_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
+    flexibleengine_identity_acl:
+        subCategory: Identity and Access Management (IAM)
+        name: flexibleengine_identity_acl
+        title: ""
+        examples:
+            - name: acl
+              manifest: |-
+                {
+                  "ip_cidrs": [
+                    {
+                      "cidr": "159.138.39.192/32",
+                      "description": "This is a test ip address"
+                    }
+                  ],
+                  "ip_ranges": [
+                    {
+                      "description": "This is a test ip range",
+                      "range": "0.0.0.0-255.255.255.0"
+                    }
+                  ],
+                  "type": "console"
+                }
+        argumentDocs:
+            create: '- Default is 5 minute.'
+            delete: '- Default is 3 minute.'
+            id: '- The ID of identity acl.'
+            ip_cidrs: |-
+                - (Optional, List) Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
+                The ip_cidrs cannot repeat. The structure is documented below.
+            ip_cidrs.cidr: '- (Required, String) Specifies the IPv4 CIDR block, for example, 192.168.0.0/24.'
+            ip_cidrs.description: |-
+                - (Optional, String) Specifies a description about an IPv4 CIDR block. This parameter can contain a
+                maximum of 255 characters and the following characters are not allowed:@#%^&*<>\.
+            ip_ranges: |-
+                - (Optional, List) Specifies the IP address ranges from which console access or api access is allowed.
+                The ip_ranges cannot repeat. The structure is documented below.
+            ip_ranges.description: |-
+                - (Optional, String) Specifies a description about an IP address range. This parameter can contain a
+                maximum of 255 characters and the following characters are not allowed:@#%^&*<>\.
+            ip_ranges.range: '- (Required, String) Specifies the Ip address range, for example, 0.0.0.0-255.255.255.0.'
+            type: |-
+                - (Required, String, ForceNew) Specifies the ACL is created through the Console or API. valid value is
+                'console'. Changing this parameter will create a new ACL.
+            update: '- Default is 5 minute.'
+        importStatements: []
     flexibleengine_identity_agency_v3:
         subCategory: Identity and Access Management (IAM)
         description: '""page_title: "flexibleengine_identity_agency_v3"'
@@ -7240,7 +7639,7 @@ resources:
                 flexibleengine_lb_loadbalancer_v2.loadbalancer_1: |-
                     {
                       "name": "loadbalancer_1",
-                      "vip_subnet_id": "${var.subnet_id}"
+                      "vip_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
                     }
                 flexibleengine_lb_pool_v2.pool_1: |-
                     {
@@ -7320,7 +7719,7 @@ resources:
                 flexibleengine_lb_loadbalancer_v2.loadbalancer_1: |-
                     {
                       "name": "loadbalancer_1",
-                      "vip_subnet_id": "${var.subnet_id}"
+                      "vip_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
                     }
                 flexibleengine_lb_pool_v2.pool_1: |-
                     {
@@ -7372,13 +7771,23 @@ resources:
             - name: listener_1
               manifest: |-
                 {
-                  "loadbalancer_id": "d9415786-5f1a-428b-b35f-2f1523e146d2",
+                  "loadbalancer_id": "${flexibleengine_lb_loadbalancer_v2.lb_1.id}",
                   "protocol": "HTTP",
                   "protocol_port": 8080,
                   "tags": {
                     "key": "value"
                   }
                 }
+              references:
+                loadbalancer_id: flexibleengine_lb_loadbalancer_v2.lb_1.id
+              dependencies:
+                flexibleengine_lb_loadbalancer_v2.lb_1: |-
+                    {
+                      "tags": {
+                        "key": "value"
+                      },
+                      "vip_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
+                    }
             - name: listener_1
               manifest: |-
                 {
@@ -7402,7 +7811,7 @@ resources:
                 flexibleengine_lb_loadbalancer_v2.loadbalancer_1: |-
                     {
                       "name": "loadbalancer_cert",
-                      "vip_subnet_id": "2c0a74a9-4395-4e62-a17b-e3e86fbf66b7"
+                      "vip_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
                     }
         argumentDocs:
             default_pool_id: |-
@@ -7556,8 +7965,10 @@ resources:
                   "tags": {
                     "key": "value"
                   },
-                  "vip_subnet_id": "d9415786-5f1a-428b-b35f-2f1523e146d2"
+                  "vip_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
                 }
+              references:
+                vip_subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id
         argumentDocs:
             admin_state_up: |-
                 - (Optional) The administrative state of the loadbalancer.
@@ -7587,9 +7998,10 @@ resources:
                 Changing this creates a new loadbalancer.
             vip_port_id: '- The Port ID of the Load Balancer IP.'
             vip_subnet_id: |-
-                - (Required) The network on which to allocate the
-                loadbalancer's address. A tenant can only create Loadbalancers on networks
-                authorized by policy (e.g. networks that belong to them or networks that
+                - (Required) The ipv4_subnet_id or ipv6_subnet_id of the
+                VPC Subnet on which to allocate the loadbalancer's address.
+                A tenant can only create Loadbalancers on networks authorized
+                by policy (e.g. networks that belong to them or networks that
                 are shared).  Changing this creates a new loadbalancer.
         importStatements:
             - terraform import flexibleengine_lb_loadbalancer_v2.loadbalancer_1 3e3632db-36c6-4b28-a92e-e72e6562daa6
@@ -7608,12 +8020,30 @@ resources:
                   ],
                   "cross_vpc_backend": true,
                   "description": "basic example",
-                  "ipv4_subnet_id": "{{ subnet_id }}",
-                  "l4_flavor_id": "{{ l4_flavor_id }}",
-                  "l7_flavor_id": "{{ l7_flavor_id }}",
+                  "ipv4_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}",
+                  "l4_flavor_id": "${data.flexibleengine_elb_flavors.l4_flavors.ids[0]}",
+                  "l7_flavor_id": "${data.flexibleengine_elb_flavors.l7_flavors.ids[0]}",
                   "name": "basic",
-                  "vpc_id": "{{ vpc_id }}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                ipv4_subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id
+                l4_flavor_id: data.flexibleengine_elb_flavors.l4_flavors.ids[0]
+                l7_flavor_id: data.flexibleengine_elb_flavors.l7_flavors.ids[0]
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: basic
               manifest: |-
                 {
@@ -7623,15 +8053,35 @@ resources:
                   ],
                   "cross_vpc_backend": true,
                   "description": "basic example",
-                  "ipv4_eip_id": "{{ eip_id }}",
-                  "ipv4_subnet_id": "{{ subnet_id }}",
+                  "ipv4_eip_id": "${flexibleengine_vpc_eip.example_eip.id}",
+                  "ipv4_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}",
                   "ipv6_bandwidth_id": "{{ ipv6_bandwidth_id }}",
-                  "ipv6_network_id": "{{ ipv6_network_id }}",
-                  "l4_flavor_id": "{{ l4_flavor_id }}",
-                  "l7_flavor_id": "{{ l7_flavor_id }}",
+                  "ipv6_network_id": "${flexibleengine_vpc_subnet_v1.example_subnet_ipv6.id}",
+                  "l4_flavor_id": "${data.flexibleengine_elb_flavors.l4_flavors.ids[0]}",
+                  "l7_flavor_id": "${data.flexibleengine_elb_flavors.l7_flavors.ids[0]}",
                   "name": "basic",
-                  "vpc_id": "{{ vpc_id }}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                ipv4_eip_id: flexibleengine_vpc_eip.example_eip.id
+                ipv4_subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id
+                ipv6_network_id: flexibleengine_vpc_subnet_v1.example_subnet_ipv6.id
+                l4_flavor_id: data.flexibleengine_elb_flavors.l4_flavors.ids[0]
+                l7_flavor_id: data.flexibleengine_elb_flavors.l7_flavors.ids[0]
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: basic
               manifest: |-
                 {
@@ -7644,15 +8094,34 @@ resources:
                   "cross_vpc_backend": true,
                   "description": "basic example",
                   "iptype": "5_bgp",
-                  "ipv4_subnet_id": "{{ subnet_id }}",
+                  "ipv4_subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}",
                   "ipv6_bandwidth_id": "{{ ipv6_bandwidth_id }}",
-                  "ipv6_network_id": "{{ ipv6_network_id }}",
-                  "l4_flavor_id": "{{ l4_flavor_id }}",
-                  "l7_flavor_id": "{{ l7_flavor_id }}",
+                  "ipv6_network_id": "${flexibleengine_vpc_subnet_v1.example_subnet_ipv6.id}",
+                  "l4_flavor_id": "${data.flexibleengine_elb_flavors.l4_flavors.ids[0]}",
+                  "l7_flavor_id": "${data.flexibleengine_elb_flavors.l7_flavors.ids[0]}",
                   "name": "basic",
                   "sharetype": "PER",
-                  "vpc_id": "{{ vpc_id }}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                ipv4_subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id
+                ipv6_network_id: flexibleengine_vpc_subnet_v1.example_subnet_ipv6.id
+                l4_flavor_id: data.flexibleengine_elb_flavors.l4_flavors.ids[0]
+                l7_flavor_id: data.flexibleengine_elb_flavors.l7_flavors.ids[0]
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: loadbalancer_1
               manifest: '{}'
         argumentDocs:
@@ -7673,7 +8142,9 @@ resources:
             ipv4_address: '- (Optional, String) The ipv4 address of the load balancer.'
             ipv4_eip: '- The ipv4 eip address of the Load Balancer.'
             ipv4_eip_id: '- (Optional, String, ForceNew) The ID of the EIP. Changing this parameter will create a new resource.'
-            ipv4_subnet_id: '- (Optional, String) The subnet on which to allocate the loadbalancer''s ipv4 address.'
+            ipv4_subnet_id: |-
+                - (Optional, String) The ipv4_subnet_id of the
+                VPC Subnet on which to allocate the loadbalancer's ipv4 address.
             ipv6_address: '- The ipv6 address of the Load Balancer.'
             ipv6_bandwidth_id: '- (Optional, String) The ipv6 bandwidth id. Only support shared bandwidth.'
             ipv6_eip: '- The ipv6 eip address of the Load Balancer.'
@@ -7699,17 +8170,17 @@ resources:
         name: flexibleengine_lb_member_v2
         title: flexibleengine_lb_member_v2
         examples:
-            - name: member_1
+            - name: example_member
               manifest: |-
                 {
                   "address": "192.168.199.23",
-                  "pool_id": "${POOL_ID}",
+                  "pool_id": "${flexibleengine_lb_pool_v2.example_pool.id}",
                   "protocol_port": 8080,
-                  "subnet_id": "${SUBNET_ID}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
                 }
               references:
-                pool_id: POOL_ID
-                subnet_id: SUBNET_ID
+                pool_id: flexibleengine_lb_pool_v2.example_pool.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id
         argumentDocs:
             address: |-
                 - (Required) The IP address of the member to receive traffic from
@@ -7730,7 +8201,9 @@ resources:
                 A Networking client is needed to create an . If omitted, the
                 region argument of the provider is used. Changing this creates a new
                 member.
-            subnet_id: '- (Required) The subnet in which to access the member'
+            subnet_id: |-
+                - (Required) The ipv4_subnet_id or ipv6_subnet_id of the
+                VPC Subnet in which to access the member
             tenant_id: |-
                 - (Optional) The UUID of the tenant who owns the member.
                 Only administrative users can specify a tenant UUID other than their own.
@@ -7747,18 +8220,18 @@ resources:
         name: flexibleengine_lb_member_v3
         title: flexibleengine_lb_member_v3
         examples:
-            - name: member_1
+            - name: example_member
               manifest: |-
                 {
                   "address": "${var.address}",
-                  "pool_id": "${var.pool_id}",
+                  "pool_id": "${flexibleengine_lb_pool_v3.example_pool.id}",
                   "protocol_port": 8080,
-                  "subnet_id": "${var.subnet_id}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}"
                 }
               references:
                 address: var.address
-                pool_id: var.pool_id
-                subnet_id: var.subnet_id
+                pool_id: flexibleengine_lb_pool_v3.example_pool.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id
         argumentDocs:
             address: |-
                 - (Required, String, ForceNew) Specifies the IP address of the member to receive traffic from the
@@ -7775,7 +8248,8 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to create the ELB member resource.
                 Changing this creates a new member.
             subnet_id: |-
-                - (Optional, String, ForceNew) Specifies the subnet in which to access the member.
+                - (Optional, String, ForceNew) The ipv4_subnet_id or ipv6_subnet_id of the
+                VPC Subnet in which to access the member.
                 The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
                 If this parameter is not passed, cross-VPC backend has been enabled for the load balancer. In this case,
                 cross-VPC backend servers must use private IPv4 addresses, and the protocol of the backend server group
@@ -8109,14 +8583,16 @@ resources:
                           "bind_type": "not_use"
                         }
                       ],
-                      "subnet_id": "b65f8d25-c533-47e2-8601-cfaa265a3e3e",
-                      "vpc_id": "c1095fe7-03df-4205-ad2d-6f4c181d436e"
+                      "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
                   ],
                   "version": "1.2.0"
                 }
               references:
                 mrs_cluster.id: flexibleengine_mrs_cluster_v1.cluster1.id
+                network.subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                network.vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
                 flexibleengine_mrs_cluster_v1.cluster1: |-
                     {
@@ -8144,10 +8620,22 @@ resources:
                       "node_public_cert_name": "KeyPair-ci",
                       "region": "eu-west-0",
                       "safe_mode": 0,
-                      "subnet_id": "b65f8d25-c533-47e2-8601-cfaa265a3e3e",
+                      "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                       "volume_size": 100,
                       "volume_type": "SATA",
-                      "vpc_id": "c1095fe7-03df-4205-ad2d-6f4c181d436e"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             agency: |-
@@ -8192,7 +8680,7 @@ resources:
                 - (Optional) Specifies the ID of the security group of the instance.
                 Changing this creates a new instance.
             network.subnet_id: |-
-                - (Required) Specifies the ID of the subnet where the instance resides.
+                - (Required) Specifies the ID of the VPC Subnet where the instance resides.
                 Changing this creates a new instance.
             network.vpc_id: |-
                 - (Required) Specifies the ID of the virtual private cloud (VPC) where the
@@ -8343,7 +8831,8 @@ resources:
                 Long, Double, Float, Byte, Date, Timestamp, Bool. Changing this parameter will create a new resource.
             status: '- Dataset status. Valid values are as follows:'
             type: '- (Required, Int, ForceNew) Specifies the type of dataset. The options are as follows:'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_modelarts_dataset.test yiROKoTTjtwjvP71yLG
     flexibleengine_modelarts_dataset_version:
         subCategory: AI Development Platform (ModelArts)
         description: '""page_title: "flexibleengine_modelarts_dataset_version"'
@@ -8396,7 +8885,8 @@ resources:
             updated_at: '- The last update time, in UTC format.'
             verification: '- Whether the data has been verified by the verification algorithm before publishing.'
             version_id: '- The version ID.'
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_modelarts_dataset_version.test yiROKoTTjtwjvP71yLG/wieeeoTrtrtjvn67yLm
     flexibleengine_mrs_cluster_v1:
         subCategory: MapReduce Service (MRS)
         description: '""page_title: "flexibleengine_mrs_cluster_v1"'
@@ -8432,11 +8922,27 @@ resources:
                   "node_public_cert_name": "KeyPair-ci",
                   "region": "eu-west-0",
                   "safe_mode": 0,
-                  "subnet_id": "1d7a8646-43ee-455a-a3ab-40da87a1304c",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "volume_size": 100,
                   "volume_type": "SATA",
-                  "vpc_id": "51edfb75-f9f0-4bbc-b4dc-21466b93f60d"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             add_jobs: |-
                 - (Optional) You can submit a job when you create a cluster to save time and use MRS easily.
@@ -8567,10 +9073,8 @@ resources:
             security_groups_id: '- Security group ID.'
             slave_security_groups_id: '- Standby security group ID.'
             subnet_id: |-
-                - (Required) Subnet ID Obtain the subnet ID from the management
-                console as follows: Register an account and log in to the management console.
-                Click Virtual Private Cloud and select Virtual Private Cloud from the left list.
-                On the Virtual Private Cloud page, obtain the subnet ID from the list.
+                - (Required) Specifies the ID of the VPC Subnet which bound to the MRS cluster.
+                Changing this will create a new MRS cluster resource.
             tenant_id: '- Project ID.'
             update_at: '- Cluster update time.'
             vnc: '- URI address for remote login of the elastic cloud server.'
@@ -8636,22 +9140,35 @@ resources:
                   ],
                   "name": "${var.cluster_name}",
                   "node_key_pair": "${var.keypair}",
-                  "subnet_id": "${var.subnet_id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "tags": {
                     "foo": "bar",
                     "key": "value"
                   },
                   "type": "ANALYSIS",
                   "version": "MRS 2.0.1",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zone: var.mrs_az
                 manager_admin_pwd: var.password
                 name: var.cluster_name
                 node_key_pair: var.keypair
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: test
               manifest: |-
                 {
@@ -8686,22 +9203,35 @@ resources:
                       "root_volume_type": "SAS"
                     }
                   ],
-                  "subnet_id": "${var.subnet_id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "tags": {
                     "foo": "bar",
                     "key": "value"
                   },
                   "type": "STREAMING",
                   "version": "MRS 3.1.0-LTS.1",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zone: var.mrs_az
                 manager_admin_pwd: var.password
                 name: var.cluster_name
                 node_key_pair: var.keypair
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: test
               manifest: |-
                 {
@@ -8771,22 +9301,35 @@ resources:
                       "root_volume_type": "SAS"
                     }
                   ],
-                  "subnet_id": "${var.subnet_id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "tags": {
                     "foo": "bar",
                     "key": "value"
                   },
                   "type": "MIXED",
                   "version": "MRS 2.0.1",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zone: var.mrs_az
                 manager_admin_pwd: var.password
                 name: var.cluster_name
                 node_key_pair: var.keypair
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: test
               manifest: |-
                 {
@@ -8852,19 +9395,32 @@ resources:
                   "name": "${var.cluster_name}",
                   "node_key_pair": "${var.keypair}",
                   "safe_mode": true,
-                  "subnet_id": "${var.subnet_id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "template_id": "mgmt_control_combined_v4",
                   "type": "CUSTOM",
                   "version": "MRS 3.1.0-LTS.1",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zone: var.mrs_az
                 manager_admin_pwd: var.password
                 name: var.cluster_name
                 node_key_pair: var.keypair
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: test
               manifest: |-
                 {
@@ -8911,14 +9467,14 @@ resources:
                   "name": "${var.cluster_name}",
                   "node_key_pair": "${var.keypair}",
                   "public_ip": "${var.public_ip}",
-                  "subnet_id": "${var.subnet_id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "tags": {
                     "foo": "bar",
                     "key": "value"
                   },
                   "type": "ANALYSIS",
                   "version": "MRS 2.0.1",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zone: var.mrs_az
@@ -8926,8 +9482,21 @@ resources:
                 name: var.cluster_name
                 node_key_pair: var.keypair
                 public_ip: var.public_ip
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: test
               manifest: '{}'
         argumentDocs:
@@ -9047,7 +9616,7 @@ resources:
                 MRS cluster.
                 The nodes object structure of the streaming_task_nodes is documented below.
             subnet_id: |-
-                - (Required, String, ForceNew) Specifies the network ID of a subnet which bound to the MRS cluster.
+                - (Required, String, ForceNew) Specifies the ID of the VPC Subnet which bound to the MRS cluster.
                 Changing this will create a new MRS cluster resource.
             tags: '- (Optional, Map, ForceNew) Specifies the key/value pairs to associate with the cluster.'
             template_id: |-
@@ -9066,7 +9635,8 @@ resources:
             vpc_id: |-
                 - (Required, String, ForceNew) Specifies the ID of the VPC which bound to the MRS cluster.
                 Changing this will create a new MRS cluster resource.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_mrs_cluster_v2.test b11b407c-e604-4e8d-8bc4-92398320b847
     flexibleengine_mrs_hybrid_cluster_v1:
         subCategory: MapReduce Service (MRS)
         description: '""page_title: "flexibleengine_mrs_hybrid_cluster_v1"'
@@ -9114,21 +9684,21 @@ resources:
                       "node_number": 1
                     }
                   ],
-                  "subnet_id": "${flexibleengine_vpc_subnet_v1.subnet_1.id}",
-                  "vpc_id": "${flexibleengine_vpc_v1.vpc_1.id}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                subnet_id: flexibleengine_vpc_subnet_v1.subnet_1.id
-                vpc_id: flexibleengine_vpc_v1.vpc_1.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_vpc_subnet_v1.subnet_1: |-
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
                     {
                       "cidr": "192.168.0.0/24",
                       "gateway_ip": "192.168.0.1",
                       "name": "flexibleengine_subnet",
-                      "vpc_id": "${flexibleengine_vpc_v1.vpc_1.id}"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
-                flexibleengine_vpc_v1.vpc_1: |-
+                flexibleengine_vpc_v1.example_vpc: |-
                     {
                       "cidr": "192.168.0.0/16",
                       "name": "terraform_provider_vpc"
@@ -9196,7 +9766,7 @@ resources:
             state: '- Cluster creation fee, which is automatically calculated.'
             streaming_core_nodes: '- (Required) Specifies the streaming core nodes information.'
             streaming_task_nodes: '- (Optional) Specifies the streaming task nodes information.'
-            subnet_id: '- (Required) Specifies the id of the subnet.'
+            subnet_id: '- (Required) Specifies the ID of the VPC Subnet.'
             total_node_number: '- Total node number.'
             update_at: '- Cluster update time.'
             vnc: '- URI address for remote login of the elastic cloud server.'
@@ -9415,9 +9985,25 @@ resources:
                   "description": "test for terraform",
                   "name": "nat_test",
                   "spec": "3",
-                  "subnet_id": "dc8632e2-d9ff-41b1-aa0c-d455557314a0",
-                  "vpc_id": "2c1fe4bd-ebad-44ca-ae9d-e94e63847b75"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
+              references:
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             "1": ': small type, which supports up to 10,000 SNAT connections.'
             "2": ': medium type, which supports up to 50,000 SNAT connections.'
@@ -9438,7 +10024,7 @@ resources:
             spec: '- (Required, String) Specifies the nat gateway type. The value can be:'
             status: '- The status of the nat gateway.'
             subnet_id: |-
-                - (Required, String, ForceNew) Specifies the subnet ID of the downstream interface
+                - (Required, String, ForceNew) Specifies the ID of the VPC Subnet of the downstream interface
                 (the next hop of the DVR) of the NAT gateway. Changing this creates a new nat gateway.
             vpc_id: |-
                 - (Required, String, ForceNew) Specifies the ID of the VPC this nat gateway belongs to.
@@ -9455,24 +10041,24 @@ resources:
               manifest: |-
                 {
                   "floating_ip_id": "${var.publicip_id}",
-                  "nat_gateway_id": "${var.natgw_id}",
-                  "subnet_id": "${var.subent_id}"
+                  "nat_gateway_id": "${flexibleengine_nat_gateway_v2.nat_1.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
                 floating_ip_id: var.publicip_id
-                nat_gateway_id: var.natgw_id
-                subnet_id: var.subent_id
+                nat_gateway_id: flexibleengine_nat_gateway_v2.nat_1.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
             - name: snat_2
               manifest: |-
                 {
                   "cidr": "192.168.10.0/24",
                   "floating_ip_id": "${var.publicip_id}",
-                  "nat_gateway_id": "${var.natgw_id}",
+                  "nat_gateway_id": "${flexibleengine_nat_gateway_v2.nat_1.id}",
                   "source_type": 1
                 }
               references:
                 floating_ip_id: var.publicip_id
-                nat_gateway_id: var.natgw_id
+                nat_gateway_id: flexibleengine_nat_gateway_v2.nat_1.id
         argumentDocs:
             cidr: |-
                 - (Optional) Specifies CIDR, which can be in the format of a network segment or a host IP address.
@@ -9498,7 +10084,7 @@ resources:
                 Changing this creates a new snat rule.
             status: '- The status of the snat rule.'
             subnet_id: |-
-                - (Optional) ID of the subnet this snat rule connects to.
+                - (Optional) ID of the VPC Subnet this snat rule connects to.
                 This parameter and cidr are alternative. Changing this creates a new snat rule.
         importStatements:
             - terraform import flexibleengine_nat_snat_rule_v2.snat_1 9e0713cb-0a2f-484e-8c7d-daecbb61dbe4
@@ -9756,24 +10342,39 @@ resources:
             - name: port_1
               manifest: |-
                 {
+                  "admin_state_up": "true",
                   "name": "port_1",
-                  "network_id": "${var.subnet_id}"
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
-                network_id: var.subnet_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: port_1
               manifest: |-
                 {
+                  "admin_state_up": "true",
                   "allowed_address_pairs": [
                     {
                       "ip_address": "192.168.0.0/24"
                     }
                   ],
                   "name": "port_1",
-                  "network_id": "${var.subnet_id}"
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
-                network_id: var.subnet_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
         argumentDocs:
             admin_state_up: |-
                 - (Optional) Administrative up/down status for the port
@@ -9805,7 +10406,9 @@ resources:
                 - (Optional) IP address desired in the subnet for this port. If
                 you don't specify ip_address, an available IP address from the specified
                 subnet will be allocated to this port.
-            fixed_ip.subnet_id: '- (Required) The IPv4 or IPv6 subnet ID of the VPC subnet in which to allocate IP address for this port.'
+            fixed_ip.subnet_id: |-
+                - (Required) The ipv4_subnet_id or ipv6_subnet_id of the
+                VPC Subnet in which to allocate IP address for this port.
             mac_address: |-
                 - (Optional) Specify a specific MAC address for the port. Changing
                 this creates a new port.
@@ -9813,7 +10416,7 @@ resources:
                 - (Optional) A unique name for the port. Changing this
                 updates the name of an existing port.
             network_id: |-
-                - (Required) The ID of the VPC subnet to attach the port to. Changing
+                - (Required) The ID of the VPC Subnet to attach the port to. Changing
                 this creates a new port.
             region: |-
                 - (Optional) The region in which to allocate the port. If omitted, the
@@ -9991,12 +10594,12 @@ resources:
                   "port_range_min": 22,
                   "protocol": "tcp",
                   "remote_ip_prefix": "0.0.0.0/0",
-                  "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup_1.id}"
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}"
                 }
               references:
-                security_group_id: flexibleengine_networking_secgroup_v2.secgroup_1.id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
               dependencies:
-                flexibleengine_networking_secgroup_v2.secgroup_1: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
                       "description": "My neutron security group",
                       "name": "secgroup_1"
@@ -10047,11 +10650,11 @@ resources:
         name: flexibleengine_networking_secgroup_v2
         title: flexibleengine_networking_secgroup_v2
         examples:
-            - name: secgroup_1
+            - name: example_secgroup
               manifest: |-
                 {
                   "description": "My neutron security group",
-                  "name": "secgroup_1"
+                  "name": "example-secgroup"
                 }
         argumentDocs:
             delete_default_rules: |-
@@ -10067,7 +10670,7 @@ resources:
                 region argument of the provider is used. Changing this creates a new
                 security group.
         importStatements:
-            - terraform import flexibleengine_networking_secgroup_v2.secgroup_1 38809219-5e8a-4852-9139-6f461c90e8bc
+            - terraform import flexibleengine_networking_secgroup_v2.example_secgroup 38809219-5e8a-4852-9139-6f461c90e8bc
     flexibleengine_networking_subnet_v2:
         subCategory: Deprecated
         description: '""page_title: "flexibleengine_networking_subnet_v2"'
@@ -10164,7 +10767,7 @@ resources:
                       "name": "instance_1",
                       "network": [
                         {
-                          "uuid": "${var.subnet_id}"
+                          "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                         }
                       ]
                     }
@@ -10173,13 +10776,13 @@ resources:
                       "name": "instance_2",
                       "network": [
                         {
-                          "uuid": "${var.subnet_id}"
+                          "uuid": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                         }
                       ]
                     }
                 flexibleengine_networking_vip_v2.vip_1: |-
                     {
-                      "network_id": "${var.subnet_id}"
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                     }
         argumentDocs:
             id: '- The resource ID.'
@@ -10201,22 +10804,22 @@ resources:
             - name: vip_1
               manifest: |-
                 {
-                  "network_id": "${flexibleengine_vpc_subnet_v1.subnet_1.id}"
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                 }
               references:
-                network_id: flexibleengine_vpc_subnet_v1.subnet_1.id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
               dependencies:
-                flexibleengine_vpc_subnet_v1.subnet_1: |-
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
                     {
-                      "cidr": "${var.subnet_cidr}",
-                      "gateway_ip": "${var.subnet_gateway_ip}",
-                      "name": "${var.subnet_name}",
-                      "vpc_id": "${flexibleengine_vpc_v1.vpc_1.id}"
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
-                flexibleengine_vpc_v1.vpc_1: |-
+                flexibleengine_vpc_v1.example_vpc: |-
                     {
-                      "cidr": "${var.vpc_cidr}",
-                      "name": "${var.vpc_name}"
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             create: '- Default is 2 minute.'
@@ -10232,7 +10835,7 @@ resources:
             mac_address: '- The MAC address of the VIP.'
             name: '- (Optional, String) Specifies a unique name for the VIP.'
             network_id: |-
-                - (Required, String, ForceNew) Specifies the ID of the VPC subnet to which the VIP belongs.
+                - (Required, String, ForceNew) Specifies the ID of the VPC Subnet to which the VIP belongs.
                 Changing this will create a new VIP resource.
             region: |-
                 - (Optional, String, ForceNew) Specifies the region in which to create the VIP.
@@ -10934,26 +11537,38 @@ resources:
                   ],
                   "flavor": "rds.pg.s3.medium.4",
                   "name": "terraform_test_rds_instance",
-                  "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup.id}",
-                  "subnet_id": "${var.subnet_id}",
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "volume": [
                     {
                       "size": 100,
                       "type": "COMMON"
                     }
                   ],
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 db.password: var.db_password
-                security_group_id: flexibleengine_networking_secgroup_v2.secgroup.id
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_networking_secgroup_v2.secgroup: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
                       "description": "terraform security group acceptance test",
                       "name": "terraform_test_security_group"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
             - name: instance
               manifest: |-
@@ -10979,26 +11594,38 @@ resources:
                   "flavor": "rds.pg.s3.large.4.ha",
                   "ha_replication_mode": "async",
                   "name": "terraform_test_rds_instance",
-                  "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup.id}",
-                  "subnet_id": "${var.subnet_id}",
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "volume": [
                     {
                       "size": 100,
                       "type": "COMMON"
                     }
                   ],
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 db.password: var.db_password
-                security_group_id: flexibleengine_networking_secgroup_v2.secgroup.id
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_networking_secgroup_v2.secgroup: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
                       "description": "terraform security group acceptance test",
                       "name": "terraform_test_security_group"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
             - name: instance
               manifest: |-
@@ -11022,8 +11649,8 @@ resources:
                   ],
                   "flavor": "rds.pg.s3.medium.4",
                   "name": "terraform_test_rds_instance",
-                  "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup.id}",
-                  "subnet_id": "${var.subnet_id}",
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "volume": [
                     {
                       "disk_encryption_id": "${flexibleengine_kms_key_v1.key.id}",
@@ -11031,14 +11658,14 @@ resources:
                       "type": "COMMON"
                     }
                   ],
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 db.password: var.db_password
-                security_group_id: flexibleengine_networking_secgroup_v2.secgroup.id
-                subnet_id: var.subnet_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 volume.disk_encryption_id: flexibleengine_kms_key_v1.key.id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
                 flexibleengine_kms_key_v1.key: |-
                     {
@@ -11046,10 +11673,22 @@ resources:
                       "key_alias": "key_1",
                       "key_description": "first test key"
                     }
-                flexibleengine_networking_secgroup_v2.secgroup: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
                       "description": "terraform security group acceptance test",
                       "name": "terraform_test_security_group"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
             - name: instance_1
               manifest: '{}'
@@ -11121,7 +11760,7 @@ resources:
             ssl_enable: '- (Optional, Bool) Specifies whether to enable the SSL for MySQL database.'
             status: '- Indicates the DB instance status.'
             subnet_id: |-
-                - (Required, String, ForceNew) Specifies the network ID of a subnet.
+                - (Required, String, ForceNew) Specifies the ID of the VPC Subnet.
                 Changing this parameter will create a new resource.
             tags: |-
                 - (Optional, Map) A mapping of tags to assign to the RDS instance.
@@ -11210,10 +11849,10 @@ resources:
                 availability_zone: var.primary_az
                 replica_of_id: flexibleengine_rds_instance_v3.instance_1.id
               dependencies:
-                flexibleengine_networking_secgroup_v2.secgroup: |-
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
                     {
-                      "description": "security group acceptance test",
-                      "name": "test_security_group"
+                      "description": "terraform security group acceptance test",
+                      "name": "terraform_test_security_group"
                     }
                 flexibleengine_rds_instance_v3.instance_1: |-
                     {
@@ -11236,15 +11875,27 @@ resources:
                       ],
                       "flavor": "rds.pg.s1.medium",
                       "name": "terraform_test_rds_instance",
-                      "security_group_id": "${flexibleengine_networking_secgroup_v2.secgroup.id}",
-                      "subnet_id": "${var.subnet_id}",
+                      "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
+                      "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                       "volume": [
                         {
                           "size": 100,
                           "type": "ULTRAHIGH"
                         }
                       ],
-                      "vpc_id": "${var.vpc_id}"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             availability_zone: |-
@@ -11329,7 +11980,7 @@ resources:
                   "parameters": {
                     "image_id": "${var.image_id}",
                     "instance_type": "${var.instance_type}",
-                    "network_id": "${var.network_id}"
+                    "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}"
                   },
                   "template_body": " {\n   \"heat_template_version\": \"2016-04-08\",\n   \"description\": \"Simple template to deploy\",\n   \"parameters\": {\n       \"image_id\": {\n           \"type\": \"string\",\n           \"description\": \"Image to be used for compute instance\",\n           \"label\": \"Image ID\"\n       },\n       \"network_id\": {\n           \"type\": \"string\",\n           \"description\": \"The Network to be used\",\n           \"label\": \"Network UUID\"\n       },\n       \"instance_type\": {\n           \"type\": \"string\",\n           \"description\": \"Type of instance (Flavor) to be used\",\n           \"label\": \"Instance Type\"\n       }\n   },\n   \"resources\": {\n       \"my_instance\": {\n           \"type\": \"OS::Nova::Server\",\n           \"properties\": {\n               \"image\": {\n                   \"get_param\": \"image_id\"\n               },\n               \"flavor\": {\n                   \"get_param\": \"instance_type\"\n               },\n               \"networks\": [{\n                   \"network\": {\n                       \"get_param\": \"network_id\"\n                   }\n               }]\n           }\n       }\n   },\n   \"outputs\":  {\n     \"InstanceIP\":{\n       \"description\": \"Instance IP\",\n       \"value\": {  \"get_attr\": [\"my_instance\", \"first_address\"]  }\n     }\n   }\n}\n",
                   "timeout_mins": 60
@@ -11678,10 +12329,34 @@ resources:
             - name: drill_1
               manifest: |-
                 {
-                  "drill_vpc_id": "{{ drill_vpc_id }}",
-                  "group_id": "{{ protectiongroup_id }}",
+                  "drill_vpc_id": "${flexibleengine_vpc_v1.example_vpc_drill.id}",
+                  "group_id": "${flexibleengine_sdrs_protectiongroup_v1.group_1.id}",
                   "name": "drill_1"
                 }
+              references:
+                drill_vpc_id: flexibleengine_vpc_v1.example_vpc_drill.id
+                group_id: flexibleengine_sdrs_protectiongroup_v1.group_1.id
+              dependencies:
+                flexibleengine_sdrs_protectiongroup_v1.group_1: |-
+                    {
+                      "description": "test description",
+                      "domain_id": "${data.flexibleengine_sdrs_domain_v1.domain_1.id}",
+                      "dr_type": "migration",
+                      "name": "group_1",
+                      "source_availability_zone": "eu-west-0a",
+                      "source_vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}",
+                      "target_availability_zone": "eu-west-0b"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "name": "example-vpc"
+                    }
+                flexibleengine_vpc_v1.example_vpc_drill: |-
+                    {
+                      "cidr": "192.168.1.0/24",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             drill_vpc_id: '- (Required) Specifies the ID used for a DR drill. Changing this creates a new drill.'
             group_id: '- (Required) Specifies the ID of a protection group. Changing this creates a new drill.'
@@ -11719,8 +12394,13 @@ resources:
                       "dr_type": "migration",
                       "name": "group_1",
                       "source_availability_zone": "eu-west-0a",
-                      "source_vpc_id": "{{ vpc_id }}",
+                      "source_vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}",
                       "target_availability_zone": "eu-west-0b"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             cluster_id: '- (Optional) Specifies the ID of a storage pool. Changing this creates a new instance.'
@@ -11740,8 +12420,8 @@ resources:
                 - (Optional) Specifies the IP address of the primary NIC on the target server.
                 Changing this creates a new instance.
             primary_subnet_id: |-
-                - (Optional) Specifies the subnet ID of the primary NIC on the target server.
-                Changing this creates a new instance.
+                - (Optional) Specifies the ipv4_subnet_id or ipv6_subnet_id of the
+                VPC Subnet of the primary NIC on the target server. Changing this creates a new instance.
             server_id: '- (Required) Specifies the ID of the source server. Changing this creates a new instance.'
             target_server: '-  ID of the target server.'
         importStatements: []
@@ -11759,11 +12439,18 @@ resources:
                   "dr_type": "migration",
                   "name": "group_1",
                   "source_availability_zone": "eu-west-0a",
-                  "source_vpc_id": "{{ vpc_id }}",
+                  "source_vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}",
                   "target_availability_zone": "eu-west-0b"
                 }
               references:
                 domain_id: data.flexibleengine_sdrs_domain_v1.domain_1.id
+                source_vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             description: '- (Optional) The description of a protection group. Changing this creates a new group.'
             domain_id: '- (Required) Specifies the ID of an active-active domain. Changing this creates a new group.'
@@ -11811,7 +12498,7 @@ resources:
                       "dr_type": "migration",
                       "name": "group_1",
                       "source_availability_zone": "eu-west-0a",
-                      "source_vpc_id": "{{ vpc_id }}",
+                      "source_vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}",
                       "target_availability_zone": "eu-west-0b"
                     }
                 flexibleengine_sdrs_replication_pair_v1.replication_1: |-
@@ -11820,6 +12507,11 @@ resources:
                       "group_id": "${flexibleengine_sdrs_protectiongroup_v1.group_1.id}",
                       "name": "replication_1",
                       "volume_id": "{{ volume_id }}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             device: '- (Required) Specifies the device name, eg. /dev/vdb. Changing this creates a new replication attach.'
@@ -11852,8 +12544,13 @@ resources:
                       "dr_type": "migration",
                       "name": "group_1",
                       "source_availability_zone": "eu-west-0a",
-                      "source_vpc_id": "{{ vpc_id }}",
+                      "source_vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}",
                       "target_availability_zone": "eu-west-0b"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             delete_target_volume: |-
@@ -11882,11 +12579,11 @@ resources:
             - name: rule_1
               manifest: |-
                 {
-                  "access_to": "${var.vpc_id}",
+                  "access_to": "${flexibleengine_vpc_v1.example_vpc.id}",
                   "sfs_id": "${flexibleengine_sfs_file_system_v2.share-file.id}"
                 }
               references:
-                access_to: var.vpc_id
+                access_to: flexibleengine_vpc_v1.example_vpc.id
                 sfs_id: flexibleengine_sfs_file_system_v2.share-file.id
               dependencies:
                 flexibleengine_sfs_file_system_v2.share-file: |-
@@ -11895,10 +12592,15 @@ resources:
                       "share_proto": "NFS",
                       "size": 100
                     }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: rule_1
               manifest: |-
                 {
-                  "access_to": "${join(\"#\", [var.vpc_id, \"192.168.10.0/24\", \"0\", \"no_all_squash,no_root_squash\"])}",
+                  "access_to": "${join(\"#\", [flexibleengine_vpc_v1.example_vpc.id, \"192.168.10.0/24\", \"0\", \"no_all_squash,no_root_squash\"])}",
                   "sfs_id": "${flexibleengine_sfs_file_system_v2.share-file.id}"
                 }
               references:
@@ -11909,6 +12611,11 @@ resources:
                       "name": "${var.share_name}",
                       "share_proto": "NFS",
                       "size": 100
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             access_level: |-
@@ -11935,21 +12642,27 @@ resources:
               manifest: |-
                 {
                   "access_level": "rw",
-                  "access_to": "${var.vpc_id}",
+                  "access_to": "${flexibleengine_vpc_v1.example_vpc.id}",
                   "description": "${var.share_description}",
                   "name": "${var.share_name}",
                   "share_proto": "NFS",
                   "size": 100
                 }
               references:
-                access_to: var.vpc_id
+                access_to: flexibleengine_vpc_v1.example_vpc.id
                 description: var.share_description
                 name: var.share_name
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: share-file
               manifest: |-
                 {
                   "access_level": "rw",
-                  "access_to": "${var.vpc_id}",
+                  "access_to": "${flexibleengine_vpc_v1.example_vpc.id}",
                   "description": "${var.share_description}",
                   "metadata": {
                     "#sfs_crypt_alias": "${flexibleengine_kms_key_v1.mykey.key_alias}",
@@ -11961,7 +12674,7 @@ resources:
                   "size": 100
                 }
               references:
-                access_to: var.vpc_id
+                access_to: flexibleengine_vpc_v1.example_vpc.id
                 description: var.share_description
                 name: var.share_name
               dependencies:
@@ -11969,6 +12682,11 @@ resources:
                     {
                       "key_alias": "kms_sfs",
                       "pending_days": "7"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             access_level: |-
@@ -12012,17 +12730,35 @@ resources:
                 {
                   "availability_zone": "${var.test_az}",
                   "name": "sfs-turbo-1",
-                  "security_group_id": "${var.secgroup_id}",
+                  "security_group_id": "${flexibleengine_networking_secgroup_v2.example_secgroup.id}",
                   "share_proto": "NFS",
                   "size": 500,
-                  "subnet_id": "${var.subnet_id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 availability_zone: var.test_az
-                security_group_id: var.secgroup_id
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                security_group_id: flexibleengine_networking_secgroup_v2.example_secgroup.id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
+                    {
+                      "description": "My neutron security group",
+                      "name": "example-secgroup"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             availability_zone: |-
                 - (Required) Specifies the availability zone where the file system is located.
@@ -12046,7 +12782,7 @@ resources:
                 Changing this will create a new resource.
             size: '- (Required) Specifies the capacity of a common file system, in GB. The value ranges from 500 to 32768.'
             status: '- The status of the SFS Turbo file system.'
-            subnet_id: '- (Required) Specifies the network ID of the subnet. Changing this will create a new resource.'
+            subnet_id: '- (Required) Specifies the ID of the VPC Subnet. Changing this will create a new resource.'
             version: '- The version ID of the SFS Turbo file system.'
             vpc_id: '- (Required) Specifies the VPC ID. Changing this will create a new resource.'
         importStatements:
@@ -12137,6 +12873,174 @@ resources:
                 failed message is discarded.
             topic_urn: '- Resource identifier of a topic, which is unique.'
             update_time: '- Time when the topic was updated.'
+        importStatements: []
+    flexibleengine_sms_server_template:
+        subCategory: Server Migration Service (SMS)
+        name: flexibleengine_sms_server_template
+        title: ""
+        examples:
+            - name: demo
+              manifest: |-
+                {
+                  "availability_zone": "${data.flexibleengine_availability_zones.demo.names[0]}",
+                  "name": "demo"
+                }
+              references:
+                availability_zone: data.flexibleengine_availability_zones.demo.names[0]
+            - name: demo
+              manifest: |-
+                {
+                  "availability_zone": "${data.flexibleengine_availability_zones.demo.names[0]}",
+                  "name": "demo",
+                  "security_group_ids": [
+                    "${var.secgroup_id}"
+                  ],
+                  "subnet_ids": [
+                    "${var.subent_id}"
+                  ],
+                  "vpc_id": "${var.vpc_id}"
+                }
+              references:
+                availability_zone: data.flexibleengine_availability_zones.demo.names[0]
+                vpc_id: var.vpc_id
+        argumentDocs:
+            availability_zone: '- (Required, String) Specifies the availability zone where the target server is located.'
+            bandwidth_size: |-
+                - (Optional, Int) Specifies the bandwidth size in Mbit/s about the public IP address
+                that will be used for migration.
+            create: '- Default is 5 minute.'
+            delete: '- Default is 5 minute.'
+            flavor: '- (Optional, String) Specifies the flavor ID for the target server.'
+            id: '- The resource ID in UUID format.'
+            name: '- (Required, String) Specifies the server template name.'
+            project_id: |-
+                - (Optional, String) Specifies the project ID where the target server is located.
+                If omitted, the default project in the region will be used.
+            region: |-
+                - (Optional, String) Specifies the region where the target server is located.
+                If omitted, the provider-level region will be used.
+            security_group_ids: |-
+                - (Optional, List) Specifies an array of one or more security group IDs to associate with
+                the target server. If omitted or set to ["autoCreate"], a new security group will be created automatically during migration.
+            subnet_ids: |-
+                - (Optional, List) Specifies an array of one or more VPC subnet IDs to attach to the target server.
+                If omitted or set to ["autoCreate"], a new subnet will be created automatically during migration.
+            target_server_name: '- (Optional, String) Specifies the name of the target server. Defaults to the template name.'
+            update: '- Default is 5 minute.'
+            volume_type: |-
+                - (Optional, String) Specifies the disk type of the target server. Available values are: SAS, SSD,
+                GPSSD and ESSD, defaults to SAS.
+            vpc_id: |-
+                - (Optional, String) Specifies the ID of the VPC which the target server belongs to.
+                If omitted or set to "autoCreate", a new VPC will be created automatically during migration.
+            vpc_name: '- The name of the VPC which the target server belongs to.'
+        importStatements: []
+    flexibleengine_sms_task:
+        subCategory: Server Migration Service (SMS)
+        name: flexibleengine_sms_task
+        title: ""
+        examples:
+            - name: migration
+              manifest: |-
+                {
+                  "action": "start",
+                  "os_type": "LINUX",
+                  "source_server_id": "${var.source_server}",
+                  "type": "MIGRATE_FILE",
+                  "vm_template_id": "${var.template_id}"
+                }
+              references:
+                source_server_id: var.source_server
+                vm_template_id: var.template_id
+            - name: demo
+              manifest: '{}'
+        argumentDocs:
+            action: |-
+                - (Optional, String) Specifies the operation after the task is created.
+                The value can be start, stop and restart.
+            create: '- Default is 5 minute.'
+            enterprise_project_id: '- The enterprise project id of the target server.'
+            id: '- The resource ID in UUID format.'
+            migrate_speed: '- The migration rate, in MB/s.'
+            migration_ip: |-
+                - (Optional, String, ForceNew) Specifies the IP address of the target server.
+                Use the EIP of the target server if the migration network type is Internet.
+                Use the private IP address of the target server if the migration network type is Direct Connect or VPN.
+                Changing this parameter will create a new resource.
+            os_type: |-
+                - (Required, String, ForceNew) Specifies the OS type of the source server. The value can be WINDOWS and LINUX.
+                Changing this parameter will create a new resource.
+            physical_volumes.device_type: |-
+                - (Required, String, ForceNew) Specifies the partition type. The value can be NORMAL and OS.
+                Changing this parameter will create a new resource.
+            physical_volumes.file_system: |-
+                - (Required, String, ForceNew) Specifies the file system type, e.g. "ext4".
+                Changing this parameter will create a new resource.
+            physical_volumes.index: |-
+                - (Required, Int, ForceNew) Specifies the serial number of the volume.
+                Changing this parameter will create a new resource.
+            physical_volumes.mount_point: |-
+                - (Required, String, ForceNew) Specifies the mount point, e.g. "/".
+                Changing this parameter will create a new resource.
+            physical_volumes.name: |-
+                - (Required, String, ForceNew) Specifies the volume name. In Windows, it indicates the drive letter,
+                and in Linux, it indicates the device ID, e.g. "/dev/sda1".
+                Changing this parameter will create a new resource.
+            physical_volumes.size: '- (Required, int, ForceNew) Specifies the volume size in MB. Changing this parameter will create a new resource.'
+            physical_volumes.used_size: |-
+                - (Optional, int, ForceNew) Specifies the used space in MB.
+                Changing this parameter will create a new resource.
+            physical_volumes.uuid: |-
+                - (Optional, String, ForceNew) Specifies the GUID of the volume.
+                Changing this parameter will create a new resource.
+            project_id: |-
+                - (Optional, String, ForceNew) Specifies the project ID where the target server is located.
+                If omitted, the default project in the region will be used. Changing this parameter will create a new resource.
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region where the target server is located.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            source_server_id: |-
+                - (Required, String, ForceNew) Specifies the ID of the source server.
+                Changing this parameter will create a new resource.
+            start_target_server: |-
+                - (Optional, Bool, ForceNew) Specifies whether to start the target server after the migration.
+                The default value is true. Changing this parameter will create a new resource.
+            state: '- The status of the migration task.'
+            syncing: |-
+                - (Optional, Bool, ForceNew) - Specifies whether to perform a continuous synchronization after the first replication.
+                The default value is false. Changing this parameter will create a new resource.
+            target_server_disks: |-
+                - (Optional, List, ForceNew) Specifies the disk configurations of the target server.
+                If omitted, it will be obtained from the source server. The object
+                is documented below. Changing this parameter will create a new resource.
+            target_server_disks.device_type: |-
+                - (Required, String, ForceNew) Specifies the disk type. The value can be NORMAL and BOOT.
+                Changing this parameter will create a new resource.
+            target_server_disks.disk_id: |-
+                - (Optional, String, ForceNew) Specifies the disk index, e.g. "0".
+                Changing this parameter will create a new resource.
+            target_server_disks.name: |-
+                - (Required, String, ForceNew) Specifies the disk name, e.g. "/dev/sda".
+                Changing this parameter will create a new resource.
+            target_server_disks.physical_volumes: |-
+                - (Optional, List, ForceNew) Specifies an array of physical volume informations.
+                The object is documented below. Changing this parameter will create a new resource.
+            target_server_disks.size: '- (Required, int, ForceNew) Specifies the volume size in MB. Changing this parameter will create a new resource.'
+            target_server_disks.used_size: '- (Optional, int, ForceNew) Specifies the used space in MB. Changing this parameter will create a new resource.'
+            target_server_id: |-
+                - (Optional, String, ForceNew) Specifies the existing server ID as the target server.
+                This parameter and vm_template_id are alternative. Changing this parameter will create a new resource.
+            target_server_name: '- The name of the target server.'
+            type: |-
+                - (Required, String, ForceNew) Specifies the type of the migration task. Available values are
+                MIGRATE_FILE(file-level migration) and MIGRATE_BLOCK(block-level migration).
+                Changing this parameter will create a new resource.
+            use_public_ip: |-
+                - (Optional, Bool, ForceNew) Specifies whether to use a public IP address for migration.
+                The default value is true. Changing this parameter will create a new resource.
+            vm_template_id: |-
+                - (Optional, String, ForceNew) Specifies the template used to create the target server automatically.
+                This parameter and target_server_id are alternative. Changing this parameter will create a new resource.
         importStatements: []
     flexibleengine_swr_organization:
         subCategory: Software Repository for Container (SWR)
@@ -12495,27 +13399,27 @@ resources:
         name: flexibleengine_vpc_eip_associate
         title: flexibleengine_vpc_eip_associate
         examples:
-            - name: associated
+            - name: example_eip_associated
               manifest: |-
                 {
                   "fixed_ip": "192.168.0.100",
-                  "network_id": "${var.network_id}",
-                  "public_ip": "${var.public_address}"
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "public_ip": "${flexibleengine_vpc_eip.example_eip.address}"
                 }
               references:
-                network_id: var.network_id
-                public_ip: var.public_address
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                public_ip: flexibleengine_vpc_eip.example_eip.address
             - name: associated
               manifest: |-
                 {
-                  "port_id": "${data.flexibleengine_networking_port.myport.id}",
-                  "public_ip": "${flexibleengine_vpc_eip.myeip.address}"
+                  "port_id": "${data.flexibleengine_networking_port.example_port.id}",
+                  "public_ip": "${flexibleengine_vpc_eip.example_eip.address}"
                 }
               references:
-                port_id: data.flexibleengine_networking_port.myport.id
-                public_ip: flexibleengine_vpc_eip.myeip.address
+                port_id: data.flexibleengine_networking_port.example_port.id
+                public_ip: flexibleengine_vpc_eip.example_eip.address
               dependencies:
-                flexibleengine_vpc_eip.myeip: |-
+                flexibleengine_vpc_eip.example_eip: |-
                     {
                       "bandwidth": [
                         {
@@ -12540,7 +13444,7 @@ resources:
             id: '- The resource ID in UUID format.'
             mac_address: '- The MAC address of the private IP.'
             network_id: |-
-                - (Optional, String, ForceNew) Specifies the ID of the network to which the fixed_ip belongs.
+                - (Optional, String, ForceNew) Specifies the ID of the VPC Subnet to which the fixed_ip belongs.
                 It is mandatory when fixed_ip is set. Changing this creates a new resource.
             port_id: |-
                 - (Optional, String, ForceNew) Specifies an existing port ID to associate with the EIP.
@@ -12655,7 +13559,8 @@ resources:
             vpc_peering_connection_id: |-
                 (Required) - The VPC Peering Connection ID to manage.
                 Changing this creates a new VPC peering connection accepter.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_peering_connection_accepter_v2.peer 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
     flexibleengine_vpc_peering_connection_v2:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_vpc_peering_connection_v2"'
@@ -12667,12 +13572,18 @@ resources:
                 {
                   "name": "${var.peer_conn_name}",
                   "peer_vpc_id": "${var.accepter_vpc_id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 name: var.peer_conn_name
                 peer_vpc_id: var.accepter_vpc_id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             id: '- The VPC peering connection ID.'
             name: (Required) - Specifies the name of the VPC peering connection. The value can contain 1 to 64 characters.
@@ -12682,7 +13593,8 @@ resources:
             vpc_id: |-
                 (Required) - Specifies the ID of a VPC involved in a VPC peering connection.
                 Changing this creates a new VPC peering connection.
-        importStatements: []
+        importStatements:
+            - terraform import flexibleengine_vpc_peering_connection_v2.test_connection 22b76469-08e3-4937-8c1d-7aad34892be1
     flexibleengine_vpc_route:
         subCategory: Virtual Private Cloud (VPC)
         description: '""page_title: "flexibleengine_vpc_route"'
@@ -12695,11 +13607,17 @@ resources:
                   "destination": "192.168.0.0/16",
                   "nexthop": "${var.nexthop}",
                   "type": "peering",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 nexthop: var.nexthop
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: vpc_route
               manifest: |-
                 {
@@ -12707,12 +13625,18 @@ resources:
                   "nexthop": "${var.nexthop}",
                   "route_table_id": "${data.flexibleengine_vpc_route_table.rtb.id}",
                   "type": "ecs",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 nexthop: var.nexthop
                 route_table_id: data.flexibleengine_vpc_route_table.rtb.id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             create: '- Default is 10 minute.'
             delete: '- Default is 10 minute.'
@@ -12758,11 +13682,17 @@ resources:
                       "type": "peering"
                     }
                   ],
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 route.nexthop: var.vpc_peering_id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: demo
               manifest: |-
                 {
@@ -12780,12 +13710,18 @@ resources:
                     }
                   ],
                   "subnets": "${data.flexibleengine_vpc_subnet_ids_v1.subnet_ids.ids}",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 route.nexthop: var.vpc_peering_id
                 subnets: data.flexibleengine_vpc_subnet_ids_v1.subnet_ids.ids
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             create: '- Default is 10 minute.'
             delete: '- Default is 10 minute.'
@@ -12856,47 +13792,41 @@ resources:
         name: flexibleengine_vpc_subnet_v1
         title: flexibleengine_vpc_subnet_v1
         examples:
-            - name: subnet_v1
+            - name: example_subnet
               manifest: |-
                 {
-                  "cidr": "${var.subnet_cidr}",
-                  "gateway_ip": "${var.subnet_gateway_ip}",
-                  "name": "${var.subnet_name}",
-                  "vpc_id": "${flexibleengine_vpc_v1.vpc_v1.id}"
+                  "cidr": "192.168.0.0/24",
+                  "gateway_ip": "192.168.0.1",
+                  "name": "example-vpc-subnet",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                cidr: var.subnet_cidr
-                gateway_ip: var.subnet_gateway_ip
-                name: var.subnet_name
-                vpc_id: flexibleengine_vpc_v1.vpc_v1.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_vpc_v1.vpc_v1: |-
+                flexibleengine_vpc_v1.example_vpc: |-
                     {
-                      "cidr": "${var.vpc_cidr}",
-                      "name": "${var.vpc_name}"
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
-            - name: subnet_with_tags
+            - name: example_subnet_with_tags
               manifest: |-
                 {
-                  "cidr": "${var.subnet_cidr}",
-                  "gateway_ip": "${var.subnet_gateway_ip}",
-                  "name": "${var.subnet_name}",
+                  "cidr": "192.168.0.0/24",
+                  "gateway_ip": "192.168.0.1",
+                  "name": "example-vpc-subnet-with-tags",
                   "tags": {
                     "foo": "bar",
                     "key": "value"
                   },
-                  "vpc_id": "${flexibleengine_vpc_v1.vpc_v1.id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                cidr: var.subnet_cidr
-                gateway_ip: var.subnet_gateway_ip
-                name: var.subnet_name
-                vpc_id: flexibleengine_vpc_v1.vpc_v1.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
-                flexibleengine_vpc_v1.vpc_v1: |-
+                flexibleengine_vpc_v1.example_vpc: |-
                     {
-                      "cidr": "${var.vpc_cidr}",
-                      "name": "${var.vpc_name}"
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
                     }
         argumentDocs:
             availability_zone: |-
@@ -12945,28 +13875,22 @@ resources:
         name: flexibleengine_vpc_v1
         title: flexibleengine_vpc_v1
         examples:
-            - name: vpc_v1
+            - name: example_vpc
               manifest: |-
                 {
-                  "cidr": "${var.vpc_cidr}",
-                  "name": "${var.vpc_name}"
+                  "cidr": "192.168.0.0/16",
+                  "name": "example-vpc"
                 }
-              references:
-                cidr: var.vpc_cidr
-                name: var.vpc_name
-            - name: vpc_with_tags
+            - name: example_vpc_with_tags
               manifest: |-
                 {
-                  "cidr": "${var.vpc_cidr}",
-                  "name": "${var.vpc_name}",
+                  "cidr": "192.168.0.0/16",
+                  "name": "example-vpc-with-tags",
                   "tags": {
                     "foo": "bar",
                     "key": "value"
                   }
                 }
-              references:
-                cidr: var.vpc_cidr
-                name: var.vpc_name
         argumentDocs:
             cidr: |-
                 - (Required, String) Specifies the range of available subnets in the VPC. The value ranges from 10.0.0.0/8 to
@@ -13003,6 +13927,18 @@ resources:
               references:
                 service_id: flexibleengine_vpcep_service.demo.id
               dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
                 flexibleengine_vpcep_endpoint.demo: |-
                     {
                       "enable_dns": true,
@@ -13014,9 +13950,9 @@ resources:
                           ]
                         }
                       ],
-                      "network_id": "${var.network_id}",
+                      "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                       "service_id": "${flexibleengine_vpcep_service.demo.id}",
-                      "vpc_id": "${var.vpc_id}"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
                 flexibleengine_vpcep_service.demo: |-
                     {
@@ -13058,30 +13994,55 @@ resources:
                 {
                   "enable_dns": true,
                   "enable_whitelist": true,
-                  "network_id": "${var.network_id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "service_id": "${data.flexibleengine_vpcep_public_services.cloud_service.services[0].id}",
-                  "vpc_id": "${var.vpc_id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}",
                   "whitelist": [
                     "192.168.0.0/24"
                   ]
                 }
               references:
-                network_id: var.network_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 service_id: data.flexibleengine_vpcep_public_services.cloud_service.services[0].id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
             - name: demo
               manifest: |-
                 {
                   "enable_dns": true,
-                  "network_id": "${var.network_id}",
+                  "network_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
                   "service_id": "${flexibleengine_vpcep_service.demo.id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
-                network_id: var.network_id
+                network_id: flexibleengine_vpc_subnet_v1.example_subnet.id
                 service_id: flexibleengine_vpcep_service.demo.id
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
                 flexibleengine_vpcep_service.demo: |-
                     {
                       "name": "demo-service",
@@ -13093,7 +14054,7 @@ resources:
                         }
                       ],
                       "server_type": "VM",
-                      "vpc_id": "${var.service_vpc_id}"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc_service.id}"
                     }
         argumentDocs:
             enable_dns: |-
@@ -13147,11 +14108,17 @@ resources:
                     }
                   ],
                   "server_type": "VM",
-                  "vpc_id": "${var.vpc_id}"
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 port_id: var.vm_port
-                vpc_id: var.vpc_id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             approval: (Optional) - Specifies whether connection approval is required. The default value is false.
             connections: '- An array of VPC endpoints connect to the VPC endpoint service. Structure is documented below.'
@@ -13263,13 +14230,25 @@ resources:
                       "port": 8080,
                       "server_protocol": "HTTP",
                       "type": "ipv4",
-                      "vpc_id": "${var.vpc_id}"
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                     }
                   ]
                 }
               references:
                 certificate_id: flexibleengine_waf_certificate.certificate_1.id
-                server.vpc_id: var.vpc_id
+                server.vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
+                flexibleengine_waf_certificate.certificate_1: |-
+                    {
+                      "certificate": "-----BEGIN CERTIFICATE-----\nMIIFazCCA1OgAwIBAgIUN3w1KX8/T/HWVxZIOdHXPhUOnsAwDQYJKoZIhvcNAQEL\nBQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM\n...\ndKvZbPEsygYRIjwyhHHUh/YXH8KDI/uu6u6AxDckQ3rP1BkkKXr5NPBGjVgM3ZI=\n-----END CERTIFICATE-----\n",
+                      "name": "cert_1",
+                      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIJQQIBADANBgkqhkiG9w0BAQEFAASCCSswggknAgEAAoICAQC+9uwFVenCdPD9\n5LWSWMuy4riZW718wxBpYV5Y9N8nM7N0qZLLdpImZrzBbaBldTI+AZGI3Nupuurw\n...\ns9urs/Kk/tbQhsEvu0X8FyGwo0zH6rG8apTFTlac+v4mJ4vlpxSvT5+FW2lgLISE\n+4sM7kp0qO3/p+45HykwBY5iHq3H\n-----END PRIVATE KEY-----\n"
+                    }
         argumentDocs:
             "0": '- The domain name is not connected to WAF,'
             "1": '- The domain name is connected to WAF.'
@@ -13342,17 +14321,35 @@ resources:
                   "ecs_flavor": "${var.ecs_flavor_id}",
                   "name": "instance_1",
                   "security_group": [
-                    "${var.security_group_id}"
+                    "${flexibleengine_networking_secgroup_v2.example_secgroup.id}"
                   ],
                   "specification_code": "waf.instance.professional",
-                  "subnet_id": "${var.subnet_id}",
-                  "vpc_id": "${var.vpc_id}"
+                  "subnet_id": "${flexibleengine_vpc_subnet_v1.example_subnet.id}",
+                  "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
                 }
               references:
                 available_zone: var.az_name
                 ecs_flavor: var.ecs_flavor_id
-                subnet_id: var.subnet_id
-                vpc_id: var.vpc_id
+                subnet_id: flexibleengine_vpc_subnet_v1.example_subnet.id
+                vpc_id: flexibleengine_vpc_v1.example_vpc.id
+              dependencies:
+                flexibleengine_networking_secgroup_v2.example_secgroup: |-
+                    {
+                      "description": "My neutron security group",
+                      "name": "example-secgroup"
+                    }
+                flexibleengine_vpc_subnet_v1.example_subnet: |-
+                    {
+                      "cidr": "192.168.0.0/24",
+                      "gateway_ip": "192.168.0.1",
+                      "name": "example-vpc-subnet",
+                      "vpc_id": "${flexibleengine_vpc_v1.example_vpc.id}"
+                    }
+                flexibleengine_vpc_v1.example_vpc: |-
+                    {
+                      "cidr": "192.168.0.0/16",
+                      "name": "example-vpc"
+                    }
         argumentDocs:
             "0": '- Instance is creating.'
             "1": '- Instance has created.'
@@ -13391,8 +14388,8 @@ resources:
                 - (Required, String, ForceNew) The specification code of instance. Different specifications have
                 different throughput. Changing this will create a new instance. Values are:
             subnet_id: |-
-                - (Required, String, ForceNew) The subnet id of WAF dedicated instance VPC. Changing this will create a
-                new instance.
+                - (Required, String, ForceNew) The ID of the VPC Subnet.
+                Changing this will create a new instance.
             upgradable: '- The instance is to support upgrades. 0: Cannot be upgraded, 1: Can be upgraded.'
             vpc_id: |-
                 - (Required, String, ForceNew) The VPC id of WAF dedicated instance. Changing this will create a new

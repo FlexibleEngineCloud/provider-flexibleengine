@@ -197,9 +197,9 @@ spec:
                       create a new engine.
                     type: string
                   networkId:
-                    description: Specifies the network ID of the subnet to which the
-                      dedicated microservice engine belongs. Changing this will create
-                      a new engine.
+                    description: Specifies the ID of VPC the subnet to which the dedicated
+                      microservice engine belongs. Changing this will create a new
+                      engine.
                     type: string
                   networkIdRef:
                     description: Reference to a VPCSubnet in vpc to populate networkId.

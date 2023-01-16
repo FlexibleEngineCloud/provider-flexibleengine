@@ -25,12 +25,12 @@ metadata:
   annotations:
     meta.upbound.io/example-id: rds/v1beta1/readreplica
   labels:
-    testing.upbound.io/example-name: secgroup
-  name: secgroup
+    testing.upbound.io/example-name: example_secgroup
+  name: example-secgroup
 spec:
   forProvider:
-    description: security group acceptance test
-    name: test_security_group
+    description: terraform security group acceptance test
+    name: terraform_test_security_group
 
 ---
 
@@ -61,16 +61,50 @@ spec:
     name: terraform_test_rds_instance
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: secgroup
+        testing.upbound.io/example-name: example_secgroup
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
     volume:
     - size: 100
       type: ULTRAHIGH
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/readreplica
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/readreplica
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

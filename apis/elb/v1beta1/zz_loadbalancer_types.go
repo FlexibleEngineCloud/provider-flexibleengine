@@ -89,9 +89,10 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	VipAddress *string `json:"vipAddress,omitempty" tf:"vip_address,omitempty"`
 
-	// The network on which to allocate the
-	// loadbalancer's address. A tenant can only create Loadbalancers on networks
-	// authorized by policy (e.g. networks that belong to them or networks that
+	// The ipv4_subnet_id or ipv6_subnet_id of the
+	// VPC Subnet on which to allocate the loadbalancer's address.
+	// A tenant can only create Loadbalancers on networks authorized
+	// by policy (e.g. networks that belong to them or networks that
 	// are shared).  Changing this creates a new loadbalancer.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional

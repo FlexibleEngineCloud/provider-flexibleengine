@@ -383,7 +383,7 @@ spec:
                       type: object
                     type: array
                   subnetId:
-                    description: Specifies the id of the subnet.
+                    description: Specifies the ID of the VPC Subnet.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

@@ -17,6 +17,7 @@ type GroupEnvironmentObservation struct {
 
 	// Specifies an array of one or more APIG environment variables. The object structure is
 	// documented below. The environment variables of different groups are isolated in the same environment.
+	// The array of one or more environment variables.
 	// +kubebuilder:validation:Required
 	Variable []VariableObservation `json:"variable,omitempty" tf:"variable,omitempty"`
 }
@@ -24,11 +25,13 @@ type GroupEnvironmentObservation struct {
 type GroupEnvironmentParameters struct {
 
 	// Specifies the APIG environment ID of the associated APIG group.
+	// The ID of the environment to which the variables belongs.
 	// +kubebuilder:validation:Required
 	EnvironmentID *string `json:"environmentId" tf:"environment_id,omitempty"`
 
 	// Specifies an array of one or more APIG environment variables. The object structure is
 	// documented below. The environment variables of different groups are isolated in the same environment.
+	// The array of one or more environment variables.
 	// +kubebuilder:validation:Required
 	Variable []VariableParameters `json:"variable" tf:"variable,omitempty"`
 }
@@ -37,17 +40,22 @@ type GroupObservation struct {
 
 	// Specifies an array of one or more APIG environments of the associated APIG group. The
 	// object structure is documented below.
+	// The array of one or more environments of the associated group.
 	// +kubebuilder:validation:Optional
 	Environment []GroupEnvironmentObservation `json:"environment,omitempty" tf:"environment,omitempty"`
 
 	// ID of the API group.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Registration time, in RFC-3339 format.
-	RegistraionTime *string `json:"registraionTime,omitempty" tf:"registraion_time,omitempty"`
+	// The registration time.
+	RegistrationTime *string `json:"registrationTime,omitempty" tf:"registration_time,omitempty"`
 
 	// Time when the API group was last modified, in RFC-3339 format.
+	// schema: Deprecated; The latest update time of the group.
 	UpdateTime *string `json:"updateTime,omitempty" tf:"update_time,omitempty"`
+
+	// The latest update time of the group.
+	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type GroupParameters struct {
@@ -55,16 +63,19 @@ type GroupParameters struct {
 	// Specifies the description about the API group. The description contain a maximum of
 	// 255 characters and the angle brackets (< and >) are not allowed. Chinese characters must be in UTF-8 or Unicode
 	// format.
+	// The group description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies an array of one or more APIG environments of the associated APIG group. The
 	// object structure is documented below.
+	// The array of one or more environments of the associated group.
 	// +kubebuilder:validation:Optional
 	Environment []GroupEnvironmentParameters `json:"environment,omitempty" tf:"environment,omitempty"`
 
 	// Specifies an ID of the APIG dedicated instance to which the API group
 	// belongs to. Changing this will create a new API group resource.
+	// The ID of the dedicated instance to which the group belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -80,11 +91,13 @@ type GroupParameters struct {
 	// Specifies the name of the API group. The API group name consists of 3 to 64 characters,
 	// starting with a letter. Only letters, digits and underscores (_) are allowed. Chinese characters must be in UTF-8 or
 	// Unicode format.
+	// The group name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the region in which to create the API group resource. If omitted,
 	// the provider-level region will be used. Changing this will create a new API group resource.
+	// The region where the dedicated instance is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -92,6 +105,11 @@ type GroupParameters struct {
 type VariableObservation struct {
 
 	// ID of the API group.
+	// The ID of the variable that the group has.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// ID of the API group.
+	// schema: Deprecated; The ID of the variable that the group has.
 	VariableID *string `json:"variableId,omitempty" tf:"variable_id,omitempty"`
 }
 
@@ -101,11 +119,13 @@ type VariableParameters struct {
 	// letter. Only letters, digits, hyphens (-), and underscores (_) are allowed. In the definition of an API, name (
 	// case-sensitive) indicates a variable, such as #Name#. It is replaced by the actual value when the API is published in
 	// an environment. The variable names are not allowed to be repeated for an API group.
+	// The variable name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the environment ariable value, which can contains of 1 to 255 characters. Only
 	// letters, digits and special characters (_-/.:) are allowed.
+	// The variable value.
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }

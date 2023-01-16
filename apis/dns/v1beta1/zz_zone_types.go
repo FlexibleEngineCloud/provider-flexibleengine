@@ -45,7 +45,7 @@ type ZoneObservation struct {
 
 type ZoneParameters struct {
 
-	// A description of the zone.
+	// A description of the zone. Max length is 255 characters.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -69,7 +69,8 @@ type ZoneParameters struct {
 	// +kubebuilder:validation:Optional
 	Router []RouterParameters `json:"router,omitempty" tf:"router,omitempty"`
 
-	// The time to live (TTL) of the zone.
+	// The time to live (TTL) of the zone. TTL ranges from 1 to 2147483647 seconds.
+	// Default is  300.
 	// +kubebuilder:validation:Optional
 	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
@@ -77,13 +78,13 @@ type ZoneParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// Map of additional options. Changing this creates a
-	// new DNS zone.
+	// Map of additional options.
+	// Changing this creates a new DNS zone.
 	// +kubebuilder:validation:Optional
 	ValueSpecs map[string]*string `json:"valueSpecs,omitempty" tf:"value_specs,omitempty"`
 
 	// The type of zone. Can either be public or private.
-	// Changing this creates a new DNS zone.
+	// Default is public. Changing this creates a new DNS zone.
 	// +kubebuilder:validation:Optional
 	ZoneType *string `json:"zoneType,omitempty" tf:"zone_type,omitempty"`
 }

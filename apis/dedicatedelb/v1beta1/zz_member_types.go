@@ -53,7 +53,8 @@ type MemberParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Specifies the subnet in which to access the member.
+	// The ipv4_subnet_id or ipv6_subnet_id of the
+	// VPC Subnet in which to access the member.
 	// The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
 	// If this parameter is not passed, cross-VPC backend has been enabled for the load balancer. In this case,
 	// cross-VPC backend servers must use private IPv4 addresses, and the protocol of the backend server group

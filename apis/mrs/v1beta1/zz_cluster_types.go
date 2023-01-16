@@ -290,7 +290,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	StreamingTaskNodes []StreamingTaskNodesParameters `json:"streamingTaskNodes,omitempty" tf:"streaming_task_nodes,omitempty"`
 
-	// Specifies the network ID of a subnet which bound to the MRS cluster.
+	// Specifies the ID of the VPC Subnet which bound to the MRS cluster.
 	// Changing this will create a new MRS cluster resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()

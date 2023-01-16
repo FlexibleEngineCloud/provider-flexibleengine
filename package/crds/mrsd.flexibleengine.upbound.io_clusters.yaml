@@ -234,11 +234,9 @@ spec:
                     description: MRS cluster running mode.
                     type: number
                   subnetId:
-                    description: 'Subnet ID Obtain the subnet ID from the management
-                      console as follows: Register an account and log in to the management
-                      console. Click Virtual Private Cloud and select Virtual Private
-                      Cloud from the left list. On the Virtual Private Cloud page,
-                      obtain the subnet ID from the list.'
+                    description: Specifies the ID of the VPC Subnet which bound to
+                      the MRS cluster. Changing this will create a new MRS cluster
+                      resource.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

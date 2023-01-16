@@ -65,7 +65,8 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: A description of the record set.
+                    description: A description of the record set. Max length is 255
+                      characters.
                     type: string
                   name:
                     description: The name of the record set. Note the . at the end
@@ -100,11 +101,11 @@ spec:
                     additionalProperties:
                       type: string
                     description: Map of additional options. Changing this creates
-                      a new record set.
+                      a new DNS record set.
                     type: object
                   zoneId:
                     description: The ID of the zone in which to create the record
-                      set. Changing this creates a new DNS  record set.
+                      set. Changing this creates a new DNS record set.
                     type: string
                   zoneIdRef:
                     description: Reference to a Zone to populate zoneId.

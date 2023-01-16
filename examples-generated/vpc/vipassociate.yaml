@@ -31,7 +31,7 @@ spec:
     network:
     - uuidSelector:
         matchLabels:
-          testing.upbound.io/example-name: example
+          testing.upbound.io/example-name: example_subnet
 
 ---
 
@@ -49,7 +49,7 @@ spec:
     network:
     - uuidSelector:
         matchLabels:
-          testing.upbound.io/example-name: example
+          testing.upbound.io/example-name: example_subnet
 
 ---
 
@@ -65,7 +65,7 @@ spec:
   forProvider:
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
 
 ---
 

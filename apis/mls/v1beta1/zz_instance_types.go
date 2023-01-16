@@ -126,7 +126,7 @@ type NetworkParameters struct {
 	// +kubebuilder:validation:Optional
 	SecurityGroup *string `json:"securityGroup,omitempty" tf:"security_group,omitempty"`
 
-	// Specifies the ID of the subnet where the instance resides.
+	// Specifies the ID of the VPC Subnet where the instance resides.
 	// Changing this creates a new instance.
 	// +kubebuilder:validation:Required
 	SubnetID *string `json:"subnetId" tf:"subnet_id,omitempty"`

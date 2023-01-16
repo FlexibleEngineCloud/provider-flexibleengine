@@ -15,8 +15,7 @@ import (
 
 type ClusterObservation struct {
 
-	// Cluster creation time. The format is
-	// ISO8601:YYYY-MM-DDThh:mm:ssZ.
+	// Cluster creation time. The format is ISO8601:YYYY-MM-DDThh:mm:ssZ.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
 	// The private network connection information about the cluster.
@@ -26,13 +25,12 @@ type ClusterObservation struct {
 	// Cluster ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of private network IP address.
+	PrivateIP []*string `json:"privateIp,omitempty" tf:"private_ip,omitempty"`
+
 	// The public network connection information about the cluster.
 	// The object structure is documented below.
 	PublicEndpoints []PublicEndpointsObservation `json:"publicEndpoints,omitempty" tf:"public_endpoints,omitempty"`
-
-	// Public IP address. The object structure is documented below.
-	// +kubebuilder:validation:Optional
-	PublicIP []PublicIPObservation `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 
 	// Cluster status, which can be one of the following: CREATING, AVAILABLE, UNAVAILABLE and CREATION FAILED.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
@@ -43,8 +41,7 @@ type ClusterObservation struct {
 	// Cluster management task.
 	TaskStatus *string `json:"taskStatus,omitempty" tf:"task_status,omitempty"`
 
-	// Last modification time of a cluster. The format is
-	// ISO8601:YYYY-MM-DDThh:mm:ssZ.
+	// Last modification time of a cluster. The format is ISO8601:YYYY-MM-DDThh:mm:ssZ.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 
 	// Data warehouse version
@@ -53,7 +50,7 @@ type ClusterObservation struct {
 
 type ClusterParameters struct {
 
-	// AZ in a cluster
+	// AZ in a cluster.
 	// +kubebuilder:validation:Optional
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
@@ -72,8 +69,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Required
 	NumberOfNode *float64 `json:"numberOfNode" tf:"number_of_node,omitempty"`
 
-	// Service port of a cluster (8000 to 10000). The default
-	// value is 8000.
+	// Service port of a cluster (8000 to 10000). The default value is 8000.
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
@@ -98,7 +94,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDSelector *v1.Selector `json:"securityGroupIdSelector,omitempty" tf:"-"`
 
-	// Subnet ID, which is used for configuring cluster network.
+	// The ID of the VPC Subnet, which is used for configuring cluster network.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional
@@ -163,17 +159,28 @@ type PublicEndpointsParameters struct {
 }
 
 type PublicIPObservation struct {
+}
+
+type PublicIPParameters struct {
 
 	// EIP ID
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +kubebuilder:validation:Optional
 	EIPID *string `json:"eipId,omitempty" tf:"eip_id,omitempty"`
+
+	// Reference to a EIP in eip to populate eipId.
+	// +kubebuilder:validation:Optional
+	EIPIDRef *v1.Reference `json:"eipIdRef,omitempty" tf:"-"`
+
+	// Selector for a EIP in eip to populate eipId.
+	// +kubebuilder:validation:Optional
+	EIPIDSelector *v1.Selector `json:"eipIdSelector,omitempty" tf:"-"`
 
 	// Binding type of an EIP. The value can be
 	// either of the following: auto_assign, not_use and bind_existing.
 	// The default value is not_use.
+	// +kubebuilder:validation:Optional
 	PublicBindType *string `json:"publicBindType,omitempty" tf:"public_bind_type,omitempty"`
-}
-
-type PublicIPParameters struct {
 }
 
 // ClusterSpec defines the desired state of Cluster
