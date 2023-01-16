@@ -11,9 +11,6 @@ spec:
     instanceIdSelector:
       matchLabels:
         testing.upbound.io/example-name: instance_1
-    networkIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: network_1
 
 ---
 

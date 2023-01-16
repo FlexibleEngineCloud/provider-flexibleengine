@@ -31,4 +31,13 @@ func Configure(p *config.Provider) {
 		// source_replica and source_vol_id require flexibleengine_blockstorage_volume_v2 so we can't reference them
 
 	})
+
+	// flexibleengine_compute_volume_attach_v2
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/compute_volume_attach_v2
+	p.AddResourceConfigurator("flexibleengine_compute_volume_attach_v2", func(r *config.Resource) {
+
+		r.References["volume_id"] = config.Reference{
+			Type: tools.GenerateType("evs", "BlockStorageVolume"),
+		}
+	})
 }

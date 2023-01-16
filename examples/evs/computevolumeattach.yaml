@@ -1,0 +1,16 @@
+apiVersion: evs.flexibleengine.upbound.io/v1beta1
+kind: ComputeVolumeAttach
+metadata:
+  annotations:
+    meta.upbound.io/example-id: evs/v1beta1/computevolumeattach
+  labels:
+    testing.upbound.io/example-name: example_evs_computevolumeattach
+  name: example-evs-computevolumeattach
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_instance
+    volumeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_evs_blockstoragevolume
