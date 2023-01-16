@@ -1,5 +1,48 @@
 # Changelog
 
+## [0.2.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.1.2...v0.2.0) (2023-01-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vpc:** remove floatingIPAssociate resource
+* **vpc:** remove network resource
+* **vpc:** remove networkingSubnet resource
+* **vpc:** remove router resource
+* **vpc:** remove routerInterface resource
+* **vpc:** remove networking resources ([#91](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/91))
+* **main:** add tenantName to ProviderConfig.spec
+* **vpc/vip:** remove deprecated subnet_id argument
+
+### Features
+
+* **dcs:** Add dcs examples ([281ff49](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/281ff4931f73f859b1dc3b6ee6358201e59bdd0e))
+* **dms:** Add dms kafka instance example ([c3d3bb2](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/c3d3bb258fd35ac029e37a64436cf5e5aecececd))
+* **dms:** Add dms kafka topic and user examples ([6a84569](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/6a845690deff1489683ce34e640bcbdba1ce3d7e))
+* **dms:** Add kafka instance example ([c3d3bb2](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/c3d3bb258fd35ac029e37a64436cf5e5aecececd))
+* **ecs:** add floatingIpAssociate example ([2c3f301](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/2c3f3013833e143d0fdfb1ef9552b0366e3be109))
+* **ecs:** add interfaceAttach example ([0040d48](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/0040d4831fc9f2559ff7e95faf96c6d1b2807e99))
+* **evs/computevolumeattach:** add example EVS ComputeVolumeAttach ([c2a80a9](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/c2a80a9a741fca3c50fd1c497805efa8e6c9bf3b))
+* **main:** add domainId and tenantId ([c30de00](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/c30de0034ee7654d85366dbf9f899120d02e3fa7))
+* **main:** add tenantName to ProviderConfig.spec ([beb5c2a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/beb5c2ae1f20337cc9d64a7e2121efe4b1081457))
+* **vpc:** add examples ([#74](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/74)) ([cbe31d3](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cbe31d3ed9aece7ed372be39db3e30aae09fe5b5))
+
+
+### Bug Fixes
+
+* **dcs:** add kindmap resource ([aa7e4f5](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/aa7e4f55b330f92ad89a054c275b22c02728d069))
+* **dms:** fix instance_id ([3a17c73](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/3a17c733118f0dab2d0dc294793e86e1ff45765e))
+* **dms:** Fix label example ([c3d3bb2](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/c3d3bb258fd35ac029e37a64436cf5e5aecececd))
+* **elb:** local type in global override ([#97](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/97)) ([1e922e3](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/1e922e372be949ca7f34e858166d805ba7aa0bb0))
+* **vpc/vip:** remove deprecated subnet_id argument ([44f769b](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/44f769b2dd29b768569fe1dfa82235abb4a2b629))
+* **vpc:** fix subnet_id attribute ([8822745](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/88227451a6125ca8d63c6196c7fdddd5bff84da9))
+* **vpc:** remove floatingIPAssociate resource ([cc1101a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cc1101a71c5825bc507757781c465f925f4796ac))
+* **vpc:** remove network resource ([cc1101a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cc1101a71c5825bc507757781c465f925f4796ac))
+* **vpc:** remove networking resources ([#91](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/91)) ([cc1101a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cc1101a71c5825bc507757781c465f925f4796ac))
+* **vpc:** remove networkingSubnet resource ([cc1101a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cc1101a71c5825bc507757781c465f925f4796ac))
+* **vpc:** remove router resource ([cc1101a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cc1101a71c5825bc507757781c465f925f4796ac))
+* **vpc:** remove routerInterface resource ([cc1101a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cc1101a71c5825bc507757781c465f925f4796ac))
+
 ## [0.1.2](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.1.1...v0.1.2) (2023-01-10)
 
 
