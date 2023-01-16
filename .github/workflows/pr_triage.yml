@@ -1,14 +1,23 @@
-name: Pull Request Treatment
+name: PR Triage
 
 on: 
-  pull_request_target:
+  pull_request:
     types: [ opened, edited, reopened, synchronize ]
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
-    name: Label the PR size
+    name: Labeler
     steps:
+      - uses: fuxingloh/multi-labeler@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config-path: .github/labeler.yml
+
       - uses: codelytv/pr-size-labeler@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,7 +33,7 @@ jobs:
           fail_if_xl: 'false'
 
   validate-title:
-    name: Validate PR title
+    name: Validate title
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v5
