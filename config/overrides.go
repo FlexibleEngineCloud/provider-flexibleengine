@@ -1,9 +1,10 @@
 package config
 
 import (
+	"github.com/upbound/upjet/pkg/config"
+
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
-	"github.com/upbound/upjet/pkg/config"
 )
 
 // KnownReferencers adds referencers for fields that are known and common among

@@ -4,8 +4,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	"github.com/upbound/upjet/pkg/config"
+
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 
 	"github.com/upbound/upjet/pkg/types/name"
 )
