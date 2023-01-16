@@ -44,7 +44,7 @@ metadata:
   name: default1
 spec:
   region: eu-west-1
-  domainName: OCB000OOOO
+  domainName: OCB0002447
   credentials:
     source: Secret
     secretRef:

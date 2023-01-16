@@ -4,7 +4,6 @@ package lts
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -28,7 +27,7 @@ func Configure(p *config.Provider) {
 
 		r.References["resource_id"] = config.Reference{
 			Type:      tools.GenerateType("ecs", "Instance"),
-			Extractor: common.PathNetworkPortIDExtractor,
+			Extractor: tools.GenerateExtractor(true, "network", "0", "port"),
 		}
 
 		r.References["log_group_id"] = config.Reference{

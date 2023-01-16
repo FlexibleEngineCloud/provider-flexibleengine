@@ -8,7 +8,7 @@ package v1beta1
 import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -109,7 +109,7 @@ func (mg *Port) ResolveReferences(ctx context.Context, c client.Reader) error {
 	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      common.IDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "id"),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
@@ -194,7 +194,7 @@ func (mg *RouteTable) ResolveReferences(ctx context.Context, c client.Reader) er
 
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Subnets),
-		Extract:       common.IDExtractor(),
+		Extract:       tools.ExtractorParamPathfunc(true, "id"),
 		References:    mg.Spec.ForProvider.SubnetsRefs,
 		Selector:      mg.Spec.ForProvider.SubnetSelector,
 		To: reference.To{
@@ -320,7 +320,7 @@ func (mg *VIP) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      common.IDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "id"),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{

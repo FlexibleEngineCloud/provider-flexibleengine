@@ -8,7 +8,7 @@ package v1beta1
 import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -81,7 +81,7 @@ func (mg *VPCFlowLog) ResolveReferences(ctx context.Context, c client.Reader) er
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ResourceID),
-		Extract:      common.NetworkPortIDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "network", "0", "port"),
 		Reference:    mg.Spec.ForProvider.ResourceIDRef,
 		Selector:     mg.Spec.ForProvider.ResourceIDSelector,
 		To: reference.To{

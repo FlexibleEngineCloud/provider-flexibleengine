@@ -27,7 +27,7 @@ type OBSBucketReplicationParameters struct {
 
 	// Specifies the IAM agency applied to the cross-region replication function.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Agency
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.NameExtractor()
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(false, "name")
 	// +kubebuilder:validation:Optional
 	Agency *string `json:"agency,omitempty" tf:"agency,omitempty"`
 

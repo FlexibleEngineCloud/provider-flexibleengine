@@ -16,28 +16,24 @@ var (
 	// SelfPackagePath is the golang path for this package.
 	SelfPackagePath = fmt.Sprintf("%s/config/common", tools.ModulePath)
 
-	// PathARNExtractor is the golang path to ARNExtractor function
-	// in this package.
-	PathARNExtractor = SelfPackagePath + ".ARNExtractor()"
-
 	// PathTerraformIDExtractor is the golang path to TerraformID extractor
 	// function in this package.
-	PathTerraformIDExtractor = SelfPackagePath + ".TerraformID()"
+	PathTerraformIDExtractor = SelfPackagePath + ".TerraformID()" // Not used
 
 	// PathRegionExtractor is the golang path to RegionExtractor function
-	PathRegionExtractor = SelfPackagePath + ".RegionExtractor()"
+	PathRegionExtractor = SelfPackagePath + ".RegionExtractor()" // Not used
 
 	// PathImageNameExtractor is the golang path to ImageNameExtractor function
-	PathImageNameExtractor = SelfPackagePath + ".ImageNameExtractor()"
+	PathImageNameExtractor = SelfPackagePath + ".ImageNameExtractor()" // Not used
 
 	// PathDBNameExtractor is the golang path to DBNameExtractor function
-	PathDBNameExtractor = SelfPackagePath + ".DBNameExtractor()"
+	PathDBNameExtractor = SelfPackagePath + ".DBNameExtractor()" // Not used
 
 	// PathNameExtractor is the golang path to NameExtractor function
 	PathNameExtractor = SelfPackagePath + ".NameExtractor()"
 
 	// PathBucketNameExtractor is the golang path to BucketNameExtractor function
-	PathBucketNameExtractor = SelfPackagePath + ".BucketNameExtractor()"
+	PathBucketNameExtractor = SelfPackagePath + ".BucketNameExtractor()" // Not used
 
 	// PathAddressExtractor is the golang path to AddressExtractor function
 	PathAddressExtractor = SelfPackagePath + ".AddressExtractor()"
@@ -48,6 +44,15 @@ var (
 	// PathNetworkPortIDExtractor is the golang path to NetworkPortIDExtractor function
 	PathNetworkPortIDExtractor = SelfPackagePath + ".NetworkPortIDExtractor()"
 )
+
+/*
+
+	> DEPRECATED
+	> common PathExtractor functions are deprecated and will be removed in the future.
+	> Please use the functions in the tools package instead.
+	> tools.GenerateExtractor(true, "network", "0", "port")
+
+*/
 
 // NetworkPortIDExtractor extracts network port ID from "status.atProvider.network[0].port"
 func NetworkPortIDExtractor() reference.ExtractValueFn {

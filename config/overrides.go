@@ -3,7 +3,6 @@ package config
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -23,26 +22,11 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				r.References[k] = config.Reference{
 					Type: tools.GenerateType("vpc", "VPC"),
 				}
-				// subnet_id is a reference to a Subnet resource
-			case "subnet_id":
+			// subnet_id and network_id is a reference to a Subnet resource
+			case "subnet_id", "network_id":
 				r.References[k] = config.Reference{
 					Type:      tools.GenerateType("vpc", "VPCSubnet"),
-					Extractor: common.PathIDExtractor,
-				}
-				// if _, ok := r.TerraformResource.Schema["network_id"]; ok {
-				// 	r.References[k] = config.Reference{
-				// 		Type: tools.GenerateType("vpc", "NetworkingSubnet"),
-				// 	}
-				// } else {
-				// 	r.References[k] = config.Reference{
-				// 		Type: tools.GenerateType("vpc", "VPCSubnet"),
-				// 	}
-				// }
-				// network_id is a reference to a Network resource
-			case "network_id":
-				r.References[k] = config.Reference{
-					Type:      tools.GenerateType("vpc", "VPCSubnet"),
-					Extractor: common.PathIDExtractor,
+					Extractor: tools.GenerateExtractor(true, "id"),
 				}
 				// security_group_id is a reference to a SecurityGroup resource
 			case "security_group_id":
@@ -72,7 +56,7 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			case "image_name":
 				r.References[k] = config.Reference{
 					TerraformName: "flexibleengine_images_image_v2",
-					Extractor:     common.PathImageNameExtractor,
+					Extractor:     tools.GenerateExtractor(false, "image_name"),
 				}
 			case "image_id":
 				r.References[k] = config.Reference{

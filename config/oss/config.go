@@ -4,7 +4,6 @@ package oss
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -56,7 +55,7 @@ func Configure(p *config.Provider) {
 		}
 		r.References["agency"] = config.Reference{
 			Type:      tools.GenerateType("iam", "Agency"),
-			Extractor: common.PathNameExtractor,
+			Extractor: tools.GenerateExtractor(false, "name"),
 		}
 	})
 

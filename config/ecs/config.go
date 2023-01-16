@@ -25,7 +25,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_compute_instance_v2", func(r *config.Resource) {
 		r.References["network.uuid"] = config.Reference{
 			Type:      tools.GenerateType("vpc", "VPCSubnet"),
-			Extractor: common.PathIDExtractor,
+			Extractor: tools.GenerateExtractor(true, "id"),
 		}
 
 		r.References["network.port"] = config.Reference{

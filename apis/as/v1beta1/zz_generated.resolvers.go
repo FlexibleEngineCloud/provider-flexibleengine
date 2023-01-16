@@ -13,7 +13,7 @@ import (
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta14 "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
 	v1beta13 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -112,7 +112,7 @@ func (mg *Group) ResolveReferences(ctx context.Context, c client.Reader) error {
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Networks); i3++ {
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Networks[i3].ID),
-			Extract:      common.IDExtractor(),
+			Extract:      tools.ExtractorParamPathfunc(true, "id"),
 			Reference:    mg.Spec.ForProvider.Networks[i3].IDRef,
 			Selector:     mg.Spec.ForProvider.Networks[i3].IDSelector,
 			To: reference.To{

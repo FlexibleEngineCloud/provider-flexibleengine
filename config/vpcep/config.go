@@ -4,7 +4,6 @@ package vpcep
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -16,7 +15,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_vpcep_service", func(r *config.Resource) {
 		r.References["port_id"] = config.Reference{
 			Type:      tools.GenerateType("ecs", "Instance"),
-			Extractor: common.PathNetworkPortIDExtractor,
+			Extractor: tools.GenerateExtractor(true, "network", "0", "port"),
 		}
 	})
 

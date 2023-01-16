@@ -4,7 +4,6 @@ package as
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -50,7 +49,7 @@ func Configure(p *config.Provider) {
 		r.References["networks.id"] = config.Reference{
 			// Require Network ID of VPC Subnet
 			TerraformName: "flexibleengine_vpc_subnet_v1",
-			Extractor:     common.PathIDExtractor,
+			Extractor:     tools.GenerateExtractor(true, "id"),
 		}
 	})
 
