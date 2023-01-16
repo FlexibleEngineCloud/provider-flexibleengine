@@ -32,5 +32,10 @@ func Configure(p *config.Provider) {
 		r.References["inbound_rules"] = config.Reference{
 			Type: tools.GenerateType("netacl", "ACL"),
 		}
+		r.References["subnets"] = config.Reference{
+			TerraformName:     "flexibleengine_vpc_subnet_v1",
+			Extractor:         tools.GenerateExtractor(true, "id"),
+			SelectorFieldName: "SubnetSelector",
+		}
 	})
 }

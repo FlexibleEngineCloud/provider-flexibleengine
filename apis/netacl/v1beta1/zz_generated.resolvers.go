@@ -7,7 +7,9 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -36,6 +38,22 @@ func (mg *ACL) ResolveReferences(ctx context.Context, c client.Reader) error {
 	mg.Spec.ForProvider.InboundRules = reference.ToPtrValues(mrsp.ResolvedValues)
 	mg.Spec.ForProvider.InboundRulesRefs = mrsp.ResolvedReferences
 
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Subnets),
+		Extract:       tools.ExtractorParamPathfunc(true, "id"),
+		References:    mg.Spec.ForProvider.SubnetsRefs,
+		Selector:      mg.Spec.ForProvider.SubnetSelector,
+		To: reference.To{
+			List:    &v1beta1.VPCSubnetList{},
+			Managed: &v1beta1.VPCSubnet{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Subnets")
+	}
+	mg.Spec.ForProvider.Subnets = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.SubnetsRefs = mrsp.ResolvedReferences
+
 	return nil
 }
 
@@ -52,8 +70,8 @@ func (mg *FirewallGroup) ResolveReferences(ctx context.Context, c client.Reader)
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
-			List:    &v1beta1.ProjectList{},
-			Managed: &v1beta1.Project{},
+			List:    &v1beta11.ProjectList{},
+			Managed: &v1beta11.Project{},
 		},
 	})
 	if err != nil {
@@ -78,8 +96,8 @@ func (mg *Policy) ResolveReferences(ctx context.Context, c client.Reader) error 
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
-			List:    &v1beta1.ProjectList{},
-			Managed: &v1beta1.Project{},
+			List:    &v1beta11.ProjectList{},
+			Managed: &v1beta11.Project{},
 		},
 	})
 	if err != nil {
@@ -104,8 +122,8 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
-			List:    &v1beta1.ProjectList{},
-			Managed: &v1beta1.Project{},
+			List:    &v1beta11.ProjectList{},
+			Managed: &v1beta11.Project{},
 		},
 	})
 	if err != nil {

@@ -1,0 +1,14 @@
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: ACL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/acl
+  labels:
+    testing.upbound.io/example-name: example_netacl_acl
+  name: example-netacl-acl
+spec:
+  forProvider:
+    name: example-netacl-acl
+    subnetsRefs:
+      - name: example-subnet
+      - name: example-subnet2

@@ -1,0 +1,18 @@
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1beta1/vpcsubnet
+  labels:
+    testing.upbound.io/example-name: example_subnet2
+  name: example-subnet2
+spec:
+  forProvider:
+    cidr: "192.168.101.0/24"
+    gatewayIp: "192.168.101.254"
+    name: "example-subnet2"
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+    primaryDns: "100.125.0.41"
+    secondaryDns: "100.126.0.41"

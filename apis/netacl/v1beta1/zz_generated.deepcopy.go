@@ -166,6 +166,11 @@ func (in *ACLParameters) DeepCopyInto(out *ACLParameters) {
 			}
 		}
 	}
+	if in.SubnetSelector != nil {
+		in, out := &in.SubnetSelector, &out.SubnetSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Subnets != nil {
 		in, out := &in.Subnets, &out.Subnets
 		*out = make([]*string, len(*in))
@@ -175,6 +180,13 @@ func (in *ACLParameters) DeepCopyInto(out *ACLParameters) {
 				*out = new(string)
 				**out = **in
 			}
+		}
+	}
+	if in.SubnetsRefs != nil {
+		in, out := &in.SubnetsRefs, &out.SubnetsRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
 }

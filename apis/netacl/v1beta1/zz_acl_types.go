@@ -60,9 +60,20 @@ type ACLParameters struct {
 	// +kubebuilder:validation:Optional
 	OutboundRules []*string `json:"outboundRules,omitempty" tf:"outbound_rules,omitempty"`
 
+	// Selector for a list of VPCSubnet in vpc to populate subnets.
+	// +kubebuilder:validation:Optional
+	SubnetSelector *v1.Selector `json:"subnetSelector,omitempty" tf:"-"`
+
 	// A list of the IDs of networks associated with the network ACL.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:selectorFieldName=SubnetSelector
 	// +kubebuilder:validation:Optional
 	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
+
+	// References to VPCSubnet in vpc to populate subnets.
+	// +kubebuilder:validation:Optional
+	SubnetsRefs []v1.Reference `json:"subnetsRefs,omitempty" tf:"-"`
 }
 
 // ACLSpec defines the desired state of ACL
