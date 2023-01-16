@@ -78,8 +78,15 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 					Type: tools.GenerateType("ims", "Image"),
 				}
 			case "pool_id":
-				r.References[k] = config.Reference{
-					Type: "Pool",
+				switch r.ShortGroup {
+				case "elb":
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("elb", "Pool"),
+					}
+				case "dedicatedelb":
+					r.References[k] = config.Reference{
+						Type: tools.GenerateType("dedicatedelb", "Pool"),
+					}
 				}
 			case "policy_id":
 				if r.ShortGroup == "waf" {
