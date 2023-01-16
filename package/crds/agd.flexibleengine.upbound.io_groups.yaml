@@ -67,23 +67,26 @@ spec:
                     description: Specifies the description about the API group. The
                       description contain a maximum of 255 characters and the angle
                       brackets (< and >) are not allowed. Chinese characters must
-                      be in UTF-8 or Unicode format.
+                      be in UTF-8 or Unicode format. The group description.
                     type: string
                   environment:
                     description: Specifies an array of one or more APIG environments
                       of the associated APIG group. The object structure is documented
-                      below.
+                      below. The array of one or more environments of the associated
+                      group.
                     items:
                       properties:
                         environmentId:
                           description: Specifies the APIG environment ID of the associated
-                            APIG group.
+                            APIG group. The ID of the environment to which the variables
+                            belongs.
                           type: string
                         variable:
                           description: Specifies an array of one or more APIG environment
                             variables. The object structure is documented below. The
                             environment variables of different groups are isolated
-                            in the same environment.
+                            in the same environment. The array of one or more environment
+                            variables.
                           items:
                             properties:
                               name:
@@ -95,13 +98,13 @@ spec:
                                   #Name#. It is replaced by the actual value when
                                   the API is published in an environment. The variable
                                   names are not allowed to be repeated for an API
-                                  group.'
+                                  group. The variable name.'
                                 type: string
                               value:
                                 description: Specifies the environment ariable value,
                                   which can contains of 1 to 255 characters. Only
                                   letters, digits and special characters (_-/.:) are
-                                  allowed.
+                                  allowed. The variable value.
                                 type: string
                             required:
                             - name
@@ -116,7 +119,8 @@ spec:
                   instanceId:
                     description: Specifies an ID of the APIG dedicated instance to
                       which the API group belongs to. Changing this will create a
-                      new API group resource.
+                      new API group resource. The ID of the dedicated instance to
+                      which the group belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -195,12 +199,13 @@ spec:
                     description: Specifies the name of the API group. The API group
                       name consists of 3 to 64 characters, starting with a letter.
                       Only letters, digits and underscores (_) are allowed. Chinese
-                      characters must be in UTF-8 or Unicode format.
+                      characters must be in UTF-8 or Unicode format. The group name.
                     type: string
                   region:
                     description: Specifies the region in which to create the API group
                       resource. If omitted, the provider-level region will be used.
-                      Changing this will create a new API group resource.
+                      Changing this will create a new API group resource. The region
+                      where the dedicated instance is located.
                     type: string
                 required:
                 - name
@@ -384,18 +389,25 @@ spec:
                   environment:
                     description: Specifies an array of one or more APIG environments
                       of the associated APIG group. The object structure is documented
-                      below.
+                      below. The array of one or more environments of the associated
+                      group.
                     items:
                       properties:
                         variable:
                           description: Specifies an array of one or more APIG environment
                             variables. The object structure is documented below. The
                             environment variables of different groups are isolated
-                            in the same environment.
+                            in the same environment. The array of one or more environment
+                            variables.
                           items:
                             properties:
+                              id:
+                                description: ID of the API group. The ID of the variable
+                                  that the group has.
+                                type: string
                               variableId:
-                                description: ID of the API group.
+                                description: 'ID of the API group. schema: Deprecated;
+                                  The ID of the variable that the group has.'
                                 type: string
                             type: object
                           type: array
@@ -404,12 +416,15 @@ spec:
                   id:
                     description: ID of the API group.
                     type: string
-                  registraionTime:
-                    description: Registration time, in RFC-3339 format.
+                  registrationTime:
+                    description: The registration time.
                     type: string
                   updateTime:
-                    description: Time when the API group was last modified, in RFC-3339
-                      format.
+                    description: 'Time when the API group was last modified, in RFC-3339
+                      format. schema: Deprecated; The latest update time of the group.'
+                    type: string
+                  updatedAt:
+                    description: The latest update time of the group.
                     type: string
                 type: object
               conditions:

@@ -298,7 +298,7 @@ spec:
                       will create a new cluster resource.
                     type: string
                   subnetId:
-                    description: The NETWORK ID of the subnet used to create the node.
+                    description: The ID of the VPC Subnet used to create the node.
                       Changing this parameter will create a new cluster resource.
                     type: string
                   subnetIdRef:

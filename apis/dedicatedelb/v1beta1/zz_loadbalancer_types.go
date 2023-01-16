@@ -86,7 +86,8 @@ type LoadBalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	IPv4EIPIDSelector *v1.Selector `json:"ipv4EipIdSelector,omitempty" tf:"-"`
 
-	// The subnet on which to allocate the loadbalancer's ipv4 address.
+	// The ipv4_subnet_id of the
+	// VPC Subnet on which to allocate the loadbalancer's ipv4 address.
 	// the IPv4 subnet ID of the subnet where the load balancer resides
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional

@@ -21,29 +21,33 @@ type MembersParameters struct {
 	// Specifies the ECS ID for each backend servers.
 	// Required if member_type is ECS.
 	// This parameter and ip_address are alternative.
+	// The ID of the backend server.
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Specifies the IP address each backend servers.
 	// Required if member_type is EIP.
+	// The IP address of the backend server.
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
 	// Specifies the backend server weight.
 	// The valid values are range from 1 to 100, default to 1.
+	// The weight of current backend server.
 	// +kubebuilder:validation:Optional
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type VPCChannelObservation struct {
 
-	// Time when the channel created, in UTC format.
-	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
+	// The time when the VPC channel was created.
+	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// ID of the VPC channel.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The status of VPC channel, supports Normal and Abnormal.
+	// The current status of the VPC channel.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
@@ -51,21 +55,25 @@ type VPCChannelParameters struct {
 
 	// Specifies the type of the backend service.
 	// The valid types are WRR, WLC, SH and URI hashing, default to WRR.
+	// The distribution algorithm.
 	// +kubebuilder:validation:Optional
 	Algorithm *string `json:"algorithm,omitempty" tf:"algorithm,omitempty"`
 
+	// The response codes for determining a successful HTTP response.
 	// +kubebuilder:validation:Optional
 	HTTPCode *string `json:"httpCode,omitempty" tf:"http_code,omitempty"`
 
 	// Specifies the healthy threshold, which refers to the number of consecutive
 	// successful checks required for a backend server to be considered healthy.
 	// The valid value is range from 2 to 10, default to 2.
+	// The the healthy threshold, which refers to the number of consecutive successful checks required for a backend server to be considered healthy.
 	// +kubebuilder:validation:Optional
 	HealthyThreshold *float64 `json:"healthyThreshold,omitempty" tf:"healthy_threshold,omitempty"`
 
 	// Specifies an ID of the APIG dedicated instance to which the APIG
 	// vpc channel belongs to.
 	// Changing this will create a new VPC channel resource.
+	// The ID of the dedicated instance to which the VPC channel belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -80,17 +88,20 @@ type VPCChannelParameters struct {
 
 	// Specifies the interval between consecutive checks, in second.
 	// The valid value is range from 5 to 300, default to 10.
+	// The interval between consecutive checks, in second.
 	// +kubebuilder:validation:Optional
 	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
 	// Specifies the type of the backend service.
 	// The valid types are ECS and EIP, default to ECS.
+	// The member type of the VPC channel.
 	// +kubebuilder:validation:Optional
 	MemberType *string `json:"memberType,omitempty" tf:"member_type,omitempty"`
 
 	// Specifies an array of one or more backend server IDs or IP addresses that bind the VPC
 	// channel.
 	// The object structure is documented below.
+	// The configuration of the backend servers that bind the VPC channel.
 	// +kubebuilder:validation:Required
 	Members []MembersParameters `json:"members" tf:"members,omitempty"`
 
@@ -98,40 +109,47 @@ type VPCChannelParameters struct {
 	// The channel name consists of 3 to 64 characters, starting with a letter.
 	// Only letters, digits and underscores (_) are allowed.
 	// Chinese characters must be in UTF-8 or Unicode format.
+	// The name of the VPC channel.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the destination path for health checks.
 	// Required if protocol is HTTP or HTTPS.
+	// The destination path for health checks.
 	// +kubebuilder:validation:Optional
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Specifies the host port of the VPC channel.
 	// The valid value is range from 1 to 65535.
+	// The host port of the VPC channel.
 	// +kubebuilder:validation:Required
 	Port *float64 `json:"port" tf:"port,omitempty"`
 
 	// Specifies the protocol for performing health checks on backend servers in the VPC
 	// channel.
 	// The valid values are TCP, HTTP and HTTPS, default to TCP.
+	// The rotocol for performing health checks on backend servers in the VPC channel.
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
 	// Specifies the region in which to create the VPC channel resource.
 	// If omitted, the provider-level region will be used.
 	// Changing this will create a new VPC channel resource.
+	// The region where the dedicated instance is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the timeout for determining whether a health check fails, in second.
 	// The value must be less than the value of time_interval.
 	// The valid value is range from 2 to 30, default to 5.
+	// The timeout for determining whether a health check fails, in second.
 	// +kubebuilder:validation:Optional
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// Specifies the unhealthy threshold, which refers to the number of consecutive
 	// failed checks required for a backend server to be considered unhealthy.
 	// The valid value is range from 2 to 10, default to 5.
+	// The unhealthy threshold, which refers to the number of consecutive failed checks required for a backend server to be considered unhealthy.
 	// +kubebuilder:validation:Optional
 	UnhealthyThreshold *float64 `json:"unhealthyThreshold,omitempty" tf:"unhealthy_threshold,omitempty"`
 }

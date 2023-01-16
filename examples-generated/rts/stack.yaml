@@ -13,7 +13,7 @@ spec:
     parameters:
       image_id: ${var.image_id}
       instance_type: ${var.instance_type}
-      network_id: ${var.network_id}
+      network_id: ${flexibleengine_vpc_subnet_v1.example_subnet.id}
     templateBody: |2
        {
          "heat_template_version": "2016-04-08",

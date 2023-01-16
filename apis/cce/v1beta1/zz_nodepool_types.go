@@ -82,6 +82,11 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Required
 	DataVolumes []DataVolumesParameters `json:"dataVolumes" tf:"data_volumes,omitempty"`
 
+	// Specifies the ECS group ID. If specified, the node will be created under
+	// the cloud server group. Changing this parameter will create a new resource.
+	// +kubebuilder:validation:Optional
+	EcsGroupID *string `json:"ecsGroupId,omitempty" tf:"ecs_group_id,omitempty"`
+
 	// +kubebuilder:validation:Optional
 	ExtendParam map[string]*string `json:"extendParam,omitempty" tf:"extend_param,omitempty"`
 
@@ -172,7 +177,7 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ScallEnable *bool `json:"scallEnable,omitempty" tf:"scall_enable,omitempty"`
 
-	// The ID of the subnet to which the NIC belongs.
+	// The ID of the VPC Subnet to which the NIC belongs.
 	// Changing this parameter will create a new resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()

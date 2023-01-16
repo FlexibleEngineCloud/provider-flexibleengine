@@ -76,7 +76,7 @@ type DestinationDBParameters struct {
 	// +kubebuilder:validation:Optional
 	SSLEnabled *bool `json:"sslEnabled,omitempty" tf:"ssl_enabled,omitempty"`
 
-	// Specifies subnet ID of database when it is a RDS database.
+	// Specifies the ID of the VPC Subnet of database when it is a RDS database.
 	// It is mandatory when direction is down. Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
@@ -294,7 +294,7 @@ type SourceDBParameters struct {
 	// +kubebuilder:validation:Optional
 	SSLEnabled *bool `json:"sslEnabled,omitempty" tf:"ssl_enabled,omitempty"`
 
-	// Specifies subnet ID of database when it is a RDS database.
+	// Specifies the ID of the VPC Subnet of database when it is a RDS database.
 	// It is mandatory when direction is down. Changing this parameter will create a new resource.
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`

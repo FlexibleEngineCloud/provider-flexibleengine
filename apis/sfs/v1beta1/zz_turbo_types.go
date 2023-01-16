@@ -88,7 +88,7 @@ type TurboParameters struct {
 	// +kubebuilder:validation:Required
 	Size *float64 `json:"size" tf:"size,omitempty"`
 
-	// Specifies the network ID of the subnet. Changing this will create a new resource.
+	// Specifies the ID of the VPC Subnet. Changing this will create a new resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional

@@ -16,7 +16,11 @@ import (
 type EnvironmentObservation struct {
 
 	// Time when the APIG environment was created, in RFC-3339 format.
+	// schema: Deprecated; The time when the environment was created.
 	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
+
+	// The time when the environment was created.
+	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// ID of the APIG environment.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -27,11 +31,13 @@ type EnvironmentParameters struct {
 	// Specifies the description about the API environment. The description contain a
 	// maximum of 255 characters and the angle brackets (< and >) are not allowed. Chinese characters must be in UTF-8 or
 	// Unicode format.
+	// The environment description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies an ID of the APIG dedicated instance to which the API
 	// environment belongs to. Changing this will create a new APIG environment resource.
+	// The ID of the dedicated instance to which the environment belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -46,11 +52,13 @@ type EnvironmentParameters struct {
 
 	// Specifies the name of the API environment. The API environment name consists of 3 to 64
 	// characters, starting with a letter. Only letters, digits and underscores (_) are allowed.
+	// The environment name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the region in which to create the APIG environment resource. If
 	// omitted, the provider-level region will be used. Changing this will create a new APIG environment resource.
+	// The region where the dedicated instance is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }

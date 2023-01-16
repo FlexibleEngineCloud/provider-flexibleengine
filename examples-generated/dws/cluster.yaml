@@ -8,16 +8,16 @@ metadata:
   name: cluster
 spec:
   forProvider:
-    availabilityZone: '{{ availability_zone }}'
+    availabilityZone: eu-west-0a
     name: dws_cluster_test
-    nodeType: dws.d1.xlarge
+    nodeType: ${data.flexibleengine_dws_flavors.test.flavors[0].flavor_id}
     numberOfNode: 3
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_secgroup
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
     userNameSecretRef:
       key: example-key
       name: example-secret
@@ -28,7 +28,56 @@ spec:
       namespace: upbound-system
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dws/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_secgroup
+  name: example-secgroup
+spec:
+  forProvider:
+    description: My neutron security group
+    name: example-secgroup
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dws/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dws/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

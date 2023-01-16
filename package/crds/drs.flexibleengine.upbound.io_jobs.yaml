@@ -145,9 +145,9 @@ spec:
                             Changing this parameter will create a new resource.
                           type: boolean
                         subnetId:
-                          description: Specifies subnet ID of database when it is
-                            a RDS database. It is mandatory when direction is down.
-                            Changing this parameter will create a new resource.
+                          description: Specifies the ID of the VPC Subnet of database
+                            when it is a RDS database. It is mandatory when direction
+                            is down. Changing this parameter will create a new resource.
                           type: string
                         user:
                           description: Specifies the user name of database. Changing
@@ -328,9 +328,9 @@ spec:
                             Changing this parameter will create a new resource.
                           type: boolean
                         subnetId:
-                          description: Specifies subnet ID of database when it is
-                            a RDS database. It is mandatory when direction is down.
-                            Changing this parameter will create a new resource.
+                          description: Specifies the ID of the VPC Subnet of database
+                            when it is a RDS database. It is mandatory when direction
+                            is down. Changing this parameter will create a new resource.
                           type: string
                         user:
                           description: Specifies the user name of database. Changing

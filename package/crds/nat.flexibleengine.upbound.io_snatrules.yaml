@@ -312,9 +312,9 @@ spec:
                       a new snat rule.
                     type: number
                   subnetId:
-                    description: ID of the subnet this snat rule connects to. This
-                      parameter and cidr are alternative. Changing this creates a
-                      new snat rule.
+                    description: ID of the VPC Subnet this snat rule connects to.
+                      This parameter and cidr are alternative. Changing this creates
+                      a new snat rule.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

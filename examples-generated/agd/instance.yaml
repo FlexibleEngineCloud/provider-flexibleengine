@@ -4,30 +4,98 @@ metadata:
   annotations:
     meta.upbound.io/example-id: agd/v1beta1/instance
   labels:
-    testing.upbound.io/example-name: test
-  name: test
+    testing.upbound.io/example-name: example_apig_instance
+  name: example-apig-instance
 spec:
   forProvider:
     availableZones:
-    - ${data.flexibleengine_availability_zones.test.names[0]}
-    - ${data.flexibleengine_availability_zones.test.names[1]}
+    - ${data.flexibleengine_availability_zones.az.names[0]}
+    - ${data.flexibleengine_availability_zones.az.names[1]}
     bandwidthSize: 3
     description: Created by script
     edition: BASIC
     eipIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_eip
     maintainBegin: "06:00:00"
     name: ${var.instance_name}
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_secgroup
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_secgroup
+  name: example-secgroup
+spec:
+  forProvider:
+    description: My neutron security group
+    name: example-secgroup
+
+---
+
+apiVersion: eip.flexibleengine.upbound.io/v1beta1
+kind: EIP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_eip
+  name: example-eip
+spec:
+  forProvider:
+    bandwidth:
+    - name: test
+      shareType: PER
+      size: 10
+    publicip:
+    - type: 5_bgp
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: agd/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

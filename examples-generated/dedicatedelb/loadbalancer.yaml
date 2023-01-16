@@ -15,13 +15,47 @@ spec:
     description: basic example
     ipv4SubnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
-    l4FlavorId: '{{ l4_flavor_id }}'
-    l7FlavorId: '{{ l7_flavor_id }}'
+        testing.upbound.io/example-name: example_subnet
+    l4FlavorId: ${data.flexibleengine_elb_flavors.l4_flavors.ids[0]}
+    l7FlavorId: ${data.flexibleengine_elb_flavors.l7_flavors.ids[0]}
     name: basic
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedelb/v1beta1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

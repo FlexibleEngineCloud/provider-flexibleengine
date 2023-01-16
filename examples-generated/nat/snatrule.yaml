@@ -13,10 +13,10 @@ spec:
         testing.upbound.io/example-name: example
     natGatewayIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: nat_1
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
 
 ---
 

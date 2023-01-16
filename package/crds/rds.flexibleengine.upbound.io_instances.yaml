@@ -266,7 +266,7 @@ spec:
                     description: Specifies whether to enable the SSL for MySQL database.
                     type: boolean
                   subnetId:
-                    description: Specifies the network ID of a subnet. Changing this
+                    description: Specifies the ID of the VPC Subnet. Changing this
                       parameter will create a new resource.
                     type: string
                   subnetIdRef:

@@ -4,17 +4,17 @@ metadata:
   annotations:
     meta.upbound.io/example-id: eip/v1beta1/eipassociate
   labels:
-    testing.upbound.io/example-name: associated
-  name: associated
+    testing.upbound.io/example-name: example_eip_associated
+  name: example-eip-associated
 spec:
   forProvider:
     fixedIp: 192.168.0.100
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
     publicIpSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_eip
 
 ---
 

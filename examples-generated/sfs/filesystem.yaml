@@ -9,11 +9,26 @@ metadata:
 spec:
   forProvider:
     accessLevel: rw
-    accessTo: ${var.vpc_id}
+    accessTo: ${flexibleengine_vpc_v1.example_vpc.id}
     description: ${var.share_description}
     name: ${var.share_name}
     shareProto: NFS
     size: 100
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sfs/v1beta1/filesystem
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

@@ -249,6 +249,11 @@ spec:
                       - volumetype
                       type: object
                     type: array
+                  ecsGroupId:
+                    description: Specifies the ECS group ID. If specified, the node
+                      will be created under the cloud server group. Changing this
+                      parameter will create a new resource.
+                    type: string
                   extendParam:
                     additionalProperties:
                       type: string
@@ -432,8 +437,8 @@ spec:
                   scallEnable:
                     type: boolean
                   subnetId:
-                    description: The ID of the subnet to which the NIC belongs. Changing
-                      this parameter will create a new resource.
+                    description: The ID of the VPC Subnet to which the NIC belongs.
+                      Changing this parameter will create a new resource.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

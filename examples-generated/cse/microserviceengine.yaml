@@ -4,18 +4,18 @@ metadata:
   annotations:
     meta.upbound.io/example-id: cse/v1beta1/microserviceengine
   labels:
-    testing.upbound.io/example-name: test
-  name: test
+    testing.upbound.io/example-name: example_cse
+  name: example-cse
 spec:
   forProvider:
     authType: NONE
     availabilityZones:
-    - ${var.az1}
+    - eu-west-0a
     flavor: cse.s1.small
-    name: ${var.engine_name}
+    name: example-cse
     networkIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
 
 ---
 

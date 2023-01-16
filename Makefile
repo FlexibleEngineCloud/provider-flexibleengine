@@ -8,9 +8,9 @@ export TERRAFORM_VERSION := 1.3.7
 
 export TERRAFORM_PROVIDER_SOURCE := FlexibleEngineCloud/flexibleengine
 export TERRAFORM_PROVIDER_REPO := https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine
-export TERRAFORM_PROVIDER_VERSION := 1.35.1
+export TERRAFORM_PROVIDER_VERSION := 1.36.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-flexibleengine
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-flexibleengine_v1.35.1_x5
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-flexibleengine_v1.36.0_x5
 export TERRAFORM_DOCS_PATH := docs/resources
 
 PLATFORMS ?= linux_amd64 linux_arm64

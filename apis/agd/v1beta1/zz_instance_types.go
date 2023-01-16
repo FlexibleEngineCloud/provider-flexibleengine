@@ -126,7 +126,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Specifies an ID of the security group to which the APIG dedicated instance
+	// Specifies the ID of the security group to which the APIG dedicated instance
 	// belongs to.
 	// The ID of the security group to which the dedicated instance belongs to.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
@@ -141,7 +141,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	SecurityGroupIDSelector *v1.Selector `json:"securityGroupIdSelector,omitempty" tf:"-"`
 
-	// Specifies an ID of the VPC subnet used to create the APIG dedicated
+	// Specifies the ID of the VPC Subnet used to create the APIG dedicated
 	// instance. Changing this will create a new APIG dedicated instance resource.
 	// The ID of the VPC subnet used to create the dedicated instance.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
@@ -157,7 +157,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 
-	// Specifies an ID of the VPC used to create the APIG dedicated instance.
+	// Specifies the ID of the VPC used to create the APIG dedicated instance.
 	// Changing this will create a new APIG dedicated instance resource.
 	// The ID of the VPC used to create the dedicated instance.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC

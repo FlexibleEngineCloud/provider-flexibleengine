@@ -16,19 +16,17 @@ import (
 type ApplicationObservation struct {
 
 	// App key.
+	// The APP key.
 	AppKey *string `json:"appKey,omitempty" tf:"app_key,omitempty"`
-
-	// App secret.
-	AppSecret *string `json:"appSecret,omitempty" tf:"app_secret,omitempty"`
 
 	// ID of the APIG application.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Registration time, in RFC-3339 format.
-	RegistraionTime *string `json:"registraionTime,omitempty" tf:"registraion_time,omitempty"`
+	// The registration time.
+	RegistrationTime *string `json:"registrationTime,omitempty" tf:"registration_time,omitempty"`
 
-	// Time when the API group was last modified, in RFC-3339 format.
-	UpdateTime *string `json:"updateTime,omitempty" tf:"update_time,omitempty"`
+	// The latest update time of the application.
+	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type ApplicationParameters struct {
@@ -37,17 +35,20 @@ type ApplicationParameters struct {
 	// to. Up to five application codes can be created. The code consists of 64 to 180 characters, starting with a letter,
 	// digit, plus sign (+) or slash (/). Only letters, digits and following special special characters are allowed: !@#$%+-_
 	// /=
+	// The array of one or more application codes that the application has.
 	// +kubebuilder:validation:Optional
 	AppCodes []*string `json:"appCodes,omitempty" tf:"app_codes,omitempty"`
 
 	// Specifies the description about the APIG application. The description contain a
 	// maximum of 255 characters and the angle brackets (< and >) are not allowed. Chinese characters must be in UTF-8 or
 	// Unicode format.
+	// The application description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies an ID of the APIG dedicated instance to which the APIG
 	// application belongs to. Changing this will create a new APIG application resource.
+	// The ID of the dedicated instance to which the application belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -63,16 +64,19 @@ type ApplicationParameters struct {
 	// Specifies the name of the API application. The API group name consists of 3 to 64
 	// characters, starting with a letter. Only letters, digits and underscores (_) are allowed. Chinese characters must be
 	// in UTF-8 or Unicode format.
+	// The application name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the region in which to create the APIG application resource. If
 	// omitted, the provider-level region will be used. Changing this will create a new APIG application resource.
+	// The region where the application is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the secret action to be done for the APIG application. The valid action
 	// is RESET.
+	// The secret action to be done for the application.
 	// +kubebuilder:validation:Optional
 	SecretAction *string `json:"secretAction,omitempty" tf:"secret_action,omitempty"`
 }

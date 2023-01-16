@@ -10,11 +10,29 @@ spec:
   forProvider:
     loadbalancerIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: lb_1
     protocol: HTTP
     protocolPort: 8080
     tags:
       key: value
+
+---
+
+apiVersion: elb.flexibleengine.upbound.io/v1beta1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elb/v1beta1/listener
+  labels:
+    testing.upbound.io/example-name: lb_1
+  name: lb-1
+spec:
+  forProvider:
+    tags:
+      key: value
+    vipSubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
 
 ---
 

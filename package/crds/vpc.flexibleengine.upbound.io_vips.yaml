@@ -75,7 +75,7 @@ spec:
                     description: Specifies a unique name for the VIP.
                     type: string
                   networkId:
-                    description: Specifies the ID of the VPC subnet to which the VIP
+                    description: Specifies the ID of the VPC Subnet to which the VIP
                       belongs. Changing this will create a new VIP resource.
                     type: string
                   networkIdRef:

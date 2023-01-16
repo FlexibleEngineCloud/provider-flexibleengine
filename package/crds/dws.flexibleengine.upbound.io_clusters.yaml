@@ -64,7 +64,7 @@ spec:
               forProvider:
                 properties:
                   availabilityZone:
-                    description: AZ in a cluster
+                    description: AZ in a cluster.
                     type: string
                   name:
                     description: Cluster name, which must be unique and contains 4
@@ -86,6 +86,91 @@ spec:
                     description: Public IP address. The object structure is documented
                       below.
                     items:
+                      properties:
+                        eipId:
+                          description: EIP ID
+                          type: string
+                        eipIdRef:
+                          description: Reference to a EIP in eip to populate eipId.
+                          properties:
+                            name:
+                              description: Name of the referenced object.
+                              type: string
+                            policy:
+                              description: Policies for referencing.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          required:
+                          - name
+                          type: object
+                        eipIdSelector:
+                          description: Selector for a EIP in eip to populate eipId.
+                          properties:
+                            matchControllerRef:
+                              description: MatchControllerRef ensures an object with
+                                the same controller reference as the selecting object
+                                is selected.
+                              type: boolean
+                            matchLabels:
+                              additionalProperties:
+                                type: string
+                              description: MatchLabels ensures an object with matching
+                                labels is selected.
+                              type: object
+                            policy:
+                              description: Policies for selection.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          type: object
+                        publicBindType:
+                          description: 'Binding type of an EIP. The value can be either
+                            of the following: auto_assign, not_use and bind_existing.
+                            The default value is not_use.'
+                          type: string
                       type: object
                     type: array
                   region:
@@ -168,8 +253,8 @@ spec:
                         type: object
                     type: object
                   subnetId:
-                    description: Subnet ID, which is used for configuring cluster
-                      network.
+                    description: The ID of the VPC Subnet, which is used for configuring
+                      cluster network.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.
@@ -560,6 +645,11 @@ spec:
                   id:
                     description: Cluster ID
                     type: string
+                  privateIp:
+                    description: List of private network IP address.
+                    items:
+                      type: string
+                    type: array
                   publicEndpoints:
                     description: The public network connection information about the
                       cluster. The object structure is documented below.
@@ -571,21 +661,6 @@ spec:
                           type: string
                         publicConnectInfo:
                           description: Public network connection information
-                          type: string
-                      type: object
-                    type: array
-                  publicIp:
-                    description: Public IP address. The object structure is documented
-                      below.
-                    items:
-                      properties:
-                        eipId:
-                          description: EIP ID
-                          type: string
-                        publicBindType:
-                          description: 'Binding type of an EIP. The value can be either
-                            of the following: auto_assign, not_use and bind_existing.
-                            The default value is not_use.'
                           type: string
                       type: object
                     type: array

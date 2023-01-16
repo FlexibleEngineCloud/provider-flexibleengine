@@ -16,7 +16,7 @@ spec:
     remoteIpPrefix: 0.0.0.0/0
     securityGroupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: secgroup_1
+        testing.upbound.io/example-name: example_secgroup
 
 ---
 
@@ -26,8 +26,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: vpc/v1beta1/securitygrouprule
   labels:
-    testing.upbound.io/example-name: secgroup_1
-  name: secgroup-1
+    testing.upbound.io/example-name: example_secgroup
+  name: example-secgroup
 spec:
   forProvider:
     description: My neutron security group

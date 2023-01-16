@@ -4,13 +4,13 @@ metadata:
   annotations:
     meta.upbound.io/example-id: ecs/v1beta1/interfaceattach
   labels:
-    testing.upbound.io/example-name: ai_1
-  name: ai-1
+    testing.upbound.io/example-name: example_interface_attach
+  name: example-interface-attach
 spec:
   forProvider:
     instanceIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: instance_1
+        testing.upbound.io/example-name: example_instance
 
 ---
 
@@ -20,13 +20,47 @@ metadata:
   annotations:
     meta.upbound.io/example-id: ecs/v1beta1/interfaceattach
   labels:
-    testing.upbound.io/example-name: instance_1
-  name: instance-1
+    testing.upbound.io/example-name: example_instance
+  name: example-instance
 spec:
   forProvider:
-    name: instance_1
+    name: example-instance
     securityGroups:
     - default
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/interfaceattach
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ecs/v1beta1/interfaceattach
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

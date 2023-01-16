@@ -243,8 +243,8 @@ spec:
                       GB. The value ranges from 500 to 32768.
                     type: number
                   subnetId:
-                    description: Specifies the network ID of the subnet. Changing
-                      this will create a new resource.
+                    description: Specifies the ID of the VPC Subnet. Changing this
+                      will create a new resource.
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.

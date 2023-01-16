@@ -146,7 +146,7 @@ spec:
                       (_).
                     type: string
                   networkId:
-                    description: Specifies the ID of a subnet. Changing this creates
+                    description: Specifies the ID of a VPC subnet. Changing this creates
                       a new instance resource.
                     type: string
                   networkIdRef:

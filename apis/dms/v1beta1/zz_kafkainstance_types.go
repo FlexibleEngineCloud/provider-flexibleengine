@@ -129,7 +129,7 @@ type KafkaInstanceParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// Specifies the ID of a subnet.
+	// Specifies the ID of a VPC subnet.
 	// Changing this creates a new instance resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()

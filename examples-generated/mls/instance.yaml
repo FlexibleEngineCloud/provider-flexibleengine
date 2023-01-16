@@ -16,8 +16,8 @@ spec:
     - availableZone: eu-west-0a
       publicIp:
       - bindType: not_use
-      subnetId: b65f8d25-c533-47e2-8601-cfaa265a3e3e
-      vpcId: c1095fe7-03df-4205-ad2d-6f4c181d436e
+      subnetId: ${flexibleengine_vpc_subnet_v1.example_subnet.id}
+      vpcId: ${flexibleengine_vpc_v1.example_vpc.id}
     version: 1.2.0
 
 ---
@@ -54,12 +54,46 @@ spec:
     safeMode: 0
     subnetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_subnet
     volumeSize: 100
     volumeType: SATA
     vpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPCSubnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mls/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_subnet
+  name: example-subnet
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    gatewayIp: 192.168.0.1
+    name: example-vpc-subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mls/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/16
+    name: example-vpc
 
 ---
 

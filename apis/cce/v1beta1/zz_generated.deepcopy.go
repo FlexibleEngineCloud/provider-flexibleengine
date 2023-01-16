@@ -1183,6 +1183,11 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.EcsGroupID != nil {
+		in, out := &in.EcsGroupID, &out.EcsGroupID
+		*out = new(string)
+		**out = **in
+	}
 	if in.EcsPerformanceType != nil {
 		in, out := &in.EcsPerformanceType, &out.EcsPerformanceType
 		*out = new(string)
@@ -1304,6 +1309,21 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		in, out := &in.Sharetype, &out.Sharetype
 		*out = new(string)
 		**out = **in
+	}
+	if in.SubnetID != nil {
+		in, out := &in.SubnetID, &out.SubnetID
+		*out = new(string)
+		**out = **in
+	}
+	if in.SubnetIDRef != nil {
+		in, out := &in.SubnetIDRef, &out.SubnetIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetIDSelector != nil {
+		in, out := &in.SubnetIDSelector, &out.SubnetIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -1457,6 +1477,11 @@ func (in *NodePoolParameters) DeepCopyInto(out *NodePoolParameters) {
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.EcsGroupID != nil {
+		in, out := &in.EcsGroupID, &out.EcsGroupID
+		*out = new(string)
+		**out = **in
 	}
 	if in.ExtendParam != nil {
 		in, out := &in.ExtendParam, &out.ExtendParam

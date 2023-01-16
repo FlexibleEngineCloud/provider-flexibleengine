@@ -268,10 +268,8 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Required
 	SafeMode *float64 `json:"safeMode" tf:"safe_mode,omitempty"`
 
-	// Subnet ID Obtain the subnet ID from the management
-	// console as follows: Register an account and log in to the management console.
-	// Click Virtual Private Cloud and select Virtual Private Cloud from the left list.
-	// On the Virtual Private Cloud page, obtain the subnet ID from the list.
+	// Specifies the ID of the VPC Subnet which bound to the MRS cluster.
+	// Changing this will create a new MRS cluster resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
 	// +kubebuilder:validation:Optional

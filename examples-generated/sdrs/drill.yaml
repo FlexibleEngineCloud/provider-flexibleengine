@@ -10,11 +10,63 @@ spec:
   forProvider:
     drillVpcIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: example_vpc_drill
     groupIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: group_1
     name: drill_1
+
+---
+
+apiVersion: sdrs.flexibleengine.upbound.io/v1beta1
+kind: ProtectionGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/drill
+  labels:
+    testing.upbound.io/example-name: group_1
+  name: group-1
+spec:
+  forProvider:
+    description: test description
+    domainId: ${data.flexibleengine_sdrs_domain_v1.domain_1.id}
+    drType: migration
+    name: group_1
+    sourceAvailabilityZone: eu-west-0a
+    sourceVpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+    targetAvailabilityZone: eu-west-0b
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/drill
+  labels:
+    testing.upbound.io/example-name: example_vpc
+  name: example-vpc
+spec:
+  forProvider:
+    cidr: 192.168.0.0/24
+    name: example-vpc
+
+---
+
+apiVersion: vpc.flexibleengine.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sdrs/v1beta1/drill
+  labels:
+    testing.upbound.io/example-name: example_vpc_drill
+  name: example-vpc-drill
+spec:
+  forProvider:
+    cidr: 192.168.1.0/24
+    name: example-vpc
 
 ---
 

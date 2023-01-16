@@ -64,7 +64,7 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: A description of the zone.
+                    description: A description of the zone. Max length is 255 characters.
                     type: string
                   email:
                     description: The email contact for the zone record.
@@ -173,7 +173,8 @@ spec:
                     description: The key/value pairs to associate with the zone.
                     type: object
                   ttl:
-                    description: The time to live (TTL) of the zone.
+                    description: The time to live (TTL) of the zone. TTL ranges from
+                      1 to 2147483647 seconds. Default is  300.
                     type: number
                   valueSpecs:
                     additionalProperties:
@@ -183,7 +184,7 @@ spec:
                     type: object
                   zoneType:
                     description: The type of zone. Can either be public or private.
-                      Changing this creates a new DNS zone.
+                      Default is public. Changing this creates a new DNS zone.
                     type: string
                 required:
                 - name

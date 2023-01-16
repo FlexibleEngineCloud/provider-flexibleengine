@@ -68,12 +68,13 @@ spec:
                     description: Specifies the description about the API environment.
                       The description contain a maximum of 255 characters and the
                       angle brackets (< and >) are not allowed. Chinese characters
-                      must be in UTF-8 or Unicode format.
+                      must be in UTF-8 or Unicode format. The environment description.
                     type: string
                   instanceId:
                     description: Specifies an ID of the APIG dedicated instance to
                       which the API environment belongs to. Changing this will create
-                      a new APIG environment resource.
+                      a new APIG environment resource. The ID of the dedicated instance
+                      to which the environment belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -152,12 +153,13 @@ spec:
                     description: Specifies the name of the API environment. The API
                       environment name consists of 3 to 64 characters, starting with
                       a letter. Only letters, digits and underscores (_) are allowed.
+                      The environment name.
                     type: string
                   region:
                     description: Specifies the region in which to create the APIG
                       environment resource. If omitted, the provider-level region
                       will be used. Changing this will create a new APIG environment
-                      resource.
+                      resource. The region where the dedicated instance is located.
                     type: string
                 required:
                 - name
@@ -339,8 +341,12 @@ spec:
               atProvider:
                 properties:
                   createTime:
-                    description: Time when the APIG environment was created, in RFC-3339
-                      format.
+                    description: 'Time when the APIG environment was created, in RFC-3339
+                      format. schema: Deprecated; The time when the environment was
+                      created.'
+                    type: string
+                  createdAt:
+                    description: The time when the environment was created.
                     type: string
                   id:
                     description: ID of the APIG environment.
