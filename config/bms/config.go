@@ -4,7 +4,6 @@ package bms
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -28,13 +27,13 @@ func Configure(p *config.Provider) {
 		// security_groups
 		r.References["security_groups"] = config.Reference{
 			TerraformName: "flexibleengine_networking_secgroup_v2",
-			Extractor:     common.PathNameExtractor,
+			Extractor:     tools.GenerateExtractor(false, "name"),
 		}
 
 		r.References["network.uuid"] = config.Reference{
 			// Require Network ID of VPC Subnet
 			TerraformName: "flexibleengine_vpc_subnet_v1",
-			Extractor:     common.PathIDExtractor,
+			Extractor:     tools.GenerateExtractor(true, "id"),
 		}
 
 		r.References["network.port"] = config.Reference{

@@ -11,7 +11,7 @@ import (
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
 	v1beta12 "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
 	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -78,7 +78,7 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.EIP),
-		Extract:      common.AddressExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "address"),
 		Reference:    mg.Spec.ForProvider.EIPRef,
 		Selector:     mg.Spec.ForProvider.EIPSelector,
 		To: reference.To{
@@ -110,7 +110,7 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-		Extract:      common.IDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "id"),
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
@@ -219,7 +219,7 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-		Extract:      common.IDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "id"),
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
@@ -295,7 +295,7 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-		Extract:      common.IDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "id"),
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{

@@ -9,7 +9,7 @@ import (
 	"context"
 	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/kms/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -76,7 +76,7 @@ func (mg *OBSBucketReplication) ResolveReferences(ctx context.Context, c client.
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Agency),
-		Extract:      common.NameExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(false, "name"),
 		Reference:    mg.Spec.ForProvider.AgencyRef,
 		Selector:     mg.Spec.ForProvider.AgencySelector,
 		To: reference.To{

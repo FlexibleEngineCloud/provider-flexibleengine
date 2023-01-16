@@ -10,7 +10,7 @@ import (
 	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1"
 	v1beta12 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -42,7 +42,7 @@ func (mg *Server) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ImageName),
-		Extract:      common.ImageNameExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(false, "image_name"),
 		Reference:    mg.Spec.ForProvider.ImageNameRef,
 		Selector:     mg.Spec.ForProvider.ImageNameSelector,
 		To: reference.To{
@@ -93,7 +93,7 @@ func (mg *Server) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].UUID),
-			Extract:      common.IDExtractor(),
+			Extract:      tools.ExtractorParamPathfunc(true, "id"),
 			Reference:    mg.Spec.ForProvider.Network[i3].UUIDRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].UUIDSelector,
 			To: reference.To{
@@ -110,7 +110,7 @@ func (mg *Server) ResolveReferences(ctx context.Context, c client.Reader) error 
 	}
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.SecurityGroups),
-		Extract:       common.NameExtractor(),
+		Extract:       tools.ExtractorParamPathfunc(false, "name"),
 		References:    mg.Spec.ForProvider.SecurityGroupsRefs,
 		Selector:      mg.Spec.ForProvider.SecurityGroupsSelector,
 		To: reference.To{

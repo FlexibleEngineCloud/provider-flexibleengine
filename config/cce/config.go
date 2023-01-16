@@ -4,7 +4,6 @@ package cce
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -30,7 +29,7 @@ func Configure(p *config.Provider) {
 		}
 		r.References["eip"] = config.Reference{
 			Type:      tools.GenerateType("eip", "EIP"),
-			Extractor: common.PathAddressExtractor,
+			Extractor: tools.GenerateExtractor(true, "address"),
 		}
 	})
 

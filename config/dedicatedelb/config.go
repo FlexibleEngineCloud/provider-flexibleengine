@@ -4,7 +4,6 @@ package dedicatedelb
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -41,7 +40,7 @@ func Configure(p *config.Provider) {
 		}
 		r.References["ipv6_network_id"] = config.Reference{
 			Type:      tools.GenerateType("vpc", "VPCSubnet"),
-			Extractor: common.PathIDExtractor,
+			Extractor: tools.GenerateExtractor(true, "id"),
 		}
 		r.References["ipv4_eip_id"] = config.Reference{
 			Type: tools.GenerateType("eip", "EIP"),

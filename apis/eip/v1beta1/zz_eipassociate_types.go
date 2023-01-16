@@ -35,7 +35,7 @@ type EIPAssociateParameters struct {
 	// Specifies the ID of the VPC Subnet to which the fixed_ip belongs.
 	// It is mandatory when fixed_ip is set. Changing this creates a new resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.IDExtractor()
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -63,7 +63,7 @@ type EIPAssociateParameters struct {
 
 	// Specifies the EIP address to associate. Changing this creates a new resource.
 	// +crossplane:generate:reference:type=EIP
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/config/common.AddressExtractor()
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "address")
 	// +kubebuilder:validation:Optional
 	PublicIP *string `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 

@@ -9,7 +9,7 @@ import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1"
 	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
-	common "github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -163,7 +163,7 @@ func (mg *LoadBalancer) ResolveReferences(ctx context.Context, c client.Reader) 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.IPv6NetworkID),
-		Extract:      common.IDExtractor(),
+		Extract:      tools.ExtractorParamPathfunc(true, "id"),
 		Reference:    mg.Spec.ForProvider.IPv6NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.IPv6NetworkIDSelector,
 		To: reference.To{

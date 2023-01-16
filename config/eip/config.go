@@ -4,7 +4,7 @@ package eip
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/common"
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
@@ -14,7 +14,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_vpc_eip_associate", func(r *config.Resource) {
 		r.References["public_ip"] = config.Reference{
 			Type:      "EIP",
-			Extractor: common.PathAddressExtractor,
+			Extractor: tools.GenerateExtractor(true, "address"),
 		}
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"fixed_ip", "port_id", "network_id"},
