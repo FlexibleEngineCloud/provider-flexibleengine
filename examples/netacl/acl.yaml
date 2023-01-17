@@ -9,6 +9,12 @@ metadata:
 spec:
   forProvider:
     name: example-netacl-acl
-    subnetsRefs:
+    inboundRuleRefs:
+      - name: example-netacl-rule
+      - name: example-netacl-rule2
+    outboundRuleRefs:
+      - name: example-netacl-rule3
+      - name: example-netacl-rule4
+    subnetRefs:
       - name: example-subnet
       - name: example-subnet2

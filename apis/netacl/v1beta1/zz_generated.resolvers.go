@@ -25,23 +25,39 @@ func (mg *ACL) ResolveReferences(ctx context.Context, c client.Reader) error {
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.InboundRules),
 		Extract:       reference.ExternalName(),
-		References:    mg.Spec.ForProvider.InboundRulesRefs,
-		Selector:      mg.Spec.ForProvider.InboundRulesSelector,
+		References:    mg.Spec.ForProvider.InboundRuleRefs,
+		Selector:      mg.Spec.ForProvider.InboundRuleSelector,
 		To: reference.To{
-			List:    &ACLList{},
-			Managed: &ACL{},
+			List:    &ACLRuleList{},
+			Managed: &ACLRule{},
 		},
 	})
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.InboundRules")
 	}
 	mg.Spec.ForProvider.InboundRules = reference.ToPtrValues(mrsp.ResolvedValues)
-	mg.Spec.ForProvider.InboundRulesRefs = mrsp.ResolvedReferences
+	mg.Spec.ForProvider.InboundRuleRefs = mrsp.ResolvedReferences
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.OutboundRules),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.OutboundRuleRefs,
+		Selector:      mg.Spec.ForProvider.OutboundRuleSelector,
+		To: reference.To{
+			List:    &ACLRuleList{},
+			Managed: &ACLRule{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.OutboundRules")
+	}
+	mg.Spec.ForProvider.OutboundRules = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.OutboundRuleRefs = mrsp.ResolvedReferences
 
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Subnets),
 		Extract:       tools.ExtractorParamPathfunc(true, "id"),
-		References:    mg.Spec.ForProvider.SubnetsRefs,
+		References:    mg.Spec.ForProvider.SubnetRefs,
 		Selector:      mg.Spec.ForProvider.SubnetSelector,
 		To: reference.To{
 			List:    &v1beta1.VPCSubnetList{},
@@ -52,7 +68,7 @@ func (mg *ACL) ResolveReferences(ctx context.Context, c client.Reader) error {
 		return errors.Wrap(err, "mg.Spec.ForProvider.Subnets")
 	}
 	mg.Spec.ForProvider.Subnets = reference.ToPtrValues(mrsp.ResolvedValues)
-	mg.Spec.ForProvider.SubnetsRefs = mrsp.ResolvedReferences
+	mg.Spec.ForProvider.SubnetRefs = mrsp.ResolvedReferences
 
 	return nil
 }

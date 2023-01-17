@@ -8,11 +8,11 @@ metadata:
   name: fw-acl
 spec:
   forProvider:
-    inboundRulesRefs:
+    inboundRuleRefs:
     - name: rule_1
     - name: rule_2
     name: my-fw-acl
-    subnetsRefs:
+    subnetRefs:
     - name: flexibleengine_vpc_subnet_v1
 
 ---

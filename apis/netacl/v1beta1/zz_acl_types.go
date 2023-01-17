@@ -38,27 +38,44 @@ type ACLParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// References to ACLRule in netacl to populate inboundRules.
+	// +kubebuilder:validation:Optional
+	InboundRuleRefs []v1.Reference `json:"inboundRuleRefs,omitempty" tf:"-"`
+
+	// Selector for a list of ACLRule in netacl to populate inboundRules.
+	// +kubebuilder:validation:Optional
+	InboundRuleSelector *v1.Selector `json:"inboundRuleSelector,omitempty" tf:"-"`
+
 	// A list of the IDs of ingress rules associated with the network ACL.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1.ACL
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1.ACLRule
+	// +crossplane:generate:reference:refFieldName=InboundRuleRefs
+	// +crossplane:generate:reference:selectorFieldName=InboundRuleSelector
 	// +kubebuilder:validation:Optional
 	InboundRules []*string `json:"inboundRules,omitempty" tf:"inbound_rules,omitempty"`
-
-	// References to ACL in netacl to populate inboundRules.
-	// +kubebuilder:validation:Optional
-	InboundRulesRefs []v1.Reference `json:"inboundRulesRefs,omitempty" tf:"-"`
-
-	// Selector for a list of ACL in netacl to populate inboundRules.
-	// +kubebuilder:validation:Optional
-	InboundRulesSelector *v1.Selector `json:"inboundRulesSelector,omitempty" tf:"-"`
 
 	// Specifies the network ACL name. This parameter can contain a maximum of 64 characters,
 	// which may consist of letters, digits, underscores (_), and hyphens (-).
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// References to ACLRule in netacl to populate outboundRules.
+	// +kubebuilder:validation:Optional
+	OutboundRuleRefs []v1.Reference `json:"outboundRuleRefs,omitempty" tf:"-"`
+
+	// Selector for a list of ACLRule in netacl to populate outboundRules.
+	// +kubebuilder:validation:Optional
+	OutboundRuleSelector *v1.Selector `json:"outboundRuleSelector,omitempty" tf:"-"`
+
 	// A list of the IDs of egress rules associated with the network ACL.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1.ACLRule
+	// +crossplane:generate:reference:refFieldName=OutboundRuleRefs
+	// +crossplane:generate:reference:selectorFieldName=OutboundRuleSelector
 	// +kubebuilder:validation:Optional
 	OutboundRules []*string `json:"outboundRules,omitempty" tf:"outbound_rules,omitempty"`
+
+	// References to VPCSubnet in vpc to populate subnets.
+	// +kubebuilder:validation:Optional
+	SubnetRefs []v1.Reference `json:"subnetRefs,omitempty" tf:"-"`
 
 	// Selector for a list of VPCSubnet in vpc to populate subnets.
 	// +kubebuilder:validation:Optional
@@ -67,13 +84,10 @@ type ACLParameters struct {
 	// A list of the IDs of networks associated with the network ACL.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:refFieldName=SubnetRefs
 	// +crossplane:generate:reference:selectorFieldName=SubnetSelector
 	// +kubebuilder:validation:Optional
 	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
-
-	// References to VPCSubnet in vpc to populate subnets.
-	// +kubebuilder:validation:Optional
-	SubnetsRefs []v1.Reference `json:"subnetsRefs,omitempty" tf:"-"`
 }
 
 // ACLSpec defines the desired state of ACL
