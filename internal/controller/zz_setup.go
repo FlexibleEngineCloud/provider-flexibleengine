@@ -145,6 +145,8 @@ import (
 	turbo "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sfs/turbo"
 	subscription "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/smn/subscription"
 	topicsmn "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/smn/topic"
+	servertemplate "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sms/servertemplate"
+	task "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/sms/task"
 	organization "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organization"
 	organizationusers "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/organizationusers"
 	repository "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/swr/repository"
@@ -321,6 +323,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		turbo.Setup,
 		subscription.Setup,
 		topicsmn.Setup,
+		servertemplate.Setup,
+		task.Setup,
 		organization.Setup,
 		organizationusers.Setup,
 		repository.Setup,

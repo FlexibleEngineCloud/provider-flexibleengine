@@ -1,0 +1,20 @@
+apiVersion: sms.flexibleengine.upbound.io/v1beta1
+kind: Task
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sms/v1beta1/task
+  labels:
+    testing.upbound.io/example-name: migration
+  name: migration
+spec:
+  forProvider:
+    action: start
+    osType: LINUX
+    sourceServerId: ${var.source_server}
+    type: MIGRATE_FILE
+    vmTemplateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+

@@ -841,6 +841,17 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_dws_cluster_v1 - No import documentation
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dws_cluster_v1
 	"flexibleengine_dws_cluster_v1": config.IdentifierFromProvider,
+
+	/*
+		Server Migration Service (SMS)
+	*/
+	// flexibleengine_sms_task - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sms_task
+	"flexibleengine_sms_task": config.IdentifierFromProvider,
+
+	// flexibleengine_sms_server_template - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/sms_server_template
+	"flexibleengine_sms_server_template": config.IdentifierFromProvider,
 }
 
 // TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but

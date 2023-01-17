@@ -52,6 +52,7 @@ import (
 	v1beta1sdrs "github.com/FrangipaneTeam/provider-flexibleengine/apis/sdrs/v1beta1"
 	v1beta1sfs "github.com/FrangipaneTeam/provider-flexibleengine/apis/sfs/v1beta1"
 	v1beta1smn "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
+	v1beta1sms "github.com/FrangipaneTeam/provider-flexibleengine/apis/sms/v1beta1"
 	v1beta1swr "github.com/FrangipaneTeam/provider-flexibleengine/apis/swr/v1beta1"
 	v1beta1tms "github.com/FrangipaneTeam/provider-flexibleengine/apis/tms/v1beta1"
 	v1alpha1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/v1alpha1"
@@ -107,6 +108,7 @@ func init() {
 		v1beta1sdrs.SchemeBuilder.AddToScheme,
 		v1beta1sfs.SchemeBuilder.AddToScheme,
 		v1beta1smn.SchemeBuilder.AddToScheme,
+		v1beta1sms.SchemeBuilder.AddToScheme,
 		v1beta1swr.SchemeBuilder.AddToScheme,
 		v1beta1tms.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
