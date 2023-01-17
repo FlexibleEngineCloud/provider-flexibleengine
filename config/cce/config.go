@@ -74,13 +74,21 @@ func Configure(p *config.Provider) {
 
 	// flexibleengine_cce_pvc
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_pvc
-	p.AddResourceConfigurator("flexibleengine_cce_pvc", func(r *config.Resource) {
-		r.References["cluster_id"] = config.Reference{
-			Type: "Cluster",
-		}
-		// Rename to avoid conflict with the Namespace Kind of Kubernetes
-		r.References["namespace"] = config.Reference{
-			Type: "CCENameSpace",
-		}
-	})
+
+	// note(azrod): this resource is affected by a bug in the Upjet
+	// The resource fall into tainted state as a result of certain steps in the creation process fail.
+	// Please see tainted issue for details https://github.com/upbound/upjet/issues/80
+
+	// p.AddResourceConfigurator("flexibleengine_cce_pvc", func(r *config.Resource) {
+
+	// 	r.References["cluster_id"] = config.Reference{
+	// 		Type: "Cluster",
+	// 	}
+
+	// 	r.References["namespace"] = config.Reference{
+	// 		Type:      "CCENameSpace",
+	// 		Extractor: tools.GenerateExtractor(false, "name"),
+	// 	}
+
+	// })
 }

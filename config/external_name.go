@@ -283,26 +283,32 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_dns_ptrrecord_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dns_ptrrecord_v2
 	"flexibleengine_dns_ptrrecord_v2": TemplatedStringAsIdentifierWithNoName("{{ .parameters.region }}:{{ .external_name }}"),
+
 	/*
 		> Cloud Container Engine (CCE)
 	*/
 	// flexibleengine_cce_addon_v3 - Imported using {cluster_id}/{addon_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_addon_v3
 	"flexibleengine_cce_addon_v3": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+
 	// flexibleengine_cce_cluster_v3 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_cluster_v3
 	"flexibleengine_cce_cluster_v3": config.IdentifierFromProvider,
+
 	// flexibleengine_cce_namespace - Imported using {cluster_id}/{namespace}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_namespace
 	"flexibleengine_cce_namespace": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.name }}"),
+
 	// flexibleengine_cce_node_pool_v3 - Imported using {cluster_id}/{node_pool_id}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_pool_v3
 	"flexibleengine_cce_node_pool_v3": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
+
 	// flexibleengine_cce_pvc - Imported using {cluster_id}/{namespace}/{name}
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_pvc
-	"flexibleengine_cce_pvc": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.namespace }}/{{ .parameters.name }}"),
+	"flexibleengine_cce_pvc": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.namespace }}/{{ .external_name }}"),
 
-	// No import documented
+	// flexibleengine_cce_node_v3 - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_v3
 	"flexibleengine_cce_node_v3": config.IdentifierFromProvider,
 
 	/*
