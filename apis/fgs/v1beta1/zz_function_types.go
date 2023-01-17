@@ -67,6 +67,7 @@ type FunctionParameters struct {
 	// Specifies the agency. This parameter is mandatory if the function needs to access other
 	// cloud services.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Agency
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(false, "name")
 	// +kubebuilder:validation:Optional
 	Agency *string `json:"agency,omitempty" tf:"agency,omitempty"`
 

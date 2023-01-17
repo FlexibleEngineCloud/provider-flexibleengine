@@ -1,0 +1,22 @@
+apiVersion: fgs.flexibleengine.upbound.io/v1beta1
+kind: Function
+metadata:
+  annotations:
+    meta.upbound.io/example-id: fgs/v1beta1/function
+  labels:
+    testing.upbound.io/example-name: example_fgs_function
+  name: example-fgs-function
+spec:
+  forProvider:
+    agencySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_fgs_agency
+    app: default
+    codeType: inline
+    description: example_function_description
+    funcCode: aW1wb3J0IGpzb24KZGVmIGhhbmRsZXIgKGV2ZW50LCBjb250ZXh0KToKICAgIG91dHB1dCA9ICdIZWxsbyBtZXNzYWdlOiAnICsganNvbi5kdW1wcyhldmVudCkKICAgIHJldHVybiBvdXRwdXQ=
+    handler: test.handler
+    memorySize: 128
+    name: example_function1
+    runtime: Python2.7
+    timeout: 3

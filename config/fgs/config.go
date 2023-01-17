@@ -25,7 +25,8 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_fgs_function", func(r *config.Resource) {
 		// agency
 		r.References["agency"] = config.Reference{
-			Type: tools.GenerateType("iam", "Agency"),
+			Type:      tools.GenerateType("iam", "Agency"),
+			Extractor: tools.GenerateExtractor(false, "name"),
 		}
 
 	})
