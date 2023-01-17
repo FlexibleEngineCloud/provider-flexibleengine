@@ -60,20 +60,19 @@ type RepositorySharingParameters struct {
 
 	// Specifies the name of the repository to be shared.
 	// Changing this creates a new resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.User
+	// +crossplane:generate:reference:type=Repository
 	// +kubebuilder:validation:Optional
 	Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
 
-	// Reference to a User in iam to populate repository.
+	// Reference to a Repository to populate repository.
 	// +kubebuilder:validation:Optional
 	RepositoryRef *v1.Reference `json:"repositoryRef,omitempty" tf:"-"`
 
-	// Selector for a User in iam to populate repository.
+	// Selector for a Repository to populate repository.
 	// +kubebuilder:validation:Optional
 	RepositorySelector *v1.Selector `json:"repositorySelector,omitempty" tf:"-"`
 
-	// Specifies the name of the account for repository sharing.
-	// Changing this creates a new resource.
+	// The Domain Name of the account to share the repository with.
 	// +kubebuilder:validation:Required
 	SharingAccount *string `json:"sharingAccount" tf:"sharing_account,omitempty"`
 }

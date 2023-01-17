@@ -1,0 +1,17 @@
+apiVersion: swr.flexibleengine.upbound.io/v1beta1
+kind: Repository
+metadata:
+  annotations:
+    meta.upbound.io/example-id: swr/v1beta1/repository
+  labels:
+    testing.upbound.io/example-name: example_swr_repository
+  name: example-swr-repository
+spec:
+  forProvider:
+    organizationSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_swr_organization
+    description: Test repository
+    name: 'example-swr-repository'
+    isPublic: false
+    category: 'linux'

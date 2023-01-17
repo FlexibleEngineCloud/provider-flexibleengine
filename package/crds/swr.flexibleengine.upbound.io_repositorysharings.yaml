@@ -165,7 +165,7 @@ spec:
                       Changing this creates a new resource.
                     type: string
                   repositoryRef:
-                    description: Reference to a User in iam to populate repository.
+                    description: Reference to a Repository to populate repository.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -199,7 +199,7 @@ spec:
                     - name
                     type: object
                   repositorySelector:
-                    description: Selector for a User in iam to populate repository.
+                    description: Selector for a Repository to populate repository.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -238,8 +238,8 @@ spec:
                         type: object
                     type: object
                   sharingAccount:
-                    description: Specifies the name of the account for repository
-                      sharing. Changing this creates a new resource.
+                    description: The Domain Name of the account to share the repository
+                      with.
                     type: string
                 required:
                 - deadline

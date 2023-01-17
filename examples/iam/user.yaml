@@ -11,6 +11,6 @@ spec:
     description: A user
     name: user1-example
     passwordSecretRef:
-      key: example-key
+      key: password
       name: example-secret
-      namespace: upbound-system
+      namespace: crossplane-system
