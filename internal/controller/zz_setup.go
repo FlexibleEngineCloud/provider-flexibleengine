@@ -35,7 +35,6 @@ import (
 	cluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/cluster"
 	node "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/node"
 	nodepool "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/nodepool"
-	pvc "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cce/pvc"
 	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
 	backup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backup"
 	backuppolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backuppolicy"
@@ -212,7 +211,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		cluster.Setup,
 		node.Setup,
 		nodepool.Setup,
-		pvc.Setup,
 		alarmrule.Setup,
 		backup.Setup,
 		backuppolicy.Setup,
