@@ -1,0 +1,23 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: RocketMQConsumerGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/rocketmqconsumergroup
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    broadcast: true
+    brokers:
+    - broker-0
+    - broker-1
+    enabled: true
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: consumer_group_test
+    retryMaxTimes: 3
+
+---
+

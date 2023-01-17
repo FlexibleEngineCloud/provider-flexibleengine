@@ -33,3 +33,39 @@ func (l *KafkaUserList) GetItems() []resource.Managed {
 	}
 	return items
 }
+
+// GetItems of this RocketMQConsumerGroupList.
+func (l *RocketMQConsumerGroupList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this RocketMQInstanceList.
+func (l *RocketMQInstanceList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this RocketMQTopicList.
+func (l *RocketMQTopicList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this RocketMQUserList.
+func (l *RocketMQUserList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}

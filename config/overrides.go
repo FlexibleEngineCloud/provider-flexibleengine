@@ -1,6 +1,8 @@
 package config
 
 import (
+	"strings"
+
 	"github.com/upbound/upjet/pkg/config"
 
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
@@ -45,8 +47,14 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			case "instance_id":
 				switch r.ShortGroup {
 				case "dms":
-					r.References[k] = config.Reference{
-						Type: tools.GenerateType("dms", "KafkaInstance"),
+					if strings.Contains(r.MetaResource.Name, "kafka") {
+						r.References[k] = config.Reference{
+							Type: tools.GenerateType("dms", "KafkaInstance"),
+						}
+					} else {
+						r.References[k] = config.Reference{
+							Type: tools.GenerateType("dms", "RocketMQInstance"),
+						}
 					}
 				default:
 					r.References[k] = config.Reference{
