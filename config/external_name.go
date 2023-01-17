@@ -333,6 +333,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 
 	// Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_acl
+	"flexibleengine_identity_acl": config.IdentifierFromProvider,
+	// Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/identity_agency_v3
 	"flexibleengine_identity_agency_v3": config.IdentifierFromProvider,
 	// No import documented

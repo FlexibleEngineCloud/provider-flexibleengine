@@ -1,0 +1,20 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: ACL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/acl
+  labels:
+    testing.upbound.io/example-name: acl
+  name: acl
+spec:
+  forProvider:
+    ipCidrs:
+    - cidr: 159.138.39.192/32
+      description: This is a test ip address
+    ipRanges:
+    - description: This is a test ip range
+      range: 0.0.0.0-255.255.255.0
+    type: console
+
+---
+

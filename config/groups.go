@@ -73,6 +73,7 @@ func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 // ? "flexibleengine_networking_subnet_v2": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: NetWorkingSubnet
 var GroupMap = map[string]GroupKindCalculator{
 	// IAM
+	"flexibleengine_identity_acl":                 ReplaceGroupWords("iam", 1), // Group: iam, Kind: Acl
 	"flexibleengine_identity_agency_v3":           ReplaceGroupWords("iam", 1), // Group: iam, Kind: Agency
 	"flexibleengine_identity_group_membership_v3": ReplaceGroupWords("iam", 1), // Group: iam, Kind: GroupMembership
 	"flexibleengine_identity_group_v3":            ReplaceGroupWords("iam", 1), // Group: iam, Kind: Group
