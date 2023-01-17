@@ -30,7 +30,20 @@ func Configure(p *config.Provider) {
 	// flexibleengine_network_acl
 	p.AddResourceConfigurator("flexibleengine_network_acl", func(r *config.Resource) {
 		r.References["inbound_rules"] = config.Reference{
-			Type: tools.GenerateType("netacl", "ACL"),
+			Type:              tools.GenerateType("netacl", "ACLRule"),
+			SelectorFieldName: "InboundRuleSelector",
+			RefFieldName:      "InboundRuleRefs",
+		}
+		r.References["outbound_rules"] = config.Reference{
+			Type:              tools.GenerateType("netacl", "ACLRule"),
+			SelectorFieldName: "OutboundRuleSelector",
+			RefFieldName:      "OutboundRuleRefs",
+		}
+		r.References["subnets"] = config.Reference{
+			Type:              tools.GenerateType("vpc", "VPCSubnet"),
+			Extractor:         tools.GenerateExtractor(true, "id"),
+			SelectorFieldName: "SubnetSelector",
+			RefFieldName:      "SubnetRefs",
 		}
 	})
 }

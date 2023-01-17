@@ -127,6 +127,18 @@ func (in *ACLParameters) DeepCopyInto(out *ACLParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.InboundRuleRefs != nil {
+		in, out := &in.InboundRuleRefs, &out.InboundRuleRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.InboundRuleSelector != nil {
+		in, out := &in.InboundRuleSelector, &out.InboundRuleSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.InboundRules != nil {
 		in, out := &in.InboundRules, &out.InboundRules
 		*out = make([]*string, len(*in))
@@ -138,22 +150,22 @@ func (in *ACLParameters) DeepCopyInto(out *ACLParameters) {
 			}
 		}
 	}
-	if in.InboundRulesRefs != nil {
-		in, out := &in.InboundRulesRefs, &out.InboundRulesRefs
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.OutboundRuleRefs != nil {
+		in, out := &in.OutboundRuleRefs, &out.OutboundRuleRefs
 		*out = make([]v1.Reference, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.InboundRulesSelector != nil {
-		in, out := &in.InboundRulesSelector, &out.InboundRulesSelector
+	if in.OutboundRuleSelector != nil {
+		in, out := &in.OutboundRuleSelector, &out.OutboundRuleSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
 	}
 	if in.OutboundRules != nil {
 		in, out := &in.OutboundRules, &out.OutboundRules
@@ -165,6 +177,18 @@ func (in *ACLParameters) DeepCopyInto(out *ACLParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.SubnetRefs != nil {
+		in, out := &in.SubnetRefs, &out.SubnetRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SubnetSelector != nil {
+		in, out := &in.SubnetSelector, &out.SubnetSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Subnets != nil {
 		in, out := &in.Subnets, &out.Subnets
