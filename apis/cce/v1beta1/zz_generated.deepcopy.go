@@ -1188,6 +1188,16 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.EcsGroupIDRef != nil {
+		in, out := &in.EcsGroupIDRef, &out.EcsGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.EcsGroupIDSelector != nil {
+		in, out := &in.EcsGroupIDSelector, &out.EcsGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.EcsPerformanceType != nil {
 		in, out := &in.EcsPerformanceType, &out.EcsPerformanceType
 		*out = new(string)

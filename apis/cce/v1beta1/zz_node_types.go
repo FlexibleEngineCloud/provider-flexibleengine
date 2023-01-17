@@ -121,8 +121,17 @@ type NodeParameters struct {
 
 	// Specifies the ECS group ID. If specified, the node will be created under
 	// the cloud server group. Changing this parameter will create a new resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.ServerGroup
 	// +kubebuilder:validation:Optional
 	EcsGroupID *string `json:"ecsGroupId,omitempty" tf:"ecs_group_id,omitempty"`
+
+	// Reference to a ServerGroup in ecs to populate ecsGroupId.
+	// +kubebuilder:validation:Optional
+	EcsGroupIDRef *v1.Reference `json:"ecsGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a ServerGroup in ecs to populate ecsGroupId.
+	// +kubebuilder:validation:Optional
+	EcsGroupIDSelector *v1.Selector `json:"ecsGroupIdSelector,omitempty" tf:"-"`
 
 	// Classification of cloud server specifications.
 	// Changing this parameter will create a new resource.

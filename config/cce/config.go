@@ -70,6 +70,9 @@ func Configure(p *config.Provider) {
 		r.References["data_volumes.kms_key_id"] = config.Reference{
 			Type: tools.GenerateType("kms", "Key"),
 		}
+		r.References["ecs_group_id"] = config.Reference{
+			Type: tools.GenerateType("ecs", "ServerGroup"),
+		}
 	})
 
 	// flexibleengine_cce_pvc
