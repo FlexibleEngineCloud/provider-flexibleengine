@@ -35,4 +35,8 @@ func Configure(p *config.Provider) {
 			Type: "Provider",
 		}
 	})
+
+	p.AddResourceConfigurator("flexibleengine_identity_provider_v3", func(r *config.Resource) {
+		r.MetaResource.ArgumentDocs["type"] = " - (Required, String, ForceNew) Specifies the ACL is created through the Console or API. There is 2 possible value : 'console' or 'api'. Changing this parameter will create a new ACL."
+	})
 }

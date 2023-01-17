@@ -90,6 +90,7 @@ import (
 	computevolumeattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/evs/computevolumeattach"
 	function "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/function"
 	trigger "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/trigger"
+	acl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/acl"
 	agency "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/agency"
 	groupiam "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/group"
 	groupmembership "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/groupmembership"
@@ -115,7 +116,7 @@ import (
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
 	gateway "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/gateway"
 	snatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/snatrule"
-	acl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/acl"
+	aclnetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/acl"
 	aclrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/aclrule"
 	firewallgroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/firewallgroup"
 	policynetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/policy"
@@ -266,6 +267,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		computevolumeattach.Setup,
 		function.Setup,
 		trigger.Setup,
+		acl.Setup,
 		agency.Setup,
 		groupiam.Setup,
 		groupmembership.Setup,
@@ -291,7 +293,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		dnatrule.Setup,
 		gateway.Setup,
 		snatrule.Setup,
-		acl.Setup,
+		aclnetacl.Setup,
 		aclrule.Setup,
 		firewallgroup.Setup,
 		policynetacl.Setup,
