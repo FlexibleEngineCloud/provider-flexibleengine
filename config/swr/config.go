@@ -19,8 +19,8 @@ func Configure(p *config.Provider) {
 			Type: "Organization",
 		}
 
-		// user_id
-		r.References["user_id"] = config.Reference{
+		// users.user_id block
+		r.References["users.user_id"] = config.Reference{
 			Type: tools.GenerateType("iam", "User"),
 		}
 
@@ -51,8 +51,8 @@ func Configure(p *config.Provider) {
 			Type: "Repository",
 		}
 
-		r.References["repository"] = config.Reference{
-			Type: tools.GenerateType("iam", "User"),
-		}
+		// sharing_account
+		r.MetaResource.ArgumentDocs["sharing_account"] = "The Domain Name of the account to share the repository with."
+
 	})
 }
