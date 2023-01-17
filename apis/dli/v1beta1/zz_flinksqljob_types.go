@@ -75,8 +75,17 @@ type FlinksqlJobParameters struct {
 	// Specifies OBS path. OBS path where users are authorized to save the
 	// snapshot. This parameter is valid only when checkpoint_enabled is set to true. OBS path where users are authorized
 	// to save the snapshot. This parameter is valid only when log_enabled is set to true.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.OBSBucket
 	// +kubebuilder:validation:Optional
 	ObsBucket *string `json:"obsBucket,omitempty" tf:"obs_bucket,omitempty"`
+
+	// Reference to a OBSBucket in oss to populate obsBucket.
+	// +kubebuilder:validation:Optional
+	ObsBucketRef *v1.Reference `json:"obsBucketRef,omitempty" tf:"-"`
+
+	// Selector for a OBSBucket in oss to populate obsBucket.
+	// +kubebuilder:validation:Optional
+	ObsBucketSelector *v1.Selector `json:"obsBucketSelector,omitempty" tf:"-"`
 
 	// Specifies number of parallel for a job. The default value is 1.
 	// +kubebuilder:validation:Optional
@@ -104,8 +113,8 @@ type FlinksqlJobParameters struct {
 	// Specifies maximum number of retry times upon exceptions. The unit is
 	// times/hour. Value range: -1 or greater than 0. The default value is -1, indicating that the number of times is
 	// unlimited.
-	// +kubebuilder:validation:Optional
-	ResumeMaxNum *float64 `json:"resumeMaxNum,omitempty" tf:"resume_max_num,omitempty"`
+	// +kubebuilder:validation:Required
+	ResumeMaxNum *float64 `json:"resumeMaxNum" tf:"resume_max_num,omitempty"`
 
 	// Specifies job running mode. The options are as follows:
 	// +kubebuilder:validation:Optional
