@@ -104,7 +104,24 @@ func (mg *Policy) ResolveReferences(ctx context.Context, c client.Reader) error 
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
 	var err error
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Rules),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.RuleRefs,
+		Selector:      mg.Spec.ForProvider.RuleSelector,
+		To: reference.To{
+			List:    &RuleList{},
+			Managed: &Rule{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Rules")
+	}
+	mg.Spec.ForProvider.Rules = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.RuleRefs = mrsp.ResolvedReferences
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TenantID),

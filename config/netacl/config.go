@@ -18,8 +18,10 @@ func Configure(p *config.Provider) {
 
 	// flexibleengine_fw_policy_v2
 	p.AddResourceConfigurator("flexibleengine_fw_policy_v2", func(r *config.Resource) {
-		r.References["firewall_rules"] = config.Reference{
-			Type: tools.GenerateType("netacl", "Policy"),
+		r.References["rules"] = config.Reference{
+			Type:              tools.GenerateType("netacl", "Rule"),
+			SelectorFieldName: "RuleSelector",
+			RefFieldName:      "RuleRefs",
 		}
 	})
 

@@ -44,9 +44,20 @@ type PolicyParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// References to Rule in netacl to populate rules.
+	// +kubebuilder:validation:Optional
+	RuleRefs []v1.Reference `json:"ruleRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Rule in netacl to populate rules.
+	// +kubebuilder:validation:Optional
+	RuleSelector *v1.Selector `json:"ruleSelector,omitempty" tf:"-"`
+
 	// An array of one or more firewall rules that comprise
 	// the policy. Changing this results in adding/removing rules from the
 	// existing firewall policy.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1.Rule
+	// +crossplane:generate:reference:refFieldName=RuleRefs
+	// +crossplane:generate:reference:selectorFieldName=RuleSelector
 	// +kubebuilder:validation:Optional
 	Rules []*string `json:"rules,omitempty" tf:"rules,omitempty"`
 

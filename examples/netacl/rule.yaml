@@ -1,0 +1,16 @@
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: Rule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/rule
+  labels:
+    testing.upbound.io/example-name: example_netacl_fwrule
+  name: example-netacl-fwrule
+spec:
+  forProvider:
+    action: deny
+    description: example-netacl-fwrule
+    destinationPort: "23"
+    enabled: true
+    name: example-netacl-fwrule
+    protocol: tcp

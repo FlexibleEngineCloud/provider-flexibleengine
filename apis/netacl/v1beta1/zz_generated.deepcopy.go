@@ -726,6 +726,18 @@ func (in *PolicyParameters) DeepCopyInto(out *PolicyParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.RuleRefs != nil {
+		in, out := &in.RuleRefs, &out.RuleRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.RuleSelector != nil {
+		in, out := &in.RuleSelector, &out.RuleSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Rules != nil {
 		in, out := &in.Rules, &out.Rules
 		*out = make([]*string, len(*in))

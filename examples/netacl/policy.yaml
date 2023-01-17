@@ -1,0 +1,14 @@
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/policy
+  labels:
+    testing.upbound.io/example-name: example_netacl_fwpolicy
+  name: example-netacl-fwpolicy
+spec:
+  forProvider:
+    name: example-netacl-fwpolicy
+    ruleRefs:
+      - name: example-netacl-fwrule
+      - name: example-netacl-fwrule-2
