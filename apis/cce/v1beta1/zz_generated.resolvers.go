@@ -294,6 +294,22 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.EcsGroupID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.EcsGroupIDRef,
+		Selector:     mg.Spec.ForProvider.EcsGroupIDSelector,
+		To: reference.To{
+			List:    &v1beta13.ServerGroupList{},
+			Managed: &v1beta13.ServerGroup{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.EcsGroupID")
+	}
+	mg.Spec.ForProvider.EcsGroupID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.EcsGroupIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KeyPair),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.KeyPairRef,

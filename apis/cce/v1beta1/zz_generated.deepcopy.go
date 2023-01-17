@@ -1493,6 +1493,16 @@ func (in *NodePoolParameters) DeepCopyInto(out *NodePoolParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.EcsGroupIDRef != nil {
+		in, out := &in.EcsGroupIDRef, &out.EcsGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.EcsGroupIDSelector != nil {
+		in, out := &in.EcsGroupIDSelector, &out.EcsGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ExtendParam != nil {
 		in, out := &in.ExtendParam, &out.ExtendParam
 		*out = make(map[string]*string, len(*in))
