@@ -1,0 +1,25 @@
+apiVersion: dli.flexibleengine.upbound.io/v1beta1
+kind: Table
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dli/v1beta1/table
+  labels:
+    testing.upbound.io/example-name: example_dli_table
+  name: example-dli-table
+spec:
+  forProvider:
+    bucketLocation: obs://example-dlipackageextra-obsbucket/user/data/user.csv
+    columns:
+      - description: person name
+        name: name
+        type: string
+      - description: home address
+        name: address
+        type: string
+    dataFormat: csv
+    dataLocation: OBS
+    databaseNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_dli_database
+    description: dli table test
+    name: exampledlitable

@@ -87,7 +87,6 @@ import (
 	project "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/eps/project"
 	blockstoragevolume "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/evs/blockstoragevolume"
 	computevolumeattach "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/evs/computevolumeattach"
-	dependency "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/dependency"
 	function "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/function"
 	trigger "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/fgs/trigger"
 	agency "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/iam/agency"
@@ -263,7 +262,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		project.Setup,
 		blockstoragevolume.Setup,
 		computevolumeattach.Setup,
-		dependency.Setup,
 		function.Setup,
 		trigger.Setup,
 		agency.Setup,

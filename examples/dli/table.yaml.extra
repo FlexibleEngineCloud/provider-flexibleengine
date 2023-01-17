@@ -1,0 +1,31 @@
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucket
+  labels:
+    testing.upbound.io/example-name: example_dlitableextra_obsbucket
+  name: example-dlipackageextra-obsbucket
+spec:
+  forProvider:
+    acl: private
+    bucket: example-dlipackageextra-obsbucket
+
+---
+
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucketobject
+  labels:
+    testing.upbound.io/example-name: example_dlitableextra_obsbucketobject
+  name: example-dlitableextra-obsbucketobject
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_dlitableextra_obsbucket
+    contentType: text/plain
+    key: user/data/user.csv
+    content: Jason,Tokyo

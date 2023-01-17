@@ -13,10 +13,14 @@ spec:
         testing.upbound.io/example-name: example
     users:
     - permission: Read
-      userId: ${var.user_1.id}
+      userIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: user_1
       userName: ${var.user_1.name}
     - permission: Read
-      userId: ${var.user_2.id}
+      userIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: user_2
       userName: ${var.user_2.name}
 
 ---

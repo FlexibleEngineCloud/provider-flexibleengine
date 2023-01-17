@@ -590,6 +590,16 @@ func (in *FlinksqlJobParameters) DeepCopyInto(out *FlinksqlJobParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ObsBucketRef != nil {
+		in, out := &in.ObsBucketRef, &out.ObsBucketRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ObsBucketSelector != nil {
+		in, out := &in.ObsBucketSelector, &out.ObsBucketSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ParallelNumber != nil {
 		in, out := &in.ParallelNumber, &out.ParallelNumber
 		*out = new(float64)

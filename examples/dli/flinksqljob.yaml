@@ -10,6 +10,7 @@ spec:
   forProvider:
     name: example-dli-flinksqljob
     type: flink_sql_job
+    resumeMaxNum: -1
     sql: |
       CREATE SOURCE STREAM car_infos (
         car_id STRING,

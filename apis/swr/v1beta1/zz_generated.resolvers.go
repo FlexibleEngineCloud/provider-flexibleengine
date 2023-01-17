@@ -36,6 +36,25 @@ func (mg *OrganizationUsers) ResolveReferences(ctx context.Context, c client.Rea
 	mg.Spec.ForProvider.Organization = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.OrganizationRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.Users); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Users[i3].UserID),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.Users[i3].UserIDRef,
+			Selector:     mg.Spec.ForProvider.Users[i3].UserIDSelector,
+			To: reference.To{
+				List:    &v1beta1.UserList{},
+				Managed: &v1beta1.User{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Users[i3].UserID")
+		}
+		mg.Spec.ForProvider.Users[i3].UserID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Users[i3].UserIDRef = rsp.ResolvedReference
+
+	}
+
 	return nil
 }
 
@@ -94,8 +113,8 @@ func (mg *RepositorySharing) ResolveReferences(ctx context.Context, c client.Rea
 		Reference:    mg.Spec.ForProvider.RepositoryRef,
 		Selector:     mg.Spec.ForProvider.RepositorySelector,
 		To: reference.To{
-			List:    &v1beta1.UserList{},
-			Managed: &v1beta1.User{},
+			List:    &RepositoryList{},
+			Managed: &Repository{},
 		},
 	})
 	if err != nil {

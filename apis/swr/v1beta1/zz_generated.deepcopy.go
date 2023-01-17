@@ -783,6 +783,16 @@ func (in *UsersParameters) DeepCopyInto(out *UsersParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.UserIDRef != nil {
+		in, out := &in.UserIDRef, &out.UserIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.UserIDSelector != nil {
+		in, out := &in.UserIDSelector, &out.UserIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.UserName != nil {
 		in, out := &in.UserName, &out.UserName
 		*out = new(string)

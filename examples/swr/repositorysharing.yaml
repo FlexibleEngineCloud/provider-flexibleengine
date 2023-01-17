@@ -1,0 +1,19 @@
+apiVersion: swr.flexibleengine.upbound.io/v1beta1
+kind: RepositorySharing
+metadata:
+  annotations:
+    meta.upbound.io/example-id: swr/v1beta1/repositorysharing
+  labels:
+    testing.upbound.io/example-name: example_swr_repositorysharing
+  name: example-swr-repositorysharing
+spec:
+  forProvider:
+    deadline: forever
+    organizationSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_swr_organization
+    permission: pull
+    repositorySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_swr_repository
+    sharingAccount: OCB000xxxx

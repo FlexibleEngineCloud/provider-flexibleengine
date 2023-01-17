@@ -7,7 +7,8 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1"
+	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -21,13 +22,29 @@ func (mg *FlinksqlJob) ResolveReferences(ctx context.Context, c client.Reader) e
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ObsBucket),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.ObsBucketRef,
+		Selector:     mg.Spec.ForProvider.ObsBucketSelector,
+		To: reference.To{
+			List:    &v1beta1.OBSBucketList{},
+			Managed: &v1beta1.OBSBucket{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ObsBucket")
+	}
+	mg.Spec.ForProvider.ObsBucket = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ObsBucketRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SmnTopic),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.SmnTopicRef,
 		Selector:     mg.Spec.ForProvider.SmnTopicSelector,
 		To: reference.To{
-			List:    &v1beta1.TopicList{},
-			Managed: &v1beta1.Topic{},
+			List:    &v1beta11.TopicList{},
+			Managed: &v1beta11.Topic{},
 		},
 	})
 	if err != nil {

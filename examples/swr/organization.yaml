@@ -1,0 +1,10 @@
+apiVersion: swr.flexibleengine.upbound.io/v1beta1
+kind: Organization
+metadata:
+  annotations:
+    meta.upbound.io/example-id: swr/v1beta1/organization
+  labels:
+    testing.upbound.io/example-name: example_swr_organization
+  name: example-swr-organization
+spec:
+  forProvider: {}

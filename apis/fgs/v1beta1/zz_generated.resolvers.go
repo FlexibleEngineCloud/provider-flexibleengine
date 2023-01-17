@@ -24,7 +24,7 @@ func (mg *Function) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Agency),
-		Extract:      reference.ExternalName(),
+		Extract:      tools.ExtractorParamPathfunc(false, "name"),
 		Reference:    mg.Spec.ForProvider.AgencyRef,
 		Selector:     mg.Spec.ForProvider.AgencySelector,
 		To: reference.To{
