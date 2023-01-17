@@ -1,0 +1,32 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: RocketMQUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/rocketmquser
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    accessKey: user_test
+    admin: false
+    defaultGroupPerm: PUB
+    defaultTopicPerm: PUB
+    groupPerms:
+    - nameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      perm: PUB
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    secretKey: abcdefg
+    topicPerms:
+    - nameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      perm: PUB
+    whiteRemoteAddress: 10.10.10.10
+
+---
+

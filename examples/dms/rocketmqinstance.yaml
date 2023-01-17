@@ -1,0 +1,30 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: RocketMQInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/rocketmqinstance
+  labels:
+    testing.upbound.io/example-name: example_dms_rocketmq_instance
+  name: example-dms-rocketmq-instance
+spec:
+  forProvider:
+    availabilityZones:
+    - eu-west-0a
+    description: Test rocketmq instance
+    engineVersion: 4.8.0
+    flavorId: c6.4u8g.cluster
+    name: rocketmq_name_test
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_secgroup
+    storageSpace: 600
+    storageSpecCode: dms.physical.storage.high.v2
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
+    sslEnable: true
+    brokerNum: 1
+    retentionPolicy: true

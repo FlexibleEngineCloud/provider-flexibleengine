@@ -1,0 +1,21 @@
+apiVersion: dms.flexibleengine.upbound.io/v1beta1
+kind: RocketMQTopic
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dms/v1beta1/rocketmqtopic
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    brokers:
+    - name: broker-0
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: topic_test
+    permission: all
+    queueNum: 3
+
+---
+

@@ -234,3 +234,299 @@ func (tr *KafkaUser) LateInitialize(attrs []byte) (bool, error) {
 func (tr *KafkaUser) GetTerraformSchemaVersion() int {
 	return 0
 }
+
+// GetTerraformResourceType returns Terraform resource type for this RocketMQConsumerGroup
+func (mg *RocketMQConsumerGroup) GetTerraformResourceType() string {
+	return "flexibleengine_dms_rocketmq_consumer_group"
+}
+
+// GetConnectionDetailsMapping for this RocketMQConsumerGroup
+func (tr *RocketMQConsumerGroup) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this RocketMQConsumerGroup
+func (tr *RocketMQConsumerGroup) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this RocketMQConsumerGroup
+func (tr *RocketMQConsumerGroup) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this RocketMQConsumerGroup
+func (tr *RocketMQConsumerGroup) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this RocketMQConsumerGroup
+func (tr *RocketMQConsumerGroup) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this RocketMQConsumerGroup
+func (tr *RocketMQConsumerGroup) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this RocketMQConsumerGroup using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *RocketMQConsumerGroup) LateInitialize(attrs []byte) (bool, error) {
+	params := &RocketMQConsumerGroupParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *RocketMQConsumerGroup) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this RocketMQInstance
+func (mg *RocketMQInstance) GetTerraformResourceType() string {
+	return "flexibleengine_dms_rocketmq_instance"
+}
+
+// GetConnectionDetailsMapping for this RocketMQInstance
+func (tr *RocketMQInstance) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this RocketMQInstance
+func (tr *RocketMQInstance) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this RocketMQInstance
+func (tr *RocketMQInstance) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this RocketMQInstance
+func (tr *RocketMQInstance) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this RocketMQInstance
+func (tr *RocketMQInstance) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this RocketMQInstance
+func (tr *RocketMQInstance) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this RocketMQInstance using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *RocketMQInstance) LateInitialize(attrs []byte) (bool, error) {
+	params := &RocketMQInstanceParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *RocketMQInstance) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this RocketMQTopic
+func (mg *RocketMQTopic) GetTerraformResourceType() string {
+	return "flexibleengine_dms_rocketmq_topic"
+}
+
+// GetConnectionDetailsMapping for this RocketMQTopic
+func (tr *RocketMQTopic) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this RocketMQTopic
+func (tr *RocketMQTopic) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this RocketMQTopic
+func (tr *RocketMQTopic) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this RocketMQTopic
+func (tr *RocketMQTopic) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this RocketMQTopic
+func (tr *RocketMQTopic) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this RocketMQTopic
+func (tr *RocketMQTopic) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this RocketMQTopic using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *RocketMQTopic) LateInitialize(attrs []byte) (bool, error) {
+	params := &RocketMQTopicParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *RocketMQTopic) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this RocketMQUser
+func (mg *RocketMQUser) GetTerraformResourceType() string {
+	return "flexibleengine_dms_rocketmq_user"
+}
+
+// GetConnectionDetailsMapping for this RocketMQUser
+func (tr *RocketMQUser) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this RocketMQUser
+func (tr *RocketMQUser) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this RocketMQUser
+func (tr *RocketMQUser) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this RocketMQUser
+func (tr *RocketMQUser) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this RocketMQUser
+func (tr *RocketMQUser) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this RocketMQUser
+func (tr *RocketMQUser) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this RocketMQUser using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *RocketMQUser) LateInitialize(attrs []byte) (bool, error) {
+	params := &RocketMQUserParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *RocketMQUser) GetTerraformSchemaVersion() int {
+	return 0
+}

@@ -204,4 +204,8 @@ var KindMap = map[string]string{
 	"flexibleengine_antiddos_v1":                     "AntiDDoS",
 	"flexibleengine_vpcep_service":                   "VPCEPService",
 	"flexibleengine_cce_namespace":                   "CCENameSpace",
+	"flexibleengine_dms_rocketmq_instance":           "RocketMQInstance",
+	"flexibleengine_dms_rocketmq_user":               "RocketMQUser",
+	"flexibleengine_dms_rocketmq_topic":              "RocketMQTopic",
+	"flexibleengine_dms_rocketmq_consumer_group":     "RocketMQConsumerGroup",
 }

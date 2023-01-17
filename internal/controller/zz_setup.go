@@ -64,6 +64,10 @@ import (
 	kafkainstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkainstance"
 	kafkatopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkatopic"
 	kafkauser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkauser"
+	rocketmqconsumergroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmqconsumergroup"
+	rocketmqinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmqinstance"
+	rocketmqtopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmqtopic"
+	rocketmquser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmquser"
 	ptrrecord "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/ptrrecord"
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
@@ -240,6 +244,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		kafkainstance.Setup,
 		kafkatopic.Setup,
 		kafkauser.Setup,
+		rocketmqconsumergroup.Setup,
+		rocketmqinstance.Setup,
+		rocketmqtopic.Setup,
+		rocketmquser.Setup,
 		ptrrecord.Setup,
 		recordset.Setup,
 		zone.Setup,

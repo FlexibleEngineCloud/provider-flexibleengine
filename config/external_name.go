@@ -656,6 +656,22 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_user
 	"flexibleengine_dms_kafka_user": config.IdentifierFromProvider,
 
+	// flexibleengine_dms_rocketmq_instance - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_instance
+	"flexibleengine_dms_rocketmq_instance": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_rocketmq_user - Imported using the rocketmq instance ID and the user access key separated by a slash
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_user
+	"flexibleengine_dms_rocketmq_user": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.access_key}}"),
+
+	// flexibleengine_dms_rocketmq_topic - Imported using the rocketmq instance ID and the topic name separated by a slash
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_topic
+	"flexibleengine_dms_rocketmq_topic": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.external_name}}"),
+
+	// flexibleengine_dms_rocketmq_consumer_group - Imported using the rocketmq instance ID and the consumer group name separated by a slash
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_consumer_group
+	"flexibleengine_dms_rocketmq_consumer_group": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.external_name}}"),
+
 	/*
 	  > Cloud Search Service (CSS)
 	*/
