@@ -12,6 +12,6 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_swr_organization
     description: Test repository
-    name: 'example-swr-repository'
+    name: example-swr-repository
     isPublic: false
-    category: 'linux'
+    category: linux

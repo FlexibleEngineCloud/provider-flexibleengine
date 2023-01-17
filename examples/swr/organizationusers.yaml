@@ -15,4 +15,4 @@ spec:
       - userIdSelector:
           matchLabels:
             testing.upbound.io/example-name: user_1
-        permission: "Read"
+        permission: Read
