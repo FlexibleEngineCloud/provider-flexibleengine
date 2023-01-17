@@ -64,7 +64,7 @@ var (
 
 var skipList = []string{
 	"flexibleengine_cts_tracker_v1$", // Only system tracker_name is available
-
+	"flexibleengine_fgs_dependency$", // Cannot upload a zip file to reference it to a dependency
 	// Deprecated resources
 
 	// https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/869
