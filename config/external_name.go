@@ -808,18 +808,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> Network ACL
 	*/
-	// flexibleengine_fw_firewall_group_v2- Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fw_firewall_group_v2
-	"flexibleengine_fw_firewall_group_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_fw_policy_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fw_policy_v2
-	"flexibleengine_fw_policy_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_fw_rule_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fw_rule_v2
-	"flexibleengine_fw_rule_v2": config.IdentifierFromProvider,
-
 	// flexibleengine_network_acl - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/network_acl
 	"flexibleengine_network_acl": config.IdentifierFromProvider,

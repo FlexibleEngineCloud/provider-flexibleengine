@@ -264,9 +264,6 @@
 | ---- | ------ |
 | ACL |  :white_check_mark:  |
 | ACLRule |  :white_check_mark:  |
-| FirewallGroup |  :white_check_mark:  |
-| Policy |  :white_check_mark:  |
-| Rule |  :white_check_mark:  |
 
 ## oss.flexibleengine.upbound.io
 | Kind | Tested |

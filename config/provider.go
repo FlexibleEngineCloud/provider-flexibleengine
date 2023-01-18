@@ -76,6 +76,11 @@ var skipList = []string{
 	"flexibleengine_networking_subnet_v2$",
 	"flexibleengine_networking_router_interface_v2$",
 	"flexibleengine_networking_router_v2$",
+
+	// Duplicated resources
+	"flexibleengine_fw_firewall_group_v2$", // Duplicated with flexibleengine_network_acl
+	"flexibleengine_fw_policy_v2$",         // Duplicated with flexibleengine_network_acl_rule
+	"flexibleengine_fw_rule_v2$",           // Duplicated with flexibleengine_network_acl_rule
 }
 
 // GetProvider returns provider configuration

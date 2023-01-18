@@ -9,33 +9,6 @@ import (
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
-	// flexibleengine_fw_firewall_group_v2
-	p.AddResourceConfigurator("flexibleengine_fw_firewall_group_v2", func(r *config.Resource) {
-		r.References["ingress_firewall_policy_id"] = config.Reference{
-			Type: tools.GenerateType("netacl", "Policy"),
-		}
-		r.References["egress_firewall_policy_id"] = config.Reference{
-			Type: tools.GenerateType("netacl", "Policy"),
-		}
-		r.References["ports"] = config.Reference{
-			Type:              tools.GenerateType("vpc", "Port"),
-			SelectorFieldName: "PortSelector",
-			RefFieldName:      "PortRefs",
-		}
-	})
-
-	// flexibleengine_fw_policy_v2
-	p.AddResourceConfigurator("flexibleengine_fw_policy_v2", func(r *config.Resource) {
-		r.References["rules"] = config.Reference{
-			Type:              tools.GenerateType("netacl", "Rule"),
-			SelectorFieldName: "RuleSelector",
-			RefFieldName:      "RuleRefs",
-		}
-	})
-
-	// flexibleengine_fw_rule_v2
-	p.AddResourceConfigurator("flexibleengine_fw_rule_v2", func(r *config.Resource) {
-	})
 
 	// flexibleengine_network_acl
 	p.AddResourceConfigurator("flexibleengine_network_acl", func(r *config.Resource) {
