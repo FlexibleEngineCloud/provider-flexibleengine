@@ -68,6 +68,9 @@ var skipList = []string{
 	"flexibleengine_fgs_dependency$", // Cannot upload a zip file to reference it to a dependency
 
 	// Deprecated resources
+	"flexibleengine_mrs_cluster_v1$",
+	"flexibleengine_mrs_job_v1$",
+	"flexibleengine_mrs_hybrid_cluster_v1$",
 
 	// https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/869
 	"flexibleengine_networking_floatingip_associate_v2$",

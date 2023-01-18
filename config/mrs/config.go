@@ -9,13 +9,6 @@ import (
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
-	// flexibleengine_mrs_cluster_v1
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v1
-	p.AddResourceConfigurator("flexibleengine_mrs_cluster_v1", func(r *config.Resource) {
-		// TODO: Add references to password_of_mrs_manager
-
-	})
-
 	// flexibleengine_mrs_cluster_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v2
 	p.AddResourceConfigurator("flexibleengine_mrs_cluster_v2", func(r *config.Resource) {
@@ -28,19 +21,6 @@ func Configure(p *config.Provider) {
 
 		// node_key_pair is sensitive ?
 		r.TerraformResource.Schema["node_key_pair"].Sensitive = true
-	})
-
-	// flexibleengine_mrs_hybrid_cluster_v1
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_hybrid_cluster_v1
-	p.AddResourceConfigurator("flexibleengine_mrs_hybrid_cluster_v1", func(r *config.Resource) {
-		// node_key_pair is sensitive ?
-		r.TerraformResource.Schema["master_node_key_pair"].Sensitive = true
-	})
-
-	// flexibleengine_mrs_job_v1
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v1
-	p.AddResourceConfigurator("flexibleengine_mrs_job_v1", func(r *config.Resource) {
-
 	})
 
 	// flexibleengine_mrs_job_v2
