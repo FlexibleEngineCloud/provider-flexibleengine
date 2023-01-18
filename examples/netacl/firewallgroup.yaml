@@ -1,0 +1,12 @@
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: FirewallGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/firewallgroup
+  labels:
+    testing.upbound.io/example-name: example_firewall_group
+  name: example-firewall-group
+spec:
+  forProvider:
+    ingressPolicyId: 92f14b79-ed0f-48f1-abff-98511cf407a7
+    name: example-firewall-group

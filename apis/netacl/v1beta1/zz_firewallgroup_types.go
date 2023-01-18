@@ -45,9 +45,20 @@ type FirewallGroupParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// References to Port in vpc to populate ports.
+	// +kubebuilder:validation:Optional
+	PortRefs []v1.Reference `json:"portRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Port in vpc to populate ports.
+	// +kubebuilder:validation:Optional
+	PortSelector *v1.Selector `json:"portSelector,omitempty" tf:"-"`
+
 	// Port(s) to associate this firewall group instance
 	// with. Must be a list of strings. Changing this updates the associated routers
 	// of an existing firewall group.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.Port
+	// +crossplane:generate:reference:refFieldName=PortRefs
+	// +crossplane:generate:reference:selectorFieldName=PortSelector
 	// +kubebuilder:validation:Optional
 	Ports []*string `json:"ports,omitempty" tf:"ports,omitempty"`
 

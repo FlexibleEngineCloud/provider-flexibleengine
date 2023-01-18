@@ -78,7 +78,24 @@ func (mg *FirewallGroup) ResolveReferences(ctx context.Context, c client.Reader)
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
 	var err error
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Ports),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.PortRefs,
+		Selector:      mg.Spec.ForProvider.PortSelector,
+		To: reference.To{
+			List:    &v1beta1.PortList{},
+			Managed: &v1beta1.Port{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Ports")
+	}
+	mg.Spec.ForProvider.Ports = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.PortRefs = mrsp.ResolvedReferences
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TenantID),

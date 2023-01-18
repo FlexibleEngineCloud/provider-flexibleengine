@@ -532,6 +532,18 @@ func (in *FirewallGroupParameters) DeepCopyInto(out *FirewallGroupParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PortRefs != nil {
+		in, out := &in.PortRefs, &out.PortRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.PortSelector != nil {
+		in, out := &in.PortSelector, &out.PortSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Ports != nil {
 		in, out := &in.Ports, &out.Ports
 		*out = make([]*string, len(*in))

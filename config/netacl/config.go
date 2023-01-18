@@ -12,7 +12,15 @@ func Configure(p *config.Provider) {
 	// flexibleengine_fw_firewall_group_v2
 	p.AddResourceConfigurator("flexibleengine_fw_firewall_group_v2", func(r *config.Resource) {
 		r.References["ingress_firewall_policy_id"] = config.Reference{
-			Type: "flexibleengine_fw_policy_v2",
+			Type: tools.GenerateType("netacl", "Policy"),
+		}
+		r.References["egress_firewall_policy_id"] = config.Reference{
+			Type: tools.GenerateType("netacl", "Policy"),
+		}
+		r.References["ports"] = config.Reference{
+			Type:              tools.GenerateType("vpc", "Port"),
+			SelectorFieldName: "PortSelector",
+			RefFieldName:      "PortRefs",
 		}
 	})
 
