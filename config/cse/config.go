@@ -20,6 +20,10 @@ func Configure(p *config.Provider) {
 			Type: tools.GenerateType("eip", "EIP"),
 		}
 
+		if s, ok := r.TerraformResource.Schema["enterprise_project_id"]; ok {
+			s.Default = "0"
+		}
+		config.MoveToStatus(r.TerraformResource, "admin_pass")
 	})
 
 	// flexibleengine_cse_microservice
@@ -30,7 +34,8 @@ func Configure(p *config.Provider) {
 
 		// connect_address
 		r.References["connect_address"] = config.Reference{
-			Type: "MicroserviceEngine",
+			Type:      "MicroserviceEngine",
+			Extractor: tools.GenerateExtractor(true, "service_registry_addresses", "public"),
 		}
 
 	})
@@ -43,14 +48,13 @@ func Configure(p *config.Provider) {
 
 		// connect_address
 		r.References["connect_address"] = config.Reference{
-			Type: "MicroserviceEngine",
+			Type:      "MicroserviceEngine",
+			Extractor: tools.GenerateExtractor(true, "service_registry_addresses", "private"),
 		}
 
 		// microservice_id
 		r.References["microservice_id"] = config.Reference{
 			Type: "Microservice",
 		}
-
 	})
-
 }

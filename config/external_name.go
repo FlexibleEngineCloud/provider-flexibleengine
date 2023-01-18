@@ -595,21 +595,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_sdrs_replication_pair_v1": config.IdentifierFromProvider,
 
 	/*
-		> Cloud Service Engine (CSE)
-	*/
-	// flexibleengine_cse_microservice_engine - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_engine
-	"flexibleengine_cse_microservice_engine": config.IdentifierFromProvider,
-
-	// flexibleengine_cse_microservice - Imported using the Template connect_address
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice
-	"flexibleengine_cse_microservice": TemplatedStringAsIdentifierWithNoName("{{.parameters.connect_address}}/{{.external_name}}"),
-
-	// flexibleengine_cse_microservice_instance - Imported using the Template connect_address, microservice_id and their id
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_instance
-	"flexibleengine_cse_microservice_instance": TemplatedStringAsIdentifierWithNoName("{{.parameters.connect_address}}/{{.parameters.microservice_id}}/{{.external_name}}"),
-
-	/*
 		> Cloud Eye (CES)
 	*/
 
