@@ -55,12 +55,11 @@
 | Cluster |  :white_check_mark:  |
 | Node |  :white_check_mark:  |
 | NodePool |  :white_check_mark:  |
-| Pvc |  :x:  |
 
 ## ces.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| AlarmRule |  :x:  |
+| AlarmRule |  :white_check_mark:  |
 
 ## csbs.flexibleengine.upbound.io
 | Kind | Tested |
@@ -188,9 +187,8 @@
 ## fgs.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| Dependency |  :x:  |
-| Function |  :x:  |
-| Trigger |  :x:  |
+| Function |  :white_check_mark:  |
+| Trigger |  :white_check_mark:  |
 
 ## flexibleengine.upbound.io
 | Kind | Tested |
@@ -202,6 +200,7 @@
 ## iam.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
+| ACL |  :white_check_mark:  |
 | Agency |  :white_check_mark:  |
 | Group |  :white_check_mark:  |
 | GroupMembership |  :white_check_mark:  |
@@ -263,8 +262,8 @@
 ## netacl.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| ACL |  :x:  |
-| ACLRule |  :x:  |
+| ACL |  :white_check_mark:  |
+| ACLRule |  :white_check_mark:  |
 | FirewallGroup |  :x:  |
 | Policy |  :x:  |
 | Rule |  :x:  |
