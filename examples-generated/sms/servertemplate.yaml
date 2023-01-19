@@ -1,0 +1,15 @@
+apiVersion: sms.flexibleengine.upbound.io/v1beta1
+kind: ServerTemplate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: sms/v1beta1/servertemplate
+  labels:
+    testing.upbound.io/example-name: demo
+  name: demo
+spec:
+  forProvider:
+    availabilityZone: ${data.flexibleengine_availability_zones.demo.names[0]}
+    name: demo
+
+---
+

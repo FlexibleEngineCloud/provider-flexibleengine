@@ -67,6 +67,13 @@
 | Backup |  :white_check_mark:  |
 | BackupPolicy |  :white_check_mark:  |
 
+## cse.flexibleengine.upbound.io
+| Kind | Tested |
+| ---- | ------ |
+| Microservice |  :x:  |
+| MicroserviceEngine |  :x:  |
+| MicroserviceInstance |  :x:  |
+
 ## css.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
@@ -229,6 +236,8 @@
 ## modelarts.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
+| Dataset |  :x:  |
+| DatasetVersion |  :x:  |
 | Dataset |  :white_check_mark:  |
 | DatasetVersion |  :white_check_mark:  |
 
@@ -305,6 +314,12 @@
 | ---- | ------ |
 | Subscription |  :white_check_mark:  |
 | Topic |  :white_check_mark:  |
+
+## sms.flexibleengine.upbound.io
+| Kind | Tested |
+| ---- | ------ |
+| ServerTemplate |  :white_check_mark:  |
+| Task |  :white_check_mark:  |
 
 ## swr.flexibleengine.upbound.io
 | Kind | Tested |
