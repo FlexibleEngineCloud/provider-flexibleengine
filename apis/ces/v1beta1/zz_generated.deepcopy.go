@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1beta1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -41,6 +42,18 @@ func (in *AlarmActionsParameters) DeepCopyInto(out *AlarmActionsParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.NotificationListRefs != nil {
+		in, out := &in.NotificationListRefs, &out.NotificationListRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.NotificationListSelector != nil {
+		in, out := &in.NotificationListSelector, &out.NotificationListSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Type != nil {
 		in, out := &in.Type, &out.Type

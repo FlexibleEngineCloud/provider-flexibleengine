@@ -59,7 +59,7 @@
 ## ces.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| AlarmRule |  :x:  |
+| AlarmRule |  :white_check_mark:  |
 
 ## csbs.flexibleengine.upbound.io
 | Kind | Tested |
@@ -124,6 +124,10 @@
 | KafkaInstance |  :white_check_mark:  |
 | KafkaTopic |  :white_check_mark:  |
 | KafkaUser |  :white_check_mark:  |
+| RocketMQConsumerGroup |  :white_check_mark:  |
+| RocketMQInstance |  :white_check_mark:  |
+| RocketMQTopic |  :white_check_mark:  |
+| RocketMQUser |  :x:  |
 
 ## dns.flexibleengine.upbound.io
 | Kind | Tested |
@@ -234,6 +238,8 @@
 | ---- | ------ |
 | Dataset |  :x:  |
 | DatasetVersion |  :x:  |
+| Dataset |  :white_check_mark:  |
+| DatasetVersion |  :white_check_mark:  |
 
 ## mrs.flexibleengine.upbound.io
 | Kind | Tested |
@@ -258,11 +264,8 @@
 ## netacl.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| ACL |  :x:  |
-| ACLRule |  :x:  |
-| FirewallGroup |  :x:  |
-| Policy |  :x:  |
-| Rule |  :x:  |
+| ACL |  :white_check_mark:  |
+| ACLRule |  :white_check_mark:  |
 
 ## oss.flexibleengine.upbound.io
 | Kind | Tested |

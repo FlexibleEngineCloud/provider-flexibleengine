@@ -1,0 +1,47 @@
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: ACLRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/aclrule
+  labels:
+    testing.upbound.io/example-name: example_netacl_rule2
+  name: example-netacl-rule2
+spec:
+  forProvider:
+    action: deny
+    destinationIpAddress: 4.3.2.0/24
+    destinationPort: "777"
+    description: example-netacl-rule2
+    protocol: tcp
+    sourceIpAddress: 1.2.3.4
+    sourcePort: "444"
+---
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: ACLRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/aclrule
+  labels:
+    testing.upbound.io/example-name: example_netacl_rule
+  name: example-netacl-rule3
+spec:
+  forProvider:
+    action: allow
+    description: example-netacl-rule3
+    protocol: tcp
+    destinationIpAddress: 1.2.3.4
+---
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: ACLRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/aclrule
+  labels:
+    testing.upbound.io/example-name: example_netacl_rule
+  name: example-netacl-rule4
+spec:
+  forProvider:
+    action: deny
+    description: example-netacl-rule4
+    protocol: tcp
+    destinationPort: "23"

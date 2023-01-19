@@ -19,7 +19,6 @@ import (
 	v1beta1cce "github.com/FrangipaneTeam/provider-flexibleengine/apis/cce/v1beta1"
 	v1beta1ces "github.com/FrangipaneTeam/provider-flexibleengine/apis/ces/v1beta1"
 	v1beta1csbs "github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1"
-	v1beta1cse "github.com/FrangipaneTeam/provider-flexibleengine/apis/cse/v1beta1"
 	v1beta1css "github.com/FrangipaneTeam/provider-flexibleengine/apis/css/v1beta1"
 	v1beta1dcs "github.com/FrangipaneTeam/provider-flexibleengine/apis/dcs/v1beta1"
 	v1beta1dds "github.com/FrangipaneTeam/provider-flexibleengine/apis/dds/v1beta1"
@@ -43,7 +42,6 @@ import (
 	v1beta1mls "github.com/FrangipaneTeam/provider-flexibleengine/apis/mls/v1beta1"
 	v1beta1modelarts "github.com/FrangipaneTeam/provider-flexibleengine/apis/modelarts/v1beta1"
 	v1beta1mrs "github.com/FrangipaneTeam/provider-flexibleengine/apis/mrs/v1beta1"
-	v1beta1mrsd "github.com/FrangipaneTeam/provider-flexibleengine/apis/mrsd/v1beta1"
 	v1beta1nat "github.com/FrangipaneTeam/provider-flexibleengine/apis/nat/v1beta1"
 	v1beta1netacl "github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1"
 	v1beta1oss "github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1"
@@ -75,7 +73,6 @@ func init() {
 		v1beta1cce.SchemeBuilder.AddToScheme,
 		v1beta1ces.SchemeBuilder.AddToScheme,
 		v1beta1csbs.SchemeBuilder.AddToScheme,
-		v1beta1cse.SchemeBuilder.AddToScheme,
 		v1beta1css.SchemeBuilder.AddToScheme,
 		v1beta1dcs.SchemeBuilder.AddToScheme,
 		v1beta1dds.SchemeBuilder.AddToScheme,
@@ -99,7 +96,6 @@ func init() {
 		v1beta1mls.SchemeBuilder.AddToScheme,
 		v1beta1modelarts.SchemeBuilder.AddToScheme,
 		v1beta1mrs.SchemeBuilder.AddToScheme,
-		v1beta1mrsd.SchemeBuilder.AddToScheme,
 		v1beta1nat.SchemeBuilder.AddToScheme,
 		v1beta1netacl.SchemeBuilder.AddToScheme,
 		v1beta1oss.SchemeBuilder.AddToScheme,

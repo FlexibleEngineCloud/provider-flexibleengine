@@ -1,0 +1,29 @@
+apiVersion: ces.flexibleengine.upbound.io/v1beta1
+kind: AlarmRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ces/v1beta1/alarmrule
+  labels:
+    testing.upbound.io/example-name: example_ces_alarm_rule
+  name: example-ces-alarm-rule
+spec:
+  forProvider:
+    alarmActions:
+    - notificationListSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_smn_topic
+      type: notification
+    alarmName: alarm_rule
+    condition:
+    - comparisonOperator: '>'
+      count: 1
+      filter: average
+      period: 300
+      unit: B/s
+      value: 6
+    metric:
+    - dimensions:
+      - name: instance_id
+        value: a75d287e-8d81-49d2-beab-0decb9cb8213
+      metricName: network_outgoing_bytes_rate_inband
+      namespace: SYS.ECS

@@ -38,9 +38,6 @@ import (
 	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
 	backup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backup"
 	backuppolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backuppolicy"
-	microservice "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microservice"
-	microserviceengine "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microserviceengine"
-	microserviceinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microserviceinstance"
 	clustercss "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/cluster"
 	snapshot "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/snapshot"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
@@ -64,6 +61,10 @@ import (
 	kafkainstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkainstance"
 	kafkatopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkatopic"
 	kafkauser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/kafkauser"
+	rocketmqconsumergroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmqconsumergroup"
+	rocketmqinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmqinstance"
+	rocketmqtopic "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmqtopic"
+	rocketmquser "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dms/rocketmquser"
 	ptrrecord "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/ptrrecord"
 	recordset "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/recordset"
 	zone "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dns/zone"
@@ -109,17 +110,11 @@ import (
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
 	clustermrs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/cluster"
 	jobmrs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/job"
-	clustermrsd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/cluster"
-	hybridcluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/hybridcluster"
-	jobmrsd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/job"
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
 	gateway "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/gateway"
 	snatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/snatrule"
 	aclnetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/acl"
 	aclrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/aclrule"
-	firewallgroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/firewallgroup"
-	policynetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/policy"
-	rule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/rule"
 	obsbucket "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucket"
 	obsbucketobject "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucketobject"
 	obsbucketreplication "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
@@ -216,9 +211,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		alarmrule.Setup,
 		backup.Setup,
 		backuppolicy.Setup,
-		microservice.Setup,
-		microserviceengine.Setup,
-		microserviceinstance.Setup,
 		clustercss.Setup,
 		snapshot.Setup,
 		instancedcs.Setup,
@@ -242,6 +234,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		kafkainstance.Setup,
 		kafkatopic.Setup,
 		kafkauser.Setup,
+		rocketmqconsumergroup.Setup,
+		rocketmqinstance.Setup,
+		rocketmqtopic.Setup,
+		rocketmquser.Setup,
 		ptrrecord.Setup,
 		recordset.Setup,
 		zone.Setup,
@@ -287,17 +283,11 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		datasetversion.Setup,
 		clustermrs.Setup,
 		jobmrs.Setup,
-		clustermrsd.Setup,
-		hybridcluster.Setup,
-		jobmrsd.Setup,
 		dnatrule.Setup,
 		gateway.Setup,
 		snatrule.Setup,
 		aclnetacl.Setup,
 		aclrule.Setup,
-		firewallgroup.Setup,
-		policynetacl.Setup,
-		rule.Setup,
 		obsbucket.Setup,
 		obsbucketobject.Setup,
 		obsbucketreplication.Setup,

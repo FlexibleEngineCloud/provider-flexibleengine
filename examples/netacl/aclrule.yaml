@@ -1,0 +1,17 @@
+apiVersion: netacl.flexibleengine.upbound.io/v1beta1
+kind: ACLRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: netacl/v1beta1/aclrule
+  labels:
+    testing.upbound.io/example-name: example_netacl_rule
+  name: example-netacl-rule
+spec:
+  forProvider:
+    action: deny
+    destinationIpAddress: 4.3.2.0/24
+    destinationPort: "555"
+    description: example-netacl-rule
+    protocol: udp
+    sourceIpAddress: 1.2.3.4
+    sourcePort: "444"

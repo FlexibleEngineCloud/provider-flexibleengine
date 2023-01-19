@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.3.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.2.0...v0.3.0) (2023-01-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump terraform-provider version to v1.36.0 ([#104](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/104))
+* Bump terraform-provider-flexibleengine to v1.36.0
+
+### Features
+
+* bump terraform-provider version to v1.36.0 ([#104](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/104)) ([a8edbe5](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/a8edbe5d01f91d28450bb5a8f663b6dd99647b8b))
+* Bump terraform-provider-flexibleengine to v1.36.0 ([b7960da](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/b7960da0d6fb365cf80d071b1bb4c364e78ffe22))
+* **cce/pvc:** ignore CCE PVC Resource [#51](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/51) ([#111](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/111)) ([cd87075](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/cd87075c4532a144d662c416ecec2a716565683e))
+* **ces:** add alarmrule ([#129](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/129)) ([f4115cf](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/f4115cf2811948dd4a85dad73c1c5e98396b8268))
+* **dli:** add example table ([ae22181](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/ae221812fc8e099eeb5d934d39d0a9c7b76a0f2a))
+* **dli:** add flinkSQLJob example ([34eee9e](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/34eee9e738ebde42f0c9dc3ec672a4c0b3a062ec))
+* **dms/rocketmq:** add rocketmq resources ([#126](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/126)) ([092f5db](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/092f5db2a9724d2d25065b14103ada063ad094cd))
+* **fgs:** add example function ([6692247](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/6692247f7af9e37341dcd8b95fac4c15b4e63bee))
+* **fgs:** add example trigger ([9b407ea](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/9b407eaa236564d042e31283c855bab87fc971d8))
+* **fgs:** ignore ressource dependency ([d8c2ad7](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/d8c2ad70b8a792e6e6b53dc6549e8832379ac583))
+* **iam:** add ressource and example acl ([#113](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/113)) ([1173bee](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/1173bee996c77226451f89c83779a386bf222229))
+* **netacl:** Add network acl examples ([#109](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/109)) ([df15d0a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/df15d0aa9617f5336255a1f5a84ffb559c0db97d))
+* **swr:** add resources and examples ([#110](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/110)) ([11e8510](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/11e85106c309324262a2e17b61c98060193686af))
+
+
+### Bug Fixes
+
+* **cce/node:** add missing argument ecs_group_id ([dcbe3bc](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/dcbe3bc8e51ec063f99b22c4c48e1ee1cff6972d))
+* **cce/nodepool:** add missing argument ecs_group_id and subnet_id ([b210873](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/b210873ec365e8660b63080745381ae5c10566ae))
+
 ## [0.2.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.1.2...v0.2.0) (2023-01-16)
 
 

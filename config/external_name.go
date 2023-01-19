@@ -595,21 +595,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_sdrs_replication_pair_v1": config.IdentifierFromProvider,
 
 	/*
-		> Cloud Service Engine (CSE)
-	*/
-	// flexibleengine_cse_microservice_engine - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_engine
-	"flexibleengine_cse_microservice_engine": config.IdentifierFromProvider,
-
-	// flexibleengine_cse_microservice - Imported using the Template connect_address
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice
-	"flexibleengine_cse_microservice": TemplatedStringAsIdentifierWithNoName("{{.parameters.connect_address}}/{{.external_name}}"),
-
-	// flexibleengine_cse_microservice_instance - Imported using the Template connect_address, microservice_id and their id
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cse_microservice_instance
-	"flexibleengine_cse_microservice_instance": TemplatedStringAsIdentifierWithNoName("{{.parameters.connect_address}}/{{.parameters.microservice_id}}/{{.external_name}}"),
-
-	/*
 		> Cloud Eye (CES)
 	*/
 
@@ -655,6 +640,22 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_dms_kafka_user  - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_kafka_user
 	"flexibleengine_dms_kafka_user": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_rocketmq_instance - Imported using the ID
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_instance
+	"flexibleengine_dms_rocketmq_instance": config.IdentifierFromProvider,
+
+	// flexibleengine_dms_rocketmq_user - Imported using the rocketmq instance ID and the user access key separated by a slash
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_user
+	"flexibleengine_dms_rocketmq_user": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.parameters.access_key}}"),
+
+	// flexibleengine_dms_rocketmq_topic - Imported using the rocketmq instance ID and the topic name separated by a slash
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_topic
+	"flexibleengine_dms_rocketmq_topic": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.external_name}}"),
+
+	// flexibleengine_dms_rocketmq_consumer_group - Imported using the rocketmq instance ID and the consumer group name separated by a slash
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/dms_rocketmq_consumer_group
+	"flexibleengine_dms_rocketmq_consumer_group": TemplatedStringAsIdentifierWithNoName("{{.parameters.instance_id}}/{{.external_name}}"),
 
 	/*
 	  > Cloud Search Service (CSS)
@@ -792,18 +793,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> Network ACL
 	*/
-	// flexibleengine_fw_firewall_group_v2- Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fw_firewall_group_v2
-	"flexibleengine_fw_firewall_group_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_fw_policy_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fw_policy_v2
-	"flexibleengine_fw_policy_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_fw_rule_v2 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fw_rule_v2
-	"flexibleengine_fw_rule_v2": config.IdentifierFromProvider,
-
 	// flexibleengine_network_acl - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/network_acl
 	"flexibleengine_network_acl": config.IdentifierFromProvider,

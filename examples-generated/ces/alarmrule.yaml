@@ -9,8 +9,8 @@ metadata:
 spec:
   forProvider:
     alarmActions:
-    - notificationList:
-      - ${var.topic_id}
+    - notificationListRefs:
+      - name: example
       type: notification
     alarmName: alarm_rule
     condition:

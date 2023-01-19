@@ -12,7 +12,6 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cce"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/csbs"
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/cse"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
@@ -69,6 +68,9 @@ var skipList = []string{
 	"flexibleengine_fgs_dependency$", // Cannot upload a zip file to reference it to a dependency
 
 	// Deprecated resources
+	"flexibleengine_mrs_cluster_v1$",
+	"flexibleengine_mrs_job_v1$",
+	"flexibleengine_mrs_hybrid_cluster_v1$",
 
 	// https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/869
 	"flexibleengine_networking_floatingip_associate_v2$",
@@ -77,6 +79,15 @@ var skipList = []string{
 	"flexibleengine_networking_subnet_v2$",
 	"flexibleengine_networking_router_interface_v2$",
 	"flexibleengine_networking_router_v2$",
+
+	// Remove CSE that is in public test only
+	"flexibleengine_cse_microservice$",
+	"flexibleengine_cse_microservice_instance$",
+	"flexibleengine_cse_microservice_engine$",
+	// Duplicated resources
+	"flexibleengine_fw_firewall_group_v2$", // Duplicated with flexibleengine_network_acl
+	"flexibleengine_fw_policy_v2$",         // Duplicated with flexibleengine_network_acl_rule
+	"flexibleengine_fw_rule_v2$",           // Duplicated with flexibleengine_network_acl_rule
 }
 
 // GetProvider returns provider configuration
@@ -101,7 +112,6 @@ func GetProvider() *ujconfig.Provider {
 		agd.Configure,
 		dns.Configure,
 		bms.Configure,
-		cse.Configure,
 		lts.Configure,
 		dcs.Configure,
 		fgs.Configure,
