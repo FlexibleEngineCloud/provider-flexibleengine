@@ -8,7 +8,9 @@ metadata:
   name: test
 spec:
   forProvider:
-    clusterId: ${var.cluster_id}
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     name: ${var.job_name}
     parameters: ${var.access_key} ${var.secret_key} 1 s3a://obs-demo-analysis/input
       s3a://obs-demo-analysis/output
