@@ -113,9 +113,6 @@ import (
 	datasetversion "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/modelarts/datasetversion"
 	clustermrs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/cluster"
 	jobmrs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrs/job"
-	clustermrsd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/cluster"
-	hybridcluster "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/hybridcluster"
-	jobmrsd "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/mrsd/job"
 	dnatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/dnatrule"
 	gateway "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/gateway"
 	snatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/snatrule"
@@ -290,9 +287,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		datasetversion.Setup,
 		clustermrs.Setup,
 		jobmrs.Setup,
-		clustermrsd.Setup,
-		hybridcluster.Setup,
-		jobmrsd.Setup,
 		dnatrule.Setup,
 		gateway.Setup,
 		snatrule.Setup,

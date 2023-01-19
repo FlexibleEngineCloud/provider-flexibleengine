@@ -156,11 +156,6 @@ var GroupMap = map[string]GroupKindCalculator{
 	// EPS
 	"flexibleengine_enterprise_project": ReplaceGroupWords("eps", 1), // Group: eps, Kind: Project
 
-	// MRS
-	"flexibleengine_mrs_cluster_v1":        ReplaceGroupWords("mrsd", 1), // Group: mrs, Kind: Cluster
-	"flexibleengine_mrs_hybrid_cluster_v1": ReplaceGroupWords("mrsd", 1), // Group: mrs, Kind: HybridCluster
-	"flexibleengine_mrs_job_v1":            ReplaceGroupWords("mrsd", 1), // Group: mrs, Kind: Job
-
 	// NetACL
 	"flexibleengine_network_acl":      ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACL
 	"flexibleengine_network_acl_rule": ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACLRule
