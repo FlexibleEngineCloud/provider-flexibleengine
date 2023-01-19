@@ -1,0 +1,65 @@
+apiVersion: iam.flexibleengine.upbound.io/v1beta1
+kind: Agency
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/agency
+  labels:
+    testing.upbound.io/example-name: example_agency
+  name: example-agency
+spec:
+  forProvider:
+    description: For ModelArts service
+    delegatedServiceName: op_svc_modelarts
+    domainRoles:
+    - ModelArts CommonOperations
+    - OBS OperateAccess
+    - Tenant Administrator
+    name: ma_agency_gaetan.ars
+---
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucket
+  labels:
+    testing.upbound.io/example-name: example_modelarts_dataset
+  name: example-modelarts-obsbucket
+spec:
+  forProvider:
+    acl: public-read-write
+    bucket: modelarts-test-bucket
+    storageClass: STANDARD
+---
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucketobject
+  labels:
+    testing.upbound.io/example-name: example_modelarts_dataset
+  name: example-modelarts-obsbucketobject-input
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_modelarts_dataset
+    content: some object content
+    contentType: text/plain
+    key: input/t1
+---
+apiVersion: oss.flexibleengine.upbound.io/v1beta1
+kind: OBSBucketObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: oss/v1beta1/obsbucketobject
+  labels:
+    testing.upbound.io/example-name: example_modelarts_dataset
+  name: example-modelarts-obsbucketobject-output
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_modelarts_dataset
+    content: some object content
+    contentType: text/plain
+    key: output/t2

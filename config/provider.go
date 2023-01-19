@@ -67,6 +67,9 @@ var skipList = []string{
 	"flexibleengine_fgs_dependency$", // Cannot upload a zip file to reference it to a dependency
 
 	// Deprecated resources
+	"flexibleengine_mrs_cluster_v1$",
+	"flexibleengine_mrs_job_v1$",
+	"flexibleengine_mrs_hybrid_cluster_v1$",
 
 	// https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/869
 	"flexibleengine_networking_floatingip_associate_v2$",
@@ -80,6 +83,10 @@ var skipList = []string{
 	"flexibleengine_cse_microservice$",
 	"flexibleengine_cse_microservice_instance$",
 	"flexibleengine_cse_microservice_engine$",
+	// Duplicated resources
+	"flexibleengine_fw_firewall_group_v2$", // Duplicated with flexibleengine_network_acl
+	"flexibleengine_fw_policy_v2$",         // Duplicated with flexibleengine_network_acl_rule
+	"flexibleengine_fw_rule_v2$",           // Duplicated with flexibleengine_network_acl_rule
 }
 
 // GetProvider returns provider configuration

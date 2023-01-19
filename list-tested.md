@@ -229,8 +229,8 @@
 ## modelarts.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| Dataset |  :x:  |
-| DatasetVersion |  :x:  |
+| Dataset |  :white_check_mark:  |
+| DatasetVersion |  :white_check_mark:  |
 
 ## mrs.flexibleengine.upbound.io
 | Kind | Tested |
@@ -257,9 +257,6 @@
 | ---- | ------ |
 | ACL |  :white_check_mark:  |
 | ACLRule |  :white_check_mark:  |
-| FirewallGroup |  :x:  |
-| Policy |  :x:  |
-| Rule |  :x:  |
 
 ## oss.flexibleengine.upbound.io
 | Kind | Tested |
