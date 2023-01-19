@@ -236,8 +236,8 @@
 ## modelarts.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
-| Dataset |  :x:  |
-| DatasetVersion |  :x:  |
+| Dataset |  :white_check_mark:  |
+| DatasetVersion |  :white_check_mark:  |
 
 ## mrs.flexibleengine.upbound.io
 | Kind | Tested |
