@@ -1,0 +1,47 @@
+apiVersion: mrs.flexibleengine.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mrs/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_mrs_cluster
+  name: example-mrs-cluster
+spec:
+  forProvider:
+    analysisCoreNodes:
+    - dataVolumeCount: 1
+      dataVolumeSize: 100
+      dataVolumeType: SAS
+      flavor: c3.2xlarge.2.linux.mrs
+      nodeNumber: 3
+      rootVolumeSize: 100
+      rootVolumeType: SAS
+    availabilityZone: eu-west-0a
+    componentList:
+    - Hadoop
+    - Spark
+    - Hive
+    managerAdminPwdSecretRef:
+      key: example-mrs-admin-password
+      name: example-mrs-secret
+      namespace: crossplane-system
+    masterNodes:
+    - dataVolumeCount: 1
+      dataVolumeSize: 100
+      dataVolumeType: SAS
+      flavor: c3.2xlarge.2.linux.mrs
+      nodeNumber: 2
+      rootVolumeSize: 100
+      rootVolumeType: SAS
+    name: example-mrs-cluster
+    nodeKeyPairSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_keypair
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
+    type: ANALYSIS
+    version: MRS 2.0.1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_vpc
