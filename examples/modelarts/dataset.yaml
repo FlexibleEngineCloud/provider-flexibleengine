@@ -1,0 +1,19 @@
+apiVersion: modelarts.flexibleengine.upbound.io/v1beta1
+kind: Dataset
+metadata:
+  annotations:
+    meta.upbound.io/example-id: modelarts/v1beta1/dataset
+  labels:
+    testing.upbound.io/example-name: example_modelarts_dataset
+  name: example-modelarts-dataset
+spec:
+  forProvider:
+    dataSource:
+    - path: /modelarts-test-bucket/input/
+      dataType: 0
+    description: Crossplane Demo
+    labels:
+    - name: foo
+    name: example-modelarts-dataset
+    outputPath: /modelarts-test-bucket/output/
+    type: 1
