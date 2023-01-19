@@ -121,9 +121,6 @@ import (
 	snatrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/nat/snatrule"
 	aclnetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/acl"
 	aclrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/aclrule"
-	firewallgroup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/firewallgroup"
-	policynetacl "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/policy"
-	rule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/netacl/rule"
 	obsbucket "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucket"
 	obsbucketobject "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucketobject"
 	obsbucketreplication "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/oss/obsbucketreplication"
@@ -301,9 +298,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		snatrule.Setup,
 		aclnetacl.Setup,
 		aclrule.Setup,
-		firewallgroup.Setup,
-		policynetacl.Setup,
-		rule.Setup,
 		obsbucket.Setup,
 		obsbucketobject.Setup,
 		obsbucketreplication.Setup,

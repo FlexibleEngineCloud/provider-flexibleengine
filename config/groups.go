@@ -162,11 +162,8 @@ var GroupMap = map[string]GroupKindCalculator{
 	"flexibleengine_mrs_job_v1":            ReplaceGroupWords("mrsd", 1), // Group: mrs, Kind: Job
 
 	// NetACL
-	"flexibleengine_fw_firewall_group_v2": ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: FirewallGroup
-	"flexibleengine_fw_policy_v2":         ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: Policy
-	"flexibleengine_fw_rule_v2":           ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: Rule
-	"flexibleengine_network_acl":          ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACL
-	"flexibleengine_network_acl_rule":     ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACLRule
+	"flexibleengine_network_acl":      ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACL
+	"flexibleengine_network_acl_rule": ReplaceGroupWords("netacl", 1), // Group: netacl, Kind: ACLRule
 
 	// AntiDDoS
 	"flexibleengine_antiddos_v1": ReplaceGroupWords("antiddos", 0), // Group: antiddos, Kind: AntiDDoS

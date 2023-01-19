@@ -7,7 +7,6 @@ package v1beta1
 
 import (
 	"context"
-	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
@@ -69,84 +68,6 @@ func (mg *ACL) ResolveReferences(ctx context.Context, c client.Reader) error {
 	}
 	mg.Spec.ForProvider.Subnets = reference.ToPtrValues(mrsp.ResolvedValues)
 	mg.Spec.ForProvider.SubnetRefs = mrsp.ResolvedReferences
-
-	return nil
-}
-
-// ResolveReferences of this FirewallGroup.
-func (mg *FirewallGroup) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPIResolver(c, mg)
-
-	var rsp reference.ResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.TenantIDRef,
-		Selector:     mg.Spec.ForProvider.TenantIDSelector,
-		To: reference.To{
-			List:    &v1beta11.ProjectList{},
-			Managed: &v1beta11.Project{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.TenantID")
-	}
-	mg.Spec.ForProvider.TenantID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.TenantIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this Policy.
-func (mg *Policy) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPIResolver(c, mg)
-
-	var rsp reference.ResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.TenantIDRef,
-		Selector:     mg.Spec.ForProvider.TenantIDSelector,
-		To: reference.To{
-			List:    &v1beta11.ProjectList{},
-			Managed: &v1beta11.Project{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.TenantID")
-	}
-	mg.Spec.ForProvider.TenantID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.TenantIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this Rule.
-func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPIResolver(c, mg)
-
-	var rsp reference.ResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.TenantIDRef,
-		Selector:     mg.Spec.ForProvider.TenantIDSelector,
-		To: reference.To{
-			List:    &v1beta11.ProjectList{},
-			Managed: &v1beta11.Project{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.TenantID")
-	}
-	mg.Spec.ForProvider.TenantID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.TenantIDRef = rsp.ResolvedReference
 
 	return nil
 }
