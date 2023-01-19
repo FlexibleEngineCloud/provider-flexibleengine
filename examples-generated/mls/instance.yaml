@@ -10,14 +10,20 @@ spec:
   forProvider:
     flavor: mls.c2.2xlarge.common
     mrsCluster:
-    - id: ${flexibleengine_mrs_cluster_v1.cluster1.id}
+    - idSelector:
+        matchLabels:
+          testing.upbound.io/example-name: cluster1
     name: terraform-mls-instance
     network:
     - availableZone: eu-west-0a
       publicIp:
       - bindType: not_use
-      subnetId: ${flexibleengine_vpc_subnet_v1.example_subnet.id}
-      vpcId: ${flexibleengine_vpc_v1.example_vpc.id}
+      subnetIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_subnet
+      vpcIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_vpc
     version: 1.2.0
 
 ---

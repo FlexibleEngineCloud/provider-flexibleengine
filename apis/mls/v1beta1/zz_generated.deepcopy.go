@@ -229,10 +229,30 @@ func (in *MrsClusterParameters) DeepCopyInto(out *MrsClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.IDRef != nil {
+		in, out := &in.IDRef, &out.IDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.IDSelector != nil {
+		in, out := &in.IDSelector, &out.IDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.UserName != nil {
 		in, out := &in.UserName, &out.UserName
 		*out = new(string)
 		**out = **in
+	}
+	if in.UserNameRef != nil {
+		in, out := &in.UserNameRef, &out.UserNameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.UserNameSelector != nil {
+		in, out := &in.UserNameSelector, &out.UserNameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.UserPasswordSecretRef != nil {
 		in, out := &in.UserPasswordSecretRef, &out.UserPasswordSecretRef
@@ -291,10 +311,30 @@ func (in *NetworkParameters) DeepCopyInto(out *NetworkParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetIDRef != nil {
+		in, out := &in.SubnetIDRef, &out.SubnetIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetIDSelector != nil {
+		in, out := &in.SubnetIDSelector, &out.SubnetIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCID != nil {
 		in, out := &in.VPCID, &out.VPCID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCIDRef != nil {
+		in, out := &in.VPCIDRef, &out.VPCIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCIDSelector != nil {
+		in, out := &in.VPCIDSelector, &out.VPCIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

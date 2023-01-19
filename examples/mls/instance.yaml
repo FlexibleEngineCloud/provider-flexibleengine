@@ -1,0 +1,29 @@
+apiVersion: mls.flexibleengine.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: mls/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: example_mls_instance
+  name: example-mls-instance
+spec:
+  forProvider:
+    flavor: mls.c2.2xlarge.common
+    # mrsCluster:
+    # - idSelector:
+    #    matchLabels:
+    #      testing.upbound.io/example-name: example_mrs_cluster
+    mrsCluster:
+    - id: 5d5e03c4-2116-4074-9619-16d7f4849033
+    name: example-mls-instance
+    network:
+    - availableZone: eu-west-0a
+      publicIp:
+      - bindType: not_use
+      subnetIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_subnet
+      vpcIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example_vpc
+    version: 1.2.0

@@ -700,7 +700,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	*/
 
 	// flexibleengine_mls_instance_v1 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/csbs_backup_policy_v1
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mls_instance_v1
 	"flexibleengine_mls_instance_v1": config.IdentifierFromProvider,
 
 	/*

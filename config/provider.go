@@ -32,6 +32,7 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ims"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/kms"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/lts"
+	"github.com/FrangipaneTeam/provider-flexibleengine/config/mls"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/modelarts"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/mrs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/nat"
@@ -151,6 +152,7 @@ func GetProvider() *ujconfig.Provider {
 		cce.Configure,
 		rts.Configure,
 		sms.Configure,
+		mls.Configure,
 	} {
 		configure(pc)
 	}

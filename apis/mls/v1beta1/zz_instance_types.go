@@ -92,13 +92,33 @@ type MrsClusterObservation struct {
 type MrsClusterParameters struct {
 
 	// Specifies the ID of the MRS cluster. Changing this creates a new instance.
-	// +kubebuilder:validation:Required
-	ID *string `json:"id" tf:"id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/mrs/v1beta1.Cluster
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +kubebuilder:validation:Optional
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Cluster in mrs to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster in mrs to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// Specifies the MRS cluster username. This parameter is mandatory
 	// only when the MRS cluster is in the security mode. Changing this creates a new instance.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/mrs/v1beta1.Cluster
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "user_name")
 	// +kubebuilder:validation:Optional
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
+
+	// Reference to a Cluster in mrs to populate userName.
+	// +kubebuilder:validation:Optional
+	UserNameRef *v1.Reference `json:"userNameRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster in mrs to populate userName.
+	// +kubebuilder:validation:Optional
+	UserNameSelector *v1.Selector `json:"userNameSelector,omitempty" tf:"-"`
 
 	// Specifies the password of the MRS cluster user. The password
 	// and username work in a pair. Changing this creates a new instance.
@@ -128,13 +148,31 @@ type NetworkParameters struct {
 
 	// Specifies the ID of the VPC Subnet where the instance resides.
 	// Changing this creates a new instance.
-	// +kubebuilder:validation:Required
-	SubnetID *string `json:"subnetId" tf:"subnet_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +kubebuilder:validation:Optional
+	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// Reference to a VPCSubnet in vpc to populate subnetId.
+	// +kubebuilder:validation:Optional
+	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPCSubnet in vpc to populate subnetId.
+	// +kubebuilder:validation:Optional
+	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 
 	// Specifies the ID of the virtual private cloud (VPC) where the
 	// instance resides. Changing this creates a new instance.
-	// +kubebuilder:validation:Required
-	VPCID *string `json:"vpcId" tf:"vpc_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +kubebuilder:validation:Optional
+	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// Reference to a VPC in vpc to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v1.Reference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in vpc to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
 type PublicIPObservation struct {
