@@ -12,7 +12,6 @@ import (
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/cce"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/ces"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/csbs"
-	"github.com/FrangipaneTeam/provider-flexibleengine/config/cse"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/css"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dcs"
 	"github.com/FrangipaneTeam/provider-flexibleengine/config/dds"
@@ -80,6 +79,10 @@ var skipList = []string{
 	"flexibleengine_networking_router_interface_v2$",
 	"flexibleengine_networking_router_v2$",
 
+	// Remove CSE that is in public test only
+	"flexibleengine_cse_microservice$",
+	"flexibleengine_cse_microservice_instance$",
+	"flexibleengine_cse_microservice_engine$",
 	// Duplicated resources
 	"flexibleengine_fw_firewall_group_v2$", // Duplicated with flexibleengine_network_acl
 	"flexibleengine_fw_policy_v2$",         // Duplicated with flexibleengine_network_acl_rule
@@ -108,7 +111,6 @@ func GetProvider() *ujconfig.Provider {
 		agd.Configure,
 		dns.Configure,
 		bms.Configure,
-		cse.Configure,
 		lts.Configure,
 		dcs.Configure,
 		fgs.Configure,

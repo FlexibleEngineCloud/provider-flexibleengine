@@ -38,9 +38,6 @@ import (
 	alarmrule "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/ces/alarmrule"
 	backup "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backup"
 	backuppolicy "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/csbs/backuppolicy"
-	microservice "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microservice"
-	microserviceengine "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microserviceengine"
-	microserviceinstance "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/cse/microserviceinstance"
 	clustercss "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/cluster"
 	snapshot "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/css/snapshot"
 	instancedcs "github.com/FrangipaneTeam/provider-flexibleengine/internal/controller/dcs/instance"
@@ -212,9 +209,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		alarmrule.Setup,
 		backup.Setup,
 		backuppolicy.Setup,
-		microservice.Setup,
-		microserviceengine.Setup,
-		microserviceinstance.Setup,
 		clustercss.Setup,
 		snapshot.Setup,
 		instancedcs.Setup,

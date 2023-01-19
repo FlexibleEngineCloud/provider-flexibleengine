@@ -67,13 +67,6 @@
 | Backup |  :white_check_mark:  |
 | BackupPolicy |  :white_check_mark:  |
 
-## cse.flexibleengine.upbound.io
-| Kind | Tested |
-| ---- | ------ |
-| Microservice |  :x:  |
-| MicroserviceEngine |  :x:  |
-| MicroserviceInstance |  :x:  |
-
 ## css.flexibleengine.upbound.io
 | Kind | Tested |
 | ---- | ------ |
