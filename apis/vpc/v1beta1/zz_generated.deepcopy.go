@@ -1003,15 +1003,15 @@ func (in *RouteTableParameters) DeepCopyInto(out *RouteTableParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.SubnetIDRefs != nil {
-		in, out := &in.SubnetIDRefs, &out.SubnetIDRefs
+	if in.SubnetRefs != nil {
+		in, out := &in.SubnetRefs, &out.SubnetRefs
 		*out = make([]v1.Reference, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.SubnetIDSelector != nil {
-		in, out := &in.SubnetIDSelector, &out.SubnetIDSelector
+	if in.SubnetSelector != nil {
+		in, out := &in.SubnetSelector, &out.SubnetSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}

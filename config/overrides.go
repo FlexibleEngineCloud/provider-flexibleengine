@@ -27,8 +27,11 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			case "subnet_id":
 				r.References[k] = references.TypeVPCSubnetID().Get()
 
-			case "subnet_ids", "subnets":
+			case "subnet_ids":
 				r.References[k] = references.TypeVPCSubnetID().WithCustomRefsSelectors("SubnetIDRefs", "SubnetIDSelector").Get()
+
+			case "subnets":
+				r.References[k] = references.TypeVPCSubnetID().WithCustomRefsSelectors("SubnetRefs", "SubnetSelector").Get()
 
 			case "network_id":
 				r.References[k] = references.TypeVPCSubnetID().WithCustomRefsSelectors("NetworkIDRef", "NetworkIDSelector").Get()
