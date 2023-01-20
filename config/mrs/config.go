@@ -12,10 +12,6 @@ func Configure(p *config.Provider) {
 	// flexibleengine_mrs_cluster_v2
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v2
 	p.AddResourceConfigurator("flexibleengine_mrs_cluster_v2", func(r *config.Resource) {
-		// eip_id
-		r.References["eip_id"] = config.Reference{
-			Type: tools.GenerateType("eip", "EIP"),
-		}
 		// public_ip
 		r.References["public_ip"] = config.Reference{
 			Type:      tools.GenerateType("eip", "EIP"),
@@ -24,13 +20,6 @@ func Configure(p *config.Provider) {
 		// node_key_pair
 		r.References["node_key_pair"] = config.Reference{
 			Type: tools.GenerateType("ecs", "KeyPair"),
-		}
-		// security_group_ids
-		r.References["security_group_ids"] = config.Reference{
-			Type:              tools.GenerateType("vpc", "SecurityGroup"),
-			Extractor:         tools.GenerateExtractor(true, "id"),
-			SelectorFieldName: "SecurityGroupSelector",
-			RefFieldName:      "SecurityGroupRefs",
 		}
 	})
 

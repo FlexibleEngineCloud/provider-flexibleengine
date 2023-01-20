@@ -487,18 +487,6 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 			}
 		}
 	}
-	if in.SecurityGroupRefs != nil {
-		in, out := &in.SecurityGroupRefs, &out.SecurityGroupRefs
-		*out = make([]v1.Reference, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
-	}
-	if in.SecurityGroupSelector != nil {
-		in, out := &in.SecurityGroupSelector, &out.SecurityGroupSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.StreamingCoreNodes != nil {
 		in, out := &in.StreamingCoreNodes, &out.StreamingCoreNodes
 		*out = make([]StreamingCoreNodesParameters, len(*in))

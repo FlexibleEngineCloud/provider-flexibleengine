@@ -308,14 +308,6 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	SecurityGroupIds []*string `json:"securityGroupIds,omitempty" tf:"security_group_ids,omitempty"`
 
-	// References to SecurityGroup in vpc to populate securityGroupIds.
-	// +kubebuilder:validation:Optional
-	SecurityGroupRefs []v1.Reference `json:"securityGroupRefs,omitempty" tf:"-"`
-
-	// Selector for a list of SecurityGroup in vpc to populate securityGroupIds.
-	// +kubebuilder:validation:Optional
-	SecurityGroupSelector *v1.Selector `json:"securityGroupSelector,omitempty" tf:"-"`
-
 	// Specifies a list of the informations about the streaming core nodes in the
 	// MRS cluster.
 	// The nodes object structure of the streaming_core_nodes is documented below.
