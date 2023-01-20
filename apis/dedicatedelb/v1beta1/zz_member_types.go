@@ -60,18 +60,8 @@ type MemberParameters struct {
 	// cross-VPC backend servers must use private IPv4 addresses, and the protocol of the backend server group
 	// must be TCP, HTTP, or HTTPS.
 	// The IPv4 or IPv6 subnet ID of the subnet in which to access the member
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "ipv4_subnet_id")
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
-
-	// Reference to a VPCSubnet in vpc to populate subnetId.
-	// +kubebuilder:validation:Optional
-	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
-
-	// Selector for a VPCSubnet in vpc to populate subnetId.
-	// +kubebuilder:validation:Optional
-	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 
 	// Specifies the positive integer value that indicates the relative portion of traffic
 	// that this member should receive from the pool. For example, a member with a weight of 10 receives five times as

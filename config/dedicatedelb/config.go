@@ -56,4 +56,11 @@ func Configure(p *config.Provider) {
 			Type: "Listener",
 		}
 	})
+
+	// flexibleengine_lb_member_v3
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v3
+	p.AddResourceConfigurator("flexibleengine_lb_member_v3", func(r *config.Resource) {
+		// subnet_id is ipv4_subnet_id or ipv6_subnet_id
+		delete(r.References, "subnet_id")
+	})
 }

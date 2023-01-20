@@ -13,6 +13,3 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_poolv3
     protocolPort: 8080
-    subnetIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example_subnet
