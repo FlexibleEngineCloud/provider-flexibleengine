@@ -17,8 +17,6 @@ func Configure(p *config.Provider) {
 			Type: "Group",
 		}
 
-		r.UseAsync = true
-
 	})
 
 }

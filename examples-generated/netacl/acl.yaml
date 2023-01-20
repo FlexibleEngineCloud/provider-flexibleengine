@@ -12,7 +12,7 @@ spec:
     - name: rule_1
     - name: rule_2
     name: my-fw-acl
-    subnetRefs:
+    subnetIdRefs:
     - name: flexibleengine_vpc_subnet_v1
 
 ---

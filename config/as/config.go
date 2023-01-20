@@ -4,6 +4,7 @@ package as
 import (
 	"github.com/upbound/upjet/pkg/config"
 
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/references"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -43,14 +44,9 @@ func Configure(p *config.Provider) {
 		// 	Type:      tools.GenerateType("elb", "Listener"),
 		// 	Extractor: common.PathProtocolPortExtractor,
 		// }
-		r.References["security_groups.id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "SecurityGroup"),
-		}
-		r.References["networks.id"] = config.Reference{
-			// Require Network ID of VPC Subnet
-			TerraformName: "flexibleengine_vpc_subnet_v1",
-			Extractor:     tools.GenerateExtractor(true, "id"),
-		}
+		r.References["security_groups.id"] = references.TypeSecurityGroupID().WithoutRefsSelectors().Get()
+
+		r.References["networks.id"] = references.TypeVPCSubnetID().WithoutRefsSelectors().Get()
 	})
 
 	// flexibleengine_as_lifecycle_hook_v1
