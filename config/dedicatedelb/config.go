@@ -4,7 +4,7 @@ package dedicatedelb
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/references"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
@@ -35,29 +35,15 @@ func Configure(p *config.Provider) {
 	// flexibleengine_lb_loadbalancer_v3
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_loadbalancer_v3
 	p.AddResourceConfigurator("flexibleengine_lb_loadbalancer_v3", func(r *config.Resource) {
-		r.References["ipv4_subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
-		}
-		r.References["ipv6_network_id"] = config.Reference{
-			Type:      tools.GenerateType("vpc", "VPCSubnet"),
-			Extractor: tools.GenerateExtractor(true, "id"),
-		}
-		r.References["ipv4_eip_id"] = config.Reference{
-			Type: tools.GenerateType("eip", "EIP"),
-		}
+		r.References["ipv4_subnet_id"] = references.TypeVPCSubnetIDIPV4().Get()
+
+		r.References["ipv6_network_id"] = references.TypeVPCSubnetID().WithoutRefsSelectors().Get()
 	})
 
 	// flexibleengine_lb_member_v3
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v3
 	p.AddResourceConfigurator("flexibleengine_lb_member_v3", func(r *config.Resource) {
-		r.References["subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
-		}
-	})
-
-	// flexibleengine_lb_monitor_v3
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_monitor_v3
-	p.AddResourceConfigurator("flexibleengine_lb_monitor_v3", func(r *config.Resource) {
+		r.References["subnet_id"] = references.TypeVPCSubnetIDIPV4().Get()
 	})
 
 	// flexibleengine_lb_pool_v3

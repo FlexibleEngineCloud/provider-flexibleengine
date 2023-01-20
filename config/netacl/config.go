@@ -22,11 +22,5 @@ func Configure(p *config.Provider) {
 			SelectorFieldName: "OutboundRuleSelector",
 			RefFieldName:      "OutboundRuleRefs",
 		}
-		r.References["subnets"] = config.Reference{
-			Type:              tools.GenerateType("vpc", "VPCSubnet"),
-			Extractor:         tools.GenerateExtractor(true, "id"),
-			SelectorFieldName: "SubnetSelector",
-			RefFieldName:      "SubnetRefs",
-		}
 	})
 }

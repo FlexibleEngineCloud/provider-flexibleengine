@@ -56,8 +56,8 @@ func (mg *ACL) ResolveReferences(ctx context.Context, c client.Reader) error {
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Subnets),
 		Extract:       tools.ExtractorParamPathfunc(true, "id"),
-		References:    mg.Spec.ForProvider.SubnetRefs,
-		Selector:      mg.Spec.ForProvider.SubnetSelector,
+		References:    mg.Spec.ForProvider.SubnetIDRefs,
+		Selector:      mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
 			List:    &v1beta1.VPCSubnetList{},
 			Managed: &v1beta1.VPCSubnet{},
@@ -67,7 +67,7 @@ func (mg *ACL) ResolveReferences(ctx context.Context, c client.Reader) error {
 		return errors.Wrap(err, "mg.Spec.ForProvider.Subnets")
 	}
 	mg.Spec.ForProvider.Subnets = reference.ToPtrValues(mrsp.ResolvedValues)
-	mg.Spec.ForProvider.SubnetRefs = mrsp.ResolvedReferences
+	mg.Spec.ForProvider.SubnetIDRefs = mrsp.ResolvedReferences
 
 	return nil
 }

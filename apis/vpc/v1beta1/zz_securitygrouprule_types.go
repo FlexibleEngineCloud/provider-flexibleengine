@@ -84,6 +84,8 @@ type SecurityGroupRuleParameters struct {
 	// The security group ID the rule should belong
 	// to. Changing this creates a new security group rule.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
+	// +crossplane:generate:reference:refFieldName=SecurityGroupIDRef
+	// +crossplane:generate:reference:selectorFieldName=SecurityGroupIDSelector
 	// +kubebuilder:validation:Optional
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 

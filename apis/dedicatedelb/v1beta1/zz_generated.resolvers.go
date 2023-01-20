@@ -147,7 +147,7 @@ func (mg *LoadBalancer) ResolveReferences(ctx context.Context, c client.Reader) 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.IPv4SubnetID),
-		Extract:      reference.ExternalName(),
+		Extract:      tools.ExtractorParamPathfunc(true, "ipv4_subnet_id"),
 		Reference:    mg.Spec.ForProvider.IPv4SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.IPv4SubnetIDSelector,
 		To: reference.To{
@@ -221,7 +221,7 @@ func (mg *Member) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-		Extract:      reference.ExternalName(),
+		Extract:      tools.ExtractorParamPathfunc(true, "ipv4_subnet_id"),
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{

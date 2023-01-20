@@ -90,6 +90,7 @@ type LoadBalancerParameters struct {
 	// VPC Subnet on which to allocate the loadbalancer's ipv4 address.
 	// the IPv4 subnet ID of the subnet where the load balancer resides
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "ipv4_subnet_id")
 	// +kubebuilder:validation:Optional
 	IPv4SubnetID *string `json:"ipv4SubnetId,omitempty" tf:"ipv4_subnet_id,omitempty"`
 

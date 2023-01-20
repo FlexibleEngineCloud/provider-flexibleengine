@@ -3,8 +3,6 @@ package vpc
 
 import (
 	"github.com/upbound/upjet/pkg/config"
-
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
@@ -15,11 +13,11 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_vpc_route_table", func(r *config.Resource) {
 
 		// Subnets is a list of Subnet IDs
-		r.References["subnets"] = config.Reference{
-			Type:              "VPCSubnet",
-			Extractor:         tools.GenerateExtractor(true, "id"),
-			SelectorFieldName: "SubnetSelector", // Selector is only one reference
-		}
+		// r.References["subnets"] = config.Reference{
+		// 	Type:              "VPCSubnet",
+		// 	Extractor:         tools.GenerateExtractor(true, "id"),
+		// 	SelectorFieldName: "SubnetSelector", // Selector is only one reference
+		// }
 
 	})
 

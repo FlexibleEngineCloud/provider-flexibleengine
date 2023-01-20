@@ -36,6 +36,8 @@ type EIPAssociateParameters struct {
 	// It is mandatory when fixed_ip is set. Changing this creates a new resource.
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:refFieldName=NetworkIDRef
+	// +crossplane:generate:reference:selectorFieldName=NetworkIDSelector
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 

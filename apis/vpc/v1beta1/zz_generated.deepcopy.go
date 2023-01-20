@@ -612,6 +612,18 @@ func (in *PortParameters) DeepCopyInto(out *PortParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SecurityGroupIDRefs != nil {
+		in, out := &in.SecurityGroupIDRefs, &out.SecurityGroupIDRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SecurityGroupIDSelector != nil {
+		in, out := &in.SecurityGroupIDSelector, &out.SecurityGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecurityGroupIds != nil {
 		in, out := &in.SecurityGroupIds, &out.SecurityGroupIds
 		*out = make([]*string, len(*in))
@@ -991,8 +1003,15 @@ func (in *RouteTableParameters) DeepCopyInto(out *RouteTableParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.SubnetSelector != nil {
-		in, out := &in.SubnetSelector, &out.SubnetSelector
+	if in.SubnetIDRefs != nil {
+		in, out := &in.SubnetIDRefs, &out.SubnetIDRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SubnetIDSelector != nil {
+		in, out := &in.SubnetIDSelector, &out.SubnetIDSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
@@ -1005,13 +1024,6 @@ func (in *RouteTableParameters) DeepCopyInto(out *RouteTableParameters) {
 				*out = new(string)
 				**out = **in
 			}
-		}
-	}
-	if in.SubnetsRefs != nil {
-		in, out := &in.SubnetsRefs, &out.SubnetsRefs
-		*out = make([]v1.Reference, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
 	if in.VPCID != nil {
