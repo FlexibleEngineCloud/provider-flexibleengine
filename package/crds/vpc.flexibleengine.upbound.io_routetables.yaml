@@ -108,7 +108,7 @@ spec:
                       - type
                       type: object
                     type: array
-                  subnetIdRefs:
+                  subnetRefs:
                     description: References to VPCSubnet in vpc to populate subnets.
                     items:
                       description: A Reference to a named object.
@@ -145,7 +145,7 @@ spec:
                       - name
                       type: object
                     type: array
-                  subnetIdSelector:
+                  subnetSelector:
                     description: Selector for a list of VPCSubnet in vpc to populate
                       subnets.
                     properties:

@@ -15,6 +15,6 @@ spec:
     outboundRuleRefs:
       - name: example-netacl-rule3
       - name: example-netacl-rule4
-    subnetIdRefs:
+    subnetRefs:
       - name: example-subnet
       - name: example-subnet2

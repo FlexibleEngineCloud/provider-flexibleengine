@@ -212,8 +212,8 @@ func (mg *RouteTable) ResolveReferences(ctx context.Context, c client.Reader) er
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Subnets),
 		Extract:       tools.ExtractorParamPathfunc(true, "id"),
-		References:    mg.Spec.ForProvider.SubnetIDRefs,
-		Selector:      mg.Spec.ForProvider.SubnetIDSelector,
+		References:    mg.Spec.ForProvider.SubnetRefs,
+		Selector:      mg.Spec.ForProvider.SubnetSelector,
 		To: reference.To{
 			List:    &VPCSubnetList{},
 			Managed: &VPCSubnet{},
@@ -223,7 +223,7 @@ func (mg *RouteTable) ResolveReferences(ctx context.Context, c client.Reader) er
 		return errors.Wrap(err, "mg.Spec.ForProvider.Subnets")
 	}
 	mg.Spec.ForProvider.Subnets = reference.ToPtrValues(mrsp.ResolvedValues)
-	mg.Spec.ForProvider.SubnetIDRefs = mrsp.ResolvedReferences
+	mg.Spec.ForProvider.SubnetRefs = mrsp.ResolvedReferences
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
