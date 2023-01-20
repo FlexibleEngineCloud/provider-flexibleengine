@@ -202,10 +202,6 @@ export CROSSPLANE_MAKE_HELP
 crossplane.help:
 	@echo "$$CROSSPLANE_MAKE_HELP"
 
-help-special: crossplane.help
-
-.PHONY: crossplane.help help-special
-
 # ====================================================================================
 # UP Login
 up.login:
@@ -214,6 +210,16 @@ up.login:
 	@$(OK) logging into up
 
 # ====================================================================================
+
+define BEAN_MAKE_HELP
+Bean Targets:
+    bean                  Run bean commands.
+    bean.install          Install or update bean bin.
+
+endef
+
+bean.help:
+	@echo "$$BEAN_MAKE_HELP"
 
 # bean check if bean is installed
 bean.exist:
@@ -229,3 +235,9 @@ bean.install:
 
 bean: bean.exist
 	@bean || $(FAIL)
+
+export BEAN_MAKE_HELP
+
+help-special: crossplane.help bean.help
+
+.PHONY: crossplane.help bean.help help-special
