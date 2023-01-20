@@ -4,34 +4,29 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "CLI ToolBox",
+            "label": "Bean bin",
             "type": "shell",
-            "command": "python3 scripts/cli.py"
-        },
-        {
-            "label": "G. Kubectl Example",
-            "type": "shell",
-            "command": "python3 scripts/cli.py kubectl"
+            "command": "make bean"
         },
         {
             "label": "Reviewable",
             "type": "shell",
-            "command": "make reviewable"
+            "command": "make -j 6 reviewable"
         },
         {
             "label": "Generate",
             "type": "shell",
-            "command": "make generate"
+            "command": "make -j 6 generate"
         },
         {
             "label": "Lint",
             "type": "shell",
-            "command": "make lint"
+            "command": "make -j 6 lint"
         },
         {
             "label": "Run",
             "type": "shell",
-            "command": "make run"
+            "command": "make -j 2 run"
         },
         {
             "label": "Apply Crds",
