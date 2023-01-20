@@ -14,13 +14,14 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_css_cluster_v1", func(r *config.Resource) {
 		r.UseAsync = true
 
-		r.References["network_info.vpc_id"] = config.Reference{
+		r.References["node_config.network_info.vpc_id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "VPC"),
 		}
-		r.References["network_info.subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
+		r.References["node_config.network_info.subnet_id"] = config.Reference{
+			Type:      tools.GenerateType("vpc", "VPCSubnet"),
+			Extractor: tools.GenerateExtractor(true, "id"),
 		}
-		r.References["network_info.security_group_id"] = config.Reference{
+		r.References["node_config.network_info.security_group_id"] = config.Reference{
 			Type: tools.GenerateType("vpc", "SecurityGroup"),
 		}
 	})

@@ -1,0 +1,30 @@
+apiVersion: css.flexibleengine.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: css/v1beta1/cluster
+  labels:
+    testing.upbound.io/example-name: example_css_cluster
+  name: example-css-cluster
+spec:
+  forProvider:
+    name: example_test_cluster
+    engineVersion: "7.1.1"
+    nodeConfig:
+      - networkInfo:
+        - vpcIdSelector:
+            matchLabels:
+              testing.upbound.io/example-name: example_vpc
+          subnetIdSelector:
+            matchLabels:
+              testing.upbound.io/example-name: example_subnet
+          securityGroupIdSelector:
+            matchLabels:
+              testing.upbound.io/example-name: example_secgroup
+        volume:
+        - volumeType: "COMMON"
+          size: 40
+        flavor: "ess.spec-4u16g"
+        availabilityZone: eu-west-0a
+    backupStrategy:
+      - startTime: 00:00 GMT+01:00

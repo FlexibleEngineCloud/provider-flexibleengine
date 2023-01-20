@@ -1,0 +1,15 @@
+apiVersion: css.flexibleengine.upbound.io/v1beta1
+kind: Snapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: css/v1beta1/snapshot
+  labels:
+    testing.upbound.io/example-name: example_css_snapshot
+  name: example-css-snapshot
+spec:
+  forProvider:
+    name: example_test_snapshot
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_css_cluster
+    description: example_test_snapshot
