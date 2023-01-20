@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.1](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.3.0...v0.3.1) (2023-01-19)
+
+
+### Features
+
+* **cse:** remove group ([#131](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/131)) ([025cbc5](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/025cbc56baa1ba3e4e4316f30e49f53b81176d3b))
+* **modelarts:** add examples ([#133](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/133)) ([0eb493e](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/0eb493e61633623e4826746318e45c0d3fdfa276))
+* **mrsd:** delete deprecated resources ([#132](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/132)) ([210b6a5](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/210b6a5268dcb4168626ef5d02d858f561695887))
+* **sms:** add example servertemplate ([#125](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/125)) ([25cece9](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/25cece9282afdeb4552b4459d6cf1470d274ec68))
+
 ## [0.3.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.2.0...v0.3.0) (2023-01-18)
 
 
