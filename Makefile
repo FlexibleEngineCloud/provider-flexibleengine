@@ -212,3 +212,20 @@ up.login:
 	@$(INFO) logging into up
 	@$(UP) login
 	@$(OK) logging into up
+
+# ====================================================================================
+
+# bean check if bean is installed
+bean.exist:
+	@$(INFO) checking if bean is installed
+	@bean help > /dev/null 2>&1 || $(FAIL)
+	@$(OK) checking if bean is installed
+
+# bean install
+bean.install:
+	@$(INFO) installing bean bin
+	@$(GO) install github.com/FrangipaneTeam/bean@latest
+	@$(OK) installing bean bin
+
+bean: bean.exist
+	@bean || $(FAIL)
