@@ -35,15 +35,15 @@ type JobParameters struct {
 
 	// Specifies an ID of the MRS cluster to which the job belongs to.
 	// Changing this will create a new MRS job resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/mrs/v1beta1.Cluster
+	// +crossplane:generate:reference:type=Cluster
 	// +kubebuilder:validation:Optional
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
-	// Reference to a Cluster in mrs to populate clusterId.
+	// Reference to a Cluster to populate clusterId.
 	// +kubebuilder:validation:Optional
 	ClusterIDRef *v1.Reference `json:"clusterIdRef,omitempty" tf:"-"`
 
-	// Selector for a Cluster in mrs to populate clusterId.
+	// Selector for a Cluster to populate clusterId.
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 

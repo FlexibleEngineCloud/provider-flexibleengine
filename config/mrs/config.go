@@ -4,6 +4,7 @@ package mrs
 import (
 	"github.com/upbound/upjet/pkg/config"
 
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/references"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -13,10 +14,7 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v2
 	p.AddResourceConfigurator("flexibleengine_mrs_cluster_v2", func(r *config.Resource) {
 		// public_ip
-		r.References["public_ip"] = config.Reference{
-			Type:      tools.GenerateType("eip", "EIP"),
-			Extractor: tools.GenerateExtractor(true, "address"),
-		}
+		r.References["public_ip"] = references.TypeEIPID().WithCustomExtractor(tools.GenerateExtractor(true, "address")).Get()
 		// node_key_pair
 		r.References["node_key_pair"] = config.Reference{
 			Type: tools.GenerateType("ecs", "KeyPair"),
@@ -28,7 +26,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("flexibleengine_mrs_job_v2", func(r *config.Resource) {
 		// cluster_id
 		r.References["cluster_id"] = config.Reference{
-			Type: tools.GenerateType("mrs", "Cluster"),
+			Type: "Cluster",
 		}
 	})
 

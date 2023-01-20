@@ -68,7 +68,7 @@ spec:
                       belongs to. Changing this will create a new MRS job resource.
                     type: string
                   clusterIdRef:
-                    description: Reference to a Cluster in mrs to populate clusterId.
+                    description: Reference to a Cluster to populate clusterId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -102,7 +102,7 @@ spec:
                     - name
                     type: object
                   clusterIdSelector:
-                    description: Selector for a Cluster in mrs to populate clusterId.
+                    description: Selector for a Cluster to populate clusterId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
