@@ -86,14 +86,7 @@ spec:
                       If omitted, the region argument of the provider is used. Changing
                       this creates a new loadbalancer.
                     type: string
-                  securityGroupIds:
-                    description: A list of security group IDs to apply to the loadbalancer.
-                      The security groups must be specified by ID and not name (as
-                      opposed to how they are configured with the Compute Instance).
-                    items:
-                      type: string
-                    type: array
-                  securityGroupIdsRefs:
+                  securityGroupIdRefs:
                     description: References to SecurityGroup in vpc to populate securityGroupIds.
                     items:
                       description: A Reference to a named object.
@@ -130,7 +123,7 @@ spec:
                       - name
                       type: object
                     type: array
-                  securityGroupIdsSelector:
+                  securityGroupIdSelector:
                     description: Selector for a list of SecurityGroup in vpc to populate
                       securityGroupIds.
                     properties:
@@ -170,6 +163,13 @@ spec:
                             type: string
                         type: object
                     type: object
+                  securityGroupIds:
+                    description: A list of security group IDs to apply to the loadbalancer.
+                      The security groups must be specified by ID and not name (as
+                      opposed to how they are configured with the Compute Instance).
+                    items:
+                      type: string
+                    type: array
                   tags:
                     additionalProperties:
                       type: string

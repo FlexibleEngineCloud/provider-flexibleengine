@@ -61,7 +61,6 @@ type MemberParameters struct {
 	// must be TCP, HTTP, or HTTPS.
 	// The IPv4 or IPv6 subnet ID of the subnet in which to access the member
 	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "ipv4_subnet_id")
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 

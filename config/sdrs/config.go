@@ -4,6 +4,7 @@ package sdrs
 import (
 	"github.com/upbound/upjet/pkg/config"
 
+	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/references"
 	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 )
 
@@ -32,9 +33,7 @@ func Configure(p *config.Provider) {
 		r.References["server_id"] = config.Reference{
 			Type: tools.GenerateType("ecs", "Instance"),
 		}
-		r.References["primary_subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
-		}
+		r.References["primary_subnet_id"] = references.TypeVPCSubnetID().WithoutExtractor().WithoutRefsSelectors().Get()
 	})
 
 	// flexibleengine_sdrs_protectiongroup_v1

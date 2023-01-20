@@ -40,12 +40,6 @@ func Configure(p *config.Provider) {
 		r.References["ipv6_network_id"] = references.TypeVPCSubnetID().WithoutRefsSelectors().Get()
 	})
 
-	// flexibleengine_lb_member_v3
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v3
-	p.AddResourceConfigurator("flexibleengine_lb_member_v3", func(r *config.Resource) {
-		r.References["subnet_id"] = references.TypeVPCSubnetIDIPV4().Get()
-	})
-
 	// flexibleengine_lb_pool_v3
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_pool_v3
 	p.AddResourceConfigurator("flexibleengine_lb_pool_v3", func(r *config.Resource) {
@@ -55,5 +49,11 @@ func Configure(p *config.Provider) {
 		r.References["listener_id"] = config.Reference{
 			Type: "Listener",
 		}
+	})
+
+	// flexibleengine_lb_member_v3
+	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/lb_member_v3
+	p.AddResourceConfigurator("flexibleengine_lb_member_v3", func(r *config.Resource) {
+		r.References["subnet_id"] = references.TypeVPCSubnetID().WithoutExtractor().WithoutRefsSelectors().Get()
 	})
 }
