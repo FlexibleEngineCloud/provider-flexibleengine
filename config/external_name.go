@@ -397,8 +397,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"flexibleengine_vpc_subnet_v1": {
 		SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 		GetExternalNameFn: func(tfstate map[string]any) (string, error) {
-			if id, ok := tfstate["ipv4_subnet_id"].(string); ok && id != "" {
-				return id, nil
+			if idv6, ok := tfstate["ipv6_subnet_id"].(string); ok && idv6 != "" {
+				return idv6, nil
+			}
+			if idv4, ok := tfstate["ipv4_subnet_id"].(string); ok && idv4 != "" {
+				return idv4, nil
 			}
 			return "", errors.New("cannot find id in tfstate")
 		},

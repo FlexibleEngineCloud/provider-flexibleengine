@@ -13,7 +13,9 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_pool
     protocolPort: 8080
-    subnetId: ${flexibleengine_vpc_subnet_v1.example_subnet.ipv4_subnet_id}
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example_subnet
 
 ---
 
