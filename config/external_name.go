@@ -882,6 +882,28 @@ func ExternalNameConfigured() []string {
 	return l
 }
 
+// ExternalNameConfiguredAndIgnored returns the list of all resources whose
+// external name is configured manually and ignored.
+func ExternalNameConfiguredAndIgnored() (implemented []string, ignored []string) {
+
+	l := make([]string, len(ExternalNameConfigs))
+	i := 0
+	for name := range ExternalNameConfigs {
+		l[i] = name
+		i++
+	}
+
+	o := make([]string, len(skipList))
+	j := 0
+	for _, name := range skipList {
+		// remove $ at end
+		o[j] = name[:len(name)-1]
+		j++
+	}
+
+	return l, o
+}
+
 // FormattedIdentifierFromProvider is a helper function to construct Terraform
 // IDs that use elements from the parameters in a certain string format.
 // It should be used in cases where all information in the ID is gathered from
