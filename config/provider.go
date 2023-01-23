@@ -71,6 +71,14 @@ var skipList = []string{
 	"flexibleengine_mrs_cluster_v1$",
 	"flexibleengine_mrs_job_v1$",
 	"flexibleengine_mrs_hybrid_cluster_v1$",
+	"flexibleengine_elb_listener$",
+	"flexibleengine_rds_instance_v1$",
+	"flexibleengine_drs_replication_v2$",
+	"flexibleengine_networking_router_route_v2$",
+	"flexibleengine_elb_health$",
+	"flexibleengine_drs_replicationconsistencygroup_v2$",
+	"flexibleengine_elb_backend$",
+	"flexibleengine_elb_loadbalancer$",
 
 	// https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/869
 	"flexibleengine_networking_floatingip_associate_v2$",
