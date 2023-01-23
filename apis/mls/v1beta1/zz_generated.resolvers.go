@@ -8,7 +8,6 @@ package v1beta1
 import (
 	"context"
 	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/mrs/v1beta1"
-	v1beta11 "github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1"
 	tools "github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
@@ -56,42 +55,6 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 		}
 		mg.Spec.ForProvider.MrsCluster[i3].UserName = reference.ToPtrValue(rsp.ResolvedValue)
 		mg.Spec.ForProvider.MrsCluster[i3].UserNameRef = rsp.ResolvedReference
-
-	}
-	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].SubnetID),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.ForProvider.Network[i3].SubnetIDRef,
-			Selector:     mg.Spec.ForProvider.Network[i3].SubnetIDSelector,
-			To: reference.To{
-				List:    &v1beta11.VPCSubnetList{},
-				Managed: &v1beta11.VPCSubnet{},
-			},
-		})
-		if err != nil {
-			return errors.Wrap(err, "mg.Spec.ForProvider.Network[i3].SubnetID")
-		}
-		mg.Spec.ForProvider.Network[i3].SubnetID = reference.ToPtrValue(rsp.ResolvedValue)
-		mg.Spec.ForProvider.Network[i3].SubnetIDRef = rsp.ResolvedReference
-
-	}
-	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].VPCID),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.ForProvider.Network[i3].VPCIDRef,
-			Selector:     mg.Spec.ForProvider.Network[i3].VPCIDSelector,
-			To: reference.To{
-				List:    &v1beta11.VPCList{},
-				Managed: &v1beta11.VPC{},
-			},
-		})
-		if err != nil {
-			return errors.Wrap(err, "mg.Spec.ForProvider.Network[i3].VPCID")
-		}
-		mg.Spec.ForProvider.Network[i3].VPCID = reference.ToPtrValue(rsp.ResolvedValue)
-		mg.Spec.ForProvider.Network[i3].VPCIDRef = rsp.ResolvedReference
 
 	}
 

@@ -18,12 +18,8 @@ spec:
     - availableZone: eu-west-0a
       publicIp:
       - bindType: not_use
-      subnetIdSelector:
-        matchLabels:
-          testing.upbound.io/example-name: example_subnet
-      vpcIdSelector:
-        matchLabels:
-          testing.upbound.io/example-name: example_vpc
+      subnetId: ${flexibleengine_vpc_subnet_v1.example_subnet.id}
+      vpcId: ${flexibleengine_vpc_v1.example_vpc.id}
     version: 1.2.0
 
 ---

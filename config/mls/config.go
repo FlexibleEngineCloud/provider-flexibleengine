@@ -11,15 +11,6 @@ import (
 func Configure(p *config.Provider) {
 	// flexibleengine_mls_instance_v1
 	p.AddResourceConfigurator("flexibleengine_mls_instance_v1", func(r *config.Resource) {
-		r.References["network.vpc_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPC"),
-		}
-		r.References["network.subnet_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "VPCSubnet"),
-		}
-		r.References["network.security_group_id"] = config.Reference{
-			Type: tools.GenerateType("vpc", "SecurityGroup"),
-		}
 		r.References["mrs_cluster.id"] = config.Reference{
 			Type:      tools.GenerateType("mrs", "Cluster"),
 			Extractor: tools.GenerateExtractor(true, "id"),

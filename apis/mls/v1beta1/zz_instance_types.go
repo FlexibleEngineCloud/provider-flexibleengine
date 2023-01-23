@@ -148,31 +148,13 @@ type NetworkParameters struct {
 
 	// Specifies the ID of the VPC Subnet where the instance resides.
 	// Changing this creates a new instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +kubebuilder:validation:Optional
-	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
-
-	// Reference to a VPCSubnet in vpc to populate subnetId.
-	// +kubebuilder:validation:Optional
-	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
-
-	// Selector for a VPCSubnet in vpc to populate subnetId.
-	// +kubebuilder:validation:Optional
-	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	SubnetID *string `json:"subnetId" tf:"subnet_id,omitempty"`
 
 	// Specifies the ID of the virtual private cloud (VPC) where the
 	// instance resides. Changing this creates a new instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
-	// +kubebuilder:validation:Optional
-	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
-
-	// Reference to a VPC in vpc to populate vpcId.
-	// +kubebuilder:validation:Optional
-	VPCIDRef *v1.Reference `json:"vpcIdRef,omitempty" tf:"-"`
-
-	// Selector for a VPC in vpc to populate vpcId.
-	// +kubebuilder:validation:Optional
-	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	VPCID *string `json:"vpcId" tf:"vpc_id,omitempty"`
 }
 
 type PublicIPObservation struct {
