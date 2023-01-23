@@ -303,10 +303,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_pool_v3
 	"flexibleengine_cce_node_pool_v3": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .external_name }}"),
 
-	// flexibleengine_cce_pvc - Imported using {cluster_id}/{namespace}/{name}
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_pvc
-	"flexibleengine_cce_pvc": TemplatedStringAsIdentifierWithNoName("{{ .parameters.cluster_id }}/{{ .parameters.namespace }}/{{ .external_name }}"),
-
 	// flexibleengine_cce_node_v3 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/cce_node_v3
 	"flexibleengine_cce_node_v3": config.IdentifierFromProvider,
@@ -734,21 +730,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	/*
 		> MapReduce Service (MRS)
 	*/
-	// flexibleengine_mrs_cluster_v1 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v1
-	"flexibleengine_mrs_cluster_v1": config.IdentifierFromProvider,
-
 	// flexibleengine_mrs_cluster_v2 - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_cluster_v2
 	"flexibleengine_mrs_cluster_v2": config.IdentifierFromProvider,
-
-	// flexibleengine_mrs_hybrid_cluster_v1 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_hybrid_cluster_v1
-	"flexibleengine_mrs_hybrid_cluster_v1": config.IdentifierFromProvider,
-
-	// flexibleengine_mrs_job_v1 - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v1
-	"flexibleengine_mrs_job_v1": config.IdentifierFromProvider,
 
 	// flexibleengine_mrs_job_v2 - Imported using template
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/mrs_job_v2
@@ -818,10 +802,6 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// flexibleengine_fgs_function - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_function
 	"flexibleengine_fgs_function": config.IdentifierFromProvider,
-
-	// flexibleengine_fgs_dependency - Imported using the ID
-	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_dependency
-	"flexibleengine_fgs_dependency": config.IdentifierFromProvider,
 
 	// flexibleengine_fgs_trigger - Imported using the ID
 	// https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/resources/fgs_trigger
