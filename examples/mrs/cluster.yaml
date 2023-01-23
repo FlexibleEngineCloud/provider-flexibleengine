@@ -10,30 +10,30 @@ spec:
   forProvider:
     analysisCoreNodes:
     - dataVolumeCount: 1
-      dataVolumeSize: 100
+      dataVolumeSize: 600
       dataVolumeType: SAS
-      flavor: c3.2xlarge.2.linux.mrs
-      nodeNumber: 2
-      rootVolumeSize: 100
+      flavor: c6.4xlarge.4.linux.mrs
+      nodeNumber: 3
+      rootVolumeSize: 480
       rootVolumeType: SAS
     availabilityZone: eu-west-0a
     componentList:
-    - Hadoop
-    - Spark
-    - Hive
+      - Hadoop
+      - Spark2x
+      - Hive
     managerAdminPwdSecretRef:
       key: example-mrs-admin-password
       name: example-mrs-secret
       namespace: crossplane-system
     masterNodes:
     - dataVolumeCount: 1
-      dataVolumeSize: 200
+      dataVolumeSize: 600
       dataVolumeType: SAS
-      flavor: c3.2xlarge.2.linux.mrs
+      flavor: c6.4xlarge.4.linux.mrs
       nodeNumber: 2
-      rootVolumeSize: 100
+      rootVolumeSize: 480
       rootVolumeType: SAS
-    name: example-mrs-cluster
+    name: example_mrs_cluster
     nodeKeyPairSelector:
       matchLabels:
         testing.upbound.io/example-name: example_keypair
@@ -41,7 +41,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example_subnet
     type: ANALYSIS
-    version: MRS 2.0.1
+    version: MRS 3.1.0-LTS.1
     vpcIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example_vpc
