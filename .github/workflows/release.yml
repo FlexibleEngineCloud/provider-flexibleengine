@@ -32,6 +32,7 @@ jobs:
           release-type: simple
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"deps","section":"Dependencies","hidden":false},{"type":"docs","section":"Documentation","hidden":false}]'
     
   publish-artifacts:
     name: Publish Artifacts
