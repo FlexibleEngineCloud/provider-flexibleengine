@@ -254,14 +254,33 @@ type ClusterParameters struct {
 
 	// Specifies the name of a key pair, which is used to login to the each
 	// nodes(ECSs). Changing this will create a new MRS cluster resource.
-	// +kubebuilder:validation:Required
-	NodeKeyPairSecretRef v1.SecretKeySelector `json:"nodeKeyPairSecretRef" tf:"-"`
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.KeyPair
+	// +kubebuilder:validation:Optional
+	NodeKeyPair *string `json:"nodeKeyPair,omitempty" tf:"node_key_pair,omitempty"`
+
+	// Reference to a KeyPair in ecs to populate nodeKeyPair.
+	// +kubebuilder:validation:Optional
+	NodeKeyPairRef *v1.Reference `json:"nodeKeyPairRef,omitempty" tf:"-"`
+
+	// Selector for a KeyPair in ecs to populate nodeKeyPair.
+	// +kubebuilder:validation:Optional
+	NodeKeyPairSelector *v1.Selector `json:"nodeKeyPairSelector,omitempty" tf:"-"`
 
 	// Specifies the EIP address which bound to the MRS cluster.
 	// The EIP must have been created and must be in the same region as the cluster.
 	// Changing this will create a new MRS cluster resource.
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "address")
 	// +kubebuilder:validation:Optional
 	PublicIP *string `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
+
+	// Reference to a EIP in eip to populate publicIp.
+	// +kubebuilder:validation:Optional
+	PublicIPRef *v1.Reference `json:"publicIpRef,omitempty" tf:"-"`
+
+	// Selector for a EIP in eip to populate publicIp.
+	// +kubebuilder:validation:Optional
+	PublicIPSelector *v1.Selector `json:"publicIpSelector,omitempty" tf:"-"`
 
 	// The region in which to create the MRS cluster resource. If omitted, the
 	// provider-level region will be used. Changing this will create a new MRS cluster resource.

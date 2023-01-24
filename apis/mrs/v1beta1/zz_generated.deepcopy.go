@@ -424,11 +424,35 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	out.NodeKeyPairSecretRef = in.NodeKeyPairSecretRef
+	if in.NodeKeyPair != nil {
+		in, out := &in.NodeKeyPair, &out.NodeKeyPair
+		*out = new(string)
+		**out = **in
+	}
+	if in.NodeKeyPairRef != nil {
+		in, out := &in.NodeKeyPairRef, &out.NodeKeyPairRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NodeKeyPairSelector != nil {
+		in, out := &in.NodeKeyPairSelector, &out.NodeKeyPairSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.PublicIP != nil {
 		in, out := &in.PublicIP, &out.PublicIP
 		*out = new(string)
 		**out = **in
+	}
+	if in.PublicIPRef != nil {
+		in, out := &in.PublicIPRef, &out.PublicIPRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PublicIPSelector != nil {
+		in, out := &in.PublicIPSelector, &out.PublicIPSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
@@ -831,6 +855,16 @@ func (in *JobParameters) DeepCopyInto(out *JobParameters) {
 		in, out := &in.ClusterID, &out.ClusterID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
