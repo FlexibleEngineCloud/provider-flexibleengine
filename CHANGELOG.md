@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.4.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.3.1...v0.4.0) (2023-01-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* confusion argument Selector/Refs in netacl/acl and vpc/routetable ([#146](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/146))
+
+### Features
+
+* **mrs:** Add mrs cluster example ([#148](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/148)) ([51e3aad](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/51e3aadb2a32680849231fb04f5fcadad21cca86))
+
+
+### Bug Fixes
+
+* confusion argument Selector/Refs in netacl/acl and vpc/routetable ([#146](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/146)) ([716d7bd](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/716d7bd5e0f329382c5888c3bd6c89b3f07e90d6))
+
+
+### Miscellaneous
+
+* add bean run/exist/install in Makefile ([3553094](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/3553094c2efc38599697718e2d460b7fba2a6eb9))
+* add cmd to check if all resources is implemented ([#153](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/153)) ([655e05a](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/655e05a8e8f119091746be53e4c07360c69fef4e))
+* add deprecated old resources ([#155](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/155)) ([03707fc](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/03707fc2eb1c05bc71b06a75f5dd51fde3f44707))
+* add healp for bean targets in Makefile ([e979fef](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/e979fef77f2457f3661c9c4ff2e8ed56612e09c3))
+* add recommended extensions vscode and files associations ([#150](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/150)) ([05543fd](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/05543fd37382cbae147021d311178836749a474b))
+* **cce/mrs/fgs:** add deprecated or ignored resources ([#157](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/157)) ([d98bf36](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/d98bf3640f30354d19067c1bed0d50d2441897b0))
+* remove old python scripts ([b7f63a1](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/b7f63a19c4561ce12c5a37d8d42013d683b99b38))
+* update submodules githooks ([#154](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/154)) ([2632a94](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/2632a94b82b6658e4839e2923ad254b2321b2c18))
+* update tasks vscode ([5fdb748](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/5fdb748b944dfdb2e44cbaf924337abc15485317))
+
 ## [0.3.1](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.3.0...v0.3.1) (2023-01-19)
 
 
