@@ -114,3 +114,8 @@ jobs:
         env:
           UP_ACCOUNT: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR }}
           UP_TOKEN: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_PSW }}
+      
+      - name: Update docs.crds.dev
+        continue-on-error: true
+        run: |
+          curl -s -X GET "https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine@${GITHUB_REF##*/}"
