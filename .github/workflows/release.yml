@@ -118,4 +118,5 @@ jobs:
       - name: Update docs.crds.dev
         continue-on-error: true
         run: |
-          curl -s -X GET "https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine@${GITHUB_REF##*/}"
+          export VERSION_TAG=$GITHUB_REF_NAME
+          curl -s -X GET "https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine@${VERSION_TAG}"
