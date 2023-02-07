@@ -1,5 +1,5 @@
 <!--
-Thank you for helping to improve Crossplane Felxible Engine provider!
+Thank you for helping to improve Crossplane Flexible Engine provider!
 -->
 
 ### Description of your changes
