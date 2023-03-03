@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.4.0...v0.4.1) (2023-03-03)
+
+
+### Miscellaneous
+
+* add package annotations for marketplace ([#164](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/164)) ([5199002](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/5199002049c04c644883c2e8bef3a41d487e8571))
+* fix typo ([#161](https://github.com/FrangipaneTeam/provider-flexibleengine/issues/161)) ([87a4bcf](https://github.com/FrangipaneTeam/provider-flexibleengine/commit/87a4bcf15ed5418eae40bd5b53a5fae5831eb6ad))
+
 ## [0.4.0](https://github.com/FrangipaneTeam/provider-flexibleengine/compare/v0.3.1...v0.4.0) (2023-01-24)
 
 
