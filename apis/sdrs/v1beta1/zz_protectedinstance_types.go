@@ -67,7 +67,7 @@ type ProtectedInstanceParameters struct {
 
 	// Specifies the ipv4_subnet_id or ipv6_subnet_id of the
 	// VPC Subnet of the primary NIC on the target server. Changing this creates a new instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	PrimarySubnetID *string `json:"primarySubnetId,omitempty" tf:"primary_subnet_id,omitempty"`
 
@@ -80,7 +80,7 @@ type ProtectedInstanceParameters struct {
 	PrimarySubnetIDSelector *v1.Selector `json:"primarySubnetIdSelector,omitempty" tf:"-"`
 
 	// Specifies the ID of the source server. Changing this creates a new instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ecs/v1beta1.Instance
 	// +kubebuilder:validation:Optional
 	ServerID *string `json:"serverId,omitempty" tf:"server_id,omitempty"`
 

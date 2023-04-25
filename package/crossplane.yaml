@@ -3,8 +3,8 @@ kind: Provider
 metadata:
   name: provider-flexibleengine
   annotations:
-    meta.crossplane.io/maintainer: FrangipaneTeam
-    meta.crossplane.io/source: github.com/FrangipaneTeam/provider-flexibleengine
+    meta.crossplane.io/maintainer: FlexibleEngineCloud
+    meta.crossplane.io/source: github.com/FlexibleEngineCloud/provider-flexibleengine
     meta.crossplane.io/description: |
       The Flexible Engine Crossplane provider adds support for 
       managing Flexible Engine resources in kubernetes.
@@ -12,5 +12,5 @@ metadata:
       `provider-flexibleengine` is a Crossplane infrastructure provider for 
       [Flexible Engine](https://cloud.orange-business.com/en/offers/infrastructure-iaas/public-cloud/). 
       It is based on the Terraform Flexible Engine provider. Read the 
-      [readme](https://github.com/FrangipaneTeam/provider-flexibleengine/blob/main/README.md)
+      [readme](https://github.com/FlexibleEngineCloud/provider-flexibleengine/blob/main/README.md)
       for instructions.

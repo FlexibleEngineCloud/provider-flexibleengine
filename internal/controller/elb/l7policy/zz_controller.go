@@ -18,7 +18,7 @@ import (
 	"github.com/upbound/upjet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/elb/v1beta1"
+	v1beta1 "github.com/FlexibleEngineCloud/provider-flexibleengine/apis/elb/v1beta1"
 )
 
 // Setup adds a controller that reconciles L7Policy managed resources.

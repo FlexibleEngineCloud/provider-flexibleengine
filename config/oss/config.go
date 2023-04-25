@@ -4,7 +4,7 @@ package oss
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools"
 )
 
 /*

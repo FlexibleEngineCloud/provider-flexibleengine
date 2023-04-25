@@ -8,7 +8,7 @@ import (
 	tfProvider "github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/flexibleengine"
 	cm "github.com/azrod/common-go"
 
-	crConfig "github.com/FrangipaneTeam/provider-flexibleengine/config"
+	crConfig "github.com/FlexibleEngineCloud/provider-flexibleengine/config"
 )
 
 //nolint:all

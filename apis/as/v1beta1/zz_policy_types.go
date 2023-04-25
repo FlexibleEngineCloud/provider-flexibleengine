@@ -21,7 +21,7 @@ type PolicyParameters struct {
 
 	// The alarm rule ID. This argument is mandatory
 	// when scaling_policy_type is set to ALARM.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ces/v1beta1.AlarmRule
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ces/v1beta1.AlarmRule
 	// +kubebuilder:validation:Optional
 	AlarmID *string `json:"alarmId,omitempty" tf:"alarm_id,omitempty"`
 

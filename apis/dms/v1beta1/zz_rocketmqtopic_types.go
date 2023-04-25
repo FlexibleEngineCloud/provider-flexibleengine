@@ -51,7 +51,7 @@ type RocketMQTopicParameters struct {
 	Brokers []BrokersParameters `json:"brokers,omitempty" tf:"brokers,omitempty"`
 
 	// Specifies the ID of the rocketMQ instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/dms/v1beta1.RocketMQInstance
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/dms/v1beta1.RocketMQInstance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 

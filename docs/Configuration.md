@@ -30,7 +30,7 @@ NAME                      INSTALLED   HEALTHY   PACKAGE                         
 provider-flexibleengine   True        True      xpkg.upbound.io/frangipaneteam/provider-flexibleengine:v0.1.2  62s
 ```
 
-View the Crossplane [Provider CRD definition](https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine) to view all available `Provider` options.
+View the Crossplane [Provider CRD definition](https://doc.crds.dev/github.com/FlexibleEngineCloud/provider-flexibleengine) to view all available `Provider` options.
 
 ## Configure the provider
 

@@ -1,7 +1,7 @@
 package references
 
 import (
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools"
 )
 
 // TypeVPCSubnet returns a Reference to a VPCSubnet resource.

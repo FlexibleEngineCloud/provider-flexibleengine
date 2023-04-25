@@ -2,7 +2,7 @@
 # Setup Project
 
 PROJECT_NAME := provider-flexibleengine
-PROJECT_REPO := github.com/FrangipaneTeam/$(PROJECT_NAME)
+PROJECT_REPO := github.com/FlexibleEngineCloud/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.3.7
 
@@ -38,7 +38,7 @@ NPROCS ?= 1
 # to half the number of CPU cores.
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
-GO_REQUIRED_VERSION ?= 1.19
+GO_REQUIRED_VERSION ?= 1.20
 GOLANGCILINT_VERSION ?= 1.50.1
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)

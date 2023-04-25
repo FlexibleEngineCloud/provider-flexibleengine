@@ -74,7 +74,7 @@ type LoadBalancerParameters struct {
 	IPv4Address *string `json:"ipv4Address,omitempty" tf:"ipv4_address,omitempty"`
 
 	// The ID of the EIP. Changing this parameter will create a new resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	IPv4EIPID *string `json:"ipv4EipId,omitempty" tf:"ipv4_eip_id,omitempty"`
 
@@ -89,8 +89,8 @@ type LoadBalancerParameters struct {
 	// The ipv4_subnet_id of the
 	// VPC Subnet on which to allocate the loadbalancer's ipv4 address.
 	// the IPv4 subnet ID of the subnet where the load balancer resides
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "ipv4_subnet_id")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "ipv4_subnet_id")
 	// +kubebuilder:validation:Optional
 	IPv4SubnetID *string `json:"ipv4SubnetId,omitempty" tf:"ipv4_subnet_id,omitempty"`
 
@@ -108,8 +108,8 @@ type LoadBalancerParameters struct {
 
 	// The network on which to allocate the loadbalancer's ipv6 address.
 	// the ID of the subnet where the load balancer resides
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
 	// +kubebuilder:validation:Optional
 	IPv6NetworkID *string `json:"ipv6NetworkId,omitempty" tf:"ipv6_network_id,omitempty"`
 
@@ -162,7 +162,7 @@ type LoadBalancerParameters struct {
 
 	// The vpc on which to create the loadbalancer. Changing this creates a new
 	// loadbalancer.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

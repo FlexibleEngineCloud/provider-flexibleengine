@@ -24,12 +24,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/apis"
-	"github.com/FrangipaneTeam/provider-flexibleengine/apis/v1alpha1"
-	"github.com/FrangipaneTeam/provider-flexibleengine/config"
-	"github.com/FrangipaneTeam/provider-flexibleengine/internal/clients"
-	"github.com/FrangipaneTeam/provider-flexibleengine/internal/controller"
-	"github.com/FrangipaneTeam/provider-flexibleengine/internal/features"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/apis"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/apis/v1alpha1"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/config"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/internal/clients"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/internal/controller"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/internal/features"
 )
 
 func main() {

@@ -35,7 +35,7 @@ type MonitorParameters struct {
 	MaxRetries *float64 `json:"maxRetries" tf:"max_retries,omitempty"`
 
 	// Specifies the id of the pool that this monitor will be assigned to.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1.Pool
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/dedicatedelb/v1beta1.Pool
 	// +kubebuilder:validation:Optional
 	PoolID *string `json:"poolId,omitempty" tf:"pool_id,omitempty"`
 

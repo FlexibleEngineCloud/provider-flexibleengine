@@ -5,8 +5,8 @@ import (
 
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/references"
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/references"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools"
 )
 
 // KnownReferencers adds referencers for fields that are known and common among

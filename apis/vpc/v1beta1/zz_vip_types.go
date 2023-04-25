@@ -49,8 +49,8 @@ type VIPParameters struct {
 
 	// Specifies the ID of the VPC Subnet to which the VIP belongs.
 	// Changing this will create a new VIP resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
 	// +crossplane:generate:reference:refFieldName=NetworkIDRef
 	// +crossplane:generate:reference:selectorFieldName=NetworkIDSelector
 	// +kubebuilder:validation:Optional

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![CI](https://github.com/FrangipaneTeam/provider-flexibleengine/actions/workflows/ci.yml/badge.svg) [![GitHub release](https://img.shields.io/github/release/FrangipaneTeam/provider-flexibleengine/all.svg?style=flat-square)](https://github.com/FrangipaneTeam/provider-flexibleengine/releases)
+![CI](https://github.com/FlexibleEngineCloud/provider-flexibleengine/actions/workflows/ci.yml/badge.svg) [![GitHub release](https://img.shields.io/github/release/FrangipaneTeam/provider-flexibleengine/all.svg?style=flat-square)](https://github.com/FlexibleEngineCloud/provider-flexibleengine/releases)
 
 </div>
 
@@ -18,7 +18,7 @@ It is provided by Orange, a French telecommunication company.
 
 To start using this provider, follow the [Configuration Guide](docs/Configuration.md).
 
-You can find a detailed API reference with all CRDs [here](https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine).
+You can find a detailed API reference with all CRDs [here](https://doc.crds.dev/github.com/FlexibleEngineCloud/provider-flexibleengine).
 
 ## Contributing
 
@@ -33,4 +33,4 @@ Follow the guide [here](https://github.com/upbound/upjet/blob/main/docs/add-new-
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
-open an [issue](https://github.com/FrangipaneTeam/provider-flexibleengine/issues).
+open an [issue](https://github.com/FlexibleEngineCloud/provider-flexibleengine/issues).

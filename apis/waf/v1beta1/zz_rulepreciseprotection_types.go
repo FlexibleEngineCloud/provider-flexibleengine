@@ -66,7 +66,7 @@ type RulePreciseProtectionParameters struct {
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the WAF policy ID. Changing this creates a new rule.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1.Policy
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/waf/v1beta1.Policy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
 

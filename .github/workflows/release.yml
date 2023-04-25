@@ -7,8 +7,8 @@ on:
 
 env:
   # Common versions
-  GO_VERSION: '1.19'
-  GOLANGCI_VERSION: 'v1.50.0'
+  GO_VERSION: '1.20'
+  GOLANGCI_VERSION: 'v1.52.2'
   DOCKER_BUILDX_VERSION: 'v0.8.2'
 
   # Common users. We can't run a step 'if secrets.XXX != ""' but we can run a
@@ -20,7 +20,7 @@ jobs:
   release_please:
     name: Release Please
     runs-on: ubuntu-22.04
-    if: github.repository == 'FrangipaneTeam/provider-flexibleengine'
+    if: github.repository == 'FlexibleEngineCloud/provider-flexibleengine'
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
@@ -119,4 +119,4 @@ jobs:
         continue-on-error: true
         run: |
           export VERSION_TAG=$GITHUB_REF_NAME
-          curl -s -X GET "https://doc.crds.dev/github.com/FrangipaneTeam/provider-flexibleengine@${VERSION_TAG}"
+          curl -s -X GET "https://doc.crds.dev/github.com/FlexibleEngineCloud/provider-flexibleengine@${VERSION_TAG}"

@@ -61,7 +61,7 @@ type LoadBalancerParameters struct {
 	// A list of security group IDs to apply to the
 	// loadbalancer. The security groups must be specified by ID and not name (as
 	// opposed to how they are configured with the Compute Instance).
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +crossplane:generate:reference:refFieldName=SecurityGroupIDRefs
 	// +crossplane:generate:reference:selectorFieldName=SecurityGroupIDSelector
 	// +kubebuilder:validation:Optional
@@ -74,7 +74,7 @@ type LoadBalancerParameters struct {
 	// The UUID of the tenant who owns the loadbalancer.
 	// Only administrative users can specify a tenant UUID other than their own.
 	// Changing this creates a new loadbalancer.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
@@ -96,7 +96,7 @@ type LoadBalancerParameters struct {
 	// A tenant can only create Loadbalancers on networks authorized
 	// by policy (e.g. networks that belong to them or networks that
 	// are shared).  Changing this creates a new loadbalancer.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	VipSubnetID *string `json:"vipSubnetId,omitempty" tf:"vip_subnet_id,omitempty"`
 

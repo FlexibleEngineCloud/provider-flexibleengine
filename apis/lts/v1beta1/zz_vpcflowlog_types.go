@@ -31,7 +31,7 @@ type VPCFlowLogParameters struct {
 
 	// Specifies the LTS log group ID.
 	// Changing this creates a new VPC flow log.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1.Group
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/lts/v1beta1.Group
 	// +kubebuilder:validation:Optional
 	LogGroupID *string `json:"logGroupId,omitempty" tf:"log_group_id,omitempty"`
 
@@ -45,7 +45,7 @@ type VPCFlowLogParameters struct {
 
 	// Specifies the LTS log topic ID.
 	// Changing this creates a new VPC flow log.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/lts/v1beta1.Topic
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/lts/v1beta1.Topic
 	// +kubebuilder:validation:Optional
 	LogTopicID *string `json:"logTopicId,omitempty" tf:"log_topic_id,omitempty"`
 
@@ -69,8 +69,8 @@ type VPCFlowLogParameters struct {
 
 	// Specifies the network port ID.
 	// Changing this creates a new VPC flow log.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "network", "0", "port")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "network", "0", "port")
 	// +kubebuilder:validation:Optional
 	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
 
