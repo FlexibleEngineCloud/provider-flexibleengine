@@ -11,7 +11,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/pipeline"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/config"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/config"
 )
 
 func main() {

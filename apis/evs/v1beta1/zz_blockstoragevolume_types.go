@@ -57,7 +57,7 @@ type BlockStorageVolumeParameters struct {
 
 	// The image ID from which to create the volume.
 	// Changing this creates a new volume.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ims/v1beta1.Image
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ims/v1beta1.Image
 	// +kubebuilder:validation:Optional
 	ImageID *string `json:"imageId,omitempty" tf:"image_id,omitempty"`
 
@@ -96,7 +96,7 @@ type BlockStorageVolumeParameters struct {
 
 	// The snapshot ID from which to create the volume.
 	// Changing this creates a new volume.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/csbs/v1beta1.Backup
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/csbs/v1beta1.Backup
 	// +kubebuilder:validation:Optional
 	SnapshotID *string `json:"snapshotId,omitempty" tf:"snapshot_id,omitempty"`
 

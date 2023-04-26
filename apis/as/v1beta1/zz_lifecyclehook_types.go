@@ -39,7 +39,7 @@ type LifecycleHookParameters struct {
 	NotificationMessage *string `json:"notificationMessage,omitempty" tf:"notification_message,omitempty"`
 
 	// Specifies a unique topic in SMN.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1.Topic
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/smn/v1beta1.Topic
 	// +kubebuilder:validation:Optional
 	NotificationTopicUrn *string `json:"notificationTopicUrn,omitempty" tf:"notification_topic_urn,omitempty"`
 

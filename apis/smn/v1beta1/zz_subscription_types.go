@@ -28,7 +28,7 @@ type SubscriptionParameters struct {
 	Endpoint *string `json:"endpoint" tf:"endpoint,omitempty"`
 
 	// Project ID of the topic creator.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 

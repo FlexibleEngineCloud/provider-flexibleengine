@@ -9,7 +9,7 @@ import (
 	xpresource "github.com/crossplane/crossplane-runtime/pkg/resource"
 	"github.com/upbound/upjet/pkg/resource"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools"
 )
 
 var (

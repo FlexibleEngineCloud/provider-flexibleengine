@@ -85,8 +85,8 @@ type VPCEPServiceParameters struct {
 	Permissions []*string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 
 	// Specifies the ID for identifying the backend resource of the VPC endpoint service.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "network", "0", "port")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "network", "0", "port")
 	// +kubebuilder:validation:Optional
 	PortID *string `json:"portId,omitempty" tf:"port_id,omitempty"`
 
@@ -122,7 +122,7 @@ type VPCEPServiceParameters struct {
 
 	// Specifies the ID of the VPC to which the backend resource of
 	// the VPC endpoint service belongs. Changing this creates a new VPC endpoint service.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

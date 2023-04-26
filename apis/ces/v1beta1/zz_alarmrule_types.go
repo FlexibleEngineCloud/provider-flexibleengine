@@ -25,7 +25,7 @@ type AlarmActionsParameters struct {
 	// and the value of namespace must be SYS.AS.
 	// Note: to enable the autoscaling alarm rules take effect, you must bind scaling
 	// policies.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1.Topic
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/smn/v1beta1.Topic
 	// +kubebuilder:validation:Optional
 	NotificationList []*string `json:"notificationList,omitempty" tf:"notification_list,omitempty"`
 

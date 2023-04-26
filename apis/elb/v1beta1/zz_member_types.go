@@ -37,7 +37,7 @@ type MemberParameters struct {
 
 	// The id of the pool that this member will be
 	// assigned to.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/elb/v1beta1.Pool
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/elb/v1beta1.Pool
 	// +kubebuilder:validation:Optional
 	PoolID *string `json:"poolId,omitempty" tf:"pool_id,omitempty"`
 
@@ -63,7 +63,7 @@ type MemberParameters struct {
 
 	// The ipv4_subnet_id or ipv6_subnet_id of the
 	// VPC Subnet in which to access the member
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
@@ -78,7 +78,7 @@ type MemberParameters struct {
 	// The UUID of the tenant who owns the member.
 	// Only administrative users can specify a tenant UUID other than their own.
 	// Changing this creates a new member.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 

@@ -25,7 +25,7 @@ type ComputeVolumeAttachParameters struct {
 	Device *string `json:"device,omitempty" tf:"device,omitempty"`
 
 	// The ID of the Instance to attach the Volume to.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ecs/v1beta1.Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
@@ -45,7 +45,7 @@ type ComputeVolumeAttachParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The ID of the Volume to attach to an Instance.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
 	// +kubebuilder:validation:Optional
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 

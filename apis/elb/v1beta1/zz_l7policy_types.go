@@ -97,7 +97,7 @@ type L7PolicyParameters struct {
 	// The UUID of the tenant who owns the L7 Policy.
 	// Only administrative users can specify a tenant UUID other than their own.
 	// Changing this creates a new L7 Policy.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 

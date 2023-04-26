@@ -214,7 +214,7 @@ type ClusterParameters struct {
 	// Specifies the EIP ID which bound to the MRS cluster.
 	// The EIP must have been created and must be in the same region as the cluster.
 	// Changing this will create a new MRS cluster resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	EIPID *string `json:"eipId,omitempty" tf:"eip_id,omitempty"`
 
@@ -254,7 +254,7 @@ type ClusterParameters struct {
 
 	// Specifies the name of a key pair, which is used to login to the each
 	// nodes(ECSs). Changing this will create a new MRS cluster resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.KeyPair
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ecs/v1beta1.KeyPair
 	// +kubebuilder:validation:Optional
 	NodeKeyPair *string `json:"nodeKeyPair,omitempty" tf:"node_key_pair,omitempty"`
 
@@ -269,8 +269,8 @@ type ClusterParameters struct {
 	// Specifies the EIP address which bound to the MRS cluster.
 	// The EIP must have been created and must be in the same region as the cluster.
 	// Changing this will create a new MRS cluster resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "address")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "address")
 	// +kubebuilder:validation:Optional
 	PublicIP *string `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 
@@ -302,7 +302,7 @@ type ClusterParameters struct {
 
 	// Specifies an array of one or more security group ID to attach to the
 	// MRS cluster. If using the specified security group, the group need to open the specified port (9022) rules.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.SecurityGroup
 	// +crossplane:generate:reference:refFieldName=SecurityGroupIDRefs
 	// +crossplane:generate:reference:selectorFieldName=SecurityGroupIDSelector
 	// +kubebuilder:validation:Optional
@@ -322,8 +322,8 @@ type ClusterParameters struct {
 
 	// Specifies the ID of the VPC Subnet which bound to the MRS cluster.
 	// Changing this will create a new MRS cluster resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
 	// +crossplane:generate:reference:refFieldName=SubnetIDRef
 	// +crossplane:generate:reference:selectorFieldName=SubnetIDSelector
 	// +kubebuilder:validation:Optional
@@ -354,7 +354,7 @@ type ClusterParameters struct {
 
 	// Specifies the ID of the VPC which bound to the MRS cluster.
 	// Changing this will create a new MRS cluster resource.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

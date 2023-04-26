@@ -31,7 +31,7 @@ type MemberParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Specifies the id of the pool that this member will be assigned to.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/dedicatedelb/v1beta1.Pool
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/dedicatedelb/v1beta1.Pool
 	// +kubebuilder:validation:Optional
 	PoolID *string `json:"poolId,omitempty" tf:"pool_id,omitempty"`
 
@@ -60,7 +60,7 @@ type MemberParameters struct {
 	// cross-VPC backend servers must use private IPv4 addresses, and the protocol of the backend server group
 	// must be TCP, HTTP, or HTTPS.
 	// The IPv4 or IPv6 subnet ID of the subnet in which to access the member
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 

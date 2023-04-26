@@ -53,7 +53,7 @@ type MonitorParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The id of the pool that this monitor will be assigned to.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/elb/v1beta1.Pool
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/elb/v1beta1.Pool
 	// +kubebuilder:validation:Optional
 	PoolID *string `json:"poolId,omitempty" tf:"pool_id,omitempty"`
 
@@ -79,7 +79,7 @@ type MonitorParameters struct {
 	// The UUID of the tenant who owns the monitor.
 	// Only administrative users can specify a tenant UUID other than their own.
 	// Changing this creates a new monitor.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.Project
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/iam/v1beta1.Project
 	// +kubebuilder:validation:Optional
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 

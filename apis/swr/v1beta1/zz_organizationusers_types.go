@@ -78,7 +78,7 @@ type UsersParameters struct {
 	Permission *string `json:"permission" tf:"permission,omitempty"`
 
 	// Specifies the ID of the existing IAM user.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/iam/v1beta1.User
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/iam/v1beta1.User
 	// +kubebuilder:validation:Optional
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 

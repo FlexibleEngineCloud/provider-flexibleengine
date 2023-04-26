@@ -47,7 +47,7 @@ type BackupParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// ID of the target to which the backup is restored. Changing this creates a new backup.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/ecs/v1beta1.Instance
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/ecs/v1beta1.Instance
 	// +kubebuilder:validation:Optional
 	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
 

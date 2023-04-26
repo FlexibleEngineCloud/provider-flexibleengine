@@ -66,7 +66,7 @@ type ReplicationPairParameters struct {
 	TargetVolumeID *string `json:"targetVolumeId,omitempty" tf:"target_volume_id,omitempty"`
 
 	// Specifies the ID of a source disk. Changing this creates a new pair.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/evs/v1beta1.BlockStorageVolume
 	// +kubebuilder:validation:Optional
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 

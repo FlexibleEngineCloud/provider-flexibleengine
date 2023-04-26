@@ -47,7 +47,7 @@ type ACLParameters struct {
 	InboundRuleSelector *v1.Selector `json:"inboundRuleSelector,omitempty" tf:"-"`
 
 	// A list of the IDs of ingress rules associated with the network ACL.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1.ACLRule
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/netacl/v1beta1.ACLRule
 	// +crossplane:generate:reference:refFieldName=InboundRuleRefs
 	// +crossplane:generate:reference:selectorFieldName=InboundRuleSelector
 	// +kubebuilder:validation:Optional
@@ -67,7 +67,7 @@ type ACLParameters struct {
 	OutboundRuleSelector *v1.Selector `json:"outboundRuleSelector,omitempty" tf:"-"`
 
 	// A list of the IDs of egress rules associated with the network ACL.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/netacl/v1beta1.ACLRule
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/netacl/v1beta1.ACLRule
 	// +crossplane:generate:reference:refFieldName=OutboundRuleRefs
 	// +crossplane:generate:reference:selectorFieldName=OutboundRuleSelector
 	// +kubebuilder:validation:Optional
@@ -82,8 +82,8 @@ type ACLParameters struct {
 	SubnetSelector *v1.Selector `json:"subnetSelector,omitempty" tf:"-"`
 
 	// A list of the IDs of networks associated with the network ACL.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
-	// +crossplane:generate:reference:extractor=github.com/FrangipaneTeam/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPCSubnet
+	// +crossplane:generate:reference:extractor=github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/tools.ExtractorParamPathfunc(true, "id")
 	// +crossplane:generate:reference:refFieldName=SubnetRefs
 	// +crossplane:generate:reference:selectorFieldName=SubnetSelector
 	// +kubebuilder:validation:Optional

@@ -7,7 +7,7 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1"
+	v1beta1 "github.com/FlexibleEngineCloud/provider-flexibleengine/apis/smn/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"

@@ -75,7 +75,7 @@ type FlinksqlJobParameters struct {
 	// Specifies OBS path. OBS path where users are authorized to save the
 	// snapshot. This parameter is valid only when checkpoint_enabled is set to true. OBS path where users are authorized
 	// to save the snapshot. This parameter is valid only when log_enabled is set to true.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/oss/v1beta1.OBSBucket
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/oss/v1beta1.OBSBucket
 	// +kubebuilder:validation:Optional
 	ObsBucket *string `json:"obsBucket,omitempty" tf:"obs_bucket,omitempty"`
 
@@ -132,7 +132,7 @@ type FlinksqlJobParameters struct {
 
 	// Specifies SMN topic. If a job fails, the system will send a message to
 	// users subscribed to the SMN topic.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/smn/v1beta1.Topic
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/smn/v1beta1.Topic
 	// +kubebuilder:validation:Optional
 	SmnTopic *string `json:"smnTopic,omitempty" tf:"smn_topic,omitempty"`
 

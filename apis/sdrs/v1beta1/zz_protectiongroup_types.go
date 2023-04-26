@@ -48,7 +48,7 @@ type ProtectionGroupParameters struct {
 	SourceAvailabilityZone *string `json:"sourceAvailabilityZone" tf:"source_availability_zone,omitempty"`
 
 	// Specifies the ID of the source VPC. Changing this creates a new group.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	SourceVPCID *string `json:"sourceVpcId,omitempty" tf:"source_vpc_id,omitempty"`
 

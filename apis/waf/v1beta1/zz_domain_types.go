@@ -63,7 +63,7 @@ type DomainParameters struct {
 
 	// Specifies the policy ID associated with the domain.
 	// If not specified, a new policy will be created automatically. Changing this create a new domain.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/waf/v1beta1.Policy
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/waf/v1beta1.Policy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
 

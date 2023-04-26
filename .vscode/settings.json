@@ -1,7 +1,7 @@
 {
     "gopls": {
         "ui.semanticTokens": true,
-        "formatting.local": "github.com/FrangipaneTeam/provider-flexibleengine",
+        "formatting.local": "github.com/FlexibleEngineCloud/provider-flexibleengine",
     },
     "files.associations": {
         "*.yaml.secret": "yaml",

@@ -30,7 +30,7 @@ type PtrrecordParameters struct {
 
 	// The ID of the FloatingIP/EIP.
 	// Changing this creates a new PTR record.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/eip/v1beta1.EIP
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/eip/v1beta1.EIP
 	// +kubebuilder:validation:Optional
 	FloatingipID *string `json:"floatingipId,omitempty" tf:"floatingip_id,omitempty"`
 

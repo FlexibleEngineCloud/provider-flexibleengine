@@ -50,7 +50,7 @@ type PeeringConnectionParameters struct {
 
 	// Specifies the ID of a VPC involved in a VPC peering connection.
 	// Changing this creates a new VPC peering connection.
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-flexibleengine/apis/vpc/v1beta1.VPC
+	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 

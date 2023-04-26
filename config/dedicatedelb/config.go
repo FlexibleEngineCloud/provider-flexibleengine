@@ -4,7 +4,7 @@ package dedicatedelb
 import (
 	"github.com/upbound/upjet/pkg/config"
 
-	"github.com/FrangipaneTeam/provider-flexibleengine/pkg/references"
+	"github.com/FlexibleEngineCloud/provider-flexibleengine/pkg/references"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
