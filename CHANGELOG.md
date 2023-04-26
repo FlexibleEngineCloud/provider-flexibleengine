@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/FlexibleEngineCloud/provider-flexibleengine/compare/v0.4.1...v0.4.2) (2023-04-26)
+
+
+### Miscellaneous
+
+* move repository ([#166](https://github.com/FlexibleEngineCloud/provider-flexibleengine/issues/166)) ([4778a15](https://github.com/FlexibleEngineCloud/provider-flexibleengine/commit/4778a1557c0ce7eedb733521fa3f2e69e1b2f956))
+
 ## [0.4.1](https://github.com/FlexibleEngineCloud/provider-flexibleengine/compare/v0.4.0...v0.4.1) (2023-03-03)
 
 
