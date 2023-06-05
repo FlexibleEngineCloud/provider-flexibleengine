@@ -1,80 +1,5 @@
 name: FlexibleEngineCloud/flexibleengine
 resources:
-    "":
-        subCategory: Distributed Message Service (DMS)
-        name: ""
-        title: ""
-        argumentDocs:
-            availability_zones: |-
-                - (Required, List, ForceNew) Specifies the list of availability zone names, where
-                instance brokers reside and which has available resources.
-            broker_address: '- Indicates the service data address.'
-            broker_num: |-
-                - (Optional, Int, ForceNew) Specifies the broker numbers. Defaults to 1.
-                Changing this parameter will create a new resource.
-            cross_vpc_info: '- Indicates the Cross-VPC access information.'
-            description: |-
-                - (Optional, String) Specifies the description of the DMS RocketMQ instance.
-                The description can contain a maximum of 1024 characters.
-            enable_acl: '- Indicates whether access control is enabled.'
-            enable_publicip: |-
-                - (Optional, Bool, ForceNew) Specifies whether to enable public access.
-                By default, public access is disabled.
-                Changing this parameter will create a new resource.
-            engine_version: |-
-                - (Required, String, ForceNew) Specifies the version of the RocketMQ engine. Value: 4.8.0.
-                Changing this parameter will create a new resource.
-            flavor_id: '- (Required, String, ForceNew) Specifies a product ID. The options are as follows:'
-            id: '- Specifies a resource ID in UUID format.'
-            ipv6_enable: |-
-                - (Optional, Bool, ForceNew) Specifies whether to support IPv6. Defaults to false.
-                Changing this parameter will create a new resource.
-            maintain_begin: '- Indicates the time at which the maintenance window starts. The format is HH:mm:ss.'
-            maintain_end: '- Indicates the time at which the maintenance window ends. The format is HH:mm:ss.'
-            name: |-
-                - (Required, String) Specifies the name of the DMS RocketMQ instance.
-                An instance name starts with a letter, consists of 4 to 64 characters, and can contain only letters,
-                digits, underscores (_), and hyphens (-).
-            namesrv_address: '- Indicates the metadata address.'
-            new_spec_billing_enable: '- Indicates whether billing based on new specifications is enabled.'
-            node_num: '- Indicates the node quantity.'
-            public_broker_address: '- Indicates the public network service data address.'
-            public_namesrv_address: '- Indicates the public network metadata address.'
-            publicip_address: '- Indicates the public IP address.'
-            publicip_id: |-
-                - (Optional, String, ForceNew) Specifies the ID of the EIP bound to the instance.
-                Use commas (,) to separate multiple EIP IDs.
-                This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).
-                Changing this parameter will create a new resource.
-            region: |-
-                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
-                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-            resource_spec_code: '- Indicates the resource specifications.'
-            retention_policy: '- (Optional, Bool) Specifies the ACL access control.'
-            security_group_id: '- (Required, String) Specifies the ID of a security group.'
-            specification: |-
-                - Indicates the instance specification. For a cluster DMS RocketMQ instance, VM specifications
-                and the number of nodes are returned.
-            ssl_enable: |-
-                - (Optional, Bool, ForceNew) Specifies whether the RocketMQ SASL_SSL is enabled. Defaults to false.
-                Changing this parameter will create a new resource.
-            status: '- Indicates the status of the DMS RocketMQ instance.'
-            storage_space: |-
-                - (Required, Int, ForceNew) Specifies the message storage capacity, Unit: GB.
-                Value range: 300-3000.
-                Changing this parameter will create a new resource.
-            storage_spec_code: |-
-                - (Required, String, ForceNew) Specifies the storage I/O specification.
-                The options are as follows:
-            subnet_id: |-
-                - (Required, String, ForceNew) Specifies the ID of a subnet.
-                Changing this parameter will create a new resource.
-            type: '- Indicates the DMS RocketMQ instance type. Value: cluster.'
-            used_storage_space: '- Indicates the used message storage space. Unit: GB.'
-            vpc_id: |-
-                - (Required, String, ForceNew) Specifies the ID of a VPC.
-                Changing this parameter will create a new resource.
-        importStatements: []
     flexibleengine_antiddos_v1:
         subCategory: Anti-DDoS
         description: '""page_title: "flexibleengine_antiddos_v1"'
@@ -2817,7 +2742,7 @@ resources:
         importStatements:
             - terraform import flexibleengine_compute_floatingip_associate_v2.fip_1 <floating_ip>/<instance_id>/<fixed_ip>
     flexibleengine_compute_floatingip_v2:
-        subCategory: Elastic Cloud Server (ECS)
+        subCategory: Deprecated
         description: '""page_title: "flexibleengine_compute_floatingip_v2"'
         name: flexibleengine_compute_floatingip_v2
         title: flexibleengine_compute_floatingip_v2
@@ -4544,9 +4469,11 @@ resources:
             datastore: |-
                 - (Required) Specifies database information. The structure is described
                 below. Changing this creates a new instance.
-            datastore.storage_engine: '- (Optional) Specifies the storage engine of the DB instance. Only wiredTiger is supported now.'
+            datastore.storage_engine: |-
+                - (Optional) Specifies the storage engine of the DB instance. The valid values are
+                wiredTiger and rocksDB.
             datastore.type: '- (Required) Specifies the DB engine. Only DDS-Community is supported now.'
-            datastore.version: '- (Required) Specifies the DB instance version. Only 3.4 and 4.0 are supported now.'
+            datastore.version: '- (Required) Specifies the DB instance version. The valid values are 3.4, 4.0 and 4.2.'
             db_username: '- Indicates the DB Administator name.'
             disk_encryption_id: |-
                 - (Required) Specifies the disk encryption ID of the instance.
@@ -5183,6 +5110,7 @@ resources:
             storage_space: '- (Required, Int, ForceNew) Specifies the message storage capacity, the unit is GB. Value range:'
             storage_spec_code: '- (Optional, String, ForceNew) Specifies the storage I/O specification. Value range:'
             subnet_name: '- Indicates the name of a subnet.'
+            tags: '- (Optional, Map) Specifies the key/value pairs to associate with the DMS Kafka instance.'
             used_storage_space: '- Indicates the used message storage space. Unit: GB'
             vpc_id: |-
                 - (Required, String, ForceNew) Specifies the ID of a VPC.
@@ -5294,6 +5222,101 @@ resources:
                 - (Optional, String, ForceNew) Specifies the region in which to create the resource.
                 If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
             retry_max_times: '- (Required, Int) Specifies the maximum number of retry times.'
+        importStatements: []
+    flexibleengine_dms_rocketmq_instance:
+        subCategory: Distributed Message Service (DMS)
+        name: flexibleengine_dms_rocketmq_instance
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "availability_zones": "${var.availability_zones}",
+                  "description": "this is a rocketmq instance",
+                  "engine_version": "4.8.0",
+                  "flavor_id": "c6.4u8g.cluster",
+                  "name": "rocketmq_name_test",
+                  "security_group_id": "${var.security_group_id}",
+                  "storage_space": 300,
+                  "storage_spec_code": "dms.physical.storage.high.v2",
+                  "subnet_id": "${var.subnet_id}",
+                  "vpc_id": "${var.vpc_id}"
+                }
+              references:
+                availability_zones: var.availability_zones
+                security_group_id: var.security_group_id
+                subnet_id: var.subnet_id
+                vpc_id: var.vpc_id
+        argumentDocs:
+            availability_zones: |-
+                - (Required, List, ForceNew) Specifies the list of availability zone names, where
+                instance brokers reside and which has available resources.
+            broker_address: '- Indicates the service data address.'
+            broker_num: |-
+                - (Optional, Int, ForceNew) Specifies the broker numbers. Defaults to 1.
+                Changing this parameter will create a new resource.
+            cross_vpc_info: '- Indicates the Cross-VPC access information.'
+            description: |-
+                - (Optional, String) Specifies the description of the DMS RocketMQ instance.
+                The description can contain a maximum of 1024 characters.
+            enable_acl: '- Indicates whether access control is enabled.'
+            enable_publicip: |-
+                - (Optional, Bool, ForceNew) Specifies whether to enable public access.
+                By default, public access is disabled.
+                Changing this parameter will create a new resource.
+            engine_version: |-
+                - (Required, String, ForceNew) Specifies the version of the RocketMQ engine. Value: 4.8.0.
+                Changing this parameter will create a new resource.
+            flavor_id: '- (Required, String, ForceNew) Specifies a product ID. The options are as follows:'
+            id: '- Specifies a resource ID in UUID format.'
+            ipv6_enable: |-
+                - (Optional, Bool, ForceNew) Specifies whether to support IPv6. Defaults to false.
+                Changing this parameter will create a new resource.
+            maintain_begin: '- Indicates the time at which the maintenance window starts. The format is HH:mm:ss.'
+            maintain_end: '- Indicates the time at which the maintenance window ends. The format is HH:mm:ss.'
+            name: |-
+                - (Required, String) Specifies the name of the DMS RocketMQ instance.
+                An instance name starts with a letter, consists of 4 to 64 characters, and can contain only letters,
+                digits, underscores (_), and hyphens (-).
+            namesrv_address: '- Indicates the metadata address.'
+            new_spec_billing_enable: '- Indicates whether billing based on new specifications is enabled.'
+            node_num: '- Indicates the node quantity.'
+            public_broker_address: '- Indicates the public network service data address.'
+            public_namesrv_address: '- Indicates the public network metadata address.'
+            publicip_address: '- Indicates the public IP address.'
+            publicip_id: |-
+                - (Optional, String, ForceNew) Specifies the ID of the EIP bound to the instance.
+                Use commas (,) to separate multiple EIP IDs.
+                This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).
+                Changing this parameter will create a new resource.
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            resource_spec_code: '- Indicates the resource specifications.'
+            retention_policy: '- (Optional, Bool) Specifies the ACL access control.'
+            security_group_id: '- (Required, String) Specifies the ID of a security group.'
+            specification: |-
+                - Indicates the instance specification. For a cluster DMS RocketMQ instance, VM specifications
+                and the number of nodes are returned.
+            ssl_enable: |-
+                - (Optional, Bool, ForceNew) Specifies whether the RocketMQ SASL_SSL is enabled. Defaults to false.
+                Changing this parameter will create a new resource.
+            status: '- Indicates the status of the DMS RocketMQ instance.'
+            storage_space: |-
+                - (Required, Int, ForceNew) Specifies the message storage capacity, Unit: GB.
+                Value range: 300-3000.
+                Changing this parameter will create a new resource.
+            storage_spec_code: |-
+                - (Required, String, ForceNew) Specifies the storage I/O specification.
+                The options are as follows:
+            subnet_id: |-
+                - (Required, String, ForceNew) Specifies the ID of a subnet.
+                Changing this parameter will create a new resource.
+            type: '- Indicates the DMS RocketMQ instance type. Value: cluster.'
+            used_storage_space: '- Indicates the used message storage space. Unit: GB.'
+            vpc_id: |-
+                - (Required, String, ForceNew) Specifies the ID of a VPC.
+                Changing this parameter will create a new resource.
         importStatements: []
     flexibleengine_dms_rocketmq_topic:
         subCategory: Distributed Message Service (DMS)
@@ -6367,7 +6390,7 @@ resources:
             id: '- The dependency ID in UUID format.'
             link: |-
                 - (Required, String) Specifies the OBS bucket path where the dependency package is located. The OBS object URL
-                must be in zip format, such as 'https://obs-terraform.oss.eu-west-0.prod-cloud-ocb.orange-business.com/dependencies/sdkcore.zip'.
+                must be in zip format, such as https://obs-terraform.oss.eu-west-0.prod-cloud-ocb.orange-business.com/dependencies/sdkcore.zip.
             name: |-
                 - (Required, String) Specifies the dependeny name.
                 The name can contain a maximum of 96 characters and must start with a letter and end with a letter or digit.
@@ -7002,6 +7025,269 @@ resources:
             value_specs: '- (Optional) Map of additional options.'
         importStatements:
             - terraform import flexibleengine_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
+    flexibleengine_gaussdb_cassandra_instance:
+        subCategory: GaussDB NoSQL
+        name: flexibleengine_gaussdb_cassandra_instance
+        title: ""
+        examples:
+            - name: instance_1
+              manifest: |-
+                {
+                  "availability_zone": "${var.availability_zone}",
+                  "flavor": "geminidb.cassandra.xlarge.4",
+                  "name": "gaussdb_cassandra_instance_1",
+                  "password": "${var.password}",
+                  "security_group_id": "${var.secgroup_id}",
+                  "subnet_id": "${var.subnet_id}",
+                  "tags": {
+                    "foo": "bar",
+                    "key": "value"
+                  },
+                  "volume_size": 100,
+                  "vpc_id": "${var.vpc_id}"
+                }
+              references:
+                availability_zone: var.availability_zone
+                password: var.password
+                security_group_id: var.secgroup_id
+                subnet_id: var.subnet_id
+                vpc_id: var.vpc_id
+            - name: instance_1
+              manifest: |-
+                {
+                  "availability_zone": "${var.availability_zone}",
+                  "backup_strategy": [
+                    {
+                      "keep_days": 14,
+                      "start_time": "03:00-04:00"
+                    }
+                  ],
+                  "flavor": "geminidb.cassandra.xlarge.4",
+                  "name": "gaussdb_cassandra_instance_1",
+                  "password": "${var.password}",
+                  "security_group_id": "${var.secgroup_id}",
+                  "subnet_id": "${var.subnet_id}",
+                  "volume_size": 100,
+                  "vpc_id": "${var.vpc_id}"
+                }
+              references:
+                availability_zone: var.availability_zone
+                password: var.password
+                security_group_id: var.secgroup_id
+                subnet_id: var.subnet_id
+                vpc_id: var.vpc_id
+        argumentDocs:
+            availability_zone: |-
+                - (Required, String, ForceNew) Specifies the AZ name. For a three-AZ deployment instance,
+                use commas (,) to separate the AZs, for example, cn-north-4a,cn-north-4b,cn-north-4c.
+                Changing this parameter will create a new resource.
+            backup_strategy: '- (Optional, List) Specifies the advanced backup policy. Structure is documented below.'
+            backup_strategy.keep_days: |-
+                - (Optional, Int) Specifies the number of days to retain the generated backup files. The value ranges from
+                0 to 35. If this parameter is set to 0, the automated backup policy is not set. If this parameter is not transferred,
+                the automated backup policy is enabled by default. Backup files are stored for seven days by default.
+            backup_strategy.start_time: |-
+                - (Required, String) Specifies the backup time window. Automated backups will be triggered during the
+                backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+                HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+                value: 08:00-09:00, 03:00-04:00.
+            configuration_id: '- (Optional, String) Specifies the Parameter Template ID.'
+            create: '- Default is 60 minute.'
+            datastore: |-
+                - (Optional, List, ForceNew) Specifies the database information. Structure is documented below. Changing
+                this parameter will create a new resource.
+            datastore.engine: |-
+                - (Required, String, ForceNew) Specifies the database engine. Only "GeminiDB-Cassandra" is supported now.
+                Changing this parameter will create a new resource.
+            datastore.storage_engine: |-
+                - (Required, String, ForceNew) Specifies the storage engine. Only "rocksDB" is supported now.
+                Changing this parameter will create a new resource.
+            datastore.version: |-
+                - (Required, String, ForceNew) Specifies the database version.
+                Changing this parameter will create a new resource.
+            db_user_name: '- Indicates the default username.'
+            delete: '- Default is 30 minute.'
+            flavor: |-
+                - (Required, String) Specifies the instance specifications. For details,
+                see DB Instance Specifications
+            force_import: |-
+                - (Optional, Bool) If specified, try to import the instance instead of creating if the name already
+                existed.
+            id: '- Specifies a resource ID in UUID format.'
+            lb_ip_address: '- Indicates the LB IP address of the db.'
+            lb_port: '- Indicates the LB port of the db.'
+            mode: '- Indicates the instance type.'
+            name: |-
+                - (Required, String) Specifies the instance name, which can be the same as an existing instance name. The value
+                must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters,
+                digits, hyphens (-), and underscores (_).
+            node_num: '- (Optional, Int) Specifies the number of nodes, ranges from 3 to 12. Defaults to 3.'
+            nodes: '- Indicates the instance nodes information. Structure is documented below.'
+            nodes.id: '- Indicates the node ID.'
+            nodes.name: '- Indicates the node name.'
+            nodes.private_ip: '- Indicates the private IP address of a node.'
+            nodes.status: '- Indicates the node status.'
+            nodes.support_reduce: '- Indicates whether the node support reduce or not.'
+            password: |-
+                - (Required, String) Specifies the database password. The value must be 8 to 32 characters in length,
+                including uppercase and lowercase letters, digits, and special characters, such as ~!@#%^*-_=+? You are advised to
+                enter a strong password to improve security, preventing security risks such as brute force cracking.
+            port: '- Indicates the database port.'
+            private_ips: '- Indicates the IP address list of the db.'
+            region: |-
+                - (Optional, String, ForceNew) The region in which to create the Cassandra instance resource. If omitted, the
+                provider-level region will be used. Changing this creates a new Cassandra instance resource.
+            security_group_id: |-
+                - (Optional, String) Specifies the security group ID. Required if the selected subnet doesn't
+                enable network ACL.
+            ssl: |-
+                - (Optional, Bool, ForceNew) Specifies whether to enable or disable SSL. Defaults to false. Changing this
+                parameter will create a new resource.
+            status: '- Indicates the DB instance status.'
+            subnet_id: |-
+                - (Required, String, ForceNew) Specifies the network ID of a subnet. Changing this parameter will create a
+                new resource.
+            tags: '- (Optional, Map) The key/value pairs to associate with the instance.'
+            update: '- Default is 120 minute.'
+            volume_size: |-
+                - (Required, Int) Specifies the storage space in GB. The value must be a multiple of 10. For a GaussDB
+                Cassandra DB instance, the minimum storage space is 100 GB, and the maximum storage space is related to the instance
+                performance specifications. For details,
+                see DB Instance Specifications
+            vpc_id: '- (Required, String, ForceNew) Specifies the VPC ID. Changing this parameter will create a new resource.'
+        importStatements: []
+    flexibleengine_gaussdb_influx_instance:
+        subCategory: GaussDB NoSQL
+        name: flexibleengine_gaussdb_influx_instance
+        title: ""
+        examples:
+            - name: instance_1
+              manifest: |-
+                {
+                  "availability_zone": "${var.availability_zone}",
+                  "flavor": "geminidb.influxdb.large.4",
+                  "name": "gaussdb_influx_instance_1",
+                  "password": "${var.password}",
+                  "security_group_id": "${var.secgroup_id}",
+                  "subnet_id": "${var.subnet_id}",
+                  "tags": {
+                    "foo": "bar",
+                    "key": "value"
+                  },
+                  "volume_size": 100,
+                  "vpc_id": "${var.vpc_id}"
+                }
+              references:
+                availability_zone: var.availability_zone
+                password: var.password
+                security_group_id: var.secgroup_id
+                subnet_id: var.subnet_id
+                vpc_id: var.vpc_id
+            - name: instance_1
+              manifest: |-
+                {
+                  "availability_zone": "${var.availability_zone}",
+                  "backup_strategy": [
+                    {
+                      "keep_days": 14,
+                      "start_time": "03:00-04:00"
+                    }
+                  ],
+                  "flavor": "geminidb.influxdb.large.4",
+                  "name": "gaussdb_influx_instance_1",
+                  "password": "${var.password}",
+                  "security_group_id": "${var.secgroup_id}",
+                  "subnet_id": "${var.subnet_id}",
+                  "volume_size": 100,
+                  "vpc_id": "${var.vpc_id}"
+                }
+              references:
+                availability_zone: var.availability_zone
+                password: var.password
+                security_group_id: var.secgroup_id
+                subnet_id: var.subnet_id
+                vpc_id: var.vpc_id
+        argumentDocs:
+            availability_zone: |-
+                - (Required, String, ForceNew) Specifies the AZ name. For a three-AZ deployment instance,
+                use commas (,) to separate the AZs, for example, cn-north-4a,cn-north-4b,cn-north-4c.
+                Changing this parameter will create a new resource.
+            backup_strategy: '- (Optional, List) Specifies the advanced backup policy. Structure is documented below.'
+            backup_strategy.keep_days: |-
+                - (Optional, Int) Specifies the number of days to retain the generated backup files. The value ranges from
+                0 to 35. If this parameter is set to 0, the automated backup policy is not set. If this parameter is not
+                transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default.
+            backup_strategy.start_time: |-
+                - (Required, String) Specifies the backup time window. Automated backups will be triggered during the
+                backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+                HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+                value: 08:00-09:00, 03:00-04:00.
+            configuration_id: '- (Optional, String) Specifies the Parameter Template ID.'
+            create: '- Default is 60 minute.'
+            datastore: |-
+                - (Optional, List, ForceNew) Specifies the database information. Structure is documented below. Changing
+                this parameter will create a new resource.
+            datastore.engine: |-
+                - (Required, String, ForceNew) Specifies the database engine. Only influxdb is supported now.
+                Changing this parameter will create a new resource.
+            datastore.storage_engine: |-
+                - (Required, String, ForceNew) Specifies the storage engine. Only rocksDB is supported now.
+                Changing this parameter will create a new resource.
+            datastore.version: |-
+                - (Required, String, ForceNew) Specifies the database version.
+                Changing this parameter will create a new resource.
+            db_user_name: '- Indicates the default username.'
+            delete: '- Default is 30 minute.'
+            flavor: |-
+                - (Required, String, ForceNew) Specifies the instance specifications. For details,
+                see DB Instance Specifications
+                Changing this parameter will create a new resource.
+            force_import: |-
+                - (Optional, Bool) If specified, try to import the instance instead of creating if the name already
+                existed.
+            id: '- Indicates a resource ID in UUID format.'
+            lb_ip_address: '- Indicates the LB IP address of the db.'
+            lb_port: '- Indicates the LB port of the db.'
+            mode: '- Indicates the instance type.'
+            name: |-
+                - (Required, String) Specifies the instance name, which can be the same as an existing instance name. The
+                value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only
+                letters, digits, hyphens (-), and underscores (_).
+            node_num: '- (Optional, Int) Specifies the number of nodes, ranges from 3 to 16. Defaults to 3.'
+            nodes: '- Indicates the instance nodes information. Structure is documented below.'
+            nodes.id: '- Indicates the node ID.'
+            nodes.name: '- Indicates the node name.'
+            nodes.private_ip: '- Indicates the private IP address of a node.'
+            nodes.status: '- Indicates the node status.'
+            nodes.support_reduce: '- Indicates whether the node support reduce or not.'
+            password: |-
+                - (Required, String) Specifies the database password. The value must be 8 to 32 characters in
+                length, including uppercase and lowercase letters, digits, and special characters, such as ~!@#%^*-_=+? You are
+                advised to enter a strong password to improve security, preventing security risks such as brute force cracking.
+            port: '- Indicates the database port.'
+            private_ips: '- Indicates the IP address list of the db.'
+            region: |-
+                - (Optional, String, ForceNew) The region in which to create the influx instance resource. If omitted, the
+                provider-level region will be used. Changing this creates a new influx instance resource.
+            security_group_id: |-
+                - (Optional, String) Specifies the security group ID. Required if the selected subnet doesn't
+                enable network ACL.
+            ssl: |-
+                - (Optional, Bool, ForceNew) Specifies whether to enable or disable SSL. Defaults to false. Changing this
+                parameter will create a new resource.
+            status: '- Indicates the DB instance status.'
+            subnet_id: |-
+                - (Required, String, ForceNew) Specifies the network ID of a subnet. Changing this parameter will create
+                a new resource.
+            tags: '- (Optional, Map) The key/value pairs to associate with the instance.'
+            update: '- Default is 120 minute.'
+            volume_size: |-
+                - (Required, Int) Specifies the storage space in GB. The value must be a multiple of 10. For a
+                GaussDB influx instance, the minimum storage space is 100 GB, and the maximum storage space is related to the
+                instance performance specifications. For details,
+                see DB Instance Specifications
+            vpc_id: '- (Required, String, ForceNew) Specifies the VPC ID. Changing this parameter will create a new resource.'
+        importStatements: []
     flexibleengine_identity_acl:
         subCategory: Identity and Access Management (IAM)
         name: flexibleengine_identity_acl
@@ -7463,6 +7749,126 @@ resources:
                 This parameter must be used together with country_code.
         importStatements:
             - terraform import flexibleengine_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+    flexibleengine_images_image_copy:
+        subCategory: Image Management Service (IMS)
+        name: flexibleengine_images_image_copy
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "kms_key_id": "${var.kms_key_id}",
+                  "name": "${var.name}",
+                  "source_image_id": "${var.source_image_id}"
+                }
+              references:
+                kms_key_id: var.kms_key_id
+                name: var.name
+                source_image_id: var.source_image_id
+            - name: test
+              manifest: |-
+                {
+                  "agency_name": "${var.agency_name}",
+                  "name": "${var.name}",
+                  "source_image_id": "${var.source_image_id}",
+                  "target_region": "${var.target_region}"
+                }
+              references:
+                agency_name: var.agency_name
+                name: var.name
+                source_image_id: var.source_image_id
+                target_region: var.target_region
+        argumentDocs:
+            agency_name: |-
+                - (Optional, String, ForceNew) Specifies the agency name. It is required in the cross-region scene.
+                Changing this parameter will create a new resource.
+            checksum: '- Indicates the checksum of the data associated with the image.'
+            data_origin: |-
+                - Indicates the image resource.
+                The pattern can be 'instance,instance_id' or 'file,image_url'.
+            description: |-
+                - (Optional, String, ForceNew) Specifies the description of the copy image.
+                Changing this parameter will create a new resource.
+            disk_format: |-
+                - Indicates the image file format.
+                The value can be vhd, zvhd, raw, zvhd2, or qcow2.
+            enterprise_project_id: |-
+                - (Optional, String, ForceNew) Specifies the enterprise project id of the image.
+                Only copying scene within a region is supported. Changing this parameter will create a new resource.
+            id: '- The resource ID.'
+            image_size: '- Indicates the size(bytes) of the image file format.'
+            instance_id: '- Indicates the ID of the ECS that needs to be converted into an image.'
+            kms_key_id: |-
+                - (Optional, String, ForceNew) Specifies the master key used for encrypting an image.
+                Only copying scene within a region is supported. Changing this parameter will create a new resource.
+            name: |-
+                - (Required, String) Specifies the name of the copy image. The name can contain 1 to 128 characters,
+                only Chinese and English letters, digits, underscore (_), hyphens (-), dots (.) and space are
+                allowed, but it cannot start or end with a space.
+            os_version: '- Indicates the OS version.'
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region to which the source image belongs.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            source_image_id: |-
+                - (Required, String, ForceNew) Specifies the ID of the copied image.
+                Changing this parameter will create a new resource.
+            status: '- Indicates the status of the image.'
+            tags: '- (Optional, Map) Specifies the key/value pairs to associate with the copy image.'
+            target_region: |-
+                - (Optional, String, ForceNew) Specifies the target region name.
+                If specified, it means cross-region replication.
+            vault_id: |-
+                - (Optional, String, ForceNew) Specifies the ID of the vault. It is used in the cross-region scene,
+                and it is mandatory if you are replicating a full-ECS image.
+                Changing this parameter will create a new resource.
+            visibility: '- Indicates whether the image is visible to other tenants.'
+        importStatements: []
+    flexibleengine_images_image_share:
+        subCategory: Image Management Service (IMS)
+        name: flexibleengine_images_image_share
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "source_image_id": "${var.source_image_id}",
+                  "target_project_ids": "${var.target_project_ids}"
+                }
+              references:
+                source_image_id: var.source_image_id
+                target_project_ids: var.target_project_ids
+        argumentDocs:
+            create: '- Default is 5 minutes.'
+            delete: '- Default is 5 minutes.'
+            id: '- The resource ID.'
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            source_image_id: '- (Required, String, ForceNew) Specifies the ID of the source image.'
+            target_project_ids: '- (Required, List) Specifies the IDs of the target projects.'
+        importStatements: []
+    flexibleengine_images_image_share_accepter:
+        subCategory: Image Management Service (IMS)
+        name: flexibleengine_images_image_share_accepter
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "image_id": "${var.image_id}"
+                }
+              references:
+                image_id: var.image_id
+        argumentDocs:
+            id: '- The resource ID.'
+            image_id: '- (Required, String, ForceNew) Specifies the ID of the image.'
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+            vault_id: |-
+                - (Optional, String, ForceNew) Specifies the ID of a vault. This parameter is mandatory if you want
+                to accept a shared full-ECS image created from a CBR backup.
+        importStatements: []
     flexibleengine_images_image_v2:
         subCategory: Image Management Service (IMS)
         description: '""page_title: "flexibleengine_images_image_v2"'
@@ -10844,7 +11250,7 @@ resources:
         importStatements:
             - terraform import flexibleengine_networking_vip_v2.test ce595799-da26-4015-8db5-7733c6db292e
     flexibleengine_obs_bucket:
-        subCategory: Object Storage Service (OSS)
+        subCategory: Object Storage Service (OBS)
         description: '""page_title: "flexibleengine_obs_bucket"'
         name: flexibleengine_obs_bucket
         title: flexibleengine_obs_bucket
@@ -11027,6 +11433,9 @@ resources:
             noncurrent_version_transition: |-
                 - (Optional) Specifies a period when noncurrent object versions are automatically
                 transitioned to STANDARD_IA or GLACIER storage class. The object structure is documented below.
+            parallel_fs: |-
+                - (Optional, Bool, ForceNew) Whether enable a bucket as a parallel file system. Changing this will
+                create a new bucket.
             prefix: |-
                 - (Optional) Object key prefix identifying one or more objects to which the rule applies.
                 If omitted, all objects in the bucket will be managed by the lifecycle rule.
@@ -11059,8 +11468,151 @@ resources:
             website: '- (Optional) A website object (documented below).'
         importStatements:
             - terraform import flexibleengine_obs_bucket.bucket bucket-name
+    flexibleengine_obs_bucket_acl:
+        subCategory: Object Storage Service (OBS)
+        name: flexibleengine_obs_bucket_acl
+        title: ""
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "account_permission": [
+                    {
+                      "access_to_acl": [
+                        "READ_ACP",
+                        "WRITE_ACP"
+                      ],
+                      "access_to_bucket": [
+                        "READ",
+                        "WRITE"
+                      ],
+                      "account_id": "${var.account1}"
+                    },
+                    {
+                      "access_to_acl": [
+                        "READ_ACP",
+                        "WRITE_ACP"
+                      ],
+                      "access_to_bucket": [
+                        "READ"
+                      ],
+                      "account_id": "${var.account2}"
+                    }
+                  ],
+                  "bucket": "${var.bucket}",
+                  "log_delivery_user_permission": [
+                    {
+                      "access_to_acl": [
+                        "READ_ACP",
+                        "WRITE_ACP"
+                      ],
+                      "access_to_bucket": [
+                        "READ",
+                        "WRITE"
+                      ]
+                    }
+                  ],
+                  "owner_permission": [
+                    {
+                      "access_to_acl": [
+                        "READ_ACP",
+                        "WRITE_ACP"
+                      ],
+                      "access_to_bucket": [
+                        "READ",
+                        "WRITE"
+                      ]
+                    }
+                  ],
+                  "public_permission": [
+                    {
+                      "access_to_bucket": [
+                        "READ",
+                        "WRITE"
+                      ]
+                    }
+                  ]
+                }
+              references:
+                account_permission.account_id: var.account2
+                bucket: var.bucket
+        argumentDocs:
+            account_permission: |-
+                - (Optional, List) Specifies the account permissions.
+                The account_permission_struct structure is documented below.
+            account_permission_struct.access_to_acl: '- (Optional, List) Specifies the access to acl. Valid values are READ_ACP and WRITE_ACP.'
+            account_permission_struct.access_to_bucket: '- (Optional, List) Specifies the access to bucket. Valid values are READ and WRITE.'
+            account_permission_struct.account_id: |-
+                - (Required, String) Specifies the account id to authorize. The account id cannot be the bucket owner,
+                and must be unique.
+            bucket: '- (Required, String, ForceNew) Specifies the name of the bucket to which to set the acl.'
+            id: '- The name of the bucket.'
+            log_delivery_user_permission: |-
+                - (Optional, List) Specifies the log delivery user permission.
+                The permission_struct structure is documented below.
+            owner_permission: |-
+                - (Optional, List) Specifies the bucket owner permission. If omitted, the current obs bucket acl
+                owner permission will not be changed.
+                The permission_struct structure is documented below.
+            permission_struct.access_to_acl: '- (Optional, List) Specifies the access to acl. Valid values are READ_ACP and WRITE_ACP.'
+            permission_struct.access_to_bucket: '- (Optional, List) Specifies the access to bucket. Valid values are READ and WRITE.'
+            public_permission: |-
+                - (Optional, List) Specifies the public permission.
+                The permission_struct structure is documented below.
+            region: |-
+                - (Optional, String, ForceNew) Specifies the region in which to create the resource.
+                If omitted, the provider-level region will be used.
+        importStatements: []
+    flexibleengine_obs_bucket_notifications:
+        subCategory: Object Storage Service (OBS)
+        description: '""page_title: "flexibleengine_obs_bucket_notifications"'
+        name: flexibleengine_obs_bucket_notifications
+        title: flexibleengine_obs_bucket_notifications
+        examples:
+            - name: notification
+              manifest: |-
+                {
+                  "bucket": "${flexibleengine_obs_bucket.bucket.bucket}",
+                  "notifications": [
+                    {
+                      "events": [
+                        "ObjectCreated:*"
+                      ],
+                      "name": "notification_name",
+                      "prefix": "tf",
+                      "suffix": ".jpg",
+                      "topic_urn": "urn:smn:eu-west-0:d8cb0fdcf29b4badb9ed8b2525a3286f:topic"
+                    }
+                  ]
+                }
+              references:
+                bucket: flexibleengine_obs_bucket.bucket.bucket
+              dependencies:
+                flexibleengine_obs_bucket.bucket: |-
+                    {
+                      "acl": "public-read",
+                      "bucket": "my-test-bucket"
+                    }
+        argumentDocs:
+            bucket: |-
+                - (Required, String, ForceNew) Specifies the name of the source bucket.
+                Changing this parameter will create a new resource.
+            id: '- The name of the bucket.'
+            notifications: '- (Optional, List) Specifies the list of OBS bucket Notification Configurations.'
+            notifications.events: |-
+                (Required, List) Type of events that need to be notified. The events include ObjectCreated:*,
+                ObjectCreated:Put, ObjectCreated:Post, ObjectCreated:Copy, ObjectCreated:CompleteMultipartUpload,
+                ObjectRemoved:*, ObjectRemoved:Delete, ObjectRemoved:DeleteMarkerCreated.
+            notifications.name: |-
+                (Optional, String) Specifies the name of OBS Notification. If not specified, the system assigns an ID
+                automatically.
+            notifications.prefix: (Optional, String) Specifies the prefix filtering rule. The value contains a maximum of 1024 characters.
+            notifications.suffix: (Optional, String) Specifies the suffix filtering rule. The value contains a maximum of 1024 characters.
+            notifications.topic_urn: (Required, String) Specifies the SMN topic that authorizes OBS to publish messages.
+        importStatements:
+            - terraform import flexibleengine_obs_bucket_notifications.instance <bucket-name>
     flexibleengine_obs_bucket_object:
-        subCategory: Object Storage Service (OSS)
+        subCategory: Object Storage Service (OBS)
         description: '""page_title: "flexibleengine_obs_bucket_object"'
         name: flexibleengine_obs_bucket_object
         title: flexibleengine_obs_bucket_object
@@ -11116,7 +11668,7 @@ resources:
             version_id: '- A unique version ID value for the object, if bucket versioning is enabled.'
         importStatements: []
     flexibleengine_obs_bucket_replication:
-        subCategory: Object Storage Service (OSS)
+        subCategory: Object Storage Service (OBS)
         description: '""page_title: "flexibleengine_obs_bucket_replication"'
         name: flexibleengine_obs_bucket_replication
         title: flexibleengine_obs_bucket_replication
@@ -12010,7 +12562,7 @@ resources:
         importStatements:
             - terraform import flexibleengine_rts_stack_v1.mystack rts-stack
     flexibleengine_s3_bucket:
-        subCategory: Object Storage Service (OSS)
+        subCategory: Object Storage Service (OBS)
         description: '""page_title: "flexibleengine_s3_bucket"'
         name: flexibleengine_s3_bucket
         title: flexibleengine_s3_bucket
@@ -12213,7 +12765,7 @@ resources:
         importStatements:
             - terraform import flexibleengine_s3_bucket.bucket bucket-name
     flexibleengine_s3_bucket_object:
-        subCategory: Object Storage Service (OSS)
+        subCategory: Object Storage Service (OBS)
         description: '""page_title: "flexibleengine_s3_bucket_object"'
         name: flexibleengine_s3_bucket_object
         title: flexibleengine_s3_bucket_object
@@ -12298,7 +12850,7 @@ resources:
             website_redirect: '- (Optional) Specifies a target URL for website redirect.'
         importStatements: []
     flexibleengine_s3_bucket_policy:
-        subCategory: Object Storage Service (OSS)
+        subCategory: Object Storage Service (OBS)
         description: '""page_title: "flexibleengine_s3_bucket_policy"'
         name: flexibleengine_s3_bucket_policy
         title: flexibleengine_s3_bucket_policy
@@ -14221,7 +14773,7 @@ resources:
             - name: domain_1
               manifest: |-
                 {
-                  "certificate_id": "${flexibleengine_waf_certificate.certificate_1.id}",
+                  "certificate_id": "${flexibleengine_waf_dedicated_certificate.certificate_1.id}",
                   "domain": "www.example.com",
                   "server": [
                     {
@@ -14235,7 +14787,7 @@ resources:
                   ]
                 }
               references:
-                certificate_id: flexibleengine_waf_certificate.certificate_1.id
+                certificate_id: flexibleengine_waf_dedicated_certificate.certificate_1.id
                 server.vpc_id: flexibleengine_vpc_v1.example_vpc.id
               dependencies:
                 flexibleengine_vpc_v1.example_vpc: |-
@@ -14243,7 +14795,7 @@ resources:
                       "cidr": "192.168.0.0/16",
                       "name": "example-vpc"
                     }
-                flexibleengine_waf_certificate.certificate_1: |-
+                flexibleengine_waf_dedicated_certificate.certificate_1: |-
                     {
                       "certificate": "-----BEGIN CERTIFICATE-----\nMIIFazCCA1OgAwIBAgIUN3w1KX8/T/HWVxZIOdHXPhUOnsAwDQYJKoZIhvcNAQEL\nBQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM\n...\ndKvZbPEsygYRIjwyhHHUh/YXH8KDI/uu6u6AxDckQ3rP1BkkKXr5NPBGjVgM3ZI=\n-----END CERTIFICATE-----\n",
                       "name": "cert_1",
@@ -14271,8 +14823,8 @@ resources:
             pci_3ds: '- The status of domain PCI 3DS, true: enabled, false: disabled.'
             pci_dss: '- The status of domain PCI DSS, true: enabled, false: disabled.'
             policy_id: |-
-                - (Optional, String) Specifies the policy ID associated with the domain. If not specified, a new policy
-                will be created automatically.
+                - (Optional, String, ForceNew) Specifies the policy ID associated with the domain. If not specified,
+                a new policy will be created automatically. Changing this creates a new domain.
             protect_status: |-
                 - (Optional, Int) The protection status of domain, 0: suspended, 1: enabled.
                 Default value is 1.
@@ -14646,7 +15198,7 @@ resources:
                 The options are application/json, text/html, and text/xml.
             block_time: '- (Optional, Int) Specifies the lock duration. The value ranges from 0 seconds to 2^32 seconds.'
             content: |-
-                - (Optional, String) Specifies the category content. The format is as follows: "http://www.example.com/path".
+                - (Optional, String) Specifies the category content. The format is as follows: http://www.example.com/path.
                 This field is mandatory when mode is set to other.
             cookie: '- (Optional, String) Specifies the cookie name. This field is mandatory when mode is set to cookie.'
             id: '-  The rule ID in UUID format.'

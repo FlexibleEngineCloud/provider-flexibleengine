@@ -38,7 +38,7 @@ type RuleCcProtectionParameters struct {
 	// +kubebuilder:validation:Optional
 	BlockTime *float64 `json:"blockTime,omitempty" tf:"block_time,omitempty"`
 
-	// Specifies the category content. The format is as follows: "http://www.example.com/path".
+	// Specifies the category content. The format is as follows: http://www.example.com/path.
 	// This field is mandatory when mode is set to other.
 	// +kubebuilder:validation:Optional
 	Content *string `json:"content,omitempty" tf:"content,omitempty"`

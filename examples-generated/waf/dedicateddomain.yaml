@@ -38,7 +38,7 @@ spec:
 ---
 
 apiVersion: waf.flexibleengine.upbound.io/v1beta1
-kind: Certificate
+kind: DedicatedCertificate
 metadata:
   annotations:
     meta.upbound.io/example-id: waf/v1beta1/dedicateddomain

@@ -80,6 +80,7 @@ type FunctionParameters struct {
 	AgencySelector *v1.Selector `json:"agencySelector,omitempty" tf:"-"`
 
 	// Specifies the group to which the function belongs.
+	// schema: Required
 	// +kubebuilder:validation:Optional
 	App *string `json:"app,omitempty" tf:"app,omitempty"`
 
@@ -138,6 +139,7 @@ type FunctionParameters struct {
 	FunctiongraphVersion *string `json:"functiongraphVersion,omitempty" tf:"functiongraph_version,omitempty"`
 
 	// Specifies the entry point of the function.
+	// schema: Required; The entry point of the function.
 	// +kubebuilder:validation:Optional
 	Handler *string `json:"handler,omitempty" tf:"handler,omitempty"`
 

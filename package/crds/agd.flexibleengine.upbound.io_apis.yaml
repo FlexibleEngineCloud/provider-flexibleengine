@@ -65,21 +65,24 @@ spec:
                 properties:
                   authorizerId:
                     description: Specifies ID of the front-end custom authorizer.
+                      The ID of the authorizer to which the API request used.
                     type: string
                   backendParams:
                     description: Specifies an array of one or more backend parameters.
                       The object structure is documented below. The maximum of request
-                      parameters is 50.
+                      parameters is 50. The configurations of the backend parameters.
                     items:
                       properties:
                         description:
                           description: Specifies the description of the constant or
                             system parameter, which contain a maximum of 255 characters,
-                            and the angle brackets (< and >) are not allowed.
+                            and the angle brackets (< and >) are not allowed. The
+                            description of the parameter.
                           type: string
                         location:
                           description: Specifies the location of the backend parameter.
-                            The valid values are PATH, QUERY and HEADER.
+                            The valid values are PATH, QUERY and HEADER. Where the
+                            parameter is located.
                           type: string
                         name:
                           description: Specifies the backend parameter name, which
@@ -88,15 +91,21 @@ spec:
                             periods (.) are allowed. The parameter name is not case-sensitive.
                             It cannot start with 'x-apig-' or 'x-sdk-' and cannot
                             be 'x-stage'. If the location is specified as HEADER,
-                            the name cannot contain underscores.
+                            the name cannot contain underscores. The parameter name.
+                          type: string
+                        systemParamType:
+                          description: Specifies the API type. The valid values are
+                            Public and Private.
                           type: string
                         type:
                           description: Specifies the backend parameter type. The valid
-                            values are REQUEST, CONSTANT and SYSTEM.
+                            values are REQUEST, CONSTANT and SYSTEM. The parameter
+                            type.
                           type: string
                         value:
                           description: Specifies the request parameter name corresponding
                             to the request parameter name of the back-end parameter.
+                            The value of the parameter
                           type: string
                       required:
                       - location
@@ -109,44 +118,51 @@ spec:
                     description: Specifies the description of the API request body,
                       which can be an example request body, media type or parameters.
                       The request body does not exceed 20,480 characters. Chinese
-                      characters must be in UTF-8 or Unicode format.
+                      characters must be in UTF-8 or Unicode format. The description
+                      of the API request body, which can be an example request body,
+                      media type or parameters.
                     type: string
                   cors:
                     description: Specifies whether CORS is supported, default to false.
+                      Whether CORS is supported.
                     type: boolean
                   description:
                     description: Specifies the API description, which can contain
                       a maximum of 255 characters. The Chinese characters must be
-                      in UTF-8 or Unicode format.
+                      in UTF-8 or Unicode format. The API description.
                     type: string
                   failureResponse:
                     description: Specifies the example response for a successful request.
                       Ensure that the response does not exceed 20,480 characters.
-                      Chinese characters must be in UTF-8 or Unicode format.
+                      Chinese characters must be in UTF-8 or Unicode format. The example
+                      response for a failure request.
                     type: string
                   funcGraph:
                     description: Specifies the function graph backend details. The
                       object structure is documented below. Changing this will create
-                      a new API resource.
+                      a new API resource. The FunctionGraph backend details.
                     items:
                       properties:
                         authorizerId:
                           description: Specifies the ID of the backend custom authorization.
+                            The ID of the backend custom authorization.
                           type: string
                         functionUrn:
-                          description: Specifies the function graph URN.
+                          description: Specifies the function graph URN. The URN of
+                            the FunctionGraph function.
                           type: string
                         invocationType:
                           description: Specifies the invocation mode. The valid values
-                            are async and sync, default to sync.
+                            are async and sync, default to sync. The invocation type.
                           type: string
                         timeout:
                           description: Specifies the location of the backend parameter.
                             The valid value is range form 1 to 600,000, default to
-                            5,000.
+                            5,000. The timeout for API requests to backend service.
                           type: number
                         version:
                           description: Specifies the version of the function graph.
+                            The version of the FunctionGraph function.
                           type: string
                       required:
                       - functionUrn
@@ -154,41 +170,51 @@ spec:
                     type: array
                   funcGraphPolicy:
                     description: Specifies the Mock policy backends. The maximum of
-                      the policy is 5. The object structure is documented below.
+                      the policy is 5. The object structure is documented below. The
+                      policy backends of the FunctionGraph function.
                     items:
                       properties:
                         authorizerId:
                           description: Specifies the ID of the backend custom authorization.
+                            The ID of the backend custom authorization.
                           type: string
                         backendParams:
                           description: Specifies an array of one or more backend parameters.
                             The maximum of request parameters is 50. The object structure
-                            is documented above.
+                            is documented above. The configaiton list of the backend
+                            parameters.
                           items:
                             properties:
                               description:
                                 description: Specifies the description of the request
                                   parameter, which contain a maximum of 255 characters,
                                   and the angle brackets (< and >) are not allowed.
+                                  The description of the parameter.
                                 type: string
                               location:
                                 description: Specifies the location of the request
                                   parameter. The valid values are PATH, QUERY and
-                                  HEADER, default to PATH.
+                                  HEADER, default to PATH. Where the parameter is
+                                  located.
                                 type: string
                               name:
                                 description: Specifies the backend policy name, which
                                   can contains of 3 to 64 characters and start with
                                   a letter. Only letters, digits, and underscores
-                                  (_) are allowed.
+                                  (_) are allowed. The parameter name.
                                 type: string
-                              type:
+                              systemParamType:
                                 description: Specifies the API type. The valid values
                                   are Public and Private.
                                 type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private. The parameter type.
+                                type: string
                               value:
                                 description: 'Specifies the condition type. For a
-                                  condition with the input parameter source:'
+                                  condition with the input parameter source: The value
+                                  of the parameter'
                                 type: string
                             required:
                             - location
@@ -200,25 +226,27 @@ spec:
                         conditions:
                           description: Specifies an array of one or more policy conditions.
                             Up to five conditions can be set. The object structure
-                            is documented below.
+                            is documented below. The policy conditions.
                           items:
                             properties:
                               paramName:
                                 description: Specifies the request parameter name.
                                   This parameter is required if the policy type is
-                                  param.
+                                  param. The request parameter name.
                                 type: string
                               source:
                                 description: Specifies the policy type. The valid
                                   values are param and source, default to source.
+                                  The type of the backend policy.
                                 type: string
                               type:
                                 description: Specifies the API type. The valid values
-                                  are Public and Private.
+                                  are Public and Private. The condition type.
                                 type: string
                               value:
                                 description: 'Specifies the condition type. For a
-                                  condition with the input parameter source:'
+                                  condition with the input parameter source: The value
+                                  of the backend policy.'
                                 type: string
                             required:
                             - value
@@ -227,27 +255,32 @@ spec:
                         effectiveMode:
                           description: Specifies the effective mode of the backend
                             policy. The valid values are ALL and ANY, default to ANY.
+                            The effective mode of the backend policy.
                           type: string
                         functionUrn:
-                          description: Specifies the URN of the function graph.
+                          description: Specifies the URN of the function graph. The
+                            URN of the FunctionGraph function.
                           type: string
                         invocationMode:
                           description: Specifies the invocation mode of the function
                             graph. The valid values are async and sync, default to
-                            sync.
+                            sync. The invocation mode of the FunctionGraph function.
                           type: string
                         name:
                           description: Specifies the backend policy name, which can
                             contains of 3 to 64 characters and start with a letter.
                             Only letters, digits, and underscores (_) are allowed.
+                            The name of the backend policy.
                           type: string
                         timeout:
                           description: Specifies the timeout, in ms, which allowed
                             for APIG to request the backend service. The valid value
-                            is range from 1 to 600,000, default to 5,000.
+                            is range from 1 to 600,000, default to 5,000. The timeout
+                            for API requests to backend service.
                           type: number
                         version:
                           description: Specifies the version of the function graph.
+                            The version of the FunctionGraph function.
                           type: string
                       required:
                       - conditions
@@ -257,7 +290,7 @@ spec:
                     type: array
                   groupId:
                     description: Specifies an ID of the APIG group to which the API
-                      belongs to.
+                      belongs to. The ID of the API group to which the API belongs.
                     type: string
                   groupIdRef:
                     description: Reference to a Group to populate groupId.
@@ -335,7 +368,7 @@ spec:
                   instanceId:
                     description: Specifies an ID of the APIG dedicated instance to
                       which the API belongs to. Changing this will create a new API
-                      resource.
+                      resource. The ID of the instance to which the API belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -412,60 +445,74 @@ spec:
                     type: object
                   matching:
                     description: Specifies the route matching mode. The valid value
-                      are Exact and Prefix, default to Exact.
+                      are Exact and Prefix, default to Exact. The matching mode of
+                      the API.
                     type: string
                   mock:
                     description: Specifies the mock backend details. The object structure
                       is documented below. Changing this will create a new API resource.
+                      The mock backend details.
                     items:
                       properties:
                         authorizerId:
                           description: Specifies the ID of the backend custom authorization.
+                            The ID of the backend custom authorization.
                           type: string
                         response:
                           description: Specifies the response of the backend policy,
                             which contain a maximum of 2,048 characters, and the angle
-                            brackets (< and >) are not allowed.
+                            brackets (< and >) are not allowed. The response of the
+                            backend policy.
                           type: string
                       type: object
                     type: array
                   mockPolicy:
                     description: Specifies the Mock policy backends. The maximum of
-                      the policy is 5. The object structure is documented below.
+                      the policy is 5. The object structure is documented below. The
+                      mock policy backends.
                     items:
                       properties:
                         authorizerId:
                           description: Specifies the ID of the backend custom authorization.
+                            The ID of the backend custom authorization.
                           type: string
                         backendParams:
                           description: Specifies an array of one or more backend parameters.
                             The maximum of request parameters is 50. The object structure
-                            is documented above.
+                            is documented above. The configuration list of backend
+                            parameters.
                           items:
                             properties:
                               description:
                                 description: Specifies the description of the request
                                   parameter, which contain a maximum of 255 characters,
                                   and the angle brackets (< and >) are not allowed.
+                                  The description of the parameter.
                                 type: string
                               location:
                                 description: Specifies the location of the request
                                   parameter. The valid values are PATH, QUERY and
-                                  HEADER, default to PATH.
+                                  HEADER, default to PATH. Where the parameter is
+                                  located.
                                 type: string
                               name:
                                 description: Specifies the backend policy name, which
                                   can contains of 3 to 64 characters and start with
                                   a letter. Only letters, digits, and underscores
-                                  (_) are allowed.
+                                  (_) are allowed. The parameter name.
                                 type: string
-                              type:
+                              systemParamType:
                                 description: Specifies the API type. The valid values
                                   are Public and Private.
                                 type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private. The parameter type.
+                                type: string
                               value:
                                 description: 'Specifies the condition type. For a
-                                  condition with the input parameter source:'
+                                  condition with the input parameter source: The value
+                                  of the parameter'
                                 type: string
                             required:
                             - location
@@ -477,25 +524,27 @@ spec:
                         conditions:
                           description: Specifies an array of one or more policy conditions.
                             Up to five conditions can be set. The object structure
-                            is documented below.
+                            is documented below. The policy conditions.
                           items:
                             properties:
                               paramName:
                                 description: Specifies the request parameter name.
                                   This parameter is required if the policy type is
-                                  param.
+                                  param. The request parameter name.
                                 type: string
                               source:
                                 description: Specifies the policy type. The valid
                                   values are param and source, default to source.
+                                  The type of the backend policy.
                                 type: string
                               type:
                                 description: Specifies the API type. The valid values
-                                  are Public and Private.
+                                  are Public and Private. The condition type.
                                 type: string
                               value:
                                 description: 'Specifies the condition type. For a
-                                  condition with the input parameter source:'
+                                  condition with the input parameter source: The value
+                                  of the backend policy.'
                                 type: string
                             required:
                             - value
@@ -504,16 +553,19 @@ spec:
                         effectiveMode:
                           description: Specifies the effective mode of the backend
                             policy. The valid values are ALL and ANY, default to ANY.
+                            The effective mode of the backend policy.
                           type: string
                         name:
                           description: Specifies the backend policy name, which can
                             contains of 3 to 64 characters and start with a letter.
                             Only letters, digits, and underscores (_) are allowed.
+                            The backend policy name.
                           type: string
                         response:
                           description: Specifies the response of the backend policy,
                             which contain a maximum of 2,048 characters, and the angle
-                            brackets (< and >) are not allowed.
+                            brackets (< and >) are not allowed. The response of the
+                            backend policy.
                           type: string
                       required:
                       - conditions
@@ -524,52 +576,58 @@ spec:
                     description: Specifies the API name, which can consists of 3 to
                       64 characters, starting with a letter. Only letters, digits
                       and underscores (_) are allowed. Chinese characters must be
-                      in UTF-8 or Unicode format.
+                      in UTF-8 or Unicode format. The API name.
                     type: string
                   region:
                     description: Specifies the region in which to create the API resource.
                       If omitted, the provider-level region will be used. Changing
-                      this will create a new API resource.
+                      this will create a new API resource. The region where the API
+                      is located.
                     type: string
                   requestMethod:
                     description: Specifies the request method of the API. The valid
                       values are GET, POST , PUT, DELETE, HEAD, PATCH, OPTIONS and
-                      ANY.
+                      ANY. The request method of the API.
                     type: string
                   requestParams:
                     description: Specifies an array of one or more request parameters
                       of the front-end. The maximum of request parameters is 50. The
-                      object structure is documented below.
+                      object structure is documented below. The configurations of
+                      the front-end parameters.
                     items:
                       properties:
                         default:
                           description: Specifies the default value of the request
                             parameter, which contain a maximum of 255 characters,
-                            and the angle brackets (< and >) are not allowed.
+                            and the angle brackets (< and >) are not allowed. The
+                            default value of the parameter.
                           type: string
                         description:
                           description: Specifies the description of the request parameter,
                             which contain a maximum of 255 characters, and the angle
-                            brackets (< and >) are not allowed.
+                            brackets (< and >) are not allowed. The parameter description.
                           type: string
                         example:
                           description: Specifies the example value of the request
                             parameter, which contain a maximum of 255 characters,
-                            and the angle brackets (< and >) are not allowed.
+                            and the angle brackets (< and >) are not allowed. The
+                            parameter example.
                           type: string
                         location:
                           description: Specifies the location of the request parameter.
                             The valid values are PATH, QUERY and HEADER, default to
-                            PATH.
+                            PATH. Where this parameter is located.
                           type: string
                         maximum:
                           description: Specifies the maximum value or size of the
-                            request parameter.
+                            request parameter. The maximum value or length (string
+                            parameter) for parameter.
                           type: number
                         minimum:
                           description: Specifies the minimum value or size of the
                             request parameter. For string type, The maximum and minimum
-                            means size. For number type, they means value.
+                            means size. For number type, they means value. The minimum
+                            value or length (string parameter) for parameter.
                           type: number
                         name:
                           description: Specifies the request parameter name, which
@@ -578,15 +636,16 @@ spec:
                             periods (.) are allowed. If Location is specified as HEADER
                             and security_authentication is specified as APP, the parameter
                             name is not 'Authorization' ( case-insensitive) and cannot
-                            contain underscores.
+                            contain underscores. The name of the request parameter.
                           type: string
                         required:
                           description: Specifies whether the request parameter is
-                            required.
+                            required. Whether this parameter is required.
                           type: boolean
                         type:
                           description: Specifies the request parameter type. The valid
-                            values are STRING and NUMBER, default to STRING.
+                            values are STRING and NUMBER, default to STRING. The parameter
+                            type.
                           type: string
                       required:
                       - name
@@ -596,40 +655,47 @@ spec:
                   requestPath:
                     description: Specifies the request address, which can contain
                       a maximum of 512 characters request parameters enclosed with
-                      brackets ({}).
+                      brackets ({}). The request address.
                     type: string
                   requestProtocol:
                     description: Specifies the request protocol of the API. The valid
-                      value are HTTP, HTTPS and BOTH.
+                      value are HTTP, HTTPS and BOTH. The request protocol of the
+                      API request.
                     type: string
                   responseId:
-                    description: Specifies the APIG group response ID.
+                    description: Specifies the APIG group response ID. The ID of the
+                      custom response that API used.
                     type: string
                   securityAuthentication:
                     description: Specifies the security authentication mode. The valid
-                      values are NONE, APP and IAM, default to NONE.
+                      values are NONE, APP and IAM, default to NONE. The security
+                      authentication mode of the API request.
                     type: string
                   simpleAuthentication:
                     description: Specifies whether AppCode authentication is enabled.
                       The applicaiton code must located in the header when simple_authentication
-                      is true.
+                      is true. Whether the authentication of the application code
+                      is enabled.
                     type: boolean
                   successResponse:
                     description: Specifies the example response for a successful request.
                       Ensure that the response does not exceed 20,480 characters.
-                      Chinese characters must be in UTF-8 or Unicode format.
+                      Chinese characters must be in UTF-8 or Unicode format. The example
+                      response for a successful request.
                     type: string
                   type:
                     description: Specifies the API type. The valid values are Public
-                      and Private.
+                      and Private. The API type.
                     type: string
                   web:
                     description: Specifies the web backend details. The object structure
                       is documented below. Changing this will create a new API resource.
+                      The web backend details.
                     items:
                       properties:
                         authorizerId:
                           description: Specifies the ID of the backend custom authorization.
+                            The ID of the backend custom authorization.
                           type: string
                         backendAddress:
                           description: Specifies the backend service address, which
@@ -641,40 +707,46 @@ spec:
                             HTTP port 80 is used. The backend service address can
                             contain environment variables, each starting with a letter
                             and consisting of 3 to 32 characters. Only letters, digits,
-                            hyphens (-), and underscores (_) are allowed.
+                            hyphens (-), and underscores (_) are allowed. The backend
+                            service address, which consists of a domain name or IP
+                            address, and a port number.
                           type: string
                         hostHeader:
                           description: Specifies the proxy host header. The host header
                             can be customized for requests to be forwarded to cloud
                             servers through the VPC channel. By default, the original
-                            host header of the request is used.
+                            host header of the request is used. The proxy host header.
                           type: string
                         path:
                           description: Specifies the backend request address, which
                             can contain a maximum of 512 characters and must comply
-                            with URI specifications.
+                            with URI specifications. The backend request path.
                           type: string
                         requestMethod:
                           description: Specifies the backend request method of the
                             API. The valid types are GET, POST, PUT, DELETE, HEAD,
-                            PATCH, OPTIONS and ANY.
+                            PATCH, OPTIONS and ANY. The backend request method of
+                            the API.
                           type: string
                         requestProtocol:
                           description: Specifies the backend request protocol. The
-                            valid values are HTTP and HTTPS, default to HTTPS.
+                            valid values are HTTP and HTTPS, default to HTTPS. The
+                            web protocol type of the API request.
                           type: string
                         sslEnable:
                           description: Specifies the indicates whether to enable two-way
-                            authentication, default to false.
+                            authentication, default to false. Whether to enable two-way
+                            authentication.
                           type: boolean
                         timeout:
                           description: Specifies the timeout, in ms, which allowed
                             for APIG to request the backend service. The valid value
-                            is range from 1 to 600,000, default to 5,000.
+                            is range from 1 to 600,000, default to 5,000. The timeout
+                            for API requests to backend service.
                           type: number
                         vpcChannelId:
                           description: Specifies the VPC channel ID. This parameter
-                            and backend_address are alternative.
+                            and backend_address are alternative. The VPC channel ID.
                           type: string
                       required:
                       - path
@@ -683,11 +755,12 @@ spec:
                   webPolicy:
                     description: Specifies the example response for a failed request.
                       The maximum of the policy is 5. The object structure is documented
-                      below.
+                      below. The web policy backends.
                     items:
                       properties:
                         authorizerId:
                           description: Specifies the ID of the backend custom authorization.
+                            The ID of the backend custom authorization.
                           type: string
                         backendAddress:
                           description: Specifies the backend service address, which
@@ -699,37 +772,46 @@ spec:
                             HTTP port 80 is used. The backend service address can
                             contain environment variables, each starting with a letter
                             and consisting of 3 to 32 characters. Only letters, digits,
-                            hyphens (-), and underscores (_) are allowed.
+                            hyphens (-), and underscores (_) are allowed. The backend
+                            service address
                           type: string
                         backendParams:
                           description: Specifies an array of one or more backend parameters.
                             The maximum of request parameters is 50. The object structure
-                            is documented above.
+                            is documented above. The configuration list of the backend
+                            parameters.
                           items:
                             properties:
                               description:
                                 description: Specifies the description of the request
                                   parameter, which contain a maximum of 255 characters,
                                   and the angle brackets (< and >) are not allowed.
+                                  The description of the parameter.
                                 type: string
                               location:
                                 description: Specifies the location of the request
                                   parameter. The valid values are PATH, QUERY and
-                                  HEADER, default to PATH.
+                                  HEADER, default to PATH. Where the parameter is
+                                  located.
                                 type: string
                               name:
                                 description: Specifies the backend policy name, which
                                   can contains of 3 to 64 characters and start with
                                   a letter. Only letters, digits, and underscores
-                                  (_) are allowed.
+                                  (_) are allowed. The parameter name.
                                 type: string
-                              type:
+                              systemParamType:
                                 description: Specifies the API type. The valid values
                                   are Public and Private.
                                 type: string
+                              type:
+                                description: Specifies the API type. The valid values
+                                  are Public and Private. The parameter type.
+                                type: string
                               value:
                                 description: 'Specifies the condition type. For a
-                                  condition with the input parameter source:'
+                                  condition with the input parameter source: The value
+                                  of the parameter'
                                 type: string
                             required:
                             - location
@@ -741,25 +823,27 @@ spec:
                         conditions:
                           description: Specifies an array of one or more policy conditions.
                             Up to five conditions can be set. The object structure
-                            is documented below.
+                            is documented below. The policy conditions.
                           items:
                             properties:
                               paramName:
                                 description: Specifies the request parameter name.
                                   This parameter is required if the policy type is
-                                  param.
+                                  param. The request parameter name.
                                 type: string
                               source:
                                 description: Specifies the policy type. The valid
                                   values are param and source, default to source.
+                                  The type of the backend policy.
                                 type: string
                               type:
                                 description: Specifies the API type. The valid values
-                                  are Public and Private.
+                                  are Public and Private. The condition type.
                                 type: string
                               value:
                                 description: 'Specifies the condition type. For a
-                                  condition with the input parameter source:'
+                                  condition with the input parameter source: The value
+                                  of the backend policy.'
                                 type: string
                             required:
                             - value
@@ -768,40 +852,45 @@ spec:
                         effectiveMode:
                           description: Specifies the effective mode of the backend
                             policy. The valid values are ALL and ANY, default to ANY.
+                            The effective mode of the backend policy.
                           type: string
                         hostHeader:
                           description: Specifies the proxy host header. The host header
                             can be customized for requests to be forwarded to cloud
                             servers through the VPC channel. By default, the original
-                            host header of the request is used.
+                            host header of the request is used. The proxy host header.
                           type: string
                         name:
                           description: Specifies the backend policy name, which can
                             contains of 3 to 64 characters and start with a letter.
                             Only letters, digits, and underscores (_) are allowed.
+                            The name of the web policy.
                           type: string
                         path:
                           description: Specifies the backend request address, which
                             can contain a maximum of 512 characters and must comply
-                            with URI specifications.
+                            with URI specifications. The backend request address.
                           type: string
                         requestMethod:
                           description: Specifies the backend request method of the
                             API. The valid types are GET, POST, PUT, DELETE, HEAD,
-                            PATCH, OPTIONS and ANY.
+                            PATCH, OPTIONS and ANY. The backend request method of
+                            the API.
                           type: string
                         requestProtocol:
                           description: Specifies the backend request protocol. The
-                            valid values are HTTP and HTTPS, default to HTTPS.
+                            valid values are HTTP and HTTPS, default to HTTPS. The
+                            backend request protocol.
                           type: string
                         timeout:
                           description: Specifies the timeout, in ms, which allowed
                             for APIG to request the backend service. The valid value
-                            is range from 1 to 600,000, default to 5,000.
+                            is range from 1 to 600,000, default to 5,000. The timeout
+                            for API requests to backend service.
                           type: number
                         vpcChannelId:
                           description: Specifies the VPC channel ID. This parameter
-                            and backend_address are alternative.
+                            and backend_address are alternative. The VPC channel ID.
                           type: string
                       required:
                       - conditions
@@ -996,11 +1085,11 @@ spec:
                   id:
                     description: ID of the APIG API.
                     type: string
-                  registerTime:
-                    description: Time when the API is registered, in UTC format.
+                  registeredAt:
+                    description: The registered time of the API.
                     type: string
-                  updateTime:
-                    description: Time when the API was last modified, in UTC format.
+                  updatedAt:
+                    description: The latest update time of the API.
                     type: string
                 type: object
               conditions:

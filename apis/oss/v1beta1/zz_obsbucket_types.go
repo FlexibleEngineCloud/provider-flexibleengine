@@ -198,6 +198,11 @@ type OBSBucketParameters struct {
 	// +kubebuilder:validation:Optional
 	MultiAz *bool `json:"multiAz,omitempty" tf:"multi_az,omitempty"`
 
+	// Whether enable a bucket as a parallel file system. Changing this will
+	// create a new bucket.
+	// +kubebuilder:validation:Optional
+	ParallelFs *bool `json:"parallelFs,omitempty" tf:"parallel_fs,omitempty"`
+
 	// If specified, the region this bucket should reside in. Otherwise, the region used by the provider.
 	// Changing this creates a new bucket.
 	// +kubebuilder:validation:Optional

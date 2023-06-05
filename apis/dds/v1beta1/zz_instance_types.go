@@ -35,7 +35,8 @@ type DatastoreObservation struct {
 
 type DatastoreParameters struct {
 
-	// Specifies the storage engine of the DB instance. Only wiredTiger is supported now.
+	// Specifies the storage engine of the DB instance. The valid values are
+	// wiredTiger and rocksDB.
 	// +kubebuilder:validation:Optional
 	StorageEngine *string `json:"storageEngine,omitempty" tf:"storage_engine,omitempty"`
 
@@ -43,7 +44,7 @@ type DatastoreParameters struct {
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
-	// Specifies the DB instance version. Only 3.4 and 4.0 are supported now.
+	// Specifies the DB instance version. The valid values are 3.4, 4.0 and 4.2.
 	// +kubebuilder:validation:Required
 	Version *string `json:"version" tf:"version,omitempty"`
 }

@@ -16,9 +16,11 @@ import (
 type AppThrottlesObservation struct {
 
 	// ID of the API throttling policy.
+	// The ID of the special user/application throttling policy.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The object name which the special user throttling policy belongs.
+	// The object name which the special user/application throttling policy belongs.
 	ThrottlingObjectName *string `json:"throttlingObjectName,omitempty" tf:"throttling_object_name,omitempty"`
 }
 
@@ -26,10 +28,12 @@ type AppThrottlesParameters struct {
 
 	// Specifies the maximum number of times an API can be accessed within a specified
 	// period.
+	// The maximum number of times an API can be accessed within a specified period.
 	// +kubebuilder:validation:Required
 	MaxAPIRequests *float64 `json:"maxApiRequests" tf:"max_api_requests,omitempty"`
 
 	// Specifies the object ID which the special throttling policy belongs.
+	// The object ID which the special throttling policy belongs.
 	// +crossplane:generate:reference:type=Application
 	// +kubebuilder:validation:Optional
 	ThrottlingObjectID *string `json:"throttlingObjectId,omitempty" tf:"throttling_object_id,omitempty"`
@@ -47,17 +51,19 @@ type ThrottlingPolicyObservation struct {
 
 	// Specifies an array of one or more special throttling policies for APP limit.
 	// The throttle object of the user_throttles structure is documented below.
+	// The array of one or more special throttling policies for APP limit.
 	// +kubebuilder:validation:Optional
 	AppThrottles []AppThrottlesObservation `json:"appThrottles,omitempty" tf:"app_throttles,omitempty"`
 
-	// Time when the API throttling policy was created.
-	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
+	// The creation time of the throttling policy.
+	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// ID of the API throttling policy.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Specifies an array of one or more special throttling policies for IAM user limit.
 	// The throttle object of the user_throttles structure is documented below.
+	// The array of one or more special throttling policies for IAM user limit.
 	// +kubebuilder:validation:Optional
 	UserThrottles []UserThrottlesObservation `json:"userThrottles,omitempty" tf:"user_throttles,omitempty"`
 }
@@ -66,17 +72,20 @@ type ThrottlingPolicyParameters struct {
 
 	// Specifies an array of one or more special throttling policies for APP limit.
 	// The throttle object of the user_throttles structure is documented below.
+	// The array of one or more special throttling policies for APP limit.
 	// +kubebuilder:validation:Optional
 	AppThrottles []AppThrottlesParameters `json:"appThrottles,omitempty" tf:"app_throttles,omitempty"`
 
 	// Specifies the description about the API throttling policy.
 	// The description contain a maximum of 255 characters and the angle brackets (< and >) are not allowed.
 	// Chinese characters must be in UTF-8 or Unicode format.
+	// The description about the API throttling policy.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies an ID of the APIG dedicated instance to which the API
 	// throttling policy belongs to. Changing this will create a new API throttling policy resource.
+	// The ID of the dedicated instance to which the throttling policy belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -91,53 +100,63 @@ type ThrottlingPolicyParameters struct {
 
 	// Specifies the maximum number of times an API can be accessed within a specified
 	// period. The value of this parameter cannot exceed the default limit 200 TPS.
+	// The maximum number of times an API can be accessed within a specified period..
 	// +kubebuilder:validation:Required
 	MaxAPIRequests *float64 `json:"maxApiRequests" tf:"max_api_requests,omitempty"`
 
 	// Specifies the maximum number of times the API can be accessed by an app within
 	// the same period. The value of this parameter must be less than or equal to the value of max_user_requests.
+	// The maximum number of times the API can be accessed by an app within the same period.
 	// +kubebuilder:validation:Optional
 	MaxAppRequests *float64 `json:"maxAppRequests,omitempty" tf:"max_app_requests,omitempty"`
 
 	// Specifies the maximum number of times the API can be accessed by an IP address
 	// within the same period. The value of this parameter must be less than or equal to the value of max_api_requests.
+	// The maximum number of times the API can be accessed by an IP address within the same period.
 	// +kubebuilder:validation:Optional
 	MaxIPRequests *float64 `json:"maxIpRequests,omitempty" tf:"max_ip_requests,omitempty"`
 
 	// Specifies the maximum number of times the API can be accessed by a user within
 	// the same period. The value of this parameter must be less than or equal to the value of max_api_requests.
+	// The maximum number of times the API can be accessed by a user within the same period.
 	// +kubebuilder:validation:Optional
 	MaxUserRequests *float64 `json:"maxUserRequests,omitempty" tf:"max_user_requests,omitempty"`
 
 	// Specifies the name of the API throttling policy.
 	// The policy name consists of 3 to 64 characters, starting with a letter.
 	// Only letters, digits and underscores (_) are allowed.
+	// The name of the throttling policy.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the period of time for limiting the number of API calls.
 	// This parameter applies with each of the API call limits: max_api_requests, max_app_requests, max_ip_requests
 	// and max_user_requests.
+	// The period of time for limiting the number of API calls.
 	// +kubebuilder:validation:Required
 	Period *float64 `json:"period" tf:"period,omitempty"`
 
 	// Specifies the time unit for limiting the number of API calls.
 	// The valid values are SECOND, MINUTE, HOUR and DAY, default to MINUTE.
+	// The time unit for limiting the number of API calls.
 	// +kubebuilder:validation:Optional
 	PeriodUnit *string `json:"periodUnit,omitempty" tf:"period_unit,omitempty"`
 
 	// Specifies the region in which to create the API throttling policy resource.
 	// If omitted, the provider-level region will be used. Changing this will create a new API throttling policy resource.
+	// The region where the throttling policy is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the type of the request throttling policy.
 	// The valid values are as follows:
+	// The type of the request throttling policy.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Specifies an array of one or more special throttling policies for IAM user limit.
 	// The throttle object of the user_throttles structure is documented below.
+	// The array of one or more special throttling policies for IAM user limit.
 	// +kubebuilder:validation:Optional
 	UserThrottles []UserThrottlesParameters `json:"userThrottles,omitempty" tf:"user_throttles,omitempty"`
 }
@@ -145,9 +164,11 @@ type ThrottlingPolicyParameters struct {
 type UserThrottlesObservation struct {
 
 	// ID of the API throttling policy.
+	// The ID of the special user/application throttling policy.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The object name which the special user throttling policy belongs.
+	// The object name which the special user/application throttling policy belongs.
 	ThrottlingObjectName *string `json:"throttlingObjectName,omitempty" tf:"throttling_object_name,omitempty"`
 }
 
@@ -155,10 +176,12 @@ type UserThrottlesParameters struct {
 
 	// Specifies the maximum number of times an API can be accessed within a specified
 	// period.
+	// The maximum number of times an API can be accessed within a specified period.
 	// +kubebuilder:validation:Required
 	MaxAPIRequests *float64 `json:"maxApiRequests" tf:"max_api_requests,omitempty"`
 
 	// Specifies the object ID which the special throttling policy belongs.
+	// The object ID which the special throttling policy belongs.
 	// +kubebuilder:validation:Required
 	ThrottlingObjectID *string `json:"throttlingObjectId" tf:"throttling_object_id,omitempty"`
 }

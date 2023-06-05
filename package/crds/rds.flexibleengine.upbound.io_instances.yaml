@@ -179,6 +179,19 @@ spec:
                     description: Specifies the parameter group ID. Changing this parameter
                       will create a new resource.
                     type: string
+                  parameters:
+                    items:
+                      properties:
+                        name:
+                          description: Indicates the node name.
+                          type: string
+                        value:
+                          type: string
+                      required:
+                      - name
+                      - value
+                      type: object
+                    type: array
                   period:
                     type: number
                   periodUnit:

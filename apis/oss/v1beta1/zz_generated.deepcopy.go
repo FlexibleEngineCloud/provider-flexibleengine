@@ -742,6 +742,11 @@ func (in *OBSBucketParameters) DeepCopyInto(out *OBSBucketParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.ParallelFs != nil {
+		in, out := &in.ParallelFs, &out.ParallelFs
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)

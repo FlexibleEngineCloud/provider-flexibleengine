@@ -36,7 +36,6 @@ spec:
     schema:
       openAPIV3Schema:
         description: RocketMQInstance is the Schema for the RocketMQInstances API.
-          <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -64,47 +63,70 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  autoRenew:
+                    type: string
                   availabilityZones:
-                    description: Specifies the list of availability zone names
+                    description: Specifies the list of availability zone names, where
+                      instance brokers reside and which has available resources. Specifies
+                      the list of availability zone names
                     items:
                       type: string
                     type: array
                   brokerNum:
-                    description: Specifies the broker numbers.
+                    description: Specifies the broker numbers. Defaults to 1. Changing
+                      this parameter will create a new resource. Specifies the broker
+                      numbers.
                     type: number
-                  crossVpcAccesses:
-                    items:
-                      properties:
-                        advertisedIp:
-                          type: string
-                      type: object
-                    type: array
+                  chargingMode:
+                    type: string
                   description:
                     description: Specifies the description of the DMS RocketMQ instance.
+                      The description can contain a maximum of 1024 characters. Specifies
+                      the description of the DMS RocketMQ instance.
                     type: string
                   enableAcl:
-                    description: Specifies whether access control is enabled.
+                    description: Indicates whether access control is enabled. Specifies
+                      whether access control is enabled.
                     type: boolean
                   enablePublicip:
-                    description: Specifies whether to enable public access.
+                    description: Specifies whether to enable public access. By default,
+                      public access is disabled. Changing this parameter will create
+                      a new resource. Specifies whether to enable public access.
                     type: boolean
                   engineVersion:
-                    description: Specifies the version of the RocketMQ engine.
+                    description: 'Specifies the version of the RocketMQ engine. Value:
+                      4.8.0. Changing this parameter will create a new resource. Specifies
+                      the version of the RocketMQ engine.'
                     type: string
                   enterpriseProjectId:
-                    description: Specifies the enterprise project id of the instance.
+                    description: Specifies a resource ID in UUID format. Specifies
+                      the enterprise project id of the instance.
                     type: string
                   flavorId:
-                    description: Specifies a product ID
+                    description: 'Specifies a product ID. The options are as follows:
+                      Specifies a product ID'
                     type: string
                   ipv6Enable:
-                    description: Specifies whether to support IPv6
+                    description: Specifies whether to support IPv6. Defaults to false.
+                      Changing this parameter will create a new resource. Specifies
+                      whether to support IPv6
                     type: boolean
                   name:
-                    description: Specifies the name of the DMS RocketMQ instance
+                    description: Specifies the name of the DMS RocketMQ instance.
+                      An instance name starts with a letter, consists of 4 to 64 characters,
+                      and can contain only letters, digits, underscores (_), and hyphens
+                      (-). Specifies the name of the DMS RocketMQ instance
+                    type: string
+                  period:
+                    type: number
+                  periodUnit:
                     type: string
                   publicipId:
                     description: Specifies the ID of the EIP bound to the instance.
+                      Use commas (,) to separate multiple EIP IDs. This parameter
+                      is mandatory if public access is enabled (that is, enable_publicip
+                      is set to true). Changing this parameter will create a new resource.
+                      Specifies the ID of the EIP bound to the instance.
                     type: string
                   publicipIdRef:
                     description: Reference to a EIP in eip to populate publicipId.
@@ -180,12 +202,17 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: Specifies the region in which to create the resource.
+                      If omitted, the provider-level region will be used. Changing
+                      this parameter will create a new resource.
                     type: string
                   retentionPolicy:
-                    description: Specifies whether access control is enabled.
+                    description: Specifies the ACL access control. Specifies whether
+                      access control is enabled.
                     type: boolean
                   securityGroupId:
-                    description: Specifies the ID of a security group
+                    description: Specifies the ID of a security group. Specifies the
+                      ID of a security group
                     type: string
                   securityGroupIdRef:
                     description: Reference to a SecurityGroup in vpc to populate securityGroupId.
@@ -262,15 +289,22 @@ spec:
                     type: object
                   sslEnable:
                     description: Specifies whether the RocketMQ SASL_SSL is enabled.
+                      Defaults to false. Changing this parameter will create a new
+                      resource. Specifies whether the RocketMQ SASL_SSL is enabled.
                     type: boolean
                   storageSpace:
-                    description: 'Specifies the message storage capacity, Unit: GB.'
+                    description: 'Specifies the message storage capacity, Unit: GB.
+                      Value range: 300-3000. Changing this parameter will create a
+                      new resource. Specifies the message storage capacity, Unit:
+                      GB.'
                     type: number
                   storageSpecCode:
-                    description: Specifies the storage I/O specification
+                    description: 'Specifies the storage I/O specification. The options
+                      are as follows: Specifies the storage I/O specification'
                     type: string
                   subnetId:
-                    description: Specifies the ID of a subnet
+                    description: Specifies the ID of a subnet. Changing this parameter
+                      will create a new resource. Specifies the ID of a subnet
                     type: string
                   subnetIdRef:
                     description: Reference to a VPCSubnet in vpc to populate subnetId.
@@ -345,8 +379,13 @@ spec:
                             type: string
                         type: object
                     type: object
+                  tags:
+                    additionalProperties:
+                      type: string
+                    type: object
                   vpcId:
-                    description: Specifies the ID of a VPC
+                    description: Specifies the ID of a VPC. Changing this parameter
+                      will create a new resource. Specifies the ID of a VPC
                     type: string
                   vpcIdRef:
                     description: Reference to a VPC in vpc to populate vpcId.
@@ -606,66 +645,84 @@ spec:
               atProvider:
                 properties:
                   brokerAddress:
-                    description: Indicates the service data address.
+                    description: Indicates the service data address. Indicates the
+                      service data address.
                     type: string
                   crossVpcAccesses:
                     items:
                       properties:
+                        advertisedIp:
+                          type: string
                         lisenterIp:
+                          type: string
+                        listenerIp:
                           type: string
                         port:
                           type: number
                         portId:
+                          description: Specifies a resource ID in UUID format.
                           type: string
                       type: object
                     type: array
                   id:
+                    description: Specifies a resource ID in UUID format.
                     type: string
                   maintainBegin:
                     description: Indicates the time at which the maintenance window
-                      starts. The format is HH:mm:ss.
+                      starts. The format is HH:mm:ss. Indicates the time at which
+                      the maintenance window starts. The format is HH:mm:ss.
                     type: string
                   maintainEnd:
                     description: Indicates the time at which the maintenance window
-                      ends. The format is HH:mm:ss.
+                      ends. The format is HH:mm:ss. Indicates the time at which the
+                      maintenance window ends. The format is HH:mm:ss.
                     type: string
                   namesrvAddress:
-                    description: Indicates the metadata address.
+                    description: Indicates the metadata address. Indicates the metadata
+                      address.
                     type: string
                   newSpecBillingEnable:
                     description: Indicates whether billing based on new specifications
+                      is enabled. Indicates whether billing based on new specifications
                       is enabled.
                     type: boolean
                   nodeNum:
-                    description: Indicates the node quantity.
+                    description: Indicates the node quantity. Indicates the node quantity.
                     type: number
                   publicBrokerAddress:
                     description: Indicates the public network service data address.
+                      Indicates the public network service data address.
                     type: string
                   publicNamesrvAddress:
-                    description: Indicates the public network metadata address.
+                    description: Indicates the public network metadata address. Indicates
+                      the public network metadata address.
                     type: string
                   publicipAddress:
-                    description: Indicates the public IP address.
+                    description: Indicates the public IP address. Indicates the public
+                      IP address.
                     type: string
                   resourceSpecCode:
-                    description: Indicates the resource specifications.
+                    description: Indicates the resource specifications. Indicates
+                      the resource specifications.
                     type: string
                   specification:
                     description: Indicates the instance specification. For a cluster
+                      DMS RocketMQ instance, VM specifications and the number of nodes
+                      are returned. Indicates the instance specification. For a cluster
                       DMS RocketMQ instance, VM specifications and the number of nodes
                       are returned.
                     type: string
                   status:
                     description: Indicates the status of the DMS RocketMQ instance.
+                      Indicates the status of the DMS RocketMQ instance.
                     type: string
                   type:
                     description: 'Indicates the DMS RocketMQ instance type. Value:
-                      cluster.'
+                      cluster. Indicates the DMS RocketMQ instance type. Value: cluster.'
                     type: string
                   usedStorageSpace:
                     description: 'Indicates the used message storage space. Unit:
-                      GB.'
+                      GB. Indicates the used message storage space. Unit: GB.'
                     type: number
                 type: object
               conditions:

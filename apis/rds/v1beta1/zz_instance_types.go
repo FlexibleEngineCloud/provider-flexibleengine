@@ -152,6 +152,9 @@ type InstanceParameters struct {
 	ParamGroupID *string `json:"paramGroupId,omitempty" tf:"param_group_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	Parameters []ParametersParameters `json:"parameters,omitempty" tf:"parameters,omitempty"`
+
+	// +kubebuilder:validation:Optional
 	Period *float64 `json:"period,omitempty" tf:"period,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -244,6 +247,19 @@ type NodesObservation struct {
 }
 
 type NodesParameters struct {
+}
+
+type ParametersObservation struct {
+}
+
+type ParametersParameters struct {
+
+	// Indicates the node name.
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 type VolumeObservation struct {
