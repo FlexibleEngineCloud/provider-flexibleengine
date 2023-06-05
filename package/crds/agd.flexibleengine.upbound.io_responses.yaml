@@ -67,7 +67,8 @@ spec:
                   groupId:
                     description: Specifies the ID of the API group to which the API
                       response belongs to. Changing this will create a new API custom
-                      response resource.
+                      response resource. The ID of the API group to which the API
+                      custom response belongs.
                     type: string
                   groupIdRef:
                     description: Reference to a Group to populate groupId.
@@ -145,7 +146,9 @@ spec:
                   instanceId:
                     description: Specifies the ID of the APIG dedicated instance to
                       which the API group where the API custom response belongs. Changing
-                      this will create a new API custom response resource.
+                      this will create a new API custom response resource. The ID
+                      of the dedicated instance to which the API group and the API
+                      custom response belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -223,29 +226,33 @@ spec:
                   name:
                     description: Specifies the name of the API custom response. The
                       name consists of 1 to 64 characters, and only letters, digits,
-                      hyphens(-), and underscores (_) are allowed.
+                      hyphens(-), and underscores (_) are allowed. The name of the
+                      API custom response.
                     type: string
                   region:
                     description: Specifies the region in which to create the API custom
                       response resource. If omitted, the provider-level region will
                       be used. Changing this will create a new API custom response
-                      resource.
+                      resource. The region where the API custom response is located.
                     type: string
                   rule:
                     description: Specifies the API custom response rules definition.
-                      The object structure is documented below.
+                      The object structure is documented below. The API custom response
+                      rules definition.
                     items:
                       properties:
                         body:
                           description: Specifies the body template of the API response
                             rule, e.g. {\"code\":\"$context.authorizer.frontend.code\",\"message\":\"$context.authorizer.frontend.message\"}
+                            The body template of the API custom response rule.
                           type: string
                         errorType:
                           description: Specifies the type of the API custom response
-                            rule.
+                            rule. The error type of the API custom response rule.
                           type: string
                         statusCode:
                           description: Specifies the HTTP status code of the API response
+                            rule. The HTTP status code of the API custom response
                             rule.
                           type: number
                       required:
@@ -432,14 +439,14 @@ spec:
             properties:
               atProvider:
                 properties:
-                  createTime:
-                    description: Time when the API custom response is created.
+                  createdAt:
+                    description: The creation time of the API custom response.
                     type: string
                   id:
                     description: ID of the API custom response.
                     type: string
-                  updateTime:
-                    description: Time when the API custom response was last modified.
+                  updatedAt:
+                    description: The latest update time of the API custom response.
                     type: string
                 type: object
               conditions:

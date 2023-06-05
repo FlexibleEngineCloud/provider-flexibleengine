@@ -23,6 +23,7 @@ type ThrottlingPolicyAssociateParameters struct {
 
 	// Specifies the ID of the APIG dedicated instance to which the APIs and the
 	// throttling policy belongs. Changing this will create a new resource.
+	// The ID of the dedicated instance to which the APIs and the throttling policy belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -37,6 +38,7 @@ type ThrottlingPolicyAssociateParameters struct {
 
 	// Specifies the ID of the API group to which the API response belongs to.
 	// Changing this will create a new resource.
+	// The ID of the throttling policy.
 	// +crossplane:generate:reference:type=ThrottlingPolicy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
@@ -50,11 +52,13 @@ type ThrottlingPolicyAssociateParameters struct {
 	PolicyIDSelector *v1.Selector `json:"policyIdSelector,omitempty" tf:"-"`
 
 	// Specifies the publish ID corresponding to the API bound by the throttling policy.
+	// The publish IDs corresponding to the APIs bound by the throttling policy.
 	// +kubebuilder:validation:Required
 	PublishIds []*string `json:"publishIds" tf:"publish_ids,omitempty"`
 
 	// Specifies the region where the API instance and throttling policy are located.
 	// If omitted, the provider-level region will be used. Changing this will create a new resource.
+	// The region where the dedicated instance and the throttling policy are located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }

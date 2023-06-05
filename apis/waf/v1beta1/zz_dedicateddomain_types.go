@@ -24,8 +24,6 @@ type DedicatedDomainObservation struct {
 	// The name of the certificate used by the domain name.
 	CertificateName *string `json:"certificateName,omitempty" tf:"certificate_name,omitempty"`
 
-	Cipher *string `json:"cipher,omitempty" tf:"cipher,omitempty"`
-
 	// The compliance certifications of the domain, values are:
 	ComplianceCertification map[string]*bool `json:"complianceCertification,omitempty" tf:"compliance_certification,omitempty"`
 
@@ -34,9 +32,6 @@ type DedicatedDomainObservation struct {
 
 	// The protocol type of the client. The options are HTTP and HTTPS.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
-
-	// The TLS configuration of domain.
-	TLS *string `json:"tls,omitempty" tf:"tls,omitempty"`
 
 	// The traffic identifier of domain. Valid values are:
 	TrafficIdentifier map[string]*string `json:"trafficIdentifier,omitempty" tf:"traffic_identifier,omitempty"`
@@ -58,6 +53,9 @@ type DedicatedDomainParameters struct {
 	// +kubebuilder:validation:Optional
 	CertificateIDSelector *v1.Selector `json:"certificateIdSelector,omitempty" tf:"-"`
 
+	// +kubebuilder:validation:Optional
+	Cipher *string `json:"cipher,omitempty" tf:"cipher,omitempty"`
+
 	// Specifies the domain name to be protected. For example, www.example.com or
 	// *.example.com. Changing this creates a new domain.
 	// +kubebuilder:validation:Required
@@ -68,8 +66,16 @@ type DedicatedDomainParameters struct {
 	// +kubebuilder:validation:Optional
 	KeepPolicy *bool `json:"keepPolicy,omitempty" tf:"keep_policy,omitempty"`
 
-	// Specifies the policy ID associated with the domain. If not specified, a new policy
-	// will be created automatically.
+	// The status of domain PCI 3DS, true: enabled, false: disabled.
+	// +kubebuilder:validation:Optional
+	Pci3Ds *bool `json:"pci3Ds,omitempty" tf:"pci_3ds,omitempty"`
+
+	// The status of domain PCI DSS, true: enabled, false: disabled.
+	// +kubebuilder:validation:Optional
+	PciDss *bool `json:"pciDss,omitempty" tf:"pci_dss,omitempty"`
+
+	// Specifies the policy ID associated with the domain. If not specified,
+	// a new policy will be created automatically. Changing this creates a new domain.
 	// +crossplane:generate:reference:type=DedicatedPolicy
 	// +kubebuilder:validation:Optional
 	PolicyID *string `json:"policyId,omitempty" tf:"policy_id,omitempty"`
@@ -100,6 +106,10 @@ type DedicatedDomainParameters struct {
 	// The object structure is documented below.
 	// +kubebuilder:validation:Required
 	Server []ServerParameters `json:"server" tf:"server,omitempty"`
+
+	// The TLS configuration of domain.
+	// +kubebuilder:validation:Optional
+	TLS *string `json:"tls,omitempty" tf:"tls,omitempty"`
 }
 
 type ServerObservation struct {

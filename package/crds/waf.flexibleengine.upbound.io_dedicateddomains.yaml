@@ -141,6 +141,8 @@ spec:
                             type: string
                         type: object
                     type: object
+                  cipher:
+                    type: string
                   domain:
                     description: Specifies the domain name to be protected. For example,
                       www.example.com or *.example.com. Changing this creates a new
@@ -150,9 +152,18 @@ spec:
                     description: Specifies whether to retain the policy when deleting
                       a domain name. Defaults to true.
                     type: boolean
+                  pci3Ds:
+                    description: 'The status of domain PCI 3DS, true: enabled, false:
+                      disabled.'
+                    type: boolean
+                  pciDss:
+                    description: 'The status of domain PCI DSS, true: enabled, false:
+                      disabled.'
+                    type: boolean
                   policyId:
                     description: Specifies the policy ID associated with the domain.
                       If not specified, a new policy will be created automatically.
+                      Changing this creates a new domain.
                     type: string
                   policyIdRef:
                     description: Reference to a DedicatedPolicy to populate policyId.
@@ -281,6 +292,9 @@ spec:
                       - vpcId
                       type: object
                     type: array
+                  tls:
+                    description: The TLS configuration of domain.
+                    type: string
                 required:
                 - domain
                 - server
@@ -473,8 +487,6 @@ spec:
                   certificateName:
                     description: The name of the certificate used by the domain name.
                     type: string
-                  cipher:
-                    type: string
                   complianceCertification:
                     additionalProperties:
                       type: boolean
@@ -487,9 +499,6 @@ spec:
                   protocol:
                     description: The protocol type of the client. The options are
                       HTTP and HTTPS.
-                    type: string
-                  tls:
-                    description: The TLS configuration of domain.
                     type: string
                   trafficIdentifier:
                     additionalProperties:

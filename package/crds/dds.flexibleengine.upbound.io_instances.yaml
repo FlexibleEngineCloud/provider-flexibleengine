@@ -96,15 +96,15 @@ spec:
                       properties:
                         storageEngine:
                           description: Specifies the storage engine of the DB instance.
-                            Only wiredTiger is supported now.
+                            The valid values are wiredTiger and rocksDB.
                           type: string
                         type:
                           description: Specifies the DB engine. Only DDS-Community
                             is supported now.
                           type: string
                         version:
-                          description: Specifies the DB instance version. Only 3.4
-                            and 4.0 are supported now.
+                          description: Specifies the DB instance version. The valid
+                            values are 3.4, 4.0 and 4.2.
                           type: string
                       required:
                       - type

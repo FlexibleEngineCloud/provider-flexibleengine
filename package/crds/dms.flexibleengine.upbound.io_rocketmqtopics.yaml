@@ -64,8 +64,9 @@ spec:
               forProvider:
                 properties:
                   brokers:
-                    description: Specifies the list of associated brokers of the topic.
-                      Specifies the list of associated brokers of the topic.
+                    description: 'Specifies the list of associated brokers of the
+                      topic. schema: Required; Specifies the list of associated brokers
+                      of the topic.'
                     items:
                       properties:
                         name:
@@ -358,8 +359,9 @@ spec:
               atProvider:
                 properties:
                   brokers:
-                    description: Specifies the list of associated brokers of the topic.
-                      Specifies the list of associated brokers of the topic.
+                    description: 'Specifies the list of associated brokers of the
+                      topic. schema: Required; Specifies the list of associated brokers
+                      of the topic.'
                     items:
                       properties:
                         readQueueNum:

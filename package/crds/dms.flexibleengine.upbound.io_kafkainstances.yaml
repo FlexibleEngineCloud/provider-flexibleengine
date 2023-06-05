@@ -337,6 +337,12 @@ spec:
                   storageSpecCode:
                     description: 'Specifies the storage I/O specification. Value range:'
                     type: string
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: Specifies the key/value pairs to associate with the
+                      DMS Kafka instance.
+                    type: object
                   vpcId:
                     description: Specifies the ID of a VPC. Changing this creates
                       a new instance resource.

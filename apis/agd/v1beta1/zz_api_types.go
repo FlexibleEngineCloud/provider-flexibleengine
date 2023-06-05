@@ -18,55 +18,64 @@ type APIObservation struct {
 	// ID of the APIG API.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Time when the API is registered, in UTC format.
-	RegisterTime *string `json:"registerTime,omitempty" tf:"register_time,omitempty"`
+	// The registered time of the API.
+	RegisteredAt *string `json:"registeredAt,omitempty" tf:"registered_at,omitempty"`
 
-	// Time when the API was last modified, in UTC format.
-	UpdateTime *string `json:"updateTime,omitempty" tf:"update_time,omitempty"`
+	// The latest update time of the API.
+	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type APIParameters struct {
 
 	// Specifies ID of the front-end custom authorizer.
+	// The ID of the authorizer to which the API request used.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
 	// Specifies an array of one or more backend parameters.
 	// The object structure is documented below. The maximum of request parameters is 50.
+	// The configurations of the backend parameters.
 	// +kubebuilder:validation:Optional
 	BackendParams []BackendParamsParameters `json:"backendParams,omitempty" tf:"backend_params,omitempty"`
 
 	// Specifies the description of the API request body, which can be an example
 	// request body, media type or parameters. The request body does not exceed 20,480 characters. Chinese characters must be
 	// in UTF-8 or Unicode format.
+	// The description of the API request body, which can be an example request body, media type or parameters.
 	// +kubebuilder:validation:Optional
 	BodyDescription *string `json:"bodyDescription,omitempty" tf:"body_description,omitempty"`
 
 	// Specifies whether CORS is supported, default to false.
+	// Whether CORS is supported.
 	// +kubebuilder:validation:Optional
 	Cors *bool `json:"cors,omitempty" tf:"cors,omitempty"`
 
 	// Specifies the API description, which can contain a maximum of 255 characters. The
 	// Chinese characters must be in UTF-8 or Unicode format.
+	// The API description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the example response for a successful request. Ensure that the
 	// response does not exceed 20,480 characters. Chinese characters must be in UTF-8 or Unicode format.
+	// The example response for a failure request.
 	// +kubebuilder:validation:Optional
 	FailureResponse *string `json:"failureResponse,omitempty" tf:"failure_response,omitempty"`
 
 	// Specifies the function graph backend details. The object
 	// structure is documented below. Changing this will create a new API resource.
+	// The FunctionGraph backend details.
 	// +kubebuilder:validation:Optional
 	FuncGraph []FuncGraphParameters `json:"funcGraph,omitempty" tf:"func_graph,omitempty"`
 
 	// Specifies the Mock policy backends. The maximum of the policy is 5.
 	// The object structure is documented below.
+	// The policy backends of the FunctionGraph function.
 	// +kubebuilder:validation:Optional
 	FuncGraphPolicy []FuncGraphPolicyParameters `json:"funcGraphPolicy,omitempty" tf:"func_graph_policy,omitempty"`
 
 	// Specifies an ID of the APIG group to which the API belongs to.
+	// The ID of the API group to which the API belongs.
 	// +crossplane:generate:reference:type=Group
 	// +kubebuilder:validation:Optional
 	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
@@ -81,6 +90,7 @@ type APIParameters struct {
 
 	// Specifies an ID of the APIG dedicated instance to which the API belongs
 	// to. Changing this will create a new API resource.
+	// The ID of the instance to which the API belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -95,79 +105,95 @@ type APIParameters struct {
 
 	// Specifies the route matching mode. The valid value are Exact and Prefix,
 	// default to Exact.
+	// The matching mode of the API.
 	// +kubebuilder:validation:Optional
 	Matching *string `json:"matching,omitempty" tf:"matching,omitempty"`
 
 	// Specifies the mock backend details. The object structure is documented
 	// below. Changing this will create a new API resource.
+	// The mock backend details.
 	// +kubebuilder:validation:Optional
 	Mock []MockParameters `json:"mock,omitempty" tf:"mock,omitempty"`
 
 	// Specifies the Mock policy backends. The maximum of the policy is 5.
 	// The object structure is documented below.
+	// The mock policy backends.
 	// +kubebuilder:validation:Optional
 	MockPolicy []MockPolicyParameters `json:"mockPolicy,omitempty" tf:"mock_policy,omitempty"`
 
 	// Specifies the API name, which can consists of 3 to 64 characters, starting with a letter.
 	// Only letters, digits and underscores (_) are allowed. Chinese characters must be in UTF-8 or Unicode format.
+	// The API name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the region in which to create the API resource. If omitted, the
 	// provider-level region will be used. Changing this will create a new API resource.
+	// The region where the API is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the request method of the API. The valid values are GET, POST
 	// , PUT, DELETE, HEAD, PATCH, OPTIONS and ANY.
+	// The request method of the API.
 	// +kubebuilder:validation:Required
 	RequestMethod *string `json:"requestMethod" tf:"request_method,omitempty"`
 
 	// Specifies an array of one or more request parameters of the front-end. The maximum
 	// of request parameters is 50. The object structure is documented below.
+	// The configurations of the front-end parameters.
 	// +kubebuilder:validation:Optional
 	RequestParams []RequestParamsParameters `json:"requestParams,omitempty" tf:"request_params,omitempty"`
 
 	// Specifies the request address, which can contain a maximum of 512 characters
 	// request parameters enclosed with brackets ({}).
+	// The request address.
 	// +kubebuilder:validation:Required
 	RequestPath *string `json:"requestPath" tf:"request_path,omitempty"`
 
 	// Specifies the request protocol of the API. The valid value are
 	// HTTP, HTTPS and BOTH.
+	// The request protocol of the API request.
 	// +kubebuilder:validation:Required
 	RequestProtocol *string `json:"requestProtocol" tf:"request_protocol,omitempty"`
 
 	// Specifies the APIG group response ID.
+	// The ID of the custom response that API used.
 	// +kubebuilder:validation:Optional
 	ResponseID *string `json:"responseId,omitempty" tf:"response_id,omitempty"`
 
 	// Specifies the security authentication mode. The valid values are
 	// NONE, APP and IAM, default to NONE.
+	// The security authentication mode of the API request.
 	// +kubebuilder:validation:Optional
 	SecurityAuthentication *string `json:"securityAuthentication,omitempty" tf:"security_authentication,omitempty"`
 
 	// Specifies whether AppCode authentication is enabled. The applicaiton code
 	// must located in the header when simple_authentication is true.
+	// Whether the authentication of the application code is enabled.
 	// +kubebuilder:validation:Optional
 	SimpleAuthentication *bool `json:"simpleAuthentication,omitempty" tf:"simple_authentication,omitempty"`
 
 	// Specifies the example response for a successful request. Ensure that the
 	// response does not exceed 20,480 characters. Chinese characters must be in UTF-8 or Unicode format.
+	// The example response for a successful request.
 	// +kubebuilder:validation:Optional
 	SuccessResponse *string `json:"successResponse,omitempty" tf:"success_response,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// The API type.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
 	// Specifies the web backend details. The object structure is documented
 	// below. Changing this will create a new API resource.
+	// The web backend details.
 	// +kubebuilder:validation:Optional
 	Web []WebParameters `json:"web,omitempty" tf:"web,omitempty"`
 
 	// Specifies the example response for a failed request. The maximum of the policy is 5.
 	// The object structure is documented below.
+	// The web policy backends.
 	// +kubebuilder:validation:Optional
 	WebPolicy []WebPolicyParameters `json:"webPolicy,omitempty" tf:"web_policy,omitempty"`
 }
@@ -179,11 +205,13 @@ type BackendParamsParameters struct {
 
 	// Specifies the description of the constant or system parameter, which contain a
 	// maximum of 255 characters, and the angle brackets (< and >) are not allowed.
+	// The description of the parameter.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the location of the backend parameter. The valid values are PATH,
 	// QUERY and HEADER.
+	// Where the parameter is located.
 	// +kubebuilder:validation:Required
 	Location *string `json:"location" tf:"location,omitempty"`
 
@@ -191,16 +219,23 @@ type BackendParamsParameters struct {
 	// letter. Only letters, digits, hyphens (-), underscores (_) and periods (.) are allowed. The parameter name is not
 	// case-sensitive. It cannot start with 'x-apig-' or 'x-sdk-' and cannot be 'x-stage'. If the location is specified as
 	// HEADER, the name cannot contain underscores.
+	// The parameter name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
+	// Specifies the API type. The valid values are Public and Private.
+	// +kubebuilder:validation:Optional
+	SystemParamType *string `json:"systemParamType,omitempty" tf:"system_param_type,omitempty"`
+
 	// Specifies the backend parameter type. The valid values are REQUEST, CONSTANT
 	// and SYSTEM.
+	// The parameter type.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
 	// Specifies the request parameter name corresponding to the request parameter name of the
 	// back-end parameter.
+	// The value of the parameter
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -212,19 +247,23 @@ type ConditionsParameters struct {
 
 	// Specifies the request parameter name. This parameter is required if the policy type
 	// is param.
+	// The request parameter name.
 	// +kubebuilder:validation:Optional
 	ParamName *string `json:"paramName,omitempty" tf:"param_name,omitempty"`
 
 	// Specifies the policy type. The valid values are param and source, default to
 	// source.
+	// The type of the backend policy.
 	// +kubebuilder:validation:Optional
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// The condition type.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Specifies the condition type. For a condition with the input parameter source:
+	// The value of the backend policy.
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -235,24 +274,29 @@ type FuncGraphObservation struct {
 type FuncGraphParameters struct {
 
 	// Specifies the ID of the backend custom authorization.
+	// The ID of the backend custom authorization.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
 	// Specifies the function graph URN.
+	// The URN of the FunctionGraph function.
 	// +kubebuilder:validation:Required
 	FunctionUrn *string `json:"functionUrn" tf:"function_urn,omitempty"`
 
 	// Specifies the invocation mode. The valid values are async and sync,
 	// default to sync.
+	// The invocation type.
 	// +kubebuilder:validation:Optional
 	InvocationType *string `json:"invocationType,omitempty" tf:"invocation_type,omitempty"`
 
 	// Specifies the location of the backend parameter. The valid value is range form 1 to
 	// 600,000, default to 5,000.
+	// The timeout for API requests to backend service.
 	// +kubebuilder:validation:Optional
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// Specifies the version of the function graph.
+	// The version of the FunctionGraph function.
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
@@ -264,24 +308,33 @@ type FuncGraphPolicyBackendParamsParameters struct {
 
 	// Specifies the description of the request parameter, which contain a maximum of 255
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The description of the parameter.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the location of the request parameter. The valid values are PATH,
 	// QUERY and HEADER, default to PATH.
+	// Where the parameter is located.
 	// +kubebuilder:validation:Required
 	Location *string `json:"location" tf:"location,omitempty"`
 
 	// Specifies the backend policy name, which can contains of 3 to 64 characters and start with
 	// a letter. Only letters, digits, and underscores (_) are allowed.
+	// The parameter name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// +kubebuilder:validation:Optional
+	SystemParamType *string `json:"systemParamType,omitempty" tf:"system_param_type,omitempty"`
+
+	// Specifies the API type. The valid values are Public and Private.
+	// The parameter type.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
 	// Specifies the condition type. For a condition with the input parameter source:
+	// The value of the parameter
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -292,44 +345,53 @@ type FuncGraphPolicyObservation struct {
 type FuncGraphPolicyParameters struct {
 
 	// Specifies the ID of the backend custom authorization.
+	// The ID of the backend custom authorization.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
 	// Specifies an array of one or more backend parameters. The maximum of request
 	// parameters is 50. The object structure is documented above.
+	// The configaiton list of the backend parameters.
 	// +kubebuilder:validation:Optional
 	BackendParams []FuncGraphPolicyBackendParamsParameters `json:"backendParams,omitempty" tf:"backend_params,omitempty"`
 
 	// Specifies an array of one or more policy conditions. Up to five conditions can be set.
 	// The object structure is documented below.
+	// The policy conditions.
 	// +kubebuilder:validation:Required
 	Conditions []ConditionsParameters `json:"conditions" tf:"conditions,omitempty"`
 
 	// Specifies the effective mode of the backend policy. The valid values are ALL
 	// and ANY, default to ANY.
+	// The effective mode of the backend policy.
 	// +kubebuilder:validation:Optional
 	EffectiveMode *string `json:"effectiveMode,omitempty" tf:"effective_mode,omitempty"`
 
 	// Specifies the URN of the function graph.
+	// The URN of the FunctionGraph function.
 	// +kubebuilder:validation:Required
 	FunctionUrn *string `json:"functionUrn" tf:"function_urn,omitempty"`
 
 	// Specifies the invocation mode of the function graph. The valid values are
 	// async and sync, default to sync.
+	// The invocation mode of the FunctionGraph function.
 	// +kubebuilder:validation:Optional
 	InvocationMode *string `json:"invocationMode,omitempty" tf:"invocation_mode,omitempty"`
 
 	// Specifies the backend policy name, which can contains of 3 to 64 characters and start with
 	// a letter. Only letters, digits, and underscores (_) are allowed.
+	// The name of the backend policy.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
 	// valid value is range from 1 to 600,000, default to 5,000.
+	// The timeout for API requests to backend service.
 	// +kubebuilder:validation:Optional
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// Specifies the version of the function graph.
+	// The version of the FunctionGraph function.
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
@@ -340,11 +402,13 @@ type MockObservation struct {
 type MockParameters struct {
 
 	// Specifies the ID of the backend custom authorization.
+	// The ID of the backend custom authorization.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
 	// Specifies the response of the backend policy, which contain a maximum of 2,048
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The response of the backend policy.
 	// +kubebuilder:validation:Optional
 	Response *string `json:"response,omitempty" tf:"response,omitempty"`
 }
@@ -356,24 +420,33 @@ type MockPolicyBackendParamsParameters struct {
 
 	// Specifies the description of the request parameter, which contain a maximum of 255
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The description of the parameter.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the location of the request parameter. The valid values are PATH,
 	// QUERY and HEADER, default to PATH.
+	// Where the parameter is located.
 	// +kubebuilder:validation:Required
 	Location *string `json:"location" tf:"location,omitempty"`
 
 	// Specifies the backend policy name, which can contains of 3 to 64 characters and start with
 	// a letter. Only letters, digits, and underscores (_) are allowed.
+	// The parameter name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// +kubebuilder:validation:Optional
+	SystemParamType *string `json:"systemParamType,omitempty" tf:"system_param_type,omitempty"`
+
+	// Specifies the API type. The valid values are Public and Private.
+	// The parameter type.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
 	// Specifies the condition type. For a condition with the input parameter source:
+	// The value of the parameter
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -385,19 +458,23 @@ type MockPolicyConditionsParameters struct {
 
 	// Specifies the request parameter name. This parameter is required if the policy type
 	// is param.
+	// The request parameter name.
 	// +kubebuilder:validation:Optional
 	ParamName *string `json:"paramName,omitempty" tf:"param_name,omitempty"`
 
 	// Specifies the policy type. The valid values are param and source, default to
 	// source.
+	// The type of the backend policy.
 	// +kubebuilder:validation:Optional
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// The condition type.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Specifies the condition type. For a condition with the input parameter source:
+	// The value of the backend policy.
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -408,31 +485,37 @@ type MockPolicyObservation struct {
 type MockPolicyParameters struct {
 
 	// Specifies the ID of the backend custom authorization.
+	// The ID of the backend custom authorization.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
 	// Specifies an array of one or more backend parameters. The maximum of request
 	// parameters is 50. The object structure is documented above.
+	// The configuration list of backend parameters.
 	// +kubebuilder:validation:Optional
 	BackendParams []MockPolicyBackendParamsParameters `json:"backendParams,omitempty" tf:"backend_params,omitempty"`
 
 	// Specifies an array of one or more policy conditions. Up to five conditions can be set.
 	// The object structure is documented below.
+	// The policy conditions.
 	// +kubebuilder:validation:Required
 	Conditions []MockPolicyConditionsParameters `json:"conditions" tf:"conditions,omitempty"`
 
 	// Specifies the effective mode of the backend policy. The valid values are ALL
 	// and ANY, default to ANY.
+	// The effective mode of the backend policy.
 	// +kubebuilder:validation:Optional
 	EffectiveMode *string `json:"effectiveMode,omitempty" tf:"effective_mode,omitempty"`
 
 	// Specifies the backend policy name, which can contains of 3 to 64 characters and start with
 	// a letter. Only letters, digits, and underscores (_) are allowed.
+	// The backend policy name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the response of the backend policy, which contain a maximum of 2,048
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The response of the backend policy.
 	// +kubebuilder:validation:Optional
 	Response *string `json:"response,omitempty" tf:"response,omitempty"`
 }
@@ -444,30 +527,36 @@ type RequestParamsParameters struct {
 
 	// Specifies the default value of the request parameter, which contain a maximum of 255
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The default value of the parameter.
 	// +kubebuilder:validation:Optional
 	Default *string `json:"default,omitempty" tf:"default,omitempty"`
 
 	// Specifies the description of the request parameter, which contain a maximum of 255
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The parameter description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the example value of the request parameter, which contain a maximum of 255
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The parameter example.
 	// +kubebuilder:validation:Optional
 	Example *string `json:"example,omitempty" tf:"example,omitempty"`
 
 	// Specifies the location of the request parameter. The valid values are PATH,
 	// QUERY and HEADER, default to PATH.
+	// Where this parameter is located.
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// Specifies the maximum value or size of the request parameter.
+	// The maximum value or length (string parameter) for parameter.
 	// +kubebuilder:validation:Optional
 	Maximum *float64 `json:"maximum,omitempty" tf:"maximum,omitempty"`
 
 	// Specifies the minimum value or size of the request parameter. For string type,
 	// The maximum and minimum means size. For number type, they means value.
+	// The minimum value or length (string parameter) for parameter.
 	// +kubebuilder:validation:Optional
 	Minimum *float64 `json:"minimum,omitempty" tf:"minimum,omitempty"`
 
@@ -475,15 +564,18 @@ type RequestParamsParameters struct {
 	// letter. Only letters, digits, hyphens (-), underscores (_) and periods (.) are allowed. If Location is specified as
 	// HEADER and security_authentication is specified as APP, the parameter name is not 'Authorization' (
 	// case-insensitive) and cannot contain underscores.
+	// The name of the request parameter.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies whether the request parameter is required.
+	// Whether this parameter is required.
 	// +kubebuilder:validation:Required
 	Required *bool `json:"required" tf:"required,omitempty"`
 
 	// Specifies the request parameter type. The valid values are STRING and NUMBER,
 	// default to STRING.
+	// The parameter type.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -494,6 +586,7 @@ type WebObservation struct {
 type WebParameters struct {
 
 	// Specifies the ID of the backend custom authorization.
+	// The ID of the backend custom authorization.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
@@ -503,40 +596,48 @@ type WebParameters struct {
 	// 443, or the default HTTP port 80 is used. The backend service address can contain environment variables, each starting
 	// with a letter and consisting of 3 to 32 characters. Only letters, digits, hyphens (-), and underscores (_) are
 	// allowed.
+	// The backend service address, which consists of a domain name or IP address, and a port number.
 	// +kubebuilder:validation:Optional
 	BackendAddress *string `json:"backendAddress,omitempty" tf:"backend_address,omitempty"`
 
 	// Specifies the proxy host header. The host header can be customized for requests to
 	// be forwarded to cloud servers through the VPC channel. By default, the original host header of the request is used.
+	// The proxy host header.
 	// +kubebuilder:validation:Optional
 	HostHeader *string `json:"hostHeader,omitempty" tf:"host_header,omitempty"`
 
 	// Specifies the backend request address, which can contain a maximum of 512 characters and
 	// must comply with URI specifications.
+	// The backend request path.
 	// +kubebuilder:validation:Required
 	Path *string `json:"path" tf:"path,omitempty"`
 
 	// Specifies the backend request method of the API. The valid types are GET,
 	// POST, PUT, DELETE, HEAD, PATCH, OPTIONS and ANY.
+	// The backend request method of the API.
 	// +kubebuilder:validation:Optional
 	RequestMethod *string `json:"requestMethod,omitempty" tf:"request_method,omitempty"`
 
 	// Specifies the backend request protocol. The valid values are HTTP and
 	// HTTPS, default to HTTPS.
+	// The web protocol type of the API request.
 	// +kubebuilder:validation:Optional
 	RequestProtocol *string `json:"requestProtocol,omitempty" tf:"request_protocol,omitempty"`
 
 	// Specifies the indicates whether to enable two-way authentication, default to false.
+	// Whether to enable two-way authentication.
 	// +kubebuilder:validation:Optional
 	SSLEnable *bool `json:"sslEnable,omitempty" tf:"ssl_enable,omitempty"`
 
 	// Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
 	// valid value is range from 1 to 600,000, default to 5,000.
+	// The timeout for API requests to backend service.
 	// +kubebuilder:validation:Optional
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// Specifies the VPC channel ID. This parameter and backend_address are
 	// alternative.
+	// The VPC channel ID.
 	// +kubebuilder:validation:Optional
 	VPCChannelID *string `json:"vpcChannelId,omitempty" tf:"vpc_channel_id,omitempty"`
 }
@@ -548,24 +649,33 @@ type WebPolicyBackendParamsParameters struct {
 
 	// Specifies the description of the request parameter, which contain a maximum of 255
 	// characters, and the angle brackets (< and >) are not allowed.
+	// The description of the parameter.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the location of the request parameter. The valid values are PATH,
 	// QUERY and HEADER, default to PATH.
+	// Where the parameter is located.
 	// +kubebuilder:validation:Required
 	Location *string `json:"location" tf:"location,omitempty"`
 
 	// Specifies the backend policy name, which can contains of 3 to 64 characters and start with
 	// a letter. Only letters, digits, and underscores (_) are allowed.
+	// The parameter name.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// +kubebuilder:validation:Optional
+	SystemParamType *string `json:"systemParamType,omitempty" tf:"system_param_type,omitempty"`
+
+	// Specifies the API type. The valid values are Public and Private.
+	// The parameter type.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type" tf:"type,omitempty"`
 
 	// Specifies the condition type. For a condition with the input parameter source:
+	// The value of the parameter
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -577,19 +687,23 @@ type WebPolicyConditionsParameters struct {
 
 	// Specifies the request parameter name. This parameter is required if the policy type
 	// is param.
+	// The request parameter name.
 	// +kubebuilder:validation:Optional
 	ParamName *string `json:"paramName,omitempty" tf:"param_name,omitempty"`
 
 	// Specifies the policy type. The valid values are param and source, default to
 	// source.
+	// The type of the backend policy.
 	// +kubebuilder:validation:Optional
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
 
 	// Specifies the API type. The valid values are Public and Private.
+	// The condition type.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Specifies the condition type. For a condition with the input parameter source:
+	// The value of the backend policy.
 	// +kubebuilder:validation:Required
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -600,6 +714,7 @@ type WebPolicyObservation struct {
 type WebPolicyParameters struct {
 
 	// Specifies the ID of the backend custom authorization.
+	// The ID of the backend custom authorization.
 	// +kubebuilder:validation:Optional
 	AuthorizerID *string `json:"authorizerId,omitempty" tf:"authorizer_id,omitempty"`
 
@@ -608,56 +723,67 @@ type WebPolicyParameters struct {
 	// name:Port number", for example, apig.example.com:7443. If the port number is not specified, the default HTTPS port 443
 	// or the default HTTP port 80 is used. The backend service address can contain environment variables, each starting with
 	// a letter and consisting of 3 to 32 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
+	// The backend service address
 	// +kubebuilder:validation:Optional
 	BackendAddress *string `json:"backendAddress,omitempty" tf:"backend_address,omitempty"`
 
 	// Specifies an array of one or more backend parameters. The maximum of request
 	// parameters is 50. The object structure is documented above.
+	// The configuration list of the backend parameters.
 	// +kubebuilder:validation:Optional
 	BackendParams []WebPolicyBackendParamsParameters `json:"backendParams,omitempty" tf:"backend_params,omitempty"`
 
 	// Specifies an array of one or more policy conditions. Up to five conditions can be set.
 	// The object structure is documented below.
+	// The policy conditions.
 	// +kubebuilder:validation:Required
 	Conditions []WebPolicyConditionsParameters `json:"conditions" tf:"conditions,omitempty"`
 
 	// Specifies the effective mode of the backend policy. The valid values are ALL
 	// and ANY, default to ANY.
+	// The effective mode of the backend policy.
 	// +kubebuilder:validation:Optional
 	EffectiveMode *string `json:"effectiveMode,omitempty" tf:"effective_mode,omitempty"`
 
 	// Specifies the proxy host header. The host header can be customized for requests to
 	// be forwarded to cloud servers through the VPC channel. By default, the original host header of the request is used.
+	// The proxy host header.
 	// +kubebuilder:validation:Optional
 	HostHeader *string `json:"hostHeader,omitempty" tf:"host_header,omitempty"`
 
 	// Specifies the backend policy name, which can contains of 3 to 64 characters and start with
 	// a letter. Only letters, digits, and underscores (_) are allowed.
+	// The name of the web policy.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the backend request address, which can contain a maximum of 512 characters and
 	// must comply with URI specifications.
+	// The backend request address.
 	// +kubebuilder:validation:Required
 	Path *string `json:"path" tf:"path,omitempty"`
 
 	// Specifies the backend request method of the API. The valid types are GET,
 	// POST, PUT, DELETE, HEAD, PATCH, OPTIONS and ANY.
+	// The backend request method of the API.
 	// +kubebuilder:validation:Required
 	RequestMethod *string `json:"requestMethod" tf:"request_method,omitempty"`
 
 	// Specifies the backend request protocol. The valid values are HTTP and
 	// HTTPS, default to HTTPS.
+	// The backend request protocol.
 	// +kubebuilder:validation:Optional
 	RequestProtocol *string `json:"requestProtocol,omitempty" tf:"request_protocol,omitempty"`
 
 	// Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
 	// valid value is range from 1 to 600,000, default to 5,000.
+	// The timeout for API requests to backend service.
 	// +kubebuilder:validation:Optional
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// Specifies the VPC channel ID. This parameter and backend_address are
 	// alternative.
+	// The VPC channel ID.
 	// +kubebuilder:validation:Optional
 	VPCChannelID *string `json:"vpcChannelId,omitempty" tf:"vpc_channel_id,omitempty"`
 }

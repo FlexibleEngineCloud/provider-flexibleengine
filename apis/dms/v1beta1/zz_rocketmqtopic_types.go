@@ -35,7 +35,7 @@ type BrokersParameters struct {
 type RocketMQTopicObservation struct {
 
 	// Specifies the list of associated brokers of the topic.
-	// Specifies the list of associated brokers of the topic.
+	// schema: Required; Specifies the list of associated brokers of the topic.
 	// +kubebuilder:validation:Optional
 	Brokers []BrokersObservation `json:"brokers,omitempty" tf:"brokers,omitempty"`
 
@@ -46,7 +46,7 @@ type RocketMQTopicObservation struct {
 type RocketMQTopicParameters struct {
 
 	// Specifies the list of associated brokers of the topic.
-	// Specifies the list of associated brokers of the topic.
+	// schema: Required; Specifies the list of associated brokers of the topic.
 	// +kubebuilder:validation:Optional
 	Brokers []BrokersParameters `json:"brokers,omitempty" tf:"brokers,omitempty"`
 

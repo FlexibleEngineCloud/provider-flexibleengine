@@ -15,20 +15,21 @@ import (
 
 type ResponseObservation struct {
 
-	// Time when the API custom response is created.
-	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
+	// The creation time of the API custom response.
+	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// ID of the API custom response.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Time when the API custom response was last modified.
-	UpdateTime *string `json:"updateTime,omitempty" tf:"update_time,omitempty"`
+	// The latest update time of the API custom response.
+	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type ResponseParameters struct {
 
 	// Specifies the ID of the API group to which the API response belongs to.
 	// Changing this will create a new API custom response resource.
+	// The ID of the API group to which the API custom response belongs.
 	// +crossplane:generate:reference:type=Group
 	// +kubebuilder:validation:Optional
 	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
@@ -43,6 +44,7 @@ type ResponseParameters struct {
 
 	// Specifies the ID of the APIG dedicated instance to which the API group
 	// where the API custom response belongs. Changing this will create a new API custom response resource.
+	// The ID of the dedicated instance to which the API group and the API custom response belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -57,16 +59,19 @@ type ResponseParameters struct {
 
 	// Specifies the name of the API custom response. The name consists of 1 to 64 characters,
 	// and only letters, digits, hyphens(-), and underscores (_) are allowed.
+	// The name of the API custom response.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the region in which to create the API custom response resource. If
 	// omitted, the provider-level region will be used. Changing this will create a new API custom response resource.
+	// The region where the API custom response is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the API custom response rules definition. The object structure is documented
 	// below.
+	// The API custom response rules definition.
 	// +kubebuilder:validation:Optional
 	Rule []RuleParameters `json:"rule,omitempty" tf:"rule,omitempty"`
 }
@@ -78,14 +83,17 @@ type RuleParameters struct {
 
 	// Specifies the body template of the API response rule, e.g.
 	// {\"code\":\"$context.authorizer.frontend.code\",\"message\":\"$context.authorizer.frontend.message\"}
+	// The body template of the API custom response rule.
 	// +kubebuilder:validation:Required
 	Body *string `json:"body" tf:"body,omitempty"`
 
 	// Specifies the type of the API custom response rule.
+	// The error type of the API custom response rule.
 	// +kubebuilder:validation:Required
 	ErrorType *string `json:"errorType" tf:"error_type,omitempty"`
 
 	// Specifies the HTTP status code of the API response rule.
+	// The HTTP status code of the API custom response rule.
 	// +kubebuilder:validation:Optional
 	StatusCode *float64 `json:"statusCode,omitempty" tf:"status_code,omitempty"`
 }

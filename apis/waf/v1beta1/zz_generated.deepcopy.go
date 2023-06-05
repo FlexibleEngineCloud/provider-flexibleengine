@@ -457,11 +457,6 @@ func (in *DedicatedDomainObservation) DeepCopyInto(out *DedicatedDomainObservati
 		*out = new(string)
 		**out = **in
 	}
-	if in.Cipher != nil {
-		in, out := &in.Cipher, &out.Cipher
-		*out = new(string)
-		**out = **in
-	}
 	if in.ComplianceCertification != nil {
 		in, out := &in.ComplianceCertification, &out.ComplianceCertification
 		*out = make(map[string]*bool, len(*in))
@@ -484,11 +479,6 @@ func (in *DedicatedDomainObservation) DeepCopyInto(out *DedicatedDomainObservati
 	}
 	if in.Protocol != nil {
 		in, out := &in.Protocol, &out.Protocol
-		*out = new(string)
-		**out = **in
-	}
-	if in.TLS != nil {
-		in, out := &in.TLS, &out.TLS
 		*out = new(string)
 		**out = **in
 	}
@@ -537,6 +527,11 @@ func (in *DedicatedDomainParameters) DeepCopyInto(out *DedicatedDomainParameters
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.Cipher != nil {
+		in, out := &in.Cipher, &out.Cipher
+		*out = new(string)
+		**out = **in
+	}
 	if in.Domain != nil {
 		in, out := &in.Domain, &out.Domain
 		*out = new(string)
@@ -544,6 +539,16 @@ func (in *DedicatedDomainParameters) DeepCopyInto(out *DedicatedDomainParameters
 	}
 	if in.KeepPolicy != nil {
 		in, out := &in.KeepPolicy, &out.KeepPolicy
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Pci3Ds != nil {
+		in, out := &in.Pci3Ds, &out.Pci3Ds
+		*out = new(bool)
+		**out = **in
+	}
+	if in.PciDss != nil {
+		in, out := &in.PciDss, &out.PciDss
 		*out = new(bool)
 		**out = **in
 	}
@@ -583,6 +588,11 @@ func (in *DedicatedDomainParameters) DeepCopyInto(out *DedicatedDomainParameters
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.TLS != nil {
+		in, out := &in.TLS, &out.TLS
+		*out = new(string)
+		**out = **in
 	}
 }
 

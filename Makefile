@@ -4,13 +4,13 @@
 PROJECT_NAME := provider-flexibleengine
 PROJECT_REPO := github.com/FlexibleEngineCloud/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION := 1.3.7
+export TERRAFORM_VERSION := 1.4.6
 
 export TERRAFORM_PROVIDER_SOURCE := FlexibleEngineCloud/flexibleengine
 export TERRAFORM_PROVIDER_REPO := https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine
-export TERRAFORM_PROVIDER_VERSION := 1.36.0
+export TERRAFORM_PROVIDER_VERSION := 1.38.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-flexibleengine
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-flexibleengine_v1.36.0_x5
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-flexibleengine_v1.38.0_x5
 export TERRAFORM_DOCS_PATH := docs/resources
 
 PLATFORMS ?= linux_amd64 linux_arm64
@@ -39,7 +39,7 @@ NPROCS ?= 1
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
 GO_REQUIRED_VERSION ?= 1.20
-GOLANGCILINT_VERSION ?= 1.50.1
+GOLANGCILINT_VERSION ?= 1.53.1
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
 GO_SUBDIRS += cmd internal apis
@@ -49,7 +49,7 @@ GO_SUBDIRS += cmd internal apis
 # Setup Kubernetes tools
 
 KIND_VERSION = v0.15.0
-UP_VERSION = v0.15.0
+UP_VERSION = v0.17.0
 UP_CHANNEL = stable
 UPTEST_VERSION = v0.4.0
 -include build/makelib/k8s_tools.mk

@@ -67,15 +67,19 @@ spec:
                   appThrottles:
                     description: Specifies an array of one or more special throttling
                       policies for APP limit. The throttle object of the user_throttles
-                      structure is documented below.
+                      structure is documented below. The array of one or more special
+                      throttling policies for APP limit.
                     items:
                       properties:
                         maxApiRequests:
                           description: Specifies the maximum number of times an API
-                            can be accessed within a specified period.
+                            can be accessed within a specified period. The maximum
+                            number of times an API can be accessed within a specified
+                            period.
                           type: number
                         throttlingObjectId:
                           description: Specifies the object ID which the special throttling
+                            policy belongs. The object ID which the special throttling
                             policy belongs.
                           type: string
                         throttlingObjectIdRef:
@@ -162,12 +166,14 @@ spec:
                     description: Specifies the description about the API throttling
                       policy. The description contain a maximum of 255 characters
                       and the angle brackets (< and >) are not allowed. Chinese characters
-                      must be in UTF-8 or Unicode format.
+                      must be in UTF-8 or Unicode format. The description about the
+                      API throttling policy.
                     type: string
                   instanceId:
                     description: Specifies an ID of the APIG dedicated instance to
                       which the API throttling policy belongs to. Changing this will
-                      create a new API throttling policy resource.
+                      create a new API throttling policy resource. The ID of the dedicated
+                      instance to which the throttling policy belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -245,62 +251,76 @@ spec:
                   maxApiRequests:
                     description: Specifies the maximum number of times an API can
                       be accessed within a specified period. The value of this parameter
-                      cannot exceed the default limit 200 TPS.
+                      cannot exceed the default limit 200 TPS. The maximum number
+                      of times an API can be accessed within a specified period..
                     type: number
                   maxAppRequests:
                     description: Specifies the maximum number of times the API can
                       be accessed by an app within the same period. The value of this
                       parameter must be less than or equal to the value of max_user_requests.
+                      The maximum number of times the API can be accessed by an app
+                      within the same period.
                     type: number
                   maxIpRequests:
                     description: Specifies the maximum number of times the API can
                       be accessed by an IP address within the same period. The value
                       of this parameter must be less than or equal to the value of
-                      max_api_requests.
+                      max_api_requests. The maximum number of times the API can be
+                      accessed by an IP address within the same period.
                     type: number
                   maxUserRequests:
                     description: Specifies the maximum number of times the API can
                       be accessed by a user within the same period. The value of this
                       parameter must be less than or equal to the value of max_api_requests.
+                      The maximum number of times the API can be accessed by a user
+                      within the same period.
                     type: number
                   name:
                     description: Specifies the name of the API throttling policy.
                       The policy name consists of 3 to 64 characters, starting with
                       a letter. Only letters, digits and underscores (_) are allowed.
+                      The name of the throttling policy.
                     type: string
                   period:
                     description: 'Specifies the period of time for limiting the number
                       of API calls. This parameter applies with each of the API call
                       limits: max_api_requests, max_app_requests, max_ip_requests
-                      and max_user_requests.'
+                      and max_user_requests. The period of time for limiting the number
+                      of API calls.'
                     type: number
                   periodUnit:
                     description: Specifies the time unit for limiting the number of
                       API calls. The valid values are SECOND, MINUTE, HOUR and DAY,
-                      default to MINUTE.
+                      default to MINUTE. The time unit for limiting the number of
+                      API calls.
                     type: string
                   region:
                     description: Specifies the region in which to create the API throttling
                       policy resource. If omitted, the provider-level region will
                       be used. Changing this will create a new API throttling policy
-                      resource.
+                      resource. The region where the throttling policy is located.
                     type: string
                   type:
                     description: 'Specifies the type of the request throttling policy.
-                      The valid values are as follows:'
+                      The valid values are as follows: The type of the request throttling
+                      policy.'
                     type: string
                   userThrottles:
                     description: Specifies an array of one or more special throttling
                       policies for IAM user limit. The throttle object of the user_throttles
-                      structure is documented below.
+                      structure is documented below. The array of one or more special
+                      throttling policies for IAM user limit.
                     items:
                       properties:
                         maxApiRequests:
                           description: Specifies the maximum number of times an API
-                            can be accessed within a specified period.
+                            can be accessed within a specified period. The maximum
+                            number of times an API can be accessed within a specified
+                            period.
                           type: number
                         throttlingObjectId:
                           description: Specifies the object ID which the special throttling
+                            policy belongs. The object ID which the special throttling
                             policy belongs.
                           type: string
                       required:
@@ -492,20 +512,23 @@ spec:
                   appThrottles:
                     description: Specifies an array of one or more special throttling
                       policies for APP limit. The throttle object of the user_throttles
-                      structure is documented below.
+                      structure is documented below. The array of one or more special
+                      throttling policies for APP limit.
                     items:
                       properties:
                         id:
-                          description: ID of the API throttling policy.
+                          description: ID of the API throttling policy. The ID of
+                            the special user/application throttling policy.
                           type: string
                         throttlingObjectName:
                           description: The object name which the special user throttling
-                            policy belongs.
+                            policy belongs. The object name which the special user/application
+                            throttling policy belongs.
                           type: string
                       type: object
                     type: array
-                  createTime:
-                    description: Time when the API throttling policy was created.
+                  createdAt:
+                    description: The creation time of the throttling policy.
                     type: string
                   id:
                     description: ID of the API throttling policy.
@@ -513,15 +536,18 @@ spec:
                   userThrottles:
                     description: Specifies an array of one or more special throttling
                       policies for IAM user limit. The throttle object of the user_throttles
-                      structure is documented below.
+                      structure is documented below. The array of one or more special
+                      throttling policies for IAM user limit.
                     items:
                       properties:
                         id:
-                          description: ID of the API throttling policy.
+                          description: ID of the API throttling policy. The ID of
+                            the special user/application throttling policy.
                           type: string
                         throttlingObjectName:
                           description: The object name which the special user throttling
-                            policy belongs.
+                            policy belongs. The object name which the special user/application
+                            throttling policy belongs.
                           type: string
                       type: object
                     type: array

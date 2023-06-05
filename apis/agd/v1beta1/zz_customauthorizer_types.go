@@ -15,8 +15,8 @@ import (
 
 type CustomAuthorizerObservation struct {
 
-	// Time when the APIG custom authorizer was created.
-	CreateTime *string `json:"createTime,omitempty" tf:"create_time,omitempty"`
+	// The creation time of the custom authorizer.
+	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// ID of the custom authorizer.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -26,22 +26,26 @@ type CustomAuthorizerParameters struct {
 
 	// Specifies the maximum cache age.
 	// Changing this will create a new custom authorizer resource.
+	// The maximum cache age.
 	// +kubebuilder:validation:Optional
 	CacheAge *float64 `json:"cacheAge,omitempty" tf:"cache_age,omitempty"`
 
 	// Specifies the uniform function URN of the function graph resource.
 	// Changing this will create a new custom authorizer resource.
+	// The URN of the FGS function.
 	// +kubebuilder:validation:Required
 	FunctionUrn *string `json:"functionUrn" tf:"function_urn,omitempty"`
 
 	// Specifies an array of one or more parameter identities of the custom authorizer.
 	// The object structure is documented below.
+	// The array of one or more parameter identities of the custom authorizer.
 	// +kubebuilder:validation:Optional
 	Identity []IdentityParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
 	// Specifies an ID of the APIG dedicated instance to which the
 	// custom authorizer belongs to.
 	// Changing this will create a new custom authorizer resource.
+	// The ID of the dedicated instance to which the custom authorizer belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -56,6 +60,7 @@ type CustomAuthorizerParameters struct {
 
 	// Specifies whether to send the body.
 	// Changing this will create a new custom authorizer resource.
+	// Whether to send the body.
 	// +kubebuilder:validation:Optional
 	IsBodySend *bool `json:"isBodySend,omitempty" tf:"is_body_send,omitempty"`
 
@@ -63,24 +68,28 @@ type CustomAuthorizerParameters struct {
 	// The custom authorizer name consists of 3 to 64 characters, starting with a letter.
 	// Only letters, digits and underscores (_) are allowed.
 	// Changing this will create a new custom authorizer resource.
+	// The name of the custom authorizer.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// Specifies the region in which to create the custom authorizer resource.
 	// If omitted, the provider-level region will be used.
 	// Changing this will create a new custom authorizer resource.
+	// The region where the custom authorizer is located.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the custom authoriz type.
 	// The valid values are FRONTEND and BACKEND.
 	// Changing this will create a new custom authorizer resource.
+	// The custom authorization type
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Specifies the user data, which can contain a maximum of 2,048 characters.
 	// The user data is used by APIG to invoke the specified authentication function when accessing the backend service.
 	// Changing this will create a new custom authorizer resource.
+	// The user data for custom authorizer function.
 	// +kubebuilder:validation:Optional
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
 }
@@ -92,12 +101,14 @@ type IdentityParameters struct {
 
 	// Specifies the parameter location, which support 'HEADER' and 'QUERY'.
 	// Changing this will create a new custom authorizer resource.
+	// The parameter location.
 	// +kubebuilder:validation:Required
 	Location *string `json:"location" tf:"location,omitempty"`
 
 	// Specifies the name of the parameter to be verified.
 	// The parameter includes front-end and back-end parameters.
 	// Changing this will create a new custom authorizer resource.
+	// The name of the parameter to be verified.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
@@ -105,6 +116,7 @@ type IdentityParameters struct {
 	// If omitted, the custom authorizer will not perform verification.
 	// The valid value is range form 1 to 2,048.
 	// Changing this will create a new custom authorizer resource.
+	// The parameter verification expression.
 	// +kubebuilder:validation:Optional
 	Validation *string `json:"validation,omitempty" tf:"validation,omitempty"`
 }

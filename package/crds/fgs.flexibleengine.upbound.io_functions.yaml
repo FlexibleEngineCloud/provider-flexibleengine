@@ -142,7 +142,8 @@ spec:
                         type: object
                     type: object
                   app:
-                    description: Specifies the group to which the function belongs.
+                    description: 'Specifies the group to which the function belongs.
+                      schema: Required'
                     type: string
                   appAgency:
                     description: Specifies An execution agency enables you to obtain
@@ -236,7 +237,8 @@ spec:
                     description: The version of the function
                     type: string
                   handler:
-                    description: Specifies the entry point of the function.
+                    description: 'Specifies the entry point of the function. schema:
+                      Required; The entry point of the function.'
                     type: string
                   initializerHandler:
                     description: Specifies the initializer of the function.

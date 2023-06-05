@@ -187,6 +187,10 @@ type KafkaInstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	StorageSpecCode *string `json:"storageSpecCode,omitempty" tf:"storage_spec_code,omitempty"`
 
+	// Specifies the key/value pairs to associate with the DMS Kafka instance.
+	// +kubebuilder:validation:Optional
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
 	// Specifies the ID of a VPC.
 	// Changing this creates a new instance resource.
 	// +crossplane:generate:reference:type=github.com/FlexibleEngineCloud/provider-flexibleengine/apis/vpc/v1beta1.VPC

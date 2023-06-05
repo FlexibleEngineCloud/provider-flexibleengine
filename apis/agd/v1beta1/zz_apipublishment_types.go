@@ -16,25 +16,29 @@ import (
 type APIPublishmentObservation struct {
 
 	// Environment name to which the current version of the API is published.
+	// The name of the environment to which the current version of the API is published.
 	EnvName *string `json:"envName,omitempty" tf:"env_name,omitempty"`
 
 	// All publish informations of the API. The structure is documented below.
+	// All publish informations of the API.
 	Histories []HistoriesObservation `json:"histories,omitempty" tf:"histories,omitempty"`
 
 	// Resource ID, which is constructed from the instance ID, environment ID, and API ID, separated by slashes.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The publish ID of the API in current environment.
+	// The publish ID of the API in current environment.
 	PublishID *string `json:"publishId,omitempty" tf:"publish_id,omitempty"`
 
 	// Time when the current version was published.
-	PublishTime *string `json:"publishTime,omitempty" tf:"publish_time,omitempty"`
+	PublishedAt *string `json:"publishedAt,omitempty" tf:"published_at,omitempty"`
 }
 
 type APIPublishmentParameters struct {
 
 	// Specifies the API ID to be published or already published.
 	// Changing this will create a new publishment resource.
+	// The ID of the API to be published or already published.
 	// +crossplane:generate:reference:type=API
 	// +kubebuilder:validation:Optional
 	APIID *string `json:"apiId,omitempty" tf:"api_id,omitempty"`
@@ -48,11 +52,13 @@ type APIPublishmentParameters struct {
 	APIIDSelector *v1.Selector `json:"apiIdSelector,omitempty" tf:"-"`
 
 	// Specifies the description of the current publishment.
+	// The description of the current publishment.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Specifies the environment ID to which the current version of the API will be
 	// published or has been published. Changing this will create a new publishment resource.
+	// The ID of the environment to which the current version of the API will be published or has been published.
 	// +crossplane:generate:reference:type=Environment
 	// +kubebuilder:validation:Optional
 	EnvID *string `json:"envId,omitempty" tf:"env_id,omitempty"`
@@ -67,6 +73,7 @@ type APIPublishmentParameters struct {
 
 	// Specifies an ID of the APIG dedicated instance to which the API belongs
 	// to. Changing this will create a new publishment resource.
+	// The ID of the dedicated instance to which the API and the environment belongs.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
@@ -81,10 +88,12 @@ type APIPublishmentParameters struct {
 
 	// Specifies the region in which to publish APIs.
 	// If omitted, the provider-level region will be used. Changing this will create a new publishment resource.
+	// The region in which to publish API.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Specifies the version ID of the current publishment.
+	// The version ID of the current publishment.
 	// +kubebuilder:validation:Optional
 	VersionID *string `json:"versionId,omitempty" tf:"version_id,omitempty"`
 }

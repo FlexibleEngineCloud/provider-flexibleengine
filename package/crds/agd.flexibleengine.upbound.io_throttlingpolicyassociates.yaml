@@ -68,7 +68,8 @@ spec:
                   instanceId:
                     description: Specifies the ID of the APIG dedicated instance to
                       which the APIs and the throttling policy belongs. Changing this
-                      will create a new resource.
+                      will create a new resource. The ID of the dedicated instance
+                      to which the APIs and the throttling policy belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -146,6 +147,7 @@ spec:
                   policyId:
                     description: Specifies the ID of the API group to which the API
                       response belongs to. Changing this will create a new resource.
+                      The ID of the throttling policy.
                     type: string
                   policyIdRef:
                     description: Reference to a ThrottlingPolicy to populate policyId.
@@ -222,14 +224,16 @@ spec:
                     type: object
                   publishIds:
                     description: Specifies the publish ID corresponding to the API
-                      bound by the throttling policy.
+                      bound by the throttling policy. The publish IDs corresponding
+                      to the APIs bound by the throttling policy.
                     items:
                       type: string
                     type: array
                   region:
                     description: Specifies the region where the API instance and throttling
                       policy are located. If omitted, the provider-level region will
-                      be used. Changing this will create a new resource.
+                      be used. Changing this will create a new resource. The region
+                      where the dedicated instance and the throttling policy are located.
                     type: string
                 required:
                 - publishIds

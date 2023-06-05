@@ -66,34 +66,37 @@ spec:
                 properties:
                   cacheAge:
                     description: Specifies the maximum cache age. Changing this will
-                      create a new custom authorizer resource.
+                      create a new custom authorizer resource. The maximum cache age.
                     type: number
                   functionUrn:
                     description: Specifies the uniform function URN of the function
                       graph resource. Changing this will create a new custom authorizer
-                      resource.
+                      resource. The URN of the FGS function.
                     type: string
                   identity:
                     description: Specifies an array of one or more parameter identities
                       of the custom authorizer. The object structure is documented
-                      below.
+                      below. The array of one or more parameter identities of the
+                      custom authorizer.
                     items:
                       properties:
                         location:
                           description: Specifies the parameter location, which support
                             'HEADER' and 'QUERY'. Changing this will create a new
-                            custom authorizer resource.
+                            custom authorizer resource. The parameter location.
                           type: string
                         name:
                           description: Specifies the name of the parameter to be verified.
                             The parameter includes front-end and back-end parameters.
                             Changing this will create a new custom authorizer resource.
+                            The name of the parameter to be verified.
                           type: string
                         validation:
                           description: Specifies the parameter verification expression.
                             If omitted, the custom authorizer will not perform verification.
                             The valid value is range form 1 to 2,048. Changing this
-                            will create a new custom authorizer resource.
+                            will create a new custom authorizer resource. The parameter
+                            verification expression.
                           type: string
                       required:
                       - location
@@ -103,7 +106,8 @@ spec:
                   instanceId:
                     description: Specifies an ID of the APIG dedicated instance to
                       which the custom authorizer belongs to. Changing this will create
-                      a new custom authorizer resource.
+                      a new custom authorizer resource. The ID of the dedicated instance
+                      to which the custom authorizer belongs.
                     type: string
                   instanceIdRef:
                     description: Reference to a Instance to populate instanceId.
@@ -180,29 +184,33 @@ spec:
                     type: object
                   isBodySend:
                     description: Specifies whether to send the body. Changing this
-                      will create a new custom authorizer resource.
+                      will create a new custom authorizer resource. Whether to send
+                      the body.
                     type: boolean
                   name:
                     description: Specifies the name of the custom authorizer. The
                       custom authorizer name consists of 3 to 64 characters, starting
                       with a letter. Only letters, digits and underscores (_) are
                       allowed. Changing this will create a new custom authorizer resource.
+                      The name of the custom authorizer.
                     type: string
                   region:
                     description: Specifies the region in which to create the custom
                       authorizer resource. If omitted, the provider-level region will
                       be used. Changing this will create a new custom authorizer resource.
+                      The region where the custom authorizer is located.
                     type: string
                   type:
                     description: Specifies the custom authoriz type. The valid values
                       are FRONTEND and BACKEND. Changing this will create a new custom
-                      authorizer resource.
+                      authorizer resource. The custom authorization type
                     type: string
                   userData:
                     description: Specifies the user data, which can contain a maximum
                       of 2,048 characters. The user data is used by APIG to invoke
                       the specified authentication function when accessing the backend
                       service. Changing this will create a new custom authorizer resource.
+                      The user data for custom authorizer function.
                     type: string
                 required:
                 - functionUrn
@@ -384,8 +392,8 @@ spec:
             properties:
               atProvider:
                 properties:
-                  createTime:
-                    description: Time when the APIG custom authorizer was created.
+                  createdAt:
+                    description: The creation time of the custom authorizer.
                     type: string
                   id:
                     description: ID of the custom authorizer.
