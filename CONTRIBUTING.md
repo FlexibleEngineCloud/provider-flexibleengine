@@ -41,3 +41,13 @@ Build binary:
 ```console
 make build
 ```
+
+## Testing environment
+
+For testing purpose you may need a Kubernetes environment, you can deal with microK8s, k3d, k3s, kind or what you prefer.
+
+1. Apply CRDs manifests to your cluster : `kubectl apply -f package/crds`
+2. Create ProviderConfig : with the templates in `examples/providerconfig` you need to create a secret and a providerconfig and apply them to your cluster
+3. Run the provider locally : `make run`
+
+Now you can to test your resources. Typically, you need to copy `examples-generated`resource in `examples`, modify it and test it.
