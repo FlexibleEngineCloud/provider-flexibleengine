@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.3](https://github.com/FlexibleEngineCloud/provider-flexibleengine/compare/v0.4.2...v0.4.3) (2023-06-06)
+
+
+### Features
+
+* upgrade provider and binarie ([#168](https://github.com/FlexibleEngineCloud/provider-flexibleengine/issues/168)) ([700a43f](https://github.com/FlexibleEngineCloud/provider-flexibleengine/commit/700a43f93da07d44a57f88341386d1fe3a1f0470))
+
+
+### Miscellaneous
+
+* explain how to contribute and test ([#170](https://github.com/FlexibleEngineCloud/provider-flexibleengine/issues/170)) ([d0b685d](https://github.com/FlexibleEngineCloud/provider-flexibleengine/commit/d0b685df778b246e2f76df64240dfc59b87392a4))
+
 ## [0.4.2](https://github.com/FlexibleEngineCloud/provider-flexibleengine/compare/v0.4.1...v0.4.2) (2023-04-26)
 
 
