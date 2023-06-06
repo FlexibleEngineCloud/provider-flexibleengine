@@ -10,6 +10,7 @@ spec:
   forProvider:
     availabilityZones:
     - eu-west-0a
+    - eu-west-0b
     description: Test rocketmq instance
     engineVersion: 4.8.0
     flavorId: c6.4u8g.cluster
